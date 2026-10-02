@@ -1,0 +1,253 @@
+{
+  "query": {
+    "path": "data\\raw\\query.parquet",
+    "total_rows": 1200,
+    "unique_ids": 1200,
+    "duplicate_id_rows": 0,
+    "missing_id": 0,
+    "missing_query": 0,
+    "null_query_rows": 0,
+    "whitespace_only_query_rows": 0,
+    "length_stats": {
+      "count": 1200,
+      "min": 18,
+      "p25": 56.0,
+      "median": 81.0,
+      "mean": 129.50583333333333,
+      "p75": 169.25,
+      "p95": 364.04999999999995,
+      "p99": 494.05999999999995,
+      "max": 1243
+    },
+    "unicode": {
+      "rows_with_control_chars": 0,
+      "rows_with_ufffd": 0,
+      "rows_with_non_ascii": 1200,
+      "rows_not_nfc": 4
+    }
+  },
+  "corpus": {
+    "path": "data\\raw\\links_corpus.parquet",
+    "total_rows": 4394718,
+    "unique_ids": 4394718,
+    "duplicate_id_rows": 0,
+    "missing_id": 0,
+    "missing_url": 0,
+    "unique_urls": 4394718,
+    "duplicate_url_rows": 0,
+    "id_sequence": {
+      "id_min": 583,
+      "id_max": 4420561,
+      "gap_count": 7,
+      "total_missing_ids": 25261,
+      "max_gap_size": 14096,
+      "all_gap_sizes": [
+        118,
+        4098,
+        109,
+        14096,
+        368,
+        3083,
+        3389
+      ]
+    },
+    "scheme": {
+      "https": 3030078,
+      "http": 1364640,
+      "other_or_malformed": 0,
+      "missing_null": 0
+    },
+    "domains": {
+      "distinct_count": 97,
+      "top_30": [
+        {
+          "domain": "cnkang.com",
+          "count": 963438
+        },
+        {
+          "domain": "120ask.com",
+          "count": 918479
+        },
+        {
+          "domain": "familydoctor.com.cn",
+          "count": 447453
+        },
+        {
+          "domain": "ask.39.net",
+          "count": 337375
+        },
+        {
+          "domain": "zysjonline.com",
+          "count": 243347
+        },
+        {
+          "domain": "a-hospital.com",
+          "count": 169339
+        },
+        {
+          "domain": "suckhoecongdongonline.vn",
+          "count": 154503
+        },
+        {
+          "domain": "zhongyibaodian.net",
+          "count": 146700
+        },
+        {
+          "domain": "suckhoedoisong.vn",
+          "count": 85823
+        },
+        {
+          "domain": "nhathuoclongchau.com.vn",
+          "count": 79598
+        },
+        {
+          "domain": "zydcd.com",
+          "count": 78680
+        },
+        {
+          "domain": "thanhnien.vn",
+          "count": 72111
+        },
+        {
+          "domain": "wujue.com",
+          "count": 53341
+        },
+        {
+          "domain": "youlai.cn",
+          "count": 46119
+        },
+        {
+          "domain": "laodong.vn",
+          "count": 31282
+        },
+        {
+          "domain": "baby.39.net",
+          "count": 27621
+        },
+        {
+          "domain": "phunusuckhoe.giadinhonline.vn",
+          "count": 27577
+        },
+        {
+          "domain": "vinmec.com",
+          "count": 26129
+        },
+        {
+          "domain": "bingli.iiyi.com",
+          "count": 24990
+        },
+        {
+          "domain": "medlatec.vn",
+          "count": 24762
+        },
+        {
+          "domain": "qihuangzhishu.com",
+          "count": 23637
+        },
+        {
+          "domain": "jbk.39.net",
+          "count": 19142
+        },
+        {
+          "domain": "giadinhonline.vn",
+          "count": 16729
+        },
+        {
+          "domain": "baohaiphong.vn",
+          "count": 16286
+        },
+        {
+          "domain": "baonghean.vn",
+          "count": 15941
+        },
+        {
+          "domain": "vietnamnet.vn",
+          "count": 15543
+        },
+        {
+          "domain": "care.39.net",
+          "count": 15134
+        },
+        {
+          "domain": "test.pmphai.com",
+          "count": 15120
+        },
+        {
+          "domain": "baodanang.vn",
+          "count": 14500
+        },
+        {
+          "domain": "tiemchunglongchau.com.vn",
+          "count": 13281
+        }
+      ]
+    },
+    "extensions": {
+      "top_20": [
+        {
+          "ext": ".html",
+          "count": 2422992
+        },
+        {
+          "ext": ".htm",
+          "count": 1117753
+        },
+        {
+          "ext": "__no_ext__",
+          "count": 799288
+        },
+        {
+          "ext": ".ldo",
+          "count": 31282
+        },
+        {
+          "ext": ".vov",
+          "count": 9784
+        },
+        {
+          "ext": ".vov2",
+          "count": 6899
+        },
+        {
+          "ext": ".vnp",
+          "count": 3695
+        },
+        {
+          "ext": ".tpo",
+          "count": 3021
+        },
+        {
+          "ext": ".vn",
+          "count": 1
+        },
+        {
+          "ext": ".von",
+          "count": 1
+        },
+        {
+          "ext": ".0",
+          "count": 1
+        },
+        {
+          "ext": ".5",
+          "count": 1
+        }
+      ],
+      "pdf_extension_count": 0,
+      "any_file_extension_count": 0
+    },
+    "url_patterns": {
+      "has_query_string": 20534,
+      "has_likely_tracking_parameter": 0,
+      "has_fragment": 1698,
+      "has_likely_pdf_pattern": 0
+    },
+    "notes": {
+      "pdf_pattern_note": "PDF-like URL metadata does not confirm HTTP Content-Type. Actual content type is unknown until Phase 2 crawling.",
+      "language_note": "Domain TLD and hostname are used as language proxies (.vn=Vietnamese, .cn/.net with Chinese names=Chinese). Actual page language requires content inspection and has not been measured."
+    }
+  },
+  "run_meta": {
+    "runtime_seconds": 77.05
+  }
+}

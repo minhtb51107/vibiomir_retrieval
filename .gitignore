@@ -1,0 +1,39 @@
+@"
+
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Raw / generated data
+data/raw/
+data/crawled/
+data/processed/
+data/chunks/
+data/indexes/
+
+# Model/index files
+*.faiss
+*.index
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+"@ | Add-Content .gitignore
