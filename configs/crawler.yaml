@@ -1,0 +1,48 @@
+input_path: data/raw/links_corpus.parquet
+output_db: data/crawled/crawl_results.sqlite
+
+http:
+  user_agent: "ViBioMIRResearchCrawler/0.1 (Phase 2A pilot; contact repository owner)"
+  connect_timeout_seconds: 10.0
+  read_timeout_seconds: 20.0
+  write_timeout_seconds: 10.0
+  pool_timeout_seconds: 10.0
+  max_connections: 16
+  max_keepalive_connections: 8
+  follow_redirects: true
+  max_redirects: 10
+
+retry:
+  max_attempts: 3
+  backoff_base_seconds: 0.5
+  backoff_max_seconds: 8.0
+  jitter_seconds: 0.25
+
+concurrency:
+  global_limit: 8
+  per_domain_limit: 2
+  default_domain_delay_seconds: 1.0
+  domain_overrides:
+    cnkang.com:
+      concurrency: 1
+      delay_seconds: 2.0
+    120ask.com:
+      concurrency: 1
+      delay_seconds: 2.0
+
+robots:
+  enabled: true
+  allow_on_fetch_error: true
+
+storage:
+  store_raw_body: false
+  max_body_bytes: 1048576
+  allowed_content_types:
+    - text/html
+    - application/xhtml+xml
+    - text/plain
+    - application/pdf
+
+pilot:
+  default_limit: 20
+  maximum_limit_without_full: 100

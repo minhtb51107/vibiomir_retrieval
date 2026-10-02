@@ -16,9 +16,28 @@
 
 ---
 
-## Phase 2 — Corpus Crawling
+## Phase 2A — Corpus Acquisition Core
 
-_Not started. Awaiting Phase 1 approval._
+| Task | Status | Date |
+|---|---|---|
+| Implement streaming corpus loader and fragment-safe URL handling | COMPLETE | 2026-10-03 |
+| Implement pooled async HTTP fetcher with retry/backoff | COMPLETE | 2026-10-03 |
+| Implement global/per-domain concurrency and delays | COMPLETE | 2026-10-03 |
+| Implement cached robots policy | COMPLETE | 2026-10-03 |
+| Implement transactional SQLite checkpoint/resume | COMPLETE | 2026-10-03 |
+| Add safe pilot CLI and explicit `--full` gate | COMPLETE | 2026-10-03 |
+| Add offline tests for URL, retry, resume, status, robots, and CLI safety | COMPLETE | 2026-10-03 |
+| Run mixed-domain pilot (10 URLs) | COMPLETE | 2026-10-03 |
+| Demonstrate second-run checkpoint skip (10/10 skipped) | COMPLETE | 2026-10-03 |
+| Document crawler architecture and deferred work | COMPLETE | 2026-10-03 |
+
+**Phase 2A status: COMPLETE**
+
+---
+
+## Phase 2B / 2C
+
+_Not started. Awaiting explicit approval._
 
 ---
 

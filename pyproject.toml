@@ -1,0 +1,18 @@
+[project]
+name = "vibiomir-retrieval"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.28,<1",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=15,<22",
+  "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9,<10"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --basetemp=test_tmp -p no:cacheprovider"

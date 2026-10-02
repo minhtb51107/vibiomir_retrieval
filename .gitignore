@@ -1,10 +1,6 @@
-@"
-
-# Python virtual environment
+# Python virtual environments and caches
 .venv/
 venv/
-
-# Python cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -16,14 +12,14 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Raw / generated data
+# Raw and generated data
 data/raw/
 data/crawled/
 data/processed/
 data/chunks/
 data/indexes/
 
-# Model/index files
+# Model and index files
 *.faiss
 *.index
 *.bin
@@ -31,9 +27,8 @@ data/indexes/
 *.pt
 *.pth
 
-# Logs / temp
+# Logs and temporary files
 *.log
 tmp/
 temp/
-
-"@ | Add-Content .gitignore
+test_tmp/
