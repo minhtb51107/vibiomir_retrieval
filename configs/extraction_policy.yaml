@@ -1,0 +1,127 @@
+version: 1
+phase: 2B
+evidence:
+  manifest: artifacts/source_probe/sample_manifest.json
+  results: artifacts/source_probe/probe_results.json
+  summary: artifacts/source_probe/summary.json
+  unique_urls: 118
+  live_corpus_url_operations: 173
+
+content_handling:
+  extractable_content_types:
+    - text/html
+    - application/xhtml+xml
+  metadata_only_for_unlisted_types: true
+  max_probe_body_bytes: 2097152
+  normalize_unicode: NFC
+
+charset_policy:
+  precedence:
+    - valid_http_charset
+    - valid_html_meta_charset
+    - charset_normalizer_detection
+    - utf-8_with_replacement_reporting
+  unconditional_gb18030_fallback: false
+  evidence:
+    http_declared_utf8_pages: 79
+    http_charset_missing_pages: 20
+    meta_declared_utf8_pages: 87
+    meta_declared_gb2312_pages: 7
+    decoding_replacement_characters: 0
+    corrected_mojibake_signatures: 0
+    nfc_changed_pages: 7
+
+generic_extraction:
+  preferred_strategy: hybrid_semantic_and_density
+  primary_candidate: density_scored
+  lower_noise_candidate: semantic_container
+  selection_rules:
+    - prefer semantic_container when it has at least 500 characters and is not materially shorter than density_scored
+    - use density_scored when semantic_container is empty or loses most paragraph text
+    - preserve the HTML title explicitly
+    - reject empty output and retain extraction diagnostics
+  evidence:
+    html_success_pages: 99
+    density_median_characters: 1961
+    semantic_median_characters: 452
+    density_empty_rate: 0.0505
+    semantic_empty_rate: 0.0505
+    density_title_preserved_rate: 0.9495
+    semantic_title_preserved_rate: 0.9495
+    density_boilerplate_markers: 63
+    semantic_boilerplate_markers: 47
+
+language_signal:
+  mode: lightweight_script_and_vietnamese_character_signal
+  use_domain_inference_as_measured_language: false
+  observed_successful_html:
+    zh-Han-script: 60
+    vi-signal: 34
+    unknown: 5
+
+domain_policies:
+  120ask.com:
+    observed_template: Q_AND_A_TEMPLATE
+    preserve_question_answer_boundaries: true
+    redirects_observed: true
+  ask.39.net:
+    observed_template: Q_AND_A_TEMPLATE
+    preserve_question_answer_boundaries: true
+    density_fallback_required: true
+  familydoctor.com.cn:
+    observed_template: MIXED_Q_AND_A_AND_STATIC
+    preserve_question_answer_boundaries: true
+    density_fallback_required: true
+  cnkang.com:
+    observed_template: MOSTLY_GENERIC_STATIC_HTML
+    density_fallback_required: true
+    meta_charset_gb2312_observed: true
+    http_to_https_redirects_observed: true
+  a-hospital.com:
+    observed_template: GENERIC_STATIC_HTML
+  zhongyibaodian.net:
+    observed_template: MOSTLY_GENERIC_STATIC_HTML
+  zysjonline.com:
+    handling: ROBOTS_BLOCKED
+    action: do_not_fetch_disallowed_urls
+  suckhoecongdongonline.vn:
+    observed_template: NEWS_TEMPLATE
+    density_fallback_required: true
+  suckhoedoisong.vn:
+    observed_template: NEWS_TEMPLATE
+    structured_data_observed: true
+    contamination_review_required: true
+  nhathuoclongchau.com.vn:
+    handling: ACCESS_RESTRICTED
+    evidence: 8_of_8_http_403_cloudflare
+    action: do_not_bypass_or_aggressively_retry
+  laodong.vn:
+    handling: JAVASCRIPT_HEAVY
+    evidence: 5_of_5_empty_177_byte_script_shells
+    action: defer_rendering_decision_and_do_not_treat_shell_as_article_text
+  test.pmphai.com:
+    observed_template: GENERIC_STATIC_HTML
+    action: retain_staging_source_flag_for_quality_review
+  thanhnien.vn:
+    observed_template: NEWS_TEMPLATE
+    structured_data_observed: true
+  tienphong.vn:
+    observed_template: NEWS_TEMPLATE
+    density_fallback_required: true
+  vietnamplus.vn:
+    observed_template: NEWS_TEMPLATE
+    density_fallback_required: true
+  vinmec.com:
+    observed_template: GENERIC_STATIC_HTML
+    structured_data_observed: true
+  vov.vn:
+    observed_template: NEWS_TEMPLATE
+    captcha_token_observed_but_article_text_available: true
+  vov2.vov.vn:
+    observed_template: MIXED_NEWS_AND_GENERIC
+
+deferred:
+  site_specific_css_selectors: true
+  javascript_rendering: true
+  anti_bot_bypass: true
+  article_text_persistence: true

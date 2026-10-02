@@ -1,0 +1,539 @@
+{
+  "total_probed": 118,
+  "status_counts": {
+    "SUCCESS": 99,
+    "HTTP_ERROR": 8,
+    "ROBOTS_BLOCKED": 11
+  },
+  "content_type_counts": {
+    "text/html": 107,
+    "missing": 11
+  },
+  "http_status_counts": {
+    "200": 99,
+    "403": 8
+  },
+  "redirected_count": 13,
+  "robots_blocked_count": 11,
+  "html_success_count": 99,
+  "declared_http_encoding_counts": {
+    "utf-8": 79,
+    "missing": 20
+  },
+  "declared_meta_encoding_counts": {
+    "utf-8": 87,
+    "gb2312": 7,
+    "missing": 5
+  },
+  "detected_encoding_counts": {
+    "utf-8": 87,
+    "gb2312": 7,
+    "ascii": 5
+  },
+  "client_encoding_counts": {
+    "utf-8": 99
+  },
+  "selected_encoding_counts": {
+    "utf-8": 87,
+    "gb2312": 7,
+    "ascii": 5
+  },
+  "language_signal_counts": {
+    "zh-Han-script": 60,
+    "unknown": 5,
+    "vi-signal": 34
+  },
+  "template_classification_counts": {
+    "Q_AND_A_TEMPLATE": 21,
+    "GENERIC_STATIC_HTML": 42,
+    "UNKNOWN": 5,
+    "JAVASCRIPT_HEAVY": 5,
+    "NEWS_TEMPLATE": 26
+  },
+  "decoding_replacement_total": 0,
+  "mojibake_marker_total": 0,
+  "unicode_nfc_changed_pages": 7,
+  "anti_bot_signal_counts": {
+    "JS_ONLY_SHELL": 5,
+    "CAPTCHA": 5,
+    "CLOUDFLARE": 8,
+    "HTTP_403": 8
+  },
+  "extraction_comparison": {
+    "density_scored": {
+      "pages": 99,
+      "mean_character_count": 6347.4,
+      "median_character_count": 1961,
+      "empty_count": 5,
+      "empty_rate": 0.0505,
+      "title_preserved_count": 94,
+      "title_preserved_rate": 0.9495,
+      "boilerplate_marker_count": 63
+    },
+    "semantic_container": {
+      "pages": 99,
+      "mean_character_count": 5024.4,
+      "median_character_count": 452,
+      "empty_count": 5,
+      "empty_rate": 0.0505,
+      "title_preserved_count": 94,
+      "title_preserved_rate": 0.9495,
+      "boilerplate_marker_count": 47
+    }
+  },
+  "domains": {
+    "120ask.com": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "Q_AND_A_TEMPLATE": 8
+      },
+      "redirected": 6,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "a-hospital.com": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "ask.39.net": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "Q_AND_A_TEMPLATE": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "cnkang.com": {
+      "sampled": 10,
+      "statuses": {
+        "SUCCESS": 10
+      },
+      "http_statuses": {
+        "200": 10
+      },
+      "content_types": {
+        "text/html": 10
+      },
+      "language_signals": {
+        "zh-Han-script": 10
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 7,
+        "UNKNOWN": 3
+      },
+      "redirected": 7,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "familydoctor.com.cn": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "Q_AND_A_TEMPLATE": 4,
+        "GENERIC_STATIC_HTML": 4
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "laodong.vn": {
+      "sampled": 5,
+      "statuses": {
+        "SUCCESS": 5
+      },
+      "http_statuses": {
+        "200": 5
+      },
+      "content_types": {
+        "text/html": 5
+      },
+      "language_signals": {
+        "unknown": 5
+      },
+      "template_classifications": {
+        "JAVASCRIPT_HEAVY": 5
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {
+        "JS_ONLY_SHELL": 5
+      }
+    },
+    "medlatec.vn": {
+      "sampled": 3,
+      "statuses": {
+        "SUCCESS": 3
+      },
+      "http_statuses": {
+        "200": 3
+      },
+      "content_types": {
+        "text/html": 3
+      },
+      "language_signals": {
+        "vi-signal": 3
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 3
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {
+        "CAPTCHA": 3
+      }
+    },
+    "nhathuoclongchau.com.vn": {
+      "sampled": 8,
+      "statuses": {
+        "HTTP_ERROR": 8
+      },
+      "http_statuses": {
+        "403": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "latin-undetermined": 8
+      },
+      "template_classifications": {
+        "ACCESS_RESTRICTED": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {
+        "CLOUDFLARE": 8,
+        "HTTP_403": 8
+      }
+    },
+    "phuyen.baodaklak.vn": {
+      "sampled": 1,
+      "statuses": {
+        "SUCCESS": 1
+      },
+      "http_statuses": {
+        "200": 1
+      },
+      "content_types": {
+        "text/html": 1
+      },
+      "language_signals": {
+        "vi-signal": 1
+      },
+      "template_classifications": {
+        "Q_AND_A_TEMPLATE": 1
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "suckhoecongdongonline.vn": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "vi-signal": 8
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "suckhoedoisong.vn": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "vi-signal": 8
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "test.pmphai.com": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 8
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "thanhnien.vn": {
+      "sampled": 3,
+      "statuses": {
+        "SUCCESS": 3
+      },
+      "http_statuses": {
+        "200": 3
+      },
+      "content_types": {
+        "text/html": 3
+      },
+      "language_signals": {
+        "vi-signal": 3
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 3
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "tienphong.vn": {
+      "sampled": 2,
+      "statuses": {
+        "SUCCESS": 2
+      },
+      "http_statuses": {
+        "200": 2
+      },
+      "content_types": {
+        "text/html": 2
+      },
+      "language_signals": {
+        "vi-signal": 2
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 2
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "vietnamplus.vn": {
+      "sampled": 2,
+      "statuses": {
+        "SUCCESS": 2
+      },
+      "http_statuses": {
+        "200": 2
+      },
+      "content_types": {
+        "text/html": 2
+      },
+      "language_signals": {
+        "vi-signal": 2
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 2
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "vinmec.com": {
+      "sampled": 3,
+      "statuses": {
+        "SUCCESS": 3
+      },
+      "http_statuses": {
+        "200": 3
+      },
+      "content_types": {
+        "text/html": 3
+      },
+      "language_signals": {
+        "vi-signal": 3
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 3
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "vov.vn": {
+      "sampled": 2,
+      "statuses": {
+        "SUCCESS": 2
+      },
+      "http_statuses": {
+        "200": 2
+      },
+      "content_types": {
+        "text/html": 2
+      },
+      "language_signals": {
+        "vi-signal": 2
+      },
+      "template_classifications": {
+        "NEWS_TEMPLATE": 2
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {
+        "CAPTCHA": 2
+      }
+    },
+    "vov2.vov.vn": {
+      "sampled": 2,
+      "statuses": {
+        "SUCCESS": 2
+      },
+      "http_statuses": {
+        "200": 2
+      },
+      "content_types": {
+        "text/html": 2
+      },
+      "language_signals": {
+        "vi-signal": 2
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 1,
+        "NEWS_TEMPLATE": 1
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "zhongyibaodian.net": {
+      "sampled": 8,
+      "statuses": {
+        "SUCCESS": 8
+      },
+      "http_statuses": {
+        "200": 8
+      },
+      "content_types": {
+        "text/html": 8
+      },
+      "language_signals": {
+        "zh-Han-script": 8
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 7,
+        "UNKNOWN": 1
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "zydcd.com": {
+      "sampled": 2,
+      "statuses": {
+        "SUCCESS": 2
+      },
+      "http_statuses": {
+        "200": 2
+      },
+      "content_types": {
+        "text/html": 2
+      },
+      "language_signals": {
+        "zh-Han-script": 2
+      },
+      "template_classifications": {
+        "GENERIC_STATIC_HTML": 1,
+        "UNKNOWN": 1
+      },
+      "redirected": 0,
+      "robots_blocked": 0,
+      "anti_bot_signals": {}
+    },
+    "zysjonline.com": {
+      "sampled": 11,
+      "statuses": {
+        "ROBOTS_BLOCKED": 11
+      },
+      "http_statuses": {},
+      "content_types": {
+        "missing": 11
+      },
+      "language_signals": {
+        "unknown": 11
+      },
+      "template_classifications": {
+        "UNKNOWN": 11
+      },
+      "redirected": 0,
+      "robots_blocked": 11,
+      "anti_bot_signals": {}
+    }
+  }
+}

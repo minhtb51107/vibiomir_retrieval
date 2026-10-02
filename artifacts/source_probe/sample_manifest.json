@@ -1,0 +1,1380 @@
+{
+  "meta": {
+    "generated_at": "2026-10-02T19:33:32.583212+00:00",
+    "input_path": "data/raw/links_corpus.parquet",
+    "input_sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+    "seed": "vibiomir-phase2b-v1",
+    "maximum_live_urls": 120,
+    "selected_count": 118,
+    "rule_selected_counts": {
+      "top_cnkang": 8,
+      "top_120ask": 8,
+      "top_familydoctor": 8,
+      "top_ask39": 8,
+      "top_zysjonline": 8,
+      "top_ahospital": 8,
+      "top_suckhoecongdong": 8,
+      "top_zhongyibaodian": 8,
+      "top_suckhoedoisong": 8,
+      "top_longchau": 8,
+      "vi_thanhnien": 3,
+      "vi_laodong": 3,
+      "vi_vinmec": 3,
+      "vi_medlatec": 3,
+      "unusual_test_pmphai": 4,
+      "feature_query_string": 4,
+      "feature_http_redirect": 4,
+      "feature_no_extension": 4,
+      "suffix_ldo": 2,
+      "suffix_vov": 2,
+      "suffix_vov2": 2,
+      "suffix_vnp": 2,
+      "suffix_tpo": 2
+    },
+    "rules": [
+      {
+        "name": "top_cnkang",
+        "kind": "domain",
+        "value": "cnkang.com",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_120ask",
+        "kind": "domain",
+        "value": "120ask.com",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_familydoctor",
+        "kind": "domain",
+        "value": "familydoctor.com.cn",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_ask39",
+        "kind": "domain",
+        "value": "ask.39.net",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_zysjonline",
+        "kind": "domain",
+        "value": "zysjonline.com",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_ahospital",
+        "kind": "domain",
+        "value": "a-hospital.com",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_suckhoecongdong",
+        "kind": "domain",
+        "value": "suckhoecongdongonline.vn",
+        "quota": 8,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "top_zhongyibaodian",
+        "kind": "domain",
+        "value": "zhongyibaodian.net",
+        "quota": 8,
+        "inferred_language": "zh"
+      },
+      {
+        "name": "top_suckhoedoisong",
+        "kind": "domain",
+        "value": "suckhoedoisong.vn",
+        "quota": 8,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "top_longchau",
+        "kind": "domain",
+        "value": "nhathuoclongchau.com.vn",
+        "quota": 8,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "vi_thanhnien",
+        "kind": "domain",
+        "value": "thanhnien.vn",
+        "quota": 3,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "vi_laodong",
+        "kind": "domain",
+        "value": "laodong.vn",
+        "quota": 3,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "vi_vinmec",
+        "kind": "domain",
+        "value": "vinmec.com",
+        "quota": 3,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "vi_medlatec",
+        "kind": "domain",
+        "value": "medlatec.vn",
+        "quota": 3,
+        "inferred_language": "vi"
+      },
+      {
+        "name": "unusual_test_pmphai",
+        "kind": "domain",
+        "value": "test.pmphai.com",
+        "quota": 4,
+        "inferred_language": "unknown"
+      },
+      {
+        "name": "feature_query_string",
+        "kind": "query_string",
+        "value": null,
+        "quota": 4,
+        "inferred_language": null
+      },
+      {
+        "name": "feature_http_redirect",
+        "kind": "scheme",
+        "value": "http",
+        "quota": 4,
+        "inferred_language": null
+      },
+      {
+        "name": "feature_no_extension",
+        "kind": "no_extension",
+        "value": null,
+        "quota": 4,
+        "inferred_language": null
+      },
+      {
+        "name": "suffix_ldo",
+        "kind": "suffix",
+        "value": ".ldo",
+        "quota": 2,
+        "inferred_language": null
+      },
+      {
+        "name": "suffix_vov",
+        "kind": "suffix",
+        "value": ".vov",
+        "quota": 2,
+        "inferred_language": null
+      },
+      {
+        "name": "suffix_vov2",
+        "kind": "suffix",
+        "value": ".vov2",
+        "quota": 2,
+        "inferred_language": null
+      },
+      {
+        "name": "suffix_vnp",
+        "kind": "suffix",
+        "value": ".vnp",
+        "quota": 2,
+        "inferred_language": null
+      },
+      {
+        "name": "suffix_tpo",
+        "kind": "suffix",
+        "value": ".tpo",
+        "quota": 2,
+        "inferred_language": null
+      }
+    ]
+  },
+  "records": [
+    {
+      "doc_id": 996976,
+      "original_url": "http://www.120ask.com/question/108464439.htm",
+      "fetch_url": "http://www.120ask.com/question/108464439.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1069640,
+      "original_url": "http://www.120ask.com/question/14503905.htm",
+      "fetch_url": "http://www.120ask.com/question/14503905.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1154945,
+      "original_url": "http://www.120ask.com/question/228486.htm",
+      "fetch_url": "http://www.120ask.com/question/228486.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1290100,
+      "original_url": "http://www.120ask.com/question/4993186.htm",
+      "fetch_url": "http://www.120ask.com/question/4993186.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1321117,
+      "original_url": "http://www.120ask.com/question/61224148.htm",
+      "fetch_url": "http://www.120ask.com/question/61224148.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1326791,
+      "original_url": "http://www.120ask.com/question/626599.htm",
+      "fetch_url": "http://www.120ask.com/question/626599.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2908584,
+      "original_url": "https://www.120ask.com/question/6084318.htm",
+      "fetch_url": "https://www.120ask.com/question/6084318.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2927619,
+      "original_url": "https://www.120ask.com/question/65722643.htm",
+      "fetch_url": "https://www.120ask.com/question/65722643.htm",
+      "domain": "120ask.com",
+      "sampling_categories": [
+        "top_120ask"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3002938,
+      "original_url": "https://www.a-hospital.com/w/%E4%BB%81%E6%96%8B%E7%9B%B4%E6%8C%87",
+      "fetch_url": "https://www.a-hospital.com/w/%E4%BB%81%E6%96%8B%E7%9B%B4%E6%8C%87",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3015464,
+      "original_url": "https://www.a-hospital.com/w/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E5%AD%A6/%E5%BF%83%E4%B8%8E%E5%A4%A7%E8%A1%80%E7%AE%A1CT%E8%AF%8A%E6%96%AD",
+      "fetch_url": "https://www.a-hospital.com/w/%E5%8C%BB%E5%AD%A6%E5%BD%B1%E5%83%8F%E5%AD%A6/%E5%BF%83%E4%B8%8E%E5%A4%A7%E8%A1%80%E7%AE%A1CT%E8%AF%8A%E6%96%AD",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3023996,
+      "original_url": "https://www.a-hospital.com/w/%E5%90%91%E5%A4%A9%E8%9C%88%E8%9A%A3",
+      "fetch_url": "https://www.a-hospital.com/w/%E5%90%91%E5%A4%A9%E8%9C%88%E8%9A%A3",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3029890,
+      "original_url": "https://www.a-hospital.com/w/%E5%9F%B9%E6%A4%8D%E7%89%9B%E9%BB%84",
+      "fetch_url": "https://www.a-hospital.com/w/%E5%9F%B9%E6%A4%8D%E7%89%9B%E9%BB%84",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3030187,
+      "original_url": "https://www.a-hospital.com/w/%E5%9F%BA%E7%A1%80%E6%A3%80%E9%AA%8C%E5%AD%A6/%E7%B2%AA%E4%BE%BF%E4%B8%80%E8%88%AC%E6%80%A7%E7%8A%B6%E6%A3%80%E6%9F%A5",
+      "fetch_url": "https://www.a-hospital.com/w/%E5%9F%BA%E7%A1%80%E6%A3%80%E9%AA%8C%E5%AD%A6/%E7%B2%AA%E4%BE%BF%E4%B8%80%E8%88%AC%E6%80%A7%E7%8A%B6%E6%A3%80%E6%9F%A5",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3094661,
+      "original_url": "https://www.a-hospital.com/w/%E7%96%AB%E5%96%89",
+      "fetch_url": "https://www.a-hospital.com/w/%E7%96%AB%E5%96%89",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3108065,
+      "original_url": "https://www.a-hospital.com/w/%E7%BA%BF%E6%80%A7%E5%85%B3%E7%B3%BB",
+      "fetch_url": "https://www.a-hospital.com/w/%E7%BA%BF%E6%80%A7%E5%85%B3%E7%B3%BB",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3125816,
+      "original_url": "https://www.a-hospital.com/w/%E8%92%B2%E5%85%AC%E8%8B%B1",
+      "fetch_url": "https://www.a-hospital.com/w/%E8%92%B2%E5%85%AC%E8%8B%B1",
+      "domain": "a-hospital.com",
+      "sampling_categories": [
+        "top_ahospital"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2171356,
+      "original_url": "https://ask.39.net/question/106379717.html",
+      "fetch_url": "https://ask.39.net/question/106379717.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2191542,
+      "original_url": "https://ask.39.net/question/112881224.html",
+      "fetch_url": "https://ask.39.net/question/112881224.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2213905,
+      "original_url": "https://ask.39.net/question/22423825.html",
+      "fetch_url": "https://ask.39.net/question/22423825.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2219069,
+      "original_url": "https://ask.39.net/question/25873655.html",
+      "fetch_url": "https://ask.39.net/question/25873655.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2419888,
+      "original_url": "https://ask.39.net/question/_9pfrtj.html",
+      "fetch_url": "https://ask.39.net/question/_9pfrtj.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2425409,
+      "original_url": "https://ask.39.net/question/_bydwc5.html",
+      "fetch_url": "https://ask.39.net/question/_bydwc5.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2435499,
+      "original_url": "https://ask.39.net/question/_h27ab5.html",
+      "fetch_url": "https://ask.39.net/question/_h27ab5.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2458650,
+      "original_url": "https://ask.39.net/question/_tq64x5.html",
+      "fetch_url": "https://ask.39.net/question/_tq64x5.html",
+      "domain": "ask.39.net",
+      "sampling_categories": [
+        "top_ask39"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1431983,
+      "original_url": "http://www.cnkang.com/dise/160/811555.html",
+      "fetch_url": "http://www.cnkang.com/dise/160/811555.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1456969,
+      "original_url": "http://www.cnkang.com/dise/219/83007.html",
+      "fetch_url": "http://www.cnkang.com/dise/219/83007.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "feature_http_redirect"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 1671555,
+      "original_url": "http://www.cnkang.com/dzjk/201102/33990.html",
+      "fetch_url": "http://www.cnkang.com/dzjk/201102/33990.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1736785,
+      "original_url": "http://www.cnkang.com/jibing/byazl/648210.html",
+      "fetch_url": "http://www.cnkang.com/jibing/byazl/648210.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1738682,
+      "original_url": "http://www.cnkang.com/jibing/danguanai/241406.html",
+      "fetch_url": "http://www.cnkang.com/jibing/danguanai/241406.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1856809,
+      "original_url": "http://www.cnkang.com/nkwk/bgzz/209821.html",
+      "fetch_url": "http://www.cnkang.com/nkwk/bgzz/209821.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 1949313,
+      "original_url": "http://www.cnkang.com/nxjk/201012/5897.html",
+      "fetch_url": "http://www.cnkang.com/nxjk/201012/5897.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "feature_http_redirect"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 3351606,
+      "original_url": "https://www.cnkang.com/dise/602/381150.html",
+      "fetch_url": "https://www.cnkang.com/dise/602/381150.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3410616,
+      "original_url": "https://www.cnkang.com/dzjk/201110/113868.html",
+      "fetch_url": "https://www.cnkang.com/dzjk/201110/113868.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3476080,
+      "original_url": "https://www.cnkang.com/myjk/201209/490622.html",
+      "fetch_url": "https://www.cnkang.com/myjk/201209/490622.html",
+      "domain": "cnkang.com",
+      "sampling_categories": [
+        "top_cnkang"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3639885,
+      "original_url": "https://www.familydoctor.com.cn/fuke/a/201611/1447178.html",
+      "fetch_url": "https://www.familydoctor.com.cn/fuke/a/201611/1447178.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3647879,
+      "original_url": "https://www.familydoctor.com.cn/fuke/a/201611/1464174.html",
+      "fetch_url": "https://www.familydoctor.com.cn/fuke/a/201611/1464174.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3796399,
+      "original_url": "https://www.familydoctor.com.cn/lady/a/201310/518900.html",
+      "fetch_url": "https://www.familydoctor.com.cn/lady/a/201310/518900.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3819658,
+      "original_url": "https://www.familydoctor.com.cn/man/a/201911/2581994.html",
+      "fetch_url": "https://www.familydoctor.com.cn/man/a/201911/2581994.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3868637,
+      "original_url": "https://www.familydoctor.com.cn/sex/a/201701/1673068.html",
+      "fetch_url": "https://www.familydoctor.com.cn/sex/a/201701/1673068.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3882639,
+      "original_url": "https://www.familydoctor.com.cn/shen/a/201710/2353298.html",
+      "fetch_url": "https://www.familydoctor.com.cn/shen/a/201710/2353298.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3892711,
+      "original_url": "https://www.familydoctor.com.cn/tangniaobing/a/201703/1807906.html",
+      "fetch_url": "https://www.familydoctor.com.cn/tangniaobing/a/201703/1807906.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 3974170,
+      "original_url": "https://www.familydoctor.com.cn/yinshi/contents/201103/8211253161625.html",
+      "fetch_url": "https://www.familydoctor.com.cn/yinshi/contents/201103/8211253161625.html",
+      "domain": "familydoctor.com.cn",
+      "sampling_categories": [
+        "top_familydoctor"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 148538,
+      "original_url": "https://laodong.vn/dinh-duong-am-thuc/bi-quyet-goi-sua-ve-sau-sinh-mo-cuc-hieu-qua-857260.ldo",
+      "fetch_url": "https://laodong.vn/dinh-duong-am-thuc/bi-quyet-goi-sua-ve-sau-sinh-mo-cuc-hieu-qua-857260.ldo",
+      "domain": "laodong.vn",
+      "sampling_categories": [
+        "vi_laodong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 150657,
+      "original_url": "https://laodong.vn/dinh-duong-am-thuc/thuc-don-bua-toi-giam-mo-noi-tang-hieu-qua-trong-1-tuan-1433589.ldo",
+      "fetch_url": "https://laodong.vn/dinh-duong-am-thuc/thuc-don-bua-toi-giam-mo-noi-tang-hieu-qua-trong-1-tuan-1433589.ldo",
+      "domain": "laodong.vn",
+      "sampling_categories": [
+        "vi_laodong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 151965,
+      "original_url": "https://laodong.vn/lam-dep/loi-ich-cua-dau-lang-do-doi-voi-lan-da-1436906.ldo",
+      "fetch_url": "https://laodong.vn/lam-dep/loi-ich-cua-dau-lang-do-doi-voi-lan-da-1436906.ldo",
+      "domain": "laodong.vn",
+      "sampling_categories": [
+        "suffix_ldo"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 158508,
+      "original_url": "https://laodong.vn/suc-khoe/cach-su-dung-mat-ong-de-chua-tieu-chay-dip-tet-1455360.ldo",
+      "fetch_url": "https://laodong.vn/suc-khoe/cach-su-dung-mat-ong-de-chua-tieu-chay-dip-tet-1455360.ldo",
+      "domain": "laodong.vn",
+      "sampling_categories": [
+        "suffix_ldo"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 172429,
+      "original_url": "https://laodong.vn/video/tra-doc-la-tu-loai-hoa-do-trong-day-vuon-giup-song-lau-hon-1463941.ldo",
+      "fetch_url": "https://laodong.vn/video/tra-doc-la-tu-loai-hoa-do-trong-day-vuon-giup-song-lau-hon-1463941.ldo",
+      "domain": "laodong.vn",
+      "sampling_categories": [
+        "vi_laodong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 176620,
+      "original_url": "https://medlatec.vn/tin-tuc/benh-tri--can-benh-kho-chiu-anh-huong-lon-den-sinh-hoat-hang-ngay-s195-n19686",
+      "fetch_url": "https://medlatec.vn/tin-tuc/benh-tri--can-benh-kho-chiu-anh-huong-lon-den-sinh-hoat-hang-ngay-s195-n19686",
+      "domain": "medlatec.vn",
+      "sampling_categories": [
+        "vi_medlatec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 181642,
+      "original_url": "https://medlatec.vn/tin-tuc/di-ngoai-ra-mo-co-phai-la-benh-ly-tieu-hoa-nguy-hiem-hay-khong",
+      "fetch_url": "https://medlatec.vn/tin-tuc/di-ngoai-ra-mo-co-phai-la-benh-ly-tieu-hoa-nguy-hiem-hay-khong",
+      "domain": "medlatec.vn",
+      "sampling_categories": [
+        "vi_medlatec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 183367,
+      "original_url": "https://medlatec.vn/tin-tuc/gioi-thieu-6-xet-nghiem-noi-tiet-pho-bien-nhat-s58-n31785",
+      "fetch_url": "https://medlatec.vn/tin-tuc/gioi-thieu-6-xet-nghiem-noi-tiet-pho-bien-nhat-s58-n31785",
+      "domain": "medlatec.vn",
+      "sampling_categories": [
+        "vi_medlatec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 206021,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/5-tai-bien-san-khoa-thuong-gap-trong-qua-trinh-sinh-no.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/5-tai-bien-san-khoa-thuong-gap-trong-qua-trinh-sinh-no.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 236239,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/ha-duong-chan-toc-la-gi-co-nen-ha-duong-chan-toc-khong.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/ha-duong-chan-toc-la-gi-co-nen-ha-duong-chan-toc-khong.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 237365,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/ho-hap-nhan-tao-la-gi-co-may-phuong-phap-nhan-tao-64343.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/ho-hap-nhan-tao-la-gi-co-may-phuong-phap-nhan-tao-64343.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 243684,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/loi-ich-va-thach-thuc-trong-ghep-tang-hanh-trinh-cuu-song-nguoi-benh.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/loi-ich-va-thach-thuc-trong-ghep-tang-hanh-trinh-cuu-song-nguoi-benh.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 258597,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/phu-nu-50-tuoi-con-ham-muon-khong.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/phu-nu-50-tuoi-con-ham-muon-khong.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 275600,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/tron-bo-hatomugi-gom-nhung-gi.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/tron-bo-hatomugi-gom-nhung-gi.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 275668,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/trong-tao-ta-bao-nhieu-calo-va-an-nhieu-tao-co-tot-khong.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/trong-tao-ta-bao-nhieu-calo-va-an-nhieu-tao-co-tot-khong.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 281767,
+      "original_url": "https://nhathuoclongchau.com.vn/bai-viet/xi-mui-bi-u-tai-phai-lam-sao-mach-ban-nhung-phuong-phap-khac-phuc-58650.html",
+      "fetch_url": "https://nhathuoclongchau.com.vn/bai-viet/xi-mui-bi-u-tai-phai-lam-sao-mach-ban-nhung-phuong-phap-khac-phuc-58650.html",
+      "domain": "nhathuoclongchau.com.vn",
+      "sampling_categories": [
+        "top_longchau"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 316789,
+      "original_url": "https://phuyen.baodaklak.vn/95/72940/dung-hoa-qua-cung-phai-dung-lieu/",
+      "fetch_url": "https://phuyen.baodaklak.vn/95/72940/dung-hoa-qua-cung-phai-dung-lieu/",
+      "domain": "phuyen.baodaklak.vn",
+      "sampling_categories": [
+        "feature_no_extension"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 325132,
+      "original_url": "https://suckhoecongdongonline.vn/4-4-hoc-sinh-doi-tuyen-viet-nam-gianh-huy-chuong-tai-olympic-tin-hoc-quoc-te-2023",
+      "fetch_url": "https://suckhoecongdongonline.vn/4-4-hoc-sinh-doi-tuyen-viet-nam-gianh-huy-chuong-tai-olympic-tin-hoc-quoc-te-2023",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 325211,
+      "original_url": "https://suckhoecongdongonline.vn/4-chuc-nang-cua-vitamin-k",
+      "fetch_url": "https://suckhoecongdongonline.vn/4-chuc-nang-cua-vitamin-k",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 330042,
+      "original_url": "https://suckhoecongdongonline.vn/ba-bau-co-duoc-an-dua-khong-421755273333",
+      "fetch_url": "https://suckhoecongdongonline.vn/ba-bau-co-duoc-an-dua-khong-421755273333",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 331804,
+      "original_url": "https://suckhoecongdongonline.vn/bai-bo-quy-dinh-dong-phi-chan-tha-trau-bo",
+      "fetch_url": "https://suckhoecongdongonline.vn/bai-bo-quy-dinh-dong-phi-chan-tha-trau-bo",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 365217,
+      "original_url": "https://suckhoecongdongonline.vn/dien-bien-vu-be-gai-6-tuoi-tu-vong-nghi-bi-bao-hanh-bo-de-khai-co-danh",
+      "fetch_url": "https://suckhoecongdongonline.vn/dien-bien-vu-be-gai-6-tuoi-tu-vong-nghi-bi-bao-hanh-bo-de-khai-co-danh",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 379974,
+      "original_url": "https://suckhoecongdongonline.vn/ha-noi-tang-cuong-kiem-tra-kiem-soat-an-toan-thuc-pham-dip-cuoi-nam",
+      "fetch_url": "https://suckhoecongdongonline.vn/ha-noi-tang-cuong-kiem-tra-kiem-soat-an-toan-thuc-pham-dip-cuoi-nam",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 431366,
+      "original_url": "https://suckhoecongdongonline.vn/siet-tour-0-dong-nhung-khong-de-luong-khach-quoc-te-den-viet-nam-giam",
+      "fetch_url": "https://suckhoecongdongonline.vn/siet-tour-0-dong-nhung-khong-de-luong-khach-quoc-te-den-viet-nam-giam",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 444236,
+      "original_url": "https://suckhoecongdongonline.vn/tiet-lo-cuon-so-quyet-dinh-so-phan-bs-hoang-cong-luong",
+      "fetch_url": "https://suckhoecongdongonline.vn/tiet-lo-cuon-so-quyet-dinh-so-phan-bs-hoang-cong-luong",
+      "domain": "suckhoecongdongonline.vn",
+      "sampling_categories": [
+        "top_suckhoecongdong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 489970,
+      "original_url": "https://suckhoedoisong.vn/ban-tin-thoi-tiet-nam-bo-chuan-bi-buoc-vao-dot-mua-to-dien-rong-169250917131624242.htm",
+      "fetch_url": "https://suckhoedoisong.vn/ban-tin-thoi-tiet-nam-bo-chuan-bi-buoc-vao-dot-mua-to-dien-rong-169250917131624242.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 503679,
+      "original_url": "https://suckhoedoisong.vn/chay-dua-cung-thoi-gian-cuu-nguoi-dan-ong-vo-ruot-gay-cot-song-nguy-kich-169230202192245335.htm",
+      "fetch_url": "https://suckhoedoisong.vn/chay-dua-cung-thoi-gian-cuu-nguoi-dan-ong-vo-ruot-gay-cot-song-nguy-kich-169230202192245335.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 513395,
+      "original_url": "https://suckhoedoisong.vn/dinh-duong-phu-hop-giup-bao-ve-suc-khoe-nhung-ngay-thoi-tiet-that-thuong-169230731093921601.htm",
+      "fetch_url": "https://suckhoedoisong.vn/dinh-duong-phu-hop-giup-bao-ve-suc-khoe-nhung-ngay-thoi-tiet-that-thuong-169230731093921601.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 531879,
+      "original_url": "https://suckhoedoisong.vn/ngay-suc-khoe-the-gioi-2025-who-viet-nam-keu-goi-hanh-dong-de-bao-dam-moi-ba-me-va-tre-so-sinh-deu-nhan-duoc-su-cham-soc-169250408102656106.htm",
+      "fetch_url": "https://suckhoedoisong.vn/ngay-suc-khoe-the-gioi-2025-who-viet-nam-keu-goi-hanh-dong-de-bao-dam-moi-ba-me-va-tre-so-sinh-deu-nhan-duoc-su-cham-soc-169250408102656106.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 534309,
+      "original_url": "https://suckhoedoisong.vn/nguy-co-tan-tat-va-tu-vong-cao-o-benh-nhan-dot-quy-do-covid-19-169220211100159026.htm",
+      "fetch_url": "https://suckhoedoisong.vn/nguy-co-tan-tat-va-tu-vong-cao-o-benh-nhan-dot-quy-do-covid-19-169220211100159026.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 551114,
+      "original_url": "https://suckhoedoisong.vn/thuc-pham-bo-sung-nao-ho-tro-dieu-tri-viem-tuyen-mo-hoi-mu-169251010074236857.htm",
+      "fetch_url": "https://suckhoedoisong.vn/thuc-pham-bo-sung-nao-ho-tro-dieu-tri-viem-tuyen-mo-hoi-mu-169251010074236857.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 552836,
+      "original_url": "https://suckhoedoisong.vn/thuoc-tri-o-chua-co-the-cai-thien-benh-nuou-rang-169220219161926324.htm",
+      "fetch_url": "https://suckhoedoisong.vn/thuoc-tri-o-chua-co-the-cai-thien-benh-nuou-rang-169220219161926324.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 561433,
+      "original_url": "https://suckhoedoisong.vn/vinamilk-trong-gan-100-ngan-cay-xanh-va-trao-tang-66000-ly-sua-tai-tinh-ca-mau-169143810.htm",
+      "fetch_url": "https://suckhoedoisong.vn/vinamilk-trong-gan-100-ngan-cay-xanh-va-trao-tang-66000-ly-sua-tai-tinh-ca-mau-169143810.htm",
+      "domain": "suckhoedoisong.vn",
+      "sampling_categories": [
+        "top_suckhoedoisong"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 2537545,
+      "original_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=15243",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=15243",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "feature_query_string"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2537954,
+      "original_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=15654",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=15654",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "feature_query_string"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2538890,
+      "original_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=1782299726587101186",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appcase/toPcDetail?sessionId=&knowledgeLibPrefix=case&id=1782299726587101186",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "feature_query_string"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2541834,
+      "original_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=0001AA100000000EQVYT",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=0001AA100000000EQVYT",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "feature_query_string"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2542392,
+      "original_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=10789",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=10789",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "unusual_test_pmphai"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2547241,
+      "original_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=22064",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=22064",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "unusual_test_pmphai"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2548709,
+      "original_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=24229",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=24229",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "unusual_test_pmphai"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2550007,
+      "original_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=28741",
+      "fetch_url": "https://test.pmphai.com/jeesitede/appdisease/toPcDetail?sessionId=&knowledgeLibPrefix=disease&id=28741",
+      "domain": "test.pmphai.com",
+      "sampling_categories": [
+        "unusual_test_pmphai"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 588988,
+      "original_url": "https://thanhnien.vn/34-tre-duoi-5-tuoi-bi-thap-coi-185300470.htm",
+      "fetch_url": "https://thanhnien.vn/34-tre-duoi-5-tuoi-bi-thap-coi-185300470.htm",
+      "domain": "thanhnien.vn",
+      "sampling_categories": [
+        "vi_thanhnien"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 629353,
+      "original_url": "https://thanhnien.vn/muon-thuc-day-tinh-tao-vao-6-gio-sang-thi-can-ngu-luc-may-gio-185800487.htm",
+      "fetch_url": "https://thanhnien.vn/muon-thuc-day-tinh-tao-vao-6-gio-sang-thi-can-ngu-luc-may-gio-185800487.htm",
+      "domain": "thanhnien.vn",
+      "sampling_categories": [
+        "vi_thanhnien"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 643822,
+      "original_url": "https://thanhnien.vn/san-phu-de-roi-tai-nha-duoc-bac-si-kip-thoi-ho-tro-185251007151645684.htm",
+      "fetch_url": "https://thanhnien.vn/san-phu-de-roi-tai-nha-duoc-bac-si-kip-thoi-ho-tro-185251007151645684.htm",
+      "domain": "thanhnien.vn",
+      "sampling_categories": [
+        "vi_thanhnien"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 676946,
+      "original_url": "https://tienphong.vn/gia-han-kiem-tra-phong-kham-sai-gon-tam-duc-o-ca-mau-bi-to-truc-loi-quy-bhyt-post1796310.tpo",
+      "fetch_url": "https://tienphong.vn/gia-han-kiem-tra-phong-kham-sai-gon-tam-duc-o-ca-mau-bi-to-truc-loi-quy-bhyt-post1796310.tpo",
+      "domain": "tienphong.vn",
+      "sampling_categories": [
+        "suffix_tpo"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 677023,
+      "original_url": "https://tienphong.vn/hai-benh-vien-lon-phoi-hop-phau-thuat-di-tat-tim-giup-thai-nhi-24-tuan-chao-doi-khoe-manh-post1826497.tpo",
+      "fetch_url": "https://tienphong.vn/hai-benh-vien-lon-phoi-hop-phau-thuat-di-tat-tim-giup-thai-nhi-24-tuan-chao-doi-khoe-manh-post1826497.tpo",
+      "domain": "tienphong.vn",
+      "sampling_categories": [
+        "suffix_tpo"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 730466,
+      "original_url": "https://www.vietnamplus.vn/cuu-song-mot-nam-thanh-nien-bi-thanh-sat-dai-2-met-dam-thau-nguc-post563435.vnp",
+      "fetch_url": "https://www.vietnamplus.vn/cuu-song-mot-nam-thanh-nien-bi-thanh-sat-dai-2-met-dam-thau-nguc-post563435.vnp",
+      "domain": "vietnamplus.vn",
+      "sampling_categories": [
+        "suffix_vnp"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 733073,
+      "original_url": "https://www.vietnamplus.vn/xac-dinh-nguyen-nhan-gay-tac-dung-phu-cua-vaccine-mrna-post985894.vnp",
+      "fetch_url": "https://www.vietnamplus.vn/xac-dinh-nguyen-nhan-gay-tac-dung-phu-cua-vaccine-mrna-post985894.vnp",
+      "domain": "vietnamplus.vn",
+      "sampling_categories": [
+        "suffix_vnp"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 739567,
+      "original_url": "https://www.vinmec.com/vie/bai-viet/co-dung-thuoc-nao-ho-tro-giam-dau-ung-thu-gan-di-can-vi",
+      "fetch_url": "https://www.vinmec.com/vie/bai-viet/co-dung-thuoc-nao-ho-tro-giam-dau-ung-thu-gan-di-can-vi",
+      "domain": "vinmec.com",
+      "sampling_categories": [
+        "vi_vinmec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 740017,
+      "original_url": "https://www.vinmec.com/vie/bai-viet/cong-dung-cua-cay-gam-vi",
+      "fetch_url": "https://www.vinmec.com/vie/bai-viet/cong-dung-cua-cay-gam-vi",
+      "domain": "vinmec.com",
+      "sampling_categories": [
+        "vi_vinmec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 743298,
+      "original_url": "https://www.vinmec.com/vie/bai-viet/gay-xuong-suon-co-can-bo-bot-khong-vi",
+      "fetch_url": "https://www.vinmec.com/vie/bai-viet/gay-xuong-suon-co-can-bo-bot-khong-vi",
+      "domain": "vinmec.com",
+      "sampling_categories": [
+        "vi_vinmec"
+      ],
+      "inferred_language": "vi"
+    },
+    {
+      "doc_id": 705981,
+      "original_url": "https://vov.vn/suc-khoe/bi-kip-an-com-chay-nhung-van-giu-duoc-dang-thon-post1249966.vov",
+      "fetch_url": "https://vov.vn/suc-khoe/bi-kip-an-com-chay-nhung-van-giu-duoc-dang-thon-post1249966.vov",
+      "domain": "vov.vn",
+      "sampling_categories": [
+        "suffix_vov"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 710571,
+      "original_url": "https://vov.vn/suc-khoe/phong-ngua-rui-ro-khi-chay-duong-dai-vao-ban-dem-cho-nguoi-chay-bo-post1006100.vov",
+      "fetch_url": "https://vov.vn/suc-khoe/phong-ngua-rui-ro-khi-chay-duong-dai-vao-ban-dem-cho-nguoi-chay-bo-post1006100.vov",
+      "domain": "vov.vn",
+      "sampling_categories": [
+        "suffix_vov"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 715038,
+      "original_url": "https://vov2.vov.vn/suc-khoe/chien-dich-tiem-vaccine-phong-covid-19-vui-trung-thu-va-tuu-truong-an-toan-37309.vov2",
+      "fetch_url": "https://vov2.vov.vn/suc-khoe/chien-dich-tiem-vaccine-phong-covid-19-vui-trung-thu-va-tuu-truong-an-toan-37309.vov2",
+      "domain": "vov2.vov.vn",
+      "sampling_categories": [
+        "suffix_vov2"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 715883,
+      "original_url": "https://vov2.vov.vn/suc-khoe/f0-cham-soc-tai-nha-can-chu-y-nhung-dau-hieu-tang-nang-30941.vov2",
+      "fetch_url": "https://vov2.vov.vn/suc-khoe/f0-cham-soc-tai-nha-can-chu-y-nhung-dau-hieu-tang-nang-30941.vov2",
+      "domain": "vov2.vov.vn",
+      "sampling_categories": [
+        "suffix_vov2"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 4063270,
+      "original_url": "https://zhongyibaodian.net/a/139888.html",
+      "fetch_url": "https://zhongyibaodian.net/a/139888.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4066781,
+      "original_url": "https://zhongyibaodian.net/a/143780.html",
+      "fetch_url": "https://zhongyibaodian.net/a/143780.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4073608,
+      "original_url": "https://zhongyibaodian.net/a/151976.html",
+      "fetch_url": "https://zhongyibaodian.net/a/151976.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4115732,
+      "original_url": "https://zhongyibaodian.net/a/42391.html",
+      "fetch_url": "https://zhongyibaodian.net/a/42391.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4117223,
+      "original_url": "https://zhongyibaodian.net/a/44191.html",
+      "fetch_url": "https://zhongyibaodian.net/a/44191.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4124830,
+      "original_url": "https://zhongyibaodian.net/a/54795.html",
+      "fetch_url": "https://zhongyibaodian.net/a/54795.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4134405,
+      "original_url": "https://zhongyibaodian.net/a/67228.html",
+      "fetch_url": "https://zhongyibaodian.net/a/67228.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4153697,
+      "original_url": "https://zhongyibaodian.net/a/92522.html",
+      "fetch_url": "https://zhongyibaodian.net/a/92522.html",
+      "domain": "zhongyibaodian.net",
+      "sampling_categories": [
+        "top_zhongyibaodian"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 2069577,
+      "original_url": "http://www.zydcd.com/zhongyi/zy24509ly/",
+      "fetch_url": "http://www.zydcd.com/zhongyi/zy24509ly/",
+      "domain": "zydcd.com",
+      "sampling_categories": [
+        "feature_http_redirect"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 2124687,
+      "original_url": "http://www.zydcd.com/zhongyi/zy81811yn/",
+      "fetch_url": "http://www.zydcd.com/zhongyi/zy81811yn/",
+      "domain": "zydcd.com",
+      "sampling_categories": [
+        "feature_http_redirect"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 4177985,
+      "original_url": "https://zysjonline.com/articles/misc/1089/",
+      "fetch_url": "https://zysjonline.com/articles/misc/1089/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "feature_no_extension"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 4217811,
+      "original_url": "https://zysjonline.com/articles/misc/60711/",
+      "fetch_url": "https://zysjonline.com/articles/misc/60711/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4223843,
+      "original_url": "https://zysjonline.com/articles/misc/67142/",
+      "fetch_url": "https://zysjonline.com/articles/misc/67142/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "feature_no_extension"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 4241296,
+      "original_url": "https://zysjonline.com/books/bencaoqiuzhen/107996/",
+      "fetch_url": "https://zysjonline.com/books/bencaoqiuzhen/107996/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4312037,
+      "original_url": "https://zysjonline.com/books/tanhuodianxue/141449/",
+      "fetch_url": "https://zysjonline.com/books/tanhuodianxue/141449/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4325879,
+      "original_url": "https://zysjonline.com/books/yaolongxiaopin/196030/",
+      "fetch_url": "https://zysjonline.com/books/yaolongxiaopin/196030/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4346543,
+      "original_url": "https://zysjonline.com/books/zengdingyepingshangshuquanshu/149131/",
+      "fetch_url": "https://zysjonline.com/books/zengdingyepingshangshuquanshu/149131/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "feature_no_extension"
+      ],
+      "inferred_language": null
+    },
+    {
+      "doc_id": 4349915,
+      "original_url": "https://zysjonline.com/books/zhengleibencao/95259/",
+      "fetch_url": "https://zysjonline.com/books/zhengleibencao/95259/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4360466,
+      "original_url": "https://zysjonline.com/books/zhongyicidian2052/24471/",
+      "fetch_url": "https://zysjonline.com/books/zhongyicidian2052/24471/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4393425,
+      "original_url": "https://zysjonline.com/formulas/funvjiukujindan/",
+      "fetch_url": "https://zysjonline.com/formulas/funvjiukujindan/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    },
+    {
+      "doc_id": 4395819,
+      "original_url": "https://zysjonline.com/formulas/hongbaidan/",
+      "fetch_url": "https://zysjonline.com/formulas/hongbaidan/",
+      "domain": "zysjonline.com",
+      "sampling_categories": [
+        "top_zysjonline"
+      ],
+      "inferred_language": "zh"
+    }
+  ]
+}

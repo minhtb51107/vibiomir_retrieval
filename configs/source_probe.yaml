@@ -1,0 +1,45 @@
+input_path: data/raw/links_corpus.parquet
+output_dir: artifacts/source_probe
+seed: vibiomir-phase2b-v1
+maximum_live_urls: 120
+absolute_safety_ceiling: 200
+batch_size: 65536
+
+http:
+  global_concurrency: 6
+  per_domain_concurrency: 1
+  domain_delay_seconds: 1.0
+  connect_timeout_seconds: 8.0
+  read_timeout_seconds: 20.0
+  max_response_bytes: 2097152
+  user_agent: "ViBioMIRResearchProbe/0.1 (Phase 2B; contact repository owner)"
+
+sampling_rules:
+  # The ten largest domains measured in Phase 1.
+  - {name: top_cnkang, kind: domain, value: cnkang.com, quota: 8, inferred_language: zh}
+  - {name: top_120ask, kind: domain, value: 120ask.com, quota: 8, inferred_language: zh}
+  - {name: top_familydoctor, kind: domain, value: familydoctor.com.cn, quota: 8, inferred_language: zh}
+  - {name: top_ask39, kind: domain, value: ask.39.net, quota: 8, inferred_language: zh}
+  - {name: top_zysjonline, kind: domain, value: zysjonline.com, quota: 8, inferred_language: zh}
+  - {name: top_ahospital, kind: domain, value: a-hospital.com, quota: 8, inferred_language: zh}
+  - {name: top_suckhoecongdong, kind: domain, value: suckhoecongdongonline.vn, quota: 8, inferred_language: vi}
+  - {name: top_zhongyibaodian, kind: domain, value: zhongyibaodian.net, quota: 8, inferred_language: zh}
+  - {name: top_suckhoedoisong, kind: domain, value: suckhoedoisong.vn, quota: 8, inferred_language: vi}
+  - {name: top_longchau, kind: domain, value: nhathuoclongchau.com.vn, quota: 8, inferred_language: vi}
+
+  # Additional Vietnamese-associated and unusual sources.
+  - {name: vi_thanhnien, kind: domain, value: thanhnien.vn, quota: 3, inferred_language: vi}
+  - {name: vi_laodong, kind: domain, value: laodong.vn, quota: 3, inferred_language: vi}
+  - {name: vi_vinmec, kind: domain, value: vinmec.com, quota: 3, inferred_language: vi}
+  - {name: vi_medlatec, kind: domain, value: medlatec.vn, quota: 3, inferred_language: vi}
+  - {name: unusual_test_pmphai, kind: domain, value: test.pmphai.com, quota: 4, inferred_language: unknown}
+
+  # Cross-domain URL-shape probes. Overlap is deduplicated by doc_id.
+  - {name: feature_query_string, kind: query_string, quota: 4}
+  - {name: feature_http_redirect, kind: scheme, value: http, quota: 4}
+  - {name: feature_no_extension, kind: no_extension, quota: 4}
+  - {name: suffix_ldo, kind: suffix, value: .ldo, quota: 2}
+  - {name: suffix_vov, kind: suffix, value: .vov, quota: 2}
+  - {name: suffix_vov2, kind: suffix, value: .vov2, quota: 2}
+  - {name: suffix_vnp, kind: suffix, value: .vnp, quota: 2}
+  - {name: suffix_tpo, kind: suffix, value: .tpo, quota: 2}

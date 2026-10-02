@@ -35,7 +35,23 @@
 
 ---
 
-## Phase 2B / 2C
+## Phase 2B — Source Probing and Extraction Strategy
+
+| Task | Status | Date |
+|---|---|---|
+| Build reproducible balanced source sampler | COMPLETE | 2026-10-03 |
+| Probe 118 unique URLs across major and special categories | COMPLETE | 2026-10-03 |
+| Measure response, encoding, language, DOM, and anti-bot signals | COMPLETE | 2026-10-03 |
+| Compare semantic-container and density-scored extraction | COMPLETE | 2026-10-03 |
+| Persist metadata-only JSON/CSV probe artifacts | COMPLETE | 2026-10-03 |
+| Add fixture-based offline extraction and encoding tests | COMPLETE | 2026-10-03 |
+| Document evidence and extraction policy | COMPLETE | 2026-10-03 |
+
+**Phase 2B status: COMPLETE**
+
+---
+
+## Phase 2C
 
 _Not started. Awaiting explicit approval._
 

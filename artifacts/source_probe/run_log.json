@@ -1,0 +1,36 @@
+{
+  "phase": "2B",
+  "live_corpus_url_operations": 173,
+  "unique_corpus_urls_in_final_results": 118,
+  "configured_maximum_live_urls_per_run": 120,
+  "absolute_phase_safety_ceiling": 200,
+  "raw_response_bodies_persisted": false,
+  "retries_enabled": false,
+  "runs": [
+    {
+      "purpose": "initial balanced source probe",
+      "corpus_urls": 118,
+      "wall_seconds": 95.04,
+      "exit_code": 0
+    },
+    {
+      "purpose": "corrected mojibake, non-2xx HTML, and JS-shell analysis",
+      "corpus_urls": 35,
+      "wall_seconds": 13.36,
+      "exit_code": 0,
+      "merged_into_initial_results": true
+    },
+    {
+      "purpose": "separate HTTP-client encoding from decoder-selected encoding",
+      "corpus_urls": 20,
+      "wall_seconds": 14.68,
+      "exit_code": 0,
+      "merged_into_initial_results": true
+    }
+  ],
+  "notes": [
+    "Counts refer to selected corpus URLs; robots.txt requests and redirect hops are ancillary protocol requests.",
+    "Corrective runs repeated only affected URLs and did not expand the 118-row final sample.",
+    "No raw HTML or response body is present in committed artifacts."
+  ]
+}
