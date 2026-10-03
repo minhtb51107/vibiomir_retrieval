@@ -1,0 +1,64 @@
+{
+  "model_name": "BAAI/bge-m3",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "torch_version": "2.5.1+cu121",
+  "cuda_version": "12.1",
+  "total_vram_bytes": 4294443008,
+  "precision": "float16 model / float32 output embeddings",
+  "sample_strategy": "64 longest validated chunks by BGE-M3 content token count",
+  "results": [
+    {
+      "batch_size": 1,
+      "status": "SUCCESS",
+      "sample_chunks": 64,
+      "sample_token_count_min": 509,
+      "sample_token_count_max": 510,
+      "elapsed_seconds": 2.6947,
+      "chunks_per_second": 23.7502,
+      "peak_allocated_bytes": 1156762624,
+      "peak_reserved_bytes": 2225078272,
+      "peak_reserved_vram_fraction": 0.51813,
+      "safe_headroom_bytes": 2069364736,
+      "embedding_shape": [
+        64,
+        1024
+      ]
+    },
+    {
+      "batch_size": 2,
+      "status": "SUCCESS",
+      "sample_chunks": 64,
+      "sample_token_count_min": 509,
+      "sample_token_count_max": 510,
+      "elapsed_seconds": 2.0098,
+      "chunks_per_second": 31.8443,
+      "peak_allocated_bytes": 1169359872,
+      "peak_reserved_bytes": 2218786816,
+      "peak_reserved_vram_fraction": 0.516665,
+      "safe_headroom_bytes": 2075656192,
+      "embedding_shape": [
+        64,
+        1024
+      ]
+    },
+    {
+      "batch_size": 4,
+      "status": "SUCCESS",
+      "sample_chunks": 64,
+      "sample_token_count_min": 509,
+      "sample_token_count_max": 510,
+      "elapsed_seconds": 1.7951,
+      "chunks_per_second": 35.6522,
+      "peak_allocated_bytes": 1196655616,
+      "peak_reserved_bytes": 2218786816,
+      "peak_reserved_vram_fraction": 0.516665,
+      "safe_headroom_bytes": 2075656192,
+      "embedding_shape": [
+        64,
+        1024
+      ]
+    }
+  ],
+  "chosen_batch_size": 4
+}

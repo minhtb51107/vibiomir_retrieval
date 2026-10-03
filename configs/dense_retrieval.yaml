@@ -1,0 +1,32 @@
+version: 1
+model:
+  name: BAAI/bge-m3
+  revision: null
+  device: cuda
+  batch_size: 4
+  query_batch_size: 4
+  max_length: 512
+  normalize_embeddings: true
+  use_half_on_cuda: true
+  seed: 20261003
+tokenizer_validation:
+  source_chunks: data/chunks/phase3_pilot/tokens_512_overlap_64.parquet
+  source_documents: data/processed/phase3_pilot_documents.parquet
+  validated_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  intended_max_tokens: 512
+  overlap_tokens: 64
+  material_exceedance_rate: 0.01
+index:
+  type: IndexFlatIP
+  chunk_source: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  directory: data/indexes/phase4_dense
+  embedding_directory: data/embeddings/phase4_dense
+  add_batch_size: 4096
+retrieval:
+  query_source: data/raw/query.parquet
+  output_directory: data/retrieval/phase4_dense
+  top_k_chunks: 50
+  top_k_docs: 10
+  top_n_mean: 3
+  default_document_aggregation: best_chunk
+  sanity_query_count: 30

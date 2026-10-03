@@ -87,6 +87,25 @@
 
 ---
 
-## Phase 4 and beyond
+## Phase 4 — Dense Retrieval Baseline
+
+| Task | Status | Date |
+|---|---|---|
+| Validate Phase 3 chunks with the actual BGE-M3 tokenizer | COMPLETE | 2026-10-03 |
+| Regenerate bounded chunks to eliminate 512-token overflow | COMPLETE | 2026-10-03 |
+| Benchmark safe CUDA batch sizes on longest chunks | COMPLETE | 2026-10-03 |
+| Build resumable normalized BGE-M3 embeddings | COMPLETE | 2026-10-03 |
+| Build exact FAISS `IndexFlatIP` and SQLite metadata mapping | COMPLETE | 2026-10-03 |
+| Verify all FAISS row/chunk/document mappings | COMPLETE | 2026-10-03 |
+| Retrieve all 1,200 official queries against the pilot index | COMPLETE | 2026-10-03 |
+| Compare best-chunk and top-three-mean document aggregation | COMPLETE | 2026-10-03 |
+| Run multilingual/manual sanity checks (not evaluation) | COMPLETE | 2026-10-03 |
+| Record index/retrieval benchmarks and baseline recommendation | COMPLETE | 2026-10-03 |
+
+**Phase 4 status: COMPLETE — Phase 5 evaluator work was not started.**
+
+---
+
+## Phase 5 and beyond
 
 _Not started._

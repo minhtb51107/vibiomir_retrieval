@@ -1,0 +1,29 @@
+{
+  "model_name": "BAAI/bge-m3",
+  "tokenizer_name": "BAAI/bge-m3",
+  "intended_max_tokens": 512,
+  "special_tokens_per_sequence": 2,
+  "initial_content_token_budget": 510,
+  "final_content_token_budget": 508,
+  "regeneration_passes": 2,
+  "material_exceedance_rate": 0.01,
+  "regenerated": true,
+  "source_chunks": "data/chunks/phase3_pilot/tokens_512_overlap_64.parquet",
+  "validated_chunks": "data\\chunks\\phase4_bge_m3\\tokens_512_overlap_64.parquet",
+  "before": {
+    "count": 5668,
+    "median": 282.5,
+    "p95": 569.0,
+    "max": 1358,
+    "exceeding_limit": 1152,
+    "truncation_rate": 0.203246
+  },
+  "after": {
+    "count": 5643,
+    "median": 292,
+    "p95": 510.0,
+    "max": 512,
+    "exceeding_limit": 0,
+    "truncation_rate": 0.0
+  }
+}

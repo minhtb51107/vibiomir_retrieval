@@ -1,0 +1,44 @@
+{
+  "model": {
+    "model_name": "BAAI/bge-m3",
+    "requested_revision": null,
+    "resolved_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "embedding_dimension": 1024,
+    "tokenizer_name": "BAAI/bge-m3",
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "pooling": [
+      "cls_token"
+    ],
+    "normalization": "L2",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "device": "cuda"
+  },
+  "chunk_source": "data\\chunks\\phase4_bge_m3\\tokens_512_overlap_64.parquet",
+  "chunk_source_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+  "chunk_count": 5643,
+  "embedding_runtime_seconds": 115.144,
+  "embedding_throughput_chunks_per_second": 49.0083,
+  "embedding_rows_computed_this_run": 5643,
+  "peak_gpu_allocated_bytes": 1196663808,
+  "peak_gpu_reserved_bytes": 2208301056,
+  "embedding_file": "data\\embeddings\\phase4_dense\\chunk_embeddings.f32",
+  "embedding_size_bytes": 23113728,
+  "index_type": "IndexFlatIP",
+  "faiss_index": "data\\indexes\\phase4_dense\\chunks.index",
+  "faiss_index_size_bytes": 23113773,
+  "mapping": {
+    "chunk_source": "data\\chunks\\phase4_bge_m3\\tokens_512_overlap_64.parquet",
+    "chunk_source_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+    "chunk_id_order_sha256": "91dbfe9c43d7bbc976acba86f6b87913ec4bb079b1f4d80ea4b47e780bfbdb78",
+    "row_count": "5643",
+    "path": "data\\indexes\\phase4_dense\\chunk_metadata.sqlite",
+    "size_bytes": 17219584
+  },
+  "row_mapping_verification": {
+    "rows_checked": 5643,
+    "mismatches": 0
+  },
+  "row_mapping_verified": true
+}

@@ -1,0 +1,455 @@
+{
+  "label": "SANITY CHECK — not an official evaluation",
+  "selection": "queries evenly spaced across query character-length order",
+  "query_count": 30,
+  "manual_review": {
+    "label": "SANITY CHECK — qualitative inspection, not relevance evaluation",
+    "observations": [
+      "Top results showed mixed semantic relevance because the pilot corpus covers only 1,097 documents.",
+      "Clearly or partially related cross-lingual examples included query IDs 1177, 506, 816, and 964.",
+      "Clear mismatches or overly generic title/heading hits included query IDs 3, 33, 360, 833, 842, and 894.",
+      "Very short queries were vulnerable to generic Chinese headings such as treatment or examination; long queries were also mixed, so no monotonic length effect was established.",
+      "Titles helped when specific, but title-only generic chunks sometimes ranked too highly.",
+      "Repeated chunks from one document can dominate chunk-level results and should be controlled by document aggregation in Phase 5 experiments."
+    ],
+    "top_50_document_diversity": {
+      "unique_docs_min": 4,
+      "unique_docs_median": 24.0,
+      "unique_docs_max": 43,
+      "maximum_chunks_from_one_doc": 44,
+      "queries_with_at_least_10_chunks_from_one_doc": 24,
+      "queries_with_at_least_20_chunks_from_one_doc": 8
+    }
+  },
+  "top_10_language_signal_totals": {
+    "unknown": 25,
+    "vi-signal": 161,
+    "zh-Han-script": 114
+  },
+  "queries_with_vietnamese_result": 28,
+  "queries_with_chinese_result": 24,
+  "rows": [
+    {
+      "query_id": 911,
+      "query_characters": 18,
+      "query_preview": "Vì sao răng bị nứt",
+      "top_10_language_signals": {
+        "vi-signal": 6,
+        "zh-Han-script": 4
+      },
+      "top_doc_id": 536197,
+      "top_chunk_id": "536197-0bd68da5286569492aeb4b60",
+      "top_score": 0.570058,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 13
+    },
+    {
+      "query_id": 943,
+      "query_characters": 38,
+      "query_preview": "Điều trị táo bón, chướng bụng kéo dài.",
+      "top_10_language_signals": {
+        "unknown": 2,
+        "vi-signal": 1,
+        "zh-Han-script": 7
+      },
+      "top_doc_id": 3115053,
+      "top_chunk_id": "3115053-d73f15772ad0dfd4ba24d4ad",
+      "top_score": 0.654353,
+      "unique_docs_in_top_k_chunks": 28,
+      "maximum_chunks_from_one_doc": 11
+    },
+    {
+      "query_id": 729,
+      "query_characters": 42,
+      "query_preview": "Hút thuốc lá có gây lao kháng thuốc không?",
+      "top_10_language_signals": {
+        "vi-signal": 10
+      },
+      "top_doc_id": 562444,
+      "top_chunk_id": "562444-e6d535725d0c7845617b6bc4",
+      "top_score": 0.6116,
+      "unique_docs_in_top_k_chunks": 20,
+      "maximum_chunks_from_one_doc": 13
+    },
+    {
+      "query_id": 360,
+      "query_characters": 46,
+      "query_preview": "Viêm nướu ở người cao tuổi nên uống thuốc nào?",
+      "top_10_language_signals": {
+        "unknown": 4,
+        "vi-signal": 2,
+        "zh-Han-script": 4
+      },
+      "top_doc_id": 590427,
+      "top_chunk_id": "590427-815a687fcccefb0f97a2ae6a",
+      "top_score": 0.594962,
+      "unique_docs_in_top_k_chunks": 29,
+      "maximum_chunks_from_one_doc": 10
+    },
+    {
+      "query_id": 47,
+      "query_characters": 49,
+      "query_preview": "Kiểm tra vết va đập xương ống chân bằng cách nào?",
+      "top_10_language_signals": {
+        "unknown": 1,
+        "vi-signal": 6,
+        "zh-Han-script": 3
+      },
+      "top_doc_id": 3115053,
+      "top_chunk_id": "3115053-b833687ccd86e240d507990d",
+      "top_score": 0.630964,
+      "unique_docs_in_top_k_chunks": 21,
+      "maximum_chunks_from_one_doc": 13
+    },
+    {
+      "query_id": 957,
+      "query_characters": 51,
+      "query_preview": "Làm thế nào để chữa hết bệnh đau dây thần kinh tọa?",
+      "top_10_language_signals": {
+        "unknown": 5,
+        "vi-signal": 2,
+        "zh-Han-script": 3
+      },
+      "top_doc_id": 2142971,
+      "top_chunk_id": "2142971-54831ff93582f1cefe874d3c",
+      "top_score": 0.648953,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 21
+    },
+    {
+      "query_id": 76,
+      "query_characters": 54,
+      "query_preview": "Sau cắt hạch giao cảm tỷ lệ tái phát lại có cao không?",
+      "top_10_language_signals": {
+        "unknown": 3,
+        "vi-signal": 4,
+        "zh-Han-script": 3
+      },
+      "top_doc_id": 2391027,
+      "top_chunk_id": "2391027-5b14a40b3545cb8f70a97085",
+      "top_score": 0.613998,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 17
+    },
+    {
+      "query_id": 1177,
+      "query_characters": 55,
+      "query_preview": "Đau háng chân trái khi ép ngang ép dọc và chạy nước rút",
+      "top_10_language_signals": {
+        "vi-signal": 5,
+        "zh-Han-script": 5
+      },
+      "top_doc_id": 1286443,
+      "top_chunk_id": "1286443-d34bb3d9132c2d8ab809f192",
+      "top_score": 0.608105,
+      "unique_docs_in_top_k_chunks": 16,
+      "maximum_chunks_from_one_doc": 19
+    },
+    {
+      "query_id": 3,
+      "query_characters": 59,
+      "query_preview": "Kết quả của Beta-HCG là dưới 0.10 U/L thì là như thế nào ạ?",
+      "top_10_language_signals": {
+        "vi-signal": 3,
+        "zh-Han-script": 7
+      },
+      "top_doc_id": 3090730,
+      "top_chunk_id": "3090730-94aaf19d57263358819a5bcc",
+      "top_score": 0.533116,
+      "unique_docs_in_top_k_chunks": 30,
+      "maximum_chunks_from_one_doc": 9
+    },
+    {
+      "query_id": 842,
+      "query_characters": 60,
+      "query_preview": "Đánh giá kết quả điều trị bệnh tuyến giáp tirads 3, tirads 4",
+      "top_10_language_signals": {
+        "unknown": 2,
+        "vi-signal": 2,
+        "zh-Han-script": 6
+      },
+      "top_doc_id": 3115053,
+      "top_chunk_id": "3115053-d73f15772ad0dfd4ba24d4ad",
+      "top_score": 0.551298,
+      "unique_docs_in_top_k_chunks": 23,
+      "maximum_chunks_from_one_doc": 15
+    },
+    {
+      "query_id": 815,
+      "query_characters": 63,
+      "query_preview": "75 tuổi mắc ung thư tiền liệt tuyến có nên cắt tinh hoàn không?",
+      "top_10_language_signals": {
+        "vi-signal": 6,
+        "zh-Han-script": 4
+      },
+      "top_doc_id": 562576,
+      "top_chunk_id": "562576-4716669f7dfa656ef04436e6",
+      "top_score": 0.591019,
+      "unique_docs_in_top_k_chunks": 31,
+      "maximum_chunks_from_one_doc": 11
+    },
+    {
+      "query_id": 1070,
+      "query_characters": 66,
+      "query_preview": "Nổi mảng da và ngứa ở vùng bẹn có phải nấm hoặc khuẩn 2 đầu không?",
+      "top_10_language_signals": {
+        "vi-signal": 1,
+        "zh-Han-script": 9
+      },
+      "top_doc_id": 1013774,
+      "top_chunk_id": "1013774-7d06415fb14f544d53588b28",
+      "top_score": 0.596067,
+      "unique_docs_in_top_k_chunks": 35,
+      "maximum_chunks_from_one_doc": 4
+    },
+    {
+      "query_id": 312,
+      "query_characters": 70,
+      "query_preview": "Phương pháp khắc phục tác dụng phụ của thuốc điều trị HIV và lao phổi?",
+      "top_10_language_signals": {
+        "vi-signal": 10
+      },
+      "top_doc_id": 503364,
+      "top_chunk_id": "503364-e3e9500001ad930b29c083a5",
+      "top_score": 0.649717,
+      "unique_docs_in_top_k_chunks": 4,
+      "maximum_chunks_from_one_doc": 44
+    },
+    {
+      "query_id": 833,
+      "query_characters": 73,
+      "query_preview": "Trẻ mắc bệnh vàng da có bướu huyết thanh ở đầu cần chiếu đèn đến khi nào?",
+      "top_10_language_signals": {
+        "vi-signal": 9,
+        "zh-Han-script": 1
+      },
+      "top_doc_id": 549479,
+      "top_chunk_id": "549479-b90ea44b47713765d5a18f75",
+      "top_score": 0.570065,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 18
+    },
+    {
+      "query_id": 527,
+      "query_characters": 79,
+      "query_preview": "Chồng tôi có kháng nguyên viêm gan B, vậy có được tiêm vaccine Covid-19 không ?",
+      "top_10_language_signals": {
+        "unknown": 2,
+        "vi-signal": 3,
+        "zh-Han-script": 5
+      },
+      "top_doc_id": 2265923,
+      "top_chunk_id": "2265923-cf9bddf5922afedf479d26f3",
+      "top_score": 0.591112,
+      "unique_docs_in_top_k_chunks": 33,
+      "maximum_chunks_from_one_doc": 8
+    },
+    {
+      "query_id": 113,
+      "query_characters": 84,
+      "query_preview": "Có thai ngay sau khi ngừng thuốc ngừa thai hàng ngày có ảnh hưởng đến thai nhi không",
+      "top_10_language_signals": {
+        "vi-signal": 10
+      },
+      "top_doc_id": 477796,
+      "top_chunk_id": "477796-5c23e63f738c3d90086a8210",
+      "top_score": 0.688972,
+      "unique_docs_in_top_k_chunks": 6,
+      "maximum_chunks_from_one_doc": 35
+    },
+    {
+      "query_id": 506,
+      "query_characters": 91,
+      "query_preview": "Liệt hầu họng do nhồi máu não có thể hồi phục khả năng nuốt được không và điều trị thế nào?",
+      "top_10_language_signals": {
+        "unknown": 4,
+        "vi-signal": 6
+      },
+      "top_doc_id": 2354409,
+      "top_chunk_id": "2354409-3ad90a1f69aa82f59292e48a",
+      "top_score": 0.620106,
+      "unique_docs_in_top_k_chunks": 34,
+      "maximum_chunks_from_one_doc": 12
+    },
+    {
+      "query_id": 520,
+      "query_characters": 99,
+      "query_preview": "Dùng thuốc augmentin và alphachoay khi đang cho con bú có ảnh hưởng không có cần ngừng cho bú không",
+      "top_10_language_signals": {
+        "vi-signal": 6,
+        "zh-Han-script": 4
+      },
+      "top_doc_id": 2798180,
+      "top_chunk_id": "2798180-b226f2c5f6fb1239351028af",
+      "top_score": 0.549924,
+      "unique_docs_in_top_k_chunks": 17,
+      "maximum_chunks_from_one_doc": 21
+    },
+    {
+      "query_id": 222,
+      "query_characters": 112,
+      "query_preview": "Em vừa tham gia khám sức khỏe và bác sĩ kết luận em hồng cầu nhỏ nhược sắc. Em không hiểu, xin giải đáp giúp em.",
+      "top_10_language_signals": {
+        "zh-Han-script": 10
+      },
+      "top_doc_id": 1177034,
+      "top_chunk_id": "1177034-a13f5d505357417788e64d1c",
+      "top_score": 0.589443,
+      "unique_docs_in_top_k_chunks": 40,
+      "maximum_chunks_from_one_doc": 4
+    },
+    {
+      "query_id": 532,
+      "query_characters": 129,
+      "query_preview": "Lúc trước em ăn cay không hề có dấu hiệu gì, nhưng gần đây em ăn cay lại bị tiêu chảy, nguyên do vì sao ạ? Có do bệnh gì",
+      "top_10_language_signals": {
+        "vi-signal": 9,
+        "zh-Han-script": 1
+      },
+      "top_doc_id": 524709,
+      "top_chunk_id": "524709-65be819dbda639b42b69b6da",
+      "top_score": 0.612639,
+      "unique_docs_in_top_k_chunks": 21,
+      "maximum_chunks_from_one_doc": 22
+    },
+    {
+      "query_id": 944,
+      "query_characters": 142,
+      "query_preview": "Em bị viêm da dị ứng cơ địa. Làm sao để bệnh không tái lại? Viêm da dị ứng có gây nổi mụn không ạ? Mụn có tự hết không ạ",
+      "top_10_language_signals": {
+        "vi-signal": 7,
+        "zh-Han-script": 3
+      },
+      "top_doc_id": 511422,
+      "top_chunk_id": "511422-2301644d49ee2f2ed75035fc",
+      "top_score": 0.668511,
+      "unique_docs_in_top_k_chunks": 32,
+      "maximum_chunks_from_one_doc": 7
+    },
+    {
+      "query_id": 361,
+      "query_characters": 157,
+      "query_preview": "Em xem kết quả khám bệnh, huyết áp của em là 100/60, vậy cho em hỏi có phải em bị huyết áp thấp không ạ? Vì thời gian gầ",
+      "top_10_language_signals": {
+        "vi-signal": 4,
+        "zh-Han-script": 6
+      },
+      "top_doc_id": 1349969,
+      "top_chunk_id": "1349969-e9991114a148e4e887e5b32e",
+      "top_score": 0.629081,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 20
+    },
+    {
+      "query_id": 806,
+      "query_characters": 175,
+      "query_preview": "Hồi sáng em bán hàng cho khách vì sợ không kịp giao nên em có sơ xuất bị té đập mông xuống đất mà em thì mới bơm tinh tr",
+      "top_10_language_signals": {
+        "unknown": 1,
+        "zh-Han-script": 9
+      },
+      "top_doc_id": 2800098,
+      "top_chunk_id": "2800098-9f0f404f96f009f441e659b1",
+      "top_score": 0.61069,
+      "unique_docs_in_top_k_chunks": 35,
+      "maximum_chunks_from_one_doc": 11
+    },
+    {
+      "query_id": 354,
+      "query_characters": 198,
+      "query_preview": "Bạn em 32 tuổi, hay bị trễ kinh từ 10-15 ngày. Mỗi lần có kinh bị đau bụng, đau lưng nhiều, kinh nguyệt ra nhiều. Tình t",
+      "top_10_language_signals": {
+        "vi-signal": 10
+      },
+      "top_doc_id": 534199,
+      "top_chunk_id": "534199-f111517129f7e3fadf042228",
+      "top_score": 0.649719,
+      "unique_docs_in_top_k_chunks": 11,
+      "maximum_chunks_from_one_doc": 38
+    },
+    {
+      "query_id": 33,
+      "query_characters": 217,
+      "query_preview": "Con em được 8 tháng ạ, em bị ít sữa, tối thì bé ti mẹ, mẹ không đủ sữa, bỏ ti nhưng ti bình bé lại không ạ, nhưng nước t",
+      "top_10_language_signals": {
+        "vi-signal": 7,
+        "zh-Han-script": 3
+      },
+      "top_doc_id": 440167,
+      "top_chunk_id": "440167-ed32f148f8d842ab9064ce94",
+      "top_score": 0.632782,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 12
+    },
+    {
+      "query_id": 894,
+      "query_characters": 246,
+      "query_preview": "Bệnh nhân nữ 45 tuổi cắt hoàn toàn tuyến giáp 1 năm nay ,đang uống 1 viên Berlthyrox 100. Xét nghiệm hiện tại TSH 0,001 ",
+      "top_10_language_signals": {
+        "vi-signal": 10
+      },
+      "top_doc_id": 534199,
+      "top_chunk_id": "534199-7207c62c721e34adf58712b5",
+      "top_score": 0.605333,
+      "unique_docs_in_top_k_chunks": 6,
+      "maximum_chunks_from_one_doc": 44
+    },
+    {
+      "query_id": 964,
+      "query_characters": 278,
+      "query_preview": "Bố em sau khi phẫu thuật ung thư thực quản được khoảng 1 năm thì bị khàn, yếu giọng. Đi khám thì bác sĩ ở đấy bảo là bị ",
+      "top_10_language_signals": {
+        "unknown": 1,
+        "vi-signal": 2,
+        "zh-Han-script": 7
+      },
+      "top_doc_id": 1278664,
+      "top_chunk_id": "1278664-12f006dba0f5edaa3cf3628c",
+      "top_score": 0.606139,
+      "unique_docs_in_top_k_chunks": 43,
+      "maximum_chunks_from_one_doc": 3
+    },
+    {
+      "query_id": 816,
+      "query_characters": 329,
+      "query_preview": "Em có thai 8 tuần bị lưu em đã đi hút nhưng bị sót phải hút lại. Em hút lại đến nay được 17 ngày rồi. Hôm qua em đi siêu",
+      "top_10_language_signals": {
+        "vi-signal": 8,
+        "zh-Han-script": 2
+      },
+      "top_doc_id": 1038859,
+      "top_chunk_id": "1038859-8c357c9e0ff2fc4aae6f608a",
+      "top_score": 0.587385,
+      "unique_docs_in_top_k_chunks": 24,
+      "maximum_chunks_from_one_doc": 14
+    },
+    {
+      "query_id": 77,
+      "query_characters": 394,
+      "query_preview": "Cách đây 2 tháng em cố rặn nhổ nước bọt ra ít máu, đi CT phổi và siêu âm ổ bụng bác sĩ chỉ kết luận bị viêm phế quản và ",
+      "top_10_language_signals": {
+        "vi-signal": 4,
+        "zh-Han-script": 6
+      },
+      "top_doc_id": 3042185,
+      "top_chunk_id": "3042185-054df1ffb8f17ccd775ea247",
+      "top_score": 0.620681,
+      "unique_docs_in_top_k_chunks": 25,
+      "maximum_chunks_from_one_doc": 14
+    },
+    {
+      "query_id": 219,
+      "query_characters": 1243,
+      "query_preview": "Tôi có một số thắc mắc muốn được giải đáp: 1. Trẻ từ bao nhiêu tuổi trở lên thì được tiêm vắc xin Covid-19? 2. Tôi trước",
+      "top_10_language_signals": {
+        "vi-signal": 8,
+        "zh-Han-script": 2
+      },
+      "top_doc_id": 603457,
+      "top_chunk_id": "603457-12d8d7fe31b67ad285f47f9a",
+      "top_score": 0.70263,
+      "unique_docs_in_top_k_chunks": 20,
+      "maximum_chunks_from_one_doc": 16
+    }
+  ]
+}

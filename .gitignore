@@ -1,6 +1,7 @@
 # Python virtual environments and caches
 .venv/
 venv/
+.cuda-test/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -18,7 +19,13 @@ data/crawled/
 data/archives/
 data/processed/
 data/chunks/
+data/embeddings/
+data/retrieval/
 data/indexes/
+
+# Local model caches
+.cache/
+models/
 
 # Model and index files
 *.faiss

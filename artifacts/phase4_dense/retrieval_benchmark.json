@@ -1,0 +1,48 @@
+{
+  "model": {
+    "model_name": "BAAI/bge-m3",
+    "requested_revision": null,
+    "resolved_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "embedding_dimension": 1024,
+    "tokenizer_name": "BAAI/bge-m3",
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "pooling": [
+      "cls_token"
+    ],
+    "normalization": "L2",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "device": "cuda"
+  },
+  "query_count": 1200,
+  "query_token_stats": {
+    "median": 25.0,
+    "p95": 103.05,
+    "max": 350,
+    "exceeding_limit": 0
+  },
+  "top_k_chunks": 50,
+  "top_k_docs": 10,
+  "query_batch_size": 4,
+  "mean_latency_ms_per_query": 16.207,
+  "p50_latency_ms_per_query": 11.064,
+  "p95_latency_ms_per_query": 16.309,
+  "mean_embedding_latency_ms_per_query": 12.905,
+  "mean_faiss_and_mapping_latency_ms_per_query": 3.302,
+  "chunk_ranking_rows": 60000,
+  "document_ranking_rows_per_method": 11670,
+  "aggregation_comparison": {
+    "query_count": 1200,
+    "top1_agreement_count": 895,
+    "top1_agreement_rate": 0.745833,
+    "mean_top_k_jaccard": 0.873636
+  },
+  "recommended_document_aggregation": "best_chunk",
+  "recommendation_basis": "simplest deterministic baseline; top-3 mean changed rank 1 for 25.42% of queries and can penalize documents with fewer retrieved chunks",
+  "outputs": {
+    "chunk_rankings": "data\\retrieval\\phase4_dense\\chunk_rankings.parquet",
+    "best_chunk_documents": "data\\retrieval\\phase4_dense\\documents_best_chunk.parquet",
+    "top_n_mean_documents": "data\\retrieval\\phase4_dense\\documents_top_n_mean.parquet"
+  }
+}
