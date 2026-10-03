@@ -1,0 +1,1098 @@
+{
+  "label": "SANITY CHECK — script-based signals, not language identification or evaluation",
+  "top_k": 10,
+  "methods": {
+    "dense": {
+      "result_signal_totals": {
+        "latin-other-signal": 8,
+        "unknown": 1085,
+        "vi-signal": 5455,
+        "zh-Han-script": 5452
+      },
+      "queries_with_signal": {
+        "latin-other-signal": 8,
+        "unknown": 539,
+        "vi-signal": 1047,
+        "zh-Han-script": 1059
+      }
+    },
+    "sparse": {
+      "result_signal_totals": {
+        "vi-signal": 11999,
+        "zh-Han-script": 1
+      },
+      "queries_with_signal": {
+        "vi-signal": 1200,
+        "zh-Han-script": 1
+      }
+    },
+    "hybrid": {
+      "result_signal_totals": {
+        "latin-other-signal": 2,
+        "unknown": 370,
+        "vi-signal": 10023,
+        "zh-Han-script": 1605
+      },
+      "queries_with_signal": {
+        "latin-other-signal": 2,
+        "unknown": 244,
+        "vi-signal": 1200,
+        "zh-Han-script": 615
+      }
+    }
+  },
+  "manual_side_by_side": {
+    "label": "SANITY CHECK — not evaluation",
+    "selection": "queries evenly spaced across query character-length order",
+    "query_count": 40,
+    "rows": [
+      {
+        "query_id": 911,
+        "query_characters": 18,
+        "query_preview": "Vì sao răng bị nứt",
+        "dense": {
+          "doc_id": 536197,
+          "chunk_id": "536197-0bd68da5286569492aeb4b60",
+          "score": 0.570058,
+          "language_signal": "vi-signal",
+          "text_preview": "hơn 80% người lớn có viêm lợi, viêm quanh lợi, viêm quanh răng; hơn 30% người trưởng thành trở lên có túi mủ bệnh lý quanh chân răng, làm cho răng lung lay và đây cũng là ổ nhiễm k"
+        },
+        "sparse": {
+          "doc_id": 536197,
+          "chunk_id": "536197-70858b8b394bf6b6d9a6c5f0",
+          "score": 16.437343,
+          "language_signal": "vi-signal",
+          "text_preview": "chỉnh nha Lựa chọn Win Smile - lựa chọn an toàn và chất lượng cho gia đình bạn. Đến với Nha khoa Quốc tế Win Smile tại địa chỉ: - Cơ sở 1: 51B Lê Duẩn, Hoàn Kiếm, Hà Nội - Cơ sở 2:"
+        },
+        "hybrid": {
+          "doc_id": 536197,
+          "chunk_id": "536197-0bd68da5286569492aeb4b60",
+          "score": 0.032018,
+          "language_signal": "vi-signal",
+          "text_preview": "hơn 80% người lớn có viêm lợi, viêm quanh lợi, viêm quanh răng; hơn 30% người trưởng thành trở lên có túi mủ bệnh lý quanh chân răng, làm cho răng lung lay và đây cũng là ổ nhiễm k"
+        }
+      },
+      {
+        "query_id": 1024,
+        "query_characters": 36,
+        "query_preview": "Em bị a-mi-đan, có nên đi cắt không?",
+        "dense": {
+          "doc_id": 651825,
+          "chunk_id": "651825-8a770a4247f910a25084d885",
+          "score": 0.645705,
+          "language_signal": "vi-signal",
+          "text_preview": "Bác sĩ ơi: Bị viêm xoang cấp, có nên mổ?"
+        },
+        "sparse": {
+          "doc_id": 562576,
+          "chunk_id": "562576-5d95211e0d8af4ac532e6c6b",
+          "score": 20.132694,
+          "language_signal": "vi-signal",
+          "text_preview": "Ngỡ ngàng người đàn ông 52 tuổi đi cắt bao quy đầu: Bác sĩ nam khoa nói gì?\n\nXôn xao thông tin người đàn ông 52 tuổi đi cắt bao quy đầu: Bác sĩ nam khoa nói gì?\n\n14-03-2025 14:06 |"
+        },
+        "hybrid": {
+          "doc_id": 562576,
+          "chunk_id": "562576-5d95211e0d8af4ac532e6c6b",
+          "score": 0.02681,
+          "language_signal": "vi-signal",
+          "text_preview": "Ngỡ ngàng người đàn ông 52 tuổi đi cắt bao quy đầu: Bác sĩ nam khoa nói gì?\n\nXôn xao thông tin người đàn ông 52 tuổi đi cắt bao quy đầu: Bác sĩ nam khoa nói gì?\n\n14-03-2025 14:06 |"
+        }
+      },
+      {
+        "query_id": 571,
+        "query_characters": 40,
+        "query_preview": "Lách to và đau sau sốt rét phải làm sao?",
+        "dense": {
+          "doc_id": 1074966,
+          "chunk_id": "1074966-0b9738c541b661e332546877",
+          "score": 0.538074,
+          "language_signal": "unknown",
+          "text_preview": "大便有血丝，如何处理_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 489124,
+          "chunk_id": "489124-8301a447a454a5da55881f18",
+          "score": 27.839744,
+          "language_signal": "vi-signal",
+          "text_preview": "Bài thuốc chữa bệnh có sử dụng riềng\n\nChữa đau bụng do lạnh: củ riềng 20g, nụ sim 8g, búp ổi 60g, tất cả sấy khô, tán bột. Ngày uống 3 lần sau ăn, mỗi lần 5g với nước sôi để nguội."
+        },
+        "hybrid": {
+          "doc_id": 524709,
+          "chunk_id": "524709-002c5b85abc1dff98ad1c6ba",
+          "score": 0.027584,
+          "language_signal": "vi-signal",
+          "text_preview": "đặc biệt là dưa hành và các loại rau củ quả muối sẽ làm dạ dày tăng tiết axit gây đau dạ dày. Ngoài ra, trong dưa hành và các loại rau củ quả muối còn chứa một lượng lớn muối. Với "
+        }
+      },
+      {
+        "query_id": 257,
+        "query_characters": 43,
+        "query_preview": "Co thắt đường ruột có thể ăn thịt bò không?",
+        "dense": {
+          "doc_id": 528776,
+          "chunk_id": "528776-689e28b643ddcb8b017eea58",
+          "score": 0.555355,
+          "language_signal": "vi-signal",
+          "text_preview": "với lòng trắng trứng, bột mì. Tôm nõn rửa sạch, ngâm nở. Cho chảo nóng, đổ dầu ăn vào xào thịt bò, bắc ra. Sau đó xào tôm nõn rồi đổ thịt bò, rau cần vào xào chín rau cần là dùng đ"
+        },
+        "sparse": {
+          "doc_id": 524709,
+          "chunk_id": "524709-05a7ebcb5e10175c10556c03",
+          "score": 24.519076,
+          "language_signal": "vi-signal",
+          "text_preview": ". Rượu, bia không chỉ gây hại đối với dạ dày mà còn \"phá hủy\" gan, tụy gây ra các bệnh lý nguy hiểm như viêm gan, xơ gan, viêm tụy cấp,…\n\nThức ăn ngày Tết nhiều thịt, ít rau xanh k"
+        },
+        "hybrid": {
+          "doc_id": 524709,
+          "chunk_id": "524709-05a7ebcb5e10175c10556c03",
+          "score": 0.031099,
+          "language_signal": "vi-signal",
+          "text_preview": ". Rượu, bia không chỉ gây hại đối với dạ dày mà còn \"phá hủy\" gan, tụy gây ra các bệnh lý nguy hiểm như viêm gan, xơ gan, viêm tụy cấp,…\n\nThức ăn ngày Tết nhiều thịt, ít rau xanh k"
+        }
+      },
+      {
+        "query_id": 195,
+        "query_characters": 46,
+        "query_preview": "Hai bên tinh hoàn không đều nhau có sao không?",
+        "dense": {
+          "doc_id": 1159942,
+          "chunk_id": "1159942-e0e7ed62d895d7a02c1026f2",
+          "score": 0.629435,
+          "language_signal": "zh-Han-script",
+          "text_preview": "如果只有一个肾对性生活以及生育有什么危害_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 483552,
+          "chunk_id": "483552-b38c15b177cf3e3833648354",
+          "score": 27.291942,
+          "language_signal": "vi-signal",
+          "text_preview": "sẽ giúp bạn thư giãn hoàn toàn toàn bộ cơ thể, lấy lại năng lượng và phục hồi sự lưu thông của các mạch máu trong cơ thể. Xem thêm video đang được quan tâm: Bác Sĩ Chia Sẻ Cách Chă"
+        },
+        "hybrid": {
+          "doc_id": 546760,
+          "chunk_id": "546760-ac1730edb208baeea30c68eb",
+          "score": 0.025479,
+          "language_signal": "vi-signal",
+          "text_preview": "n rằng bạn đang thực hiện tình dục an toàn và tôn trọng sức khỏe đối tác của bạn. Tiến sĩ Ross cũng cho biết: “Bạn có tin không khi một số vợ chồng có người mắc bệnh HIV họ vẫn qua"
+        }
+      },
+      {
+        "query_id": 545,
+        "query_characters": 48,
+        "query_preview": "Áp xe hậu môn tự vỡ liệu có bị rò hậu môn không?",
+        "dense": {
+          "doc_id": 2321953,
+          "chunk_id": "2321953-ab740163d1fb981bc069062b",
+          "score": 0.567022,
+          "language_signal": "unknown",
+          "text_preview": "耳膜穿孔会自己好吗？_39问医生_39健康网"
+        },
+        "sparse": {
+          "doc_id": 546760,
+          "chunk_id": "546760-3dbf6010d37707f258cc0548",
+          "score": 31.694558,
+          "language_signal": "vi-signal",
+          "text_preview": "nên hướng đến một tình yêu chung thủy với một người bạn tình an toàn. K.Trâm (Theo Cosmopotian) Giữ sạch “cậu nhỏ” để tránh viêm bao quy đầu \"Nhũ hoa\" và những suy tư Hồi xuân ở ph"
+        },
+        "hybrid": {
+          "doc_id": 546760,
+          "chunk_id": "546760-3dbf6010d37707f258cc0548",
+          "score": 0.030478,
+          "language_signal": "vi-signal",
+          "text_preview": "nên hướng đến một tình yêu chung thủy với một người bạn tình an toàn. K.Trâm (Theo Cosmopotian) Giữ sạch “cậu nhỏ” để tránh viêm bao quy đầu \"Nhũ hoa\" và những suy tư Hồi xuân ở ph"
+        }
+      },
+      {
+        "query_id": 634,
+        "query_characters": 50,
+        "query_preview": "Không uống rượu, bia nhưng chỉ số GGT tăng do đâu?",
+        "dense": {
+          "doc_id": 488949,
+          "chunk_id": "488949-9b8144788aad6768a49e9cb2",
+          "score": 0.518294,
+          "language_signal": "vi-signal",
+          "text_preview": "oxy hóa từ rau củ. Về rượu bia, người tăng huyết áp nên hạn chế tối đa, chỉ nên nhấp môi để giữ không khí xuân cùng gia đình. - Giữ tinh thần lạc quan: Tết là dịp để vui vẻ, nhưng "
+        },
+        "sparse": {
+          "doc_id": 526066,
+          "chunk_id": "526066-506ab99bf1c635396ce8e03d",
+          "score": 26.218125,
+          "language_signal": "vi-signal",
+          "text_preview": "ờn, xúc xích,…) thường chứa nitrat và nitrit, có thể chuyển thành các chất gây ung thư trong quá trình tiêu hóa. Quá trình hun khói cũng sinh ra nhiều chất, một số trong đó có tính"
+        },
+        "hybrid": {
+          "doc_id": 326742,
+          "chunk_id": "326742-a001a86e4d6a901441bf99f4",
+          "score": 0.030579,
+          "language_signal": "vi-signal",
+          "text_preview": "g ở tuyến dưới trước đó. Tuy nhiên, khi chuyển về BV Việt Đức bệnh nhân trong tình trạng chấn thương bụng, sốc suy đa tạng. Hiện bệnh nhân được đường hồi sức tích cực và làm tất cả"
+        }
+      },
+      {
+        "query_id": 96,
+        "query_characters": 52,
+        "query_preview": "Bại liệt có thể điều trị bằng ghép tế bào gốc không?",
+        "dense": {
+          "doc_id": 518671,
+          "chunk_id": "518671-2c3d028718ab00882c0665b5",
+          "score": 0.602504,
+          "language_signal": "vi-signal",
+          "text_preview": "BV Đà Nẵng ghép tế bào gốc, trao hy vọng cho bệnh nhân đa u tủy xương SKĐS - Chị Hồ Thị N. (52 tuổi, TP Quảng Ngãi, tỉnh Quảng Ngãi) bị đau xương nhiều, không đi lại được đã đến kh"
+        },
+        "sparse": {
+          "doc_id": 518671,
+          "chunk_id": "518671-e60fdf891235e50095f19ea3",
+          "score": 30.078052,
+          "language_signal": "vi-signal",
+          "text_preview": "Người bệnh 66 tuổi mắc đa u tủy xương hồi phục sau ghép tế bào gốc tự thân\n\nBệnh viện Hữu nghị Đa khoa Nghệ An phẫu thuật thành công u tủy hình quả tạ\n\n\"Phát hiện sớm và can thiệp "
+        },
+        "hybrid": {
+          "doc_id": 518671,
+          "chunk_id": "518671-2c3d028718ab00882c0665b5",
+          "score": 0.032266,
+          "language_signal": "vi-signal",
+          "text_preview": "BV Đà Nẵng ghép tế bào gốc, trao hy vọng cho bệnh nhân đa u tủy xương SKĐS - Chị Hồ Thị N. (52 tuổi, TP Quảng Ngãi, tỉnh Quảng Ngãi) bị đau xương nhiều, không đi lại được đã đến kh"
+        }
+      },
+      {
+        "query_id": 1192,
+        "query_characters": 53,
+        "query_preview": "Kết quả khám tiểu đường 300 mg/dL có nguy hiểm không?",
+        "dense": {
+          "doc_id": 621873,
+          "chunk_id": "621873-c11128cc2cdadd20ea4c73db",
+          "score": 0.580844,
+          "language_signal": "vi-signal",
+          "text_preview": "(TNO) Phụ nữ có hôn nhân bền vững, không ly dị hoặc chồng chết, thường ít có các triệu chứng của bệnh tim, nhà xã hội học Michael McFarland công bố như trên, theo NBC.\n\nMichael McF"
+        },
+        "sparse": {
+          "doc_id": 656779,
+          "chunk_id": "656779-7f59f9a848791750d996b273",
+          "score": 29.511794,
+          "language_signal": "vi-signal",
+          "text_preview": "Vì sao bị hạ canxi máu?\n\nVì sao bị hạ canxi máu?\n\n14/10/2012 11:28 GMT+7\n\nNói chính xác hơn, hạ canxi máu được định nghĩa khi nồng độ canxi ion hóa trong huyết tương thấp hơn 1,16 "
+        },
+        "hybrid": {
+          "doc_id": 652994,
+          "chunk_id": "652994-1b8641021b99c05046cc1b10",
+          "score": 0.031754,
+          "language_signal": "vi-signal",
+          "text_preview": "(TNO) Chế độ ăn uống nhiều chất béo và chất đường có thể làm tăng nguy cơ tử vong sớm hoặc bệnh tật khi lớn tuổi, theo Daily Mail ngày 16.4.\n\nPhát hiện trên được công bố trên tạp c"
+        }
+      },
+      {
+        "query_id": 253,
+        "query_characters": 55,
+        "query_preview": "Trẻ 4 tuổi giãn não thất, bể hố sau có khỏi được không?",
+        "dense": {
+          "doc_id": 2432033,
+          "chunk_id": "2432033-d4ade8a62c70c7fac1b3694a",
+          "score": 0.591046,
+          "language_signal": "unknown",
+          "text_preview": "儿童手骨折了多久可以恢复好_39问医生_39健康网"
+        },
+        "sparse": {
+          "doc_id": 509060,
+          "chunk_id": "509060-8297435dbdd12159af299021",
+          "score": 31.924654,
+          "language_signal": "vi-signal",
+          "text_preview": ": phù phổi, rối loạn nhịp, tổn thương não Để phòng ngừa đuối nước: Luôn giám sát trẻ khi gần nước. Rào chắn ao hồ, bể nước, hồ cá... trong nhà. Dạy bơi và kỹ năng an toàn dưới nước"
+        },
+        "hybrid": {
+          "doc_id": 509060,
+          "chunk_id": "509060-be7a0aae8932e272ef6bfb3b",
+          "score": 0.030331,
+          "language_signal": "vi-signal",
+          "text_preview": "- Đuối nước là mối đe dọa đáng kể đến tính mạng của trẻ em và thanh thiếu niên, được xếp là nguyên nhân gây tử vong hàng thứ 3 đối với trẻ em từ 5 - 14 tuổi và là nguyên nhân gây t"
+        }
+      },
+      {
+        "query_id": 128,
+        "query_characters": 57,
+        "query_preview": "Tại sao gần sáng thường bị tỉnh giấc, liên tục bị hắt xì?",
+        "dense": {
+          "doc_id": 3412503,
+          "chunk_id": "3412503-923b888a67bf1762de5b9564",
+          "score": 0.651008,
+          "language_signal": "zh-Han-script",
+          "text_preview": "欲减退，睡眠障碍等症。特别是早醒是 抑郁症 的一个典型症状，一般比平日早醒2~3个小时，醒来后无法再入睡，或是恶梦多。\n\n这样的人患的是一种精神科的疾病，在医学上称为 抑郁症 。\n\n有的人不知为什么总是打不起精神，工作效率明显下降，还经常为一些小事哭泣。睡眠也不好了，晚上睡不着，早晨很早就醒了。白天常感到疲惫，精力不足，对什么都不感兴趣，包括以前喜欢的事也不"
+        },
+        "sparse": {
+          "doc_id": 414465,
+          "chunk_id": "414465-e10d4febdf535818a4997352",
+          "score": 26.655125,
+          "language_signal": "vi-signal",
+          "text_preview": "UBND xã Cẩm Duệ (huyện Cẩm Xuyên) cho biết, hiện mực nước đang lên trở lại, nhiều tuyến đường đã tiếp tục bị ngập.\n\nNhiều tuyến đường ở xã Cẩm Duệ đã bị ngập trở lại, nhiều gia đìn"
+        },
+        "hybrid": {
+          "doc_id": 403184,
+          "chunk_id": "403184-a18a868227ed6a710c852be2",
+          "score": 0.025385,
+          "language_signal": "vi-signal",
+          "text_preview": "Mộng du thường gặp ở trẻ em\n\nKhi đã thực sự tỉnh khỏi cơn mộng du, người bị mộng du sẽ cảm thấy không thể hiểu nổi chuyện gì đang xảy ra với họ\n\nNgười bị mộng du không mắc chứng mấ"
+        }
+      },
+      {
+        "query_id": 386,
+        "query_characters": 59,
+        "query_preview": "Đặt sonde dạ dày sau khi mổ ruột thừa liệu có đáng lo ngại?",
+        "dense": {
+          "doc_id": 1384679,
+          "chunk_id": "1384679-32c5dac348ce48e857e49a1a",
+          "score": 0.54198,
+          "language_signal": "zh-Han-script",
+          "text_preview": "腹腔镜术后多久可以同房？_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 524709,
+          "chunk_id": "524709-ee9835fbd2b831d4c97367b0",
+          "score": 26.302297,
+          "language_signal": "vi-signal",
+          "text_preview": "dày tăng tiết, lớp bảo vệ niêm mạc bị tổn thương dần sẽ dẫn đến viêm dạ dày và gây loét dạ dày . Bên cạnh đó căng thẳng, buồn phiền, tức giận, lo lắng, sợ hãi khiến mất cân bằng ch"
+        },
+        "hybrid": {
+          "doc_id": 524709,
+          "chunk_id": "524709-002c5b85abc1dff98ad1c6ba",
+          "score": 0.026378,
+          "language_signal": "vi-signal",
+          "text_preview": "đặc biệt là dưa hành và các loại rau củ quả muối sẽ làm dạ dày tăng tiết axit gây đau dạ dày. Ngoài ra, trong dưa hành và các loại rau củ quả muối còn chứa một lượng lớn muối. Với "
+        }
+      },
+      {
+        "query_id": 715,
+        "query_characters": 60,
+        "query_preview": "Dấu hiệu nhận biết và cách điều trị nhiễm Hp dứt điểm là gì?",
+        "dense": {
+          "doc_id": 594218,
+          "chunk_id": "594218-2c2b718a81276469afbc3e45",
+          "score": 0.568112,
+          "language_signal": "vi-signal",
+          "text_preview": "Dấu hiệu cơ thể nhiễm ký sinh trùng"
+        },
+        "sparse": {
+          "doc_id": 524709,
+          "chunk_id": "524709-351bd418c25f2432c189c0a1",
+          "score": 38.725733,
+          "language_signal": "vi-signal",
+          "text_preview": "Người bị viêm loét dạ dày nhiễm khuẩn Hp cần lưu ý điều gì?\n\nThuốc trị viêm loét dạ dày tá tràng Viêm loét dạ dày - tá tràng: Dấu hiệu, biến chứng nguy hiểm và cách điều trị Cảnh g"
+        },
+        "hybrid": {
+          "doc_id": 524709,
+          "chunk_id": "524709-351bd418c25f2432c189c0a1",
+          "score": 0.032018,
+          "language_signal": "vi-signal",
+          "text_preview": "Người bị viêm loét dạ dày nhiễm khuẩn Hp cần lưu ý điều gì?\n\nThuốc trị viêm loét dạ dày tá tràng Viêm loét dạ dày - tá tràng: Dấu hiệu, biến chứng nguy hiểm và cách điều trị Cảnh g"
+        }
+      },
+      {
+        "query_id": 863,
+        "query_characters": 62,
+        "query_preview": "Bác sĩ cho em hỏi tình trạng rau bám mép có nguy hiểm không ạ?",
+        "dense": {
+          "doc_id": 3562535,
+          "chunk_id": "3562535-8b548de1cf58ed170645f301",
+          "score": 0.589189,
+          "language_signal": "zh-Han-script",
+          "text_preview": "复发性口腔溃疡的危害？ - 家庭医生在线儿科频道"
+        },
+        "sparse": {
+          "doc_id": 519748,
+          "chunk_id": "519748-39f2a8046ea3f52b6e075292",
+          "score": 35.307621,
+          "language_signal": "vi-signal",
+          "text_preview": "Hở van động mạch chủ có cần mổ ?\n\nHở van động mạch chủ có cần mổ ?\n\n07-07-2021 08:09 |\n\nEm xin hỏi bác sĩ, đối với người bị hở van động mạch chủ 2/4 có cần phải mổ không? Bệnh hở v"
+        },
+        "hybrid": {
+          "doc_id": 546760,
+          "chunk_id": "546760-e0bca3fb08fe203a5f7de353",
+          "score": 0.019732,
+          "language_signal": "vi-signal",
+          "text_preview": "nên hướng đến một tình yêu chung thủy với một người bạn tình an toàn. K.Trâm (Theo Cosmopotian) Giữ sạch “cậu nhỏ” để tránh viêm bao quy đầu \"Nhũ hoa\" và những suy tư Hồi xuân ở ph"
+        }
+      },
+      {
+        "query_id": 929,
+        "query_characters": 64,
+        "query_preview": "83 tuổi có điều trị sa trực tràng và sa sinh dục được nữa không?",
+        "dense": {
+          "doc_id": 2302147,
+          "chunk_id": "2302147-9fac1ae513159602db09ce52",
+          "score": 0.550329,
+          "language_signal": "unknown",
+          "text_preview": "非特异性尿道炎治不好？_39问医生_39健康网"
+        },
+        "sparse": {
+          "doc_id": 655438,
+          "chunk_id": "655438-7241db52f350ae97e940c116",
+          "score": 27.889909,
+          "language_signal": "vi-signal",
+          "text_preview": "Ung thư buồng trứng: Biết muộn, khó trị\n\nUng thư buồng trứng: Biết muộn, khó trị\n\n30/04/2011 09:56 GMT+7\n\nBuồng trứng là một trong các cơ quan sinh dục của người phụ nữ có chức năn"
+        },
+        "hybrid": {
+          "doc_id": 509273,
+          "chunk_id": "509273-ea6327fe92c6e31434b59c74",
+          "score": 0.029643,
+          "language_signal": "vi-signal",
+          "text_preview": "và phân phối độc quyền bởi Công ty TNHH Ecopath Việt Nam. Địa chỉ: Tầng 4, số 35A, đường số 1, Trần Thái Tông, Cầu Giấy, Hà Nội Tư vấn Miễn Phí: 04 73 04 69 69 – 0936 404 366 Websi"
+        }
+      },
+      {
+        "query_id": 765,
+        "query_characters": 67,
+        "query_preview": "Trẻ sơ sinh ho có đờm kèm hắt hơi sổ mũi phải điều trị như thế nào?",
+        "dense": {
+          "doc_id": 1049079,
+          "chunk_id": "1049079-7c513fd4431922ec416a1165",
+          "score": 0.60993,
+          "language_signal": "zh-Han-script",
+          "text_preview": "4岁小儿得了感冒，咳嗽频繁有痰怎么办_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 526580,
+          "chunk_id": "526580-1dcd1cfc3ee8cb074fabfb33",
+          "score": 29.778361,
+          "language_signal": "vi-signal",
+          "text_preview": "1. Tại sao cần dùng thuốc long đờm trong trị viêm phế quản?\n\nViêm phế quản thường gây tiết nhiều đờm, khi khạc nhổ đờm có thể có màu trắng trong, vàng, xanh hoặc đục như mủ. Đờm là"
+        },
+        "hybrid": {
+          "doc_id": 540125,
+          "chunk_id": "540125-86595d6490422eb13890204d",
+          "score": 0.026172,
+          "language_signal": "vi-signal",
+          "text_preview": "các triệu chứng như: Chảy máu mũi không rõ nguyên nhân, ngạt mũi kéo dài, ho ra máu, khàn tiếng, cảm giác vướng, đau ở mũi hoặc họng, khó thở, đau ngực… Các bác sĩ cảnh báo người d"
+        }
+      },
+      {
+        "query_id": 201,
+        "query_characters": 70,
+        "query_preview": "Nguyên nhân mắt bị xuất huyết kèm đau đầu, cảm giác choáng váng là gì?",
+        "dense": {
+          "doc_id": 1170986,
+          "chunk_id": "1170986-5b15e09134b26ecab1451806",
+          "score": 0.602281,
+          "language_signal": "zh-Han-script",
+          "text_preview": "我的眼睛总是红红的，为什么_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 539920,
+          "chunk_id": "539920-a4f8cda4493b5ebf58f095c7",
+          "score": 40.610275,
+          "language_signal": "vi-signal",
+          "text_preview": "hoặc nhiều bệnh khác kèm theo như huyết áp cao, đái tháo đường hoặc cholessterol máu cao, hút thuốc lá, thừa cân. Còn các bệnh về tiêu hóa thì gây đau ngực nhưng tùy từng loại bệnh"
+        },
+        "hybrid": {
+          "doc_id": 549479,
+          "chunk_id": "549479-ff3e7af507f4f4c57d11554f",
+          "score": 0.025904,
+          "language_signal": "vi-signal",
+          "text_preview": "• Thoái hóa hoàng điểm là nguyên nhân gây mù hàng đầu ở Mỹ và châu Âu. • Gần 42% bệnh nhân thoái hoàng điểm ở một mắt sẽ mắc bệnh ở mắt thứ hai trong vòng 2-3 năm. Đục thủy tinh th"
+        }
+      },
+      {
+        "query_id": 513,
+        "query_characters": 72,
+        "query_preview": "Uống bổ sung vitamin C khi đang điều trị suy giáp có ảnh hưởng gì không?",
+        "dense": {
+          "doc_id": 3078297,
+          "chunk_id": "3078297-afb83ee943a7fc8827afd6bd",
+          "score": 0.582204,
+          "language_signal": "zh-Han-script",
+          "text_preview": "硬化 ）、 肠道 疾病（ 乳糜泻 、热带口炎性 肠炎 、 局限性肠炎 、持续 腹泻 ）、 胃切除术 后。4、 新生儿 遗传性 维生素B6依赖综合征 。\n\n维生素C注射液 批准字号：国药准字H41023858、国药准字H41020284 包装规格：2ml:0.5g；2ml:0.25g 作用功效：1、用于治疗 坏血病 ，也可用于各种急慢性传染性疾病及 紫癜 等辅"
+        },
+        "sparse": {
+          "doc_id": 536881,
+          "chunk_id": "536881-bc4a71b49687d197ed2aa35b",
+          "score": 41.16212,
+          "language_signal": "vi-signal",
+          "text_preview": ", thận và điều chỉnh liều khi cần thiết. - Tham gia các buổi tư vấn tâm lý, nhóm hỗ trợ đồng đẳng để nâng cao ý chí cai nghiện và phòng tránh tái nghiện. Xem thêm video đang được q"
+        },
+        "hybrid": {
+          "doc_id": 536881,
+          "chunk_id": "536881-dd56189be77be845a7f76eab",
+          "score": 0.026546,
+          "language_signal": "vi-signal",
+          "text_preview": ", thận và điều chỉnh liều khi cần thiết. - Tham gia các buổi tư vấn tâm lý, nhóm hỗ trợ đồng đẳng để nâng cao ý chí cai nghiện và phòng tránh tái nghiện. Xem thêm video đang được q"
+        }
+      },
+      {
+        "query_id": 574,
+        "query_characters": 75,
+        "query_preview": "Tụ máu đuôi mắt sau gãy thành xoang trước và sau bên trái điều trị thế nào?",
+        "dense": {
+          "doc_id": 541885,
+          "chunk_id": "541885-fc6eac1314d2b283674302b1",
+          "score": 0.615071,
+          "language_signal": "vi-signal",
+          "text_preview": ", dùng nẹp vít kết hợp xương, lót lưới titan sàn ổ mắt để đưa nhãn cầu về đúng vị trí giải phẫu, kết hợp với mổ nội soi dẫn lưu xoang hàm bên trái, khâu thẩm mỹ phục hồi da vùng mặ"
+        },
+        "sparse": {
+          "doc_id": 541885,
+          "chunk_id": "541885-0e959413f2bd1de15e9b7da9",
+          "score": 45.917277,
+          "language_signal": "vi-signal",
+          "text_preview": "mẹo khiến xương chui sâu ra sàn miệng SKĐS - Bà T. ăn cơm với cá và xuất hiện nuốt đau, nuốt vướng nhưng không đi khám. Bà liền cho tay vào móc họng và dùng mẹo nuốt miếng thức ăn "
+        },
+        "hybrid": {
+          "doc_id": 541885,
+          "chunk_id": "541885-63a94196611fd107ab906a48",
+          "score": 0.031258,
+          "language_signal": "vi-signal",
+          "text_preview": "Tai Mũi Họng, Mắt, Răng Hàm Mặt, Thẩm mỹ,… kịp thời, tránh những biến chứng nặng, vĩnh viễn, gây tàn phế, để lại gánh nặng cho cá nhân, gia đình và toàn xã hội. Chữa hóc xương cá b"
+        }
+      },
+      {
+        "query_id": 1080,
+        "query_characters": 79,
+        "query_preview": "Mang thai 38 tuần, đau nhói bên phải gần ngực khi ngủ có phải dấu hiệu sắp sinh",
+        "dense": {
+          "doc_id": 539920,
+          "chunk_id": "539920-3702f842ba68742a3207cefa",
+          "score": 0.565723,
+          "language_signal": "vi-signal",
+          "text_preview": "giác bị thắt chặt ở vùng ngực. Đau ngực đột ngột và nặng dần. Người bệnh bị choáng váng. Đau lan tỏa lên vai, cổ, sau hàm hay cánh tay. Cơn đau thường đáp ứng nhanh với nitroglycer"
+        },
+        "sparse": {
+          "doc_id": 536881,
+          "chunk_id": "536881-7b016c2bc1e7d2fdd9501559",
+          "score": 37.796749,
+          "language_signal": "vi-signal",
+          "text_preview": "2. Methadon có tác dụng phụ không?\n\nGiống các loại thuốc khác, methadon có thể gây tác dụng phụ , nhất là trong giai đoạn đầu hoặc khi chưa điều chỉnh liều phù hợp. Những tác dụng "
+        },
+        "hybrid": {
+          "doc_id": 539920,
+          "chunk_id": "539920-3702f842ba68742a3207cefa",
+          "score": 0.031319,
+          "language_signal": "vi-signal",
+          "text_preview": "giác bị thắt chặt ở vùng ngực. Đau ngực đột ngột và nặng dần. Người bệnh bị choáng váng. Đau lan tỏa lên vai, cổ, sau hàm hay cánh tay. Cơn đau thường đáp ứng nhanh với nitroglycer"
+        }
+      },
+      {
+        "query_id": 577,
+        "query_characters": 83,
+        "query_preview": "Phù người, rối loạn kinh nguyệt khi dùng thuốc tăng cân có phải do suy thượng thận?",
+        "dense": {
+          "doc_id": 534199,
+          "chunk_id": "534199-572a16c9000ab6008e1f7893",
+          "score": 0.600335,
+          "language_signal": "vi-signal",
+          "text_preview": "ờ. Các kỳ kinh ngắn hơn, máu kinh ít và các chu kỳ đều hơn. - Yasmin là TTT ít gây hội chứng tiền mãn kinh, ít gây trứng cá, vỉ 28 viên mỗi tháng, 21 viên có tác dụng và 7 viên chỉ"
+        },
+        "sparse": {
+          "doc_id": 536881,
+          "chunk_id": "536881-7b016c2bc1e7d2fdd9501559",
+          "score": 45.309643,
+          "language_signal": "vi-signal",
+          "text_preview": "2. Methadon có tác dụng phụ không?\n\nGiống các loại thuốc khác, methadon có thể gây tác dụng phụ , nhất là trong giai đoạn đầu hoặc khi chưa điều chỉnh liều phù hợp. Những tác dụng "
+        },
+        "hybrid": {
+          "doc_id": 477796,
+          "chunk_id": "477796-8176073576d6b7ec3d262d9f",
+          "score": 0.025132,
+          "language_signal": "vi-signal",
+          "text_preview": "qua đường tình dục, trong đó có HIV/AIDS là tránh thai bằng cách sử dụng hàng rào bảo vệ, ví dụ như bao cao su hay màng ngăn âm đạo. Tuy nhiên, khả năng bảo vệ cũng không phải là 1"
+        }
+      },
+      {
+        "query_id": 290,
+        "query_characters": 87,
+        "query_preview": "Thường xuyên nghẹt mũi buổi tối có phải do khối nang vòm mũi không và điều trị thế nào?",
+        "dense": {
+          "doc_id": 4149849,
+          "chunk_id": "4149849-64ebd8eed257b84f9583e371",
+          "score": 0.554785,
+          "language_signal": "zh-Han-script",
+          "text_preview": "，下面仅脉腋常有柔毛。 核果 单生于叶腋，球形，直径4-7mm，紫黑色，果柄长1.2-2.8cm，果核平滑，稀有不明显网纹。花期4-5月，果熟期8-10月。\n\n治疗 慢性气管炎 。用棒捧木粗粉浸泡煎煮、浓缩，以 酒精 提取制成 针剂 ，每毫升含生药 1g。每日两次 肌肉注射 ，每次ml，10天为一疗程。曾治653例，有效率为93%。以止咳作用较为明显。用药后"
+        },
+        "sparse": {
+          "doc_id": 628323,
+          "chunk_id": "628323-e76e0a4fd07538ab9ab636f0",
+          "score": 32.993151,
+          "language_signal": "vi-signal",
+          "text_preview": "Món ăn đẩy lui bệnh\n\nMón ăn đẩy lui bệnh\n\n30/06/2014 03:00 GMT+7\n\nSúp gà, trà nóng... có thể giúp người bệnh mau khỏe lại - Ảnh: Hạ Huy - Đ.N.Thạch\n\nKhi bị bệnh, cơ thể cần thêm nh"
+        },
+        "hybrid": {
+          "doc_id": 540125,
+          "chunk_id": "540125-86595d6490422eb13890204d",
+          "score": 0.026334,
+          "language_signal": "vi-signal",
+          "text_preview": "các triệu chứng như: Chảy máu mũi không rõ nguyên nhân, ngạt mũi kéo dài, ho ra máu, khàn tiếng, cảm giác vướng, đau ở mũi hoặc họng, khó thở, đau ngực… Các bác sĩ cảnh báo người d"
+        }
+      },
+      {
+        "query_id": 959,
+        "query_characters": 93,
+        "query_preview": "Tôi bị thoái hoá khớp gối ( đa chụp X-quang). Các loại thuốc điều trị?. Môn thể thao phu hợp?",
+        "dense": {
+          "doc_id": 510837,
+          "chunk_id": "510837-f2768c2c0ce339e9d05f569d",
+          "score": 0.634642,
+          "language_signal": "vi-signal",
+          "text_preview": "thuốc gì? Người bị đau khớp gối do viêm hoặc thoái hóa thường được bác sĩ kê các loại thuốc sau: - Thuốc giảm đau thông thường - Thuốc kháng viêm không Steroid - Thuốc chống thấp k"
+        },
+        "sparse": {
+          "doc_id": 510837,
+          "chunk_id": "510837-be9b1a0812f28bee51799eac",
+          "score": 51.529555,
+          "language_signal": "vi-signal",
+          "text_preview": "349 - Cơ sở Hồ Chí Minh: Số 179 Nguyễn Văn Thương, Phường 25, quận Bình Thạnh/ Hotline: 028 3899 1677 - 0938 449 768 - Website: https://dominhduong.org/xuong-khop/viem-dau-khop\n\n- "
+        },
+        "hybrid": {
+          "doc_id": 510837,
+          "chunk_id": "510837-f5e1d63ceb48a272fca3e269",
+          "score": 0.032258,
+          "language_signal": "vi-signal",
+          "text_preview": "349 - Cơ sở Hồ Chí Minh: Số 179 Nguyễn Văn Thương, Phường 25, quận Bình Thạnh/ Hotline: 028 3899 1677 - 0938 449 768 - Website: https://dominhduong.org/xuong-khop/viem-dau-khop\n\nỞ "
+        }
+      },
+      {
+        "query_id": 83,
+        "query_characters": 100,
+        "query_preview": "Khi nhỏ lọ thuốc natri clorid vào thì đỡ được khoảng tầm 4 đến 5 phút sau đó là lại mỏi và khó chịu.",
+        "dense": {
+          "doc_id": 4171767,
+          "chunk_id": "4171767-6fe625ecd48c998829b4efa9",
+          "score": 0.640187,
+          "language_signal": "zh-Han-script",
+          "text_preview": "比较慢，可能是通过 基因 的逐步 突变 而产生的，但可自动消失。细菌也可以通过R因子的转移而获得耐药性，获得R因子的细菌能产生 氯霉素乙酰转移酶 （acetyltransferase）使氯霉素 灭活 。\n\n【 体内过程 】氯霉素自肠道上部吸收，一次口服1.0g后2小时左右血中 药物浓度 可达到峰值（约10～13mg/L）。 血浆 t 1/2 平均为2.5小时"
+        },
+        "sparse": {
+          "doc_id": 403184,
+          "chunk_id": "403184-cc0a0c464167f034b5e266b9",
+          "score": 41.025143,
+          "language_signal": "vi-signal",
+          "text_preview": "Mộng du là gì và mộng du có nguy hiểm đến tính mạng không: Hậu quả của mộng du khó lường trước được\n\nVì thế cần khóa cửa, không để trẻ ngủ ở giường hẹp. Giúp trẻ tránh mệt mỏi, kiệ"
+        },
+        "hybrid": {
+          "doc_id": 509060,
+          "chunk_id": "509060-f1c9bc57eccc5855987cbf2d",
+          "score": 0.021265,
+          "language_signal": "vi-signal",
+          "text_preview": "nước là mối đe dọa đáng kể đến tính mạng của trẻ em và thanh thiếu niên, được xếp là nguyên nhân gây tử vong hàng thứ 3 đối với trẻ em từ 5 - 14 tuổi và là nguyên nhân gây tử vong "
+        }
+      },
+      {
+        "query_id": 805,
+        "query_characters": 109,
+        "query_preview": "Độ tuổi nào dễ mắc bệnh hiếm muộn ở nam giới? Đâu là yếu tố nguy cơ khiến nam giới dễ mắc các bệnh hiếm muộn?",
+        "dense": {
+          "doc_id": 875350,
+          "chunk_id": "875350-e93170c49f4ba3476fa022f0",
+          "score": 0.612526,
+          "language_signal": "zh-Han-script",
+          "text_preview": "男人更年期一般在多大岁数_39健康网_男科\n\n男人更年期一般在多大岁数\n\n男人更年期一般出现在40岁到60岁之间。\n\n男人更年期，也称为男性更年期或“安德罗帕乌斯”，是指男性随着年龄增长，睾酮水平逐渐下降而引起的一系列生理和心理变化。这一过程通常发生在40岁到60岁之间，但具体年龄因人而异，受到遗传、生活方式、健康状况等多种因素的影响。睾酮是男性主要的性激素"
+        },
+        "sparse": {
+          "doc_id": 655438,
+          "chunk_id": "655438-7241db52f350ae97e940c116",
+          "score": 58.916255,
+          "language_signal": "vi-signal",
+          "text_preview": "Ung thư buồng trứng: Biết muộn, khó trị\n\nUng thư buồng trứng: Biết muộn, khó trị\n\n30/04/2011 09:56 GMT+7\n\nBuồng trứng là một trong các cơ quan sinh dục của người phụ nữ có chức năn"
+        },
+        "hybrid": {
+          "doc_id": 511422,
+          "chunk_id": "511422-757c61b399c41e31a2d87de6",
+          "score": 0.030331,
+          "language_signal": "vi-signal",
+          "text_preview": ". Kiểm soát cân nặng. Thư giãn, nghỉ ngơi và tránh căng thẳng kéo dài. Theo dõi thường xuyên và điều trị các bệnh lý như cao huyết áp, đái tháo đường, mỡ máu. Xem thêm video được q"
+        }
+      },
+      {
+        "query_id": 21,
+        "query_characters": 122,
+        "query_preview": "Bé nhà em sốt cao tới 39 độ nay mới hết 1 bữa thì người bé nổi ban đầy người . Vậy cho em hỏi có nguy hiểm gì không hả bác",
+        "dense": {
+          "doc_id": 4106962,
+          "chunk_id": "4106962-a68c4997a5e4189717e19bf2",
+          "score": 0.597836,
+          "language_signal": "zh-Han-script",
+          "text_preview": "处理\n\n发热对人体有利也有害。发热时 人体免疫功能 明显增强，这有利于清除病原体和促进疾病的痊愈, 而且发热也是疾病的一个标志，因此，体温不太高时不必用退热药。但如体温超过40℃（小儿超过39℃）则可能引起 惊厥 、 昏迷 ，甚至严重后遗症，故应及时应用 退热药 及 镇静药 （特别是小儿）。\n\n参见 退烧\n\n中医认为 发热 原因分为 外感 、内伤两类。外感发"
+        },
+        "sparse": {
+          "doc_id": 402757,
+          "chunk_id": "402757-aa9efdd9c5ceff1ed1bc6a3e",
+          "score": 53.665409,
+          "language_signal": "vi-signal",
+          "text_preview": "Minh Tiệp nhận 'gạch đá' vì an ủi Nam Em\n\n16/01/2019 11:14\n\nCố tình mỉa mai \"chú hề\" khi an ủi Nam Em, Minh Tiệp đang hứng chịu rất nhiều \"gạch đá\" từ lượng fan đông đảo của Trường"
+        },
+        "hybrid": {
+          "doc_id": 527055,
+          "chunk_id": "527055-70f71c2281f9f9e8c5e5de31",
+          "score": 0.021897,
+          "language_signal": "vi-signal",
+          "text_preview": "dụng và các thông tin về dưỡng chất. Chỉ nên mua sữa rõ nguồn gốc, từ các hãng cung ứng tiếng tăm và uy tín. Màu sắc sữa thay đổi: luôn luôn kiểm tra chất lượng của sữa, nếu thấy t"
+        }
+      },
+      {
+        "query_id": 446,
+        "query_characters": 135,
+        "query_preview": "Em mới nhận được kết quả xét nghiệm máu của bên mình. Có chỉ số bilirubin trực tiếp là hơi cao. Em chưa hiểu và cần được tư vấn rõ hơn.",
+        "dense": {
+          "doc_id": 1177989,
+          "chunk_id": "1177989-95ff3de9e29039879c3ccaaa",
+          "score": 0.634177,
+          "language_signal": "zh-Han-script",
+          "text_preview": "我朋友体检，化验指标提示转氨酶高—700单位_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 503364,
+          "chunk_id": "503364-85de6aa39c5c7a2754e99d02",
+          "score": 62.350171,
+          "language_signal": "vi-signal",
+          "text_preview": "năm 2030. Vì sao tỉ lệ tái nhiễm lao ở người đồng nhiễm lao/HIV lại cao? SKĐS - Lao là bệnh cơ hội phổ biến trên bệnh nhân HIV/AIDS. Khi bệnh nhân đồng nhiễm lao/HIV làm cho vấn đề"
+        },
+        "hybrid": {
+          "doc_id": 1177989,
+          "chunk_id": "1177989-95ff3de9e29039879c3ccaaa",
+          "score": 0.016393,
+          "language_signal": "zh-Han-script",
+          "text_preview": "我朋友体检，化验指标提示转氨酶高—700单位_有问必答_快速问医生"
+        }
+      },
+      {
+        "query_id": 1010,
+        "query_characters": 143,
+        "query_preview": "Tôi đang sử dụng thuốc tránh thai nhưng rất hay quên. Tôi muốn chuyển sang cây que tránh thai. Nên cấy vào thời điểm nào? Tác dụng phụ là gì",
+        "dense": {
+          "doc_id": 477796,
+          "chunk_id": "477796-da8cdf5a69b29a93c700343f",
+          "score": 0.60423,
+          "language_signal": "vi-signal",
+          "text_preview": "qua đường tình dục, trong đó có HIV/AIDS là tránh thai bằng cách sử dụng hàng rào bảo vệ, ví dụ như bao cao su hay màng ngăn âm đạo. Tuy nhiên, khả năng bảo vệ cũng không phải là 1"
+        },
+        "sparse": {
+          "doc_id": 477796,
+          "chunk_id": "477796-3f55be16acb5cc72213c369b",
+          "score": 70.254963,
+          "language_signal": "vi-signal",
+          "text_preview": "qua đường tình dục, trong đó có HIV/AIDS là tránh thai bằng cách sử dụng hàng rào bảo vệ, ví dụ như bao cao su hay màng ngăn âm đạo. Tuy nhiên, khả năng bảo vệ cũng không phải là 1"
+        },
+        "hybrid": {
+          "doc_id": 477796,
+          "chunk_id": "477796-94facbccc2d35a58f0d75954",
+          "score": 0.032002,
+          "language_signal": "vi-signal",
+          "text_preview": "kỳ, thì việc ngừng dùng thuốc 4-5 ngày có thể sẽ giúp ổn định và kiểm soát được chu kỳ kinh nguyệt. Ngoài những trường hợp này, thì những phụ nữ sử dụng thuốc tránh thai hàng ngày "
+        }
+      },
+      {
+        "query_id": 255,
+        "query_characters": 155,
+        "query_preview": "Tôi có ăn lòng lợn vào 12 giờ trưa và bữa tối 7 giờ có ăn cháo lòng. Sau khi đi vệ sinh tôi thấy có máu, phân bình thường và bụng hơi đầy. X",
+        "dense": {
+          "doc_id": 997591,
+          "chunk_id": "997591-54183eebc639440e275d39a0",
+          "score": 0.59916,
+          "language_signal": "zh-Han-script",
+          "text_preview": "生活正常，出现两次便血，心情忐忑_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 325106,
+          "chunk_id": "325106-957ca54a90f0fbab766f9e87",
+          "score": 70.026487,
+          "language_signal": "vi-signal",
+          "text_preview": "34 tuổi, mẹ Việt ở Mỹ quyết tâm đi học\n\n16/09/2019 06:37\n\n“Tôi quyết định cho mình một thêm cơ hội ở cái tuổi ngoài 30, bằng cách gửi con đi trẻ. Tôi trở lại trường học, bắt đầu từ"
+        },
+        "hybrid": {
+          "doc_id": 524709,
+          "chunk_id": "524709-9658e2b51e851b2945cda157",
+          "score": 0.025911,
+          "language_signal": "vi-signal",
+          "text_preview": "Viêm loét dạ dày - tá tràng: Dấu hiệu, biến chứng nguy hiểm và cách điều trị\n\nCảnh giác với viêm loét dạ dày do vi khuẩn HP ở trẻ\n\nCác nghiên cứu cho thấy ăn uống không đúng bữa, k"
+        }
+      },
+      {
+        "query_id": 226,
+        "query_characters": 168,
+        "query_preview": "Em có xét nghiệm NST và có kết quả là mang NST chuyển đoạn tương hỗ giữa NST số 4 và 17. Vậy có ảnh hưởng gì đến quá trình mang thai và gây ",
+        "dense": {
+          "doc_id": 543719,
+          "chunk_id": "543719-c326d7bf90e045a789dcfa71",
+          "score": 0.513865,
+          "language_signal": "vi-signal",
+          "text_preview": "Sai lầm trong dinh dưỡng khi mang thai\n\nNhiều phụ nữ mang thai ăn uống đơn điệu, kiêng khem quá mức, chỉ ăn cơm và rau, hạn chế thịt cá, trứng, tôm cua vì lo \"nóng\" hoặc \"tan xương"
+        },
+        "sparse": {
+          "doc_id": 440167,
+          "chunk_id": "440167-a311bde45b8a0323ffe25f6f",
+          "score": 74.880975,
+          "language_signal": "vi-signal",
+          "text_preview": "chiều cao tử cung và vòng bụng nhỏ hơn đáng kể so với các tuần mãn kinh tương ứng, lúc này bác sĩ sẽ đề nghị thai phụ siêu âm B để ước lượng chính xác thể tích nước ối.\n\nNếu khi ma"
+        },
+        "hybrid": {
+          "doc_id": 543719,
+          "chunk_id": "543719-c326d7bf90e045a789dcfa71",
+          "score": 0.028021,
+          "language_signal": "vi-signal",
+          "text_preview": "Sai lầm trong dinh dưỡng khi mang thai\n\nNhiều phụ nữ mang thai ăn uống đơn điệu, kiêng khem quá mức, chỉ ăn cơm và rau, hạn chế thịt cá, trứng, tôm cua vì lo \"nóng\" hoặc \"tan xương"
+        }
+      },
+      {
+        "query_id": 477,
+        "query_characters": 183,
+        "query_preview": "Cho em hỏi dạo gần đây hai bên má hàm trên có nổi hạt như u hột . Em lấy lưỡi rờ thì hơi nhức tí không đâu lắm, hai bên má nổi như nhau cùng",
+        "dense": {
+          "doc_id": 1967823,
+          "chunk_id": "1967823-a33751fcc4b18018da135e5a",
+          "score": 0.615936,
+          "language_signal": "zh-Han-script",
+          "text_preview": "状况：因为卸妆没有卸干净，造成毛孔堵塞，容易在比较闷得发髻或眉间形成细小的痘痘。\n\n改善：加强卸妆和情结的工作，每星期做一次去角质工作，保持皮质顺畅。\n\n眼头区域长痘痘\n\n状况：靠近鼻子和眼头区域的痘痘，通常是肝机能不好所引起的。\n\n改善：生活作息时间要正常，避免熬夜。尽量在晚上11点以前上床睡觉。\n\n右边脸颊长痘痘\n\n状况：可能是 肝功能 失常，手脚冰冷或"
+        },
+        "sparse": {
+          "doc_id": 379475,
+          "chunk_id": "379475-fc4366d583f15124f40b4ee1",
+          "score": 72.942352,
+          "language_signal": "vi-signal",
+          "text_preview": ". Tuy nhiên, nếu cắt đôi xương hàm và ghép vào đó một mảnh xương chậu rất to thì mảnh ghép cũng không thể sống nổi, các tổ chức phần mềm, mạch máu thần kinh trên mặt cũng không thể"
+        },
+        "hybrid": {
+          "doc_id": 655293,
+          "chunk_id": "655293-c65df48f7d8f1b430e777309",
+          "score": 0.024767,
+          "language_signal": "vi-signal",
+          "text_preview": "U bã\n\nU bã\n\n06/11/2012 03:00 GMT+7\n\nTôi 20 tuổi, bị tình trạng ở vùng bìu như có sỏi nhỏ, rất nhiều và cứng, cỡ bằng hạt đậu. Nhờ bác sĩ tư vấn giúp, tôi mắc bệnh gì? ( baong@...)\n"
+        }
+      },
+      {
+        "query_id": 330,
+        "query_characters": 199,
+        "query_preview": "Em có khám ở chỗ mình bác sĩ kê cho hai loại thuốc này là urofizz và femifortil từ bỏ em uống hai loại này thì không còn nghén hay chán ăn n",
+        "dense": {
+          "doc_id": 2798180,
+          "chunk_id": "2798180-b226f2c5f6fb1239351028af",
+          "score": 0.646193,
+          "language_signal": "zh-Han-script",
+          "text_preview": "回复区\n\n肯定会有部分影响的,因为有些药物胃肠刺激比较大,所以建议饭后服用"
+        },
+        "sparse": {
+          "doc_id": 423059,
+          "chunk_id": "423059-c277c0a108685faccaf25788",
+          "score": 79.536785,
+          "language_signal": "vi-signal",
+          "text_preview": ". Theo chỉ dẫn của bác sĩ Yến, thì bệnh của tôi chỉ cần uống thuốc và dán cao của họ khoảng 1 tháng là khỏi\".\n\nThuốc mà bác sĩ tên Yến kê, bán cho chị Vũ, sau gần 1 tháng sử dụng k"
+        },
+        "hybrid": {
+          "doc_id": 534199,
+          "chunk_id": "534199-31a9a0ae7f8799ea645f101c",
+          "score": 0.018687,
+          "language_signal": "vi-signal",
+          "text_preview": ", không chịu tác động của hormon mỗi tháng. Chính vì thế mà trong những ngày ra kinh nồng độ estrogen và progesterone thấp. Với việc cung cấp thường xuyên hormon, vú không bao giờ "
+        }
+      },
+      {
+        "query_id": 415,
+        "query_characters": 213,
+        "query_preview": "Em có khám sức khoẻ theo công ty và kết quả cyfra21-1 là 3.98. Hiện tại em khoẻ mạnh bình thường và cũng không có triệu trứng gì về hô hấp. ",
+        "dense": {
+          "doc_id": 547230,
+          "chunk_id": "547230-b0b8ced10dac88fd4066331e",
+          "score": 0.610625,
+          "language_signal": "vi-signal",
+          "text_preview": ", và hãy bắt đầu bằng việc tiêm phòng cúm. Tiêm phòng cúm hàng năm giúp giảm nguy cơ mắc bệnh cúm, và cũng giúp giảm mức độ nghiêm trọng của bệnh. Mời độc giả xem thêm video: Giảm "
+        },
+        "sparse": {
+          "doc_id": 536197,
+          "chunk_id": "536197-ca2cd67d176aba0eec3247e4",
+          "score": 86.993524,
+          "language_signal": "vi-signal",
+          "text_preview": "Nhu cầu đến nha khoa tăng mạnh của các gia đình\n\nNhu cầu đến nha khoa tăng mạnh của các gia đình\n\n12-07-2022 08:00 |\n\nNgười dân ngày càng có nhận thức về việc cần có sự quan tâm, c"
+        },
+        "hybrid": {
+          "doc_id": 536197,
+          "chunk_id": "536197-ca2cd67d176aba0eec3247e4",
+          "score": 0.016393,
+          "language_signal": "vi-signal",
+          "text_preview": "Nhu cầu đến nha khoa tăng mạnh của các gia đình\n\nNhu cầu đến nha khoa tăng mạnh của các gia đình\n\n12-07-2022 08:00 |\n\nNgười dân ngày càng có nhận thức về việc cần có sự quan tâm, c"
+        }
+      },
+      {
+        "query_id": 112,
+        "query_characters": 231,
+        "query_preview": "Mình thai ivf bị lưu 8 tuần, hiện mình vừa hút thai xong bác sĩ có dặn 2 ngày sau kiểm tra lại chỉ số beta. Mình xét nghiệm chỉ số beta là18",
+        "dense": {
+          "doc_id": 634356,
+          "chunk_id": "634356-09162f8908739e3bd6d4f20a",
+          "score": 0.605484,
+          "language_signal": "vi-signal",
+          "text_preview": "xuất viện.\n\nBác sĩ Nguyễn Thị Ngọc Lan, Trưởng khoa Phụ khoa Bệnh viện Việt Nam - Thụy Điển Uông Bí, khuyến cáo khi có thai ngoài ý muốn , bệnh nhân cần đến các cơ sở y tế chuyên k"
+        },
+        "sparse": {
+          "doc_id": 440167,
+          "chunk_id": "440167-a311bde45b8a0323ffe25f6f",
+          "score": 84.509293,
+          "language_signal": "vi-signal",
+          "text_preview": "chiều cao tử cung và vòng bụng nhỏ hơn đáng kể so với các tuần mãn kinh tương ứng, lúc này bác sĩ sẽ đề nghị thai phụ siêu âm B để ước lượng chính xác thể tích nước ối.\n\nNếu khi ma"
+        },
+        "hybrid": {
+          "doc_id": 440167,
+          "chunk_id": "440167-ed32f148f8d842ab9064ce94",
+          "score": 0.027623,
+          "language_signal": "vi-signal",
+          "text_preview": "Thiếu ối khi mang thai có thể uống thêm nước được không?\n\n14/01/2021 14:53\n\nMột số mẹ bầu phát hiện ra tình trạng thiểu ối đã thắc mắc, liệu có thể khắc phục bằng cách uống nhiều n"
+        }
+      },
+      {
+        "query_id": 409,
+        "query_characters": 253,
+        "query_preview": "Cho em hỏi vùng nách em có lông rậm và cứng mặc dù em là nữ. Hiện nó lan xuống phần vú , lan nhiều lắm ạ ? Vậy em có bị bệnh gì không ạ ? Ta",
+        "dense": {
+          "doc_id": 962228,
+          "chunk_id": "962228-b7e854a9d78cfdb96fee9098",
+          "score": 0.628755,
+          "language_signal": "zh-Han-script",
+          "text_preview": "回复区\n\n硬皮病还是需要注意长期治疗的，无法治愈的，主要是对症治疗以及控制疾病的平稳，延缓疾病的进展的。有无慢性疾病的病史及其他不适的症状，硬皮病主要的病理变化是累及皮肤及内脏的纤维化的自身免疫性疾病，考虑免疫抑制剂及激素治疗的。注意观察的。"
+        },
+        "sparse": {
+          "doc_id": 480254,
+          "chunk_id": "480254-4358e25fd668698263d381e7",
+          "score": 98.013403,
+          "language_signal": "vi-signal",
+          "text_preview": "‏1. Nguyên nhân khiến vùng da dưới cánh tay thâm sạm‏\n\n‏Có nhiều nguyên nhân gây thâm da, đặc biệt là ở vùng da dưới cánh tay. Có thể kể đến những nguyên nhân phổ biến như:‏ ‏ Cạo "
+        },
+        "hybrid": {
+          "doc_id": 480254,
+          "chunk_id": "480254-c0632fecb880d12b2fc5a7a1",
+          "score": 0.031754,
+          "language_signal": "vi-signal",
+          "text_preview": ", giúp làn da sáng màu và lỗ chân lông thông thoáng hơn.‏ ‏Thường xuyên mặc trang phục quá chật: Những kiểu trang phục quá ôm sát, gây ma sát mạnh lên vùng da dưới cánh tay làm thâ"
+        }
+      },
+      {
+        "query_id": 1022,
+        "query_characters": 278,
+        "query_preview": "Hiện tại bà xã em đi siêu âm có kết quả thai đôi( chắc là cùng trứng vì trước khi qh có siêu âm 1 trứng rụng). Kết quả siêu âm tuần thứ 7. N",
+        "dense": {
+          "doc_id": 1166959,
+          "chunk_id": "1166959-c2913fe028645c0ae7632893",
+          "score": 0.597852,
+          "language_signal": "zh-Han-script",
+          "text_preview": "我结婚7年了,生过一个小孩,做B超_有问必答_快速问医生"
+        },
+        "sparse": {
+          "doc_id": 440167,
+          "chunk_id": "440167-ed32f148f8d842ab9064ce94",
+          "score": 132.24148,
+          "language_signal": "vi-signal",
+          "text_preview": "Thiếu ối khi mang thai có thể uống thêm nước được không?\n\n14/01/2021 14:53\n\nMột số mẹ bầu phát hiện ra tình trạng thiểu ối đã thắc mắc, liệu có thể khắc phục bằng cách uống nhiều n"
+        },
+        "hybrid": {
+          "doc_id": 440167,
+          "chunk_id": "440167-ed32f148f8d842ab9064ce94",
+          "score": 0.02681,
+          "language_signal": "vi-signal",
+          "text_preview": "Thiếu ối khi mang thai có thể uống thêm nước được không?\n\n14/01/2021 14:53\n\nMột số mẹ bầu phát hiện ra tình trạng thiểu ối đã thắc mắc, liệu có thể khắc phục bằng cách uống nhiều n"
+        }
+      },
+      {
+        "query_id": 1120,
+        "query_characters": 313,
+        "query_preview": "Các chỉ số xét nghiệm nội tiết của em như vậy có phản ánh tình trạng bệnh đa nang buồng trứng và nhân xơ tử cung không ạ? (Em xét nghiệm vào",
+        "dense": {
+          "doc_id": 655438,
+          "chunk_id": "655438-60badf66fd383a331510cdf5",
+          "score": 0.602565,
+          "language_signal": "vi-signal",
+          "text_preview": "sĩ sẽ làm xét nghiệm CA 125 trong máu. Tuy nhiên, chất này có thể tăng trong một số bệnh lý khác như lạc nội mạc tử cung, nhiễm trùng nên mang tính đặc hiệu không cao, do đó sẽ khô"
+        },
+        "sparse": {
+          "doc_id": 655438,
+          "chunk_id": "655438-60badf66fd383a331510cdf5",
+          "score": 143.121171,
+          "language_signal": "vi-signal",
+          "text_preview": "sĩ sẽ làm xét nghiệm CA 125 trong máu. Tuy nhiên, chất này có thể tăng trong một số bệnh lý khác như lạc nội mạc tử cung, nhiễm trùng nên mang tính đặc hiệu không cao, do đó sẽ khô"
+        },
+        "hybrid": {
+          "doc_id": 655438,
+          "chunk_id": "655438-60badf66fd383a331510cdf5",
+          "score": 0.032787,
+          "language_signal": "vi-signal",
+          "text_preview": "sĩ sẽ làm xét nghiệm CA 125 trong máu. Tuy nhiên, chất này có thể tăng trong một số bệnh lý khác như lạc nội mạc tử cung, nhiễm trùng nên mang tính đặc hiệu không cao, do đó sẽ khô"
+        }
+      },
+      {
+        "query_id": 579,
+        "query_characters": 363,
+        "query_preview": "Cách đây 1 năm, sau 1 lần đi cắt tóc cạo mặt thì da mặt em sưng đỏ và xuất hiện các lớp da chết bong tróc. Sau đó em mua mỡ về bôi thì đỡ hẳ",
+        "dense": {
+          "doc_id": 1967823,
+          "chunk_id": "1967823-a33751fcc4b18018da135e5a",
+          "score": 0.654868,
+          "language_signal": "zh-Han-script",
+          "text_preview": "状况：因为卸妆没有卸干净，造成毛孔堵塞，容易在比较闷得发髻或眉间形成细小的痘痘。\n\n改善：加强卸妆和情结的工作，每星期做一次去角质工作，保持皮质顺畅。\n\n眼头区域长痘痘\n\n状况：靠近鼻子和眼头区域的痘痘，通常是肝机能不好所引起的。\n\n改善：生活作息时间要正常，避免熬夜。尽量在晚上11点以前上床睡觉。\n\n右边脸颊长痘痘\n\n状况：可能是 肝功能 失常，手脚冰冷或"
+        },
+        "sparse": {
+          "doc_id": 503087,
+          "chunk_id": "503087-020050e2397f2537ccbfdc80",
+          "score": 145.160685,
+          "language_signal": "vi-signal",
+          "text_preview": "17. - Lời khuyên của Hương Tràm là...? Thường xuyên rửa mặt thật sạch. Giai đoạn này, làn da của bạn gái thường nhiều dầu và dễ nổi mụn. Vì vậy, các bạn nên đặc biệt quan tâm đến k"
+        },
+        "hybrid": {
+          "doc_id": 503087,
+          "chunk_id": "503087-020050e2397f2537ccbfdc80",
+          "score": 0.030092,
+          "language_signal": "vi-signal",
+          "text_preview": "17. - Lời khuyên của Hương Tràm là...? Thường xuyên rửa mặt thật sạch. Giai đoạn này, làn da của bạn gái thường nhiều dầu và dễ nổi mụn. Vì vậy, các bạn nên đặc biệt quan tâm đến k"
+        }
+      },
+      {
+        "query_id": 491,
+        "query_characters": 406,
+        "query_preview": "Em bị đau nửa người bên trái. Lúc đi khám bệnh bác sĩ cho e đi xét nghiệm máu và chụp XQ ngực thẳng. Các chỉ số xét nghiệm huyết học tế bào ",
+        "dense": {
+          "doc_id": 511422,
+          "chunk_id": "511422-cf1cd314488ef3e409e58692",
+          "score": 0.635814,
+          "language_signal": "vi-signal",
+          "text_preview": "nguyên nhân quan trọng gây thiếu máu cục bộ cơ tim và làm xuất hiện những cơn đau thắt ngực. Ảnh minh họa Nguy cơ cao và triệu chứng mắc bệnh động mạch vành Khi bị mắc bệnh động mạ"
+        },
+        "sparse": {
+          "doc_id": 539920,
+          "chunk_id": "539920-f380bde30d14e6edd3194ba6",
+          "score": 149.119836,
+          "language_signal": "vi-signal",
+          "text_preview": "Dễ nhầm lẫn\n\nTrên thực tế, đau ngực do ợ nóng hay nhồi máu cơ tim rất khó phân biệt, nhất là sau khi ăn. Ợ nóng, đau thắt ngực và nhồi máu cơ tim có những biểu hiện khá giống nhau "
+        },
+        "hybrid": {
+          "doc_id": 539920,
+          "chunk_id": "539920-f380bde30d14e6edd3194ba6",
+          "score": 0.028893,
+          "language_signal": "vi-signal",
+          "text_preview": "Dễ nhầm lẫn\n\nTrên thực tế, đau ngực do ợ nóng hay nhồi máu cơ tim rất khó phân biệt, nhất là sau khi ăn. Ợ nóng, đau thắt ngực và nhồi máu cơ tim có những biểu hiện khá giống nhau "
+        }
+      },
+      {
+        "query_id": 219,
+        "query_characters": 1243,
+        "query_preview": "Tôi có một số thắc mắc muốn được giải đáp: 1. Trẻ từ bao nhiêu tuổi trở lên thì được tiêm vắc xin Covid-19? 2. Tôi trước đây hay bị dị ứng t",
+        "dense": {
+          "doc_id": 603457,
+          "chunk_id": "603457-12d8d7fe31b67ad285f47f9a",
+          "score": 0.70263,
+          "language_signal": "vi-signal",
+          "text_preview": "gặp khác từng được báo cáo sau tiêm vắc-xin này: dị ứng (1/100.000 liều); viêm não (1/triệu liều)... Tuy nhiên, vẫn chưa có cơ sở đầy đủ khẳng định chính xác phản ứng hiếm gặp đó c"
+        },
+        "sparse": {
+          "doc_id": 423059,
+          "chunk_id": "423059-c277c0a108685faccaf25788",
+          "score": 457.728154,
+          "language_signal": "vi-signal",
+          "text_preview": ". Theo chỉ dẫn của bác sĩ Yến, thì bệnh của tôi chỉ cần uống thuốc và dán cao của họ khoảng 1 tháng là khỏi\".\n\nThuốc mà bác sĩ tên Yến kê, bán cho chị Vũ, sau gần 1 tháng sử dụng k"
+        },
+        "hybrid": {
+          "doc_id": 547230,
+          "chunk_id": "547230-7f46b16a2ee90d84df4b9422",
+          "score": 0.029199,
+          "language_signal": "vi-signal",
+          "text_preview": ", và hãy bắt đầu bằng việc tiêm phòng cúm. Tiêm phòng cúm hàng năm giúp giảm nguy cơ mắc bệnh cúm, và cũng giúp giảm mức độ nghiêm trọng của bệnh. Mời độc giả xem thêm video: Giảm "
+        }
+      }
+    ]
+  },
+  "observations": [
+    "Dense results contained both Vietnamese- and Han-script signals, confirming cross-script candidates occur without translation.",
+    "Sparse top-10 results were almost entirely Vietnamese-signal because the official queries are Vietnamese and BM25 requires lexical overlap.",
+    "RRF retained some Han-script candidates while shifting the top-10 distribution toward same-script lexical matches.",
+    "The bounded side-by-side sample contains both topic-related and non-specific or boilerplate matches across methods; without ground truth this is not evidence that one method is better.",
+    "The latin-other signal is not a reliable English-language classifier, so English behavior remains inconclusive in this pilot."
+  ]
+}

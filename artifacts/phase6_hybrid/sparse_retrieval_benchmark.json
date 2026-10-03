@@ -1,0 +1,19 @@
+{
+  "query_count": 1200,
+  "empty_result_queries": 0,
+  "top_k_chunks": 100,
+  "top_k_docs": 10,
+  "chunk_result_rows": 120000,
+  "document_result_rows_per_method": 11926,
+  "latency": {
+    "mean_ms_per_query": 23.932297,
+    "p50_ms_per_query": 18.6512,
+    "p95_ms_per_query": 47.88084,
+    "max_ms_per_query": 518.6906
+  },
+  "outputs": {
+    "chunk_rankings": "data\\retrieval\\phase6_hybrid\\sparse_chunk_rankings.parquet",
+    "documents_best_chunk": "data\\retrieval\\phase6_hybrid\\sparse_documents_best_chunk.parquet",
+    "documents_top_n_mean": "data\\retrieval\\phase6_hybrid\\sparse_documents_top_n_mean.parquet"
+  }
+}

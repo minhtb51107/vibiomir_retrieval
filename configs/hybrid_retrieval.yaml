@@ -1,0 +1,32 @@
+version: 1
+inputs:
+  chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  queries: data/raw/query.parquet
+  dense_index: data/indexes/phase4_dense/chunks.index
+  dense_metadata: data/indexes/phase4_dense/chunk_metadata.sqlite
+  dense_chunk_results: data/retrieval/phase4_dense/chunk_rankings.parquet
+  dense_benchmark: artifacts/phase4_dense/retrieval_benchmark.json
+sparse:
+  tokenizer: unicode_words_han_unigrams_bigrams_v1
+  k1: 1.2
+  b: 0.75
+  top_k_chunks: 100
+  index_path: data/indexes/phase6_sparse/bm25.sqlite
+fusion:
+  method: rrf
+  rrf_constant: 60
+  dense_top_k: 50
+  sparse_top_k: 100
+  hybrid_top_k: 50
+documents:
+  top_k: 10
+  aggregation_methods:
+    - best_chunk
+    - top_n_mean
+  default_aggregation: best_chunk
+  top_n_mean: 3
+outputs:
+  directory: data/retrieval/phase6_hybrid
+  artifacts: artifacts/phase6_hybrid
+diagnostics:
+  sanity_query_count: 40

@@ -1,0 +1,30 @@
+{
+  "format_version": "1",
+  "tokenizer": "unicode_words_han_unigrams_bigrams_v1",
+  "chunk_source": "data\\chunks\\phase4_bge_m3\\tokens_512_overlap_64.parquet",
+  "chunk_source_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+  "chunk_id_order_sha256": "91dbfe9c43d7bbc976acba86f6b87913ec4bb079b1f4d80ea4b47e780bfbdb78",
+  "document_count": 5643,
+  "term_count": 108690,
+  "total_tokens": 1974098,
+  "average_document_length": 349.8312954102428,
+  "bm25_k1": "1.2",
+  "bm25_b": "0.75",
+  "document_length_tokens": {
+    "min": 3,
+    "median": 322,
+    "p95": 969,
+    "max": 1355
+  },
+  "duplicate_chunk_ids": 0,
+  "build_seconds": 33.056142,
+  "index_path": "data\\indexes\\phase6_sparse\\bm25.sqlite",
+  "index_size_bytes": 52080640,
+  "index_sha256": "68f06452d9ffb6b473134b06a04f8cffda5a4b76c72006af3b813b41f68790dd",
+  "integrity_check": "ok",
+  "mapping_verification": {
+    "rows_checked": 5643,
+    "mismatches": 0
+  },
+  "mapping_verified": true
+}

@@ -106,6 +106,34 @@
 
 ---
 
-## Phase 5 and beyond
+## Phase 5 — Local Evaluator
+
+**Status: DEFERRED — pending leaderboard/submission evidence.**
+
+No trustworthy local ground truth exists. No local official evaluator or
+fabricated relevance metric was introduced.
+
+---
+
+## Phase 6 — Hybrid Retrieval Baseline
+
+| Task | Status | Date |
+|---|---|---|
+| Profile multilingual chunk text and choose deterministic lexical tokenization | COMPLETE | 2026-10-03 |
+| Build atomic SQLite BM25 index over all 5,643 validated chunks | COMPLETE | 2026-10-03 |
+| Verify sparse row/chunk/document mapping against Phase 4 metadata | COMPLETE | 2026-10-03 |
+| Retrieve sparse top-100 chunks for all 1,200 queries | COMPLETE | 2026-10-03 |
+| Reuse existing Phase 4 dense top-50 results unchanged | COMPLETE | 2026-10-03 |
+| Implement deterministic chunk- and document-level RRF | COMPLETE | 2026-10-03 |
+| Apply best-chunk and top-three-mean document aggregation | COMPLETE | 2026-10-03 |
+| Measure latency, overlap, duplicates, and document concentration | COMPLETE | 2026-10-03 |
+| Run 40-query multilingual side-by-side sanity check | COMPLETE | 2026-10-03 |
+| Add offline tokenizer, BM25, mapping, fusion, and determinism tests | COMPLETE | 2026-10-03 |
+
+**Phase 6 status: COMPLETE — diagnostics are descriptive only; Phase 7 was not started.**
+
+---
+
+## Phase 7 and beyond
 
 _Not started._

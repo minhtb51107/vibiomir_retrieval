@@ -1,0 +1,24 @@
+{
+  "label": "DESCRIPTIVE COMPARISON — no ground truth and no quality claim",
+  "query_count": 1200,
+  "method": "reciprocal_rank_fusion",
+  "rrf_constant": 60,
+  "candidate_depths": {
+    "dense": 50,
+    "sparse": 100,
+    "hybrid": 50,
+    "documents": 10
+  },
+  "fusion_latency": {
+    "mean_ms_per_query": 0.930198,
+    "p50_ms_per_query": 0.3384,
+    "p95_ms_per_query": 0.715245,
+    "max_ms_per_query": 322.764
+  },
+  "result_rows": 60000,
+  "source_hashes": {
+    "validated_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+    "dense_results_sha256": "c4a413f6ce4a0bd7877b1efaa5bb5bd1b33be3561a6bc7d7966132fcee4efd21",
+    "sparse_results_sha256": "0e2850ab8d5d571559ccbd8a39dbdd4f86ad1be2492df7fde3ab466f997a131c"
+  }
+}

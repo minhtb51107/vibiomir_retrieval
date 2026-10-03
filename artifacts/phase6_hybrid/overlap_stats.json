@@ -1,0 +1,126 @@
+{
+  "label": "DESCRIPTIVE DIAGNOSTICS — not relevance evaluation",
+  "candidate_depths": {
+    "dense": 50,
+    "sparse": 100,
+    "hybrid": 50,
+    "documents": 10
+  },
+  "dense_vs_sparse": {
+    "query_count": 1200,
+    "chunk_rank1_agreement_count": 34,
+    "chunk_rank1_agreement_rate": 0.028333,
+    "document_rank1_agreement_count": 154,
+    "document_rank1_agreement_rate": 0.128333,
+    "mean_top10_chunk_jaccard": 0.05353,
+    "mean_top10_document_jaccard": 0.07383,
+    "mean_candidate_chunk_jaccard": 0.079464
+  },
+  "dense_vs_hybrid": {
+    "query_count": 1200,
+    "chunk_rank1_agreement_count": 221,
+    "chunk_rank1_agreement_rate": 0.184167,
+    "document_rank1_agreement_count": 285,
+    "document_rank1_agreement_rate": 0.2375,
+    "mean_top10_chunk_jaccard": 0.284025,
+    "mean_top10_document_jaccard": 0.489248,
+    "mean_candidate_chunk_jaccard": 0.426364
+  },
+  "methods": {
+    "dense": {
+      "query_count": 1200,
+      "duplicate_chunk_rows": 0,
+      "duplicate_chunk_rate": 0.0,
+      "unique_docs_per_candidate_pool": {
+        "mean": 27.673333,
+        "median": 29.0,
+        "min": 1,
+        "max": 50
+      },
+      "maximum_chunks_from_one_doc": {
+        "mean": 13.2475,
+        "median": 11.0,
+        "max": 50
+      },
+      "top1_score_distribution": {
+        "min": 0.413625,
+        "median": 0.605084,
+        "p95": 0.678845,
+        "max": 0.741787
+      },
+      "rank_distribution": {
+        "result_rows": 60000,
+        "min": 1,
+        "median": 25.5,
+        "p95": 48.0,
+        "max": 50
+      }
+    },
+    "sparse": {
+      "query_count": 1200,
+      "duplicate_chunk_rows": 0,
+      "duplicate_chunk_rate": 0.0,
+      "unique_docs_per_candidate_pool": {
+        "mean": 21.338333,
+        "median": 21.0,
+        "min": 3,
+        "max": 50
+      },
+      "maximum_chunks_from_one_doc": {
+        "mean": 26.124167,
+        "median": 24.0,
+        "max": 84
+      },
+      "top1_score_distribution": {
+        "min": 13.948997,
+        "median": 41.328381,
+        "p95": 144.774583,
+        "max": 457.728154
+      },
+      "rank_distribution": {
+        "result_rows": 120000,
+        "min": 1,
+        "median": 50.5,
+        "p95": 95.04999999998836,
+        "max": 100
+      }
+    },
+    "hybrid": {
+      "query_count": 1200,
+      "duplicate_chunk_rows": 0,
+      "duplicate_chunk_rate": 0.0,
+      "unique_docs_per_candidate_pool": {
+        "mean": 21.341667,
+        "median": 22.0,
+        "min": 1,
+        "max": 41
+      },
+      "maximum_chunks_from_one_doc": {
+        "mean": 15.23,
+        "median": 13.0,
+        "max": 50
+      },
+      "top1_score_distribution": {
+        "min": 0.016393,
+        "median": 0.027984,
+        "p95": 0.032522,
+        "max": 0.032787
+      },
+      "rank_distribution": {
+        "result_rows": 60000,
+        "min": 1,
+        "median": 25.5,
+        "p95": 48.0,
+        "max": 50
+      }
+    }
+  },
+  "corpus_exact_duplicates": {
+    "duplicate_chunk_ids": 0,
+    "exact_duplicate_text_groups": 62,
+    "rows_beyond_first_in_duplicate_groups": 929,
+    "rows_beyond_first_rate": 0.164629,
+    "groups_repeated_within_same_document": 7,
+    "groups_shared_across_documents": 55
+  }
+}

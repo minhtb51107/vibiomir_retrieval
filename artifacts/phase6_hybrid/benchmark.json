@@ -1,0 +1,89 @@
+{
+  "label": "PERFORMANCE BENCHMARK — no relevance evaluation",
+  "query_count": 1200,
+  "sparse_index": {
+    "format_version": "1",
+    "tokenizer": "unicode_words_han_unigrams_bigrams_v1",
+    "chunk_source": "data\\chunks\\phase4_bge_m3\\tokens_512_overlap_64.parquet",
+    "chunk_source_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+    "chunk_id_order_sha256": "91dbfe9c43d7bbc976acba86f6b87913ec4bb079b1f4d80ea4b47e780bfbdb78",
+    "document_count": 5643,
+    "term_count": 108690,
+    "total_tokens": 1974098,
+    "average_document_length": 349.8312954102428,
+    "bm25_k1": "1.2",
+    "bm25_b": "0.75",
+    "document_length_tokens": {
+      "min": 3,
+      "median": 322,
+      "p95": 969,
+      "max": 1355
+    },
+    "duplicate_chunk_ids": 0,
+    "build_seconds": 33.056142,
+    "index_path": "data\\indexes\\phase6_sparse\\bm25.sqlite",
+    "index_size_bytes": 52080640,
+    "index_sha256": "68f06452d9ffb6b473134b06a04f8cffda5a4b76c72006af3b813b41f68790dd",
+    "integrity_check": "ok",
+    "mapping_verification": {
+      "rows_checked": 5643,
+      "mismatches": 0
+    },
+    "mapping_verified": true
+  },
+  "dense_reuse": {
+    "status": "reused existing Phase 4 rankings and index without modification",
+    "index_path": "data/indexes/phase4_dense/chunks.index",
+    "index_sha256": "51f28e9b852ccc4e3401980ad82709ca7f25188d9486c7e37cd469ba2aea3ad3",
+    "measured_phase4_mean_ms_per_query": 16.207
+  },
+  "sparse_retrieval": {
+    "query_count": 1200,
+    "empty_result_queries": 0,
+    "top_k_chunks": 100,
+    "top_k_docs": 10,
+    "chunk_result_rows": 120000,
+    "document_result_rows_per_method": 11926,
+    "latency": {
+      "mean_ms_per_query": 23.932297,
+      "p50_ms_per_query": 18.6512,
+      "p95_ms_per_query": 47.88084,
+      "max_ms_per_query": 518.6906
+    },
+    "outputs": {
+      "chunk_rankings": "data\\retrieval\\phase6_hybrid\\sparse_chunk_rankings.parquet",
+      "documents_best_chunk": "data\\retrieval\\phase6_hybrid\\sparse_documents_best_chunk.parquet",
+      "documents_top_n_mean": "data\\retrieval\\phase6_hybrid\\sparse_documents_top_n_mean.parquet"
+    }
+  },
+  "fusion": {
+    "label": "DESCRIPTIVE COMPARISON — no ground truth and no quality claim",
+    "query_count": 1200,
+    "method": "reciprocal_rank_fusion",
+    "rrf_constant": 60,
+    "candidate_depths": {
+      "dense": 50,
+      "sparse": 100,
+      "hybrid": 50,
+      "documents": 10
+    },
+    "fusion_latency": {
+      "mean_ms_per_query": 0.930198,
+      "p50_ms_per_query": 0.3384,
+      "p95_ms_per_query": 0.715245,
+      "max_ms_per_query": 322.764
+    },
+    "result_rows": 60000,
+    "source_hashes": {
+      "validated_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+      "dense_results_sha256": "c4a413f6ce4a0bd7877b1efaa5bb5bd1b33be3561a6bc7d7966132fcee4efd21",
+      "sparse_results_sha256": "0e2850ab8d5d571559ccbd8a39dbdd4f86ad1be2492df7fde3ab466f997a131c"
+    }
+  },
+  "hybrid_latency": {
+    "mean_ms_per_query": 41.069495,
+    "p50_component_sum_ms_per_query": 30.0536,
+    "p95_component_sum_ms_per_query": 64.905085,
+    "components": "sums of separately measured Phase 4 dense, Phase 6 sparse, and fusion statistics; excludes one-time model/index loading and is not a jointly timed latency distribution"
+  }
+}
