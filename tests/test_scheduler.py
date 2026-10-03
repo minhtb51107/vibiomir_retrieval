@@ -10,6 +10,7 @@ from src.ingestion.fetcher import HttpFetcher
 from src.ingestion.models import CorpusRecord, CrawlStatus, DomainPolicy, RobotsConfig
 from src.ingestion.robots import RobotsPolicy
 from src.ingestion.scheduler import CrawlScheduler, DomainController
+from src.storage.body_archive import BodyArchive
 
 
 def test_domain_override_and_concurrency_limit() -> None:
@@ -190,5 +191,44 @@ def test_known_access_restricted_domain_is_recorded_without_request(tmp_path) ->
                     )
             assert stats.by_status == {CrawlStatus.ACCESS_RESTRICTED.value: 1}
             assert calls == 0
+
+    asyncio.run(scenario())
+
+
+def test_scheduler_archives_body_without_sqlite_blob(tmp_path) -> None:
+    config = load_config("configs/crawler.yaml")
+    config = replace(
+        config,
+        global_concurrency=1,
+        domain_overrides={},
+        robots=RobotsConfig(enabled=False, allow_on_fetch_error=True),
+        storage=replace(
+            config.storage,
+            store_raw_body=True,
+            max_body_bytes=config.storage.max_download_bytes,
+        ),
+    )
+    expected = b"<html><body><p>archived</p></body></html>"
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200, content=expected, headers={"content-type": "text/html"}, request=request
+        )
+
+    async def scenario() -> None:
+        with BodyArchive(tmp_path / "archive") as archive:
+            with CheckpointStore(tmp_path / "crawl.sqlite") as store:
+                async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+                    async with HttpFetcher(
+                        config.http, config.retry, config.storage, client=client
+                    ) as fetcher:
+                        robots = RobotsPolicy(client, config.robots, config.http.user_agent)
+                        await CrawlScheduler(
+                            config, fetcher, robots, store, body_archive=archive
+                        ).run(
+                            [CorpusRecord(9, "https://archive.test/a", "https://archive.test/a")]
+                        )
+                assert archive.get_body(9) == expected
+                assert store.rows_for([9])[0]["raw_body"] is None
 
     asyncio.run(scenario())

@@ -1,0 +1,17 @@
+version: 1
+semantic_min_characters: 500
+semantic_to_density_min_ratio: 0.55
+severe_replacement_ratio: 0.02
+empty_content_max_characters: 20
+js_shell_visible_text_max_characters: 50
+remove_selectors:
+  - script
+  - style
+  - noscript
+  - template
+  - svg
+  - canvas
+  - nav
+  - footer
+  - aside
+  - form

@@ -151,13 +151,13 @@ Phase 2C does not store production bodies. Millions of BLOBs in the metadata
 SQLite database would mix checkpoint durability with large sequential data,
 and one file per document would create filesystem and backup pressure.
 
-Before Phase 3, use append-only compressed batch archives (for example,
+The Phase 2C decision was to use append-only compressed batch archives (for example,
 roughly 10,000 responses per shard) plus a small index mapping `doc_id` to
 archive, member offset/key, byte length, checksum, and fetch timestamp. Write a
 temporary shard, fsync/close it, atomically publish it, then transactionally
 publish index rows. This preserves resumability without millions of files.
-The archive implementation is intentionally deferred until storage capacity
-and Phase 3 requirements are approved.
+Phase 3 has now implemented and measured this design with 5,000-document gzip
+shards and a SQLite member index; see `docs/CLEANING_AND_CHUNKING.md`.
 
 ## 7. Interruption and resume behavior
 
@@ -218,8 +218,6 @@ Phase 2C.
 - Robots fetch failures currently follow `allow_on_fetch_error: true`; every
   such event remains visible in the robots summary and should be monitored.
 - Ask39 was the slowest measured major source and generated all retry pressure.
-- Encoding telemetry records HTTP declarations cheaply; HTML-meta decoding
-  (including Cnkang GB2312) remains an extraction-stage concern.
-- Raw-body archives, final extraction, browser rendering decisions, chunking,
-  embeddings, indexes, retrieval, reranking, and submissions remain Phase 3
-  or later work.
+- Browser rendering decisions, embeddings, indexes, retrieval, reranking, and
+  submissions remain later work. Phase 3 implemented the bounded archive,
+  HTML-meta-aware decoding, generic extraction, and deterministic chunking.

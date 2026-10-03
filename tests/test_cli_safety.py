@@ -36,3 +36,23 @@ def test_production_mode_refuses_raw_body_blobs() -> None:
     )
     with pytest.raises(ValueError, match="pilot-only"):
         validate_safety_args(args)
+
+
+def test_body_archive_requires_a_bounded_full_selection() -> None:
+    parser = build_parser()
+    unbounded = parser.parse_args(
+        ["--full", "--confirm-full-crawl", "--body-archive-dir", "archive"]
+    )
+    with pytest.raises(ValueError, match="requires a bounded"):
+        validate_safety_args(unbounded)
+
+    bounded = parser.parse_args(
+        [
+            "--full",
+            "--max-new-records",
+            "1000",
+            "--body-archive-dir",
+            "archive",
+        ]
+    )
+    validate_safety_args(bounded)

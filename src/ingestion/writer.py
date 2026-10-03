@@ -4,13 +4,20 @@ import asyncio
 
 from .checkpoint import CheckpointStore
 from .models import CrawlResult
+from src.storage.body_archive import BodyArchive, BodyMetadata
 
 
 class AsyncResultWriter:
     """Serialize incremental SQLite writes through a bounded async queue."""
 
-    def __init__(self, store: CheckpointStore, queue_size: int = 128):
+    def __init__(
+        self,
+        store: CheckpointStore,
+        queue_size: int = 128,
+        body_archive: BodyArchive | None = None,
+    ):
         self.store = store
+        self.body_archive = body_archive
         self.queue: asyncio.Queue[CrawlResult | None] = asyncio.Queue(queue_size)
         self._task: asyncio.Task[None] | None = None
 
@@ -37,6 +44,24 @@ class AsyncResultWriter:
             try:
                 if item is None:
                     return
+                if (
+                    self.body_archive is not None
+                    and item.raw_body is not None
+                    and not item.body_truncated
+                ):
+                    self.body_archive.add(
+                        BodyMetadata(
+                            doc_id=item.doc_id,
+                            original_url=item.original_url,
+                            final_url=item.final_url,
+                            fetched_at=item.fetched_at,
+                            content_type=item.content_type,
+                            encoding=item.encoding,
+                            declared_http_encoding=item.declared_http_encoding,
+                        ),
+                        item.raw_body,
+                    )
+                    item.raw_body = None
                 self.store.save(item)
             finally:
                 self.queue.task_done()

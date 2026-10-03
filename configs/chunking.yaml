@@ -1,0 +1,10 @@
+version: 1
+tokenizer:
+  kind: lightweight_unicode
+  future_model: BAAI/bge-m3
+default: tokens_512_overlap_64
+experiments:
+  - {name: tokens_256_overlap_32, target_tokens: 256, overlap_tokens: 32}
+  - {name: tokens_512_overlap_64, target_tokens: 512, overlap_tokens: 64}
+  - {name: tokens_768_overlap_96, target_tokens: 768, overlap_tokens: 96}
+very_short_tokens: 64

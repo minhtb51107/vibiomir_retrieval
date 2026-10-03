@@ -18,6 +18,7 @@ from .models import (
 from .robots import RobotsPolicy
 from .url_utils import domain_from_url, prepare_fetch_url
 from .writer import AsyncResultWriter
+from src.storage.body_archive import BodyArchive
 
 
 @dataclass(slots=True)
@@ -61,11 +62,13 @@ class CrawlScheduler:
         fetcher: HttpFetcher,
         robots: RobotsPolicy,
         store: CheckpointStore,
+        body_archive: BodyArchive | None = None,
     ):
         self.config = config
         self.fetcher = fetcher
         self.robots = robots
         self.store = store
+        self.body_archive = body_archive
         self.controller = DomainController(config)
 
     async def run(
@@ -79,7 +82,7 @@ class CrawlScheduler:
         queue: asyncio.Queue[CorpusRecord | None] = asyncio.Queue(
             maxsize=self.config.global_concurrency * 4
         )
-        writer = AsyncResultWriter(self.store)
+        writer = AsyncResultWriter(self.store, body_archive=self.body_archive)
         await writer.start()
 
         async def producer() -> None:

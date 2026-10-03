@@ -1,0 +1,254 @@
+{
+  "run": {
+    "selected": 1225,
+    "scheduled": 0,
+    "completed": 0,
+    "skipped_existing": 1225,
+    "attempts": 0,
+    "retry_count": 0,
+    "redirect_count": 0,
+    "downloaded_bytes": 0,
+    "wall_seconds": 0.077,
+    "attempt_requests_per_second": 0.0,
+    "urls_completed_per_minute": 0.0,
+    "by_status": {},
+    "by_content_type": {},
+    "by_domain": {},
+    "robots_requests": 0,
+    "estimated_http_request_operations": 0,
+    "http_request_operations_per_second": 0.0
+  },
+  "database": {
+    "rows": 1225,
+    "attempts": 1188,
+    "retry_count": 38,
+    "redirect_count": 278,
+    "downloaded_bytes": 113278186,
+    "tiny_html_count": 50,
+    "js_shell_candidate_count": 50,
+    "truncated_body_count": 0,
+    "status_counts": {
+      "SUCCESS": 1148,
+      "ROBOTS_BLOCKED": 50,
+      "ACCESS_RESTRICTED": 25,
+      "TIMEOUT": 2
+    },
+    "http_status_counts": {
+      "200": 1148
+    },
+    "content_type_counts": {
+      "text/html": 1148,
+      "missing": 77
+    },
+    "declared_http_encoding_counts": {
+      "utf-8": 871,
+      "missing": 304,
+      "utf-8,gbk": 50
+    },
+    "response_size_buckets": {
+      "0": 77,
+      "1-511": 50,
+      "262144-1048575": 140,
+      "4096-65535": 767,
+      "65536-262143": 191
+    },
+    "per_domain": {
+      "cnkang.com": {
+        "completed": 179,
+        "successes": 179,
+        "attempts": 179,
+        "redirects": 141,
+        "downloaded_bytes": 5599122,
+        "elapsed_ms_sum": 139713
+      },
+      "120ask.com": {
+        "completed": 175,
+        "successes": 175,
+        "attempts": 178,
+        "redirects": 122,
+        "downloaded_bytes": 11882118,
+        "elapsed_ms_sum": 238946
+      },
+      "ask.39.net": {
+        "completed": 120,
+        "successes": 118,
+        "attempts": 150,
+        "redirects": 0,
+        "downloaded_bytes": 5761761,
+        "elapsed_ms_sum": 1280474
+      },
+      "familydoctor.com.cn": {
+        "completed": 120,
+        "successes": 120,
+        "attempts": 121,
+        "redirects": 0,
+        "downloaded_bytes": 7753048,
+        "elapsed_ms_sum": 150308
+      },
+      "a-hospital.com": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 100,
+        "redirects": 0,
+        "downloaded_bytes": 4570524,
+        "elapsed_ms_sum": 38520
+      },
+      "suckhoecongdongonline.vn": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 100,
+        "redirects": 0,
+        "downloaded_bytes": 4247757,
+        "elapsed_ms_sum": 36452
+      },
+      "zhongyibaodian.net": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 101,
+        "redirects": 0,
+        "downloaded_bytes": 2334605,
+        "elapsed_ms_sum": 77040
+      },
+      "suckhoedoisong.vn": {
+        "completed": 80,
+        "successes": 80,
+        "attempts": 80,
+        "redirects": 0,
+        "downloaded_bytes": 47924872,
+        "elapsed_ms_sum": 21277
+      },
+      "thanhnien.vn": {
+        "completed": 60,
+        "successes": 60,
+        "attempts": 62,
+        "redirects": 0,
+        "downloaded_bytes": 19222581,
+        "elapsed_ms_sum": 21471
+      },
+      "laodong.vn": {
+        "completed": 50,
+        "successes": 50,
+        "attempts": 50,
+        "redirects": 0,
+        "downloaded_bytes": 8850,
+        "elapsed_ms_sum": 5173
+      },
+      "zysjonline.com": {
+        "completed": 50,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "test.pmphai.com": {
+        "completed": 30,
+        "successes": 30,
+        "attempts": 30,
+        "redirects": 0,
+        "downloaded_bytes": 3054283,
+        "elapsed_ms_sum": 31747
+      },
+      "nhathuoclongchau.com.vn": {
+        "completed": 25,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "zydcd.com": {
+        "completed": 13,
+        "successes": 13,
+        "attempts": 14,
+        "redirects": 2,
+        "downloaded_bytes": 160449,
+        "elapsed_ms_sum": 26660
+      },
+      "qihuangzhishu.com": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 0,
+        "downloaded_bytes": 137428,
+        "elapsed_ms_sum": 6226
+      },
+      "baby.39.net": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 4,
+        "downloaded_bytes": 167274,
+        "elapsed_ms_sum": 1975
+      },
+      "wujue.com": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 92303,
+        "elapsed_ms_sum": 2874
+      },
+      "care.39.net": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 3,
+        "downloaded_bytes": 134599,
+        "elapsed_ms_sum": 2873
+      },
+      "nk.39.net": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 2,
+        "downloaded_bytes": 75630,
+        "elapsed_ms_sum": 1339
+      },
+      "fitness.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 35733,
+        "elapsed_ms_sum": 562
+      },
+      "food.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 36712,
+        "elapsed_ms_sum": 547
+      },
+      "heart.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 39776,
+        "elapsed_ms_sum": 548
+      },
+      "woman.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 38761,
+        "elapsed_ms_sum": 145
+      }
+    },
+    "path": "data\\crawled\\phase3_pilot.sqlite",
+    "size_before_bytes": 536576,
+    "size_after_bytes": 569344,
+    "main_database_bytes": 536576,
+    "size_growth_bytes": 32768,
+    "estimated_bytes_per_result_row": 464.77
+  },
+  "robots_domains_fetched": {},
+  "robots_cache": {},
+  "body_archive": {
+    "path": "data\\crawled\\body_archives\\phase3_pilot",
+    "stored_bodies": 1148
+  }
+}

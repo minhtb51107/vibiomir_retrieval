@@ -4,6 +4,7 @@ import argparse
 import asyncio
 import json
 import sys
+from contextlib import nullcontext
 from dataclasses import replace
 from pathlib import Path
 
@@ -18,6 +19,7 @@ from .models import CorpusRecord
 from .robots import RobotsPolicy
 from .scheduler import CrawlScheduler
 from .url_utils import prepare_fetch_url
+from src.storage.body_archive import BodyArchive
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -69,6 +71,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--summary-out", type=Path, help="Write a small run/database telemetry JSON"
+    )
+    parser.add_argument(
+        "--body-archive-dir",
+        type=Path,
+        help="Write successful complete bodies to compressed shards instead of SQLite BLOBs",
+    )
+    parser.add_argument(
+        "--archive-documents-per-shard", type=int, default=5000
     )
     return parser
 
@@ -170,9 +180,13 @@ def validate_safety_args(args: argparse.Namespace) -> None:
         raise ValueError("--confirm-full-crawl requires --full")
     if args.store_raw_body and args.full:
         raise ValueError(
-            "--store-raw-body is pilot-only; production bodies require the deferred "
-            "sharded archive design"
+            "--store-raw-body is pilot-only; use --body-archive-dir with a "
+            "bounded production selection"
         )
+    if args.body_archive_dir and args.archive_documents_per_shard <= 0:
+        raise ValueError("--archive-documents-per-shard must be positive")
+    if args.body_archive_dir and args.full and _is_unbounded(args):
+        raise ValueError("body archive capture requires a bounded --max-new-records or ID manifest")
     if args.full and _is_unbounded(args) and not args.confirm_full_crawl:
         raise ValueError(
             "unbounded --full requires --confirm-full-crawl; use "
@@ -180,13 +194,19 @@ def validate_safety_args(args: argparse.Namespace) -> None:
         )
 
 
-async def run_crawl(args: argparse.Namespace, config: CrawlerConfig, limit: int | None) -> dict[str, object]:
+async def run_crawl(
+    args: argparse.Namespace, config: CrawlerConfig, limit: int | None
+) -> dict[str, object]:
     input_path = args.input or Path(config.input_path)
     output_db = args.output_db or Path(config.output_db)
-    if args.store_raw_body:
+    if args.store_raw_body or args.body_archive_dir:
         config = replace(
             config,
-            storage=replace(config.storage, store_raw_body=True),
+            storage=replace(
+                config.storage,
+                store_raw_body=True,
+                max_body_bytes=config.storage.max_download_bytes,
+            ),
         )
 
     manifest_records = load_manifest_records(args.ids_file)
@@ -208,12 +228,22 @@ async def run_crawl(args: argparse.Namespace, config: CrawlerConfig, limit: int 
             start_after_id=args.start_after_id,
         )
     size_before = _database_size_bytes(output_db)
-    with CheckpointStore(output_db) as store:
+    archive_context = (
+        BodyArchive(
+            args.body_archive_dir,
+            documents_per_shard=args.archive_documents_per_shard,
+        )
+        if args.body_archive_dir
+        else nullcontext(None)
+    )
+    with archive_context as body_archive, CheckpointStore(output_db) as store:
         async with HttpFetcher(config.http, config.retry, config.storage) as fetcher:
             robots = RobotsPolicy(
                 fetcher.client, config.robots, config.http.user_agent
             )
-            scheduler = CrawlScheduler(config, fetcher, robots, store)
+            scheduler = CrawlScheduler(
+                config, fetcher, robots, store, body_archive=body_archive
+            )
             stats = await scheduler.run(
                 records,
                 retry_failures=args.retry_failures,
@@ -245,6 +275,10 @@ async def run_crawl(args: argparse.Namespace, config: CrawlerConfig, limit: int 
                 "database": database,
                 "robots_domains_fetched": dict(sorted(robots.fetch_counts.items())),
                 "robots_cache": robots.cache_summary(),
+                "body_archive": {
+                    "path": str(args.body_archive_dir),
+                    "stored_bodies": body_archive.count,
+                } if body_archive is not None else None,
             }
 
 

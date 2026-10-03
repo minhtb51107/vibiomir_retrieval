@@ -68,6 +68,25 @@
 
 ---
 
-## Phase 3 and beyond
+## Phase 3 — Cleaning, Extraction, and Chunking
+
+| Task | Status | Date |
+|---|---|---|
+| Implement crash-safe compressed body shards and indexed reader | COMPLETE | 2026-10-03 |
+| Integrate bounded body capture without SQLite BLOB storage | COMPLETE | 2026-10-03 |
+| Implement evidence-based decoding with NFC normalization | COMPLETE | 2026-10-03 |
+| Implement semantic/density hybrid extraction | COMPLETE | 2026-10-03 |
+| Preserve structured Q&A sections and explicit unusable statuses | COMPLETE | 2026-10-03 |
+| Implement deterministic paragraph/heading/Q&A-aware chunking | COMPLETE | 2026-10-03 |
+| Verify exact offsets, provenance, checksums, and resume | COMPLETE | 2026-10-03 |
+| Process bounded 1,225-row / 1,148-body pilot | COMPLETE | 2026-10-03 |
+| Compare 256/32, 512/64, and 768/96 chunk configurations | COMPLETE | 2026-10-03 |
+| Document pipeline, measured results, and Phase 4 recommendation | COMPLETE | 2026-10-03 |
+
+**Phase 3 status: COMPLETE — Phase 4 retrieval work was not started.**
+
+---
+
+## Phase 4 and beyond
 
 _Not started._

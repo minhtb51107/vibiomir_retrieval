@@ -15,6 +15,7 @@ Thumbs.db
 # Raw and generated data
 data/raw/
 data/crawled/
+data/archives/
 data/processed/
 data/chunks/
 data/indexes/

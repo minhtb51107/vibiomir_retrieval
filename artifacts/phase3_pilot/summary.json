@@ -1,0 +1,132 @@
+{
+  "phase": "3",
+  "documents_processed": 1225,
+  "archive": {
+    "stored_bodies": 1148,
+    "original_bytes": 113278186,
+    "compressed_bytes": 26312942,
+    "compression_ratio": 0.232286
+  },
+  "extraction": {
+    "status_counts": {
+      "ACCESS_RESTRICTED": 25,
+      "EMPTY_CONTENT": 1,
+      "EXTRACTION_FAILED": 2,
+      "JS_SHELL": 50,
+      "ROBOTS_BLOCKED": 50,
+      "SUCCESS": 1097
+    },
+    "success_rate_all_metadata_rows": 0.89551,
+    "success_rate_archived_bodies": 0.955575,
+    "encoding_counts": {
+      "ascii": 50,
+      "gb18030": 12,
+      "gb2312": 95,
+      "utf-8": 991
+    },
+    "language_signal_counts": {
+      "unknown": 3,
+      "vi-signal": 240,
+      "zh-Han-script": 854
+    },
+    "method_counts": {
+      "density_scored": 597,
+      "semantic_container": 500
+    },
+    "full_method_counts": {
+      "density_scored": 396,
+      "density_scored+qa_structured": 201,
+      "semantic_container": 326,
+      "semantic_container+qa_structured": 174
+    },
+    "structured_qa_documents": 375,
+    "clean_raw_character_ratio_mean": 0.03672,
+    "clean_raw_character_ratio_median": 0.016353,
+    "paragraph_count_mean": 25.17,
+    "paragraph_count_median": 9,
+    "paragraph_count_distribution": {
+      "min": 0,
+      "p25": 2.0,
+      "median": 9.0,
+      "p75": 32.0,
+      "p95": 101.0,
+      "max": 499
+    },
+    "replacement_character_total": 0
+  },
+  "chunking": {
+    "tokens_256_overlap_32": {
+      "target_tokens": 256,
+      "overlap_tokens": 32,
+      "chunk_count": 8780,
+      "documents_with_chunks": 1097,
+      "chunks_per_document_mean": 8.0036,
+      "token_count_mean": 178.56,
+      "token_count_median": 221.0,
+      "token_count_distribution": {
+        "min": 2,
+        "p25": 114.0,
+        "median": 221.0,
+        "p75": 256.0,
+        "p95": 256.0,
+        "max": 256
+      },
+      "very_short_chunk_count": 1606,
+      "very_short_chunk_rate": 0.182916,
+      "very_long_chunk_count": 0,
+      "section_crossing_count": 719,
+      "section_crossing_rate": 0.081891,
+      "qa_boundary_crossing_count": 0
+    },
+    "tokens_512_overlap_64": {
+      "target_tokens": 512,
+      "overlap_tokens": 64,
+      "chunk_count": 5668,
+      "documents_with_chunks": 1097,
+      "chunks_per_document_mean": 5.1668,
+      "token_count_mean": 272.73,
+      "token_count_median": 296.0,
+      "token_count_distribution": {
+        "min": 2,
+        "p25": 49.0,
+        "median": 296.0,
+        "p75": 493.0,
+        "p95": 512.0,
+        "max": 512
+      },
+      "very_short_chunk_count": 1528,
+      "very_short_chunk_rate": 0.269584,
+      "very_long_chunk_count": 0,
+      "section_crossing_count": 719,
+      "section_crossing_rate": 0.126853,
+      "qa_boundary_crossing_count": 0
+    },
+    "tokens_768_overlap_96": {
+      "target_tokens": 768,
+      "overlap_tokens": 96,
+      "chunk_count": 4660,
+      "documents_with_chunks": 1097,
+      "chunks_per_document_mean": 4.2479,
+      "token_count_mean": 327.61,
+      "token_count_median": 215.0,
+      "token_count_distribution": {
+        "min": 2,
+        "p25": 28.0,
+        "median": 215.0,
+        "p75": 664.0,
+        "p95": 768.0,
+        "max": 768
+      },
+      "very_short_chunk_count": 1528,
+      "very_short_chunk_rate": 0.327897,
+      "very_long_chunk_count": 0,
+      "section_crossing_count": 719,
+      "section_crossing_rate": 0.154292,
+      "qa_boundary_crossing_count": 0
+    }
+  },
+  "outputs": {
+    "documents_parquet": "data\\processed\\phase3_pilot_documents.parquet",
+    "chunks_directory": "data\\chunks\\phase3_pilot"
+  }
+}
