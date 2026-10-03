@@ -1,0 +1,8 @@
+{
+  "rows": 10000,
+  "wall_seconds": 1.464,
+  "rows_per_second": 6832.6,
+  "database_bytes": 1990656,
+  "raw_bodies_stored": false,
+  "note": "Offline local CheckpointStore benchmark using one transactional save per row."
+}

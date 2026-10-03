@@ -73,9 +73,9 @@ class CrawlScheduler:
         records: Iterable[CorpusRecord],
         *,
         retry_failures: bool = False,
+        max_new_records: int | None = None,
     ) -> CrawlStats:
-        stats = CrawlStats()
-        completed = self.store.completed_doc_ids(retry_failures=retry_failures)
+        stats = CrawlStats(started_at=time.perf_counter())
         queue: asyncio.Queue[CorpusRecord | None] = asyncio.Queue(
             maxsize=self.config.global_concurrency * 4
         )
@@ -84,10 +84,15 @@ class CrawlScheduler:
 
         async def producer() -> None:
             for record in records:
+                if max_new_records is not None and stats.scheduled >= max_new_records:
+                    break
                 stats.selected += 1
-                if record.doc_id in completed:
+                if self.store.is_completed(
+                    record.doc_id, retry_failures=retry_failures
+                ):
                     stats.skipped_existing += 1
                     continue
+                stats.scheduled += 1
                 await queue.put(record)
             for _ in range(self.config.global_concurrency):
                 await queue.put(None)
@@ -101,10 +106,11 @@ class CrawlScheduler:
                     result = await self._crawl_one(record)
                     await writer.write(result)
                     stats.record(result)
-                    print(
-                        f"doc_id={result.doc_id} status={result.status.value} "
-                        f"http={result.http_status} attempts={result.attempt_count}"
-                    )
+                    if stats.completed % 100 == 0:
+                        print(
+                            f"progress completed={stats.completed} "
+                            f"scheduled={stats.scheduled} status={result.status.value}"
+                        )
                 finally:
                     queue.task_done()
 
@@ -120,7 +126,9 @@ class CrawlScheduler:
             for task in workers:
                 if not task.done():
                     task.cancel()
-            await writer.close()
+            await asyncio.gather(*workers, return_exceptions=True)
+            await asyncio.shield(writer.close())
+            stats.wall_seconds = time.perf_counter() - stats.started_at
         return stats
 
     async def _crawl_one(self, record: CorpusRecord) -> CrawlResult:
@@ -132,20 +140,33 @@ class CrawlScheduler:
                 doc_id=record.doc_id,
                 original_url=record.original_url,
                 fetch_url=record.fetch_url,
+                domain=None,
                 status=CrawlStatus.INVALID_URL,
                 error_type=type(exc).__name__,
                 error_message=str(exc),
             )
 
         normalized_record = CorpusRecord(record.doc_id, record.original_url, fetch_url)
+        restricted_reason = self.config.access_restricted_domains.get(domain)
+        if restricted_reason:
+            return CrawlResult(
+                doc_id=record.doc_id,
+                original_url=record.original_url,
+                fetch_url=fetch_url,
+                domain=domain,
+                status=CrawlStatus.ACCESS_RESTRICTED,
+                error_type="DomainAccessRestricted",
+                error_message=restricted_reason,
+            )
+        if not await self.robots.can_fetch(fetch_url):
+            return CrawlResult(
+                doc_id=record.doc_id,
+                original_url=record.original_url,
+                fetch_url=fetch_url,
+                domain=domain,
+                status=CrawlStatus.ROBOTS_BLOCKED,
+                error_type="RobotsDisallowed",
+                error_message="robots.txt disallows this URL for the configured user agent",
+            )
         async with self.controller.slot(domain):
-            if not await self.robots.can_fetch(fetch_url):
-                return CrawlResult(
-                    doc_id=record.doc_id,
-                    original_url=record.original_url,
-                    fetch_url=fetch_url,
-                    status=CrawlStatus.ROBOTS_BLOCKED,
-                    error_type="RobotsDisallowed",
-                    error_message="robots.txt disallows this URL for the configured user agent",
-                )
             return await self.fetcher.fetch(normalized_record)

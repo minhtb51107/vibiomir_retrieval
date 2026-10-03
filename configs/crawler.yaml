@@ -2,7 +2,7 @@ input_path: data/raw/links_corpus.parquet
 output_db: data/crawled/crawl_results.sqlite
 
 http:
-  user_agent: "ViBioMIRResearchCrawler/0.1 (Phase 2A pilot; contact repository owner)"
+  user_agent: "ViBioMIRResearchCrawler/0.2 (Phase 2C; contact repository owner)"
   connect_timeout_seconds: 10.0
   read_timeout_seconds: 20.0
   write_timeout_seconds: 10.0
@@ -29,14 +29,30 @@ concurrency:
     120ask.com:
       concurrency: 1
       delay_seconds: 2.0
+    nhathuoclongchau.com.vn:
+      concurrency: 1
+      delay_seconds: 3.0
+    zysjonline.com:
+      concurrency: 1
+      delay_seconds: 2.0
+    laodong.vn:
+      concurrency: 1
+      delay_seconds: 2.0
 
 robots:
   enabled: true
   allow_on_fetch_error: true
 
+safety:
+  access_restricted_domains:
+    nhathuoclongchau.com.vn: "Phase 2B and 2C samples consistently returned Cloudflare HTTP 403"
+
 storage:
   store_raw_body: false
   max_body_bytes: 1048576
+  max_download_bytes: 2097152
+  inspection_prefix_bytes: 65536
+  tiny_html_threshold_bytes: 512
   allowed_content_types:
     - text/html
     - application/xhtml+xml

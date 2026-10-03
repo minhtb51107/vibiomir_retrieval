@@ -1,0 +1,22 @@
+input_path: data/raw/links_corpus.parquet
+output_manifest: artifacts/crawl_benchmark/selection.json
+seed: vibiomir-phase2c-benchmark-v1
+maximum_urls: 1500
+batch_size: 65536
+
+# Balanced strata prevent the two largest domains from dominating the run.
+rules:
+  - {name: cnkang, kind: domain, value: cnkang.com, quota: 120}
+  - {name: 120ask, kind: domain, value: 120ask.com, quota: 120}
+  - {name: familydoctor_qa, kind: domain, value: familydoctor.com.cn, quota: 120}
+  - {name: ask39_qa, kind: domain, value: ask.39.net, quota: 120}
+  - {name: a_hospital, kind: domain, value: a-hospital.com, quota: 100}
+  - {name: suckhoecongdong, kind: domain, value: suckhoecongdongonline.vn, quota: 100}
+  - {name: zhongyibaodian, kind: domain, value: zhongyibaodian.net, quota: 100}
+  - {name: suckhoedoisong_news, kind: domain, value: suckhoedoisong.vn, quota: 80}
+  - {name: thanhnien_news, kind: domain, value: thanhnien.vn, quota: 60}
+  - {name: laodong_js_shell, kind: domain, value: laodong.vn, quota: 50}
+  - {name: zysjonline_robots, kind: domain, value: zysjonline.com, quota: 50}
+  - {name: longchau_restricted, kind: domain, value: nhathuoclongchau.com.vn, quota: 25}
+  - {name: pmphai_test, kind: domain, value: test.pmphai.com, quota: 30}
+  - {name: http_urls, kind: scheme, value: http, quota: 150}

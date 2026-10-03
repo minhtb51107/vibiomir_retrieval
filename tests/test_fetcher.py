@@ -124,3 +124,31 @@ def test_timeout_exhaustion_and_unsupported_content_are_distinct() -> None:
 
     asyncio.run(scenario())
     assert timeout_calls == config.retry.max_attempts
+
+
+def test_fetcher_records_download_and_tiny_script_shell_telemetry() -> None:
+    config = load_config("configs/crawler.yaml")
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            headers={"content-type": "text/html; charset=utf-8"},
+            content=b"<html><script>window.app={}</script></html>",
+            request=request,
+        )
+
+    async def scenario() -> None:
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            async with HttpFetcher(
+                config.http, config.retry, config.storage, client=client
+            ) as fetcher:
+                result = await fetcher.fetch(
+                    CorpusRecord(5, "https://shell.test/a", "https://shell.test/a")
+                )
+        assert result.downloaded_bytes == 43
+        assert result.declared_http_encoding == "utf-8"
+        assert result.tiny_html
+        assert result.js_shell_candidate
+        assert result.raw_body is None
+
+    asyncio.run(scenario())

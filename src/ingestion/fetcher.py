@@ -2,15 +2,20 @@ from __future__ import annotations
 
 import asyncio
 import random
+import re
 import time
 from collections.abc import Awaitable, Callable
 
 import httpx
 
 from .models import CorpusRecord, CrawlResult, CrawlStatus, HttpConfig, RetryConfig, StorageConfig
+from .url_utils import domain_from_url
 
 
 TRANSIENT_HTTP_STATUSES = frozenset({408, 425, 429, 500, 502, 503, 504})
+CHARSET_RE = re.compile(r"charset\s*=\s*[\"']?([^\s;\"'>]+)", re.IGNORECASE)
+SCRIPT_RE = re.compile(r"<script\b[^>]*>.*?</script>", re.IGNORECASE | re.DOTALL)
+TAG_RE = re.compile(r"<[^>]+>")
 
 
 def is_retryable_http_status(status_code: int) -> bool:
@@ -22,6 +27,13 @@ def _parse_content_length(value: str | None) -> int | None:
         return int(value) if value is not None else None
     except ValueError:
         return None
+
+
+def _declared_charset(content_type: str | None) -> str | None:
+    if not content_type:
+        return None
+    match = CHARSET_RE.search(content_type)
+    return match.group(1).strip().lower() if match else None
 
 
 class HttpFetcher:
@@ -88,7 +100,7 @@ class HttpFetcher:
                         if attempt < self.retry_config.max_attempts:
                             await self._backoff(attempt)
                             continue
-                        return self._result_from_response(
+                        return await self._final_response_result(
                             record,
                             response,
                             CrawlStatus.RETRY_EXHAUSTED,
@@ -99,7 +111,7 @@ class HttpFetcher:
                         )
 
                     if not 200 <= response.status_code < 300:
-                        return self._result_from_response(
+                        return await self._final_response_result(
                             record,
                             response,
                             CrawlStatus.HTTP_ERROR,
@@ -115,27 +127,14 @@ class HttpFetcher:
                         for allowed in self.storage_config.allowed_content_types
                     )
                     status = CrawlStatus.SUCCESS if supported else CrawlStatus.UNSUPPORTED_CONTENT
-                    body = None
-                    bytes_read = 0
-                    if self.storage_config.store_raw_body and supported:
-                        chunks: list[bytes] = []
-                        async for chunk in response.aiter_bytes():
-                            remaining = self.storage_config.max_body_bytes - bytes_read
-                            if remaining <= 0:
-                                break
-                            piece = chunk[:remaining]
-                            chunks.append(piece)
-                            bytes_read += len(piece)
-                            if len(piece) < len(chunk):
-                                break
-                        body = b"".join(chunks)
-                    result = self._result_from_response(
-                        record, response, status, attempt, started
+                    return await self._final_response_result(
+                        record,
+                        response,
+                        status,
+                        attempt,
+                        started,
+                        store_body=supported and self.storage_config.store_raw_body,
                     )
-                    result.raw_body = body
-                    if result.content_length is None and body is not None:
-                        result.content_length = bytes_read
-                    return result
             except httpx.TimeoutException as exc:
                 last_error = exc
                 if attempt < self.retry_config.max_attempts:
@@ -161,6 +160,67 @@ class HttpFetcher:
         delay += self._random() * self.retry_config.jitter_seconds
         await self._sleep(delay)
 
+    async def _final_response_result(
+        self,
+        record: CorpusRecord,
+        response: httpx.Response,
+        status: CrawlStatus,
+        attempt: int,
+        started: float,
+        *,
+        error_type: str | None = None,
+        error_message: str | None = None,
+        store_body: bool = False,
+    ) -> CrawlResult:
+        raw_chunks: list[bytes] = []
+        prefix = bytearray()
+        downloaded = 0
+        stored = 0
+        truncated = False
+        async for chunk in response.aiter_bytes():
+            remaining = self.storage_config.max_download_bytes - downloaded
+            if remaining <= 0:
+                truncated = True
+                break
+            piece = chunk[:remaining]
+            downloaded += len(piece)
+            prefix_remaining = self.storage_config.inspection_prefix_bytes - len(prefix)
+            if prefix_remaining > 0:
+                prefix.extend(piece[:prefix_remaining])
+            if store_body and stored < self.storage_config.max_body_bytes:
+                body_piece = piece[: self.storage_config.max_body_bytes - stored]
+                raw_chunks.append(body_piece)
+                stored += len(body_piece)
+            if len(piece) < len(chunk):
+                truncated = True
+                break
+
+        result = self._result_from_response(
+            record,
+            response,
+            status,
+            attempt,
+            started,
+            error_type=error_type,
+            error_message=error_message,
+        )
+        result.downloaded_bytes = downloaded
+        result.body_truncated = truncated
+        result.raw_body = b"".join(raw_chunks) if store_body else None
+        if result.content_length is None and not truncated:
+            result.content_length = downloaded
+        if status == CrawlStatus.SUCCESS and result.content_type in {
+            "text/html",
+            "application/xhtml+xml",
+        }:
+            result.tiny_html = downloaded < self.storage_config.tiny_html_threshold_bytes
+            lowered = bytes(prefix).lower()
+            if result.tiny_html and b"<script" in lowered:
+                sample = bytes(prefix).decode("latin-1", errors="ignore")
+                visible = TAG_RE.sub(" ", SCRIPT_RE.sub(" ", sample))
+                result.js_shell_candidate = len(" ".join(visible.split())) < 100
+        return result
+
     @staticmethod
     def _result_from_response(
         record: CorpusRecord,
@@ -182,12 +242,15 @@ class HttpFetcher:
             doc_id=record.doc_id,
             original_url=record.original_url,
             fetch_url=record.fetch_url,
+            domain=domain_from_url(record.fetch_url),
             final_url=str(response.url),
             status=status,
             http_status=response.status_code,
             content_type=content_type,
             encoding=response.encoding,
+            declared_http_encoding=_declared_charset(content_type_header),
             content_length=_parse_content_length(response.headers.get("content-length")),
+            redirect_count=len(response.history),
             attempt_count=attempt,
             elapsed_ms=round((time.perf_counter() - started) * 1000),
             error_type=error_type,
@@ -206,6 +269,7 @@ class HttpFetcher:
             doc_id=record.doc_id,
             original_url=record.original_url,
             fetch_url=record.fetch_url,
+            domain=domain_from_url(record.fetch_url),
             status=status,
             attempt_count=attempt,
             elapsed_ms=round((time.perf_counter() - started) * 1000),

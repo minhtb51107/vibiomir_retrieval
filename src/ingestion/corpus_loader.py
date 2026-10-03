@@ -15,6 +15,7 @@ def iter_corpus_records(
     limit: int | None,
     domains: Sequence[str] = (),
     doc_ids: set[int] | None = None,
+    start_after_id: int | None = None,
     batch_size: int = 65_536,
 ) -> Iterator[CorpusRecord]:
     """Stream selected records without materializing the 4.4M-row corpus."""
@@ -42,6 +43,8 @@ def iter_corpus_records(
             if raw_id is None or raw_url is None:
                 continue
             doc_id = int(raw_id)
+            if start_after_id is not None and doc_id <= start_after_id:
+                continue
             if doc_ids is not None and doc_id not in doc_ids:
                 continue
             original_url = str(raw_url)

@@ -1,0 +1,23 @@
+{
+  "interrupted_run": {
+    "committed_rows_before_interrupt": 66,
+    "status_counts": {
+      "SUCCESS": 50,
+      "HTTP_ERROR": 16
+    },
+    "sqlite_integrity_check": "ok"
+  },
+  "resumed_run": {
+    "selected": 1225,
+    "skipped_existing": 66,
+    "scheduled": 1159,
+    "completed": 1159
+  },
+  "second_identical_run": {
+    "selected": 1225,
+    "skipped_existing": 1225,
+    "scheduled": 0,
+    "completed": 0,
+    "http_request_operations": 0
+  }
+}

@@ -33,6 +33,7 @@ def load_config(path: str | Path) -> CrawlerConfig:
     robots = raw["robots"]
     storage = raw["storage"]
     pilot = raw["pilot"]
+    safety = raw.get("safety") or {}
 
     global_limit = int(_positive(concurrency["global_limit"], "global_limit"))
     per_domain = int(
@@ -94,6 +95,10 @@ def load_config(path: str | Path) -> CrawlerConfig:
         global_concurrency=global_limit,
         default_domain_policy=DomainPolicy(per_domain, default_delay),
         domain_overrides=overrides,
+        access_restricted_domains={
+            str(domain).lower(): str(reason)
+            for domain, reason in (safety.get("access_restricted_domains") or {}).items()
+        },
         robots=RobotsConfig(
             enabled=bool(robots["enabled"]),
             allow_on_fetch_error=bool(robots["allow_on_fetch_error"]),
@@ -101,6 +106,18 @@ def load_config(path: str | Path) -> CrawlerConfig:
         storage=StorageConfig(
             store_raw_body=bool(storage["store_raw_body"]),
             max_body_bytes=int(_positive(storage["max_body_bytes"], "max_body_bytes")),
+            max_download_bytes=int(
+                _positive(storage["max_download_bytes"], "max_download_bytes")
+            ),
+            inspection_prefix_bytes=int(
+                _positive(storage["inspection_prefix_bytes"], "inspection_prefix_bytes")
+            ),
+            tiny_html_threshold_bytes=int(
+                _positive(
+                    storage["tiny_html_threshold_bytes"],
+                    "tiny_html_threshold_bytes",
+                )
+            ),
             allowed_content_types=tuple(
                 str(item).lower() for item in storage["allowed_content_types"]
             ),

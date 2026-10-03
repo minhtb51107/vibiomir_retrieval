@@ -1,0 +1,359 @@
+{
+  "phase": "2C",
+  "measured": {
+    "selected_unique_urls": 1225,
+    "timed_resume_wall_seconds": 567.707,
+    "timed_resume_scheduled": 1159,
+    "timed_resume_completed": 1159,
+    "timed_resume_skipped": 66,
+    "urls_completed_per_minute": 122.49,
+    "attempt_requests_per_second": 1.9817,
+    "http_request_operations_per_second": 2.5101,
+    "timed_domain_urls_per_minute": {
+      "120ask.com": 18.4955,
+      "a-hospital.com": 10.5688,
+      "ask.39.net": 12.6826,
+      "baby.39.net": 0.4228,
+      "care.39.net": 0.3171,
+      "cnkang.com": 18.9182,
+      "familydoctor.com.cn": 12.6826,
+      "fitness.39.net": 0.1057,
+      "food.39.net": 0.1057,
+      "heart.39.net": 0.1057,
+      "nhathuoclongchau.com.vn": 0.9512,
+      "nk.39.net": 0.2114,
+      "qihuangzhishu.com": 0.6341,
+      "suckhoecongdongonline.vn": 10.5688,
+      "suckhoedoisong.vn": 8.4551,
+      "test.pmphai.com": 3.1706,
+      "thanhnien.vn": 6.3413,
+      "woman.39.net": 0.1057,
+      "wujue.com": 0.4228,
+      "zhongyibaodian.net": 10.5688,
+      "zydcd.com": 1.3739,
+      "zysjonline.com": 5.2844
+    },
+    "status_counts": {
+      "SUCCESS": 1149,
+      "ROBOTS_BLOCKED": 50,
+      "HTTP_ERROR": 25,
+      "TIMEOUT": 1
+    },
+    "http_status_counts": {
+      "200": 1149,
+      "403": 25
+    },
+    "success_rate": 0.937959,
+    "retry_count": 16,
+    "redirect_count": 278,
+    "downloaded_bytes": 113430674,
+    "content_type_counts": {
+      "text/html": 1174,
+      "missing": 51
+    },
+    "declared_http_encoding_counts": {
+      "utf-8": 897,
+      "missing": 278,
+      "utf-8,gbk": 50
+    },
+    "response_size_buckets": {
+      "0": 51,
+      "1-511": 50,
+      "262144-1048575": 140,
+      "4096-65535": 794,
+      "65536-262143": 190
+    },
+    "tiny_html_count": 50,
+    "js_shell_candidate_count": 50,
+    "main_sqlite_bytes": 544768,
+    "main_sqlite_bytes_per_row": 444.71,
+    "per_domain": {
+      "cnkang.com": {
+        "completed": 179,
+        "successes": 179,
+        "attempts": 179,
+        "redirects": 141,
+        "downloaded_bytes": 5599122,
+        "elapsed_ms_sum": 148760
+      },
+      "120ask.com": {
+        "completed": 175,
+        "successes": 175,
+        "attempts": 175,
+        "redirects": 122,
+        "downloaded_bytes": 11862462,
+        "elapsed_ms_sum": 216808
+      },
+      "ask.39.net": {
+        "completed": 120,
+        "successes": 119,
+        "attempts": 134,
+        "redirects": 0,
+        "downloaded_bytes": 5815883,
+        "elapsed_ms_sum": 893674
+      },
+      "familydoctor.com.cn": {
+        "completed": 120,
+        "successes": 120,
+        "attempts": 120,
+        "redirects": 0,
+        "downloaded_bytes": 7753048,
+        "elapsed_ms_sum": 151344
+      },
+      "a-hospital.com": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 100,
+        "redirects": 0,
+        "downloaded_bytes": 4570524,
+        "elapsed_ms_sum": 37065
+      },
+      "suckhoecongdongonline.vn": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 100,
+        "redirects": 0,
+        "downloaded_bytes": 4233307,
+        "elapsed_ms_sum": 27666
+      },
+      "zhongyibaodian.net": {
+        "completed": 100,
+        "successes": 100,
+        "attempts": 100,
+        "redirects": 0,
+        "downloaded_bytes": 2334605,
+        "elapsed_ms_sum": 81425
+      },
+      "suckhoedoisong.vn": {
+        "completed": 80,
+        "successes": 80,
+        "attempts": 81,
+        "redirects": 0,
+        "downloaded_bytes": 47924872,
+        "elapsed_ms_sum": 29534
+      },
+      "thanhnien.vn": {
+        "completed": 60,
+        "successes": 60,
+        "attempts": 60,
+        "redirects": 0,
+        "downloaded_bytes": 19222582,
+        "elapsed_ms_sum": 16504
+      },
+      "laodong.vn": {
+        "completed": 50,
+        "successes": 50,
+        "attempts": 50,
+        "redirects": 0,
+        "downloaded_bytes": 8850,
+        "elapsed_ms_sum": 1868
+      },
+      "zysjonline.com": {
+        "completed": 50,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "test.pmphai.com": {
+        "completed": 30,
+        "successes": 30,
+        "attempts": 30,
+        "redirects": 0,
+        "downloaded_bytes": 3054283,
+        "elapsed_ms_sum": 34504
+      },
+      "nhathuoclongchau.com.vn": {
+        "completed": 25,
+        "successes": 0,
+        "attempts": 25,
+        "redirects": 0,
+        "downloaded_bytes": 137425,
+        "elapsed_ms_sum": 4140
+      },
+      "zydcd.com": {
+        "completed": 13,
+        "successes": 13,
+        "attempts": 14,
+        "redirects": 2,
+        "downloaded_bytes": 156394,
+        "elapsed_ms_sum": 38235
+      },
+      "qihuangzhishu.com": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 0,
+        "downloaded_bytes": 137428,
+        "elapsed_ms_sum": 4716
+      },
+      "baby.39.net": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 4,
+        "downloaded_bytes": 167291,
+        "elapsed_ms_sum": 7251
+      },
+      "wujue.com": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 92303,
+        "elapsed_ms_sum": 3028
+      },
+      "care.39.net": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 3,
+        "downloaded_bytes": 134569,
+        "elapsed_ms_sum": 3256
+      },
+      "nk.39.net": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 2,
+        "downloaded_bytes": 75644,
+        "elapsed_ms_sum": 2527
+      },
+      "fitness.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 35723,
+        "elapsed_ms_sum": 355
+      },
+      "food.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 36544,
+        "elapsed_ms_sum": 385
+      },
+      "heart.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 38973,
+        "elapsed_ms_sum": 276
+      },
+      "woman.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 38842,
+        "elapsed_ms_sum": 168
+      }
+    }
+  },
+  "estimated": {
+    "full_corpus_rows": 4394718,
+    "wall_clock_days_at_measured_balanced_throughput": 24.92,
+    "planning_wall_clock_range_days": [
+      25,
+      35
+    ],
+    "main_sqlite_bytes": 1954368764,
+    "domain_weighted_download_bytes": 287744858628,
+    "raw_body_storage_uncompressed_bytes": 287744858628,
+    "compressed_html_storage_range_bytes": [
+      71936214657,
+      115097943451
+    ],
+    "extracted_text_storage_range_bytes": [
+      28774485863,
+      71936214657
+    ],
+    "fallback_average_download_bytes_for_unmeasured_domains": 96536.74,
+    "largest_domain_duration_estimates": {
+      "cnkang.com": {
+        "corpus_rows": 963438,
+        "measured_mean_result_elapsed_seconds": 0.8311,
+        "configured_concurrency": 1,
+        "configured_delay_seconds": 2.0,
+        "estimated_days": 22.3,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "120ask.com": {
+        "corpus_rows": 918479,
+        "measured_mean_result_elapsed_seconds": 1.2389,
+        "configured_concurrency": 1,
+        "configured_delay_seconds": 2.0,
+        "estimated_days": 21.26,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "familydoctor.com.cn": {
+        "corpus_rows": 447453,
+        "measured_mean_result_elapsed_seconds": 1.2612,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 5.18,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "ask.39.net": {
+        "corpus_rows": 337375,
+        "measured_mean_result_elapsed_seconds": 7.4473,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 14.54,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "zysjonline.com": {
+        "corpus_rows": 243347,
+        "estimated_days": 0.0,
+        "basis": "cached robots denial; rows recorded without per-URL page requests"
+      },
+      "a-hospital.com": {
+        "corpus_rows": 169339,
+        "measured_mean_result_elapsed_seconds": 0.3706,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 1.96,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "suckhoecongdongonline.vn": {
+        "corpus_rows": 154503,
+        "measured_mean_result_elapsed_seconds": 0.2767,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 1.79,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "zhongyibaodian.net": {
+        "corpus_rows": 146700,
+        "measured_mean_result_elapsed_seconds": 0.8143,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 1.7,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "suckhoedoisong.vn": {
+        "corpus_rows": 85823,
+        "measured_mean_result_elapsed_seconds": 0.3692,
+        "configured_concurrency": 2,
+        "configured_delay_seconds": 1.0,
+        "estimated_days": 0.99,
+        "basis": "configured start-rate limit and measured mean result latency"
+      },
+      "nhathuoclongchau.com.vn": {
+        "corpus_rows": 79598,
+        "estimated_days": 0.0,
+        "basis": "metadata-only ACCESS_RESTRICTED classification; no page requests"
+      }
+    },
+    "caveats": [
+      "The benchmark is intentionally balanced rather than corpus-proportional.",
+      "Network estimates weight measured domain averages by Phase 1 top-30 counts and use the benchmark response average elsewhere.",
+      "Compression and extracted-text ratios are planning assumptions, not measured outputs.",
+      "No benchmark response reached the 2 MiB download cap."
+    ]
+  }
+}

@@ -51,9 +51,20 @@
 
 ---
 
-## Phase 2C
+## Phase 2C — Production Crawl Readiness and Corpus Acquisition
 
-_Not started. Awaiting explicit approval._
+| Task | Status | Date |
+|---|---|---|
+| Add bounded production batches and two-step full-crawl gate | COMPLETE | 2026-10-03 |
+| Add bounded-memory SQLite telemetry export | COMPLETE | 2026-10-03 |
+| Run balanced 1,225-URL readiness benchmark | COMPLETE | 2026-10-03 |
+| Demonstrate interruption integrity and process-restart resume | COMPLETE | 2026-10-03 |
+| Demonstrate second-run 1,225/1,225 checkpoint skip | COMPLETE | 2026-10-03 |
+| Measure throughput, response sizes, retries, redirects, and SQLite growth | COMPLETE | 2026-10-03 |
+| Produce full-corpus time, network, and disk estimates | COMPLETE | 2026-10-03 |
+| Document scalable body-storage decision | COMPLETE | 2026-10-03 |
+
+**Phase 2C status: COMPLETE — unrestricted full crawl was not started.**
 
 ---
 

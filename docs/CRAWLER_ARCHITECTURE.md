@@ -4,6 +4,9 @@
 > **Scope:** corpus acquisition foundation and a 10-URL pilot only
 > **Raw corpus:** read-only; `id` remains the canonical `doc_id`
 
+Phase 2C production controls and measured capacity decisions are documented in
+`docs/PRODUCTION_CRAWL_PLAN.md`. The Phase 2A architecture remains the base.
+
 ## Data flow
 
 1. `corpus_loader.py` streams `id` and `url` columns from the raw Parquet in
@@ -126,6 +129,7 @@ skipped.
 | `TIMEOUT` | Timeout attempts exhausted |
 | `NETWORK_ERROR` | Network/request attempts exhausted |
 | `ROBOTS_BLOCKED` | Cached robots policy disallowed the request |
+| `ACCESS_RESTRICTED` | Evidence-backed domain policy prevents known-futile access attempts |
 | `UNSUPPORTED_CONTENT` | `2xx` response with a non-allowed media type |
 | `RETRY_EXHAUSTED` | Retryable HTTP status persisted after final attempt |
 | `INVALID_URL` | URL is malformed or not HTTP(S) |
@@ -175,7 +179,7 @@ resume, duplicate `doc_id` protection, and successful-row transition safety.
 
 Phase 2A does not include:
 
-- full-scale crawling or production crawl operations;
+- unrestricted full-corpus execution (production readiness is complete, but the full crawl was not run);
 - article-text extraction or HTML cleaning;
 - raw-body archives beyond explicitly capped pilot storage;
 - content chunking, embeddings, FAISS, BM25, reranking, or evaluation;
