@@ -1,0 +1,30 @@
+{
+  "competition": {
+    "id": 15,
+    "name": "R2AI2026 TRUY HỒI TÀI LIỆU Y KHOA ĐA NGÔN NGỮ",
+    "public_api": "https://leaderboard.aiguru.com.vn/api/competitions/15/",
+    "submission_instructions_page_id": 100,
+    "evaluation_page_id": 108,
+    "accessed_date": "2026-10-05"
+  },
+  "upload": {
+    "archive": "ZIP",
+    "archive_members": "exactly one root-level .json file",
+    "json_encoding": "UTF-8",
+    "json_root": "array",
+    "required_query_count": 1200
+  },
+  "query_object": {
+    "id": "integer; original query.parquet id",
+    "relevant_docs": "array of integer links_corpus.parquet ids",
+    "relevant_chunks": "array of chunk objects"
+  },
+  "chunk_object": {
+    "doc_id": "integer links_corpus.parquet id",
+    "chunk_text": "source-derived string; must not be generated or rewritten",
+    "chunk_order": "optional non-negative integer; omitted by Phase 9"
+  },
+  "empty_arrays_permitted": true,
+  "document_or_chunk_maximum": "not specified in the public instructions",
+  "duplicate_policy": "not specified by the organizer; Phase 9 rejects duplicate document IDs and duplicate (doc_id, chunk_text) objects within each query"
+}

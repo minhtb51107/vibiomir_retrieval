@@ -1,0 +1,52 @@
+version: phase9-v1
+
+organizer_schema:
+  competition_id: 15
+  instructions_page_id: 100
+  source_url: https://leaderboard.aiguru.com.vn/api/competitions/15/
+  format: json
+  upload_format: zip
+  required_query_count: 1200
+  emit_chunk_order: false
+  allow_empty_results: true
+
+inputs:
+  queries: data/raw/query.parquet
+  canonical_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  phase7_directory: data/retrieval/phase7_reranking
+
+output:
+  directory: submissions
+  artifact_directory: artifacts/phase9_submission
+  document_depth: 10
+  chunk_depth: 50
+  write_deterministic_zip: true
+
+validation:
+  require_exact_query_order: true
+  reject_duplicate_documents: true
+  reject_duplicate_chunk_objects: true
+  require_local_document: true
+  require_exact_chunk_provenance: true
+
+variants:
+  - name: phase9_A_pure_best_chunk
+    strategy: pure_rerank
+    document_aggregation: best_chunk
+    chunk_source: selected_pure_rerank_chunks.parquet
+    document_source: selected_pure_rerank_documents_best_chunk.parquet
+  - name: phase9_B_pure_top3_mean
+    strategy: pure_rerank
+    document_aggregation: top3_mean
+    chunk_source: selected_pure_rerank_chunks.parquet
+    document_source: selected_pure_rerank_documents_top_n_mean.parquet
+  - name: phase9_C_max3_best_chunk
+    strategy: max_chunks_per_doc
+    document_aggregation: best_chunk
+    chunk_source: selected_max_chunks_per_doc_chunks.parquet
+    document_source: selected_max_chunks_per_doc_documents_best_chunk.parquet
+  - name: phase9_D_controlled_best_chunk
+    strategy: controlled
+    document_aggregation: best_chunk
+    chunk_source: selected_controlled_chunks.parquet
+    document_source: selected_controlled_documents_best_chunk.parquet

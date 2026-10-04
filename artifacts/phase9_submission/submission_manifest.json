@@ -1,0 +1,210 @@
+{
+  "version": "phase9-v1",
+  "generator_config_sha256": "e0fc134d05f74f69b4e1d557af8ef1260628c89a2ef2ed307bdb2f2619ba6ff9",
+  "organizer_schema": {
+    "competition_id": 15,
+    "instructions_page_id": 100,
+    "source_url": "https://leaderboard.aiguru.com.vn/api/competitions/15/",
+    "format": "json",
+    "upload_format": "zip",
+    "required_query_count": 1200,
+    "emit_chunk_order": false,
+    "allow_empty_results": true
+  },
+  "canonical_chunk_count": 5643,
+  "canonical_document_count": 1097,
+  "variants": [
+    {
+      "name": "phase9_A_pure_best_chunk",
+      "filename": "phase9_A_pure_best_chunk.json",
+      "json_sha256": "7672ef2be6f975b113a48c4c15b3db2da4d7c83ac04232bbd0e23726aa716acd",
+      "json_bytes": 106942339,
+      "zip_filename": "phase9_A_pure_best_chunk.zip",
+      "zip_sha256": "341b968c42969ef3a2f0f7bb4164420a6e75ad55c2f55c5b386d76a340f805a3",
+      "zip_bytes": 18010946,
+      "strategy": "pure_rerank",
+      "document_aggregation": "best_chunk",
+      "document_depth": 10,
+      "chunk_depth": 50,
+      "source_retrieval_artifacts": {
+        "chunks": "data\\retrieval\\phase7_reranking\\selected_pure_rerank_chunks.parquet",
+        "documents": "data\\retrieval\\phase7_reranking\\selected_pure_rerank_documents_best_chunk.parquet"
+      },
+      "input_hashes": {
+        "queries_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+        "canonical_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+        "phase7_chunks_sha256": "6856af8b4bd8385bc1545060ca511c8262c9399ac30535cc0e108fff42183bcd",
+        "phase7_documents_sha256": "030d9c3c6509e4a39b1569e2985ef148d939c49d505e238d794b1e8556a81d89"
+      },
+      "query_count": 1200,
+      "document_results": {
+        "total": 11382,
+        "minimum_per_query": 1,
+        "maximum_per_query": 10,
+        "mean_per_query": 9.485,
+        "queries_below_intended_depth": 143
+      },
+      "chunk_results": {
+        "total": 59897,
+        "minimum_per_query": 48,
+        "maximum_per_query": 50,
+        "mean_per_query": 49.914167,
+        "queries_below_intended_depth": 97
+      },
+      "unique_doc_ids": 877,
+      "unique_relevant_doc_ids": 740,
+      "unique_chunk_doc_ids": 877,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "chunk_provenance_mismatches": 0,
+      "duplicate_chunk_ids_suppressed": 0,
+      "duplicate_chunk_objects_suppressed": 103,
+      "source_rows_provenance_verified": 60000,
+      "emitted_chunks_provenance_verified": 59897
+    },
+    {
+      "name": "phase9_B_pure_top3_mean",
+      "filename": "phase9_B_pure_top3_mean.json",
+      "json_sha256": "886cb901f2a74c6ebc067b14b32c084ae22ccd123d41adccf592b3eda2164d97",
+      "json_bytes": 106942514,
+      "zip_filename": "phase9_B_pure_top3_mean.zip",
+      "zip_sha256": "5cd65f11ee9dc665ad44514e47b68e934c93a419e1d4f4ce38c82292cee650f3",
+      "zip_bytes": 18011273,
+      "strategy": "pure_rerank",
+      "document_aggregation": "top3_mean",
+      "document_depth": 10,
+      "chunk_depth": 50,
+      "source_retrieval_artifacts": {
+        "chunks": "data\\retrieval\\phase7_reranking\\selected_pure_rerank_chunks.parquet",
+        "documents": "data\\retrieval\\phase7_reranking\\selected_pure_rerank_documents_top_n_mean.parquet"
+      },
+      "input_hashes": {
+        "queries_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+        "canonical_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+        "phase7_chunks_sha256": "6856af8b4bd8385bc1545060ca511c8262c9399ac30535cc0e108fff42183bcd",
+        "phase7_documents_sha256": "c282c84a7ff2fa2823330a86627157ba3dd155910cd0e04384ccc8ecd5a00984"
+      },
+      "query_count": 1200,
+      "document_results": {
+        "total": 11382,
+        "minimum_per_query": 1,
+        "maximum_per_query": 10,
+        "mean_per_query": 9.485,
+        "queries_below_intended_depth": 143
+      },
+      "chunk_results": {
+        "total": 59897,
+        "minimum_per_query": 48,
+        "maximum_per_query": 50,
+        "mean_per_query": 49.914167,
+        "queries_below_intended_depth": 97
+      },
+      "unique_doc_ids": 877,
+      "unique_relevant_doc_ids": 744,
+      "unique_chunk_doc_ids": 877,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "chunk_provenance_mismatches": 0,
+      "duplicate_chunk_ids_suppressed": 0,
+      "duplicate_chunk_objects_suppressed": 103,
+      "source_rows_provenance_verified": 60000,
+      "emitted_chunks_provenance_verified": 59897
+    },
+    {
+      "name": "phase9_C_max3_best_chunk",
+      "filename": "phase9_C_max3_best_chunk.json",
+      "json_sha256": "86daccc570f05b55f27710fc2fb50d732cd3bb1f5c4e727f81de2041cd3256b0",
+      "json_bytes": 87362321,
+      "zip_filename": "phase9_C_max3_best_chunk.zip",
+      "zip_sha256": "304f691787a4772f198eb28dcd1fb366874bd2b550ef1fb8fff04e2d77e05bde",
+      "zip_bytes": 23134636,
+      "strategy": "max_chunks_per_doc",
+      "document_aggregation": "best_chunk",
+      "document_depth": 10,
+      "chunk_depth": 50,
+      "source_retrieval_artifacts": {
+        "chunks": "data\\retrieval\\phase7_reranking\\selected_max_chunks_per_doc_chunks.parquet",
+        "documents": "data\\retrieval\\phase7_reranking\\selected_max_chunks_per_doc_documents_best_chunk.parquet"
+      },
+      "input_hashes": {
+        "queries_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+        "canonical_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+        "phase7_chunks_sha256": "8b809bb855a04a496bea535cc4741d2657f8a9b2a4e698021f7ca5ea232c7b2c",
+        "phase7_documents_sha256": "4f2d56eded3848f69c1d2685a5a51ed2697d41c36639f4a6271db96dd6c3c926"
+      },
+      "query_count": 1200,
+      "document_results": {
+        "total": 11972,
+        "minimum_per_query": 4,
+        "maximum_per_query": 10,
+        "mean_per_query": 9.976667,
+        "queries_below_intended_depth": 11
+      },
+      "chunk_results": {
+        "total": 56416,
+        "minimum_per_query": 10,
+        "maximum_per_query": 50,
+        "mean_per_query": 47.013333,
+        "queries_below_intended_depth": 312
+      },
+      "unique_doc_ids": 946,
+      "unique_relevant_doc_ids": 751,
+      "unique_chunk_doc_ids": 946,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "chunk_provenance_mismatches": 0,
+      "duplicate_chunk_ids_suppressed": 0,
+      "duplicate_chunk_objects_suppressed": 25,
+      "source_rows_provenance_verified": 56441,
+      "emitted_chunks_provenance_verified": 56416
+    },
+    {
+      "name": "phase9_D_controlled_best_chunk",
+      "filename": "phase9_D_controlled_best_chunk.json",
+      "json_sha256": "9f473cd879cc4049019564d5e07ee4f55b35abc65c60bdc936212bc027c5f0ad",
+      "json_bytes": 90145221,
+      "zip_filename": "phase9_D_controlled_best_chunk.zip",
+      "zip_sha256": "4ecfa3c365a8c4a24465917a3f5bc53eac49408ea73e234341ac66b1b47ba5d3",
+      "zip_bytes": 24290901,
+      "strategy": "controlled",
+      "document_aggregation": "best_chunk",
+      "document_depth": 10,
+      "chunk_depth": 50,
+      "source_retrieval_artifacts": {
+        "chunks": "data\\retrieval\\phase7_reranking\\selected_controlled_chunks.parquet",
+        "documents": "data\\retrieval\\phase7_reranking\\selected_controlled_documents_best_chunk.parquet"
+      },
+      "input_hashes": {
+        "queries_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+        "canonical_chunks_sha256": "9f875e0229b9c3f911ad502162efd84c574462d05b57648245d015177e921c3e",
+        "phase7_chunks_sha256": "1de13d738fc05f33e1112ba4a7447902bf92989f8c3dac2a0c955ac3288e5ada",
+        "phase7_documents_sha256": "add7690e222e93d7d660a7d32febfabea3d80543a1cb2d47bae20f4b34939233"
+      },
+      "query_count": 1200,
+      "document_results": {
+        "total": 11972,
+        "minimum_per_query": 4,
+        "maximum_per_query": 10,
+        "mean_per_query": 9.976667,
+        "queries_below_intended_depth": 11
+      },
+      "chunk_results": {
+        "total": 55500,
+        "minimum_per_query": 10,
+        "maximum_per_query": 50,
+        "mean_per_query": 46.25,
+        "queries_below_intended_depth": 383
+      },
+      "unique_doc_ids": 923,
+      "unique_relevant_doc_ids": 734,
+      "unique_chunk_doc_ids": 923,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "chunk_provenance_mismatches": 0,
+      "duplicate_chunk_ids_suppressed": 0,
+      "duplicate_chunk_objects_suppressed": 0,
+      "source_rows_provenance_verified": 55500,
+      "emitted_chunks_provenance_verified": 55500
+    }
+  ]
+}

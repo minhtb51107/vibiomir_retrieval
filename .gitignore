@@ -24,6 +24,7 @@ data/retrieval/
 data/indexes/
 data/production/
 data/url_reduction/
+submissions/
 
 # Local model caches
 .cache/

@@ -183,3 +183,20 @@ fabricated relevance metric was introduced.
 | Verify zero network requests and decline the proposed 10k crawl | COMPLETE | 2026-10-05 |
 
 **Phase 8C status: COMPLETE — URL-only reduction is NOT VIABLE; no candidate crawl was started, no submission was generated, and Phase 9 was not started.**
+
+---
+
+## Phase 9 — Valid Competition Submission Generation
+
+| Task | Status | Date |
+|---|---|---|
+| Transcribe and document the organizer JSON/ZIP contract | COMPLETE | 2026-10-05 |
+| Preserve all 1,200 official query IDs and source order | COMPLETE | 2026-10-05 |
+| Generate four bounded Phase 7 submission variants | COMPLETE | 2026-10-05 |
+| Verify every emitted chunk against canonical source-derived text | COMPLETE | 2026-10-05 |
+| Reject invalid IDs and duplicate document/chunk objects | COMPLETE | 2026-10-05 |
+| Add strict offline JSON/ZIP validator and negative tests | COMPLETE | 2026-10-05 |
+| Prove byte-identical JSON and ZIP generation across two runs | COMPLETE | 2026-10-05 |
+| Persist compact manifests, hashes, and validation evidence | COMPLETE | 2026-10-05 |
+
+**Phase 9 implementation status: COMPLETE — submissions are ready for manual upload; QUALITY UNKNOWN UNTIL ORGANIZER SCORE. No upload, crawl, or leaderboard calibration was started.**
