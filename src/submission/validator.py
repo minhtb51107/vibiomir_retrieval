@@ -5,7 +5,7 @@ import math
 import zipfile
 from collections import Counter
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 import pyarrow.parquet as pq
 
@@ -63,6 +63,19 @@ def expected_query_ids(queries_path: str | Path) -> list[int]:
     return [int(value) for value in table.column("id").to_pylist()]
 
 
+def load_source_documents(
+    documents_path: str | Path, doc_ids: set[int] | None = None
+) -> dict[int, str]:
+    """Load processed `normalized_text` per doc_id for source-span validation."""
+    table = pq.read_table(documents_path, columns=["doc_id", "normalized_text"])
+    output: dict[int, str] = {}
+    for row in table.to_pylist():
+        doc_id = int(row["doc_id"])
+        if doc_ids is None or doc_id in doc_ids:
+            output[doc_id] = str(row["normalized_text"])
+    return output
+
+
 def validate_submission(
     path: str | Path,
     *,
@@ -70,7 +83,15 @@ def validate_submission(
     valid_document_ids: set[int],
     valid_chunks: set[tuple[int, str]],
     require_exact_order: bool = True,
+    source_documents: Mapping[int, str] | None = None,
 ) -> dict[str, Any]:
+    """Strictly validate a submission.
+
+    By default every chunk object must equal a canonical chunk. When
+    `source_documents` is supplied, a chunk that is not canonical is still
+    accepted if and only if its text is a verbatim contiguous substring of the
+    processed source document for its doc_id (expanded-window experiments).
+    """
     payload = load_submission_payload(path)
     if len(payload) != len(expected_queries):
         raise SubmissionValidationError(
@@ -82,6 +103,7 @@ def validate_submission(
     unique_documents: set[int] = set()
     document_counts: list[int] = []
     chunk_counts: list[int] = []
+    source_span_chunks = 0
     for index, record in enumerate(payload):
         location = f"query[{index}]"
         if not isinstance(record, dict):
@@ -147,9 +169,14 @@ def validate_submission(
                     f"unknown local document {doc_id} at {chunk_location}"
                 )
             if key not in valid_chunks:
-                raise SubmissionValidationError(
-                    f"chunk provenance mismatch at {chunk_location}"
+                document_text = (
+                    source_documents.get(doc_id) if source_documents is not None else None
                 )
+                if document_text is None or not text or text not in document_text:
+                    raise SubmissionValidationError(
+                        f"chunk provenance mismatch at {chunk_location}"
+                    )
+                source_span_chunks += 1
             seen_chunks.add(key)
             unique_documents.add(doc_id)
         document_total += len(documents)
@@ -184,4 +211,5 @@ def validate_submission(
         "duplicate_doc_ids": 0,
         "duplicate_chunk_objects": 0,
         "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": source_span_chunks,
     }

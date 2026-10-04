@@ -87,13 +87,24 @@ def _ordered_documents(rows: list[dict[str, Any]], depth: int) -> list[int]:
     return output
 
 
+def _chunk_rank_field(rows: list[dict[str, Any]]) -> str:
+    if rows and "selection_rank" in rows[0]:
+        return "selection_rank"
+    if rows and "rerank_rank" in rows[0]:
+        return "rerank_rank"
+    if rows and "rank" in rows[0]:
+        return "rank"
+    return "rerank_rank"
+
+
 def _ordered_chunks(
     rows: list[dict[str, Any]],
     *,
     depth: int,
     canonical: dict[str, tuple[int, str]],
+    with_chunk_id: bool = False,
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    rank_field = "selection_rank" if rows and "selection_rank" in rows[0] else "rerank_rank"
+    rank_field = _chunk_rank_field(rows)
     ordered = sorted(
         rows,
         key=lambda row: (
@@ -126,7 +137,10 @@ def _ordered_chunks(
             duplicate_objects += 1
             continue
         seen_objects.add(object_key)
-        output.append({"doc_id": doc_id, "chunk_text": text})
+        emitted = {"doc_id": doc_id, "chunk_text": text}
+        if with_chunk_id:
+            emitted["chunk_id"] = chunk_id
+        output.append(emitted)
         if len(output) == depth:
             break
     return output, {

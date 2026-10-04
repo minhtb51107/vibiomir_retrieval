@@ -16,6 +16,7 @@ from src.submission.validator import (
     SubmissionValidationError,
     canonical_provenance,
     expected_query_ids,
+    load_source_documents,
     validate_submission,
 )
 
@@ -27,6 +28,14 @@ def main() -> int:
     parser.add_argument("paths", nargs="+", help="Submission JSON/ZIP files")
     parser.add_argument("--config", default="configs/submission.yaml")
     parser.add_argument("--report")
+    parser.add_argument(
+        "--source-documents",
+        help=(
+            "Processed documents Parquet. When given, non-canonical chunk text is "
+            "accepted only as a verbatim contiguous span of its source document "
+            "(Phase 10A expanded windows)."
+        ),
+    )
     args = parser.parse_args()
     config = load_submission_config(args.config)
     query_ids = expected_query_ids(config["inputs"]["queries"])
@@ -44,6 +53,11 @@ def main() -> int:
     valid_documents, valid_chunks = canonical_provenance(
         config["inputs"]["canonical_chunks"]
     )
+    source_documents = (
+        load_source_documents(args.source_documents, valid_documents)
+        if args.source_documents
+        else None
+    )
     try:
         results = [
             validate_submission(
@@ -54,6 +68,7 @@ def main() -> int:
                 require_exact_order=bool(
                     config["validation"]["require_exact_query_order"]
                 ),
+                source_documents=source_documents,
             )
             for path in args.paths
         ]

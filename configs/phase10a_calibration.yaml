@@ -1,0 +1,192 @@
+version: phase10a-v1
+
+# Phase 10A calibrates the public leaderboard with exactly nine one-hypothesis
+# variants of the Phase 9 baseline. Everything is built from persisted
+# Phase 4/6/7 artifacts: no crawling, network, embedding, reranking, training,
+# URL reduction, or local relevance scoring.
+
+organizer_schema:
+  competition_id: 15
+  required_query_count: 1200
+  source_url: https://leaderboard.aiguru.com.vn/api/competitions/15/
+
+inputs:
+  queries: data/raw/query.parquet
+  canonical_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  # Processed documents the canonical chunks were sliced from
+  # (chunk.raw_text == document.normalized_text[start_offset:end_offset]).
+  source_documents: data/processed/phase3_pilot_documents.parquet
+  tokenizer:
+    name: BAAI/bge-m3
+    local_files_only: true
+
+output:
+  directory: submissions
+  artifact_directory: artifacts/phase10a_calibration
+  manifest: manifest.json
+
+# Named, persisted candidate sources. `ranked` sources already carry a rank
+# column; `pool_*` sources are derived deterministically from the persisted
+# Phase 7 depth-100 reranked pool using the existing Phase 7 selection and
+# best-chunk aggregation code (no model call).
+sources:
+  documents:
+    phase7_baseline_best_chunk:
+      kind: ranked
+      path: data/retrieval/phase7_reranking/selected_pure_rerank_documents_best_chunk.parquet
+    phase7_pool_best_chunk:
+      kind: pool_best_chunk
+      path: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+      pool_depth: 100
+    phase6_hybrid_best_chunk:
+      kind: ranked
+      path: data/retrieval/phase6_hybrid/hybrid_best_chunk_documents.parquet
+    phase6_sparse_best_chunk:
+      kind: ranked
+      path: data/retrieval/phase6_hybrid/sparse_best_chunk_documents.parquet
+  chunks:
+    phase7_selected_pure:
+      kind: ranked
+      path: data/retrieval/phase7_reranking/selected_pure_rerank_chunks.parquet
+      rank_column: selection_rank
+    phase7_pool_pure:
+      kind: pool_pure
+      path: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+      pool_depth: 100
+    phase6_hybrid_rrf:
+      kind: ranked
+      path: data/retrieval/phase6_hybrid/hybrid_chunk_rankings_rrf.parquet
+      rank_column: rank
+    phase6_sparse_bm25:
+      kind: ranked
+      path: data/retrieval/phase6_hybrid/sparse_chunk_rankings.parquet
+      rank_column: rank
+
+# Variant A of Phase 9. Re-derived in memory (not written) so every experiment
+# can be diffed against it, and its JSON hash must match the Phase 9 record.
+baseline:
+  name: phase9_A_pure_best_chunk
+  phase9_variant: phase9_A_pure_best_chunk
+  organizer_score:
+    FINAL_SCORE: 0.0001
+    DOCS_F2MACRO: 0.0001
+    CHUNKS_F2MACRO: 0.0001
+    DOCS_PRECISION: 0.0006
+    DOCS_RECALL: 0.0001
+    CHUNKS_PRECISION: 0.0008
+    CHUNKS_RECALL: 0.0001
+    provenance: supplied by the project owner from the organizer leaderboard
+  documents:
+    source: phase7_baseline_best_chunk
+    depth: 10
+  chunks:
+    source: phase7_selected_pure
+    depth: 50
+
+experiments:
+  - id: E1
+    name: phase10a_E1_docs20
+    hypothesis: >-
+      Baseline document recall is limited by the 10-document cap; listing the
+      next 10 reranked documents recovers additional relevant documents.
+    difference_from_baseline: >-
+      relevant_docs depth 10 -> 20, taken from the same reranker ordering
+      (best-chunk aggregation over the persisted depth-100 pool; baseline docs
+      are an exact prefix). relevant_chunks identical to baseline.
+    documents: {source: phase7_pool_best_chunk, depth: 20}
+    chunks: {source: phase7_selected_pure, depth: 50}
+
+  - id: E2
+    name: phase10a_E2_docs50
+    hypothesis: >-
+      Pilot-corpus coverage of the true relevant set is sparse, so a much deeper
+      document list may still add relevant documents.
+    difference_from_baseline: >-
+      relevant_docs depth 10 -> 50 (cap) from the same reranker ordering.
+      relevant_chunks identical to baseline.
+    documents: {source: phase7_pool_best_chunk, depth: 50}
+    chunks: {source: phase7_selected_pure, depth: 50}
+
+  - id: E3
+    name: phase10a_E3_docs_max
+    hypothesis: >-
+      Using every unique document in the reranked candidate pool maximizes
+      document recall at the cost of precision.
+    difference_from_baseline: >-
+      relevant_docs = all unique documents in the persisted depth-100 reranked
+      pool (cap 100; actual depth is data-limited and documented), same reranker
+      ordering. relevant_chunks identical to baseline.
+    documents: {source: phase7_pool_best_chunk, depth: 100}
+    chunks: {source: phase7_selected_pure, depth: 50}
+
+  - id: E4
+    name: phase10a_E4_chunks20
+    hypothesis: >-
+      Chunk precision is diluted by 50 chunks per query; only the top reranked
+      chunks carry useful reference overlap.
+    difference_from_baseline: >-
+      relevant_chunks depth 50 -> 20 (first 20 baseline chunk objects).
+      relevant_docs identical to baseline.
+    documents: {source: phase7_baseline_best_chunk, depth: 10}
+    chunks: {source: phase7_selected_pure, depth: 20}
+
+  - id: E5
+    name: phase10a_E5_chunks_more
+    hypothesis: >-
+      Chunk recall is limited by the 50-chunk cap; additional reranked chunks
+      from the persisted pool cover more reference chunks.
+    difference_from_baseline: >-
+      relevant_chunks depth 50 -> 100 (cap) from the same reranker ordering over
+      the persisted depth-100 pool (baseline chunks are an exact prefix).
+      relevant_docs identical to baseline.
+    documents: {source: phase7_baseline_best_chunk, depth: 10}
+    chunks: {source: phase7_pool_pure, depth: 100}
+
+  - id: E6
+    name: phase10a_E6_chunk_expand_768
+    hypothesis: >-
+      Reference-chunk overlap is LCS(c,g)/|g| >= 0.40, so submitting a longer
+      source-verbatim window around each baseline chunk may raise chunk recall.
+    difference_from_baseline: >-
+      Each baseline chunk is replaced by a contiguous verbatim span of its
+      processed source document centred on the chunk, targeting ~768 BGE-M3
+      tokens (clamped to the document). Chunk order, doc_ids and relevant_docs
+      identical to baseline.
+    documents: {source: phase7_baseline_best_chunk, depth: 10}
+    chunks: {source: phase7_selected_pure, depth: 50}
+    expand: {target_tokens: 768}
+
+  - id: E7
+    name: phase10a_E7_chunk_expand_1024
+    hypothesis: >-
+      Same as E6 with a larger window (~1,024 tokens); tests whether additional
+      context helps or starts to hurt chunk matching.
+    difference_from_baseline: >-
+      As E6 but targeting ~1,024 BGE-M3 tokens per span.
+    documents: {source: phase7_baseline_best_chunk, depth: 10}
+    chunks: {source: phase7_selected_pure, depth: 50}
+    expand: {target_tokens: 1024}
+
+  - id: E8
+    name: phase10a_E8_hybrid
+    hypothesis: >-
+      The Phase 6 dense+BM25 RRF hybrid ordering may match the organizer's
+      relevance better than the Phase 7 cross-encoder reranker.
+    difference_from_baseline: >-
+      Documents and chunks come directly from the persisted Phase 6 hybrid RRF
+      ranking (docs 10 via hybrid best-chunk file, chunks top 50); no Phase 7
+      reranker involvement.
+    documents: {source: phase6_hybrid_best_chunk, depth: 10}
+    chunks: {source: phase6_hybrid_rrf, depth: 50}
+
+  - id: E9
+    name: phase10a_E9_sparse
+    hypothesis: >-
+      Lexical (BM25) ordering may match the organizer's relevance better than
+      neural reranking.
+    difference_from_baseline: >-
+      Documents and chunks come directly from the persisted Phase 6 sparse
+      BM25 ranking (docs 10 via sparse best-chunk file, chunks top 50); no dense,
+      hybrid, or reranker involvement.
+    documents: {source: phase6_sparse_best_chunk, depth: 10}
+    chunks: {source: phase6_sparse_bm25, depth: 50}

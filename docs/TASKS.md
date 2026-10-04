@@ -200,3 +200,20 @@ fabricated relevance metric was introduced.
 | Persist compact manifests, hashes, and validation evidence | COMPLETE | 2026-10-05 |
 
 **Phase 9 implementation status: COMPLETE — submissions are ready for manual upload; QUALITY UNKNOWN UNTIL ORGANIZER SCORE. No upload, crawl, or leaderboard calibration was started.**
+
+---
+
+## Phase 10A — Public Leaderboard Calibration Submissions
+
+| Task | Status | Date |
+|---|---|---|
+| Reproduce the Phase 9 A baseline hash from persisted artifacts | COMPLETE | 2026-10-05 |
+| Generate document-depth variants E1–E3 | COMPLETE | 2026-10-05 |
+| Generate chunk-depth variants E4–E5 | COMPLETE | 2026-10-05 |
+| Generate contiguous source-verbatim expansion variants E6–E7 | COMPLETE | 2026-10-05 |
+| Generate Phase 6 hybrid and sparse variants E8–E9 | COMPLETE | 2026-10-05 |
+| Strictly validate all nine JSON/ZIP submissions | COMPLETE | 2026-10-05 |
+| Prove byte-identical output by full independent regeneration | COMPLETE | 2026-10-05 |
+| Persist compact hashes, provenance, and experiment manifest | COMPLETE | 2026-10-05 |
+
+**Phase 10A implementation status: COMPLETE — nine calibration submissions are ready for manual upload. No automatic upload, crawl, model inference, or local relevance evaluation was performed.**
