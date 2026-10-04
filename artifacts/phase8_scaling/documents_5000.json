@@ -1,0 +1,7 @@
+{
+  "partition_count": 5,
+  "document_count": 5000,
+  "unique_doc_ids": 5000,
+  "output": "data\\processed\\phase8_5k_documents.parquet",
+  "output_size_bytes": 13818107
+}

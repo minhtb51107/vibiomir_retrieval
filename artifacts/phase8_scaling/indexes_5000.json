@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "chunk_source": "data\\chunks\\phase8_5k_bge.parquet",
+    "chunk_source_sha256": "7cf2c4ab98318a19ec789f0f7c3e4ac4952b563b0b5e22f3e3d068b8376a0bd0",
+    "chunk_id_order_sha256": "f21604cf623ea3136f729081be9eb89aa43da653715455f905f1ae550c8ea698",
+    "row_count": "19478",
+    "path": "data\\indexes\\phase8_5k_sparse\\chunk_metadata.sqlite",
+    "size_bytes": 45981696,
+    "mapping_verification": {
+      "rows_checked": 19478,
+      "mismatches": 0
+    }
+  },
+  "sparse": {
+    "format_version": "1",
+    "tokenizer": "unicode_words_han_unigrams_bigrams_v1",
+    "chunk_source": "data\\chunks\\phase8_5k_bge.parquet",
+    "chunk_source_sha256": "7cf2c4ab98318a19ec789f0f7c3e4ac4952b563b0b5e22f3e3d068b8376a0bd0",
+    "chunk_id_order_sha256": "f21604cf623ea3136f729081be9eb89aa43da653715455f905f1ae550c8ea698",
+    "document_count": 19478,
+    "term_count": 248627,
+    "total_tokens": 6205019,
+    "average_document_length": 318.5655098059349,
+    "bm25_k1": "1.2",
+    "bm25_b": "0.75",
+    "document_length_tokens": {
+      "min": 1,
+      "median": 164.0,
+      "p95": 1080,
+      "max": 1511
+    },
+    "duplicate_chunk_ids": 0,
+    "build_seconds": 169.563081,
+    "index_path": "data\\indexes\\phase8_5k_sparse\\bm25.sqlite",
+    "index_size_bytes": 167563264,
+    "index_sha256": "8a93ccdb9ab278d561d848e634db6b859c59e9f01ea31daecbbe9aea456b105f",
+    "integrity_check": "ok",
+    "mapping_verification": {
+      "rows_checked": 19478,
+      "mismatches": 0
+    }
+  },
+  "dense_embedding": {
+    "executed": false,
+    "reason": "host available RAM was 632 MiB; cached BGE-M3 native load exited before checkpoint creation",
+    "projection_source": "Phase 4 measured 49.0083 chunks/second"
+  }
+}

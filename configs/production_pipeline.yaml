@@ -1,0 +1,90 @@
+version: 1
+phase: 8
+source:
+  corpus: data/raw/links_corpus.parquet
+  rows: 4394718
+  canonical_id: id
+  url_column: url
+paths:
+  crawl_database: data/crawled/production/crawl_state.sqlite
+  body_archive: data/crawled/production/bodies
+  manifests: data/production/manifests
+  processed: data/processed/production
+  chunks: data/chunks/production
+  embeddings: data/embeddings/production
+  indexes: data/indexes/production
+  retrieval: data/retrieval/production
+  artifacts: artifacts/phase8_scaling
+safety:
+  unrestricted_enabled: false
+  bounded_confirmation: confirm-bounded-phase8
+  full_confirmation: confirm-full-production
+  maximum_bounded_crawl_records: 5000
+  minimum_free_before_stage_gib:
+    acquisition: 25
+    extraction: 20
+    indexing: 30
+  stop_free_space_gib: 20
+  projected_growth_headroom_multiplier: 1.5
+  maximum_projected_disk_fraction: 0.90
+  require_previous_stage_complete: true
+crawl:
+  config: configs/crawler.yaml
+  batch_size: 5000
+  validation_sizes: [1225, 5000]
+  global_concurrency: 8
+  per_domain_concurrency: 2
+  default_domain_delay_seconds: 1.0
+  max_attempts: 3
+  body_documents_per_shard: 5000
+  max_download_bytes: 2097152
+processing:
+  extraction_config: configs/extraction.yaml
+  documents_per_partition: 1000
+  input_batch_rows: 256
+chunking:
+  tokenizer_model: BAAI/bge-m3
+  tokenizer_revision: 5617a9f61b028005a4858fdac845db406aefb181
+  content_token_budget: 508
+  maximum_tokens_with_specials: 512
+  overlap_tokens: 64
+  preserve_paragraph_boundaries: true
+  preserve_heading_boundaries: true
+  preserve_qa_boundaries: true
+  partition_documents: 1000
+dense:
+  model: BAAI/bge-m3
+  revision: 5617a9f61b028005a4858fdac845db406aefb181
+  dimension: 1024
+  output_dtype: float32
+  normalize: true
+  device: cuda
+  batch_size: 4
+  exact_index: IndexFlatIP
+  exact_full_corpus_authorized: false
+  bounded_ann_vectors: 50000
+sparse:
+  tokenizer: unicode_words_han_unigrams_bigrams_v1
+  k1: 1.2
+  b: 0.75
+  backend: sqlite
+  full_corpus_sqlite_authorized: false
+retrieval:
+  dense_top_k: 50
+  sparse_top_k: 100
+  hybrid_top_k: 50
+  rrf_constant: 60
+  top_k_documents: 10
+reranking:
+  model: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  batch_size: 2
+  maximum_tokens: 512
+  candidate_depth: 100
+production_stages:
+  8A: bounded_acquisition_extraction_validation
+  8B: medium_chunk_and_index_benchmark
+  8C: production_corpus_acquisition
+  8D: production_extraction_and_chunking
+  8E: production_dense_and_sparse_indexes
+  8F: production_retrieval_and_reranking

@@ -1,0 +1,30 @@
+{
+  "vector_count": 50000,
+  "source_vector_count": 5643,
+  "dimension": 1024,
+  "synthetic_expansion": true,
+  "note": "Expanded rows only measure operational scaling; no relevance claim is made.",
+  "indexes": {
+    "IndexFlatIP": {
+      "build_seconds": 0.097114,
+      "search_100_queries_seconds": 0.824446,
+      "mean_ms_per_query": 8.244463,
+      "size_bytes": 204800045,
+      "top10_row_overlap_with_exact": 1.0
+    },
+    "IndexHNSWFlat_M32": {
+      "build_seconds": 8.092791,
+      "search_100_queries_seconds": 0.032891,
+      "mean_ms_per_query": 0.328912,
+      "size_bytes": 218412578,
+      "top10_row_overlap_with_exact": 0.959
+    },
+    "IndexIVFPQ_128x32x8": {
+      "build_seconds": 37.552681,
+      "search_100_queries_seconds": 0.027833,
+      "mean_ms_per_query": 0.278331,
+      "size_bytes": 3574068,
+      "top10_row_overlap_with_exact": 0.908
+    }
+  }
+}

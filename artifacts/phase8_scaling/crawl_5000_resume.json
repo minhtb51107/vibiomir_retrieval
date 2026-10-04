@@ -1,0 +1,730 @@
+{
+  "run": {
+    "selected": 5000,
+    "scheduled": 0,
+    "completed": 0,
+    "skipped_existing": 5000,
+    "attempts": 0,
+    "retry_count": 0,
+    "redirect_count": 0,
+    "downloaded_bytes": 0,
+    "wall_seconds": 0.199,
+    "attempt_requests_per_second": 0.0,
+    "urls_completed_per_minute": 0.0,
+    "by_status": {},
+    "by_content_type": {},
+    "by_domain": {},
+    "robots_requests": 0,
+    "estimated_http_request_operations": 0,
+    "http_request_operations_per_second": 0.0
+  },
+  "database": {
+    "rows": 5000,
+    "attempts": 4704,
+    "retry_count": 79,
+    "redirect_count": 1411,
+    "downloaded_bytes": 337756938,
+    "tiny_html_count": 42,
+    "js_shell_candidate_count": 42,
+    "truncated_body_count": 0,
+    "status_counts": {
+      "SUCCESS": 4505,
+      "ROBOTS_BLOCKED": 283,
+      "HTTP_ERROR": 97,
+      "ACCESS_RESTRICTED": 92,
+      "TIMEOUT": 23
+    },
+    "http_status_counts": {
+      "200": 4505,
+      "403": 65,
+      "521": 31,
+      "404": 1
+    },
+    "content_type_counts": {
+      "text/html": 4571,
+      "missing": 429
+    },
+    "declared_http_encoding_counts": {
+      "utf-8": 3389,
+      "missing": 1569,
+      "utf-8,gbk": 42
+    },
+    "response_size_buckets": {
+      "0": 429,
+      "1-511": 91,
+      "262144-1048575": 236,
+      "4096-65535": 3183,
+      "65536-262143": 1061
+    },
+    "per_domain": {
+      "cnkang.com": {
+        "completed": 1083,
+        "successes": 1083,
+        "attempts": 1084,
+        "redirects": 666,
+        "downloaded_bytes": 37383993,
+        "elapsed_ms_sum": 760000
+      },
+      "120ask.com": {
+        "completed": 1051,
+        "successes": 1051,
+        "attempts": 1059,
+        "redirects": 549,
+        "downloaded_bytes": 70950872,
+        "elapsed_ms_sum": 1547664
+      },
+      "familydoctor.com.cn": {
+        "completed": 521,
+        "successes": 521,
+        "attempts": 531,
+        "redirects": 0,
+        "downloaded_bytes": 33825816,
+        "elapsed_ms_sum": 777225
+      },
+      "ask.39.net": {
+        "completed": 399,
+        "successes": 398,
+        "attempts": 404,
+        "redirects": 0,
+        "downloaded_bytes": 19210013,
+        "elapsed_ms_sum": 1721139
+      },
+      "zysjonline.com": {
+        "completed": 270,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "a-hospital.com": {
+        "completed": 202,
+        "successes": 202,
+        "attempts": 202,
+        "redirects": 0,
+        "downloaded_bytes": 8734572,
+        "elapsed_ms_sum": 86283
+      },
+      "zhongyibaodian.net": {
+        "completed": 160,
+        "successes": 160,
+        "attempts": 166,
+        "redirects": 0,
+        "downloaded_bytes": 3930907,
+        "elapsed_ms_sum": 260569
+      },
+      "suckhoecongdongonline.vn": {
+        "completed": 156,
+        "successes": 156,
+        "attempts": 156,
+        "redirects": 0,
+        "downloaded_bytes": 6755082,
+        "elapsed_ms_sum": 77964
+      },
+      "nhathuoclongchau.com.vn": {
+        "completed": 92,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "thanhnien.vn": {
+        "completed": 90,
+        "successes": 90,
+        "attempts": 90,
+        "redirects": 0,
+        "downloaded_bytes": 28808962,
+        "elapsed_ms_sum": 38118
+      },
+      "suckhoedoisong.vn": {
+        "completed": 87,
+        "successes": 87,
+        "attempts": 87,
+        "redirects": 0,
+        "downloaded_bytes": 51886795,
+        "elapsed_ms_sum": 31611
+      },
+      "zydcd.com": {
+        "completed": 77,
+        "successes": 77,
+        "attempts": 78,
+        "redirects": 6,
+        "downloaded_bytes": 947688,
+        "elapsed_ms_sum": 79444
+      },
+      "youlai.cn": {
+        "completed": 60,
+        "successes": 43,
+        "attempts": 94,
+        "redirects": 0,
+        "downloaded_bytes": 1006165,
+        "elapsed_ms_sum": 1083976
+      },
+      "wujue.com": {
+        "completed": 52,
+        "successes": 48,
+        "attempts": 62,
+        "redirects": 0,
+        "downloaded_bytes": 1166211,
+        "elapsed_ms_sum": 280946
+      },
+      "laodong.vn": {
+        "completed": 42,
+        "successes": 42,
+        "attempts": 42,
+        "redirects": 0,
+        "downloaded_bytes": 7434,
+        "elapsed_ms_sum": 7464
+      },
+      "baby.39.net": {
+        "completed": 34,
+        "successes": 34,
+        "attempts": 34,
+        "redirects": 34,
+        "downloaded_bytes": 1371744,
+        "elapsed_ms_sum": 38111
+      },
+      "phunusuckhoe.giadinhonline.vn": {
+        "completed": 33,
+        "successes": 33,
+        "attempts": 33,
+        "redirects": 0,
+        "downloaded_bytes": 4912666,
+        "elapsed_ms_sum": 8643
+      },
+      "bingli.iiyi.com": {
+        "completed": 27,
+        "successes": 0,
+        "attempts": 27,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 37229
+      },
+      "qihuangzhishu.com": {
+        "completed": 25,
+        "successes": 25,
+        "attempts": 25,
+        "redirects": 0,
+        "downloaded_bytes": 544463,
+        "elapsed_ms_sum": 21949
+      },
+      "test.pmphai.com": {
+        "completed": 24,
+        "successes": 24,
+        "attempts": 24,
+        "redirects": 0,
+        "downloaded_bytes": 2447282,
+        "elapsed_ms_sum": 33578
+      },
+      "medlatec.vn": {
+        "completed": 23,
+        "successes": 23,
+        "attempts": 23,
+        "redirects": 0,
+        "downloaded_bytes": 3887155,
+        "elapsed_ms_sum": 11968
+      },
+      "baocantho.com.vn": {
+        "completed": 22,
+        "successes": 22,
+        "attempts": 22,
+        "redirects": 0,
+        "downloaded_bytes": 3412505,
+        "elapsed_ms_sum": 16979
+      },
+      "vinmec.com": {
+        "completed": 22,
+        "successes": 22,
+        "attempts": 22,
+        "redirects": 0,
+        "downloaded_bytes": 4813016,
+        "elapsed_ms_sum": 7386
+      },
+      "tiemchunglongchau.com.vn": {
+        "completed": 21,
+        "successes": 21,
+        "attempts": 21,
+        "redirects": 0,
+        "downloaded_bytes": 6295445,
+        "elapsed_ms_sum": 10584
+      },
+      "baonghean.vn": {
+        "completed": 20,
+        "successes": 0,
+        "attempts": 20,
+        "redirects": 0,
+        "downloaded_bytes": 5680,
+        "elapsed_ms_sum": 3073
+      },
+      "fitness.39.net": {
+        "completed": 20,
+        "successes": 20,
+        "attempts": 20,
+        "redirects": 20,
+        "downloaded_bytes": 737586,
+        "elapsed_ms_sum": 26954
+      },
+      "giadinhonline.vn": {
+        "completed": 20,
+        "successes": 20,
+        "attempts": 20,
+        "redirects": 0,
+        "downloaded_bytes": 2505320,
+        "elapsed_ms_sum": 4811
+      },
+      "jbk.39.net": {
+        "completed": 20,
+        "successes": 20,
+        "attempts": 20,
+        "redirects": 0,
+        "downloaded_bytes": 864852,
+        "elapsed_ms_sum": 22686
+      },
+      "vietnamnet.vn": {
+        "completed": 18,
+        "successes": 18,
+        "attempts": 18,
+        "redirects": 0,
+        "downloaded_bytes": 2406233,
+        "elapsed_ms_sum": 2217
+      },
+      "hellobacsi.com": {
+        "completed": 17,
+        "successes": 17,
+        "attempts": 17,
+        "redirects": 1,
+        "downloaded_bytes": 9938975,
+        "elapsed_ms_sum": 11857
+      },
+      "khoahocphothong.vn": {
+        "completed": 16,
+        "successes": 16,
+        "attempts": 16,
+        "redirects": 32,
+        "downloaded_bytes": 3156123,
+        "elapsed_ms_sum": 8918
+      },
+      "baohaiphong.vn": {
+        "completed": 15,
+        "successes": 0,
+        "attempts": 15,
+        "redirects": 0,
+        "downloaded_bytes": 4260,
+        "elapsed_ms_sum": 4063
+      },
+      "vov.vn": {
+        "completed": 15,
+        "successes": 15,
+        "attempts": 15,
+        "redirects": 0,
+        "downloaded_bytes": 3912327,
+        "elapsed_ms_sum": 3072
+      },
+      "baoangiang.com.vn": {
+        "completed": 14,
+        "successes": 14,
+        "attempts": 14,
+        "redirects": 0,
+        "downloaded_bytes": 2311286,
+        "elapsed_ms_sum": 13796
+      },
+      "care.39.net": {
+        "completed": 14,
+        "successes": 14,
+        "attempts": 14,
+        "redirects": 14,
+        "downloaded_bytes": 618587,
+        "elapsed_ms_sum": 19773
+      },
+      "tamanhhospital.vn": {
+        "completed": 13,
+        "successes": 0,
+        "attempts": 13,
+        "redirects": 0,
+        "downloaded_bytes": 74963,
+        "elapsed_ms_sum": 2695
+      },
+      "woman.39.net": {
+        "completed": 11,
+        "successes": 11,
+        "attempts": 11,
+        "redirects": 11,
+        "downloaded_bytes": 452948,
+        "elapsed_ms_sum": 10511
+      },
+      "baodanang.vn": {
+        "completed": 10,
+        "successes": 0,
+        "attempts": 10,
+        "redirects": 0,
+        "downloaded_bytes": 2840,
+        "elapsed_ms_sum": 2156
+      },
+      "baoquangtri.vn": {
+        "completed": 10,
+        "successes": 10,
+        "attempts": 10,
+        "redirects": 0,
+        "downloaded_bytes": 510173,
+        "elapsed_ms_sum": 1230
+      },
+      "cancer.39.net": {
+        "completed": 10,
+        "successes": 10,
+        "attempts": 10,
+        "redirects": 3,
+        "downloaded_bytes": 404628,
+        "elapsed_ms_sum": 6841
+      },
+      "fk.39.net": {
+        "completed": 10,
+        "successes": 10,
+        "attempts": 10,
+        "redirects": 10,
+        "downloaded_bytes": 438600,
+        "elapsed_ms_sum": 10599
+      },
+      "food.39.net": {
+        "completed": 9,
+        "successes": 9,
+        "attempts": 9,
+        "redirects": 9,
+        "downloaded_bytes": 336386,
+        "elapsed_ms_sum": 7208
+      },
+      "baovinhlong.com.vn": {
+        "completed": 8,
+        "successes": 8,
+        "attempts": 8,
+        "redirects": 0,
+        "downloaded_bytes": 378287,
+        "elapsed_ms_sum": 1274
+      },
+      "nk.39.net": {
+        "completed": 8,
+        "successes": 8,
+        "attempts": 8,
+        "redirects": 8,
+        "downloaded_bytes": 322617,
+        "elapsed_ms_sum": 7545
+      },
+      "pmc-ecm-healthblog.beta.pharmacity.io": {
+        "completed": 8,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "suckhoeviet.org.vn": {
+        "completed": 8,
+        "successes": 7,
+        "attempts": 10,
+        "redirects": 0,
+        "downloaded_bytes": 738144,
+        "elapsed_ms_sum": 41716
+      },
+      "nhandan.vn": {
+        "completed": 7,
+        "successes": 7,
+        "attempts": 7,
+        "redirects": 0,
+        "downloaded_bytes": 551588,
+        "elapsed_ms_sum": 4633
+      },
+      "vov2.vov.vn": {
+        "completed": 7,
+        "successes": 7,
+        "attempts": 7,
+        "redirects": 0,
+        "downloaded_bytes": 367773,
+        "elapsed_ms_sum": 7623
+      },
+      "baidianfeng.familydoctor.com.cn": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 0,
+        "downloaded_bytes": 454077,
+        "elapsed_ms_sum": 24549
+      },
+      "heart.39.net": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 6,
+        "downloaded_bytes": 240220,
+        "elapsed_ms_sum": 8103
+      },
+      "msdmanuals.cn": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 1,
+        "downloaded_bytes": 1679720,
+        "elapsed_ms_sum": 1999
+      },
+      "phuyen.baodaklak.vn": {
+        "completed": 6,
+        "successes": 6,
+        "attempts": 6,
+        "redirects": 0,
+        "downloaded_bytes": 835788,
+        "elapsed_ms_sum": 1029
+      },
+      "gan.39.net": {
+        "completed": 5,
+        "successes": 5,
+        "attempts": 5,
+        "redirects": 5,
+        "downloaded_bytes": 203742,
+        "elapsed_ms_sum": 4077
+      },
+      "man.39.net": {
+        "completed": 5,
+        "successes": 5,
+        "attempts": 5,
+        "redirects": 5,
+        "downloaded_bytes": 205674,
+        "elapsed_ms_sum": 7857
+      },
+      "tuoitre.vn": {
+        "completed": 5,
+        "successes": 5,
+        "attempts": 5,
+        "redirects": 0,
+        "downloaded_bytes": 2435457,
+        "elapsed_ms_sum": 1164
+      },
+      "wei.39.net": {
+        "completed": 5,
+        "successes": 5,
+        "attempts": 5,
+        "redirects": 5,
+        "downloaded_bytes": 215120,
+        "elapsed_ms_sum": 5247
+      },
+      "article.iiyi.com": {
+        "completed": 4,
+        "successes": 0,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 3468
+      },
+      "dantri.com.vn": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 2104939,
+        "elapsed_ms_sum": 1485
+      },
+      "jb39.com": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 4,
+        "downloaded_bytes": 66406,
+        "elapsed_ms_sum": 8671
+      },
+      "qdnd.vn": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 1,
+        "downloaded_bytes": 439453,
+        "elapsed_ms_sum": 1776
+      },
+      "shen.39.net": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 4,
+        "downloaded_bytes": 164471,
+        "elapsed_ms_sum": 3886
+      },
+      "tienphong.vn": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 521974,
+        "elapsed_ms_sum": 2092
+      },
+      "tnb.39.net": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 4,
+        "downloaded_bytes": 170851,
+        "elapsed_ms_sum": 1490
+      },
+      "vietnamplus.vn": {
+        "completed": 4,
+        "successes": 4,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 583839,
+        "elapsed_ms_sum": 506
+      },
+      "youmed.vn": {
+        "completed": 4,
+        "successes": 0,
+        "attempts": 4,
+        "redirects": 0,
+        "downloaded_bytes": 22885,
+        "elapsed_ms_sum": 793
+      },
+      "baidu.com": {
+        "completed": 3,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "baochinhphu.vn": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 1025786,
+        "elapsed_ms_sum": 379
+      },
+      "baogialai.com.vn": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 644069,
+        "elapsed_ms_sum": 497
+      },
+      "baoquangninh.vn": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 224560,
+        "elapsed_ms_sum": 528
+      },
+      "baotayninh.vn": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 478743,
+        "elapsed_ms_sum": 955
+      },
+      "gk.39.net": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 3,
+        "downloaded_bytes": 126379,
+        "elapsed_ms_sum": 4055
+      },
+      "hanoimoi.vn": {
+        "completed": 3,
+        "successes": 0,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 852,
+        "elapsed_ms_sum": 460
+      },
+      "thaythuocvietnam.vn": {
+        "completed": 3,
+        "successes": 3,
+        "attempts": 3,
+        "redirects": 3,
+        "downloaded_bytes": 695418,
+        "elapsed_ms_sum": 2891
+      },
+      "bachmai.gov.vn": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 0,
+        "downloaded_bytes": 235080,
+        "elapsed_ms_sum": 2409
+      },
+      "baolangson.vn": {
+        "completed": 2,
+        "successes": 0,
+        "attempts": 0,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 0
+      },
+      "ek.39.net": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 2,
+        "downloaded_bytes": 82491,
+        "elapsed_ms_sum": 1918
+      },
+      "gc.39.net": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 2,
+        "downloaded_bytes": 84926,
+        "elapsed_ms_sum": 1151
+      },
+      "health.people.com.cn": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 0,
+        "downloaded_bytes": 86522,
+        "elapsed_ms_sum": 10047
+      },
+      "pf.39.net": {
+        "completed": 2,
+        "successes": 2,
+        "attempts": 2,
+        "redirects": 2,
+        "downloaded_bytes": 81235,
+        "elapsed_ms_sum": 3349
+      },
+      "benhvienvietduc.org": {
+        "completed": 1,
+        "successes": 0,
+        "attempts": 3,
+        "redirects": 0,
+        "downloaded_bytes": 0,
+        "elapsed_ms_sum": 108730
+      },
+      "byby.39.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 1,
+        "downloaded_bytes": 39911,
+        "elapsed_ms_sum": 773
+      },
+      "vnexpress.net": {
+        "completed": 1,
+        "successes": 1,
+        "attempts": 1,
+        "redirects": 0,
+        "downloaded_bytes": 267388,
+        "elapsed_ms_sum": 847
+      }
+    },
+    "path": "data\\crawled\\phase8_5k.sqlite",
+    "size_before_bytes": 2023424,
+    "size_after_bytes": 2056192,
+    "main_database_bytes": 2023424,
+    "size_growth_bytes": 32768,
+    "estimated_bytes_per_result_row": 411.24
+  },
+  "robots_domains_fetched": {},
+  "robots_cache": {},
+  "body_archive": {
+    "path": "data\\crawled\\body_archives\\phase8_5k",
+    "stored_bodies": 4505
+  }
+}

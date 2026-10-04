@@ -1,0 +1,37 @@
+{
+  "seed": "vibiomir-phase8-bounded-v1",
+  "sample_size": 5000,
+  "corpus_rows": 4394718,
+  "domain_count": 82,
+  "top_domains": {
+    "cnkang.com": 1083,
+    "120ask.com": 1051,
+    "familydoctor.com.cn": 521,
+    "ask.39.net": 399,
+    "zysjonline.com": 270,
+    "a-hospital.com": 202,
+    "zhongyibaodian.net": 160,
+    "suckhoecongdongonline.vn": 156,
+    "nhathuoclongchau.com.vn": 92,
+    "thanhnien.vn": 90,
+    "suckhoedoisong.vn": 87,
+    "zydcd.com": 77,
+    "youlai.cn": 60,
+    "wujue.com": 52,
+    "laodong.vn": 42,
+    "baby.39.net": 34,
+    "phunusuckhoe.giadinhonline.vn": 33,
+    "bingli.iiyi.com": 27,
+    "qihuangzhishu.com": 25,
+    "test.pmphai.com": 24
+  },
+  "schemes": {
+    "http": 1519,
+    "https": 3481
+  },
+  "minimum_doc_id": 1391,
+  "maximum_doc_id": 4418152,
+  "manifest": "data\\production\\manifests\\phase8_5k_urls.json",
+  "manifest_sha256": "519210df010a835c38e8c5ff86bf525921c0fc22a31f8d86fe319de972032e5b",
+  "source_sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971"
+}

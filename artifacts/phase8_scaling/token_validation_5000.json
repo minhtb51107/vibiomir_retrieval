@@ -1,0 +1,15 @@
+{
+  "model": "BAAI/bge-m3",
+  "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "chunk_count": 19478,
+  "unique_chunk_ids": 19478,
+  "token_counts_with_specials": {
+    "median": 107.0,
+    "p95": 510.0,
+    "max": 510,
+    "over_limit": 0
+  },
+  "offset_mismatches": 0,
+  "wrong_document_references": 0,
+  "result": "PASS"
+}

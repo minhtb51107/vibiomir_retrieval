@@ -1,0 +1,85 @@
+{
+  "source": {
+    "path": "data/raw/links_corpus.parquet",
+    "rows": 4394718,
+    "sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971"
+  },
+  "disk_audit": {
+    "C": {
+      "path": "C:\\",
+      "total_bytes": 241286770688,
+      "free_bytes": 31781949440,
+      "used_bytes": 209504821248,
+      "total_gib": 224.716,
+      "free_gib": 29.599,
+      "used_gib": 195.117
+    },
+    "D": {
+      "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval",
+      "total_bytes": 268434403328,
+      "free_bytes": 42408828928,
+      "used_bytes": 226025574400,
+      "total_gib": 249.999,
+      "free_gib": 39.496,
+      "used_gib": 210.503
+    }
+  },
+  "pilot": {
+    "rows": 5000,
+    "success_rate": 0.8918,
+    "validated_chunks": 19478,
+    "validated_chunks_per_successful_document": 4.368244,
+    "crawl_urls_per_minute": 108.19,
+    "embedding_chunks_per_second": 49.0083,
+    "sparse_build_seconds": 169.563081,
+    "rerank_pairs_per_second": 31.467396,
+    "phase8_bounded_evidence_used": true
+  },
+  "projection_assumptions": {
+    "success_rates": {
+      "low": 0.75,
+      "expected": 0.8918,
+      "high": 0.95
+    },
+    "chunks_per_successful_document": {
+      "low": 3.0,
+      "expected": 4.368244000897062,
+      "high": 8.0
+    }
+  },
+  "projected_successful_documents": {
+    "low": 3296038,
+    "expected": 3919210,
+    "high": 4174982
+  },
+  "projected_validated_chunks": {
+    "low": 9888114,
+    "expected": 17120066,
+    "high": 33399856
+  },
+  "timing": {
+    "crawl_planning_range_days": [
+      25,
+      35
+    ],
+    "crawl_linear_estimate_days": 28.209,
+    "dense_embedding_seconds": {
+      "low": 201764.069,
+      "expected": 349329.93,
+      "high": 681514.274
+    },
+    "sparse_build_linear_seconds": {
+      "low": 86079.632,
+      "expected": 149036.407,
+      "high": 290757.906
+    },
+    "index_flat_ip_estimated_seconds_per_query": 10.018,
+    "index_flat_ip_bounded_linear_range_seconds_per_query": [
+      2.823,
+      10.018
+    ],
+    "rerank_all_1200_queries_seconds": 3813.470972,
+    "rerank_scope": "fixed candidate depth 100; never the whole corpus"
+  },
+  "storage_artifact": "artifacts/phase8_scaling/storage_projection.json"
+}

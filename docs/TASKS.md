@@ -153,6 +153,17 @@ fabricated relevance metric was introduced.
 
 ---
 
-## Phase 8 and beyond
+## Phase 8 — Full-Corpus Scaling / Production Retrieval Build
 
-_Not started._
+| Task | Status | Date |
+|---|---|---|
+| Audit local disk and model full-pipeline storage/time capacity | COMPLETE | 2026-10-04 |
+| Add explicit bounded/full execution and free-space gates | COMPLETE | 2026-10-04 |
+| Add atomic stage manifests and transactional partition checkpoints | COMPLETE | 2026-10-04 |
+| Add streaming real-BGE-tokenizer chunk partitions | COMPLETE | 2026-10-04 |
+| Run deterministic bounded 5,000-URL acquisition/extraction proof | COMPLETE | 2026-10-04 |
+| Benchmark bounded dense alternatives and SQLite sparse scaling | COMPLETE | 2026-10-04 |
+| Demonstrate crawl/archive/chunk resume and checksum integrity | COMPLETE | 2026-10-04 |
+| Document stage plan, retention policy, and production blockers | COMPLETE | 2026-10-04 |
+
+**Phase 8 status: COMPLETE — production architecture and bounded gates are ready; unrestricted production remains disabled and Phase 9 was not started.**

@@ -22,6 +22,7 @@ data/chunks/
 data/embeddings/
 data/retrieval/
 data/indexes/
+data/production/
 
 # Local model caches
 .cache/

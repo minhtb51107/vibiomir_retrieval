@@ -1,0 +1,68 @@
+{
+  "unrestricted_enabled": false,
+  "current_decision": "BLOCKED",
+  "reason": "expected full retained and transient storage exceed both local free space and D: total capacity",
+  "stage_gates": {
+    "8A": {
+      "allowed": true,
+      "projected_growth_bytes": 2227092103,
+      "required_free_before_start_bytes": 26843545600,
+      "minimum_free_after_stage_bytes": 26843545600,
+      "free_before_bytes": 42408828928,
+      "projected_free_after_bytes": 40181736825,
+      "projected_disk_fraction": 0.850311,
+      "maximum_projected_disk_fraction": 0.9
+    },
+    "8B": {
+      "allowed": true,
+      "projected_growth_bytes": 4294967296,
+      "required_free_before_start_bytes": 32212254720,
+      "minimum_free_after_stage_bytes": 32212254720,
+      "free_before_bytes": 42408828928,
+      "projected_free_after_bytes": 38113861632,
+      "projected_disk_fraction": 0.858014,
+      "maximum_projected_disk_fraction": 0.9
+    },
+    "8C": {
+      "allowed": false,
+      "projected_growth_bytes": 71778625778,
+      "required_free_before_start_bytes": 107667938667,
+      "minimum_free_after_stage_bytes": 21474836480,
+      "free_before_bytes": 42408828928,
+      "projected_free_after_bytes": -29369796850,
+      "projected_disk_fraction": 1.109411,
+      "maximum_projected_disk_fraction": 0.9
+    },
+    "8D": {
+      "allowed": false,
+      "projected_growth_bytes": 24240704651,
+      "required_free_before_start_bytes": 36361056976,
+      "minimum_free_after_stage_bytes": 21474836480,
+      "free_before_bytes": 42408828928,
+      "projected_free_after_bytes": 18168124277,
+      "projected_disk_fraction": 0.932318,
+      "maximum_projected_disk_fraction": 0.9
+    },
+    "8E": {
+      "allowed": false,
+      "projected_growth_bytes": 475220265138,
+      "required_free_before_start_bytes": 712830397707,
+      "minimum_free_after_stage_bytes": 21474836480,
+      "free_before_bytes": 42408828928,
+      "projected_free_after_bytes": -432811436210,
+      "projected_disk_fraction": 2.612355,
+      "maximum_projected_disk_fraction": 0.9
+    },
+    "8F": {
+      "allowed": false,
+      "reason": "blocked until 8C, 8D, and 8E complete and validate"
+    }
+  },
+  "conditions_before_unrestricted": [
+    "provision external storage exceeding the high transient projection plus reserve",
+    "complete and validate bounded 8A and 8B manifests",
+    "choose and benchmark a scalable dense ANN index instead of silently changing IndexFlatIP",
+    "choose and benchmark a sparse backend or sharding plan if SQLite projection remains unsafe",
+    "set unrestricted_enabled only through an explicit reviewed config change"
+  ]
+}

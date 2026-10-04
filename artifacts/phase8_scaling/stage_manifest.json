@@ -1,0 +1,27 @@
+{
+  "stage": "8A-8B-bounded",
+  "source_sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+  "config_sha256": "cadd069c8c0a28dd4a2e0f0f99e3ce37ff7e015ecffc5d25b0b1488e57890dab",
+  "stage_version": 1,
+  "selected_count": 5000,
+  "row_start": null,
+  "row_end": null,
+  "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "tokenizer_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "status": "COMPLETE",
+  "completed_count": 4459,
+  "failure_count": 541,
+  "resume_count": 1,
+  "output_hashes": {
+    "archive_tree": "7b752232fae621e6074e1307a51bf813171b47462bab47e11bcb9fa94b6026bf",
+    "chunk_metadata": "fc4cd81a82d82d02527a452fee185124e1538efd58466903a7a45315b6df3c88",
+    "chunks": "7cf2c4ab98318a19ec789f0f7c3e4ac4952b563b0b5e22f3e3d068b8376a0bd0",
+    "crawl_database": "abb4846156c8e867a8077391bab7ce26de81aa1cf8904110782bfb7e1282965e",
+    "documents": "f8ba73831e7b44350fb10c588ef600a32768ddcaaf350c21d02340f24bb9dc8e",
+    "sparse_index": "8a93ccdb9ab278d561d848e634db6b859c59e9f01ea31daecbbe9aea456b105f"
+  },
+  "started_at": "2026-10-04T04:05:13.670216+00:00",
+  "updated_at": "2026-10-04T04:05:13.709144+00:00",
+  "completed_at": "2026-10-04T04:05:13.685535+00:00",
+  "run_id": "c650b985473c92916b4c2224"
+}

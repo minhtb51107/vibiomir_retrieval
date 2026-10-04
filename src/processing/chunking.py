@@ -133,6 +133,18 @@ def chunk_document(
             start = logical.start if token_start == 0 else logical.start + tokens[token_start].start
             end = logical.end if token_end == len(tokens) else logical.start + tokens[token_end - 1].end
             raw_text = document.normalized_text[start:end]
+            actual_tokens = tokenizer.spans(raw_text)
+            # Subword tokenizers can segment a slice differently from the same
+            # span in its surrounding text. Tighten the right edge until the
+            # independently tokenized stored chunk respects the hard budget.
+            while len(actual_tokens) > config.target_tokens and token_end > token_start + 1:
+                token_end = max(
+                    token_start + 1,
+                    token_end - max(1, len(actual_tokens) - config.target_tokens),
+                )
+                end = logical.start + tokens[token_end - 1].end
+                raw_text = document.normalized_text[start:end]
+                actual_tokens = tokenizer.spans(raw_text)
             normalized_text = unicodedata.normalize("NFC", raw_text)
             chunk_index = len(chunks)
             digest = hashlib.sha256(
@@ -147,7 +159,7 @@ def chunk_document(
                     chunk_index=chunk_index,
                     raw_text=raw_text,
                     normalized_text=normalized_text,
-                    token_count=len(tokenizer.spans(raw_text)),
+                    token_count=len(actual_tokens),
                     start_offset=start,
                     end_offset=end,
                     section_type=logical.section_type,

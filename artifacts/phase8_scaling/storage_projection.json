@@ -1,0 +1,81 @@
+{
+  "units": "bytes unless a field says otherwise",
+  "measured_sources": {
+    "crawl_rows": 5000,
+    "crawl_bytes_per_metadata_row": 411.24,
+    "pilot_successful_documents": 4459,
+    "validated_chunks": 19478,
+    "chunk_parquet_bytes": 13761254,
+    "dense_metadata_bytes": 45981696,
+    "sparse_index_bytes": 167563264,
+    "phase8_bounded_evidence_used": true
+  },
+  "network_transfer": {
+    "low": 220000000000,
+    "expected": 296869299011,
+    "high": 371086623763
+  },
+  "components": {
+    "crawl_metadata": {
+      "low": 1807283830,
+      "expected": 1807283830,
+      "high": 1807283830
+    },
+    "compressed_body_archive": {
+      "low": 55000000000,
+      "expected": 69971341948,
+      "high": 148434649505
+    },
+    "processed_documents": {
+      "low": 12145336712,
+      "expected": 12145336712,
+      "high": 12145336712
+    },
+    "validated_chunk_parquet": {
+      "low": 6985976401,
+      "expected": 12095367939,
+      "high": 23597078857
+    },
+    "dense_embeddings_float32": {
+      "low": 40501714944,
+      "expected": 70123790336,
+      "high": 136805810176
+    },
+    "faiss_index_flat_ip": {
+      "low": 40501714944,
+      "expected": 70123790336,
+      "high": 136805810176
+    },
+    "dense_metadata_sqlite": {
+      "low": 23342861277,
+      "expected": 40415323458,
+      "high": 78847008165
+    },
+    "bm25_sqlite": {
+      "low": 85064414039,
+      "expected": 147278680504,
+      "high": 287328724124
+    },
+    "retrieval_outputs": {
+      "low": 500000000,
+      "expected": 1000000000,
+      "high": 2000000000
+    },
+    "checkpoints_and_manifests": {
+      "low": 2000000000,
+      "expected": 3000000000,
+      "high": 5000000000
+    }
+  },
+  "retained_total": {
+    "low": 267849302147,
+    "expected": 427960915063,
+    "high": 832771701545
+  },
+  "transient_peak_during_atomic_sparse_build": {
+    "low": 352913716186,
+    "expected": 575239595567,
+    "high": 1120100425669
+  },
+  "note": "Ranges extrapolate bounded pilot density and are capacity estimates, not exact production sizes. Network transfer is not added to disk totals."
+}

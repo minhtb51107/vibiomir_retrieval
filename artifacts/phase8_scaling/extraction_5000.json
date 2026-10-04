@@ -1,0 +1,22 @@
+{
+  "crawl_database": "data\\crawled\\phase8_5k.sqlite",
+  "crawl_sha256": "abb4846156c8e867a8077391bab7ce26de81aa1cf8904110782bfb7e1282965e",
+  "extraction_config_sha256": "028230b8b4e3450e815454f7dfa6eee7e6a7d54b3e906fced73dbb90de248d25",
+  "rows_per_partition": 1000,
+  "initial_completed_rows": 0,
+  "final_completed_rows": 5000,
+  "rows_written_this_run": 5000,
+  "partitions_written_this_run": 5,
+  "status_counts": {
+    "ACCESS_RESTRICTED": 157,
+    "EMPTY_CONTENT": 4,
+    "EXTRACTION_FAILED": 55,
+    "JS_SHELL": 42,
+    "ROBOTS_BLOCKED": 283,
+    "SUCCESS": 4459
+  },
+  "successful_clean_characters": 7873624,
+  "runtime_seconds": 608.053236,
+  "output_directory": "data\\processed\\phase8_5k_parts",
+  "checkpoint": "data\\processed\\phase8_5k_extraction.sqlite"
+}

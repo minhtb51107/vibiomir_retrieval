@@ -1,0 +1,9 @@
+{
+  "input_directory": "data\\chunks\\phase8_5k_bge_parts_v2",
+  "partition_count": 5,
+  "chunk_count": 19478,
+  "unique_chunk_ids": 19478,
+  "chunk_id_order_sha256": "f21604cf623ea3136f729081be9eb89aa43da653715455f905f1ae550c8ea698",
+  "output": "data\\chunks\\phase8_5k_bge.parquet",
+  "output_size_bytes": 13761254
+}
