@@ -1,0 +1,29 @@
+{
+  "query_count": 1200,
+  "depths": [
+    50,
+    100,
+    200,
+    500,
+    1000
+  ],
+  "weak_query_count": 2,
+  "weak_query_fraction": 0.001667,
+  "lexical_candidate_count": {
+    "min": 10,
+    "median": 3000.0,
+    "max": 3000
+  },
+  "best_lexical_score": {
+    "min": 12.402258,
+    "median": 21.035667,
+    "p95": 30.098743,
+    "max": 45.202533
+  },
+  "maximum_query_terms_by_idf": 12,
+  "retrieval_seconds": 562.209792,
+  "mean_ms_per_query": 468.50816,
+  "output_path": "data\\url_reduction\\candidates.sqlite",
+  "output_size_bytes": 662343680,
+  "integrity_check": "ok"
+}

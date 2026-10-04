@@ -23,6 +23,7 @@ data/embeddings/
 data/retrieval/
 data/indexes/
 data/production/
+data/url_reduction/
 
 # Local model caches
 .cache/

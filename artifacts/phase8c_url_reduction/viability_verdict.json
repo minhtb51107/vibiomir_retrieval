@@ -1,0 +1,29 @@
+{
+  "verdict": "NOT VIABLE",
+  "signals": {
+    "global_urls_at_1000": 415767,
+    "reranked_retention_at_1000": 0.002534,
+    "weak_query_fraction": 0.001667,
+    "domain_fraction_at_1000": 1.0,
+    "han_share_retention": 0.017823,
+    "opaque_share_retention": 0.034282
+  },
+  "promising_checks": {
+    "global_size": false,
+    "reranked_retention": false,
+    "weak_queries": true,
+    "domain_diversity": true,
+    "han_preservation": false,
+    "opaque_preservation": false
+  },
+  "borderline_checks": {
+    "global_size": true,
+    "reranked_retention": false,
+    "weak_queries": true,
+    "domain_diversity": true,
+    "han_preservation": false,
+    "opaque_preservation": false
+  },
+  "bounded_10k_crawl_justified": false,
+  "policy": "engineering feasibility only; no relevance claim"
+}

@@ -1,0 +1,17 @@
+{
+  "zero_network_guard": true,
+  "network_requests_made": 0,
+  "preprocessing_seconds": 526.273574,
+  "index_finalize_seconds": 13.721149,
+  "index_build_total_seconds": 539.994723,
+  "retrieval_seconds": 562.209792,
+  "diagnostic_and_global_dedupe_seconds": 35.549044,
+  "candidate_and_diagnostics_seconds": 729.578444,
+  "measured_pipeline_seconds": 1269.573167,
+  "current_command_seconds": 729.578444,
+  "current_command_reused_index": true,
+  "current_command_reused_candidates": false,
+  "peak_process_rss_bytes": null,
+  "index_size_bytes": 283308032,
+  "candidate_database_size_bytes": 662343680
+}

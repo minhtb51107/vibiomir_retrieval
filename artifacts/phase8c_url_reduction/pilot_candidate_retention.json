@@ -1,0 +1,182 @@
+{
+  "dense": {
+    "source_depth": 50,
+    "by_url_depth": {
+      "50": {
+        "retained": 4,
+        "total": 33208,
+        "retention_fraction": 0.00012,
+        "top10_retained": 3,
+        "top10_total": 8096,
+        "top10_retention_fraction": 0.000371
+      },
+      "100": {
+        "retained": 9,
+        "total": 33208,
+        "retention_fraction": 0.000271,
+        "top10_retained": 8,
+        "top10_total": 8096,
+        "top10_retention_fraction": 0.000988
+      },
+      "200": {
+        "retained": 17,
+        "total": 33208,
+        "retention_fraction": 0.000512,
+        "top10_retained": 16,
+        "top10_total": 8096,
+        "top10_retention_fraction": 0.001976
+      },
+      "500": {
+        "retained": 39,
+        "total": 33208,
+        "retention_fraction": 0.001174,
+        "top10_retained": 32,
+        "top10_total": 8096,
+        "top10_retention_fraction": 0.003953
+      },
+      "1000": {
+        "retained": 77,
+        "total": 33208,
+        "retention_fraction": 0.002319,
+        "top10_retained": 58,
+        "top10_total": 8096,
+        "top10_retention_fraction": 0.007164
+      }
+    }
+  },
+  "sparse": {
+    "source_depth": 100,
+    "by_url_depth": {
+      "50": {
+        "retained": 5,
+        "total": 25606,
+        "retention_fraction": 0.000195,
+        "top10_retained": 3,
+        "top10_total": 4520,
+        "top10_retention_fraction": 0.000664
+      },
+      "100": {
+        "retained": 13,
+        "total": 25606,
+        "retention_fraction": 0.000508,
+        "top10_retained": 7,
+        "top10_total": 4520,
+        "top10_retention_fraction": 0.001549
+      },
+      "200": {
+        "retained": 24,
+        "total": 25606,
+        "retention_fraction": 0.000937,
+        "top10_retained": 12,
+        "top10_total": 4520,
+        "top10_retention_fraction": 0.002655
+      },
+      "500": {
+        "retained": 64,
+        "total": 25606,
+        "retention_fraction": 0.002499,
+        "top10_retained": 31,
+        "top10_total": 4520,
+        "top10_retention_fraction": 0.006858
+      },
+      "1000": {
+        "retained": 125,
+        "total": 25606,
+        "retention_fraction": 0.004882,
+        "top10_retained": 61,
+        "top10_total": 4520,
+        "top10_retention_fraction": 0.013496
+      }
+    }
+  },
+  "hybrid": {
+    "source_depth": 50,
+    "by_url_depth": {
+      "50": {
+        "retained": 5,
+        "total": 25610,
+        "retention_fraction": 0.000195,
+        "top10_retained": 4,
+        "top10_total": 5608,
+        "top10_retention_fraction": 0.000713
+      },
+      "100": {
+        "retained": 12,
+        "total": 25610,
+        "retention_fraction": 0.000469,
+        "top10_retained": 9,
+        "top10_total": 5608,
+        "top10_retention_fraction": 0.001605
+      },
+      "200": {
+        "retained": 20,
+        "total": 25610,
+        "retention_fraction": 0.000781,
+        "top10_retained": 17,
+        "top10_total": 5608,
+        "top10_retention_fraction": 0.003031
+      },
+      "500": {
+        "retained": 52,
+        "total": 25610,
+        "retention_fraction": 0.00203,
+        "top10_retained": 37,
+        "top10_total": 5608,
+        "top10_retention_fraction": 0.006598
+      },
+      "1000": {
+        "retained": 101,
+        "total": 25610,
+        "retention_fraction": 0.003944,
+        "top10_retained": 65,
+        "top10_total": 5608,
+        "top10_retention_fraction": 0.011591
+      }
+    }
+  },
+  "reranked": {
+    "source_depth": 100,
+    "by_url_depth": {
+      "50": {
+        "retained": 5,
+        "total": 46561,
+        "retention_fraction": 0.000107,
+        "top10_retained": 3,
+        "top10_total": 7021,
+        "top10_retention_fraction": 0.000427
+      },
+      "100": {
+        "retained": 14,
+        "total": 46561,
+        "retention_fraction": 0.000301,
+        "top10_retained": 7,
+        "top10_total": 7021,
+        "top10_retention_fraction": 0.000997
+      },
+      "200": {
+        "retained": 23,
+        "total": 46561,
+        "retention_fraction": 0.000494,
+        "top10_retained": 14,
+        "top10_total": 7021,
+        "top10_retention_fraction": 0.001994
+      },
+      "500": {
+        "retained": 62,
+        "total": 46561,
+        "retention_fraction": 0.001332,
+        "top10_retained": 28,
+        "top10_total": 7021,
+        "top10_retention_fraction": 0.003988
+      },
+      "1000": {
+        "retained": 118,
+        "total": 46561,
+        "retention_fraction": 0.002534,
+        "top10_retained": 52,
+        "top10_total": 7021,
+        "top10_retention_fraction": 0.007406
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+version: 1
+phase: 8C_url_reduction_feasibility
+network_allowed: false
+inputs:
+  queries: data/raw/query.parquet
+  corpus: data/raw/links_corpus.parquet
+  dense_candidates: data/retrieval/phase4_dense/chunk_rankings.parquet
+  sparse_candidates: data/retrieval/phase6_hybrid/sparse_chunk_rankings.parquet
+  hybrid_candidates: data/retrieval/phase6_hybrid/hybrid_chunk_rankings_rrf.parquet
+  reranked_candidates: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+outputs:
+  index: data/url_reduction/url_bm25.sqlite
+  candidates: data/url_reduction/candidates.sqlite
+  url_text_hashes: data/url_reduction/url_text_hashes.u64
+  artifacts: artifacts/phase8c_url_reduction
+tokenization:
+  unicode_normalization: NFC
+  casefold: true
+  percent_decode: true
+  accent_folded_tokens: true
+  han_unigrams: true
+  han_bigrams: true
+  character_ngrams: false
+  hostname_lexical_tokens: false
+  hostname_usage: domain_prior_only
+  maximum_url_characters: 4096
+  stopwords:
+    - a
+    - an
+    - and
+    - are
+    - bi
+    - bị
+    - cac
+    - các
+    - can
+    - co
+    - có
+    - cua
+    - của
+    - cho
+    - da
+    - đã
+    - de
+    - để
+    - duoc
+    - được
+    - em
+    - gi
+    - gì
+    - html
+    - http
+    - https
+    - la
+    - là
+    - mot
+    - một
+    - nay
+    - này
+    - nhu
+    - như
+    - nhung
+    - những
+    - php
+    - tai
+    - tại
+    - the
+    - thi
+    - thì
+    - tren
+    - trên
+    - va
+    - và
+    - voi
+    - với
+    - www
+index:
+  batch_rows: 16384
+  bm25_k1: 1.2
+  bm25_b: 0.75
+  query_vocabulary_only: true
+  fallback_rows_per_domain: 32
+  sqlite_cache_mib: 64
+candidates:
+  depths: [50, 100, 200, 500, 1000]
+  lexical_pool: 3000
+  maximum_query_terms_by_idf: 12
+  maximum_domain_share: 0.20
+  minimum_domains: 10
+  weak_query_best_score: 2.0
+  weak_query_minimum_lexical_candidates: 25
+  weak_query_fallback_fraction: 0.50
+  fallback_seed: vibiomir-url-reduction-v1
+pilot_retention:
+  source_depths:
+    dense: 50
+    sparse: 100
+    hybrid: 50
+    reranked: 100
+viability_gates:
+  promising:
+    maximum_global_urls_at_1000: 300000
+    minimum_reranked_retention_at_1000: 0.80
+    maximum_weak_query_fraction: 0.30
+    minimum_domain_fraction_at_1000: 0.80
+    minimum_han_share_retention: 0.50
+    minimum_opaque_share_retention: 0.50
+  borderline:
+    maximum_global_urls_at_1000: 800000
+    minimum_reranked_retention_at_1000: 0.60
+    maximum_weak_query_fraction: 0.50
+    minimum_domain_fraction_at_1000: 0.60
+    minimum_han_share_retention: 0.30
+    minimum_opaque_share_retention: 0.30

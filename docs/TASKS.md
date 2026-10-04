@@ -167,3 +167,19 @@ fabricated relevance metric was introduced.
 | Document stage plan, retention policy, and production blockers | COMPLETE | 2026-10-04 |
 
 **Phase 8 status: COMPLETE — production architecture and bounded gates are ready; unrestricted production remains disabled and Phase 9 was not started.**
+
+---
+
+## Phase 8C — Query-Conditioned URL Reduction Feasibility
+
+| Task | Status | Date |
+|---|---|---|
+| Process all 4,394,718 URLs using local URL/domain/path metadata only | COMPLETE | 2026-10-05 |
+| Build deterministic multilingual URL BM25 and domain-balanced fallback | COMPLETE | 2026-10-05 |
+| Retrieve all 1,200 queries at depths 50/100/200/500/1,000 | COMPLETE | 2026-10-05 |
+| Measure global reduction, domain/script diversity, and weak-query behavior | COMPLETE | 2026-10-05 |
+| Compare URL selections with dense/sparse/hybrid/reranked pilot candidates | COMPLETE | 2026-10-05 |
+| Apply predeclared viability gates and record an explicit verdict | COMPLETE — NOT VIABLE | 2026-10-05 |
+| Verify zero network requests and decline the proposed 10k crawl | COMPLETE | 2026-10-05 |
+
+**Phase 8C status: COMPLETE — URL-only reduction is NOT VIABLE; no candidate crawl was started, no submission was generated, and Phase 9 was not started.**
