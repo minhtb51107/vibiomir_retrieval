@@ -1,0 +1,91 @@
+{
+  "model": {
+    "model_name": "BAAI/bge-reranker-v2-m3",
+    "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "architecture": [
+      "XLMRobertaForSequenceClassification"
+    ],
+    "parameters": 567755777,
+    "tokenizer_name": "BAAI/bge-reranker-v2-m3",
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "device": "cuda",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "batch_size": 2,
+    "config_path": null
+  },
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "total_vram_bytes": 4294443008,
+  "sample_strategy": "64 largest query+chunk character pairs from unified top-100 pools",
+  "sample_original_token_lengths": {
+    "min": 794,
+    "max": 861
+  },
+  "sample_effective_token_lengths": {
+    "min": 512,
+    "max": 512
+  },
+  "pool_summary": {
+    "query_count": 1200,
+    "candidate_rows": 120000,
+    "max_depth": 100,
+    "source_rows_read": {
+      "dense": 60000,
+      "sparse": 120000,
+      "hybrid": 60000
+    },
+    "duplicate_source_rows": 0,
+    "union_size": {
+      "min": 101,
+      "median": 143.0,
+      "max": 150,
+      "mean": 139.77583333333334
+    },
+    "selected_size": {
+      "min": 100,
+      "max": 100
+    },
+    "preparation_latency_ms_per_query": {
+      "mean": 3.4434499998133106,
+      "p50": 0.8672000003571156,
+      "p95": 3.5948699731306983
+    }
+  },
+  "results": [
+    {
+      "batch_size": 1,
+      "status": "SUCCESS",
+      "sample_pairs": 64,
+      "elapsed_seconds": 3.660447,
+      "pairs_per_second": 17.484201,
+      "mean_latency_ms_per_pair": 57.194492,
+      "peak_allocated_bytes": 1155706880,
+      "peak_reserved_bytes": 1170210816,
+      "peak_reserved_vram_fraction": 0.272494,
+      "safe_headroom_bytes": 3124232192,
+      "score_min": -10.9921875,
+      "score_max": -3.052734375
+    },
+    {
+      "batch_size": 2,
+      "status": "SUCCESS",
+      "sample_pairs": 64,
+      "elapsed_seconds": 3.07263,
+      "pairs_per_second": 20.829059,
+      "mean_latency_ms_per_pair": 48.00985,
+      "peak_allocated_bytes": 1167249408,
+      "peak_reserved_bytes": 1184890880,
+      "peak_reserved_vram_fraction": 0.275913,
+      "safe_headroom_bytes": 3109552128,
+      "score_min": -10.9921875,
+      "score_max": -3.046875
+    },
+    {
+      "batch_size": 4,
+      "status": "OOM",
+      "error": "CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 4.00 GiB of which 1.30 GiB is free. Of the allocated memory 1.07 GiB is allocated by PyTorch, and 30.81 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+    }
+  ],
+  "chosen_batch_size": 2
+}

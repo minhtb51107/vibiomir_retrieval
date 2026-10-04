@@ -1,0 +1,34 @@
+{
+  "query_count": 1200,
+  "candidate_rows": 120000,
+  "max_depth": 100,
+  "source_rows_read": {
+    "dense": 60000,
+    "sparse": 120000,
+    "hybrid": 60000
+  },
+  "duplicate_source_rows": 0,
+  "union_size": {
+    "min": 101,
+    "median": 143.0,
+    "max": 150,
+    "mean": 139.77583333333334
+  },
+  "selected_size": {
+    "min": 100,
+    "max": 100
+  },
+  "preparation_latency_ms_per_query": {
+    "mean": 1.374488999802755,
+    "p50": 0.7105999993655132,
+    "p95": 1.1685900093652888
+  },
+  "path": "data\\retrieval\\phase7_reranking\\unified_candidate_pool_depth100.parquet",
+  "sha256": "9ffb934a0cfcfba7fcb11472179bab3aa5c7853ad147b6bceddfb4b521d849bc",
+  "input_hashes": {
+    "dense_candidates_sha256": "c4a413f6ce4a0bd7877b1efaa5bb5bd1b33be3561a6bc7d7966132fcee4efd21",
+    "sparse_candidates_sha256": "0e2850ab8d5d571559ccbd8a39dbdd4f86ad1be2492df7fde3ab466f997a131c",
+    "hybrid_candidates_sha256": "57a2e9e63b8f4bdee5365816f503d877a795702b7b77396a6ef1929d222f8ba1",
+    "candidate_pool_sha256": "9ffb934a0cfcfba7fcb11472179bab3aa5c7853ad147b6bceddfb4b521d849bc"
+  }
+}

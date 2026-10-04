@@ -1,0 +1,59 @@
+version: 1
+model:
+  name: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+  cache_dir: .cache/huggingface
+  device: cuda
+  precision: float16
+  batch_size: 2
+  max_sequence_length: 512
+  truncation: longest_first
+  seed: 20261003
+hardware_benchmark:
+  batch_sizes:
+    - 1
+    - 2
+  known_unsafe_batch_sizes:
+    - 4
+inputs:
+  queries: data/raw/query.parquet
+  dense_candidates: data/retrieval/phase4_dense/chunk_rankings.parquet
+  sparse_candidates: data/retrieval/phase6_hybrid/sparse_chunk_rankings.parquet
+  hybrid_candidates: data/retrieval/phase6_hybrid/hybrid_chunk_rankings_rrf.parquet
+candidate_pool:
+  dense_depth: 50
+  sparse_depth: 100
+  hybrid_depth: 50
+  rerank_depths:
+    - 20
+    - 50
+    - 100
+  default_depth: 100
+selection:
+  final_top_k_chunks: 50
+  final_top_k_docs: 10
+  max_chunks_per_doc: 3
+  exact_text_suppression: false
+  boilerplate_penalty:
+    enabled: false
+    max_characters: 80
+    section_types:
+      - title
+      - heading
+    penalty: 1.0
+  default_strategy: pure_rerank
+  mmr:
+    enabled: false
+    lambda: 0.7
+documents:
+  aggregation_methods:
+    - best_chunk
+    - top_n_mean
+  default_aggregation: best_chunk
+  top_n_mean: 3
+outputs:
+  directory: data/retrieval/phase7_reranking
+  checkpoint: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  artifacts: artifacts/phase7_reranking
+diagnostics:
+  sanity_query_count: 40

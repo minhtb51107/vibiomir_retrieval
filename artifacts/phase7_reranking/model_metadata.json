@@ -1,0 +1,18 @@
+{
+  "model_name": "BAAI/bge-reranker-v2-m3",
+  "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+  "architecture": [
+    "XLMRobertaForSequenceClassification"
+  ],
+  "parameters": 567755777,
+  "tokenizer_name": "BAAI/bge-reranker-v2-m3",
+  "native_max_sequence_length": 8192,
+  "max_sequence_length": 512,
+  "device": "cuda",
+  "inference_precision": "float16",
+  "output_dtype": "float32",
+  "batch_size": 2,
+  "config_path": null,
+  "model_load_seconds": 60.320863,
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU"
+}

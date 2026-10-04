@@ -1,0 +1,11 @@
+[
+  {
+    "initial_rows": 8704,
+    "final_rows": 120000,
+    "rows_scored_this_run": 111296,
+    "pool_rows": 120000,
+    "runtime_seconds": 3520.32286,
+    "complete": true,
+    "model_load_seconds": 60.320863
+  }
+]

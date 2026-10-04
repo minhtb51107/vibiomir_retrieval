@@ -1,0 +1,17 @@
+{
+  "reranked_depths": {
+    "20": {"rows": 24000, "queries": 1200, "rows_per_query": 20, "mapping_mismatches": 0},
+    "50": {"rows": 60000, "queries": 1200, "rows_per_query": 50, "mapping_mismatches": 0},
+    "100": {"rows": 120000, "queries": 1200, "rows_per_query": 100, "mapping_mismatches": 0}
+  },
+  "rank_sequences_valid": true,
+  "source_text_mapping_mismatches": 0,
+  "document_outputs": {
+    "pure_rerank": {"best_chunk_rows": 11382, "top_n_mean_rows": 11382},
+    "max_chunks_per_doc": {"best_chunk_rows": 11972, "top_n_mean_rows": 11972},
+    "controlled": {"best_chunk_rows": 11972, "top_n_mean_rows": 11972}
+  },
+  "document_queries": 1200,
+  "duplicate_doc_ids_within_query": 0,
+  "finalize_exit_code": 0
+}

@@ -134,6 +134,25 @@ fabricated relevance metric was introduced.
 
 ---
 
-## Phase 7 and beyond
+## Phase 7 — Reranking and Candidate Selection
+
+| Task | Status | Date |
+|---|---|---|
+| Build source-aware unified dense/sparse/hybrid candidate pools | COMPLETE | 2026-10-04 |
+| Pin and benchmark the multilingual BGE reranker on CUDA | COMPLETE | 2026-10-04 |
+| Select safe batch size 2 after recording batch-4 OOM | COMPLETE | 2026-10-04 |
+| Score all 120,000 pairs with transactional checkpoint/resume | COMPLETE | 2026-10-04 |
+| Verify checkpoint signature, integrity, and exact pool-key compatibility | COMPLETE | 2026-10-04 |
+| Materialize reranked chunk outputs at depths 20, 50, and 100 | COMPLETE | 2026-10-04 |
+| Produce best-chunk and top-three-mean document rankings | COMPLETE | 2026-10-04 |
+| Measure exact-text, per-document, and boilerplate controls | COMPLETE | 2026-10-04 |
+| Run 40-query multilingual/source-composition sanity checks | COMPLETE | 2026-10-04 |
+| Add offline candidate, checkpoint, selection, aggregation, and provenance tests | COMPLETE | 2026-10-04 |
+
+**Phase 7 status: COMPLETE — diagnostics are descriptive only; Phase 8 was not started.**
+
+---
+
+## Phase 8 and beyond
 
 _Not started._

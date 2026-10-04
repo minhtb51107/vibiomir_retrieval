@@ -1,0 +1,153 @@
+{
+  "label": "DESCRIPTIVE DIAGNOSTICS — not relevance evaluation",
+  "depth_experiments": [
+    {
+      "depth": 20,
+      "query_count": 1200,
+      "top1_changed_count": 1038,
+      "top1_changed_rate": 0.865,
+      "absolute_rank_movement": {
+        "mean": 5.6015,
+        "median": 5.0,
+        "p95": 14.0,
+        "max": 19
+      },
+      "top10_source_membership_before": {
+        "dense+hybrid": 2426,
+        "dense+sparse+hybrid": 7410,
+        "sparse+hybrid": 2164
+      },
+      "top10_source_membership_after": {
+        "dense+hybrid": 4329,
+        "dense+sparse+hybrid": 5794,
+        "sparse+hybrid": 1877
+      },
+      "promoted_into_top10_by_membership": {
+        "dense+hybrid": 2573,
+        "dense+sparse+hybrid": 1164,
+        "sparse+hybrid": 1191
+      },
+      "top10_language_signals_before": {
+        "latin-other-signal": 2,
+        "unknown": 370,
+        "vi-signal": 10023,
+        "zh-Han-script": 1605
+      },
+      "top10_language_signals_after": {
+        "latin-other-signal": 2,
+        "unknown": 482,
+        "vi-signal": 8578,
+        "zh-Han-script": 2938
+      },
+      "promoted_into_top10_by_language_signal": {
+        "unknown": 239,
+        "vi-signal": 2968,
+        "zh-Han-script": 1721
+      },
+      "top20_document_diversity": {
+        "mean_unique_docs_before": 8.948333,
+        "mean_unique_docs_after": 8.948333
+      }
+    },
+    {
+      "depth": 50,
+      "query_count": 1200,
+      "top1_changed_count": 1068,
+      "top1_changed_rate": 0.89,
+      "absolute_rank_movement": {
+        "mean": 13.7272,
+        "median": 11.0,
+        "p95": 34.0,
+        "max": 49
+      },
+      "top10_source_membership_before": {
+        "dense+hybrid": 2426,
+        "dense+sparse+hybrid": 7410,
+        "sparse+hybrid": 2164
+      },
+      "top10_source_membership_after": {
+        "dense+hybrid": 6353,
+        "dense+sparse+hybrid": 3646,
+        "sparse+hybrid": 2001
+      },
+      "promoted_into_top10_by_membership": {
+        "dense+hybrid": 5132,
+        "dense+sparse+hybrid": 837,
+        "sparse+hybrid": 1732
+      },
+      "top10_language_signals_before": {
+        "latin-other-signal": 2,
+        "unknown": 370,
+        "vi-signal": 10023,
+        "zh-Han-script": 1605
+      },
+      "top10_language_signals_after": {
+        "latin-other-signal": 1,
+        "unknown": 630,
+        "vi-signal": 7045,
+        "zh-Han-script": 4324
+      },
+      "promoted_into_top10_by_language_signal": {
+        "unknown": 448,
+        "vi-signal": 3802,
+        "zh-Han-script": 3451
+      },
+      "top20_document_diversity": {
+        "mean_unique_docs_before": 8.948333,
+        "mean_unique_docs_after": 9.6925
+      }
+    },
+    {
+      "depth": 100,
+      "query_count": 1200,
+      "top1_changed_count": 1077,
+      "top1_changed_rate": 0.8975,
+      "absolute_rank_movement": {
+        "mean": 26.814883,
+        "median": 22.0,
+        "p95": 68.0,
+        "max": 98
+      },
+      "top10_source_membership_before": {
+        "dense+hybrid": 2426,
+        "dense+sparse+hybrid": 7410,
+        "sparse+hybrid": 2164
+      },
+      "top10_source_membership_after": {
+        "dense": 2305,
+        "dense+hybrid": 4595,
+        "dense+sparse+hybrid": 3002,
+        "sparse": 817,
+        "sparse+hybrid": 1281
+      },
+      "promoted_into_top10_by_membership": {
+        "dense": 2305,
+        "dense+hybrid": 3603,
+        "dense+sparse+hybrid": 692,
+        "sparse": 817,
+        "sparse+hybrid": 1106
+      },
+      "top10_language_signals_before": {
+        "latin-other-signal": 2,
+        "unknown": 370,
+        "vi-signal": 10023,
+        "zh-Han-script": 1605
+      },
+      "top10_language_signals_after": {
+        "latin-other-signal": 1,
+        "unknown": 643,
+        "vi-signal": 6608,
+        "zh-Han-script": 4748
+      },
+      "promoted_into_top10_by_language_signal": {
+        "unknown": 493,
+        "vi-signal": 4002,
+        "zh-Han-script": 4028
+      },
+      "top20_document_diversity": {
+        "mean_unique_docs_before": 8.948333,
+        "mean_unique_docs_after": 9.994167
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "label": "CONTROL ACTIVATION COUNTS — not relevance evaluation",
+  "control_summary": {
+    "pure_rerank": {
+      "controls": {
+        "exact_text_suppression": false,
+        "max_chunks_per_doc": null,
+        "boilerplate_penalty_enabled": false
+      },
+      "activations": {
+        "input_candidates": 120000,
+        "selected_candidates": 60000,
+        "exact_text_suppressed": 0,
+        "max_chunks_per_doc_suppressed": 0,
+        "boilerplate_like_candidates": 7724,
+        "boilerplate_penalized": 0
+      },
+      "selection": {
+        "query_count": 1200,
+        "mean_unique_docs": 20.96,
+        "median_unique_docs": 21.0,
+        "minimum_unique_docs": 1,
+        "maximum_chunks_from_one_doc": 50,
+        "median_maximum_chunks_from_one_doc": 14.0
+      }
+    },
+    "max_chunks_per_doc": {
+      "controls": {
+        "exact_text_suppression": false,
+        "max_chunks_per_doc": 3,
+        "boilerplate_penalty_enabled": false
+      },
+      "activations": {
+        "input_candidates": 120000,
+        "selected_candidates": 56441,
+        "exact_text_suppressed": 0,
+        "max_chunks_per_doc_suppressed": 42107,
+        "boilerplate_like_candidates": 7724,
+        "boilerplate_penalized": 0
+      },
+      "selection": {
+        "query_count": 1200,
+        "mean_unique_docs": 31.4825,
+        "median_unique_docs": 33.0,
+        "minimum_unique_docs": 4,
+        "maximum_chunks_from_one_doc": 3,
+        "median_maximum_chunks_from_one_doc": 3.0
+      }
+    },
+    "controlled": {
+      "controls": {
+        "exact_text_suppression": true,
+        "max_chunks_per_doc": 3,
+        "boilerplate_penalty_enabled": true
+      },
+      "activations": {
+        "input_candidates": 120000,
+        "selected_candidates": 55500,
+        "exact_text_suppressed": 3262,
+        "max_chunks_per_doc_suppressed": 44422,
+        "boilerplate_like_candidates": 7724,
+        "boilerplate_penalized": 7724
+      },
+      "selection": {
+        "query_count": 1200,
+        "mean_unique_docs": 29.9225,
+        "median_unique_docs": 31.0,
+        "minimum_unique_docs": 4,
+        "maximum_chunks_from_one_doc": 3,
+        "median_maximum_chunks_from_one_doc": 3.0
+      }
+    }
+  }
+}

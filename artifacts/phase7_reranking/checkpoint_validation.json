@@ -1,0 +1,19 @@
+{
+  "validated_at_phase": "Phase 7 finalization",
+  "sqlite_integrity": "ok",
+  "score_count": 120000,
+  "distinct_score_keys": 120000,
+  "pool_rows": 120000,
+  "pool_unique_keys": 120000,
+  "missing_score_keys": 0,
+  "extra_score_keys": 0,
+  "null_score_or_timing_rows": 0,
+  "signature_matches": true,
+  "pool_sha256_matches": true,
+  "pool_sha256": "9ffb934a0cfcfba7fcb11472179bab3aa5c7853ad147b6bceddfb4b521d849bc",
+  "model_name": "BAAI/bge-reranker-v2-m3",
+  "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+  "batch_size": 2,
+  "max_sequence_length": 512,
+  "inference_precision": "float16"
+}
