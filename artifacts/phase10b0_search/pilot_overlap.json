@@ -1,0 +1,143 @@
+{
+  "label": "DESCRIPTIVE CANDIDATE OVERLAP — not relevance recall",
+  "search": {
+    "dense": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "sparse": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "hybrid": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "reranked": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    }
+  },
+  "random_equivalent_size": {
+    "dense": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "sparse": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "hybrid": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    },
+    "reranked": {
+      "available": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top10": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      },
+      "top50": {
+        "queries_with_any_overlap": 0,
+        "overlapping_query_doc_pairs": 0,
+        "queries_considered": 300
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "queries": 1200,
+  "search_requests": 2400,
+  "unique_result_urls": 9656,
+  "mapped_official_doc_ids": 84,
+  "crawl_candidate_count": 84,
+  "crawl_minutes_at_phase8_rate": 0.69,
+  "retained_storage_bytes": {
+    "low": 5505024,
+    "expected": 9171456,
+    "high": 13762560
+  }
+}

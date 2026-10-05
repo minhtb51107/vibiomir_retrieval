@@ -1,0 +1,17 @@
+{
+  "provider": "bing_rss",
+  "result_depth": 10,
+  "access": "public RSS response, no credential/payment/CAPTCHA; sequential cached requests",
+  "depth_limitation": "10 results; RSS ignored pagination/count probe, HTML scraping not used",
+  "stage_a_execution": {
+    "new_external_requests": 100,
+    "cached_assignments_reused": 0,
+    "new_result_urls_mapped": 579,
+    "cache_path": "data/search_discovery/search_cache.sqlite",
+    "cache_integrity_check": "ok"
+  },
+  "stage_a_request_status_counts": {
+    "SUCCESS": 100
+  },
+  "stage_a_passed": true
+}

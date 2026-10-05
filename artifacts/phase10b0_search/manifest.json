@@ -1,0 +1,28 @@
+{
+  "version": "phase10b0-v1",
+  "config_sha256": "accded34fcb25ea983d23c61fcea96b9a030cfcadc9dd8f97d0d44b28c5370f4",
+  "query_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+  "corpus_sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971",
+  "provider": "bing_rss",
+  "network_scope": "600 cached search metadata requests; zero candidate-page requests",
+  "cache": {
+    "path": "data\\search_discovery\\search_cache.sqlite",
+    "bytes": 3612672,
+    "integrity_check": "ok",
+    "responses": 600,
+    "response_statuses": {
+      "SUCCESS": 600
+    },
+    "result_rows": 5535,
+    "unique_result_urls": 2414,
+    "mapping_statuses": {
+      "exact_official_match": 21,
+      "no_official_match": 2393
+    }
+  },
+  "stage_a_passed": true,
+  "stage_b_verdict": "NOT VIABLE",
+  "stage_c_run": false,
+  "candidate_pages_crawled": 0,
+  "submissions_generated": 0
+}

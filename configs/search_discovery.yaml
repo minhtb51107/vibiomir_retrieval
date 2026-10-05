@@ -1,0 +1,89 @@
+version: phase10b0-v1
+
+inputs:
+  queries: data/raw/query.parquet
+  corpus: data/raw/links_corpus.parquet
+  dense_candidates: data/retrieval/phase4_dense/chunk_rankings.parquet
+  sparse_candidates: data/retrieval/phase6_hybrid/sparse_chunk_rankings.parquet
+  hybrid_candidates: data/retrieval/phase6_hybrid/hybrid_chunk_rankings_rrf.parquet
+  reranked_candidates: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+
+outputs:
+  cache: data/search_discovery/search_cache.sqlite
+  artifacts: artifacts/phase10b0_search
+
+sampling:
+  seed: 20261005
+  stage_a_queries: 50
+  stage_b_queries: 300
+  length_quantiles: 5
+  evidence_top_k: 10
+
+provider:
+  kind: bing_rss
+  endpoint: https://www.bing.com/search
+  locale: vi-VN
+  market_country: VN
+  result_depth: 10
+  documented_depth_limit: >-
+    The public RSS response returned exactly 10 items and ignored first/count
+    pagination during the access probe; HTML result scraping is intentionally
+    not used.
+  minimum_delay_seconds: 1.25
+  timeout_seconds: 20
+  maximum_retries: 2
+  backoff_seconds: 2.0
+  user_agent: ViBioMIR-Research/1.0 (search-discovery feasibility; cached, sequential)
+
+query_variants:
+  enabled: [Q0, Q1]
+  Q0: original Vietnamese query normalized to NFC
+  Q1: deterministic concise Vietnamese medical-keyword form
+  english: NOT_TESTED_NO_CACHED_TRANSLATION_MODEL
+  chinese: NOT_TESTED_NO_CACHED_TRANSLATION_MODEL
+
+url_mapping:
+  remove_fragment: true
+  normalize_scheme_and_host_case: true
+  normalize_default_ports: true
+  normalize_trailing_slash: true
+  decode_unreserved_percent_encoding: true
+  canonical_ignore_http_https: true
+  strip_tracking_parameters:
+    - utm_source
+    - utm_medium
+    - utm_campaign
+    - utm_term
+    - utm_content
+    - fbclid
+    - gclid
+    - msclkid
+  www_equivalence: false
+  reject_ambiguous: true
+
+stage_a_gate:
+  minimum_completed_request_fraction: 0.90
+  hard_failure_maximum_query_map_rate: 0.02
+  hard_failure_maximum_total_mapped_docs: 2
+
+stage_b_gates:
+  promising:
+    minimum_query_map_rate: 0.50
+    maximum_global_candidates: 300000
+    minimum_official_domains: 10
+    maximum_top_domain_share: 0.70
+    subgroup_minimum_size: 30
+    subgroup_minimum_query_map_rate: 0.65
+    q1_minimum_incremental_share: 0.20
+  borderline:
+    minimum_query_map_rate: 0.20
+    maximum_global_candidates: 800000
+    minimum_official_domains: 5
+    maximum_top_domain_share: 0.85
+
+projection:
+  full_query_count: 1200
+  phase8_crawl_urls_per_minute: 122.0
+  expected_retained_bytes_per_usable_document: 109184
+  low_retained_bytes_per_document: 65536
+  high_retained_bytes_per_document: 163840

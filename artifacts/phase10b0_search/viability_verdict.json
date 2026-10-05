@@ -1,0 +1,57 @@
+{
+  "verdict": "NOT VIABLE",
+  "overall_promising_gate": false,
+  "strong_subgroup_gate": false,
+  "borderline_gate": false,
+  "category_query_map_rates": {
+    "anatomy_physiology": {
+      "queries": 20,
+      "query_map_rate": 0.0
+    },
+    "treatment": {
+      "queries": 57,
+      "query_map_rate": 0.192982
+    },
+    "symptom": {
+      "queries": 69,
+      "query_map_rate": 0.173913
+    },
+    "diagnosis_test": {
+      "queries": 50,
+      "query_map_rate": 0.06
+    },
+    "drug": {
+      "queries": 75,
+      "query_map_rate": 0.133333
+    },
+    "general": {
+      "queries": 19,
+      "query_map_rate": 0.157895
+    },
+    "disease": {
+      "queries": 7,
+      "query_map_rate": 0.0
+    },
+    "international_term": {
+      "queries": 3,
+      "query_map_rate": 0.0
+    }
+  },
+  "gates": {
+    "promising": {
+      "minimum_query_map_rate": 0.5,
+      "maximum_global_candidates": 300000,
+      "minimum_official_domains": 10,
+      "maximum_top_domain_share": 0.7,
+      "subgroup_minimum_size": 30,
+      "subgroup_minimum_query_map_rate": 0.65,
+      "q1_minimum_incremental_share": 0.2
+    },
+    "borderline": {
+      "minimum_query_map_rate": 0.2,
+      "maximum_global_candidates": 800000,
+      "minimum_official_domains": 5,
+      "maximum_top_domain_share": 0.85
+    }
+  }
+}

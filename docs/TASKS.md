@@ -217,3 +217,21 @@ fabricated relevance metric was introduced.
 | Persist compact hashes, provenance, and experiment manifest | COMPLETE | 2026-10-05 |
 
 **Phase 10A implementation status: COMPLETE — nine calibration submissions are ready for manual upload. No automatic upload, crawl, model inference, or local relevance evaluation was performed.**
+
+---
+
+## Phase 10B0 — Search-Based Discovery Feasibility
+
+| Task | Status | Date |
+|---|---|---|
+| Predeclare provider, sampling, mapping, and viability gates | COMPLETE | 2026-10-05 |
+| Build deterministic stratified 50/300-query samples | COMPLETE | 2026-10-05 |
+| Implement cached sequential Bing RSS search collection | COMPLETE | 2026-10-05 |
+| Implement exact/normalized/ambiguous official URL mapping | COMPLETE | 2026-10-05 |
+| Complete 50-query Stage A with 100 successful requests | COMPLETE | 2026-10-05 |
+| Complete 300-query Stage B with 600/600 successful cached requests | COMPLETE | 2026-10-05 |
+| Measure query, variant, domain, overlap, random, and scale diagnostics | COMPLETE | 2026-10-05 |
+| Apply predeclared viability gates | COMPLETE — NOT VIABLE | 2026-10-05 |
+| Decline Stage C and candidate crawling | COMPLETE | 2026-10-05 |
+
+**Phase 10B0 status: COMPLETE — public RSS search was technically reliable but NOT VIABLE for official-corpus coverage. Stage C, candidate crawling, submission generation, and Phase 10B1 were not started.**

@@ -1,0 +1,41 @@
+{
+  "full_official_domain_count": 97,
+  "mapped_official_domain_count": 5,
+  "mapped": [
+    {
+      "domain": "nhathuoclongchau.com.vn",
+      "mapped_result_rows": 57,
+      "mapped_share": 0.730769,
+      "corpus_count": 79598,
+      "corpus_share": 0.018112
+    },
+    {
+      "domain": "www.vinmec.com",
+      "mapped_result_rows": 11,
+      "mapped_share": 0.141026,
+      "corpus_count": 26129,
+      "corpus_share": 0.005946
+    },
+    {
+      "domain": "medlatec.vn",
+      "mapped_result_rows": 4,
+      "mapped_share": 0.051282,
+      "corpus_count": 24762,
+      "corpus_share": 0.005634
+    },
+    {
+      "domain": "hellobacsi.com",
+      "mapped_result_rows": 4,
+      "mapped_share": 0.051282,
+      "corpus_count": 11747,
+      "corpus_share": 0.002673
+    },
+    {
+      "domain": "tiemchunglongchau.com.vn",
+      "mapped_result_rows": 2,
+      "mapped_share": 0.025641,
+      "corpus_count": 13281,
+      "corpus_share": 0.003022
+    }
+  ]
+}
