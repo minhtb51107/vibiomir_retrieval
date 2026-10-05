@@ -1,0 +1,17 @@
+{
+  "path": "data\\source_relevance_probe\\novel_pairs.sqlite",
+  "variant_missing": {
+    "S1": 13959,
+    "S2": 13473,
+    "S3": 25775,
+    "S4": 28814,
+    "S5": 9744,
+    "S6": 3490
+  },
+  "memberships": 95255,
+  "unique_pairs": 90349,
+  "deduplicated_pairs_saved": 4906,
+  "scored": 0,
+  "remaining": 90349,
+  "reused": false
+}

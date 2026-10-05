@@ -1,0 +1,104 @@
+{
+  "pilot": {
+    "document_rows": 1225,
+    "chunk_rows": 5643
+  },
+  "variants": {
+    "S1": {
+      "label": "cnkang",
+      "domain": "cnkang.com",
+      "inclusion": "extraction_success",
+      "added_documents": 1000,
+      "added_chunks": 2254,
+      "pilot_overlap_excluded": 0,
+      "combined_documents": 2225,
+      "combined_chunks": 7897,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S1\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S1\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S1\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S1\\combined_chunks.parquet"
+      }
+    },
+    "S2": {
+      "label": "familydoctor",
+      "domain": "familydoctor.com.cn",
+      "inclusion": "extraction_success",
+      "added_documents": 990,
+      "added_chunks": 2736,
+      "pilot_overlap_excluded": 0,
+      "combined_documents": 2215,
+      "combined_chunks": 8379,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S2\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S2\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S2\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S2\\combined_chunks.parquet"
+      }
+    },
+    "S3": {
+      "label": "ahospital",
+      "domain": "a-hospital.com",
+      "inclusion": "extraction_success",
+      "added_documents": 999,
+      "added_chunks": 8724,
+      "pilot_overlap_excluded": 1,
+      "combined_documents": 2224,
+      "combined_chunks": 14367,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S3\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S3\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S3\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S3\\combined_chunks.parquet"
+      }
+    },
+    "S4": {
+      "label": "suckhoecongdong",
+      "domain": "suckhoecongdongonline.vn",
+      "inclusion": "extraction_success",
+      "added_documents": 1000,
+      "added_chunks": 4575,
+      "pilot_overlap_excluded": 0,
+      "combined_documents": 2225,
+      "combined_chunks": 10218,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S4\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S4\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S4\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S4\\combined_chunks.parquet"
+      }
+    },
+    "S5": {
+      "label": "120ask_shortqa",
+      "domain": "120ask.com",
+      "inclusion": "short_qa",
+      "added_documents": 161,
+      "added_chunks": 507,
+      "pilot_overlap_excluded": 0,
+      "combined_documents": 1386,
+      "combined_chunks": 6150,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S5\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S5\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S5\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S5\\combined_chunks.parquet"
+      }
+    },
+    "S6": {
+      "label": "ask39_shortqa",
+      "domain": "ask.39.net",
+      "inclusion": "short_qa",
+      "added_documents": 132,
+      "added_chunks": 442,
+      "pilot_overlap_excluded": 0,
+      "combined_documents": 1357,
+      "combined_chunks": 6085,
+      "paths": {
+        "source_documents": "data\\source_relevance_probe\\S6\\source_documents.parquet",
+        "source_chunks": "data\\source_relevance_probe\\S6\\source_chunks.parquet",
+        "combined_documents": "data\\source_relevance_probe\\S6\\combined_documents.parquet",
+        "combined_chunks": "data\\source_relevance_probe\\S6\\combined_chunks.parquet"
+      }
+    }
+  }
+}

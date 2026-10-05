@@ -1,0 +1,117 @@
+version: 1
+phase: phase10b3_source_relevance_probe
+
+inputs:
+  queries: data/raw/query.parquet
+  official_corpus: data/raw/links_corpus.parquet
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_embeddings: data/embeddings/phase4_dense/chunk_embeddings.f32
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_checkpoint: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  pilot_reranked_chunks: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+
+sources:
+  S1:
+    label: cnkang
+    domain: cnkang.com
+    documents: data/source_acquisition/cnkang.com/final1000/documents.parquet
+    chunks: data/source_acquisition/cnkang.com/final1000/chunks.parquet
+    inclusion: extraction_success
+  S2:
+    label: familydoctor
+    domain: familydoctor.com.cn
+    documents: data/source_acquisition/familydoctor.com.cn/final1000/documents.parquet
+    chunks: data/source_acquisition/familydoctor.com.cn/final1000/chunks.parquet
+    inclusion: extraction_success
+  S3:
+    label: ahospital
+    domain: a-hospital.com
+    documents: data/source_acquisition/a-hospital.com/final1000/documents.parquet
+    chunks: data/source_acquisition/a-hospital.com/final1000/chunks.parquet
+    inclusion: extraction_success
+  S4:
+    label: suckhoecongdong
+    domain: suckhoecongdongonline.vn
+    documents: data/source_acquisition/suckhoecongdongonline.vn/final1000/documents.parquet
+    chunks: data/source_acquisition/suckhoecongdongonline.vn/final1000/chunks.parquet
+    inclusion: extraction_success
+  S5:
+    label: 120ask_shortqa
+    domain: 120ask.com
+    documents: data/source_acquisition/120ask.com/stage200/documents.parquet
+    chunks: data/source_acquisition/120ask.com/stage200/chunks.parquet
+    inclusion: short_qa
+  S6:
+    label: ask39_shortqa
+    domain: ask.39.net
+    documents: data/source_acquisition/ask.39.net/stage200/documents.parquet
+    chunks: data/source_acquisition/ask.39.net/stage200/chunks.parquet
+    inclusion: short_qa
+
+short_qa_rule:
+  extraction_status: SUCCESS
+  minimum_clean_characters: 100
+  minimum_paragraphs: 1
+  minimum_medical_signals: 1
+  excluded_statuses: [JS_SHELL, EMPTY_CONTENT, EXTRACTION_FAILED, ACCESS_RESTRICTED, ROBOTS_BLOCKED]
+
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    device: cuda
+    batch_size: 4
+    query_batch_size: 4
+    max_length: 512
+    normalize_embeddings: true
+    use_half_on_cuda: true
+    dimension: 1024
+    seed: 2026
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    device: cuda
+    batch_size: 2
+    max_sequence_length: 512
+    precision: float16
+    seed: 2026
+
+retrieval:
+  dense_top_k: 50
+  sparse_top_k: 100
+  hybrid_top_k: 50
+  rrf_constant: 60
+  rerank_depth: 100
+  bm25_k1: 1.2
+  bm25_b: 0.75
+  sparse_tokenizer: unicode_words_han_unigrams_bigrams_v1
+
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  chunk_expansion_tokens: 1024
+  strategy: pure_rerank
+  document_aggregation: best_chunk
+  output_directory: submissions
+  minimum_changed_queries_for_source_submission: 12
+
+safety:
+  maximum_new_storage_bytes: 10737418240
+  maximum_estimated_novel_rerank_seconds: 10800
+  measured_rerank_pairs_per_second: 31.467396
+  scoring_benchmark_pairs: 1024
+  minimum_scoring_pairs_per_second: 5.0
+  maximum_private_memory_fraction: 0.95
+
+outputs:
+  work_directory: data/source_relevance_probe
+  artifact_directory: artifacts/phase10b3_source_probe
+
+interpretation:
+  strong_signal: materially improves DOCS_RECALL or FINAL_SCORE over B0
+  positive_signal: same rounded recall but higher F2/precision or another reproducible organizer metric improvement
+  no_visible_signal: organizer metrics identical to B0 at displayed precision
+  negative_signal: precision or F2 falls with no recall gain
+  warning: no visible signal from a bounded sample does not prove the full source is irrelevant

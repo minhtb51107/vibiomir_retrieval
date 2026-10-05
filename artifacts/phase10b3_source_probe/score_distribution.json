@@ -1,0 +1,44 @@
+{
+  "S1": {
+    "before": 106041,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  },
+  "S2": {
+    "before": 106527,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  },
+  "S3": {
+    "before": 94225,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  },
+  "S4": {
+    "before": 91186,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  },
+  "S5": {
+    "before": 110256,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  },
+  "S6": {
+    "before": 116510,
+    "after": 120000,
+    "pool_rows": 120000,
+    "complete": true,
+    "integrity": "ok"
+  }
+}

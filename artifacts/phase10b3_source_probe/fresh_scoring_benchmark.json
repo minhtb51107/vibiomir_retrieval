@@ -1,0 +1,17 @@
+{
+  "mode": "benchmark",
+  "initial_remaining": 90349,
+  "target_pairs": 1024,
+  "pairs_scored": 64,
+  "final_remaining": 90285,
+  "model_load_seconds": 35.962858,
+  "inference_seconds": 2.532895,
+  "pairs_per_second": 25.267532,
+  "peak_private_bytes": 8828399616,
+  "physical_memory_bytes": 6112182272,
+  "peak_gpu_allocated_bytes": 1168297984,
+  "peak_gpu_reserved_bytes": 1191182336,
+  "integrity_check": "ok",
+  "stopped_reason": "private_memory_gate",
+  "gate_passed": false
+}

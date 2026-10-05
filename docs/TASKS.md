@@ -273,3 +273,22 @@ fabricated relevance metric was introduced.
 | Verify the full offline test suite and preserve large outputs under ignored data paths | COMPLETE | 2026-10-05 |
 
 **Phase 10B2 status: COMPLETE — 4,400 deterministic rows benchmarked, including 2,121 new URL fetches. A bounded 20k Vietnamese-source milestone is recommended but was not started. No embeddings, index, submission, or leaderboard work was performed.**
+
+---
+
+## Phase 10B3 — Source Relevance Probe
+
+| Task | Status | Date |
+|---|---|---|
+| Freeze source-only comparison and fixed submission policy | COMPLETE | 2026-10-06 |
+| Reuse pilot embeddings and embed only 19,238 new source chunks | COMPLETE | 2026-10-06 |
+| Build six independent 120,000-row candidate pools | COMPLETE | 2026-10-06 |
+| Reuse Phase 7 scores and deduplicate novel query/chunk inference | COMPLETE | 2026-10-06 |
+| Pass sustained 2,048-pair scorer gate and finish 18 isolated shards | COMPLETE | 2026-10-06 |
+| Verify 90,349/90,349 global scores and six complete SQLite checkpoints | COMPLETE | 2026-10-06 |
+| Finalize source-impact diagnostics for all 1,200 queries | COMPLETE | 2026-10-06 |
+| Generate and strictly validate B0 plus all locally impactful variants | COMPLETE | 2026-10-06 |
+| Prove source-verbatim provenance and byte-identical regeneration | COMPLETE | 2026-10-06 |
+| Preserve large artifacts under ignored data/submission paths | COMPLETE | 2026-10-06 |
+
+**Phase 10B3 status: COMPLETE — all six bounded source samples materially change local outputs and are ready for manual leaderboard probing. This is not relevance evaluation; no additional crawl, source scaling, or automatic upload was performed.**

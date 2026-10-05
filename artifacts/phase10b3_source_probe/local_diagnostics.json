@@ -1,0 +1,86 @@
+{
+  "S1": {
+    "query_count": 1200,
+    "queries_changed": 1167,
+    "queries_with_source_doc_top10": 1047,
+    "queries_with_source_chunk_top20": 963,
+    "stage_queries": {
+      "dense": 963,
+      "sparse": 0,
+      "hybrid": 849,
+      "reranker": 963
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  },
+  "S2": {
+    "query_count": 1200,
+    "queries_changed": 1007,
+    "queries_with_source_doc_top10": 619,
+    "queries_with_source_chunk_top20": 546,
+    "stage_queries": {
+      "dense": 546,
+      "sparse": 0,
+      "hybrid": 425,
+      "reranker": 546
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  },
+  "S3": {
+    "query_count": 1200,
+    "queries_changed": 1188,
+    "queries_with_source_doc_top10": 1123,
+    "queries_with_source_chunk_top20": 1016,
+    "stage_queries": {
+      "dense": 1016,
+      "sparse": 3,
+      "hybrid": 936,
+      "reranker": 1016
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  },
+  "S4": {
+    "query_count": 1200,
+    "queries_changed": 1143,
+    "queries_with_source_doc_top10": 1028,
+    "queries_with_source_chunk_top20": 946,
+    "stage_queries": {
+      "dense": 836,
+      "sparse": 836,
+      "hybrid": 876,
+      "reranker": 946
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  },
+  "S5": {
+    "query_count": 1200,
+    "queries_changed": 1102,
+    "queries_with_source_doc_top10": 960,
+    "queries_with_source_chunk_top20": 888,
+    "stage_queries": {
+      "dense": 888,
+      "sparse": 0,
+      "hybrid": 752,
+      "reranker": 888
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  },
+  "S6": {
+    "query_count": 1200,
+    "queries_changed": 637,
+    "queries_with_source_doc_top10": 253,
+    "queries_with_source_chunk_top20": 262,
+    "stage_queries": {
+      "dense": 262,
+      "sparse": 0,
+      "hybrid": 206,
+      "reranker": 262
+    },
+    "meaningful_output_change": true,
+    "submission_threshold_changed_queries": 12
+  }
+}

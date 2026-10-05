@@ -1,0 +1,69 @@
+{
+  "model": {
+    "model_name": "BAAI/bge-m3",
+    "requested_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "resolved_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "embedding_dimension": 1024,
+    "tokenizer_name": "BAAI/bge-m3",
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "pooling": [
+      "cls_token"
+    ],
+    "normalization": "L2",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "device": "cuda"
+  },
+  "variants": {
+    "S1": {
+      "source_sha256": "bdc444c7c0e20658019b49bf0de4e25ddf661874d44b122337542b7ec0d5324e",
+      "rows": 2254,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S1\\source_embeddings.f32",
+      "reused": false
+    },
+    "S2": {
+      "source_sha256": "986c75b7e755a5176c10d5ab6799b259e35a4e0278363fadeb5164ac12bee1ac",
+      "rows": 2736,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S2\\source_embeddings.f32",
+      "reused": false
+    },
+    "S3": {
+      "source_sha256": "269cf3d7270e6c128a75fb85834babc30485ad6cfee876db26df881b0bb9dfe6",
+      "rows": 8724,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S3\\source_embeddings.f32",
+      "reused": false
+    },
+    "S4": {
+      "source_sha256": "086e511d3d38725651d06226a743ae4195fad0a6ae18a7b6edd8ad57e5d55e33",
+      "rows": 4575,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S4\\source_embeddings.f32",
+      "reused": false
+    },
+    "S5": {
+      "source_sha256": "fcfcf43ea2c19d6e3c02ea642b2a004205218abc9533d8b7ca746521a0da3bda",
+      "rows": 507,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S5\\source_embeddings.f32",
+      "reused": false
+    },
+    "S6": {
+      "source_sha256": "a688d352f1a2e703b33e9f22d25448157470384a1b9a2beaae0239b963f3ed25",
+      "rows": 442,
+      "dimension": 1024,
+      "path": "data\\source_relevance_probe\\S6\\source_embeddings.f32",
+      "reused": false
+    }
+  },
+  "queries": {
+    "source_sha256": "ce13508b893bbd6b9169679d540630bc37eb5950cad08b4d5e0e5d7063670c08",
+    "rows": 1200,
+    "dimension": 1024,
+    "path": "data\\source_relevance_probe\\query_embeddings.f32"
+  },
+  "runtime_seconds": 303.0
+}

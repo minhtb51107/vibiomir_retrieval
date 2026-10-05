@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "S1": {
+      "pool_rows": 120000,
+      "reused_scores": 104509,
+      "newly_seeded": 0,
+      "novel_scores": 15491
+    },
+    "S2": {
+      "pool_rows": 120000,
+      "reused_scores": 106527,
+      "newly_seeded": 0,
+      "novel_scores": 13473
+    },
+    "S3": {
+      "pool_rows": 120000,
+      "reused_scores": 94225,
+      "newly_seeded": 0,
+      "novel_scores": 25775
+    },
+    "S4": {
+      "pool_rows": 120000,
+      "reused_scores": 91186,
+      "newly_seeded": 0,
+      "novel_scores": 28814
+    },
+    "S5": {
+      "pool_rows": 120000,
+      "reused_scores": 110256,
+      "newly_seeded": 0,
+      "novel_scores": 9744
+    },
+    "S6": {
+      "pool_rows": 120000,
+      "reused_scores": 116510,
+      "newly_seeded": 0,
+      "novel_scores": 3490
+    }
+  },
+  "novel_pairs": 96787,
+  "estimated_novel_rerank_seconds": 3075.79,
+  "maximum_estimated_novel_rerank_seconds": 10800,
+  "gpu_time_gate_passed": true
+}
