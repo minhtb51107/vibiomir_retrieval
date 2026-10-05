@@ -1,0 +1,28 @@
+{
+  "recorded_before_new_phase10b2_fetches": true,
+  "sample_seed": "vibiomir-phase8-bounded-v1",
+  "checkpoint_urls_per_source": 200,
+  "maximum_urls_per_source": 1000,
+  "maximum_new_urls_total": 6000,
+  "early_stop": {
+    "stop_if_robots_or_access_restriction_rate_above": 0.8,
+    "stop_if_usable_extraction_rate_below": 0.2,
+    "stop_if_repeated_antibot_is_unsafe": true
+  },
+  "tiers": {
+    "A": "usable extraction >=80%, no major access blocker, acceptable throughput, projected 50k fits local disk",
+    "B": "usable extraction 50-80%, moderate failures/slowness, operationally usable",
+    "C": "usable extraction <50% or strong operational problems",
+    "BLOCKED": "robots/protection makes acquisition inappropriate"
+  },
+  "reuse_policy": {
+    "phase8_results_and_bodies": "reuse only when doc_id and original_url match the deterministic domain sample",
+    "new_requests": "fetch only rows absent from the verified Phase 8 checkpoint",
+    "performance_label": "separate reused historical network evidence from new source-specific run timing"
+  },
+  "excluded_source": {
+    "domain": "zysjonline.com",
+    "reason": "existing Phase 2/8 evidence is robots-blocked; no repeat requests authorized"
+  },
+  "interpretation": "Ranks acquisition efficiency only, never relevance or leaderboard quality."
+}

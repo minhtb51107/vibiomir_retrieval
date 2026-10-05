@@ -254,3 +254,22 @@ fabricated relevance metric was introduced.
 | Add offline inventory, adapter, mapping, cache, routing, gate, and report tests | COMPLETE | 2026-10-05 |
 
 **Phase 10B1 status: COMPLETE AT PREDECLARED STOP — site-native search is NOT VIABLE as a major discovery channel. Stage 1, Stage 2, candidate crawling, embeddings, reranking, and submissions were not run.**
+
+---
+
+## Phase 10B2 — Source Acquisition Benchmark
+
+| Task | Status | Date |
+|---|---|---|
+| Freeze per-source sampling, early-stop, usable-text, and tier rules | COMPLETE | 2026-10-05 |
+| Build deterministic 1,000-row manifests for five primary sources and one Vietnamese control | COMPLETE | 2026-10-05 |
+| Reuse hash-verified Phase 8 results/bodies without duplicate requests | COMPLETE | 2026-10-05 |
+| Evaluate every source at the 200-row checkpoint | COMPLETE | 2026-10-05 |
+| Stop 120ask.com and ask.39.net after failing the usable-content gate | COMPLETE | 2026-10-05 |
+| Continue four passing sources to at most 1,000 attempted rows | COMPLETE | 2026-10-05 |
+| Run generic extraction and real BGE-M3 508/64 chunking | COMPLETE | 2026-10-05 |
+| Measure per-source acquisition, content, storage, chunk, and time metrics | COMPLETE | 2026-10-05 |
+| Produce 10k/50k/full-source engineering projections | COMPLETE | 2026-10-05 |
+| Verify the full offline test suite and preserve large outputs under ignored data paths | COMPLETE | 2026-10-05 |
+
+**Phase 10B2 status: COMPLETE — 4,400 deterministic rows benchmarked, including 2,121 new URL fetches. A bounded 20k Vietnamese-source milestone is recommended but was not started. No embeddings, index, submission, or leaderboard work was performed.**

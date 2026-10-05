@@ -1,0 +1,131 @@
+{
+  "basis": "linear engineering projections from bounded measured bytes and modeled source-exclusive time",
+  "sources": {
+    "cnkang.com": {
+      "attempted_basis": 1000,
+      "usable_rate": 0.713,
+      "chunks_per_usable_document": 2.6802,
+      "projected_chunks_per_10000_usable_docs": 26802,
+      "10k": {
+        "retained_bytes": 174223070,
+        "raw_transfer_bytes": 344333930,
+        "pipeline_seconds": 20563.56
+      },
+      "50k": {
+        "retained_bytes": 871115350,
+        "raw_transfer_bytes": 1721669650,
+        "pipeline_seconds": 102817.79
+      },
+      "full_source": {
+        "retained_bytes": 16785312611,
+        "raw_transfer_bytes": 33174439285,
+        "pipeline_seconds": 1981171.38
+      }
+    },
+    "120ask.com": {
+      "attempted_basis": 200,
+      "usable_rate": 0.145,
+      "chunks_per_usable_document": 3.8276,
+      "projected_chunks_per_10000_usable_docs": 38276,
+      "10k": {
+        "retained_bytes": 206977300,
+        "raw_transfer_bytes": 674770900,
+        "pipeline_seconds": 21342.49
+      },
+      "50k": {
+        "retained_bytes": 1034886500,
+        "raw_transfer_bytes": 3373854500,
+        "pipeline_seconds": 106712.47
+      },
+      "full_source": {
+        "retained_bytes": 19010430353,
+        "raw_transfer_bytes": 61976290146,
+        "pipeline_seconds": 1960263.24
+      }
+    },
+    "familydoctor.com.cn": {
+      "attempted_basis": 1000,
+      "usable_rate": 0.828,
+      "chunks_per_usable_document": 2.8647,
+      "projected_chunks_per_10000_usable_docs": 28647,
+      "10k": {
+        "retained_bytes": 185933210,
+        "raw_transfer_bytes": 643819600,
+        "pipeline_seconds": 17457.33
+      },
+      "50k": {
+        "retained_bytes": 929666050,
+        "raw_transfer_bytes": 3219098000,
+        "pipeline_seconds": 87286.67
+      },
+      "full_source": {
+        "retained_bytes": 8319637261,
+        "raw_transfer_bytes": 28807901148,
+        "pipeline_seconds": 781133.63
+      }
+    },
+    "ask.39.net": {
+      "attempted_basis": 200,
+      "usable_rate": 0.0,
+      "chunks_per_usable_document": 0,
+      "projected_chunks_per_10000_usable_docs": 0,
+      "10k": {
+        "retained_bytes": 125781250,
+        "raw_transfer_bytes": 475289450,
+        "pipeline_seconds": 22285.45
+      },
+      "50k": {
+        "retained_bytes": 628906250,
+        "raw_transfer_bytes": 2376447250,
+        "pipeline_seconds": 111427.23
+      },
+      "full_source": {
+        "retained_bytes": 4243544922,
+        "raw_transfer_bytes": 16035077819,
+        "pipeline_seconds": 751855.25
+      }
+    },
+    "a-hospital.com": {
+      "attempted_basis": 1000,
+      "usable_rate": 0.848,
+      "chunks_per_usable_document": 9.8797,
+      "projected_chunks_per_10000_usable_docs": 98797,
+      "10k": {
+        "retained_bytes": 247326950,
+        "raw_transfer_bytes": 429686430,
+        "pipeline_seconds": 10953.14
+      },
+      "50k": {
+        "retained_bytes": 1236634750,
+        "raw_transfer_bytes": 2148432150,
+        "pipeline_seconds": 54765.72
+      },
+      "full_source": {
+        "retained_bytes": 4188209839,
+        "raw_transfer_bytes": 7276267037,
+        "pipeline_seconds": 185479.46
+      }
+    },
+    "suckhoecongdongonline.vn": {
+      "attempted_basis": 1000,
+      "usable_rate": 0.998,
+      "chunks_per_usable_document": 4.5792,
+      "projected_chunks_per_10000_usable_docs": 45792,
+      "10k": {
+        "retained_bytes": 214365220,
+        "raw_transfer_bytes": 428637180,
+        "pipeline_seconds": 11751.11
+      },
+      "50k": {
+        "retained_bytes": 1071826100,
+        "raw_transfer_bytes": 2143185900,
+        "pipeline_seconds": 58755.56
+      },
+      "full_source": {
+        "retained_bytes": 3312006959,
+        "raw_transfer_bytes": 6622573022,
+        "pipeline_seconds": 181558.22
+      }
+    }
+  }
+}

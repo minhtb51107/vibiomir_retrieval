@@ -1,0 +1,493 @@
+{
+  "stage": "auto",
+  "sources": [
+    {
+      "domain": "cnkang.com",
+      "corpus_rows": 963438,
+      "corpus_share": 0.21923,
+      "stage": "final1000",
+      "attempted": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "fetch_successes": 1000,
+      "fetch_success_rate": 1.0,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 0,
+      "timeout_network_count": 0,
+      "extraction_successes": 1000,
+      "usable_documents": 713,
+      "usable_doc_rate": 0.713,
+      "empty_or_near_empty": 92,
+      "navigation_or_short_count": 224,
+      "duplicate_text_rows_beyond_first": 1,
+      "title_available": 995,
+      "qa_structured": 0,
+      "language_signal": "mostly Chinese",
+      "language_character_counts": {
+        "han": 910947,
+        "latin": 17777,
+        "vietnamese_specific": 2
+      },
+      "archive": {
+        "bodies": 1000,
+        "raw_bytes": 34433393,
+        "compressed_bytes": 9021735,
+        "average_raw_bytes_per_body": 34433.39,
+        "average_compressed_bytes_per_body": 9021.74
+      },
+      "average_clean_characters": 1117.12,
+      "chunks": {
+        "total": 2254,
+        "usable_documents_with_chunks": 713,
+        "per_usable_mean": 2.6802,
+        "per_usable_median": 2,
+        "per_usable_p95": 5.0,
+        "projected_per_10000_usable_docs": 26802
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 0,
+        "observed_new_wall_seconds": 0.0,
+        "reused_phase8_rows": 1000,
+        "modeled_crawl_seconds": 1998.714,
+        "urls_per_minute": 30.019,
+        "extraction_seconds": 52.607985,
+        "extraction_docs_per_second": 19.009,
+        "chunking_seconds": 5.03429,
+        "usable_docs_per_minute": 21.404
+      },
+      "storage": {
+        "retained_measured_bytes": 17422307,
+        "mib_per_1000_usable_docs": 23.303
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 174223070,
+          "raw_transfer_bytes": 344333930,
+          "pipeline_seconds": 20563.56
+        },
+        "50k": {
+          "retained_bytes": 871115350,
+          "raw_transfer_bytes": 1721669650,
+          "pipeline_seconds": 102817.79
+        },
+        "full_source": {
+          "retained_bytes": 16785312611,
+          "raw_transfer_bytes": 33174439285,
+          "pipeline_seconds": 1981171.38
+        }
+      },
+      "early_stop": false,
+      "early_stop_reason": "checkpoint passed"
+    },
+    {
+      "domain": "120ask.com",
+      "corpus_rows": 918479,
+      "corpus_share": 0.209,
+      "stage": "stage200",
+      "attempted": 200,
+      "status_counts": {
+        "SUCCESS": 200
+      },
+      "fetch_successes": 200,
+      "fetch_success_rate": 1.0,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 0,
+      "timeout_network_count": 0,
+      "extraction_successes": 200,
+      "usable_documents": 29,
+      "usable_doc_rate": 0.145,
+      "empty_or_near_empty": 39,
+      "navigation_or_short_count": 171,
+      "duplicate_text_rows_beyond_first": 0,
+      "title_available": 200,
+      "qa_structured": 200,
+      "language_signal": "mostly Chinese",
+      "language_character_counts": {
+        "han": 48862,
+        "latin": 287,
+        "vietnamese_specific": 0
+      },
+      "archive": {
+        "bodies": 200,
+        "raw_bytes": 13495418,
+        "compressed_bytes": 3499381,
+        "average_raw_bytes_per_body": 67477.09,
+        "average_compressed_bytes_per_body": 17496.9
+      },
+      "average_clean_characters": 291.33,
+      "chunks": {
+        "total": 612,
+        "usable_documents_with_chunks": 29,
+        "per_usable_mean": 3.8276,
+        "per_usable_median": 3,
+        "per_usable_p95": 6.0,
+        "projected_per_10000_usable_docs": 38276
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 0,
+        "observed_new_wall_seconds": 0.0,
+        "reused_phase8_rows": 200,
+        "modeled_crawl_seconds": 399.644,
+        "urls_per_minute": 30.027,
+        "extraction_seconds": 26.393352,
+        "extraction_docs_per_second": 7.578,
+        "chunking_seconds": 0.8124,
+        "usable_docs_per_minute": 4.354
+      },
+      "storage": {
+        "retained_measured_bytes": 4139546,
+        "mib_per_1000_usable_docs": 136.13
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 206977300,
+          "raw_transfer_bytes": 674770900,
+          "pipeline_seconds": 21342.49
+        },
+        "50k": {
+          "retained_bytes": 1034886500,
+          "raw_transfer_bytes": 3373854500,
+          "pipeline_seconds": 106712.47
+        },
+        "full_source": {
+          "retained_bytes": 19010430353,
+          "raw_transfer_bytes": 61976290146,
+          "pipeline_seconds": 1960263.24
+        }
+      },
+      "early_stop": true,
+      "early_stop_reason": "usable extraction below 20%"
+    },
+    {
+      "domain": "familydoctor.com.cn",
+      "corpus_rows": 447453,
+      "corpus_share": 0.10182,
+      "stage": "final1000",
+      "attempted": 1000,
+      "status_counts": {
+        "SUCCESS": 990,
+        "TIMEOUT": 10
+      },
+      "fetch_successes": 990,
+      "fetch_success_rate": 0.99,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 0,
+      "timeout_network_count": 10,
+      "extraction_successes": 990,
+      "usable_documents": 828,
+      "usable_doc_rate": 0.828,
+      "empty_or_near_empty": 10,
+      "navigation_or_short_count": 162,
+      "duplicate_text_rows_beyond_first": 0,
+      "title_available": 990,
+      "qa_structured": 769,
+      "language_signal": "mostly Chinese",
+      "language_character_counts": {
+        "han": 454629,
+        "latin": 3493,
+        "vietnamese_specific": 0
+      },
+      "archive": {
+        "bodies": 990,
+        "raw_bytes": 64381960,
+        "compressed_bytes": 15682682,
+        "average_raw_bytes_per_body": 65032.28,
+        "average_compressed_bytes_per_body": 15841.09
+      },
+      "average_clean_characters": 624.36,
+      "chunks": {
+        "total": 2736,
+        "usable_documents_with_chunks": 828,
+        "per_usable_mean": 2.8647,
+        "per_usable_median": 3.0,
+        "per_usable_p95": 3.0,
+        "projected_per_10000_usable_docs": 28647
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 479,
+        "observed_new_wall_seconds": 1011.454,
+        "reused_phase8_rows": 521,
+        "modeled_crawl_seconds": 1656.181,
+        "urls_per_minute": 36.228,
+        "extraction_seconds": 86.568937,
+        "extraction_docs_per_second": 11.551,
+        "chunking_seconds": 2.983341,
+        "usable_docs_per_minute": 29.997
+      },
+      "storage": {
+        "retained_measured_bytes": 18593321,
+        "mib_per_1000_usable_docs": 21.415
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 185933210,
+          "raw_transfer_bytes": 643819600,
+          "pipeline_seconds": 17457.33
+        },
+        "50k": {
+          "retained_bytes": 929666050,
+          "raw_transfer_bytes": 3219098000,
+          "pipeline_seconds": 87286.67
+        },
+        "full_source": {
+          "retained_bytes": 8319637261,
+          "raw_transfer_bytes": 28807901148,
+          "pipeline_seconds": 781133.63
+        }
+      },
+      "early_stop": false,
+      "early_stop_reason": "checkpoint passed"
+    },
+    {
+      "domain": "ask.39.net",
+      "corpus_rows": 337375,
+      "corpus_share": 0.07677,
+      "stage": "stage200",
+      "attempted": 200,
+      "status_counts": {
+        "HTTP_ERROR": 1,
+        "SUCCESS": 199
+      },
+      "fetch_successes": 199,
+      "fetch_success_rate": 0.995,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 1,
+      "timeout_network_count": 0,
+      "extraction_successes": 199,
+      "usable_documents": 0,
+      "usable_doc_rate": 0.0,
+      "empty_or_near_empty": 68,
+      "navigation_or_short_count": 199,
+      "duplicate_text_rows_beyond_first": 0,
+      "title_available": 199,
+      "qa_structured": 199,
+      "language_signal": "mostly Chinese",
+      "language_character_counts": {
+        "han": 18163,
+        "latin": 26,
+        "vietnamese_specific": 0
+      },
+      "archive": {
+        "bodies": 199,
+        "raw_bytes": 9505789,
+        "compressed_bytes": 2179917,
+        "average_raw_bytes_per_body": 47767.78,
+        "average_compressed_bytes_per_body": 10954.36
+      },
+      "average_clean_characters": 119.77,
+      "chunks": {
+        "total": 644,
+        "usable_documents_with_chunks": 0,
+        "per_usable_mean": 0,
+        "per_usable_median": 0,
+        "per_usable_p95": 0.0,
+        "projected_per_10000_usable_docs": 0
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 0,
+        "observed_new_wall_seconds": 0.0,
+        "reused_phase8_rows": 200,
+        "modeled_crawl_seconds": 429.452,
+        "urls_per_minute": 27.943,
+        "extraction_seconds": 15.759879,
+        "extraction_docs_per_second": 12.69,
+        "chunking_seconds": 0.497053,
+        "usable_docs_per_minute": 0.0
+      },
+      "storage": {
+        "retained_measured_bytes": 2515625,
+        "mib_per_1000_usable_docs": 2399.087
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 125781250,
+          "raw_transfer_bytes": 475289450,
+          "pipeline_seconds": 22285.45
+        },
+        "50k": {
+          "retained_bytes": 628906250,
+          "raw_transfer_bytes": 2376447250,
+          "pipeline_seconds": 111427.23
+        },
+        "full_source": {
+          "retained_bytes": 4243544922,
+          "raw_transfer_bytes": 16035077819,
+          "pipeline_seconds": 751855.25
+        }
+      },
+      "early_stop": true,
+      "early_stop_reason": "usable extraction below 20%"
+    },
+    {
+      "domain": "a-hospital.com",
+      "corpus_rows": 169339,
+      "corpus_share": 0.03853,
+      "stage": "final1000",
+      "attempted": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "fetch_successes": 1000,
+      "fetch_success_rate": 1.0,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 0,
+      "timeout_network_count": 0,
+      "extraction_successes": 1000,
+      "usable_documents": 848,
+      "usable_doc_rate": 0.848,
+      "empty_or_near_empty": 20,
+      "navigation_or_short_count": 152,
+      "duplicate_text_rows_beyond_first": 2,
+      "title_available": 1000,
+      "qa_structured": 0,
+      "language_signal": "mostly Chinese",
+      "language_character_counts": {
+        "han": 1493793,
+        "latin": 64008,
+        "vietnamese_specific": 66
+      },
+      "archive": {
+        "bodies": 1000,
+        "raw_bytes": 42968643,
+        "compressed_bytes": 12040134,
+        "average_raw_bytes_per_body": 42968.64,
+        "average_compressed_bytes_per_body": 12040.13
+      },
+      "average_clean_characters": 2251.16,
+      "chunks": {
+        "total": 8734,
+        "usable_documents_with_chunks": 848,
+        "per_usable_mean": 9.8797,
+        "per_usable_median": 9.0,
+        "per_usable_p95": 20.0,
+        "projected_per_10000_usable_docs": 98797
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 798,
+        "observed_new_wall_seconds": 805.685,
+        "reused_phase8_rows": 202,
+        "modeled_crawl_seconds": 1007.562,
+        "urls_per_minute": 59.55,
+        "extraction_seconds": 75.977576,
+        "extraction_docs_per_second": 13.162,
+        "chunking_seconds": 11.775357,
+        "usable_docs_per_minute": 50.498
+      },
+      "storage": {
+        "retained_measured_bytes": 24732695,
+        "mib_per_1000_usable_docs": 27.815
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 247326950,
+          "raw_transfer_bytes": 429686430,
+          "pipeline_seconds": 10953.14
+        },
+        "50k": {
+          "retained_bytes": 1236634750,
+          "raw_transfer_bytes": 2148432150,
+          "pipeline_seconds": 54765.72
+        },
+        "full_source": {
+          "retained_bytes": 4188209839,
+          "raw_transfer_bytes": 7276267037,
+          "pipeline_seconds": 185479.46
+        }
+      },
+      "early_stop": false,
+      "early_stop_reason": "checkpoint passed"
+    },
+    {
+      "domain": "suckhoecongdongonline.vn",
+      "corpus_rows": 154503,
+      "corpus_share": 0.03516,
+      "stage": "final1000",
+      "attempted": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "fetch_successes": 1000,
+      "fetch_success_rate": 1.0,
+      "robots_access_count": 0,
+      "robots_access_rate": 0.0,
+      "http_failure_count": 0,
+      "timeout_network_count": 0,
+      "extraction_successes": 1000,
+      "usable_documents": 998,
+      "usable_doc_rate": 0.998,
+      "empty_or_near_empty": 0,
+      "navigation_or_short_count": 2,
+      "duplicate_text_rows_beyond_first": 0,
+      "title_available": 1000,
+      "qa_structured": 0,
+      "language_signal": "mostly Vietnamese",
+      "language_character_counts": {
+        "han": 0,
+        "latin": 2374990,
+        "vietnamese_specific": 662540
+      },
+      "archive": {
+        "bodies": 1000,
+        "raw_bytes": 42863718,
+        "compressed_bytes": 11172344,
+        "average_raw_bytes_per_body": 42863.72,
+        "average_compressed_bytes_per_body": 11172.34
+      },
+      "average_clean_characters": 3290.99,
+      "chunks": {
+        "total": 4575,
+        "usable_documents_with_chunks": 998,
+        "per_usable_mean": 4.5792,
+        "per_usable_median": 4.0,
+        "per_usable_p95": 9.0,
+        "projected_per_10000_usable_docs": 45792
+      },
+      "performance": {
+        "crawl_time_basis": "observed wall time for new source-specific runs plus modeled Phase 8 reuse time from measured elapsed_ms and configured concurrency/delay",
+        "observed_new_rows": 844,
+        "observed_new_wall_seconds": 858.066,
+        "reused_phase8_rows": 156,
+        "modeled_crawl_seconds": 1013.966,
+        "urls_per_minute": 59.174,
+        "extraction_seconds": 51.83767,
+        "extraction_docs_per_second": 19.291,
+        "chunking_seconds": 109.307912,
+        "usable_docs_per_minute": 59.055
+      },
+      "storage": {
+        "retained_measured_bytes": 21436522,
+        "mib_per_1000_usable_docs": 20.484
+      },
+      "projections": {
+        "10k": {
+          "retained_bytes": 214365220,
+          "raw_transfer_bytes": 428637180,
+          "pipeline_seconds": 11751.11
+        },
+        "50k": {
+          "retained_bytes": 1071826100,
+          "raw_transfer_bytes": 2143185900,
+          "pipeline_seconds": 58755.56
+        },
+        "full_source": {
+          "retained_bytes": 3312006959,
+          "raw_transfer_bytes": 6622573022,
+          "pipeline_seconds": 181558.22
+        }
+      },
+      "early_stop": false,
+      "early_stop_reason": "checkpoint passed"
+    }
+  ]
+}

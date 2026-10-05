@@ -1,0 +1,62 @@
+version: 1
+phase: phase10b2_source_acquisition
+
+source:
+  corpus: data/raw/links_corpus.parquet
+  corpus_sha256: dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971
+  sample_seed: vibiomir-phase8-bounded-v1
+  phase8_manifest: data/production/manifests/phase8_5k_urls.json
+  phase8_manifest_sha256: 519210df010a835c38e8c5ff86bf525921c0fc22a31f8d86fe319de972032e5b
+  phase8_crawl_database: data/crawled/phase8_5k.sqlite
+  phase8_body_archive: data/crawled/body_archives/phase8_5k
+
+domains:
+  cnkang.com: {corpus_rows: 963438, corpus_share: 0.21923, expected_language: zh}
+  120ask.com: {corpus_rows: 918479, corpus_share: 0.20900, expected_language: zh}
+  familydoctor.com.cn: {corpus_rows: 447453, corpus_share: 0.10182, expected_language: zh}
+  ask.39.net: {corpus_rows: 337375, corpus_share: 0.07677, expected_language: zh}
+  a-hospital.com: {corpus_rows: 169339, corpus_share: 0.03853, expected_language: zh}
+  suckhoecongdongonline.vn: {corpus_rows: 154503, corpus_share: 0.03516, expected_language: vi, control: true}
+
+sampling:
+  checkpoint_urls_per_source: 200
+  maximum_urls_per_source: 1000
+  maximum_new_urls_total: 6000
+  method: sha256_rank_over_doc_id_with_phase8_seed
+
+gates:
+  early_stop:
+    robots_or_access_restriction_rate_gt: 0.80
+    usable_extraction_rate_lt: 0.20
+    stop_on_repeated_unsafe_antibot: true
+  tiers:
+    A: {usable_rate_min: 0.80, major_access_blocker: false}
+    B: {usable_rate_min: 0.50, usable_rate_max_exclusive: 0.80}
+    C: {usable_rate_max_exclusive: 0.50}
+    BLOCKED: {access_or_robots_rate_min: 0.80}
+
+usable_document:
+  extraction_status: SUCCESS
+  minimum_clean_characters: 500
+  minimum_paragraphs: 2
+  minimum_distinct_medical_terms: 1
+  note: coarse acquisition sanity only; not relevance evaluation
+
+chunking:
+  tokenizer_model: BAAI/bge-m3
+  tokenizer_revision: 5617a9f61b028005a4858fdac845db406aefb181
+  content_token_budget: 508
+  special_tokens: 2
+  overlap_tokens: 64
+
+pipeline:
+  crawler_config: configs/crawler.yaml
+  production_config: configs/production_pipeline.yaml
+  output_root: data/source_acquisition
+  archive_documents_per_shard: 1000
+  extraction_rows_per_partition: 1000
+
+efficiency_score:
+  formula: corpus_share * usable_doc_rate / normalized_resource_cost
+  normalized_resource_cost: 0.5 * (seconds_per_usable / median_seconds_per_usable) + 0.5 * (MiB_per_1000_usable / median_MiB_per_1000_usable)
+  purpose: engineering planning only; not relevance quality

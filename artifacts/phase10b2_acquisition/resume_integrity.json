@@ -1,0 +1,56 @@
+{
+  "cnkang.com": {
+    "sqlite_integrity": "ok",
+    "rows": 1000,
+    "archive": {
+      "verified_bodies": 1000,
+      "original_bytes": 34433393,
+      "compressed_bytes": 9021735
+    }
+  },
+  "120ask.com": {
+    "sqlite_integrity": "ok",
+    "rows": 200,
+    "archive": {
+      "verified_bodies": 200,
+      "original_bytes": 13495418,
+      "compressed_bytes": 3499381
+    }
+  },
+  "familydoctor.com.cn": {
+    "sqlite_integrity": "ok",
+    "rows": 1000,
+    "archive": {
+      "verified_bodies": 990,
+      "original_bytes": 64381960,
+      "compressed_bytes": 15682682
+    }
+  },
+  "ask.39.net": {
+    "sqlite_integrity": "ok",
+    "rows": 200,
+    "archive": {
+      "verified_bodies": 199,
+      "original_bytes": 9505789,
+      "compressed_bytes": 2179917
+    }
+  },
+  "a-hospital.com": {
+    "sqlite_integrity": "ok",
+    "rows": 1000,
+    "archive": {
+      "verified_bodies": 1000,
+      "original_bytes": 42968643,
+      "compressed_bytes": 12040134
+    }
+  },
+  "suckhoecongdongonline.vn": {
+    "sqlite_integrity": "ok",
+    "rows": 1000,
+    "archive": {
+      "verified_bodies": 1000,
+      "original_bytes": 42863718,
+      "compressed_bytes": 11172344
+    }
+  }
+}

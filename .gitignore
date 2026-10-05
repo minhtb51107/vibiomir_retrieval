@@ -26,6 +26,7 @@ data/production/
 data/url_reduction/
 data/search_discovery/
 data/site_discovery/
+data/source_acquisition/
 submissions/
 
 # Local model caches
