@@ -1,0 +1,64 @@
+version: phase10c0-v1
+domain: suckhoecongdongonline.vn
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  s4_documents: data/source_acquisition/suckhoecongdongonline.vn/final1000/documents.parquet
+  s4_final_documents: data/source_relevance_probe/S4/final_documents_top10.parquet
+  phase10b0_sample: artifacts/phase10b0_search/query_sample.json
+  phase10b1_probe: artifacts/phase10b1_site_discovery/stage0_probe.json
+outputs:
+  work_directory: data/s4_targeting
+  artifacts: artifacts/phase10c0_s4_targeting
+budgets: [5000, 10000, 20000, 40000]
+tokenization:
+  unicode_normalization: NFC
+  casefold: true
+  accent_folded_tokens: true
+  hostname_lexical_tokens: false
+  exclude_opaque_urls_from_scoring: true
+  stopwords: [a, an, and, are, bi, bị, cac, các, can, co, có, cua, của, cho, da, đã, de, để, duoc, được, em, gi, gì, html, http, https, la, là, mot, một, nay, này, nhu, như, nhung, những, php, tai, tại, the, thi, thì, tren, trên, va, và, voi, với, www]
+lexical:
+  bm25_k1: 1.2
+  bm25_b: 0.75
+  per_query_depth: 1000
+  rrf_constant: 60
+seed_expand:
+  folds: 5
+  fold_seed: vibiomir-s4-seed-fold-v1
+  maximum_token_document_fraction: 0.20
+ensemble:
+  rrf_constant: 60
+external_search:
+  provider: bing_rss
+  endpoint: https://www.bing.com/search
+  stage_a_queries: 50
+  stage_b_queries: 300
+  result_depth: 10
+  stage_a_minimum_query_map_rate: 0.30
+  minimum_delay_seconds: 1.25
+  timeout_seconds: 20
+  maximum_retries: 2
+  backoff_seconds: 2.0
+  locale: vi-VN
+  market_country: VN
+  user_agent: ViBioMIR-Research/1.0 (S4 targeting feasibility; cached, sequential)
+  cache: data/s4_targeting/search_cache.sqlite
+native_search:
+  preflight_only: true
+  prior_sample_results: 5
+  prior_exact_matches: 0
+  prior_normalized_matches: 0
+  prior_article_page_rate: 0.40
+verdicts:
+  strong_maximum_budget: 20000
+  strong_minimum_primary_retention: 0.70
+  strong_minimum_top_retention: 0.70
+  promising_minimum_primary_retention: 0.40
+  weak_maximum_primary_retention: 0.40
+future_acquisition:
+  targeted_fraction_if_strong: 0.80
+  exploration_fraction_if_strong: 0.20
+  targeted_fraction_if_promising: 0.75
+  exploration_fraction_if_promising: 0.25
+  next_new_urls: 4000

@@ -1,0 +1,16 @@
+{
+  "url_count": 154503,
+  "path_depth_counts": {
+    "0": 1,
+    "1": 154502
+  },
+  "repeated_first_segment_families": {},
+  "multi_segment_url_count": 0,
+  "verdict": "NOT_VIABLE",
+  "reason": "all article URLs are root-level unique slugs; no observed category path can rank URLs",
+  "tokenization": {
+    "opaque_urls": 90,
+    "informative_slug_urls": 154413
+  },
+  "preprocessing_seconds": 37.154
+}

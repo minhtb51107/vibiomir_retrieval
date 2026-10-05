@@ -1,0 +1,17 @@
+{
+  "stage": "A",
+  "query_count": 50,
+  "network_requests_this_run": 50,
+  "result_rows": 481,
+  "unique_result_urls": 390,
+  "mapped_rows": 0,
+  "unique_mapped_docs": 0,
+  "queries_with_mapped_docs": 0,
+  "query_map_rate": 0.0,
+  "ranking_doc_ids": [],
+  "gate_passed": false,
+  "gate": ">=30% of 50 queries map at least one official S4 URL",
+  "match_levels": {
+    "no_match": 481
+  }
+}

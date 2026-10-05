@@ -1,0 +1,9 @@
+date,phase,submission,description,final_score,docs_f2,chunks_f2,docs_precision,docs_recall,chunks_precision,chunks_recall,conclusion,commit
+UNKNOWN,Phase 9,phase9_A_pure_best_chunk,First valid pilot-corpus organizer submission,0.0001,0.0001,0.0001,0.0006,0.0001,0.0008,0.0001,Severe corpus-coverage limitation; quality remained effectively near zero,abf2bf7
+UNKNOWN,Phase 10B3,B0 fixed baseline,Fixed pure-rerank best-chunk control with top20 expanded chunks,0.0001,0.0001,0.0001,0.0006,0.0001,0.0020,0.0001,Expansion improved chunk precision relative to the first submission but not recall,fa9128b
+UNKNOWN,Phase 10B3,S1 cnkang,Fixed policy plus 1000 cnkang documents,0.0001,0.0001,0.0001,0.0007,0.0001,0.0021,0.0001,No visible recall or final-score gain,fa9128b
+UNKNOWN,Phase 10B3,S2 familydoctor,Fixed policy plus 990 familydoctor documents,0.0002,0.0002,0.0001,0.0008,0.0002,0.0019,0.0001,Weak but real document-side positive signal,fa9128b
+UNKNOWN,Phase 10B3,S3 a-hospital,Fixed policy plus 999 a-hospital documents,0.0001,0.0001,0.0001,0.0005,0.0001,0.0019,0.0001,Large local ranking movement did not improve organizer relevance,fa9128b
+UNKNOWN,Phase 10B3,S4 suckhoecongdongonline,Fixed policy plus 1000 S4 documents,0.0004,0.0003,0.0004,0.0019,0.0003,0.0031,0.0003,First source probe with a clear multi-metric organizer gain,fa9128b
+UNKNOWN,Phase 10B3,S5 120ask short-QA,Fixed policy plus 161 short Q&A documents,0.0001,0.0001,0.0001,0.0005,0.0001,0.0019,0.0001,Very large local movement did not improve organizer relevance,fa9128b
+UNKNOWN,Phase 10B3,S6 ask39 short-QA,Fixed policy plus 132 short Q&A documents,0.0001,0.0001,0.0001,0.0005,0.0001,0.0020,0.0001,No visible organizer gain,fa9128b

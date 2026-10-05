@@ -1,0 +1,111 @@
+{
+  "s4_url_count": 154503,
+  "budgets": [
+    5000,
+    10000,
+    20000,
+    40000
+  ],
+  "methods": {
+    "A_url_lexical": {
+      "verdict": "WEAK",
+      "metrics": {
+        "primary_retention": {
+          "5000": 0.073016,
+          "10000": 0.15873,
+          "20000": 0.24127,
+          "40000": 0.457143
+        },
+        "top5_retention": {
+          "5000": 0.083333,
+          "10000": 0.199074,
+          "20000": 0.310185,
+          "40000": 0.541667
+        },
+        "top3_retention": {
+          "5000": 0.099415,
+          "10000": 0.233918,
+          "20000": 0.362573,
+          "40000": 0.584795
+        },
+        "random_expected": {
+          "5000": 0.032362,
+          "10000": 0.064724,
+          "20000": 0.129447,
+          "40000": 0.258895
+        }
+      }
+    },
+    "B_path_category": {
+      "verdict": "NOT_VIABLE",
+      "metrics": null
+    },
+    "C_seed_expand": {
+      "verdict": "WEAK",
+      "metrics": {
+        "primary_retention": {
+          "5000": 0.038095,
+          "10000": 0.07619,
+          "20000": 0.152381,
+          "40000": 0.285714
+        },
+        "top5_retention": {
+          "5000": 0.032407,
+          "10000": 0.069444,
+          "20000": 0.157407,
+          "40000": 0.277778
+        },
+        "top3_retention": {
+          "5000": 0.035088,
+          "10000": 0.070175,
+          "20000": 0.157895,
+          "40000": 0.269006
+        },
+        "random_expected": {
+          "5000": 0.032362,
+          "10000": 0.064724,
+          "20000": 0.129447,
+          "40000": 0.258895
+        },
+        "evaluation": "held-out only; each positive evaluated under the fold where it was not a seed"
+      }
+    },
+    "E_native_search": {
+      "verdict": "NOT_VIABLE",
+      "metrics": null
+    },
+    "D_external_site_search": {
+      "verdict": "NOT_VIABLE",
+      "metrics": {
+        "primary_retention": {
+          "5000": 0.0,
+          "10000": 0.0,
+          "20000": 0.0,
+          "40000": 0.0
+        },
+        "top5_retention": {
+          "5000": 0.0,
+          "10000": 0.0,
+          "20000": 0.0,
+          "40000": 0.0
+        },
+        "top3_retention": {
+          "5000": 0.0,
+          "10000": 0.0,
+          "20000": 0.0,
+          "40000": 0.0
+        },
+        "random_expected": {
+          "5000": 0.032362,
+          "10000": 0.064724,
+          "20000": 0.129447,
+          "40000": 0.258895
+        }
+      }
+    }
+  },
+  "ensemble": {
+    "ran": false,
+    "reason": "fewer than two PROMISING/STRONG local methods"
+  }
+}

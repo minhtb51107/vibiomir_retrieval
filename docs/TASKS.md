@@ -292,3 +292,22 @@ fabricated relevance metric was introduced.
 | Preserve large artifacts under ignored data/submission paths | COMPLETE | 2026-10-06 |
 
 **Phase 10B3 status: COMPLETE — all six bounded source samples materially change local outputs and are ready for manual leaderboard probing. This is not relevance evaluation; no additional crawl, source scaling, or automatic upload was performed.**
+
+---
+
+## Phase 10C0 — S4 Targeting Tournament and Experiment Journal
+
+| Task | Status | Date |
+|---|---|---|
+| Backfill evidence-grounded timeline and experiment journal | COMPLETE | 2026-10-06 |
+| Record all supported organizer results in durable CSV history | COMPLETE | 2026-10-06 |
+| Build S4 top10/top5/top3 and multi-query proxy sets | COMPLETE | 2026-10-06 |
+| Evaluate hostname-free URL lexical ranking at common budgets | COMPLETE — WEAK | 2026-10-06 |
+| Audit S4 path/category structure | COMPLETE — NOT VIABLE | 2026-10-06 |
+| Evaluate seed expansion with five-fold held-out proxies | COMPLETE — WEAK | 2026-10-06 |
+| Run bounded 50-query site-restricted external-search gate | COMPLETE — NOT VIABLE | 2026-10-06 |
+| Reuse native-search preflight and stop the failed branch | COMPLETE — NOT VIABLE | 2026-10-06 |
+| Apply the predeclared ensemble gate | COMPLETE — NOT RUN; no qualifying methods | 2026-10-06 |
+| Recommend future broad deterministic S4 sampling without starting it | COMPLETE | 2026-10-06 |
+
+**Phase 10C0 status: COMPLETE — cheap metadata/search targeting is too weak for an S4-5K acquisition cut. No crawl, adaptive acquisition, GPU work, model change, submission, or 300-query search stage was started.**
