@@ -235,3 +235,22 @@ fabricated relevance metric was introduced.
 | Decline Stage C and candidate crawling | COMPLETE | 2026-10-05 |
 
 **Phase 10B0 status: COMPLETE — public RSS search was technically reliable but NOT VIABLE for official-corpus coverage. Stage C, candidate crawling, submission generation, and Phase 10B1 were not started.**
+
+---
+
+## Phase 10B1 — Multilingual Site-Native Discovery
+
+| Task | Status | Date |
+|---|---|---|
+| Record fatal assumptions and G0/G1/G2 gates before network work | COMPLETE | 2026-10-05 |
+| Inventory all 97 domains across all 4,394,718 official rows | COMPLETE | 2026-10-05 |
+| Select 19 share/language/accessibility-balanced sources | COMPLETE | 2026-10-05 |
+| Audit local translation capability without downloading a model | COMPLETE | 2026-10-05 |
+| Probe first-party search/sitemap/category mechanisms under hard request caps | COMPLETE | 2026-10-05 |
+| Verify sampled official-URL mapping and query sensitivity | COMPLETE | 2026-10-05 |
+| Apply predeclared G0 weighted-coverage gate | COMPLETE — WEAK (3.853%) | 2026-10-05 |
+| Stop Stage 1/2 after failed G0; perform no candidate crawl | COMPLETE | 2026-10-05 |
+| Publish reusable 97-source discovery/acquisition map | COMPLETE | 2026-10-05 |
+| Add offline inventory, adapter, mapping, cache, routing, gate, and report tests | COMPLETE | 2026-10-05 |
+
+**Phase 10B1 status: COMPLETE AT PREDECLARED STOP — site-native search is NOT VIABLE as a major discovery channel. Stage 1, Stage 2, candidate crawling, embeddings, reranking, and submissions were not run.**

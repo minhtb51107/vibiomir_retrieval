@@ -1,0 +1,112 @@
+{
+  "phase": "10B1",
+  "recorded_before_network_probing": true,
+  "purpose": "Disprove site-native discovery cheaply before query-scale work.",
+  "hard_caps": {
+    "stage0_selected_domains": 20,
+    "stage0_requests_per_domain": 4,
+    "stage0_total_requests": 70,
+    "stage1_queries": 120,
+    "stage2_queries": 300,
+    "results_per_request": 20,
+    "translation_download_bytes": 2000000000,
+    "candidate_content_requests": 0
+  },
+  "assumptions": [
+    {
+      "id": "A",
+      "assumption": "Enough important corpus domains expose legitimate usable discovery mechanisms.",
+      "cheapest_test": "For 15-20 corpus-share/language-stratified domains, inspect robots.txt, the home page, declared search forms, and at most two conventional public discovery endpoints.",
+      "pass_condition": "Native-search mechanisms collectively represent at least 10% of corpus rows, or a strategically valuable language/source class representing at least 5% has a usable specialist mechanism.",
+      "fail_condition": "Native-search mechanisms represent under 10% of corpus rows and no strategically valuable specialist group reaches 5%.",
+      "action_if_failed": "Classify G0 as WEAK and stop before Stage 1; still publish the 97-domain source map."
+    },
+    {
+      "id": "B",
+      "assumption": "URLs returned by usable mechanisms map unambiguously to links_corpus.parquet.",
+      "cheapest_test": "Map up to five article-like returned URLs per usable mechanism using exact and conservative normalized lookup.",
+      "pass_condition": "At least 30% map exactly or conservatively, with no more than 5% ambiguous mappings.",
+      "fail_condition": "Fewer than 10% map, or ambiguity exceeds 5%.",
+      "action_if_failed": "Disable the mechanism; do not compensate with speculative canonicalization."
+    },
+    {
+      "id": "C",
+      "assumption": "Discovery results expose individual content pages rather than only categories, tags, or search pages.",
+      "cheapest_test": "Classify the small mapping-probe result set by URL pattern and official-corpus membership.",
+      "pass_condition": "At least 60% of returned candidate URLs are article/content-like and at least one maps to an official row.",
+      "fail_condition": "Fewer than 30% are article/content-like, or none maps to the official corpus.",
+      "action_if_failed": "Reclassify as SITEMAP or CATEGORY_INDEX, not NATIVE_SEARCH, and exclude it from query experiments."
+    },
+    {
+      "id": "D",
+      "assumption": "Discovery can be automated conservatively without CAPTCHA, payment, authentication, or bypass.",
+      "cheapest_test": "Make no more than four slow requests per selected domain and record status, challenge markers, and rate-limit behavior.",
+      "pass_condition": "The mechanism responds without CAPTCHA/payment/authentication and without repeated 403/429/challenge responses.",
+      "fail_condition": "Use requires payment, login, CAPTCHA, private API reverse-engineering, or repeated blocking.",
+      "action_if_failed": "Mark BLOCKED and stop requests to that domain."
+    },
+    {
+      "id": "E",
+      "assumption": "Results are not merely a tiny repeated set of popular pages.",
+      "cheapest_test": "For mechanisms passing mapping, compare returned URL uniqueness across two cheap deterministic medical probes.",
+      "pass_condition": "At least 50% of mapped rows are unique and no single page contributes over 25% of mapped rows.",
+      "fail_condition": "Unique ratio is below 25% or one page contributes over 50%.",
+      "action_if_failed": "Exclude the mechanism from Stage 1."
+    },
+    {
+      "id": "F",
+      "assumption": "Language mismatch can be handled without a closed LLM or large new model.",
+      "cheapest_test": "Audit project and user model caches plus installed packages before any download; estimate size/runtime for any candidate open MT model.",
+      "pass_condition": "A suitable cached model exists, or an open model under 1 GB preferred/2 GB hard cap works without changing CUDA/PyTorch.",
+      "fail_condition": "Only closed, paid, incompatible, or over-2-GB paths are available.",
+      "action_if_failed": "Do not download; test only deterministic native-language branches that are available and label the rest UNTESTED."
+    },
+    {
+      "id": "G",
+      "assumption": "Request count and runtime remain reasonable.",
+      "cheapest_test": "Project request counts from passing adapters before Stage 1 and again before Stage 2.",
+      "pass_condition": "Stage 0 stays at or below 70 requests; projected Stage 1 stays at or below 2400 requests and four hours at the configured rate.",
+      "fail_condition": "A stage exceeds its request cap or measured rate projects beyond four hours for Stage 1.",
+      "action_if_failed": "Do not scale; narrow only by disabling failed endpoints, never by increasing concurrency."
+    },
+    {
+      "id": "H",
+      "assumption": "Usable query search covers a meaningful share of official corpus rows, rather than many tiny domains.",
+      "cheapest_test": "Weight passing NATIVE_SEARCH domains by their exact official corpus row counts; report sitemap/category coverage separately.",
+      "pass_condition": "G0 STRONG at 30% or more, PARTIAL at 10-30%, or PARTIAL_SPECIALIST for a justified source/language class of at least 5%.",
+      "fail_condition": "G0 WEAK below 10% with no qualifying specialist class.",
+      "action_if_failed": "Stop before Stage 1 and recommend acquisition by source map rather than query-scale site search."
+    }
+  ],
+  "gates": {
+    "G0": {
+      "strong_min_weighted_share": 0.30,
+      "partial_min_weighted_share": 0.10,
+      "specialist_min_weighted_share": 0.05,
+      "weak_action": "STOP_BEFORE_STAGE_1"
+    },
+    "G1": {
+      "promising_overall_query_coverage": 0.30,
+      "promising_subgroup_query_coverage": 0.40,
+      "promising_unique_candidates_per_query_multiplier_vs_bing": 5.0,
+      "borderline_overall_query_coverage_min": 0.15,
+      "not_viable_action": "STOP_BEFORE_STAGE_2"
+    },
+    "G2": {
+      "required_outputs": [
+        "query_coverage",
+        "unique_mapped_docs",
+        "mapped_docs_per_query",
+        "contributing_domains",
+        "corpus_weighted_domain_coverage",
+        "novelty_vs_bing",
+        "novelty_vs_pilot",
+        "duplicate_concentration",
+        "projected_1200_candidates",
+        "discovery_efficiency",
+        "new_doc_efficiency"
+      ],
+      "interpretation": "Only recommend 1200-query scaling if candidate value is operationally meaningful and fits local resources."
+    }
+  }
+}

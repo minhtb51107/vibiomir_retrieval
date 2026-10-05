@@ -1,0 +1,61 @@
+version: 1
+phase: phase10b1_site_discovery
+
+inputs:
+  query_path: data/raw/query.parquet
+  corpus_path: data/raw/links_corpus.parquet
+  pilot_chunks_path: data/chunks/phase4_bge_m3/chunks.parquet
+  bing_summary_path: artifacts/phase10b0_search/domain_analysis.json
+
+outputs:
+  cache_dir: data/site_discovery
+  artifact_dir: artifacts/phase10b1_site_discovery
+
+sampling:
+  selected_domain_min: 15
+  selected_domain_max: 20
+  stage1_queries: 120
+  stage2_queries: 300
+  seed: 20261005
+
+probing:
+  request_timeout_seconds: 20
+  delay_seconds: 2.0
+  user_agent: "ViBioMIR-Research/1.0 (+offline corpus discovery feasibility; conservative requests)"
+  max_requests_per_domain: 4
+  max_total_stage0_requests: 70
+  max_result_urls_per_mechanism: 5
+  stop_http_statuses: [401, 403, 407, 429]
+
+translation:
+  audit_cache_first: true
+  preferred_max_download_bytes: 1000000000
+  hard_max_download_bytes: 2000000000
+  allow_closed_api: false
+  allow_cuda_runtime_change: false
+
+query_variants:
+  vietnamese: [Q0, Q1]
+  english: [Q2]
+  chinese: [Q3]
+  max_results: 20
+
+gates:
+  g0:
+    strong_weighted_share: 0.30
+    partial_weighted_share: 0.10
+    specialist_weighted_share: 0.05
+  g1:
+    promising_query_coverage: 0.30
+    promising_subgroup_coverage: 0.40
+    promising_multiplier_vs_bing: 5.0
+    borderline_query_coverage: 0.15
+  stage1_max_requests: 2400
+  stage1_max_projected_hours: 4.0
+
+network_policy:
+  candidate_content_crawl: false
+  paid_api: false
+  captcha_bypass: false
+  authentication_bypass: false
+  concurrency: 1

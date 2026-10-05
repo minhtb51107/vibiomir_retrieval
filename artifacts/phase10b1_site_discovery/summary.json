@@ -1,0 +1,51 @@
+{
+  "phase": "10B1",
+  "network_stage_completed": "STAGE_0_ONLY",
+  "observed_new_http_requests": 49,
+  "candidate_content_requests": 0,
+  "inventory": {
+    "domains": 97,
+    "corpus_rows": 4394718,
+    "selected_domains": 19,
+    "selected_weighted_corpus_share": 0.88728219
+  },
+  "mechanisms": {
+    "native_search_forms_or_links_detected": 6,
+    "usable_query_sensitive_native_search": 1,
+    "robots_declared_sitemap": 7,
+    "category_index_observed": 3,
+    "no_usable_mechanism_selected": 8
+  },
+  "g0": {
+    "usable_domains": [
+      "a-hospital.com"
+    ],
+    "usable_weighted_corpus_share": 0.03853239,
+    "verdict": "WEAK",
+    "stage1_allowed": false,
+    "stop_reason": "3.853% is below the predeclared 10% PARTIAL threshold and 5% specialist exception."
+  },
+  "translation": "NOT_RUN_NO_CACHED_MT_AND_G0_FAILED",
+  "stage1": {
+    "ran": false,
+    "queries": 0,
+    "requests": 0
+  },
+  "stage2": {
+    "ran": false,
+    "queries": 0,
+    "requests": 0
+  },
+  "g1": "NOT_REACHED",
+  "g2": "NOT_REACHED",
+  "recommendation_counts": {
+    "BLOCKED": 3,
+    "CATEGORY": 2,
+    "DIRECT_CRAWL": 20,
+    "SEARCH": 1,
+    "SITEMAP": 5,
+    "UNKNOWN": 66
+  },
+  "final_verdict": "NOT_VIABLE_AS_MAJOR_DISCOVERY_CHANNEL",
+  "recommended_next_action": "Use the source map for bounded source-specific acquisition planning; do not run query-scale site-native search. Sitemap/category sources may be assessed separately as acquisition feeds, not relevance discovery."
+}

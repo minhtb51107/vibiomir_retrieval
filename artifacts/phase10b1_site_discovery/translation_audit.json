@@ -1,0 +1,21 @@
+{
+  "audited_before_translation_download": true,
+  "project_model_cache": [
+    "BAAI/bge-m3"
+  ],
+  "other_user_cache_models": [
+    "facebook/mask2former-swin-small-cityscapes-semantic",
+    "facebook/mask2former-swin-tiny-cityscapes-semantic"
+  ],
+  "suitable_cached_translation_model": false,
+  "sentencepiece_installed": false,
+  "sacremoses_installed": false,
+  "decision": "NO_MODEL_DOWNLOAD_BEFORE_G0",
+  "rationale": "Translation cannot rescue a domain mechanism that fails the cheaper weighted-coverage gate. If G0 passes through Chinese/English native search, estimate an open model's download and runtime before installing anything.",
+  "variants_initially_available": {
+    "Q0_original_vietnamese": true,
+    "Q1_concise_vietnamese": true,
+    "Q2_english": false,
+    "Q3_chinese": false
+  }
+}

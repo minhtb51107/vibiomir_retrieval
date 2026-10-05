@@ -1,0 +1,959 @@
+{
+  "stage": "0A_0B",
+  "selected_domain_count": 19,
+  "selected_corpus_share": 0.88728219,
+  "new_http_requests_this_run": 0,
+  "observed_initial_new_http_requests": 47,
+  "unique_candidate_urls_probed": 30,
+  "provisional_native_search_domains_before_repeat_probe": [
+    "a-hospital.com",
+    "cnkang.com"
+  ],
+  "provisional_weighted_corpus_share_before_repeat_probe": 0.25775874,
+  "provisional_g0_before_repeat_probe": "PARTIAL",
+  "repeat_probe_required": true,
+  "stage1_allowed": false,
+  "domains": [
+    {
+      "domain": "cnkang.com",
+      "requests": [
+        {
+          "url": "https://cnkang.com/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://cnkang.com/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://www.cnkang.com/?q=%E5%81%A5%E5%BA%B7",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": true,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://www.cnkang.com/",
+          "query_parameter": "q",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://www.cnkang.com/?q=%E5%81%A5%E5%BA%B7",
+          "status": 200,
+          "challenge": false,
+          "result_title": "康网—关注生活，关注健康！",
+          "result_url_count": 30,
+          "query_page_evidence": true
+        }
+      ],
+      "candidate_urls": [
+        "https://www.cnkang.com/xinwen/201703/1392012.html",
+        "https://www.cnkang.com/xinwen/201610/1268989.html",
+        "https://www.cnkang.com/xinwen/201610/1267760.html",
+        "https://www.cnkang.com/xinwen/201703/1391795.html",
+        "https://www.cnkang.com/xinwen/201703/1390288.html"
+      ],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "康网—关注生活，关注健康！",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 5,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 5,
+        "category_or_index": 0,
+        "article_page_rate": 1.0
+      }
+    },
+    {
+      "domain": "120ask.com",
+      "requests": [
+        {
+          "url": "https://120ask.com/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://120ask.com/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": true,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "快速问医生_健康问题免费在线咨询专家医生_有问必答网",
+      "challenge": false,
+      "category_link_count": 6,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "familydoctor.com.cn",
+      "requests": [
+        {
+          "url": "https://familydoctor.com.cn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://familydoctor.com.cn/",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        }
+      ],
+      "native_search": false,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [
+        "request_cap_reached"
+      ],
+      "sitemap_urls": [
+        "http://www.familydoctor.com.cn/fdsitemap.txt"
+      ],
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "ask.39.net",
+      "requests": [
+        {
+          "url": "https://ask.39.net/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 404
+        },
+        {
+          "url": "https://ask.39.net/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": true,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "39问医生_39健康网问答频道_中国领先的健康问答平台",
+      "challenge": false,
+      "category_link_count": 1,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "zysjonline.com",
+      "requests": [
+        {
+          "url": "https://zysjonline.com/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 403
+        },
+        {
+          "url": "https://zysjonline.com/",
+          "cached": true,
+          "error": null,
+          "status": 403
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "Just a moment...",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "a-hospital.com",
+      "requests": [
+        {
+          "url": "https://a-hospital.com/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://a-hospital.com/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://www.a-hospital.com/index.php?search=%E5%81%A5%E5%BA%B7",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": true,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://www.a-hospital.com/index.php",
+          "query_parameter": "search",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://www.a-hospital.com/index.php?search=%E5%81%A5%E5%BA%B7",
+          "status": 200,
+          "challenge": false,
+          "result_title": "健康 - A+医学百科",
+          "result_url_count": 30,
+          "query_page_evidence": true
+        }
+      ],
+      "candidate_urls": [
+        "https://www.a-hospital.com/w/A%2B%E5%8C%BB%E5%AD%A6%E7%99%BE%E7%A7%91:%E7%89%88%E6%9D%83",
+        "https://www.a-hospital.com/w/%E4%B8%96%E7%95%8C%E5%8D%AB%E7%94%9F%E7%BB%84%E7%BB%87",
+        "https://www.a-hospital.com/w/%E4%BA%BA%E4%BD%93%E7%A9%B4%E4%BD%8D%E5%9B%BE",
+        "https://www.a-hospital.com/w/%E5%85%A8%E5%9B%BD%E5%8C%BB%E9%99%A2%E5%88%97%E8%A1%A8",
+        "https://www.a-hospital.com/w/%E5%8C%BB%E5%AD%A6%E7%94%B5%E5%AD%90%E4%B9%A6"
+      ],
+      "errors": [],
+      "sitemap_urls": [
+        "http://www.a-hospital.com/sitemap/sitemap-index-ahospital.xml"
+      ],
+      "title": "A+医学百科, 在线医学百科全书",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 4,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 1
+      },
+      "page_type_probe": {
+        "content_like": 5,
+        "category_or_index": 0,
+        "article_page_rate": 1.0
+      }
+    },
+    {
+      "domain": "zhongyibaodian.net",
+      "requests": [
+        {
+          "url": "https://zhongyibaodian.net/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 404
+        },
+        {
+          "url": "https://zhongyibaodian.net/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://z.zhongyisousuo.com/s?q=%E5%81%A5%E5%BA%B7",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://z.zhongyisousuo.com/s",
+          "query_parameter": "q",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://z.zhongyisousuo.com/s?q=%E5%81%A5%E5%BA%B7",
+          "status": null
+        }
+      ],
+      "candidate_urls": [],
+      "errors": [
+        "request_cap_reached"
+      ],
+      "sitemap_urls": [],
+      "title": "【中医宝典】_中医大全_中医百科_在线学习中医_中医入门",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "zydcd.com",
+      "requests": [
+        {
+          "url": "https://zydcd.com/robots.txt",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        },
+        {
+          "url": "https://zydcd.com/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "中医大辞典_中药大辞典_中医中药_中药材大全_中医方剂大全_中医著作书籍_中医学习网",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "suckhoecongdongonline.vn",
+      "requests": [
+        {
+          "url": "https://suckhoecongdongonline.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 404
+        },
+        {
+          "url": "https://suckhoecongdongonline.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://suckhoecongdongonline.vn/search?keyword=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": true,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://suckhoecongdongonline.vn/search",
+          "query_parameter": "keyword",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://suckhoecongdongonline.vn/search?keyword=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "status": 200,
+          "challenge": false,
+          "result_title": "Tìm kiếm | Sức Khỏe Cộng Đồng",
+          "result_url_count": 30,
+          "query_page_evidence": true
+        }
+      ],
+      "candidate_urls": [
+        "https://suckhoecongdongonline.vn/marathon-ha-noi-mua-thu-5-gan-the-thao-voi-suc-khoe-cong-dong-811790993474",
+        "https://suckhoecongdongonline.vn/noi-giong-viet-931776041372",
+        "https://suckhoecongdongonline.vn/bat-nhao-co-so-lam-dep",
+        "https://suckhoecongdongonline.vn/luat-attp-sua-doi",
+        "https://suckhoecongdongonline.vn/o-nhiem-moi-truong-tu-rac-thai-cong-nghiep"
+      ],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "Trang chủ | Sức Khỏe Cộng Đồng",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 5
+      },
+      "page_type_probe": {
+        "content_like": 2,
+        "category_or_index": 3,
+        "article_page_rate": 0.4
+      }
+    },
+    {
+      "domain": "suckhoedoisong.vn",
+      "requests": [
+        {
+          "url": "https://suckhoedoisong.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://suckhoedoisong.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://suckhoedoisong.vn/sitemaps/index.rss",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [
+        "https://suckhoedoisong.vn/sitemaps/category.rss",
+        "https://suckhoedoisong.vn/StaticSitemaps/sitemaps-2026-10-1-5.xml",
+        "https://suckhoedoisong.vn/StaticSitemaps/sitemaps-2026-9-1-5.xml",
+        "https://suckhoedoisong.vn/StaticSitemaps/sitemaps-2026-9-6-10.xml",
+        "https://suckhoedoisong.vn/StaticSitemaps/sitemaps-2026-9-11-15.xml"
+      ],
+      "errors": [],
+      "sitemap_urls": [
+        "https://suckhoedoisong.vn/sitemaps/index.rss"
+      ],
+      "title": "Báo Sức khỏe & Đời sống - Cơ quan ngôn luận của Bộ Y tế",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 5
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 5,
+        "article_page_rate": 0.0
+      }
+    },
+    {
+      "domain": "nhathuoclongchau.com.vn",
+      "requests": [
+        {
+          "url": "https://nhathuoclongchau.com.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://nhathuoclongchau.com.vn/",
+          "cached": true,
+          "error": null,
+          "status": 403
+        },
+        {
+          "url": "https://nhathuoclongchau.com.vn/sitemap.xml",
+          "cached": true,
+          "error": null,
+          "status": 403
+        }
+      ],
+      "native_search": false,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [
+        "https://nhathuoclongchau.com.vn/sitemap.xml"
+      ],
+      "title": "Attention Required! | Cloudflare",
+      "challenge": true,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "thanhnien.vn",
+      "requests": [
+        {
+          "url": "https://thanhnien.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://thanhnien.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://thanhnien.vn/tim-kiem.htm?keywords=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": true,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://thanhnien.vn/tim-kiem.htm",
+          "query_parameter": "keywords",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://thanhnien.vn/tim-kiem.htm?keywords=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "status": 200,
+          "challenge": false,
+          "result_title": "Trang tìm kiếm: sức khỏe - Tin, ảnh clip video tin",
+          "result_url_count": 30,
+          "query_page_evidence": true
+        }
+      ],
+      "candidate_urls": [
+        "https://thanhnien.vn/an-trung-voi-gi-tot-cho-huyet-ap-tags1880927.html",
+        "https://thanhnien.vn/hanh-trinh-10-nam-luu-giu-thanh-xuan-tags1880735.html",
+        "https://thanhnien.vn/gioi-thieu-cac-vien-tri-lieu-tags1880737.html",
+        "https://thanhnien.vn/thuc-uong-dinh-duong-chuc-nang-tags1880692.html",
+        "https://thanhnien.vn/xu-huong-dinh-hinh-thi-truong-thuc-uong-dinh-duong-chuc-nang-tai-viet-nam-tags1880693.html"
+      ],
+      "errors": [],
+      "sitemap_urls": [
+        "https://thanhnien.vn/sitemap.xml",
+        "https://thanhnien.vn/google-news-sitemap.xml"
+      ],
+      "title": "Tin tức 24h mới nhất, tin nhanh, tin nóng hàng ngày | Báo Thanh Niên",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 5
+      },
+      "page_type_probe": {
+        "content_like": 5,
+        "category_or_index": 0,
+        "article_page_rate": 1.0
+      }
+    },
+    {
+      "domain": "laodong.vn",
+      "requests": [
+        {
+          "url": "https://laodong.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://laodong.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "vinmec.com",
+      "requests": [
+        {
+          "url": "https://vinmec.com/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://vinmec.com/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "Hệ thống bệnh viện quốc tế Vinmec | Vinmec",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "medlatec.vn",
+      "requests": [
+        {
+          "url": "https://medlatec.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://medlatec.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://medlatec.vn/sitemap.xml",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": true,
+      "category_index": true,
+      "search_mechanisms": [],
+      "candidate_urls": [
+        "https://medlatec.vn/sitemap.xml/1",
+        "https://medlatec.vn/sitemap.xml/2",
+        "https://medlatec.vn/sitemap.xml/3",
+        "https://medlatec.vn/sitemap.xml/4",
+        "https://medlatec.vn/sitemap.xml/5"
+      ],
+      "errors": [],
+      "sitemap_urls": [
+        "https://medlatec.vn/sitemap.xml"
+      ],
+      "title": "Bệnh viện Đa khoa MEDLATEC",
+      "challenge": false,
+      "category_link_count": 1,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 5,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 5
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 5,
+        "article_page_rate": 0.0
+      }
+    },
+    {
+      "domain": "vietnamnet.vn",
+      "requests": [
+        {
+          "url": "https://vietnamnet.vn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://vietnamnet.vn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://vietnamnet.vn/tim-kiem?q=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://vietnamnet.vn/sitemap.xml",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        }
+      ],
+      "native_search": false,
+      "sitemap": true,
+      "category_index": false,
+      "search_mechanisms": [
+        {
+          "template_url": "https://vietnamnet.vn/tim-kiem",
+          "query_parameter": "q",
+          "evidence": "public GET search form on home page",
+          "probe_url": "https://vietnamnet.vn/tim-kiem?q=s%E1%BB%A9c+kh%E1%BB%8Fe",
+          "status": 200,
+          "challenge": false,
+          "result_title": "Tin tức 24h - Cập nhật tin hot nhất trong ngày | Báo VietNamNet",
+          "result_url_count": 30,
+          "query_page_evidence": false
+        }
+      ],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [
+        "https://vietnamnet.vn/sitemap.xml",
+        "https://vietnamnet.vn/sitemap-categories.xml",
+        "https://vietnamnet.vn/sitemap-news.xml",
+        "https://vietnamnet.vn/sitemap-image.xml",
+        "https://vietnamnet.vn/sitemap-video.xml"
+      ],
+      "title": "Tin tức, tin nhanh 24h Việt Nam và thế giới - Báo VietNamNet",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "youlai.cn",
+      "requests": [
+        {
+          "url": "https://youlai.cn/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 200
+        },
+        {
+          "url": "https://youlai.cn/",
+          "cached": true,
+          "error": null,
+          "status": 200
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "有来医生官方网站_权威的医疗科普知识平台",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "pmc-ecm-healthblog.beta.pharmacity.io",
+      "requests": [
+        {
+          "url": "https://pmc-ecm-healthblog.beta.pharmacity.io/robots.txt",
+          "cached": true,
+          "error": null,
+          "status": 403
+        },
+        {
+          "url": "https://pmc-ecm-healthblog.beta.pharmacity.io/",
+          "cached": true,
+          "error": null,
+          "status": 403
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [],
+      "sitemap_urls": [],
+      "title": "403 Forbidden",
+      "challenge": false,
+      "category_link_count": 0,
+      "wordpress": false,
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    },
+    {
+      "domain": "wujue.com",
+      "requests": [
+        {
+          "url": "https://wujue.com/robots.txt",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        },
+        {
+          "url": "https://wujue.com/",
+          "cached": false,
+          "error": "request_cap_reached",
+          "status": null
+        }
+      ],
+      "native_search": false,
+      "sitemap": false,
+      "category_index": false,
+      "search_mechanisms": [],
+      "candidate_urls": [],
+      "errors": [
+        "request_cap_reached"
+      ],
+      "sitemap_urls": [],
+      "mapping": {
+        "sampled_urls": 0,
+        "exact": 0,
+        "normalized": 0,
+        "ambiguous": 0,
+        "no_match": 0
+      },
+      "page_type_probe": {
+        "content_like": 0,
+        "category_or_index": 0,
+        "article_page_rate": null
+      }
+    }
+  ]
+}
