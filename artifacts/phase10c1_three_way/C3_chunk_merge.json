@@ -1,0 +1,9 @@
+{
+  "input_directory": "data/chunks/phase10c1_C3_parts",
+  "partition_count": 1,
+  "chunk_count": 21564,
+  "unique_chunk_ids": 21564,
+  "chunk_id_order_sha256": "e0e0fca195b6efb5d899a02065f51c3dd0f1525d25a5f9de18ca7d441019d606",
+  "output": "data\\phase10c1\\C3\\new_chunks.parquet",
+  "output_size_bytes": 14461826
+}

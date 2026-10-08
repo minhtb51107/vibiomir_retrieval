@@ -1,0 +1,37 @@
+{
+  "model": {
+    "model_name": "BAAI/bge-m3",
+    "requested_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "resolved_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "embedding_dimension": 1024,
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "normalization": "L2",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "device": "cuda",
+    "load_strategy": "CPU load, FP16 conversion, then CUDA transfer"
+  },
+  "query_embeddings_reused": true,
+  "variants": {
+    "C1": {
+      "source_sha256": "f93097e349d5001eb729a4b5c0b89763c1aebc2a35bcb96bf5038be34756b516",
+      "rows": 23169,
+      "dimension": 1024,
+      "path": "data\\retrieval\\phase10c1_early_release\\C1\\source_embeddings.f32",
+      "reused_exact_embeddings": 4575,
+      "newly_embedded_chunks": 18594,
+      "runtime_seconds": 276.964
+    },
+    "C2": {
+      "source_sha256": "235cd5518ab1e8f8c03e773ea461b1f3ca7305b1a821ee525d7873113704c855",
+      "rows": 13864,
+      "dimension": 1024,
+      "path": "data\\retrieval\\phase10c1_early_release\\C2\\source_embeddings.f32",
+      "reused_exact_embeddings": 2736,
+      "newly_embedded_chunks": 11128,
+      "runtime_seconds": 134.171
+    }
+  },
+  "runtime_seconds": 411.136
+}

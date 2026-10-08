@@ -1,0 +1,40 @@
+{
+  "pilot": {
+    "document_rows": 1225,
+    "chunk_rows": 5643
+  },
+  "variants": {
+    "C1": {
+      "label": "C1_S4_5k",
+      "domain": "suckhoecongdongonline.vn",
+      "inclusion": "extraction_success",
+      "added_documents": 4999,
+      "added_chunks": 23169,
+      "pilot_overlap_excluded": 1,
+      "combined_documents": 6224,
+      "combined_chunks": 28812,
+      "paths": {
+        "source_documents": "data\\retrieval\\phase10c1_early_release\\C1\\source_documents.parquet",
+        "source_chunks": "data\\retrieval\\phase10c1_early_release\\C1\\source_chunks.parquet",
+        "combined_documents": "data\\retrieval\\phase10c1_early_release\\C1\\combined_documents.parquet",
+        "combined_chunks": "data\\retrieval\\phase10c1_early_release\\C1\\combined_chunks.parquet"
+      }
+    },
+    "C2": {
+      "label": "C2_S2_5k",
+      "domain": "familydoctor.com.cn",
+      "inclusion": "extraction_success",
+      "added_documents": 4988,
+      "added_chunks": 13864,
+      "pilot_overlap_excluded": 2,
+      "combined_documents": 6213,
+      "combined_chunks": 19507,
+      "paths": {
+        "source_documents": "data\\retrieval\\phase10c1_early_release\\C2\\source_documents.parquet",
+        "source_chunks": "data\\retrieval\\phase10c1_early_release\\C2\\source_chunks.parquet",
+        "combined_documents": "data\\retrieval\\phase10c1_early_release\\C2\\combined_documents.parquet",
+        "combined_chunks": "data\\retrieval\\phase10c1_early_release\\C2\\combined_chunks.parquet"
+      }
+    }
+  }
+}

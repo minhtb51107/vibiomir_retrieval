@@ -1,0 +1,13 @@
+{
+  "path": "data\\retrieval\\phase10c1_early_release\\novel_pairs.sqlite",
+  "variant_missing": {
+    "C1": 52900,
+    "C2": 18838
+  },
+  "memberships": 71738,
+  "unique_pairs": 71738,
+  "deduplicated_pairs_saved": 0,
+  "scored": 0,
+  "remaining": 71738,
+  "reused": false
+}

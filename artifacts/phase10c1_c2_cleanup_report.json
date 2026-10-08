@@ -1,0 +1,52 @@
+{
+  "phase": "10C1 C2 safe cleanup",
+  "created_at": "2026-10-06T15:30:00+07:00",
+  "disk_before": {
+    "drive": "D:",
+    "free_gib": 33.75,
+    "safety_floor_gib": 20.0
+  },
+  "measured_c2_retrieval_mib": 665.108,
+  "preserved": [
+    "data/phase10c1/C2/documents.parquet",
+    "data/phase10c1/C2/chunks.parquet",
+    "data/phase10c1/C2/new_documents.parquet",
+    "data/phase10c1/C2/new_chunks.parquet",
+    "data/crawled/phase10c1_C2.sqlite",
+    "data/crawled/phase10c1_C2_bodies/",
+    "data/processed/phase10c1_C2_parts/",
+    "data/chunks/phase10c1_C2_parts/",
+    "data/retrieval/phase10c1_early_release/C2/source_embeddings.f32",
+    "data/retrieval/phase10c1_early_release/C2/source_embeddings.json",
+    "data/retrieval/phase10c1_early_release/C2/rerank_scores.sqlite",
+    "data/retrieval/phase10c1_early_release/C2/final_documents_top10.parquet",
+    "data/retrieval/phase10c1_early_release/C2/final_chunks_top20.parquet",
+    "data/retrieval/phase10c1_early_release/novel_pairs.sqlite",
+    "submissions/phase10c1_C2_S2_5k.json",
+    "submissions/phase10c1_C2_S2_5k.zip",
+    "artifacts/phase10c1_early_release/",
+    "artifacts/runs/phase10c1_C2_S2_5k/"
+  ],
+  "deleted_regenerable": [
+    "data/retrieval/phase10c1_early_release/C2/bm25.sqlite",
+    "data/retrieval/phase10c1_early_release/C2/chunks.index",
+    "data/retrieval/phase10c1_early_release/C2/chunk_metadata.sqlite",
+    "data/retrieval/phase10c1_early_release/C2/dense_chunk_rankings.parquet",
+    "data/retrieval/phase10c1_early_release/C2/sparse_chunk_rankings.parquet",
+    "data/retrieval/phase10c1_early_release/C2/hybrid_chunk_rankings.parquet",
+    "data/retrieval/phase10c1_early_release/C2/candidate_pool.parquet",
+    "data/retrieval/phase10c1_early_release/C2/candidate_pool.json",
+    "data/retrieval/phase10c1_early_release/C2/reranked_chunks.parquet",
+    "data/retrieval/phase10c1_early_release/C2/reranked_documents_best_chunk.parquet",
+    "data/retrieval/phase10c1_early_release/C2/combined_documents.parquet",
+    "data/retrieval/phase10c1_early_release/C2/combined_chunks.parquet",
+    "data/retrieval/phase10c1_early_release/C2/source_documents.parquet",
+    "data/retrieval/phase10c1_early_release/C2/source_chunks.parquet"
+  ],
+  "deletion_basis": "All deleted files are derived retrieval indexes/rankings or duplicate exports reproducible from retained canonical documents, chunks, embeddings, and score checkpoints.",
+  "recovered_bytes": 0,
+  "recovered_mib": 0.0,
+  "disk_after_free_gib": 33.75,
+  "cleanup_status": "AUDITED_NOT_DELETED",
+  "cleanup_note": "The execution environment rejected the explicitly scoped file-removal operation. No data was deleted, and no recovery amount is claimed. The safe deletion candidates remain documented above for a future local cleanup."
+}

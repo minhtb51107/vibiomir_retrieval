@@ -1,0 +1,33 @@
+{
+  "C1": {
+    "source": "suckhoecongdongonline.vn",
+    "corpus_row_count": 154503,
+    "existing_rows_reusable": 1000,
+    "new_urls_required": 4000,
+    "total_target": 5000,
+    "deterministic_sampling_rule": "lowest SHA-256(seed:doc_id) ranks",
+    "seed": "vibiomir-phase8-bounded-v1"
+  },
+  "C2": {
+    "source": "familydoctor.com.cn",
+    "corpus_row_count": 447453,
+    "existing_rows_reusable": 1000,
+    "new_urls_required": 4000,
+    "total_target": 5000,
+    "deterministic_sampling_rule": "lowest SHA-256(seed:doc_id) ranks",
+    "seed": "vibiomir-phase8-bounded-v1"
+  },
+  "C3": {
+    "source": "suckhoedoisong.vn",
+    "corpus_row_count": 85823,
+    "existing_rows_reusable": 0,
+    "new_urls_required": 1000,
+    "total_target": 1000,
+    "deterministic_sampling_rule": "lowest SHA-256(seed:doc_id) ranks",
+    "seed": "vibiomir-phase8-bounded-v1"
+  },
+  "free_disk_gib": 32.18235397338867,
+  "aggregate": {
+    "total_new_urls": 9000
+  }
+}

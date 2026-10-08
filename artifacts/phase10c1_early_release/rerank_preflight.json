@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "C1": {
+      "pool_rows": 120000,
+      "reused_scores": 54520,
+      "newly_seeded": 54520,
+      "novel_scores": 65480
+    },
+    "C2": {
+      "pool_rows": 120000,
+      "reused_scores": 90751,
+      "newly_seeded": 90751,
+      "novel_scores": 29249
+    }
+  },
+  "novel_pairs": 94729,
+  "estimated_novel_rerank_seconds": 2786.15,
+  "maximum_estimated_novel_rerank_seconds": 10800,
+  "gpu_time_gate_passed": true
+}

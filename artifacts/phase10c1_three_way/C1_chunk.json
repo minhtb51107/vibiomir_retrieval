@@ -1,0 +1,18 @@
+{
+  "source_documents": "data\\phase10c1\\C1\\new_documents.parquet",
+  "source_sha256": "3709b08e023d167491cbbad4e280f6085bd5d07ef656dd39fcfc375b480d4447",
+  "tokenizer_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "content_token_budget": 508,
+  "maximum_tokens_with_specials": 512,
+  "overlap_tokens": 64,
+  "documents_per_partition": 1000,
+  "initial_completed_documents": 0,
+  "final_completed_documents": 4000,
+  "documents_written_this_run": 4000,
+  "chunks_written_this_run": 18600,
+  "partitions_written_this_run": 4,
+  "maximum_content_tokens": 508,
+  "runtime_seconds": 30.119706,
+  "output_directory": "data\\chunks\\phase10c1_C1_parts",
+  "checkpoint": "data/chunks/phase10c1_C1_chkpt.sqlite"
+}

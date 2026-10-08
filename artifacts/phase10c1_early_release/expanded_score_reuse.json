@@ -1,0 +1,18 @@
+{
+  "C1": {
+    "pool_rows": 120000,
+    "before": 54520,
+    "additional_reused": 12580,
+    "after": 67100,
+    "remaining": 52900,
+    "integrity": "ok"
+  },
+  "C2": {
+    "pool_rows": 120000,
+    "before": 90751,
+    "additional_reused": 10411,
+    "after": 101162,
+    "remaining": 18838,
+    "integrity": "ok"
+  }
+}

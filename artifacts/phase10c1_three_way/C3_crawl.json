@@ -1,0 +1,83 @@
+{
+  "run": {
+    "selected": 1000,
+    "scheduled": 1000,
+    "completed": 1000,
+    "skipped_existing": 0,
+    "attempts": 1003,
+    "retry_count": 3,
+    "redirect_count": 0,
+    "downloaded_bytes": 598844021,
+    "wall_seconds": 1007.872,
+    "attempt_requests_per_second": 0.9952,
+    "urls_completed_per_minute": 59.53,
+    "by_status": {
+      "SUCCESS": 1000
+    },
+    "by_content_type": {
+      "text/html": 1000
+    },
+    "by_domain": {
+      "suckhoedoisong.vn": 1000
+    },
+    "robots_requests": 1,
+    "estimated_http_request_operations": 1004,
+    "http_request_operations_per_second": 0.9962
+  },
+  "database": {
+    "rows": 1000,
+    "attempts": 1003,
+    "retry_count": 3,
+    "redirect_count": 0,
+    "downloaded_bytes": 598844021,
+    "tiny_html_count": 0,
+    "js_shell_candidate_count": 0,
+    "truncated_body_count": 1,
+    "status_counts": {
+      "SUCCESS": 1000
+    },
+    "http_status_counts": {
+      "200": 1000
+    },
+    "content_type_counts": {
+      "text/html": 1000
+    },
+    "declared_http_encoding_counts": {
+      "utf-8": 1000
+    },
+    "response_size_buckets": {
+      "1048576+": 1,
+      "262144-1048575": 999
+    },
+    "per_domain": {
+      "suckhoedoisong.vn": {
+        "completed": 1000,
+        "successes": 1000,
+        "attempts": 1003,
+        "redirects": 0,
+        "downloaded_bytes": 598844021,
+        "elapsed_ms_sum": 199868
+      }
+    },
+    "path": "data\\crawled\\phase10c1_C3.sqlite",
+    "size_before_bytes": 0,
+    "size_after_bytes": 2727936,
+    "main_database_bytes": 2695168,
+    "size_growth_bytes": 2727936,
+    "estimated_bytes_per_result_row": 2727.94
+  },
+  "robots_domains_fetched": {
+    "suckhoedoisong.vn": 1
+  },
+  "robots_cache": {
+    "suckhoedoisong.vn": {
+      "allow_all": false,
+      "source_status": 200,
+      "error": null
+    }
+  },
+  "body_archive": {
+    "path": "data\\crawled\\phase10c1_C3_bodies",
+    "stored_bodies": 999
+  }
+}

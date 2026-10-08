@@ -1,0 +1,10 @@
+{
+  "new_chunks_all_sources": 37033,
+  "new_embedding_bytes": 151687168,
+  "combined_exact_indexes_bytes": 197914624,
+  "largest_variant_chunks": 28812,
+  "estimated_embedding_seconds_at_phase4_rate": 755.65,
+  "maximum_new_storage_bytes": 10737418240,
+  "storage_gate_passed": true,
+  "note": "excludes small Parquet/SQLite retrieval outputs and deterministic submission ZIPs"
+}

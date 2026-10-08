@@ -1,0 +1,17 @@
+{
+  "crawl_database": "data\\crawled\\phase10c1_C1.sqlite",
+  "crawl_sha256": "ca60710bbc53b1273fb049e4813f6c1f9dde30c9d7456400c33f8c682d172d26",
+  "extraction_config_sha256": "028230b8b4e3450e815454f7dfa6eee7e6a7d54b3e906fced73dbb90de248d25",
+  "rows_per_partition": 1000,
+  "initial_completed_rows": 0,
+  "final_completed_rows": 4000,
+  "rows_written_this_run": 4000,
+  "partitions_written_this_run": 4,
+  "status_counts": {
+    "SUCCESS": 4000
+  },
+  "successful_clean_characters": 13196940,
+  "runtime_seconds": 287.103195,
+  "output_directory": "data\\processed\\phase10c1_C1_parts",
+  "checkpoint": "data/processed/phase10c1_C1_chkpt.sqlite"
+}

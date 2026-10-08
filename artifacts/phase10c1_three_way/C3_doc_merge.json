@@ -1,0 +1,7 @@
+{
+  "partition_count": 1,
+  "document_count": 1000,
+  "unique_doc_ids": 1000,
+  "output": "data\\phase10c1\\C3\\new_documents.parquet",
+  "output_size_bytes": 12008145
+}
