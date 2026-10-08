@@ -292,3 +292,183 @@ Next question: Does a broad S4-5K corpus reproduce or extend the organizer gain?
 Cost/resources: About 216 seconds local preprocessing/ranking plus 50 cached sequential Bing RSS requests; zero candidate-page fetches.
 Evidence: `docs/S4_TARGETING_TOURNAMENT.md`, `artifacts/phase10c0_s4_targeting/`.
 Commit: this phase checkpoint (`feat: evaluate s4 targeting strategies`).
+
+## Phase 10C1 — Broad S4 scaling from 1K to 5K
+
+Date: 2026-10-06 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10C1 / uncommitted current worktree
+Question: Does broad deterministic acquisition within S4 continue the organizer signal observed at S4-1K?
+Why we tried it: The S4-1K source probe produced the first clear multi-metric gain, while the Phase 10C0 targeting tournament found no trustworthy metadata selector.
+Hypothesis: Expanding the same source from 1,000 to 5,000 sampled official document IDs, while holding retrieval, reranking, and submission policy fixed, could improve corpus coverage.
+What we changed: Added 4,000 disjoint official `suckhoecongdongonline.vn` IDs to the existing S4 sample and rebuilt only the required downstream source-scale artifacts.
+What stayed fixed: The 1,200 queries, BGE-M3 embeddings, BM25/RRF candidate settings, pinned multilingual reranker, top-10 document policy, top-20 chunks, and approximately 1,024-token source-verbatim expansion.
+Result: The organizer reported `FINAL_SCORE=0.0014`, `DOCS_F2MACRO=0.0014`, `CHUNKS_F2MACRO=0.0014`, `DOCS_PRECISION=0.0071`, `DOCS_RECALL=0.0012`, `CHUNKS_PRECISION=0.0071`, and `CHUNKS_RECALL=0.0012`. The prior S4-1K result was final `0.0004`, document F2 `0.0003`, chunk F2 `0.0004`, document precision/recall `0.0019/0.0003`, and chunk precision/recall `0.0031/0.0003`.
+What failed / surprised us: Local reranking was operationally fragile on the 6 GiB RAM / 4 GiB VRAM laptop: 5,000-pair workers suffered paging collapse, while smaller isolated workers were stable. The organizer gain was materially larger than the earlier bounded S4 signal, but its scaling curve remains unknown.
+What we learned: This is organizer-confirmed evidence that scaling S4 from 1K to 5K materially improved both precision and recall. It is not evidence that S4 contains most gold documents, and it does not establish that improvement will continue linearly to 20K.
+Decision: Treat deeper S4 acquisition as justified for a future bounded experiment, but retain explicit resource gates and do not start S4-20K automatically.
+Next question: Does another bounded S4 increment preserve the organizer gain under the same fixed retrieval policy, and what execution architecture can run it unattended and safely?
+Cost/resources: 4,000 new S4 fetch/extract/chunk records, 18,594 newly embedded chunks, and 52,900 newly scored C1 query–chunk pairs; exact electricity cost was not measured.
+Evidence: `artifacts/phase10c1_three_way/`, `artifacts/phase10c1_early_release/C1_early_release.json`, and `submissions/phase10c1_C1_S4_5k.zip`; organizer metrics supplied by the project owner.
+Commit: pending review; no commit requested yet.
+
+## Phase 10D Round 3 — Shallow trio baselines and depth-scaling decision
+
+Date: 2026-10-08 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 10D Round 3 and depth-1000 preparation / uncommitted current worktree
+Question: Do the surviving source trios warrant further splitting, or must source acquisition depth be measured before eliminating any of their nine members?
+Why we tried it: Round 2 isolated three six-source survivor regions, and Round 3 tested their predeclared sibling trios at the same shallow source depth. The resulting scores provide a controlled shallow baseline, but not individual-source evidence.
+Hypothesis: A roughly one-order-of-magnitude source-depth increase, from about 100 to up to 1,000 official IDs per source, is more likely than a 100-to-300 step to produce a measurable first saturation point at the organizer's displayed resolution.
+What we changed: Recorded the organizer-confirmed G1A, G5A, and G6B shallow results and replaced the planned source-splitting/depth-300 path with three fixed-composition depth-1000 experiments. The acquisition manifest is nested, deterministic, uses only official IDs, and requests only IDs not already attempted.
+What stayed fixed: The 1,200 queries, pilot/control corpus, retrieval architecture, per-source candidate cap, BGE-M3 embedder, pinned multilingual reranker, top-10 documents, top-20 chunks, provenance policy, and deterministic tie-breaking.
+Result: Shallow organizer FINAL scores were G1A `0.0008`, G5A `0.0009`, and G6B `0.0008`; full F2, precision, and recall values are recorded in `docs/leaderboard_history.csv`. Preflight found 6,300 incremental official IDs: 900 for each of seven sources, none for `v.familydoctor.com.cn` (all 10 official IDs already available), and none for `suckhoedoisong.vn` because its prior C3 acquisition already exceeds the 1,000-ID target. No depth-1000 leaderboard result exists yet.
+What failed / surprised us: The shallow trio results do not justify attributing quality to individual sources, and `v.familydoctor.com.cn` has only 10 official corpus rows. A depth-300 step could consume acquisition and leaderboard budget without separating true saturation from display rounding.
+What we learned: All nine sources must remain active for the first depth-scaling point. Existing acquisitions can materially reduce new work when reconciled by official ID, but the experiment corpus must still be capped deterministically to the declared per-source target.
+Decision: Skip depth 300. Acquire only the 6,300 missing official IDs needed to reach 1,000 attempted IDs for seven sources, retain all 10 IDs for `v.familydoctor.com.cn`, and use a deterministic 1,000-ID subset of the already acquired `suckhoedoisong.vn` population. Stop at three validated ZIPs and wait for organizer evidence before considering depth 5,000.
+Next question: Relative to their shallow baselines, do G1A, G5A, or G6B materially improve when source depth rises to up to 1,000 official IDs?
+Cost/resources: Preflight projects about 1.59 GiB conservative retained growth and about 5.19 hours end-to-end; these are operational estimates, not completed-run measurements.
+Evidence: `artifacts/source_census/depth1000_manifest.json`, `configs/source_census_depth1000.yaml`, existing Round-1/C3 crawl and processed artifacts, and organizer metrics supplied by the project owner.
+Commit: pending review; this run was explicitly launched without commit or push.
+
+### Depth-1000 recovery incident — cached-score validation
+
+Date: 2026-10-08
+Phase / commit: Phase 10D depth-1000 execution / uncommitted current worktree
+Question: Why did the completed depth-1000 run stop on entry to RANKINGS?
+Why we tried it: The incident reported a complete 86,400-row score cache but the cached-subset validator still raised an incomplete-cache exception.
+Hypothesis: The validator encoded the old Round-1 cache size rather than validating general completeness invariants.
+What we changed: Replaced exact whole-dictionary equality against 582,000 rows with explicit integrity, remaining, done/total, and durable candidate-key-count checks. Added a RANKINGS-only recovery entry point.
+What stayed fixed: All acquisition, extraction, chunking, embeddings, candidate generation, reranker scores, retrieval semantics, group membership, and submission policy.
+Result: Independent SQLite and candidate-part reconciliation found 86,400 expected unique query/chunk keys, 86,400 stored and scored keys, zero missing or unexpected keys, zero duplicate keys, finite scores, valid inference timings, and `PRAGMA integrity_check=ok`.
+What failed / surprised us: A phase-specific literal (`582000`) survived inside generic cached-subset validation and falsely rejected a smaller but complete cache.
+What we learned: Cache validity must be schema-tolerant and derived from current durable candidates, never from a historical experiment's absolute row count.
+Decision: Resume only at RANKINGS; do not repeat any model inference or earlier pipeline stage.
+Next question: Do the three organizer depth-1000 results show material scaling relative to their shallow baselines?
+Cost/resources: No repeated model inference; only streaming ranking, packaging, and strict validation are repeated.
+Evidence: `artifacts/incidents/20261008_094257_phase10d_depth1000`, `data/source_census/depth1000/round1/source_scores.sqlite`, and `artifacts/source_census/depth1000_report.json`.
+Commit: none; commit/push explicitly deferred.
+
+## Phase 10E — G5A 11.2K completion and recovery incidents
+
+Date: 2026-10-09
+Phase / commit: Phase 10E focused corpus scaling / uncommitted current worktree
+Question: Could the corrected G5A source trio be expanded from about 1,000 documents per source to a meaningful next checkpoint without changing the retrieval experiment contract?
+Why we tried it: Corrected G5A depth1000 produced organizer-confirmed positive scaling: FINAL `0.0009` at shallow depth to `0.0037`, with document F2 `0.0035`, chunk F2 `0.0038`, document precision/recall `0.0204/0.0030`, and chunk precision/recall `0.0211/0.0033`.
+Hypothesis: Expanding `benhviennhitrunguong.gov.vn` to all 1,200 official rows and `zydcd.com`/`hellobacsi.com` to 5,000 each would provide a useful first Phase 10E scaling point.
+What we changed: Source depth only. The completed searchable union contains 11,200 documents and 92,768 chunks: 1,200/18,726 from `benhviennhitrunguong.gov.vn`, 5,000/14,894 from `zydcd.com`, and 5,000/59,148 from `hellobacsi.com`.
+What stayed fixed: Queries, pilot control, candidate cap `m=8`, dense/BM25/RRF policy, pinned reranker revision, top-10 documents, top-20 chunks, source-verbatim expansion, provenance, and tie-breaking.
+Result: Acquisition processed 8,203 incremental official IDs with 8,203 successful extractions and 62,885 new chunks. Candidate competition produced 28,800 pairs; 12,310 exact `(query_id, chunk_id)` scores were reused and 16,490 were newly inferred. The package `phase10e_G5A_11200.zip` passed the mandatory audit and reached `READY_FOR_LEADERBOARD` with SHA-256 `6881d21914aa44e307254f352354439077426f043c0e6f8c4d4f2afea12fb635`. No organizer result exists yet.
+What failed / surprised us: First, the Phase 10E config omitted inherited `inputs.c1_candidate_pool`; the failure happened only after expensive data processing. Recovery reused the persisted calibration and preserved `m=8`. Second, an exact-score startup check rejected a deterministic maximum difference of `0.005859375`. Five same-process repeats and three fresh-process repeats were bit-identical, the scorer contract and sample keys matched, ordering was unchanged, and reconstructing original batch-of-two contexts reproduced stored scores exactly. The cause was FP16 numerical variation from dynamic-padding batch shape, not model drift.
+What we learned: Expensive stages need preflight validation of inherited configuration dependencies. Numerical reranker equivalence must require an exact semantic contract and stable ordering while allowing only a measured FP16 envelope; exact floating-point equality is not a scientific contract.
+Decision: Mark the single 11.2K package ready only after exact key reconciliation, non-degenerate score checks, cache-reuse audit, corrected-depth1000 replay, strict provenance validation, and deterministic regeneration all pass. Do not start 21.2K until organizer evidence arrives.
+Next question: Does the organizer confirm continued G5A scaling at 11.2K, or has ranking dilution begun?
+Cost/resources: 8,203 network acquisitions, 62,885 new embeddings, and 16,490 new reranker inferences; exact stage runtimes are preserved in the Phase 10E report and run events.
+Evidence: `artifacts/source_census/phase10e_g5a_11200_report.json`, `artifacts/validation/phase10e_g5a_11200_pre_submit_audit.json`, `artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json`, and `artifacts/incidents/20261009_015800_phase10e_g5a_11200` / `20261009_030646_phase10e_g5a_11200`.
+Commit: none; commit/push explicitly deferred.
+
+## Phase 10E — Focused G5A corpus scaling to up to 11,200 official documents
+
+Date: 2026-10-09
+Phase / commit: Phase 10E launch / uncommitted current worktree
+Question: Does G5A continue to produce organizer-relevant signal when expanded substantially beyond about 1,000 official documents per source?
+Why we tried it: The corrected, scientifically validated depth-1000 G5A submission improved organizer FINAL from `0.0009` at shallow depth to `0.0037`, with gains in every reported precision and recall metric.
+Hypothesis: A focused increase to all 1,200 official `benhviennhitrunguong.gov.vn` rows and 5,000 official rows each for `zydcd.com` and `hellobacsi.com` may provide a meaningful next scaling point without jumping directly to 10,000 rows per large source.
+What we changed: Only G5A source depth. The exact durable-ID delta is 200, 4,003, and 4,000 URLs respectively; the three prior failed `zydcd.com` IDs are not retried and are replaced by deterministic unattempted official IDs.
+What stayed fixed: The 1,200-query set, pilot control corpus, BGE-M3 embeddings, BM25/RRF candidate policy, candidate cap `m=8`, pinned BGE reranker, top-10 document and top-20 chunk policy, 1,024-token source-verbatim expansion, provenance rules, and tie-breaking.
+Result: Organizer result pending. The preflight manifest contains 8,203 incremental official IDs, projects about 4.01 GiB conservative retained growth, and passes the 20 GiB free-space gate with about 24.21 GiB expected free after completion.
+What failed / surprised us: The earlier ambiguous-SQL depth cache incident demonstrated that structural ZIP validity alone is insufficient. Phase 10E therefore cannot become ready without exact-key reuse audit, non-degenerate scores, and a corrected-depth1000 G5A control replay.
+What we learned: Corrected G5A depth scaling is strong enough to move from source discovery to focused acquisition, but one positive scaling interval does not establish linear continuation or source-level attribution.
+Decision: Launch one bounded, supervised G5A checkpoint at up to 11,200 official IDs. Do not proceed to the prepared 21,200-ID checkpoint without organizer evidence.
+Next question: Does the up-to-11,200 G5A corpus improve organizer metrics over corrected depth1000 without unacceptable precision dilution?
+Cost/resources: Projected concurrent crawl time is about 101.6 minutes and conservative end-to-end time about 3.44 hours; projected retained growth is about 4.01 GiB. Actual values will be recorded by the unattended worker.
+Evidence: `artifacts/source_census/phase10e_g5a_11200_manifest.json`, `configs/phase10e_g5a_11200.yaml`, corrected depth1000 audit/submission artifacts, and organizer metrics supplied by the project owner.
+Commit: none; commit/push explicitly deferred.
+
+### Depth-1000 invalidation — ambiguous SQLite score seeding
+
+Date: 2026-10-08
+Phase / commit: Phase 10D depth-1000 repair / uncommitted current worktree
+Question: Did the apparent organizer collapse represent negative source-depth scaling?
+Why we tried it: G1A depth-1000 fell from shallow `0.0008` to `0.0002`, requiring a strict replay control before interpreting depth.
+Hypothesis: Replaying the shallow population through the current finalizer would distinguish ranking dilution from a pipeline defect.
+What we changed: No experimental policy changed. We replayed the exact shallow population and audited candidate keys and scores.
+What stayed fixed: Corpus populations, queries, candidates, ranking, packaging, provenance, and all model configurations.
+Result: The shallow replay was byte-identical at JSON level for all 1,200 queries. The depth cache had 86,400 scored rows but only one distinct score and one timing value. Ambiguous correlated SQL had copied the first old-cache row into every destination row. Organizer results for corrupted G1A (`0.0002`), G5A (`0.0002`), and G6B (`0.0001`) are marked `INVALID_EXPERIMENT_CACHE_CORRUPTION`.
+What failed / surprised us: Row-count completeness and SQLite integrity both passed even though value-level semantics were catastrophically wrong. All new candidates were falsely treated as cached.
+What we learned: Reuse must be verified by exact composite keys and sampled/exhaustive value agreement; complete row counts cannot establish score correctness.
+Decision: Preserve the invalid results historically but exclude them from saturation curves, source prioritization, and model claims. Reset only score columns, seed through an explicitly aliased exact-key `UPDATE ... FROM`, infer only missing keys, and emit separately named `FIXED` packages.
+Next question: What organizer depth-scaling signal appears after correct reranker scoring?
+Cost/resources: Acquisition, extraction, chunking, embeddings, and candidates are reused; only true missing query/chunk pairs require GPU inference.
+Evidence: `artifacts/source_census/g1a_depth1000_control_audit.json`, `data/source_census/depth1000/round1/source_scores.corrupted_20261008.sqlite`, and the repaired score/report artifacts.
+Commit: none; commit/push explicitly deferred.
+
+### Depth-1000 cache repair and mandatory scientific validation gate
+
+Date: 2026-10-09
+Phase / commit: Phase 10D depth-1000 repair / uncommitted current worktree
+Question: Could the depth-1000 experiment be reconstructed without repeating acquisition and protected against structurally complete but scientifically corrupt score caches?
+Why we tried it: The corrupted cache had valid row counts and SQLite integrity despite assigning one repeated score to all 86,400 candidate pairs.
+Hypothesis: Explicitly aliased exact-key reuse plus value-level and replay controls would recover the intended experiment and prevent this bug class from reaching the leaderboard again.
+What we changed: Reset the corrupt score values while preserving candidate identity, reused scores only on exact `(query_id, chunk_id)` joins, inferred only unmatched pairs, and introduced the mandatory pre-submission scientific gate.
+What stayed fixed: Acquired documents, extracted text, chunks, embeddings, candidate keys, source groups, models, ranking policy, top-k policy, and provenance rules.
+Result: Of 86,400 candidate pairs, 16,707 exact prior-cache matches were reused and 69,693 pairs were newly inferred. The repaired cache had 10,523 distinct finite scores, zero missing/unexpected/duplicate keys, valid timings, and `PRAGMA integrity_check=ok`. Control replay matched all 1,200 queries exactly for top-10 documents and top-20 chunks. The audit status was `READY_FOR_LEADERBOARD`.
+What failed / surprised us: Database integrity and complete key coverage alone were insufficient; scientific validity required score-distribution sanity, exact reuse-value agreement, change accounting, and control replay.
+What we learned: `READY_FOR_LEADERBOARD` is a scientific status, not merely a ZIP-schema status. Every future package must identify its exact canonical path/hash and pass cache integrity, reuse audit, experiment-contract, replay, provenance, and determinism gates.
+Decision: Preserve corrupted submissions under `INVALID_DO_NOT_SUBMIT`, use only separately named `FIXED` packages, and block any future submission whose mandatory audit is not fully passing.
+Next question: Which corrected depth-1000 groups show organizer-confirmed scaling?
+Cost/resources: Reused 16,707 exact scores and performed 69,693 necessary reranker inferences; acquisition through candidate generation was not repeated.
+Evidence: `artifacts/source_census/depth1000_fixed_report.json` and `artifacts/validation/phase10d_depth1000_fixed_pre_submit_audit.json`.
+Commit: none; commit/push explicitly deferred.
+
+## Phase 10D Round 1 — Adaptive source census group screen
+
+Date: 2026-10-07 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 10D Round 1 / uncommitted current worktree
+Question: Can balanced group testing identify useful regions among the previously untested official sources without spending one leaderboard submission per source?
+Why we tried it: S4 was valuable but FamilyDoctor scaling was low-yield, and local ranking movement had repeatedly failed to predict organizer relevance.
+Hypothesis: Three balanced 21-source groups, using the same 100-document/source depth and fixed retrieval policy, would expose enough organizer separation to eliminate a lower-yield region while preserving ambiguous positive regions.
+What we changed: Only source membership changed among Groups A, B, and C. The census reused a fixed pilot control, per-source candidate cap `m=8`, and 582,000 cached reranker scores.
+What stayed fixed: Queries, sampled source depth, extraction/chunking, candidate construction, reranker, top-10 documents, top-20 source-verbatim chunks, tie-breaking, and validation policy.
+Result: Organizer results were A `FINAL=0.0016`, document/chunk F2 `0.0017/0.0015`; B `FINAL=0.0008`, document/chunk F2 `0.0009/0.0007`; and C `FINAL=0.0017`, document/chunk F2 `0.0017/0.0018`. Full precision/recall metrics are recorded in `docs/leaderboard_history.csv`.
+What failed / surprised us: B separated clearly downward, but A and C remained effectively adjacent. C's `0.0001` final-score edge is too small to support declaring it the sole winner.
+What we learned: Group testing can safely deprioritize a broad lower-yield source region, but numerical winner-takes-all selection would discard plausible signal. Organizer evidence supports retaining all 42 sources from A+C.
+Decision: Deprioritize all Round-1 B sources. Split the 42 A+C survivors into seven disjoint, stratified six-source groups, with exactly three former-A and three former-C sources in each, and reuse the completed score cache without new inference.
+Next question: Which of the seven finer source groups show distinguishable organizer signal, and should multiple groups survive to Round 3?
+Cost/resources: 8,173 official IDs were sampled in the census; Round-1 packaging reused 582,000 reranker scores. Exact electricity cost was not measured.
+Evidence: `artifacts/source_census/round1_groups.json`, `artifacts/source_census/round1_report.json`, `submissions/phase10d_R1_group_A.zip`, `submissions/phase10d_R1_group_B.zip`, `submissions/phase10d_R1_group_C.zip`, and organizer metrics supplied by the project owner.
+Commit: pending review; no commit requested.
+
+## Phase 10D Round 2 — Seven-way source group test
+
+Date: 2026-10-07 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 10D Round 2 / uncommitted current worktree
+Question: Which smaller regions within the 42 surviving Round-1 A+C sources warrant finer source-resolution tests?
+Why we tried it: Round 1 clearly rejected B but could not distinguish A from C; seven available submissions allowed a six-source resolution while retaining balanced A/C ancestry.
+Hypothesis: Seven disjoint groups of six sources, with only source membership changing, would reveal multiple survivor regions without prematurely attributing signal to individual domains.
+What we changed: Split all 42 A+C sources into seven deterministic groups containing exactly three former-A and three former-C sources. Reused the fixed pilot control, Round-1 source depth, candidate cap `m=8`, and all 582,000 reranker scores.
+What stayed fixed: Queries, source samples, extraction/chunking, candidates, scores, ranking, top-10 documents, top-20 source-verbatim chunks, tie-breaking, and strict validation.
+Result: Organizer FINAL scores were G1 `0.0008`, G2 `0.0004`, G3 `0.0003`, G4 `0.0002`, G5 `0.0011`, G6 `0.0009`, and G7 `0.0002`. Full F2, precision, and recall values are recorded in `docs/leaderboard_history.csv`.
+What failed / surprised us: The strongest signal was distributed across three groups rather than one. Group-level gains still cannot identify which member source caused the result.
+What we learned: G5, G6, and G1 merit sibling splits; G2 is a reserve, while G3/G4/G7 are lower priority under the fixed policy. Selecting individual sources now would exceed the evidence.
+Decision: Preserve all 18 sources from G1/G5/G6 and split each group into two predeclared three-source siblings for Round 3. Do not crawl deeper until source-level evidence strengthens.
+Next question: Within each surviving six-source parent, which sibling trio carries the organizer signal?
+Cost/resources: Zero crawl, extraction, chunking, embedding, or reranking; seven submissions were packaged from cached candidates and 582,000 scores.
+Evidence: `artifacts/source_census/round2_groups.json`, `artifacts/source_census/round2_report.json`, Round-2 submission ZIPs, and organizer metrics supplied by the project owner.
+Commit: pending review; no commit requested.
+
+## Phase 10C1 — FamilyDoctor scaling from 1K to 5K
+
+Date: 2026-10-06 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10C1 / uncommitted current worktree
+Question: Does scaling the weakly positive S2/FamilyDoctor source from approximately 1,000 to 5,000 sampled official IDs produce enough additional organizer value to justify deeper acquisition?
+Why we tried it: S2-1K had produced a small document-side signal (`FINAL_SCORE=0.0002`) in the fixed Phase 10B3 source probe.
+Hypothesis: Increasing coverage within the same source, with retrieval, reranking, and submission policy fixed, might improve both document and chunk recall.
+What we changed: Added a disjoint deterministic FamilyDoctor sample to reach 5,000 sampled official IDs and recomputed only the missing downstream work.
+What stayed fixed: The 1,200 queries, tokenizer/chunking policy, BGE-M3 dense model, BM25/RRF retrieval, pinned multilingual reranker, top-10 document policy, top-20 chunks, and source-verbatim expansion.
+Result: The organizer reported `FINAL_SCORE=0.0002`, `DOCS_F2MACRO=0.0003`, `CHUNKS_F2MACRO=0.0002`, `DOCS_PRECISION=0.0017`, `DOCS_RECALL=0.0003`, `CHUNKS_PRECISION=0.0022`, and `CHUNKS_RECALL=0.0001`. The prior S2-1K result was final `0.0002`, document F2 `0.0002`, chunk F2 `0.0001`, document precision/recall `0.0008/0.0002`, and chunk precision/recall `0.0019/0.0001`.
+What failed / surprised us: Document-side precision, recall, and F2 rose slightly, but the displayed final score and chunk recall remained flat after a five-fold sampled-source expansion.
+What we learned: S2 is not proven irrelevant, but deeper acquisition has low marginal value under the current pipeline. The result is consistent with retaining S2 as a low-yield control or routing source rather than a near-term scaling priority.
+Decision: Deprioritize further S2 scaling. Shift bounded acquisition effort toward a source census and adaptive group testing while keeping S4 out of unknown-source pools.
+Next question: Which remaining untested sources merit deeper acquisition when screened in balanced groups rather than one leaderboard submission per source?
+Cost/resources: 5,000 sampled official S2 IDs; 18,838 novel reranker scores were checkpointed for the completed C2 run. Exact electricity cost was not measured.
+Evidence: `artifacts/runs/phase10c1_C2_S2_5k/final_report.json`, `artifacts/phase10c1_early_release/C2_early_release.json`, and `submissions/phase10c1_C2_S2_5k.zip`; organizer metrics supplied by the project owner.
+Commit: pending review; no commit requested yet.

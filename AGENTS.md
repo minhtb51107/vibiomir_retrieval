@@ -40,7 +40,21 @@ If push fails because no remote, authentication, or upstream is configured:
 ## Experiment Record
 
 An experiment is not complete until:
+
 1. its result/lesson is appended to `docs/EXPERIMENT_JOURNAL.md`,
 2. `docs/TIMELINE.md` is updated when it changes project direction,
 3. `docs/leaderboard_history.csv` is updated for every organizer submission result,
-4. claims are grounded in repository evidence; never reconstruct or invent missing history from memory.
+4. claims are grounded in repository evidence; never reconstruct or invent
+   missing history from memory,
+5. the documentation changes above are included in the experiment's final Git
+   checkpoint.
+
+For a completed experiment, the required order is normally:
+
+experiment
+-> validation
+-> journal/timeline update
+-> git diff review
+-> commit
+-> push
+-> report commit hash
