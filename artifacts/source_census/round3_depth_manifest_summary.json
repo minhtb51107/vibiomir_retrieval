@@ -1,0 +1,50 @@
+{
+  "sources": [
+    "baochinhphu.vn",
+    "baoquangninh.vn",
+    "benhviennhitrunguong.gov.vn",
+    "cancer.39.net",
+    "familydoctor.cn",
+    "hellobacsi.com",
+    "jb39.com",
+    "medlatec.vn",
+    "qy.familydoctor.com.cn",
+    "suckhoedoisong.vn",
+    "suckhoeviet.org.vn",
+    "tiemchunglongchau.com.vn",
+    "tnb.39.net",
+    "tuoitre.vn",
+    "v.familydoctor.com.cn",
+    "vinmec.com",
+    "vov2.vov.vn",
+    "zydcd.com"
+  ],
+  "targets": {
+    "300": {
+      "total_incremental_ids": 3000,
+      "sources_without_target_population": [
+        "familydoctor.cn",
+        "qy.familydoctor.com.cn",
+        "v.familydoctor.com.cn"
+      ],
+      "aggregate_retained_bytes": 135172033.1208791,
+      "aggregate_retained_gib": 0.12588876590214587,
+      "aggregate_source_serial_seconds": 3558.312615384615,
+      "aggregate_source_serial_hours": 0.9884201709401709,
+      "warning": "Per-source linear engineering projection, not a guaranteed concurrent wall time or content yield."
+    },
+    "1000": {
+      "total_incremental_ids": 13500,
+      "sources_without_target_population": [
+        "familydoctor.cn",
+        "qy.familydoctor.com.cn",
+        "v.familydoctor.com.cn"
+      ],
+      "aggregate_retained_bytes": 608274149.043956,
+      "aggregate_retained_gib": 0.5664994465596564,
+      "aggregate_source_serial_seconds": 16012.40676923077,
+      "aggregate_source_serial_hours": 4.44789076923077,
+      "warning": "Per-source linear engineering projection, not a guaranteed concurrent wall time or content yield."
+    }
+  }
+}

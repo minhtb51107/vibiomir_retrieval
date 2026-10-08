@@ -1,0 +1,9 @@
+{
+  "input_directory": "data/chunks/source_census_round1_parts",
+  "partition_count": 9,
+  "chunk_count": 65223,
+  "unique_chunk_ids": 65223,
+  "chunk_id_order_sha256": "0284ef2ecb0cf400267c1f01c3d4c7d9fd7d12a5fb1350cd39d67a2bd254f465",
+  "output": "data\\source_census\\round1\\chunks.parquet",
+  "output_size_bytes": 28364987
+}

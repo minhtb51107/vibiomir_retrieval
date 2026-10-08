@@ -1,0 +1,27 @@
+{
+  "stage": "RERANK",
+  "status": "RUNNING",
+  "total": 582000,
+  "done": 24256,
+  "remaining": 557744,
+  "integrity": "transactional-ok",
+  "shard_size": 2000,
+  "current_checkpoint_window": 5,
+  "model_load_seconds": 68.221,
+  "model_load_count": 1,
+  "scorer_restarts": 0,
+  "active_pairs_per_second": 30.03,
+  "effective_pairs_per_second": 22.815,
+  "rss_mib": 291.72,
+  "private_mib": 8003.58,
+  "gpu_allocated_mib": 1091.16,
+  "gpu_reserved_mib": 1110.0,
+  "checkpoint_seconds": 1.632,
+  "eta_seconds": 24446.38,
+  "last_successful_checkpoint": 24256,
+  "equivalence": {
+    "checked": 8,
+    "max_absolute_difference": 0.0,
+    "passed": true
+  }
+}

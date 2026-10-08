@@ -1,0 +1,83 @@
+version: 1
+phase: phase10d_source_census
+seed: vibiomir-phase10d-round1-v1
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  inventory: artifacts/phase10b1_site_discovery/domain_inventory.json
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  c1_candidate_pool: data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet
+  c1_reranked_chunks: data/retrieval/phase10c1_early_release/C1/reranked_chunks.parquet
+  c1_source_doc_ids: data/phase10c1/C1/documents.parquet
+excluded_sources:
+  - cnkang.com
+  - 120ask.com
+  - familydoctor.com.cn
+  - ask.39.net
+  - zysjonline.com
+  - a-hospital.com
+  - suckhoecongdongonline.vn
+sampling:
+  round1_documents_per_source: 100
+  round2_documents_per_source: 300
+  round3_documents_per_source: 1000
+  avoid_existing_manifests:
+    - artifacts/phase10b2_acquisition/sample_manifest.json
+    - artifacts/phase10c1_three_way/C1_s4_new_manifest.json
+    - artifacts/phase10c1_three_way/C2_s2_new_manifest.json
+    - artifacts/phase10c1_three_way/C3_suckhoedoisong_new_manifest.json
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 8
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+triage:
+  minimum_successful_fetches: 1
+  minimum_extracted_documents: 1
+  blocked_fraction: 0.80
+candidate_cache:
+  candidate_caps: [2, 4, 8]
+  calibration_document_retention: 0.95
+  calibration_chunk_retention: 0.95
+  dense_depth: 8
+  sparse_depth: 8
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    batch_size: 2
+    max_length: 512
+    shard_size: 2000
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  expansion_tokens: 1024
+  chunk_expansion_tokens: 1024
+outputs:
+  root: data/source_census
+  artifacts: artifacts/source_census
+  submissions: submissions
+  serial_crawl_database: data/crawled/source_census_round1.sqlite
+  serial_body_archive: data/crawled/source_census_round1_bodies
+  worker_root: data/crawled/source_census_round1_workers
+  crawl_database: data/crawled/source_census_round1_merged.sqlite
+  body_archive: data/crawled/source_census_round1_merged_bodies
+  processed_parts: data/processed/source_census_round1_parts
+  chunks_parts: data/chunks/source_census_round1_parts
+  documents: data/source_census/round1/documents.parquet
+  chunks: data/source_census/round1/chunks.parquet
+

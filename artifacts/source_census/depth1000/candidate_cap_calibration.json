@@ -1,0 +1,10 @@
+{
+  "method": "local C1 source-candidate cap reproduction; no organizer labels",
+  "caps": {
+    "8": {
+      "chunk_retention": 0.3710253358272403,
+      "document_retention": 0.2711774364918381
+    }
+  },
+  "chosen_m": 8
+}

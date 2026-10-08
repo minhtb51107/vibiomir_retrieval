@@ -1,0 +1,316 @@
+{
+  "contract": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "tokenizer_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "batch_size": 2,
+    "max_length": 512,
+    "precision": "float16",
+    "eval_mode": true,
+    "padding": true,
+    "truncation": "longest_first",
+    "score_extraction": "logits.reshape(-1).float().cpu().numpy()",
+    "input_order": "query, chunk"
+  },
+  "pairs": [
+    {
+      "query_id": 1,
+      "chunk_id": "125879-6df5ffab65bd675beadf0740",
+      "reference_score": -2.80078125,
+      "same_process_scores": [
+        -2.802734375,
+        -2.802734375,
+        -2.802734375,
+        -2.802734375,
+        -2.802734375
+      ],
+      "fresh_process_scores": [
+        -2.802734375
+      ],
+      "max_absolute_difference_vs_reference": 0.001953125
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2082160-8d11792c67d97aa0d506d370",
+      "reference_score": -6.75390625,
+      "same_process_scores": [
+        -6.75390625,
+        -6.75390625,
+        -6.75390625,
+        -6.75390625,
+        -6.75390625
+      ],
+      "fresh_process_scores": [
+        -6.75390625
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-0c3c9562fc8ad813a1b49305",
+      "reference_score": -1.763671875,
+      "same_process_scores": [
+        -1.763671875,
+        -1.763671875,
+        -1.763671875,
+        -1.763671875,
+        -1.763671875
+      ],
+      "fresh_process_scores": [
+        -1.763671875
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-4f9d0cd3abd51549804c9f44",
+      "reference_score": -3.912109375,
+      "same_process_scores": [
+        -3.912109375,
+        -3.912109375,
+        -3.912109375,
+        -3.912109375,
+        -3.912109375
+      ],
+      "fresh_process_scores": [
+        -3.912109375
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-715b21a9880c66c7ec725029",
+      "reference_score": 0.0034809112548828125,
+      "same_process_scores": [
+        0.0034809112548828125,
+        0.0034809112548828125,
+        0.0034809112548828125,
+        0.0034809112548828125,
+        0.0034809112548828125
+      ],
+      "fresh_process_scores": [
+        0.0034809112548828125
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-e3925fc1667bede30c6cb00e",
+      "reference_score": -3.900390625,
+      "same_process_scores": [
+        -3.900390625,
+        -3.900390625,
+        -3.900390625,
+        -3.900390625,
+        -3.900390625
+      ],
+      "fresh_process_scores": [
+        -3.900390625
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97838-d91fde8c2ad2e720615140c3",
+      "reference_score": -3.1171875,
+      "same_process_scores": [
+        -3.111328125,
+        -3.111328125,
+        -3.111328125,
+        -3.111328125,
+        -3.111328125
+      ],
+      "fresh_process_scores": [
+        -3.111328125
+      ],
+      "max_absolute_difference_vs_reference": 0.005859375
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "98395-5449665eb7c2502c5f0c9d6e",
+      "reference_score": -2.64453125,
+      "same_process_scores": [
+        -2.64453125,
+        -2.64453125,
+        -2.64453125,
+        -2.64453125,
+        -2.64453125
+      ],
+      "fresh_process_scores": [
+        -2.64453125
+      ],
+      "max_absolute_difference_vs_reference": 0.0
+    }
+  ],
+  "same_process_max_absolute_difference": 0.0,
+  "fresh_process_max_absolute_difference": 0.0,
+  "max_absolute_difference_vs_reference": 0.005859375,
+  "reference_order": [
+    4,
+    2,
+    7,
+    0,
+    6,
+    5,
+    3,
+    1
+  ],
+  "current_orders": [
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ],
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ],
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ],
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ],
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ],
+    [
+      4,
+      2,
+      7,
+      0,
+      6,
+      5,
+      3,
+      1
+    ]
+  ],
+  "all_orders_equal": true,
+  "metadata_equal_across_processes": true,
+  "metadata": {
+    "model_name": "BAAI/bge-reranker-v2-m3",
+    "resolved_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "architecture": [
+      "XLMRobertaForSequenceClassification"
+    ],
+    "parameters": 567755777,
+    "tokenizer_name": "BAAI/bge-reranker-v2-m3",
+    "native_max_sequence_length": 8192,
+    "max_sequence_length": 512,
+    "device": "cuda",
+    "inference_precision": "float16",
+    "output_dtype": "float32",
+    "batch_size": 2,
+    "config_path": null
+  },
+  "original_depth1000_batch_context": [
+    {
+      "query_id": 1,
+      "chunk_id": "125879-6df5ffab65bd675beadf0740",
+      "original_missing_index": 2,
+      "batch_chunk_ids": [
+        "125879-6df5ffab65bd675beadf0740",
+        "128183-6c46276f5a08e73b7be5215f"
+      ],
+      "reconstructed_score": -2.80078125
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2082160-8d11792c67d97aa0d506d370",
+      "original_missing_index": 21,
+      "batch_chunk_ids": [
+        "2079724-fe41e599a7c9f3b384011d2a",
+        "2082160-8d11792c67d97aa0d506d370"
+      ],
+      "reconstructed_score": -6.75390625
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-0c3c9562fc8ad813a1b49305",
+      "original_missing_index": 54,
+      "batch_chunk_ids": [
+        "97566-0c3c9562fc8ad813a1b49305",
+        "97566-4f9d0cd3abd51549804c9f44"
+      ],
+      "reconstructed_score": -1.763671875
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-4f9d0cd3abd51549804c9f44",
+      "original_missing_index": 55,
+      "batch_chunk_ids": [
+        "97566-0c3c9562fc8ad813a1b49305",
+        "97566-4f9d0cd3abd51549804c9f44"
+      ],
+      "reconstructed_score": -3.912109375
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-715b21a9880c66c7ec725029",
+      "original_missing_index": 56,
+      "batch_chunk_ids": [
+        "97566-715b21a9880c66c7ec725029",
+        "97566-e3925fc1667bede30c6cb00e"
+      ],
+      "reconstructed_score": 0.0034809112548828125
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97566-e3925fc1667bede30c6cb00e",
+      "original_missing_index": 57,
+      "batch_chunk_ids": [
+        "97566-715b21a9880c66c7ec725029",
+        "97566-e3925fc1667bede30c6cb00e"
+      ],
+      "reconstructed_score": -3.900390625
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "97838-d91fde8c2ad2e720615140c3",
+      "original_missing_index": 58,
+      "batch_chunk_ids": [
+        "97838-d91fde8c2ad2e720615140c3",
+        "124521-8cbaaa6aaef1d27b95aeba9c"
+      ],
+      "reconstructed_score": -3.1171875
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "98395-5449665eb7c2502c5f0c9d6e",
+      "not_newly_inferred_at_depth1000": true
+    }
+  ],
+  "original_context_matches_reference": true
+}

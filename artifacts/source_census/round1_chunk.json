@@ -1,0 +1,18 @@
+{
+  "source_documents": "data\\source_census\\round1\\documents.parquet",
+  "source_sha256": "0db34bc14511498055c963088b867d80c6f05231575739b0833fa1ccbfc58a7d",
+  "tokenizer_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "content_token_budget": 508,
+  "maximum_tokens_with_specials": 512,
+  "overlap_tokens": 64,
+  "documents_per_partition": 1000,
+  "initial_completed_documents": 0,
+  "final_completed_documents": 8173,
+  "documents_written_this_run": 8173,
+  "chunks_written_this_run": 65223,
+  "partitions_written_this_run": 9,
+  "maximum_content_tokens": 508,
+  "runtime_seconds": 114.702867,
+  "output_directory": "data\\chunks\\source_census_round1_parts",
+  "checkpoint": "data\\source_census\\round1\\chunk.sqlite"
+}

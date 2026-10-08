@@ -1,0 +1,7 @@
+{
+  "partition_count": 9,
+  "document_count": 8173,
+  "unique_doc_ids": 8173,
+  "output": "data\\source_census\\round1\\documents.parquet",
+  "output_size_bytes": 28402562
+}

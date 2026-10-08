@@ -1,0 +1,455 @@
+{
+  "terminal_state": "WAITING_FOR_LEADERBOARD",
+  "groups": {
+    "G1A": [
+      "medlatec.vn",
+      "v.familydoctor.com.cn",
+      "vinmec.com"
+    ],
+    "G1B": [
+      "vov2.vov.vn",
+      "familydoctor.cn",
+      "suckhoeviet.org.vn"
+    ],
+    "G5A": [
+      "benhviennhitrunguong.gov.vn",
+      "zydcd.com",
+      "hellobacsi.com"
+    ],
+    "G5B": [
+      "tuoitre.vn",
+      "qy.familydoctor.com.cn",
+      "tnb.39.net"
+    ],
+    "G6A": [
+      "baoquangninh.vn",
+      "jb39.com",
+      "baochinhphu.vn"
+    ],
+    "G6B": [
+      "tiemchunglongchau.com.vn",
+      "cancer.39.net",
+      "suckhoedoisong.vn"
+    ]
+  },
+  "group_assignment": {
+    "format_version": 1,
+    "method": "organizer-directed sibling split of Round-2 G1/G5/G6",
+    "experimental_control": {
+      "only_variable": "source membership",
+      "source_depth": "unchanged Round-1 sample depth",
+      "candidate_cap_m": 8,
+      "new_crawling": 0,
+      "new_extraction": 0,
+      "new_chunking": 0,
+      "new_embeddings": 0,
+      "new_reranking": 0,
+      "reused_scores": 582000
+    },
+    "groups": {
+      "G1A": [
+        {
+          "source": "medlatec.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 24762,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1951,
+          "acquisition_yield": 1.0,
+          "round2_group": "G1"
+        },
+        {
+          "source": "v.familydoctor.com.cn",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 10,
+          "sampled": 10,
+          "usable_documents": 10,
+          "chunk_count": 22,
+          "acquisition_yield": 1.0,
+          "round2_group": "G1"
+        },
+        {
+          "source": "vinmec.com",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 26129,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 624,
+          "acquisition_yield": 1.0,
+          "round2_group": "G1"
+        }
+      ],
+      "G1B": [
+        {
+          "source": "vov2.vov.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 6899,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1177,
+          "acquisition_yield": 1.0,
+          "round2_group": "G1"
+        },
+        {
+          "source": "familydoctor.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 44,
+          "sampled": 44,
+          "usable_documents": 43,
+          "chunk_count": 102,
+          "acquisition_yield": 0.9772727272727273,
+          "round2_group": "G1"
+        },
+        {
+          "source": "suckhoeviet.org.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 5627,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2985,
+          "acquisition_yield": 1.0,
+          "round2_group": "G1"
+        }
+      ],
+      "G5A": [
+        {
+          "source": "benhviennhitrunguong.gov.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 1200,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1567,
+          "acquisition_yield": 1.0,
+          "round2_group": "G5"
+        },
+        {
+          "source": "zydcd.com",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 78680,
+          "sampled": 100,
+          "usable_documents": 97,
+          "chunk_count": 258,
+          "acquisition_yield": 0.97,
+          "round2_group": "G5"
+        },
+        {
+          "source": "hellobacsi.com",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 11747,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1187,
+          "acquisition_yield": 1.0,
+          "round2_group": "G5"
+        }
+      ],
+      "G5B": [
+        {
+          "source": "tuoitre.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 3893,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2008,
+          "acquisition_yield": 1.0,
+          "round2_group": "G5"
+        },
+        {
+          "source": "qy.familydoctor.com.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 40,
+          "sampled": 40,
+          "usable_documents": 39,
+          "chunk_count": 711,
+          "acquisition_yield": 0.975,
+          "round2_group": "G5"
+        },
+        {
+          "source": "tnb.39.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 4178,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 472,
+          "acquisition_yield": 1.0,
+          "round2_group": "G5"
+        }
+      ],
+      "G6A": [
+        {
+          "source": "baoquangninh.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2912,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 573,
+          "acquisition_yield": 1.0,
+          "round2_group": "G6"
+        },
+        {
+          "source": "jb39.com",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 7306,
+          "sampled": 100,
+          "usable_documents": 99,
+          "chunk_count": 1199,
+          "acquisition_yield": 0.99,
+          "round2_group": "G6"
+        },
+        {
+          "source": "baochinhphu.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2302,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 640,
+          "acquisition_yield": 1.0,
+          "round2_group": "G6"
+        }
+      ],
+      "G6B": [
+        {
+          "source": "tiemchunglongchau.com.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 13281,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 992,
+          "acquisition_yield": 1.0,
+          "round2_group": "G6"
+        },
+        {
+          "source": "cancer.39.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 8415,
+          "sampled": 100,
+          "usable_documents": 11,
+          "chunk_count": 50,
+          "acquisition_yield": 0.11,
+          "round2_group": "G6"
+        },
+        {
+          "source": "suckhoedoisong.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 85823,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2430,
+          "acquisition_yield": 1.0,
+          "round2_group": "G6"
+        }
+      ]
+    }
+  },
+  "experimental_control": {
+    "only_variable": "source membership",
+    "source_depth": "unchanged Round-1 sample depth",
+    "candidate_cap_m": 8,
+    "new_crawling": 0,
+    "new_extraction": 0,
+    "new_chunking": 0,
+    "new_embeddings": 0,
+    "new_reranking": 0,
+    "reused_scores": 582000
+  },
+  "score_cache": {
+    "total": 582000,
+    "done": 582000,
+    "remaining": 0,
+    "integrity": "ok"
+  },
+  "submissions": {
+    "G1A": {
+      "name": "phase10d_R3_G1A",
+      "json_path": "submissions\\phase10d_R3_G1A.json",
+      "zip_path": "submissions\\phase10d_R3_G1A.zip",
+      "json_sha256": "26d09288d9ee9b6a81c22e02582383e0d973db15ca542beab6e71220d4af03ed",
+      "zip_sha256": "e8409db053669abf992f7a199ab32f63eb606448b0ed000f71029a3d17971f9a",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G1A.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 943,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23805
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    },
+    "G1B": {
+      "name": "phase10d_R3_G1B",
+      "json_path": "submissions\\phase10d_R3_G1B.json",
+      "zip_path": "submissions\\phase10d_R3_G1B.zip",
+      "json_sha256": "f12b22db1f2532e46c6c2bc7e100be878358c1f919f433ae8417b51869944950",
+      "zip_sha256": "26b5013003aa3fe4780c067b804b1b264f1c9144fdca88cb6a35220879c8eb98",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G1B.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 960,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23873
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    },
+    "G5A": {
+      "name": "phase10d_R3_G5A",
+      "json_path": "submissions\\phase10d_R3_G5A.json",
+      "zip_path": "submissions\\phase10d_R3_G5A.zip",
+      "json_sha256": "1afb2a72d5678e135ea8d3c492aa91e27064144e4fde7b7c68263a9f7f0b9689",
+      "zip_sha256": "f8df86e9fd58fcc930332fa3f8f036ebcfc491313d0971293e1d888e894a3cfd",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G5A.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 977,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23898
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    },
+    "G5B": {
+      "name": "phase10d_R3_G5B",
+      "json_path": "submissions\\phase10d_R3_G5B.json",
+      "zip_path": "submissions\\phase10d_R3_G5B.zip",
+      "json_sha256": "5c8256e180c2d68a84d82b7d7d9add390230dc30c0a7988a01282169ecb1069c",
+      "zip_sha256": "42ec6c53790720dfec36fc280174fc9b3a659e86778422bc13d807e9aaa596a2",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G5B.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 990,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23873
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    },
+    "G6A": {
+      "name": "phase10d_R3_G6A",
+      "json_path": "submissions\\phase10d_R3_G6A.json",
+      "zip_path": "submissions\\phase10d_R3_G6A.zip",
+      "json_sha256": "039557c6ea97a368e2932774498ffe411f258f07b415f46e7f27b5c566f4fc02",
+      "zip_sha256": "06d1e9e52c6abaf78dc018aee27128d0c88822fb4db7bdec4ba3d58009557a8e",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G6A.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 985,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23876
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    },
+    "G6B": {
+      "name": "phase10d_R3_G6B",
+      "json_path": "submissions\\phase10d_R3_G6B.json",
+      "zip_path": "submissions\\phase10d_R3_G6B.zip",
+      "json_sha256": "c97cfef3b32890e573146acb9b3bfafd16674e92396dcc1c67ccf6010cfee94c",
+      "zip_sha256": "29bc8f7f907c7e933379de72bff13083cf277ba4dd43c3e12aa9549f768ab04b",
+      "validation": {
+        "path": "submissions\\phase10d_R3_G6B.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 922,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23903
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0
+    }
+  }
+}

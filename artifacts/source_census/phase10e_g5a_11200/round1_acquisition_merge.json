@@ -1,0 +1,9 @@
+{
+  "source_checkpoints": 4,
+  "inserted_this_run": 8203,
+  "canonical_rows": 8203,
+  "canonical_bodies": 8203,
+  "integrity": "ok",
+  "database": "data\\crawled\\phase10e_g5a_11200_merged.sqlite",
+  "archive": "data/crawled/phase10e_g5a_11200_merged_bodies"
+}

@@ -1,0 +1,227 @@
+import numpy as np
+import pyarrow as pa
+import pyarrow.parquet as pq
+import pytest
+
+from src.source_census.pipeline import (
+    SourceBM25Index,
+    _merge_source_parts,
+    _bm25_rank,
+    balanced_groups,
+    balanced_round2_groups,
+    calibrate_cap,
+    score_gate,
+    stable_fold,
+    stable_top_k_indices,
+)
+from src.source_census.round3 import ROUND3_GROUPS
+from src.source_census.depth1000 import DEPTH_GROUPS, seed_exact_scores
+from src.source_census.cached_subsets import _require_complete_score_cache
+from src.validation.pre_submission import audit_score_cache, score_distribution
+
+
+def test_stable_fold_is_deterministic():
+    assert stable_fold("example.org:42", 5) == stable_fold("example.org:42", 5)
+
+
+def test_balanced_groups_are_disjoint():
+    triage = {
+        "healthy_sources": ["a", "b", "c", "d", "e", "f"],
+        "sources": {
+            name: {"corpus_rows": index * 100, "usable_documents": 20 + index * 10, "likely_language": "vi" if index % 2 else "zh"}
+            for index, name in enumerate(["a", "b", "c", "d", "e", "f"], 1)
+        },
+    }
+    groups = balanced_groups({}, triage)
+    flattened = [item for values in groups.values() for item in values]
+    assert sorted(flattened) == sorted(triage["healthy_sources"])
+    assert len(flattened) == len(set(flattened))
+
+
+def test_round2_groups_are_disjoint_and_parent_balanced():
+    parents = {
+        "A": [f"a{index}" for index in range(21)],
+        "C": [f"c{index}" for index in range(21)],
+    }
+    metadata = {
+        source: {
+            "corpus_rows": 100 + index * 31,
+            "sampled": 100,
+            "usable_documents": 20 + index % 81,
+            "chunk_count": 5 + index * 3,
+            "likely_language": ("vi", "zh", "unknown")[index % 3],
+        }
+        for index, source in enumerate([*parents["A"], *parents["C"]])
+    }
+    first = balanced_round2_groups(parents, metadata)
+    second = balanced_round2_groups(parents, metadata)
+    assert first == second
+    flattened = []
+    for rows in first["groups"].values():
+        assert len(rows) == 6
+        assert sum(row["parent"] == "A" for row in rows) == 3
+        assert sum(row["parent"] == "C" for row in rows) == 3
+        flattened.extend(row["source"] for row in rows)
+    assert sorted(flattened) == sorted([*parents["A"], *parents["C"]])
+    assert len(flattened) == len(set(flattened)) == 42
+
+
+def test_round3_fixed_groups_are_six_disjoint_trios():
+    assert list(ROUND3_GROUPS) == ["G1A", "G1B", "G5A", "G5B", "G6A", "G6B"]
+    flattened = [source for sources in ROUND3_GROUPS.values() for source in sources]
+    assert all(len(sources) == 3 for sources in ROUND3_GROUPS.values())
+    assert len(flattened) == len(set(flattened)) == 18
+
+
+def test_depth1000_groups_preserve_all_nine_sources_without_overlap():
+    assert list(DEPTH_GROUPS) == ["G1A", "G5A", "G6B"]
+    flattened = [source for sources in DEPTH_GROUPS.values() for source in sources]
+    assert all(len(sources) == 3 for sources in DEPTH_GROUPS.values())
+    assert len(flattened) == len(set(flattened)) == 9
+    assert "v.familydoctor.com.cn" in flattened
+    assert "suckhoedoisong.vn" in flattened
+
+
+def test_cached_score_validation_accepts_complete_non_round1_size(tmp_path, monkeypatch):
+    parts = tmp_path / "round1" / "source_candidate_parts"
+    parts.mkdir(parents=True)
+    pq.write_table(pa.table({"query_id": [1, 1], "chunk_id": ["a", "b"]}), parts / "one.parquet")
+    monkeypatch.setattr(
+        "src.source_census.cached_subsets.score_database_status",
+        lambda config, verify_integrity=False: {
+            "total": 2, "done": 2, "remaining": 0, "integrity": "ok",
+            "future_schema_field": "accepted",
+        },
+    )
+    status = _require_complete_score_cache({"outputs": {"root": str(tmp_path)}})
+    assert status["done"] == 2
+
+
+def test_cached_score_validation_rejects_missing_candidate_key(tmp_path, monkeypatch):
+    parts = tmp_path / "round1" / "source_candidate_parts"
+    parts.mkdir(parents=True)
+    pq.write_table(pa.table({"query_id": [1, 1], "chunk_id": ["a", "b"]}), parts / "one.parquet")
+    monkeypatch.setattr(
+        "src.source_census.cached_subsets.score_database_status",
+        lambda config, verify_integrity=False: {"total": 1, "done": 1, "remaining": 0, "integrity": "ok"},
+    )
+    with pytest.raises(ValueError, match="expected candidate keys=2"):
+        _require_complete_score_cache({"outputs": {"root": str(tmp_path)}})
+
+
+def _score_db(path, rows):
+    import sqlite3
+    connection = sqlite3.connect(path)
+    connection.execute("CREATE TABLE pairs(query_id INTEGER,chunk_id TEXT,query_text TEXT,chunk_text TEXT,rerank_score REAL,inference_ms REAL,PRIMARY KEY(query_id,chunk_id))")
+    connection.executemany("INSERT INTO pairs VALUES (?,?,?,?,?,?)", rows)
+    connection.commit(); connection.close()
+
+
+def test_exact_score_seed_reuses_only_full_composite_key(tmp_path):
+    old = tmp_path / "old.sqlite"; destination = tmp_path / "destination.sqlite"
+    _score_db(old, [(1,"a","q1","a",1.25,10.0),(1,"b","q1","b",2.5,20.0),(2,"a","q2","a",3.75,30.0)])
+    _score_db(destination, [(1,"a","q1","a",None,None),(1,"b","q1","b",None,None),(2,"b","q2","b",None,None)])
+    result = seed_exact_scores(destination, old)
+    import sqlite3
+    connection = sqlite3.connect(destination)
+    rows = connection.execute("SELECT query_id,chunk_id,rerank_score,inference_ms FROM pairs ORDER BY query_id,chunk_id").fetchall()
+    connection.close()
+    assert rows == [(1,"a",1.25,10.0),(1,"b",2.5,20.0),(2,"b",None,None)]
+    assert result["reused"] == 2 and result["missing"] == 1
+    assert result["distinct_seeded_scores"] == 2
+    assert result["incorrectly_seeded_nonmatches"] == 0
+
+
+def test_cache_coverage_rejects_equal_row_count_with_wrong_key(tmp_path):
+    root = tmp_path / "round1"; parts = root / "source_candidate_parts"; parts.mkdir(parents=True)
+    pq.write_table(pa.table({"query_id":[1,1],"chunk_id":["a","b"]}),parts/"one.parquet")
+    _score_db(root/"source_scores.sqlite",[(1,"a","q","a",1.0,1.0),(1,"wrong","q","x",2.0,1.0)])
+    with pytest.raises(ValueError, match="missing score keys=1.*unexpected score keys=1"):
+        _require_complete_score_cache({"outputs":{"root":str(tmp_path)}})
+
+
+def test_scientific_gate_rejects_depth1000_constant_score_corruption(tmp_path):
+    root=tmp_path/"round1"; parts=root/"source_candidate_parts"; parts.mkdir(parents=True)
+    count=1001
+    pq.write_table(pa.table({"query_id":list(range(count)),"chunk_id":[f"c{i}" for i in range(count)]}),parts/"source.parquet")
+    _score_db(root/"source_scores.sqlite",[(i,f"c{i}","q","text",-8.8203125,30.37255468746025) for i in range(count)])
+    result=audit_score_cache(root/"source_scores.sqlite",parts)
+    assert not result["passed"]
+    assert result["score_distribution"]["distinct"] == 1
+    assert result["distinct_inference_ms_count"] == 1
+    assert "degenerate rerank scores" in result["failures"]
+
+
+def test_score_distribution_reports_required_quantiles():
+    result=score_distribution([1.0,2.0,3.0,4.0,5.0])
+    assert result == {"count":5,"distinct":5,"min":1.0,"median":3.0,"p95":5.0,"max":5.0}
+
+
+def test_score_gate_preserves_ambiguous_groups():
+    assert score_gate({"A": .0010, "B": .00095, "C": .0002})["status"] == "AMBIGUOUS"
+    result = score_gate({"A": .0011, "B": .0009, "C": .0002})
+    assert result["status"] == "ADVANCE"
+    assert result["winner"] == "A"
+
+
+def test_cached_bm25_is_exactly_equivalent():
+    texts = ["đau đầu chóng mặt", "đau bụng", "头痛 治疗", "unrelated"]
+    index = SourceBM25Index(texts, k1=1.2, b=.75)
+    for query in ("đau đầu", "头痛", "missing", "đau"):
+        expected = _bm25_rank(texts, query, k1=1.2, b=.75, top_k=3)
+        actual = index.rank(query, top_k=3)
+        assert [row for row, _ in actual] == [row for row, _ in expected]
+        assert [score for _, score in actual] == [score for _, score in expected]
+
+
+def test_partial_top_k_matches_stable_full_sort_with_boundary_ties():
+    scores = np.asarray([.4, .9, .9, .1, .8, .8], dtype=np.float32)
+    expected = np.argsort(-scores, kind="stable")[:4]
+    assert stable_top_k_indices(scores, 4).tolist() == expected.tolist()
+
+
+def test_persisted_candidate_cap_contract_does_not_require_recalibration(tmp_path):
+    artifact = tmp_path / "prior_calibration.json"
+    artifact.write_text('{"method":"prior validated calibration","chosen_m":8}', encoding="utf-8")
+    config = {
+        "candidate_cache": {"candidate_caps": [8], "calibrated_cap_artifact": str(artifact)},
+        "inputs": {},
+        "outputs": {"artifacts": str(tmp_path / "current")},
+    }
+    result = calibrate_cap(config)
+    assert result["chosen_m"] == 8
+    assert result["reused_persisted_calibration"] is True
+    assert result["source_artifact"] == str(artifact)
+
+
+def test_persisted_candidate_cap_must_match_allowed_contract(tmp_path):
+    artifact = tmp_path / "prior_calibration.json"
+    artifact.write_text('{"chosen_m":4}', encoding="utf-8")
+    config = {
+        "candidate_cache": {"candidate_caps": [8], "calibrated_cap_artifact": str(artifact)},
+        "inputs": {},
+        "outputs": {"artifacts": str(tmp_path / "current")},
+    }
+    with pytest.raises(ValueError, match="chosen_m=4"):
+        calibrate_cap(config)
+
+
+def test_source_part_merge_normalizes_all_null_heading_lists(tmp_path):
+    with_headings = pa.table({
+        "query_id": [1],
+        "heading_path": pa.array([["Question"]], type=pa.list_(pa.string())),
+    })
+    without_headings = pa.table({
+        "query_id": [2],
+        "heading_path": pa.array([[None]], type=pa.list_(pa.null())),
+    })
+    first = tmp_path / "first.parquet"
+    second = tmp_path / "second.parquet"
+    output = tmp_path / "merged.parquet"
+    pq.write_table(with_headings, first)
+    pq.write_table(without_headings, second)
+
+    assert _merge_source_parts([first, second], output) == 2
+    merged = pq.read_table(output)
+    assert merged.schema.field("heading_path").type == pa.list_(pa.string())
+    assert merged.num_rows == 2

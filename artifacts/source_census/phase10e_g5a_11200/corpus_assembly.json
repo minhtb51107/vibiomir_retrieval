@@ -1,0 +1,34 @@
+{
+  "target_official_ids": 11200,
+  "documents": 11200,
+  "chunks": 92768,
+  "sources": {
+    "benhviennhitrunguong.gov.vn": {
+      "target_depth": 1200,
+      "documents_present": 1200,
+      "usable_documents": 1200,
+      "chunk_count": 18726,
+      "status_counts": {
+        "SUCCESS": 1200
+      }
+    },
+    "zydcd.com": {
+      "target_depth": 5000,
+      "documents_present": 5000,
+      "usable_documents": 5000,
+      "chunk_count": 14894,
+      "status_counts": {
+        "SUCCESS": 5000
+      }
+    },
+    "hellobacsi.com": {
+      "target_depth": 5000,
+      "documents_present": 5000,
+      "usable_documents": 5000,
+      "chunk_count": 59148,
+      "status_counts": {
+        "SUCCESS": 5000
+      }
+    }
+  }
+}

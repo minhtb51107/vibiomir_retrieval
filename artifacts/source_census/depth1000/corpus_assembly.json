@@ -1,0 +1,93 @@
+{
+  "target_official_ids": 8010,
+  "documents": 8010,
+  "chunks": 93433,
+  "sources": {
+    "benhviennhitrunguong.gov.vn": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 1000,
+      "chunk_count": 15574,
+      "status_counts": {
+        "SUCCESS": 1000
+      }
+    },
+    "cancer.39.net": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 911,
+      "chunk_count": 4481,
+      "status_counts": {
+        "JS_SHELL": 89,
+        "SUCCESS": 911
+      }
+    },
+    "hellobacsi.com": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 1000,
+      "chunk_count": 11601,
+      "status_counts": {
+        "SUCCESS": 1000
+      }
+    },
+    "medlatec.vn": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 996,
+      "chunk_count": 19559,
+      "status_counts": {
+        "EXTRACTION_FAILED": 4,
+        "SUCCESS": 996
+      }
+    },
+    "suckhoedoisong.vn": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 999,
+      "chunk_count": 22124,
+      "status_counts": {
+        "EXTRACTION_FAILED": 1,
+        "SUCCESS": 999
+      }
+    },
+    "tiemchunglongchau.com.vn": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 1000,
+      "chunk_count": 10829,
+      "status_counts": {
+        "SUCCESS": 1000
+      }
+    },
+    "v.familydoctor.com.cn": {
+      "target_depth": 10,
+      "documents_present": 10,
+      "usable_documents": 10,
+      "chunk_count": 22,
+      "status_counts": {
+        "SUCCESS": 10
+      }
+    },
+    "vinmec.com": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 999,
+      "chunk_count": 6535,
+      "status_counts": {
+        "EXTRACTION_FAILED": 1,
+        "SUCCESS": 999
+      }
+    },
+    "zydcd.com": {
+      "target_depth": 1000,
+      "documents_present": 1000,
+      "usable_documents": 997,
+      "chunk_count": 2708,
+      "status_counts": {
+        "EXTRACTION_FAILED": 3,
+        "SUCCESS": 997
+      }
+    }
+  }
+}

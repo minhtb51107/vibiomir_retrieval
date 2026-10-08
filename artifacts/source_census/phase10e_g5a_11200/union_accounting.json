@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "candidate_documents": "data/source_census/phase10e_g5a_11200/documents.parquet",
+  "candidate_chunks": "data/source_census/phase10e_g5a_11200/chunks.parquet",
+  "sources": {
+    "benhviennhitrunguong.gov.vn": {
+      "previous_usable_doc_ids": 1000,
+      "new_usable_doc_ids": 200,
+      "duplicate_overlap": 0,
+      "union_usable_doc_ids": 1200,
+      "final_searchable_doc_count": 1200,
+      "previous_chunk_count": 15574,
+      "new_chunk_count": 3152,
+      "duplicate_chunk_overlap": 0,
+      "union_chunk_count": 18726,
+      "final_searchable_chunk_count": 18726
+    },
+    "zydcd.com": {
+      "previous_usable_doc_ids": 997,
+      "new_usable_doc_ids": 4003,
+      "duplicate_overlap": 0,
+      "union_usable_doc_ids": 5000,
+      "final_searchable_doc_count": 5000,
+      "previous_chunk_count": 2708,
+      "new_chunk_count": 12186,
+      "duplicate_chunk_overlap": 0,
+      "union_chunk_count": 14894,
+      "final_searchable_chunk_count": 14894
+    },
+    "hellobacsi.com": {
+      "previous_usable_doc_ids": 1000,
+      "new_usable_doc_ids": 4000,
+      "duplicate_overlap": 0,
+      "union_usable_doc_ids": 5000,
+      "final_searchable_doc_count": 5000,
+      "previous_chunk_count": 11601,
+      "new_chunk_count": 47547,
+      "duplicate_chunk_overlap": 0,
+      "union_chunk_count": 59148,
+      "final_searchable_chunk_count": 59148
+    }
+  },
+  "new_documents_total": 8203
+}

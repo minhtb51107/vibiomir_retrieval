@@ -1,0 +1,26 @@
+{
+  "name": "phase10d_DEPTH1000_G5A",
+  "json_path": "submissions\\phase10d_DEPTH1000_G5A.json",
+  "zip_path": "submissions\\phase10d_DEPTH1000_G5A.zip",
+  "json_sha256": "7b49e9cfbf19917a8490ff0daa53d0a14420ef7ea0560af2902d7f57e7ff674c",
+  "zip_sha256": "82f939a0020b905a64657cbabda0103400a590c67fc26eb37963202e69023ac0",
+  "validation": {
+    "path": "submissions\\phase10d_DEPTH1000_G5A.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 869,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 23853
+  },
+  "determinism_verified": true,
+  "new_model_inference": 0
+}

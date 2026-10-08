@@ -1,0 +1,25 @@
+{
+  "name": "phase10d_R2_group_3",
+  "json_path": "submissions\\phase10d_R2_group_3.json",
+  "zip_path": "submissions\\phase10d_R2_group_3.zip",
+  "json_sha256": "1baecf7c4a5764f9d679ef73498fbe6e057428b256321bca23364b37a5df19fb",
+  "zip_sha256": "345711566c81778c066a72ec90d867746430ca1f71526dd63689fa0eb043d714",
+  "validation": {
+    "path": "submissions\\phase10d_R2_group_3.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 1037,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 23803
+  },
+  "determinism_verified": true
+}

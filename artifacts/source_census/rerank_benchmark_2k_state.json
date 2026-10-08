@@ -1,0 +1,15 @@
+{
+  "stage": "RERANK",
+  "status": "RUNNING",
+  "total": 582000,
+  "done": 5000,
+  "remaining": 577000,
+  "integrity": "ok",
+  "shard_size": 2000,
+  "shard_done": 2000,
+  "model_load_seconds": 46.312,
+  "active_pairs_per_second": 30.809,
+  "effective_pairs_per_second": 17.276,
+  "eta_seconds": 33398.62,
+  "last_successful_checkpoint": 5000
+}

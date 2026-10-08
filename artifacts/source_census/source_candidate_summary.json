@@ -1,0 +1,9 @@
+{
+  "chosen_m": 8,
+  "healthy_sources": 61,
+  "candidate_rows": 582000,
+  "unique_pairs": 582000,
+  "candidate_path": "data\\source_census\\round1\\source_candidates.parquet",
+  "source_parts": 61,
+  "runtime_seconds": 21.83
+}

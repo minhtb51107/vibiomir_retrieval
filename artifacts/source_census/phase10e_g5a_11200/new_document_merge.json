@@ -1,0 +1,7 @@
+{
+  "partition_count": 9,
+  "document_count": 8203,
+  "unique_doc_ids": 8203,
+  "output": "data\\source_census\\phase10e_g5a_11200\\new_documents.parquet",
+  "output_size_bytes": 41940811
+}

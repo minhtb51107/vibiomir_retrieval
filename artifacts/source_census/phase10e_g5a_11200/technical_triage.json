@@ -1,0 +1,36 @@
+{
+  "healthy_sources": [
+    "benhviennhitrunguong.gov.vn",
+    "zydcd.com",
+    "hellobacsi.com"
+  ],
+  "sources": {
+    "benhviennhitrunguong.gov.vn": {
+      "corpus_rows": 1200,
+      "sampled": 1200,
+      "extracted_rows": 1200,
+      "usable_documents": 1200,
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "zydcd.com": {
+      "corpus_rows": 78680,
+      "sampled": 5000,
+      "extracted_rows": 5000,
+      "usable_documents": 5000,
+      "likely_language": "zh",
+      "healthy": true,
+      "technical_only": true
+    },
+    "hellobacsi.com": {
+      "corpus_rows": 11747,
+      "sampled": 5000,
+      "extracted_rows": 5000,
+      "usable_documents": 5000,
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    }
+  }
+}

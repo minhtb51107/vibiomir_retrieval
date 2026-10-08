@@ -1,0 +1,21 @@
+{
+  "crawl_database": "data\\crawled\\source_census_round1_merged.sqlite",
+  "crawl_sha256": "41af4f0ecac41620719f5c05b7418b9a6fc96b3a7c51e8156721f28818f03a4d",
+  "extraction_config_sha256": "028230b8b4e3450e815454f7dfa6eee7e6a7d54b3e906fced73dbb90de248d25",
+  "rows_per_partition": 1000,
+  "initial_completed_rows": 0,
+  "final_completed_rows": 8173,
+  "rows_written_this_run": 8173,
+  "partitions_written_this_run": 9,
+  "status_counts": {
+    "ACCESS_RESTRICTED": 829,
+    "EXTRACTION_FAILED": 295,
+    "JS_SHELL": 836,
+    "ROBOTS_BLOCKED": 1100,
+    "SUCCESS": 5113
+  },
+  "successful_clean_characters": 23948736,
+  "runtime_seconds": 908.628011,
+  "output_directory": "data\\processed\\source_census_round1_parts",
+  "checkpoint": "data\\source_census\\round1\\extract.sqlite"
+}

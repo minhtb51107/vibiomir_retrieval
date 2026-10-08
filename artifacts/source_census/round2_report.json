@@ -1,0 +1,1402 @@
+{
+  "terminal_state": "WAITING_FOR_LEADERBOARD",
+  "experimental_control": {
+    "only_variable": "source membership",
+    "new_crawling": 0,
+    "new_extraction": 0,
+    "new_chunking": 0,
+    "new_embeddings": 0,
+    "new_reranking": 0,
+    "candidate_cap_m": 8,
+    "reused_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+    "reused_scores": 582000
+  },
+  "group_assignment": {
+    "format_version": 1,
+    "method": "deterministic constrained greedy balance",
+    "constraints": {
+      "groups": 7,
+      "sources_per_group": 6,
+      "parent_A_per_group": 3,
+      "parent_C_per_group": 3,
+      "excluded_parent": "B",
+      "excluded_source": "suckhoecongdongonline.vn"
+    },
+    "size_tier_cutoffs": {
+      "small_max": 2927,
+      "medium_max": 11687
+    },
+    "balance_fields": [
+      "parent",
+      "likely_language",
+      "size_tier",
+      "corpus_rows",
+      "usable_documents",
+      "chunk_count",
+      "acquisition_yield"
+    ],
+    "groups": {
+      "G1": [
+        {
+          "source": "familydoctor.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 44,
+          "sampled": 44,
+          "usable_documents": 43,
+          "chunk_count": 102,
+          "acquisition_yield": 0.9772727272727273
+        },
+        {
+          "source": "medlatec.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 24762,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1951,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "suckhoeviet.org.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 5627,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2985,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "v.familydoctor.com.cn",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 10,
+          "sampled": 10,
+          "usable_documents": 10,
+          "chunk_count": 22,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "vinmec.com",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 26129,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 624,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "vov2.vov.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 6899,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1177,
+          "acquisition_yield": 1.0
+        }
+      ],
+      "G2": [
+        {
+          "source": "baogialai.com.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 3290,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 5583,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "thanhnien.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 72111,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 587,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "vietnamnet.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 15543,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 473,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "vnexpress.net",
+          "parent": "A",
+          "likely_language": "other",
+          "size_tier": "small",
+          "corpus_rows": 2055,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 239,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "woman.39.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 11687,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 420,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "yanglao.familydoctor.com.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 2,
+          "sampled": 2,
+          "usable_documents": 2,
+          "chunk_count": 7,
+          "acquisition_yield": 1.0
+        }
+      ],
+      "G3": [
+        {
+          "source": "baby.39.net",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 27621,
+          "sampled": 100,
+          "usable_documents": 9,
+          "chunk_count": 40,
+          "acquisition_yield": 0.09
+        },
+        {
+          "source": "baoangiang.com.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 10738,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 260,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "dantri.com.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2063,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 378,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "khoahocphothong.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 8143,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 0,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "qihuangzhishu.com",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 23637,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 282,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "thaythuocvietnam.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2927,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 6134,
+          "acquisition_yield": 1.0
+        }
+      ],
+      "G4": [
+        {
+          "source": "baothanhhoa.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 782,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 4648,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "baovinhlong.com.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 5113,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1426,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "jbk.39.net",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 19142,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 554,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "special.vietnamplus.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 1,
+          "sampled": 1,
+          "usable_documents": 1,
+          "chunk_count": 12,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "wei.39.net",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 3894,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 566,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "youlai.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 46119,
+          "sampled": 100,
+          "usable_documents": 70,
+          "chunk_count": 139,
+          "acquisition_yield": 0.7
+        }
+      ],
+      "G5": [
+        {
+          "source": "benhviennhitrunguong.gov.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 1200,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1567,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "hellobacsi.com",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 11747,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1187,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "qy.familydoctor.com.cn",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 40,
+          "sampled": 40,
+          "usable_documents": 39,
+          "chunk_count": 711,
+          "acquisition_yield": 0.975
+        },
+        {
+          "source": "tnb.39.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 4178,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 472,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "tuoitre.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 3893,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2008,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "zydcd.com",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 78680,
+          "sampled": 100,
+          "usable_documents": 97,
+          "chunk_count": 258,
+          "acquisition_yield": 0.97
+        }
+      ],
+      "G6": [
+        {
+          "source": "baochinhphu.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2302,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 640,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "baoquangninh.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 2912,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 573,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "cancer.39.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 8415,
+          "sampled": 100,
+          "usable_documents": 11,
+          "chunk_count": 50,
+          "acquisition_yield": 0.11
+        },
+        {
+          "source": "jb39.com",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "medium",
+          "corpus_rows": 7306,
+          "sampled": 100,
+          "usable_documents": 99,
+          "chunk_count": 1199,
+          "acquisition_yield": 0.99
+        },
+        {
+          "source": "suckhoedoisong.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 85823,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 2430,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "tiemchunglongchau.com.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "large",
+          "corpus_rows": 13281,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 992,
+          "acquisition_yield": 1.0
+        }
+      ],
+      "G7": [
+        {
+          "source": "baophutho.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "small",
+          "corpus_rows": 1288,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 200,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "baoquangtri.vn",
+          "parent": "A",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 5483,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 1384,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "fk.99.com.cn",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 1,
+          "sampled": 1,
+          "usable_documents": 1,
+          "chunk_count": 8,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "health.people.com.cn",
+          "parent": "A",
+          "likely_language": "zh",
+          "size_tier": "small",
+          "corpus_rows": 1348,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 639,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "vietnamplus.vn",
+          "parent": "C",
+          "likely_language": "vi",
+          "size_tier": "medium",
+          "corpus_rows": 3695,
+          "sampled": 100,
+          "usable_documents": 100,
+          "chunk_count": 4641,
+          "acquisition_yield": 1.0
+        },
+        {
+          "source": "zhongyibaodian.net",
+          "parent": "C",
+          "likely_language": "zh",
+          "size_tier": "large",
+          "corpus_rows": 146700,
+          "sampled": 100,
+          "usable_documents": 98,
+          "chunk_count": 541,
+          "acquisition_yield": 0.98
+        }
+      ]
+    },
+    "source_metadata": {
+      "baby.39.net": {
+        "corpus_rows": 27621,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 9,
+        "status_counts": {
+          "JS_SHELL": 91,
+          "SUCCESS": 9
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 40,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "baoangiang.com.vn": {
+        "corpus_rows": 10738,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 260,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "baogialai.com.vn": {
+        "corpus_rows": 3290,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 5583,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "baoquangninh.vn": {
+        "corpus_rows": 2912,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 573,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "baoquangtri.vn": {
+        "corpus_rows": 5483,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1384,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "corpus_rows": 1200,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1567,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "dantri.com.vn": {
+        "corpus_rows": 2063,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 378,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "fk.99.com.cn": {
+        "corpus_rows": 1,
+        "sampled": 1,
+        "extracted_rows": 1,
+        "usable_documents": 1,
+        "status_counts": {
+          "SUCCESS": 1
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 8,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "health.people.com.cn": {
+        "corpus_rows": 1348,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 639,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "jb39.com": {
+        "corpus_rows": 7306,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 99,
+        "status_counts": {
+          "EXTRACTION_FAILED": 1,
+          "SUCCESS": 99
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1199,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "jbk.39.net": {
+        "corpus_rows": 19142,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 554,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "medlatec.vn": {
+        "corpus_rows": 24762,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1951,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "special.vietnamplus.vn": {
+        "corpus_rows": 1,
+        "sampled": 1,
+        "extracted_rows": 1,
+        "usable_documents": 1,
+        "status_counts": {
+          "SUCCESS": 1
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 12,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "thanhnien.vn": {
+        "corpus_rows": 72111,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 587,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "tiemchunglongchau.com.vn": {
+        "corpus_rows": 13281,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 992,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "tuoitre.vn": {
+        "corpus_rows": 3893,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 2008,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "v.familydoctor.com.cn": {
+        "corpus_rows": 10,
+        "sampled": 10,
+        "extracted_rows": 10,
+        "usable_documents": 10,
+        "status_counts": {
+          "SUCCESS": 10
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 22,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "vnexpress.net": {
+        "corpus_rows": 2055,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "unknown",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 239,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "vov2.vov.vn": {
+        "corpus_rows": 6899,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1177,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "wei.39.net": {
+        "corpus_rows": 3894,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 566,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "zydcd.com": {
+        "corpus_rows": 78680,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 97,
+        "status_counts": {
+          "EXTRACTION_FAILED": 3,
+          "SUCCESS": 97
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 258,
+        "candidate_rows": 9600,
+        "parent": "A"
+      },
+      "baochinhphu.vn": {
+        "corpus_rows": 2302,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 640,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "baophutho.vn": {
+        "corpus_rows": 1288,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 200,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "baothanhhoa.vn": {
+        "corpus_rows": 782,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 4648,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "baovinhlong.com.vn": {
+        "corpus_rows": 5113,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1426,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "cancer.39.net": {
+        "corpus_rows": 8415,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 11,
+        "status_counts": {
+          "JS_SHELL": 89,
+          "SUCCESS": 11
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 50,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "familydoctor.cn": {
+        "corpus_rows": 44,
+        "sampled": 44,
+        "extracted_rows": 44,
+        "usable_documents": 43,
+        "status_counts": {
+          "EXTRACTION_FAILED": 1,
+          "SUCCESS": 43
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 102,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "hellobacsi.com": {
+        "corpus_rows": 11747,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 1187,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "khoahocphothong.vn": {
+        "corpus_rows": 8143,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 0,
+        "candidate_rows": 0,
+        "parent": "C"
+      },
+      "qihuangzhishu.com": {
+        "corpus_rows": 23637,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 282,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "qy.familydoctor.com.cn": {
+        "corpus_rows": 40,
+        "sampled": 40,
+        "extracted_rows": 40,
+        "usable_documents": 39,
+        "status_counts": {
+          "EXTRACTION_FAILED": 1,
+          "SUCCESS": 39
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 711,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "suckhoedoisong.vn": {
+        "corpus_rows": 85823,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 2430,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "suckhoeviet.org.vn": {
+        "corpus_rows": 5627,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 2985,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "thaythuocvietnam.vn": {
+        "corpus_rows": 2927,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 6134,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "tnb.39.net": {
+        "corpus_rows": 4178,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 472,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "vietnamnet.vn": {
+        "corpus_rows": 15543,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 473,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "vietnamplus.vn": {
+        "corpus_rows": 3695,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 4641,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "vinmec.com": {
+        "corpus_rows": 26129,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "vi",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 624,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "woman.39.net": {
+        "corpus_rows": 11687,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 100,
+        "status_counts": {
+          "SUCCESS": 100
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 420,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "yanglao.familydoctor.com.cn": {
+        "corpus_rows": 2,
+        "sampled": 2,
+        "extracted_rows": 2,
+        "usable_documents": 2,
+        "status_counts": {
+          "SUCCESS": 2
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 7,
+        "candidate_rows": 8400,
+        "parent": "C"
+      },
+      "youlai.cn": {
+        "corpus_rows": 46119,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 70,
+        "status_counts": {
+          "EXTRACTION_FAILED": 30,
+          "SUCCESS": 70
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 139,
+        "candidate_rows": 9600,
+        "parent": "C"
+      },
+      "zhongyibaodian.net": {
+        "corpus_rows": 146700,
+        "sampled": 100,
+        "extracted_rows": 100,
+        "usable_documents": 98,
+        "status_counts": {
+          "EXTRACTION_FAILED": 2,
+          "SUCCESS": 98
+        },
+        "likely_language": "zh",
+        "healthy": true,
+        "technical_only": true,
+        "chunk_count": 541,
+        "candidate_rows": 9600,
+        "parent": "C"
+      }
+    },
+    "source_count": 42,
+    "new_crawling": 0,
+    "new_embeddings": 0,
+    "new_reranking": 0
+  },
+  "groups": {
+    "G1": [
+      "familydoctor.cn",
+      "medlatec.vn",
+      "suckhoeviet.org.vn",
+      "v.familydoctor.com.cn",
+      "vinmec.com",
+      "vov2.vov.vn"
+    ],
+    "G2": [
+      "baogialai.com.vn",
+      "thanhnien.vn",
+      "vietnamnet.vn",
+      "vnexpress.net",
+      "woman.39.net",
+      "yanglao.familydoctor.com.cn"
+    ],
+    "G3": [
+      "baby.39.net",
+      "baoangiang.com.vn",
+      "dantri.com.vn",
+      "khoahocphothong.vn",
+      "qihuangzhishu.com",
+      "thaythuocvietnam.vn"
+    ],
+    "G4": [
+      "baothanhhoa.vn",
+      "baovinhlong.com.vn",
+      "jbk.39.net",
+      "special.vietnamplus.vn",
+      "wei.39.net",
+      "youlai.cn"
+    ],
+    "G5": [
+      "benhviennhitrunguong.gov.vn",
+      "hellobacsi.com",
+      "qy.familydoctor.com.cn",
+      "tnb.39.net",
+      "tuoitre.vn",
+      "zydcd.com"
+    ],
+    "G6": [
+      "baochinhphu.vn",
+      "baoquangninh.vn",
+      "cancer.39.net",
+      "jb39.com",
+      "suckhoedoisong.vn",
+      "tiemchunglongchau.com.vn"
+    ],
+    "G7": [
+      "baophutho.vn",
+      "baoquangtri.vn",
+      "fk.99.com.cn",
+      "health.people.com.cn",
+      "vietnamplus.vn",
+      "zhongyibaodian.net"
+    ]
+  },
+  "score_cache": {
+    "total": 582000,
+    "done": 582000,
+    "remaining": 0,
+    "integrity": "ok"
+  },
+  "submissions": {
+    "G1": {
+      "name": "phase10d_R2_group_1",
+      "json_path": "submissions\\phase10d_R2_group_1.json",
+      "zip_path": "submissions\\phase10d_R2_group_1.zip",
+      "json_sha256": "98744db992be2e66f4461505951cf00fb75816dc1817d011dbd838478b916324",
+      "zip_sha256": "b9c5fee03139418ab9839118893e3f9d6e56659564504baacbb93f434614d9fc",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_1.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1090,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23821
+      },
+      "determinism_verified": true
+    },
+    "G2": {
+      "name": "phase10d_R2_group_2",
+      "json_path": "submissions\\phase10d_R2_group_2.json",
+      "zip_path": "submissions\\phase10d_R2_group_2.zip",
+      "json_sha256": "493f5c76a04d10def97997166a2cdd0f3f7dc9f44f7f84aba17450d454d9a90b",
+      "zip_sha256": "d1aaab835c4ba67aeabe41aee933c77cdd831292cb6e53ea833f8e56ceeab770",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_2.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1161,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23838
+      },
+      "determinism_verified": true
+    },
+    "G3": {
+      "name": "phase10d_R2_group_3",
+      "json_path": "submissions\\phase10d_R2_group_3.json",
+      "zip_path": "submissions\\phase10d_R2_group_3.zip",
+      "json_sha256": "1baecf7c4a5764f9d679ef73498fbe6e057428b256321bca23364b37a5df19fb",
+      "zip_sha256": "345711566c81778c066a72ec90d867746430ca1f71526dd63689fa0eb043d714",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_3.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1037,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23803
+      },
+      "determinism_verified": true
+    },
+    "G4": {
+      "name": "phase10d_R2_group_4",
+      "json_path": "submissions\\phase10d_R2_group_4.json",
+      "zip_path": "submissions\\phase10d_R2_group_4.zip",
+      "json_sha256": "6bb29a88abb991ccd396b16e2a4f30bc361871b5744fedeed6dc9d5ddf85f03f",
+      "zip_sha256": "c7587add66cf2ee638771a2b1b1be6c6c8956838c0ade74b2a6b71d8853ff439",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_4.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1126,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23833
+      },
+      "determinism_verified": true
+    },
+    "G5": {
+      "name": "phase10d_R2_group_5",
+      "json_path": "submissions\\phase10d_R2_group_5.json",
+      "zip_path": "submissions\\phase10d_R2_group_5.zip",
+      "json_sha256": "b566f2fc4d3667809e8867fc833491c2101e5a48546aec4bc6dbc730686dfe08",
+      "zip_sha256": "ed51f666fe77a406cc95b8f7a9cc447ab690f3b90ee1ae8434705a76416ae818",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_5.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1154,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23911
+      },
+      "determinism_verified": true
+    },
+    "G6": {
+      "name": "phase10d_R2_group_6",
+      "json_path": "submissions\\phase10d_R2_group_6.json",
+      "zip_path": "submissions\\phase10d_R2_group_6.zip",
+      "json_sha256": "738e3bf62a146e0a0e1de5fa88f494786461c982678a44405234948f6ce2aea4",
+      "zip_sha256": "ea0e51c8f61797b9e0d76737192ffa13ddce08dd3d7ecc3a4d990f4412882a60",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_6.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1107,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23901
+      },
+      "determinism_verified": true
+    },
+    "G7": {
+      "name": "phase10d_R2_group_7",
+      "json_path": "submissions\\phase10d_R2_group_7.json",
+      "zip_path": "submissions\\phase10d_R2_group_7.zip",
+      "json_sha256": "05e3de93fc9e21128bbbdac00ca4b8b652094f49104eff2d54b821a034b6d280",
+      "zip_sha256": "117744636eed45486049c1a3fb6fec94a82366acd235baf7864a17e3bf448075",
+      "validation": {
+        "path": "submissions\\phase10d_R2_group_7.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 1072,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 23877
+      },
+      "determinism_verified": true
+    }
+  }
+}

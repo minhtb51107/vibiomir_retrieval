@@ -1,0 +1,85 @@
+version: 1
+phase: phase10d_source_census
+seed: vibiomir-phase10d-depth1000-v1
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  inventory: artifacts/phase10b1_site_discovery/domain_inventory.json
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  c1_candidate_pool: data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet
+  c1_reranked_chunks: data/retrieval/phase10c1_early_release/C1/reranked_chunks.parquet
+  c1_source_doc_ids: data/phase10c1/C1/documents.parquet
+excluded_sources: []
+sampling:
+  round1_documents_per_source: 100
+  round2_documents_per_source: 300
+  round3_documents_per_source: 1000
+  avoid_existing_manifests: []
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 8
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+triage:
+  minimum_successful_fetches: 1
+  minimum_extracted_documents: 1
+  blocked_fraction: 0.80
+candidate_cache:
+  candidate_caps: [8]
+  calibration_document_retention: 0.95
+  calibration_chunk_retention: 0.95
+  dense_depth: 8
+  sparse_depth: 8
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    batch_size: 2
+    max_length: 512
+    shard_size: 2000
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  expansion_tokens: 1024
+  chunk_expansion_tokens: 1024
+outputs:
+  root: data/source_census/depth1000
+  artifacts: artifacts/source_census/depth1000
+  submissions: submissions
+  serial_crawl_database: data/crawled/source_census_depth1000_serial_unused.sqlite
+  serial_body_archive: data/crawled/source_census_depth1000_serial_unused_bodies
+  worker_root: data/crawled/source_census_depth1000_workers
+  crawl_database: data/crawled/source_census_depth1000_merged.sqlite
+  body_archive: data/crawled/source_census_depth1000_merged_bodies
+  processed_parts: data/processed/source_census_depth1000_parts
+  chunks_parts: data/chunks/source_census_depth1000_parts
+  documents: data/source_census/depth1000/documents.parquet
+  chunks: data/source_census/depth1000/chunks.parquet
+depth1000:
+  manifest: artifacts/source_census/depth1000_manifest.json
+  sampling_seed: vibiomir-phase10d-depth1000-v1
+  existing_round1_crawl_database: data/crawled/source_census_round1_merged.sqlite
+  existing_round1_worker_root: data/crawled/source_census_round1_workers
+  existing_round1_documents: data/source_census/round1/documents.parquet
+  existing_round1_chunks: data/source_census/round1/chunks.parquet
+  existing_round1_embeddings: data/source_census/round1/chunk_embeddings.f32
+  existing_c3_crawl_database: data/crawled/phase10c1_C3.sqlite
+  existing_c3_documents: data/phase10c1/C3/new_documents.parquet
+  existing_c3_chunks: data/phase10c1/C3/new_chunks.parquet
+  existing_score_database: data/source_census/round1/source_scores.sqlite
+  new_documents: data/source_census/depth1000/new_documents.parquet
+  new_chunks: data/source_census/depth1000/new_chunks.parquet

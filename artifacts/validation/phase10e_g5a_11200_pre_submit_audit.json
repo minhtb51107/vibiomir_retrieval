@@ -1,0 +1,139 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "failures": [],
+  "score_cache_integrity": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 28800,
+    "expected_unique_keys": 28800,
+    "stored_key_count": 28800,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 28800,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 28800,
+      "distinct": 6764,
+      "min": -11.046875,
+      "median": -5.08203125,
+      "p95": 1.5322265625,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 2249
+  },
+  "score_distribution_sanity": {
+    "passed": true,
+    "distribution": {
+      "count": 28800,
+      "distinct": 6764,
+      "min": -11.046875,
+      "median": -5.08203125,
+      "p95": 1.5322265625,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 2249
+  },
+  "cache_reuse_audit": {
+    "passed": true,
+    "failures": [],
+    "expected_reuse": 12310,
+    "actual_reuse": 12310,
+    "reused_value_mismatches": 0,
+    "nonmatching_keys_seeded_before_inference": 0,
+    "new_inference_required": 16490
+  },
+  "control_replay": {
+    "passed": true,
+    "query_ids_and_order_equal": true,
+    "query_count": 1200,
+    "identical_top10_docs": 1200,
+    "identical_top20_chunks": 1200,
+    "original_sha256": "25a0dc5c7486fb2e9f5cd8f90a6dcc464d88195d0bdbcb16a33e902ab705c73d",
+    "replay_sha256": "25a0dc5c7486fb2e9f5cd8f90a6dcc464d88195d0bdbcb16a33e902ab705c73d"
+  },
+  "experiment_contract": {
+    "intended_variable": "G5A source acquisition depth only",
+    "fixed_field_checks": {
+      "query_set": true,
+      "control_corpus": true,
+      "candidate_cap": true,
+      "reranker_revision": true,
+      "top_k": true,
+      "chunk_expansion": true
+    },
+    "passed": true
+  },
+  "structural_validation": {
+    "passed": true,
+    "validation": {
+      "path": "submissions\\phase10e_G5A_11200.zip",
+      "valid": true,
+      "query_count": 1200,
+      "document_result_count": 12000,
+      "chunk_result_count": 24000,
+      "unique_doc_ids": 3797,
+      "document_minimum_per_query": 10,
+      "document_maximum_per_query": 10,
+      "chunk_minimum_per_query": 20,
+      "chunk_maximum_per_query": 20,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "duplicate_chunk_objects": 0,
+      "chunk_provenance_mismatches": 0,
+      "source_span_chunks_verified": 23928
+    },
+    "determinism_verified": true
+  },
+  "change_accounting": {
+    "old_new_union": {
+      "passed": true,
+      "candidate_documents": "data/source_census/phase10e_g5a_11200/documents.parquet",
+      "candidate_chunks": "data/source_census/phase10e_g5a_11200/chunks.parquet",
+      "sources": {
+        "benhviennhitrunguong.gov.vn": {
+          "previous_usable_doc_ids": 1000,
+          "new_usable_doc_ids": 200,
+          "duplicate_overlap": 0,
+          "union_usable_doc_ids": 1200,
+          "final_searchable_doc_count": 1200,
+          "previous_chunk_count": 15574,
+          "new_chunk_count": 3152,
+          "duplicate_chunk_overlap": 0,
+          "union_chunk_count": 18726,
+          "final_searchable_chunk_count": 18726
+        },
+        "zydcd.com": {
+          "previous_usable_doc_ids": 997,
+          "new_usable_doc_ids": 4003,
+          "duplicate_overlap": 0,
+          "union_usable_doc_ids": 5000,
+          "final_searchable_doc_count": 5000,
+          "previous_chunk_count": 2708,
+          "new_chunk_count": 12186,
+          "duplicate_chunk_overlap": 0,
+          "union_chunk_count": 14894,
+          "final_searchable_chunk_count": 14894
+        },
+        "hellobacsi.com": {
+          "previous_usable_doc_ids": 1000,
+          "new_usable_doc_ids": 4000,
+          "duplicate_overlap": 0,
+          "union_usable_doc_ids": 5000,
+          "final_searchable_doc_count": 5000,
+          "previous_chunk_count": 11601,
+          "new_chunk_count": 47547,
+          "duplicate_chunk_overlap": 0,
+          "union_chunk_count": 59148,
+          "final_searchable_chunk_count": 59148
+        }
+      },
+      "new_documents_total": 8203
+    },
+    "reused_rerank_pairs": 12310,
+    "newly_inferred_pairs": 16490
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "input_directory": "data/chunks/phase10e_g5a_11200_parts",
+  "partition_count": 9,
+  "chunk_count": 62885,
+  "unique_chunk_ids": 62885,
+  "chunk_id_order_sha256": "a56e5a0f1923696b0f2302561a5c685372e8c305d2ac743aa9e87beafc9d0ef9",
+  "output": "data\\source_census\\phase10e_g5a_11200\\new_chunks.parquet",
+  "output_size_bytes": 42756802
+}

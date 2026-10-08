@@ -1,0 +1,245 @@
+{
+  "format_version": 1,
+  "method": "organizer-directed sibling split of Round-2 G1/G5/G6",
+  "experimental_control": {
+    "only_variable": "source membership",
+    "source_depth": "unchanged Round-1 sample depth",
+    "candidate_cap_m": 8,
+    "new_crawling": 0,
+    "new_extraction": 0,
+    "new_chunking": 0,
+    "new_embeddings": 0,
+    "new_reranking": 0,
+    "reused_scores": 582000
+  },
+  "groups": {
+    "G1A": [
+      {
+        "source": "medlatec.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "large",
+        "corpus_rows": 24762,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 1951,
+        "acquisition_yield": 1.0,
+        "round2_group": "G1"
+      },
+      {
+        "source": "v.familydoctor.com.cn",
+        "parent": "A",
+        "likely_language": "zh",
+        "size_tier": "small",
+        "corpus_rows": 10,
+        "sampled": 10,
+        "usable_documents": 10,
+        "chunk_count": 22,
+        "acquisition_yield": 1.0,
+        "round2_group": "G1"
+      },
+      {
+        "source": "vinmec.com",
+        "parent": "C",
+        "likely_language": "vi",
+        "size_tier": "large",
+        "corpus_rows": 26129,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 624,
+        "acquisition_yield": 1.0,
+        "round2_group": "G1"
+      }
+    ],
+    "G1B": [
+      {
+        "source": "vov2.vov.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "medium",
+        "corpus_rows": 6899,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 1177,
+        "acquisition_yield": 1.0,
+        "round2_group": "G1"
+      },
+      {
+        "source": "familydoctor.cn",
+        "parent": "C",
+        "likely_language": "zh",
+        "size_tier": "small",
+        "corpus_rows": 44,
+        "sampled": 44,
+        "usable_documents": 43,
+        "chunk_count": 102,
+        "acquisition_yield": 0.9772727272727273,
+        "round2_group": "G1"
+      },
+      {
+        "source": "suckhoeviet.org.vn",
+        "parent": "C",
+        "likely_language": "vi",
+        "size_tier": "medium",
+        "corpus_rows": 5627,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 2985,
+        "acquisition_yield": 1.0,
+        "round2_group": "G1"
+      }
+    ],
+    "G5A": [
+      {
+        "source": "benhviennhitrunguong.gov.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "small",
+        "corpus_rows": 1200,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 1567,
+        "acquisition_yield": 1.0,
+        "round2_group": "G5"
+      },
+      {
+        "source": "zydcd.com",
+        "parent": "A",
+        "likely_language": "zh",
+        "size_tier": "large",
+        "corpus_rows": 78680,
+        "sampled": 100,
+        "usable_documents": 97,
+        "chunk_count": 258,
+        "acquisition_yield": 0.97,
+        "round2_group": "G5"
+      },
+      {
+        "source": "hellobacsi.com",
+        "parent": "C",
+        "likely_language": "vi",
+        "size_tier": "large",
+        "corpus_rows": 11747,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 1187,
+        "acquisition_yield": 1.0,
+        "round2_group": "G5"
+      }
+    ],
+    "G5B": [
+      {
+        "source": "tuoitre.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "medium",
+        "corpus_rows": 3893,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 2008,
+        "acquisition_yield": 1.0,
+        "round2_group": "G5"
+      },
+      {
+        "source": "qy.familydoctor.com.cn",
+        "parent": "C",
+        "likely_language": "zh",
+        "size_tier": "small",
+        "corpus_rows": 40,
+        "sampled": 40,
+        "usable_documents": 39,
+        "chunk_count": 711,
+        "acquisition_yield": 0.975,
+        "round2_group": "G5"
+      },
+      {
+        "source": "tnb.39.net",
+        "parent": "C",
+        "likely_language": "zh",
+        "size_tier": "medium",
+        "corpus_rows": 4178,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 472,
+        "acquisition_yield": 1.0,
+        "round2_group": "G5"
+      }
+    ],
+    "G6A": [
+      {
+        "source": "baoquangninh.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "small",
+        "corpus_rows": 2912,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 573,
+        "acquisition_yield": 1.0,
+        "round2_group": "G6"
+      },
+      {
+        "source": "jb39.com",
+        "parent": "A",
+        "likely_language": "zh",
+        "size_tier": "medium",
+        "corpus_rows": 7306,
+        "sampled": 100,
+        "usable_documents": 99,
+        "chunk_count": 1199,
+        "acquisition_yield": 0.99,
+        "round2_group": "G6"
+      },
+      {
+        "source": "baochinhphu.vn",
+        "parent": "C",
+        "likely_language": "vi",
+        "size_tier": "small",
+        "corpus_rows": 2302,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 640,
+        "acquisition_yield": 1.0,
+        "round2_group": "G6"
+      }
+    ],
+    "G6B": [
+      {
+        "source": "tiemchunglongchau.com.vn",
+        "parent": "A",
+        "likely_language": "vi",
+        "size_tier": "large",
+        "corpus_rows": 13281,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 992,
+        "acquisition_yield": 1.0,
+        "round2_group": "G6"
+      },
+      {
+        "source": "cancer.39.net",
+        "parent": "C",
+        "likely_language": "zh",
+        "size_tier": "medium",
+        "corpus_rows": 8415,
+        "sampled": 100,
+        "usable_documents": 11,
+        "chunk_count": 50,
+        "acquisition_yield": 0.11,
+        "round2_group": "G6"
+      },
+      {
+        "source": "suckhoedoisong.vn",
+        "parent": "C",
+        "likely_language": "vi",
+        "size_tier": "large",
+        "corpus_rows": 85823,
+        "sampled": 100,
+        "usable_documents": 100,
+        "chunk_count": 2430,
+        "acquisition_yield": 1.0,
+        "round2_group": "G6"
+      }
+    ]
+  }
+}

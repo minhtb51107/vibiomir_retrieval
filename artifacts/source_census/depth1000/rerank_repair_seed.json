@@ -1,0 +1,31 @@
+{
+  "corrupt_cache_backup": "data\\source_census\\depth1000\\round1\\source_scores.corrupted_20261008.sqlite",
+  "before": {
+    "total": 86400,
+    "scored": 86400,
+    "distinct_scores": 1,
+    "integrity": "ok",
+    "candidate_identity_sha256": "8a310668bf77774436f1f1f6db2c0ce37981b275fb60f606b6cfc5f643dbacca"
+  },
+  "candidate_identity_preserved": true,
+  "reset_scored_rows": 0,
+  "seed": {
+    "total": 86400,
+    "before": 0,
+    "expected_exact_matches": 16707,
+    "reused": 16707,
+    "after": 16707,
+    "missing": 69693,
+    "exact_match_mismatches": 0,
+    "incorrectly_seeded_nonmatches": 0,
+    "distinct_seeded_scores": 4005,
+    "integrity": "ok"
+  },
+  "seeded_distribution": {
+    "count": 16707,
+    "distinct": 4005,
+    "min": -11.046875,
+    "mean": -6.956214592659031,
+    "max": 7.96484375
+  }
+}

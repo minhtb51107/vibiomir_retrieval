@@ -1,0 +1,12 @@
+{
+  "scored": 5000,
+  "model_load_seconds": 142.75783450000017,
+  "active_scoring_seconds": 397.89231770000333,
+  "active_pairs_per_second": 12.566213966889963,
+  "total_shard_wall_seconds": 544.5672874000011,
+  "effective_pairs_per_second": 9.18160182531741,
+  "integrity": "ok",
+  "total": 582000,
+  "done": 10000,
+  "remaining": 572000
+}

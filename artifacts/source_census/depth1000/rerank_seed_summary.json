@@ -1,0 +1,12 @@
+{
+  "total": 86400,
+  "before": 0,
+  "expected_exact_matches": 16707,
+  "reused": 16707,
+  "after": 16707,
+  "missing": 69693,
+  "exact_match_mismatches": 0,
+  "incorrectly_seeded_nonmatches": 0,
+  "distinct_seeded_scores": 4005,
+  "integrity": "ok"
+}

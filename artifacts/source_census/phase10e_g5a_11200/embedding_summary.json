@@ -1,0 +1,7 @@
+{
+  "chunks": 92768,
+  "reused_embeddings": 29883,
+  "new_embeddings": 62885,
+  "runtime_seconds": 774.5474083999998,
+  "path": "data\\source_census\\phase10e_g5a_11200\\round1\\chunk_embeddings.f32"
+}

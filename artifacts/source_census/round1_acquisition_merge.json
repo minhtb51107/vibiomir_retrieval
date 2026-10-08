@@ -1,0 +1,9 @@
+{
+  "source_checkpoints": 70,
+  "inserted_this_run": 8173,
+  "canonical_rows": 8173,
+  "canonical_bodies": 5949,
+  "integrity": "ok",
+  "database": "data\\crawled\\source_census_round1_merged.sqlite",
+  "archive": "data/crawled/source_census_round1_merged_bodies"
+}

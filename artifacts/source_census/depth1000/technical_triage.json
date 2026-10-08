@@ -1,0 +1,128 @@
+{
+  "healthy_sources": [
+    "benhviennhitrunguong.gov.vn",
+    "cancer.39.net",
+    "hellobacsi.com",
+    "medlatec.vn",
+    "suckhoedoisong.vn",
+    "tiemchunglongchau.com.vn",
+    "v.familydoctor.com.cn",
+    "vinmec.com",
+    "zydcd.com"
+  ],
+  "sources": {
+    "benhviennhitrunguong.gov.vn": {
+      "corpus_rows": 1200,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "cancer.39.net": {
+      "corpus_rows": 8415,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 911,
+      "status_counts": {
+        "JS_SHELL": 89,
+        "SUCCESS": 911
+      },
+      "likely_language": "zh",
+      "healthy": true,
+      "technical_only": true
+    },
+    "hellobacsi.com": {
+      "corpus_rows": 11747,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "medlatec.vn": {
+      "corpus_rows": 24762,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 996,
+      "status_counts": {
+        "EXTRACTION_FAILED": 4,
+        "SUCCESS": 996
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "suckhoedoisong.vn": {
+      "corpus_rows": 85823,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 999,
+      "status_counts": {
+        "EXTRACTION_FAILED": 1,
+        "SUCCESS": 999
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "tiemchunglongchau.com.vn": {
+      "corpus_rows": 13281,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 1000,
+      "status_counts": {
+        "SUCCESS": 1000
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "v.familydoctor.com.cn": {
+      "corpus_rows": 10,
+      "sampled": 10,
+      "extracted_rows": 10,
+      "usable_documents": 10,
+      "status_counts": {
+        "SUCCESS": 10
+      },
+      "likely_language": "zh",
+      "healthy": true,
+      "technical_only": true
+    },
+    "vinmec.com": {
+      "corpus_rows": 26129,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 999,
+      "status_counts": {
+        "EXTRACTION_FAILED": 1,
+        "SUCCESS": 999
+      },
+      "likely_language": "vi",
+      "healthy": true,
+      "technical_only": true
+    },
+    "zydcd.com": {
+      "corpus_rows": 78680,
+      "sampled": 1000,
+      "extracted_rows": 1000,
+      "usable_documents": 997,
+      "status_counts": {
+        "EXTRACTION_FAILED": 3,
+        "SUCCESS": 997
+      },
+      "likely_language": "zh",
+      "healthy": true,
+      "technical_only": true
+    }
+  }
+}

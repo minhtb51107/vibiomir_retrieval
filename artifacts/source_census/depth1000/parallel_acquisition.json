@@ -1,0 +1,9 @@
+{
+  "selected": 6300,
+  "completed": 6300,
+  "remaining": 0,
+  "completed_sources": 7,
+  "failed_sources": {},
+  "retry_counts": {},
+  "maximum_concurrent_source_workers": 7
+}

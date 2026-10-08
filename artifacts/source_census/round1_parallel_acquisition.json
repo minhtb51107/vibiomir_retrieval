@@ -1,0 +1,11 @@
+{
+  "selected": 8173,
+  "completed": 8173,
+  "remaining_after_bounded_workers": 0,
+  "serial_reused": 2010,
+  "worker_completed": 6163,
+  "completed_sources": 90,
+  "failed_sources": {},
+  "retry_counts": {},
+  "maximum_concurrent_source_workers": 8
+}

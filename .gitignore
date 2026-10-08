@@ -29,7 +29,27 @@ data/site_discovery/
 data/source_acquisition/
 data/source_relevance_probe/
 data/s4_targeting/
-submissions/
+data/phase10c1/
+data/source_census/
+submissions/*
+!submissions/README.md
+!submissions/MANIFEST.csv
+
+# Local unattended execution state and incident bundles
+artifacts/runs/
+artifacts/incidents/
+
+# Regenerable long-run manifests and per-shard telemetry
+artifacts/phase10c1_early_release/fresh_scoring_*.json
+artifacts/phase10c1_three_way/*_new_manifest.json
+artifacts/source_census/depth1000_manifest.json
+artifacts/source_census/g1a_depth1000_control_audit.json
+artifacts/source_census/phase10e_g5a_11200_manifest.json
+artifacts/source_census/phase10e_g5a_11200_report.json
+artifacts/source_census/round1_ids.json
+artifacts/source_census/round1_sample_manifest.json
+artifacts/source_census/round3_depth1000_manifest.json
+artifacts/source_census/round3_depth300_manifest.json
 
 # Local model caches
 .cache/

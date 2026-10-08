@@ -1,0 +1,85 @@
+{
+  "model_load_seconds": 68.220727,
+  "model_load_count": 1,
+  "scorer_restarts": 0,
+  "window_size": 2000,
+  "windows_completed": 5,
+  "pairs_scored": 10000,
+  "initial_done": 14256,
+  "total": 582000,
+  "done": 24256,
+  "remaining": 557744,
+  "effective_pairs_per_second": 22.813,
+  "equivalence": {
+    "checked": 8,
+    "max_absolute_difference": 0.0,
+    "passed": true
+  },
+  "windows": [
+    {
+      "window": 1,
+      "scored": 2000,
+      "active_seconds": 69.768136,
+      "checkpoint_seconds": 0.807492,
+      "wall_seconds": 72.569852,
+      "active_pairs_per_second": 28.666,
+      "rss_mib": 227.02,
+      "private_mib": 7992.06,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 16256
+    },
+    {
+      "window": 2,
+      "scored": 2000,
+      "active_seconds": 73.245446,
+      "checkpoint_seconds": 1.682265,
+      "wall_seconds": 78.013681,
+      "active_pairs_per_second": 27.305,
+      "rss_mib": 261.47,
+      "private_mib": 7998.55,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 18256
+    },
+    {
+      "window": 3,
+      "scored": 2000,
+      "active_seconds": 58.304115,
+      "checkpoint_seconds": 0.370844,
+      "wall_seconds": 67.497476,
+      "active_pairs_per_second": 34.303,
+      "rss_mib": 173.49,
+      "private_mib": 7999.89,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 20256
+    },
+    {
+      "window": 4,
+      "scored": 2000,
+      "active_seconds": 67.534116,
+      "checkpoint_seconds": 0.709878,
+      "wall_seconds": 72.78341,
+      "active_pairs_per_second": 29.615,
+      "rss_mib": 212.23,
+      "private_mib": 8002.12,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 22256
+    },
+    {
+      "window": 5,
+      "scored": 2000,
+      "active_seconds": 66.601009,
+      "checkpoint_seconds": 1.631549,
+      "wall_seconds": 70.075428,
+      "active_pairs_per_second": 30.03,
+      "rss_mib": 291.72,
+      "private_mib": 8003.58,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 24256
+    }
+  ]
+}
