@@ -1,0 +1,62 @@
+{
+  "executed_at": "2026-10-09T18:02:09+07:00",
+  "policy": "approved safe local submission storage cleanup",
+  "deleted_loose_json": {
+    "count": 44,
+    "bytes": 4629883436,
+    "rule": "root submissions/*.json except phase10d_DEPTH1000_FIXED_G1A.json",
+    "pre_delete_verification": "each payload was SHA-256-identical to the single root JSON in its registered retained ZIP"
+  },
+  "deleted_registered_zips": [
+    {
+      "path": "submissions/30_SUPERSEDED_VALID/phase9_B_pure_top3_mean.zip",
+      "bytes": 18011273,
+      "sha256": "5cd65f11ee9dc665ad44514e47b68e934c93a419e1d4f4ce38c82292cee650f3"
+    },
+    {
+      "path": "submissions/30_SUPERSEDED_VALID/phase9_C_max3_best_chunk.zip",
+      "bytes": 23134636,
+      "sha256": "304f691787a4772f198eb28dcd1fb366874bd2b550ef1fb8fff04e2d77e05bde"
+    },
+    {
+      "path": "submissions/30_SUPERSEDED_VALID/phase9_D_controlled_best_chunk.zip",
+      "bytes": 24290901,
+      "sha256": "4ecfa3c365a8c4a24465917a3f5bc53eac49408ea73e234341ac66b1b47ba5d3"
+    },
+    {
+      "path": "submissions/90_INVALID_DO_NOT_SUBMIT/phase10d_DEPTH1000_G1A.zip",
+      "bytes": 15022033,
+      "sha256": "1ea04e8cb6993c49bc7e03034f8f328f935f70efe80c42f51bdcdcd2cebf8d49"
+    },
+    {
+      "path": "submissions/90_INVALID_DO_NOT_SUBMIT/phase10d_DEPTH1000_G5A.zip",
+      "bytes": 15023779,
+      "sha256": "82f939a0020b905a64657cbabda0103400a590c67fc26eb37963202e69023ac0"
+    },
+    {
+      "path": "submissions/90_INVALID_DO_NOT_SUBMIT/phase10d_DEPTH1000_G6B.zip",
+      "bytes": 15019685,
+      "sha256": "330176c0337b185500b90d7744986dafb0db3cfca2e48be49a533d9d45bc26ad"
+    }
+  ],
+  "zip_bytes_reclaimed": 110502307,
+  "total_bytes_reclaimed_by_targets": 4740385743,
+  "total_gib_reclaimed_by_targets": 4.4148282548,
+  "disk_free_before_bytes": 22787608576,
+  "disk_free_after_bytes": 27528093696,
+  "retained_control_json": "submissions/phase10d_DEPTH1000_FIXED_G1A.json",
+  "retained_control_exists_after": true,
+  "active_run": {
+    "run_id": "phase10e_g1a_10010",
+    "state_before": "EMBEDDINGS/RUNNING at 92829/105050",
+    "state_after": "EMBEDDINGS/RUNNING at 97179/105050",
+    "candidate_path_references": 0
+  },
+  "post_delete_registry": {
+    "registered_rows": 48,
+    "locally_retained_zips": 42,
+    "intentionally_purged_zips": 6,
+    "integrity": "ok",
+    "review_required_files_missing": 0
+  }
+}

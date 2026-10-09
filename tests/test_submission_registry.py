@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from tools.submission_registry import FOLDERS, STATUSES, classify
+from tools.submission_registry import FOLDERS, LOCAL_PURGED, STATUSES, check_rows, classify
 
 
 def test_every_lifecycle_status_has_a_human_folder():
@@ -27,3 +27,21 @@ def test_submitted_evidence_retires_former_ready_package():
 def test_unknown_package_is_not_promoted_by_filename_guessing():
     assert classify(Path("phase10e_G5A_11200.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"
     assert classify(Path("phase10e_future.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"
+
+
+def test_intentionally_purged_artifact_is_not_reported_missing(tmp_path, monkeypatch):
+    monkeypatch.setattr("tools.submission_registry.ROOT",tmp_path)
+    row={
+        "relative_path":"submissions/obsolete.zip","sha256":"preserved-evidence",
+        "size_bytes":"123","local_present":"false","local_retention":LOCAL_PURGED,
+    }
+    assert check_rows([row])==[]
+
+
+def test_retained_artifact_is_still_required(tmp_path, monkeypatch):
+    monkeypatch.setattr("tools.submission_registry.ROOT",tmp_path)
+    row={
+        "relative_path":"submissions/milestone.zip","sha256":"missing",
+        "size_bytes":"123","local_present":"true","local_retention":"RETAINED_LOCAL",
+    }
+    assert check_rows([row])==["submissions/milestone.zip (missing)"]

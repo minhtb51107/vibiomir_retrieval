@@ -12,6 +12,8 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 STATUSES=("READY_TO_SUBMIT","SUBMITTED_VALID","VALID_CONTROL","SUPERSEDED_VALID","INVALID_DO_NOT_SUBMIT","UNKNOWN_REVIEW_REQUIRED")
+LOCAL_RETAINED="RETAINED_LOCAL"
+LOCAL_PURGED="INTENTIONALLY_PURGED"
 FOLDERS={
     "READY_TO_SUBMIT":"00_READY_TO_UPLOAD","SUBMITTED_VALID":"10_SUBMITTED_VALID",
     "VALID_CONTROL":"20_VALID_CONTROLS","SUPERSEDED_VALID":"30_SUPERSEDED_VALID",
@@ -91,9 +93,34 @@ def discover() -> list[Path]:
     return sorted(set(paths))
 
 
+def intentionally_purged(row: dict[str,str]) -> bool:
+    return row.get("local_present","").lower()=="false" and row.get("local_retention","")==LOCAL_PURGED
+
+
+def check_rows(rows: list[dict[str,str]]) -> list[str]:
+    """Validate retained artifacts strictly while accepting recorded local purges."""
+    failures=[]
+    for row in rows:
+        target=ROOT/row["relative_path"]
+        if intentionally_purged(row):
+            if target.exists():
+                failures.append(f"{row['relative_path']} (marked purged but present)")
+            continue
+        if not target.exists():
+            failures.append(f"{row['relative_path']} (missing)")
+            continue
+        if digest(target)!=row["sha256"] or target.stat().st_size!=int(row["size_bytes"]):
+            failures.append(f"{row['relative_path']} (integrity mismatch)")
+    return failures
+
+
 def rebuild(output: Path) -> list[dict[str,str]]:
     with (ROOT/"docs/leaderboard_history.csv").open(encoding="utf-8",newline="") as handle:
         leaderboard={row["submission"]:row for row in csv.DictReader(handle)}
+    prior=[]
+    if output.exists():
+        with output.open(encoding="utf-8",newline="") as handle:
+            prior=list(csv.DictReader(handle))
     rows=[]
     for path in discover():
         stem=path.stem; key=ALIASES.get(stem,stem); metrics=leaderboard.get(key,{})
@@ -115,7 +142,10 @@ def rebuild(output: Path) -> list[dict[str,str]]:
             "sha256":digest(path),"size_bytes":str(path.stat().st_size),
             "generated_timestamp":datetime.fromtimestamp(path.stat().st_mtime).astimezone().isoformat(timespec="seconds"),
             "report_path":report,"audit_path":audit,"notes":note,
+            "local_present":"true","local_retention":LOCAL_RETAINED,"purged_at":"","purge_reason":"",
         })
+    discovered={row["relative_path"] for row in rows}
+    rows.extend(row for row in prior if intentionally_purged(row) and row["relative_path"] not in discovered)
     output.parent.mkdir(parents=True,exist_ok=True)
     fields=list(rows[0]) if rows else []
     with output.open("w",encoding="utf-8",newline="") as handle:
@@ -156,10 +186,7 @@ def main() -> int:
     if args.command=="organize":
         moved=organize(); print(f"submission ZIPs organized: {len(moved)}"); return 0
     rows=rebuild(path) if args.command=="rebuild" else list(csv.DictReader(path.open(encoding="utf-8",newline="")))
-    failures=[]
-    for row in rows:
-        target=ROOT/row["relative_path"]
-        if not target.exists() or digest(target)!=row["sha256"] or target.stat().st_size!=int(row["size_bytes"]): failures.append(row["relative_path"])
+    failures=check_rows(rows)
     if failures: raise SystemExit("registry integrity failure: "+", ".join(failures))
     print(f"submission registry OK: {len(rows)} artifacts")
     return 0

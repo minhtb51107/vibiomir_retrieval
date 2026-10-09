@@ -16,7 +16,7 @@ Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 - `phase10d_DEPTH1000_FIXED_G1A.zip` — organizer FINAL `0.0062`
 - `phase10d_DEPTH1000_FIXED_G6B.zip` — organizer FINAL `0.0045`
 
-The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records current paths, hashes, sizes, validation evidence, and known organizer status. Historical reports retain their original generation-time paths; the manifest records the post-audit lifecycle location.
+The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records current or historical paths, hashes, sizes, validation evidence, known organizer status, and local-retention state. `INTENTIONALLY_PURGED` means the local ZIP was removed through an audited storage cleanup while its scientific status and byte identity remain recorded; it does not make the experiment invalid. Historical reports retain their original generation-time paths; the manifest records the post-audit lifecycle location.
 
 ## Folder meanings
 
