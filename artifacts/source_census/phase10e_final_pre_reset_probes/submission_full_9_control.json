@@ -1,0 +1,33 @@
+{
+  "name": "phase10e_final_pre_reset_probes_FULL_9_CONTROL",
+  "json_path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.json",
+  "zip_path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.zip",
+  "json_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+  "zip_sha256": "09b42889fc4df3d83a4001c32768b1169e2f9cfd53fd0af93b558c0de576850c",
+  "validation": {
+    "path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 9627,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 24000
+  },
+  "determinism_verified": false,
+  "new_model_inference": 0,
+  "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+  "semantic_replay": {
+    "passed": true,
+    "comparison": "byte-identical canonical JSON",
+    "reference_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+    "replay_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459"
+  }
+}

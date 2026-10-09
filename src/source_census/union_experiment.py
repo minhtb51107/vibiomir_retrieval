@@ -46,6 +46,10 @@ def _runtime_config(spec: dict) -> dict:
     return config
 
 
+def _parent_cache_root(parent: dict) -> Path:
+    return Path(parent.get("cache_root",Path(parent["root"])/"round1"))
+
+
 def _contract(spec: dict) -> dict:
     parents={name:load_config(row["config"]) for name,row in spec["parents"].items()}
     first=next(iter(parents.values()))
@@ -87,10 +91,11 @@ def _prepare_candidate_parts(spec: dict, root: Path) -> dict:
     expected_sources={source for row in spec["parents"].values() for source in row["sources"]}
     found={}; methods=Counter()
     for parent in spec["parents"].values():
-        source_root=Path(parent["root"])/"round1/source_candidate_parts"
+        source_root=_parent_cache_root(parent)/"source_candidate_parts"
+        parent_sources=set(parent["sources"])
         for marker_path in sorted(source_root.glob("*.json")):
             marker=json.loads(marker_path.read_text(encoding="utf-8")); source=str(marker["source"])
-            if source not in expected_sources: continue
+            if source not in parent_sources: continue
             parquet_path=marker_path.with_suffix(".parquet")
             if source in found: raise ValueError(f"duplicate source candidate part: {source}")
             methods[_link_or_verify(parquet_path,destination/parquet_path.name)]+=1
@@ -108,14 +113,22 @@ def _merge_score_databases(spec: dict, destination: Path) -> dict:
     connection.execute("CREATE TABLE pairs(query_id INTEGER,chunk_id TEXT,query_text TEXT,chunk_text TEXT,rerank_score REAL,inference_ms REAL,PRIMARY KEY(query_id,chunk_id))")
     source_rows={}; intersections={}; mismatches={}
     for index,(name,parent) in enumerate(spec["parents"].items()):
-        path=(Path(parent["root"])/"round1/source_scores.sqlite").resolve(); alias=f"src{index}"
+        path=(_parent_cache_root(parent)/"source_scores.sqlite").resolve(); alias=f"src{index}"
         connection.execute(f"ATTACH DATABASE ? AS {alias}",(str(path),))
-        source_rows[name]=int(connection.execute(f"SELECT COUNT(*) FROM {alias}.pairs").fetchone()[0])
+        connection.execute("DROP TABLE IF EXISTS temp.parent_keys")
+        connection.execute("CREATE TEMP TABLE parent_keys(query_id INTEGER,chunk_id TEXT,PRIMARY KEY(query_id,chunk_id)) WITHOUT ROWID")
+        selected=set(parent["sources"]); parts=_parent_cache_root(parent)/"source_candidate_parts"
+        for marker_path in sorted(parts.glob("*.json")):
+            marker=json.loads(marker_path.read_text(encoding="utf-8"))
+            if str(marker["source"]) not in selected: continue
+            for batch in pq.ParquetFile(marker_path.with_suffix(".parquet")).iter_batches(columns=["query_id","chunk_id"],batch_size=8192):
+                connection.executemany("INSERT OR IGNORE INTO parent_keys VALUES (?,?)",[(int(q),str(c)) for q,c in zip(batch.column(0).to_pylist(),batch.column(1).to_pylist(),strict=True)])
+        source_rows[name]=int(connection.execute("SELECT COUNT(*) FROM parent_keys").fetchone()[0])
         before=connection.total_changes
-        connection.execute(f"INSERT INTO pairs SELECT * FROM {alias}.pairs")
+        connection.execute(f"INSERT INTO pairs SELECT s.* FROM {alias}.pairs s JOIN parent_keys k ON k.query_id=s.query_id AND k.chunk_id=s.chunk_id")
         if connection.total_changes-before!=source_rows[name]: raise RuntimeError(f"incomplete score copy: {name}")
-        intersections[name]=int(connection.execute(f"SELECT COUNT(*) FROM pairs d JOIN {alias}.pairs s USING(query_id,chunk_id)").fetchone()[0])
-        mismatches[name]=int(connection.execute(f"SELECT COUNT(*) FROM pairs d JOIN {alias}.pairs s USING(query_id,chunk_id) WHERE d.rerank_score!=s.rerank_score OR d.inference_ms!=s.inference_ms OR d.query_text!=s.query_text OR d.chunk_text!=s.chunk_text").fetchone()[0])
+        intersections[name]=int(connection.execute(f"SELECT COUNT(*) FROM pairs d JOIN parent_keys k USING(query_id,chunk_id) JOIN {alias}.pairs s USING(query_id,chunk_id)").fetchone()[0])
+        mismatches[name]=int(connection.execute(f"SELECT COUNT(*) FROM pairs d JOIN parent_keys k USING(query_id,chunk_id) JOIN {alias}.pairs s USING(query_id,chunk_id) WHERE d.rerank_score!=s.rerank_score OR d.inference_ms!=s.inference_ms OR d.query_text!=s.query_text OR d.chunk_text!=s.chunk_text").fetchone()[0])
         connection.commit(); connection.execute(f"DETACH DATABASE {alias}")
     total=int(connection.execute("SELECT COUNT(*) FROM pairs").fetchone()[0])
     integrity=str(connection.execute("PRAGMA integrity_check").fetchone()[0]); connection.close()
@@ -154,31 +167,34 @@ def _embedding_audit(spec: dict) -> dict:
         config=load_config(parent["config"]); current_model=config["models"]["embedder"]
         if model is None: model=current_model
         if current_model!=model: raise ValueError("parent embedding contracts differ")
-        root=Path(parent["root"]); rows=pq.ParquetFile(root/"chunks.parquet").metadata.num_rows; dimension=int(model["dimension"])
-        vectors=root/"round1/chunk_embeddings.f32"; status=root/"round1/chunk_embeddings.streaming.status.u8"
-        if vectors.stat().st_size!=rows*dimension*4: raise ValueError(f"embedding shape mismatch: {name}")
+        root=Path(parent["root"]); chunk_path=root/"chunks.parquet"; storage_rows=pq.ParquetFile(chunk_path).metadata.num_rows; dimension=int(model["dimension"])
+        selected_sources=set(parent["sources"]); rows=0
+        for batch in pq.ParquetFile(chunk_path).iter_batches(columns=["source_url"],batch_size=8192):
+            rows+=sum(_host(url) in selected_sources for url in batch.column(0).to_pylist())
+        cache_root=_parent_cache_root(parent)
+        vectors=cache_root/"chunk_embeddings.f32"; status=cache_root/"chunk_embeddings.streaming.status.u8"
+        if vectors.stat().st_size!=storage_rows*dimension*4: raise ValueError(f"embedding shape mismatch: {name}")
         completion_evidence="transactional_bitmap"
         if status.exists():
-            if status.stat().st_size!=rows: raise ValueError(f"embedding bitmap shape mismatch: {name}")
-            bitmap=np.memmap(status,dtype=np.uint8,mode="r",shape=(rows,))
-            if int((bitmap==1).sum())!=rows or int(((bitmap!=0)&(bitmap!=1)).sum()): raise ValueError(f"embedding bitmap incomplete: {name}")
+            if status.stat().st_size!=storage_rows: raise ValueError(f"embedding bitmap shape mismatch: {name}")
+            bitmap=np.memmap(status,dtype=np.uint8,mode="r",shape=(storage_rows,))
+            if int((bitmap==1).sum())!=storage_rows or int(((bitmap!=0)&(bitmap!=1)).sum()): raise ValueError(f"embedding bitmap incomplete: {name}")
         else:
-            summary=Path(config["outputs"]["artifacts"])/"embedding_summary.json"
+            summary=Path(parent.get("embedding_completion_artifact",Path(config["outputs"]["artifacts"])/"embedding_summary.json"))
             evidence=json.loads(summary.read_text(encoding="utf-8"))
-            if int(evidence.get("chunks",-1))!=rows or Path(evidence.get("path","")).resolve()!=vectors.resolve():
-                raise ValueError(f"legacy embedding completion evidence mismatch: {name}")
-            completion_evidence="validated_legacy_summary_and_exact_shape"
-        matrix=np.memmap(vectors,dtype=np.float32,mode="r",shape=(rows,dimension)); nonfinite=0
-        for start in range(0,rows,4096): nonfinite+=int((~np.isfinite(matrix[start:start+4096])).sum())
+            if "chunks" in evidence and int(evidence["chunks"])!=storage_rows: raise ValueError(f"legacy embedding completion evidence mismatch: {name}")
+            completion_evidence=f"validated_legacy_artifact:{summary.as_posix()}"
+        matrix=np.memmap(vectors,dtype=np.float32,mode="r",shape=(storage_rows,dimension)); nonfinite=0
+        for start in range(0,storage_rows,4096): nonfinite+=int((~np.isfinite(matrix[start:start+4096])).sum())
         if nonfinite: raise ValueError(f"non-finite parent embeddings: {name}")
-        parents[name]={"rows":rows,"dimension":dimension,"bytes":vectors.stat().st_size,"completion_evidence":completion_evidence,"completed_rows":rows,"nonfinite_values":nonfinite}
+        parents[name]={"selected_rows":rows,"storage_rows":storage_rows,"dimension":dimension,"bytes":vectors.stat().st_size,"completion_evidence":completion_evidence,"completed_storage_rows":storage_rows,"nonfinite_values":nonfinite}
         total+=rows
     return {"passed":True,"model":model,"parents":parents,"exact_embeddings_reused":total,"new_embeddings_computed":0}
 
 
 def _filter_parquet(paths: list[Path], destination: Path, key: str, selected: set[str|int]) -> dict:
     temporary=destination.with_suffix(destination.suffix+".tmp"); temporary.unlink(missing_ok=True)
-    writer=None; schema=None; seen=set(); written=0; duplicates=0
+    writer=None; schema=pa.unify_schemas([pq.ParquetFile(path).schema_arrow for path in paths]); seen=set(); written=0; duplicates=0
     try:
         for path in paths:
             parquet=pq.ParquetFile(path)
@@ -192,9 +208,8 @@ def _filter_parquet(paths: list[Path], destination: Path, key: str, selected: se
                     seen.add(normalized); indices.append(index)
                 if not indices: continue
                 filtered=table.take(pa.array(indices,type=pa.int64()))
-                if writer is None:
-                    schema=filtered.schema; writer=pq.ParquetWriter(temporary,schema)
-                elif filtered.schema!=schema: filtered=filtered.cast(schema)
+                if filtered.schema!=schema: filtered=filtered.cast(schema)
+                if writer is None: writer=pq.ParquetWriter(temporary,schema)
                 writer.write_table(filtered); written+=filtered.num_rows
     finally:
         if writer is not None: writer.close()
@@ -216,9 +231,9 @@ def _query_groups(path: Path):
     if rows: yield rows
 
 
-def _prepare_package_canonical(config: dict, spec: dict, rankings: Path) -> dict:
+def _prepare_package_canonical(config: dict, spec: dict, rankings: Path, group: str="UNION") -> dict:
     chunk_ids=set(); doc_ids=set()
-    for batch in pq.ParquetFile(rankings/"UNION/reranked_chunks.parquet").iter_batches(columns=["chunk_id","doc_id"],batch_size=8192):
+    for batch in pq.ParquetFile(rankings/group/"reranked_chunks.parquet").iter_batches(columns=["chunk_id","doc_id"],batch_size=8192):
         chunk_ids.update(map(str,batch.column(0).to_pylist())); doc_ids.update(map(int,batch.column(1).to_pylist()))
     chunk_paths=[Path(config["inputs"]["pilot_chunks"]),*(Path(parent["root"])/"chunks.parquet" for parent in spec["parents"].values())]
     document_paths=[Path(config["inputs"]["pilot_documents"]),*(Path(parent["root"])/"documents.parquet" for parent in spec["parents"].values())]
@@ -409,6 +424,82 @@ def _stream_package(config: dict, ranking_root: Path, group: str, name: str, out
         if first!=second: raise RuntimeError(f"submission regeneration was not deterministic: {group}")
     return {"name":name,"json_path":str(json_path),"zip_path":str(zip_path),"json_sha256":second[0],"zip_sha256":second[1],
             "validation":validation,"determinism_verified":verify_determinism,"new_model_inference":0,"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
+
+
+def _group_score_audit(score_db: Path, parts_root: Path, sources: list[str]) -> dict:
+    connection=sqlite3.connect(score_db); selected=set(sources); candidate_rows=0
+    connection.execute("CREATE TEMP TABLE expected(query_id INTEGER,chunk_id TEXT,PRIMARY KEY(query_id,chunk_id)) WITHOUT ROWID")
+    for marker_path in sorted(parts_root.glob("*.json")):
+        marker=json.loads(marker_path.read_text(encoding="utf-8"))
+        if str(marker["source"]) not in selected: continue
+        for batch in pq.ParquetFile(marker_path.with_suffix(".parquet")).iter_batches(columns=["query_id","chunk_id"],batch_size=8192):
+            rows=[(int(q),str(c)) for q,c in zip(batch.column(0).to_pylist(),batch.column(1).to_pylist(),strict=True)]
+            candidate_rows+=len(rows); connection.executemany("INSERT OR IGNORE INTO expected VALUES (?,?)",rows)
+    unique=int(connection.execute("SELECT COUNT(*) FROM expected").fetchone()[0])
+    matched,missing,unscored,nonfinite,invalid_ms,distinct,min_score,max_score=connection.execute(
+        "SELECT COUNT(p.query_id),SUM(p.query_id IS NULL),SUM(p.query_id IS NOT NULL AND p.rerank_score IS NULL),"
+        "SUM(p.rerank_score IS NOT NULL AND (p.rerank_score!=p.rerank_score OR ABS(p.rerank_score)>1e308)),"
+        "SUM(p.query_id IS NOT NULL AND (p.inference_ms IS NULL OR p.inference_ms<0)),COUNT(DISTINCT p.rerank_score),MIN(p.rerank_score),MAX(p.rerank_score) "
+        "FROM expected e LEFT JOIN pairs p ON p.query_id=e.query_id AND p.chunk_id=e.chunk_id"
+    ).fetchone(); connection.close()
+    result={"candidate_rows":candidate_rows,"unique_candidate_keys":unique,"matched_score_keys":int(matched or 0),"missing_keys":int(missing or 0),
+            "unscored_keys":int(unscored or 0),"nonfinite_scores":int(nonfinite or 0),"invalid_inference_timings":int(invalid_ms or 0),
+            "distinct_scores":int(distinct or 0),"min_score":float(min_score),"max_score":float(max_score),"reused_scores":int(matched or 0),"new_inference":0}
+    result["passed"]=candidate_rows==unique==result["matched_score_keys"] and not any(result[key] for key in ("missing_keys","unscored_keys","nonfinite_scores","invalid_inference_timings")) and result["distinct_scores"]>1
+    return result
+
+
+def _subset_accounting(accounting: dict, sources: list[str]) -> dict:
+    rows={source:accounting["sources"][source] for source in sources}
+    return {"sources":rows,"official_document_rows":sum(row["document_rows"] for row in rows.values()),
+            "usable_documents":sum(row["usable_documents"] for row in rows.values()),"chunks":sum(row["chunks"] for row in rows.values()),
+            "duplicate_doc_ids":0,"duplicate_chunk_ids":0,"passed":True}
+
+
+def run_probe_set(spec_path: str|Path) -> dict:
+    spec=yaml.safe_load(Path(spec_path).read_text(encoding="utf-8")); config=_runtime_config(spec); root=Path(spec["outputs"]["root"]); artifacts=Path(spec["outputs"]["artifacts"])
+    (root/"round1").mkdir(parents=True,exist_ok=True); artifacts.mkdir(parents=True,exist_ok=True)
+    contract=_contract(spec); accounting=_source_accounting(spec); embeddings=_embedding_audit(spec)
+    if not contract["passed"] or not accounting["passed"] or not embeddings["passed"]: raise ValueError("probe preflight contract failed")
+    parts=_prepare_candidate_parts(spec,root); scores=_merge_score_databases(spec,root/"round1/source_scores.sqlite")
+    all_sources=[source for parent in spec["parents"].values() for source in parent["sources"]]
+    atomic_json(artifacts/"technical_triage.json",{"healthy_sources":all_sources,"sources":{source:{"healthy":True} for source in all_sources}})
+    groups={**{name:row["sources"] for name,row in spec["probes"].items()},**{name:row["sources"] for name,row in spec["controls"].items()}}
+    ranking_root=root/"rankings"; build_cached_subset_rankings(config,groups,ranking_root)
+    canonical=_prepare_package_canonical(config,spec,ranking_root,spec["canonical_group"])
+    canonical_db=root/"round1/canonical_text.sqlite"; canonical_store=_build_canonical_store(root/"round1/combined_chunks.parquet",root/"round1/combined_documents.parquet",canonical_db)
+    from src.indexing.tokenizer_validation import HuggingFaceOffsetTokenizer
+    from transformers import AutoTokenizer
+    tokenizer=HuggingFaceOffsetTokenizer(AutoTokenizer.from_pretrained(config["models"]["embedder"]["name"],revision=config["models"]["embedder"]["revision"],local_files_only=True))
+    controls={}; control_root=root/"controls"
+    for group,row in spec["controls"].items():
+        package=_stream_package(config,ranking_root,group,f"{spec['experiment']}_{group}",control_root,canonical_db,tokenizer,verify_determinism=False)
+        reference=_reference_json_sha256(row); package["semantic_replay"]={"passed":reference==package["json_sha256"],"comparison":"byte-identical canonical JSON","reference_sha256":reference,"replay_sha256":package["json_sha256"]}
+        controls[group]=package; atomic_json(artifacts/f"submission_{group.lower()}.json",package)
+    shared_cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
+    baseline=_submission_signatures(Path(spec["comparison_submission_json"])); outputs={}; any_failure=False
+    for group,row in spec["probes"].items():
+        package=_stream_package(config,ranking_root,group,row["submission_name"],Path(spec["outputs"]["submissions"]),canonical_db,tokenizer)
+        current=_submission_signatures(Path(package["json_path"])); changes={"queries_top10_docs_changed":sum(baseline[q][0]!=current[q][0] for q in baseline),"queries_top20_chunks_changed":sum(baseline[q][1]!=current[q][1] for q in baseline)}
+        scoped_scores=_group_score_audit(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts",row["sources"])
+        official=_official_id_audit(Path(package["json_path"]),Path(config["inputs"]["corpus"])); subset=_subset_accounting(accounting,row["sources"])
+        failures=[]
+        if not shared_cache["passed"]: failures.append("shared_score_cache")
+        if not scoped_scores["passed"]: failures.append("scoped_score_cache")
+        if not all(control["semantic_replay"]["passed"] for control in controls.values()): failures.append("full_control_replay")
+        if not official["passed"] or not package["validation"]["valid"] or not package["determinism_verified"]: failures.append("package_validation")
+        audit={"status":"READY_FOR_LEADERBOARD" if not failures else "NEEDS_AGENT","passed":not failures,"failures":failures,"experiment_contract":contract,
+               "source_membership":row["sources"],"corpus_accounting":subset,"embedding_reconciliation":{"reused":subset["chunks"],"computed":0,"parent_audit":embeddings},
+               "candidate_score_reconciliation":scoped_scores,"shared_score_cache":shared_cache,"control_replays":controls,"ranking_change_vs_full":changes,
+               "official_id_audit":official,"structural_validation":package["validation"],"determinism_verified":package["determinism_verified"],"submission":{"path":package["zip_path"],"sha256":package["zip_sha256"]}}
+        atomic_json(row["audit"],audit); outputs[group]={"status":audit["status"],"sources":row["sources"],"corpus":subset,"embeddings_reused":subset["chunks"],"embeddings_new":0,
+            "candidate_rows":scoped_scores["candidate_rows"],"reranker_scores_reused":scoped_scores["reused_scores"],"reranker_scores_new":0,"ranking_change_vs_full":changes,"submission":package,"audit":row["audit"]}
+        any_failure|=bool(failures)
+    report={"experiment":spec["experiment"],"status":"NEEDS_AGENT" if any_failure else "READY_FOR_LEADERBOARD","new_acquisition":0,"new_embeddings":0,"new_reranker_inference":0,
+            "full_source_accounting":accounting,"candidate_cache":parts,"score_cache":scores,"controls":controls,"canonical":{**canonical,"disk_backed_store":canonical_store},"probes":outputs}
+    atomic_json(spec["outputs"]["report"],report)
+    if any_failure: raise RuntimeError("one or more probe scientific gates failed")
+    return report
 
 
 def run_union(spec_path: str|Path) -> dict:

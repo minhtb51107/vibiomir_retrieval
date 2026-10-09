@@ -6,7 +6,9 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| _None_ | — | — | The full nine-source union is submitted; three pre-reset probes are being validated. |
+| Full union minus Medlatec | `phase10e_FULL_MINUS_MEDLATEC.zip` | `332a49b9e0abe345289352a030d772af9485bddb25e3117a8dd2de5f6f5a227a` | Ready; organizer result pending |
+| Full union minus Suckhoedoisong | `phase10e_FULL_MINUS_SUCKHOEDOISONG.zip` | `5b23ae57f06f89abc70b00891893c4f983536501f091677f1a5abbdca8fd506a` | Ready; organizer result pending |
+| Full union plus shallow Round-3 resurrection sources | `phase10e_FULL_PLUS_R3_RESURRECTION.zip` | `fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5` | Ready; organizer result pending |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 

@@ -31,6 +31,20 @@ def test_g1a_focused_submission_keeps_scientific_evidence_paths():
     )
 
 
+def test_pre_reset_probes_are_ready_only_with_explicit_evidence_paths():
+    names={
+        "phase10e_FULL_MINUS_MEDLATEC":"phase10e_full_minus_medlatec_pre_submit_audit.json",
+        "phase10e_FULL_MINUS_SUCKHOEDOISONG":"phase10e_full_minus_suckhoedoisong_pre_submit_audit.json",
+        "phase10e_FULL_PLUS_R3_RESURRECTION":"phase10e_full_plus_r3_resurrection_pre_submit_audit.json",
+    }
+    for stem,audit in names.items():
+        assert classify(Path(f"{stem}.zip"),{})=="READY_TO_SUBMIT"
+        assert report_for(stem)==(
+            "artifacts/source_census/phase10e_final_pre_reset_probes_report.json",
+            f"artifacts/validation/{audit}",
+        )
+
+
 def test_unknown_package_is_not_promoted_by_filename_guessing():
     assert classify(Path("phase10e_G5A_11200.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"
     assert classify(Path("phase10e_future.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"

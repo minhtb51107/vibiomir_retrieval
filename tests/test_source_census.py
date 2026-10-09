@@ -149,8 +149,12 @@ def test_union_score_cache_preserves_exact_parent_values(tmp_path):
         ("a",[(1,"a","q","a",1.25,10.0),(2,"b","q2","b",2.5,20.0)]),
         ("b",[(1,"c","q","c",-3.0,30.0)]),
     ):
-        root=tmp_path/name; (root/"round1").mkdir(parents=True); _score_db(root/"round1/source_scores.sqlite",rows); roots.append(root)
-    spec={"parents":{"A":{"root":str(roots[0])},"B":{"root":str(roots[1])}}}
+        root=tmp_path/name; parts=root/"round1/source_candidate_parts"; parts.mkdir(parents=True)
+        _score_db(root/"round1/source_scores.sqlite",rows)
+        (parts/f"{name}.json").write_text(json.dumps({"source":name}),encoding="utf-8")
+        pq.write_table(pa.table({"query_id":[row[0] for row in rows],"chunk_id":[row[1] for row in rows]}),parts/f"{name}.parquet")
+        roots.append(root)
+    spec={"parents":{"A":{"root":str(roots[0]),"sources":["a"]},"B":{"root":str(roots[1]),"sources":["b"]}}}
     result=_merge_score_databases(spec,tmp_path/"union.sqlite")
     import sqlite3
     connection=sqlite3.connect(tmp_path/"union.sqlite")
@@ -160,6 +164,25 @@ def test_union_score_cache_preserves_exact_parent_values(tmp_path):
     assert result["value_mismatches"]=={"A":0,"B":0}
 
 
+def test_union_score_cache_excludes_unselected_sources_from_shared_parent(tmp_path):
+    root=tmp_path/"shared"; parts=root/"round1/source_candidate_parts"; parts.mkdir(parents=True)
+    _score_db(root/"round1/source_scores.sqlite",[
+        (1,"selected","q","selected",1.25,10.0),
+        (1,"excluded","q","excluded",9.5,20.0),
+    ])
+    for source,chunk in (("selected.example","selected"),("excluded.example","excluded")):
+        stem=source.replace(".","_")
+        (parts/f"{stem}.json").write_text(json.dumps({"source":source}),encoding="utf-8")
+        pq.write_table(pa.table({"query_id":[1],"chunk_id":[chunk]}),parts/f"{stem}.parquet")
+    spec={"parents":{"SHARED":{"root":str(root),"sources":["selected.example"]}}}
+    result=_merge_score_databases(spec,tmp_path/"union.sqlite")
+    import sqlite3
+    connection=sqlite3.connect(tmp_path/"union.sqlite")
+    keys=connection.execute("SELECT query_id,chunk_id FROM pairs").fetchall(); connection.close()
+    assert keys==[(1,"selected")]
+    assert result["total"]==1
+
+
 def test_union_canonical_filter_is_complete_and_deduplicated(tmp_path):
     first=tmp_path/"first.parquet"; second=tmp_path/"second.parquet"; output=tmp_path/"out.parquet"
     pq.write_table(pa.table({"chunk_id":["a","b"],"doc_id":[1,2]}),first)
@@ -167,6 +190,17 @@ def test_union_canonical_filter_is_complete_and_deduplicated(tmp_path):
     result=_filter_parquet([first,second],output,"chunk_id",{"a","b","c"})
     assert result=={"selected":3,"written":3,"duplicate_input_rows":1}
     assert pq.read_table(output).column("chunk_id").to_pylist()==["a","b","c"]
+
+
+def test_union_canonical_filter_unifies_null_and_string_columns(tmp_path):
+    first=tmp_path/"first.parquet"; second=tmp_path/"second.parquet"; output=tmp_path/"out.parquet"
+    pq.write_table(pa.table({"doc_id":[1],"error_message":pa.array([None],type=pa.null())}),first)
+    pq.write_table(pa.table({"doc_id":[2],"error_message":pa.array(["failed"],type=pa.string())}),second)
+    result=_filter_parquet([first,second],output,"doc_id",{1,2})
+    table=pq.read_table(output)
+    assert result["written"]==2
+    assert table.schema.field("error_message").type==pa.string()
+    assert table.column("error_message").to_pylist()==[None,"failed"]
 
 
 def test_union_streaming_json_reader_handles_large_record_boundaries(tmp_path):

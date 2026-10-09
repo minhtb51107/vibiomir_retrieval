@@ -34,8 +34,8 @@ precision, recall, and recall-weighted F2 metrics.
 > at 15,000 official IDs. Their zero-acquisition union reached organizer FINAL
 > `0.0332`, confirming complementary signal beyond G1A alone. The nine-source
 > union adding organizer-valid G5A 11.2K reached organizer FINAL `0.0383`.
-> Three no-acquisition leave-out/resurrection probes are the final information
-> tests before the leaderboard quota resets.
+> Three no-acquisition leave-out/resurrection probes are now scientifically
+> validated and ready as the final information tests before quota reset.
 
 ## Current ready submissions
 
@@ -46,8 +46,9 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The three pre-reset probe packages are not yet ready. Consult the submission
-registry rather than selecting a ZIP by filename.
+The three current upload candidates are the full union minus Medlatec, the full
+union minus Suckhoedoisong, and the full union plus the shallow Round-3
+resurrection sources. Consult the registry for canonical paths and hashes.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

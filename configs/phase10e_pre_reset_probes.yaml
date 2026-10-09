@@ -1,0 +1,50 @@
+version: 1
+experiment: phase10e_final_pre_reset_probes
+scientific_question: Which current sources have marginal organizer value and do eliminated shallow Round-3 groups add complementary signal?
+intended_variable: source membership only across three predeclared probes
+expected_source_count: 18
+expected_candidate_pairs: 172800
+base_config: configs/phase10e_g1a_10010.yaml
+comparison_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+canonical_group: FULL_PLUS_R3_RESURRECTION
+parents:
+  G1A:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com]
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/phase10e_g5a_11200
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  R3_RESURRECTION:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/round1
+    cache_root: data/source_census/round1
+    embedding_completion_artifact: artifacts/source_census/round1_report.json
+    sources: [vov2.vov.vn, familydoctor.cn, suckhoeviet.org.vn, tuoitre.vn, qy.familydoctor.com.cn, tnb.39.net, baoquangninh.vn, jb39.com, baochinhphu.vn]
+controls:
+  FULL_9_CONTROL:
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+probes:
+  FULL_MINUS_MEDLATEC:
+    submission_name: phase10e_FULL_MINUS_MEDLATEC
+    audit: artifacts/validation/phase10e_full_minus_medlatec_pre_submit_audit.json
+    sources: [v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  FULL_MINUS_SUCKHOEDOISONG:
+    submission_name: phase10e_FULL_MINUS_SUCKHOEDOISONG
+    audit: artifacts/validation/phase10e_full_minus_suckhoedoisong_pre_submit_audit.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  FULL_PLUS_R3_RESURRECTION:
+    submission_name: phase10e_FULL_PLUS_R3_RESURRECTION
+    audit: artifacts/validation/phase10e_full_plus_r3_resurrection_pre_submit_audit.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com, vov2.vov.vn, familydoctor.cn, suckhoeviet.org.vn, tuoitre.vn, qy.familydoctor.com.cn, tnb.39.net, baoquangninh.vn, jb39.com, baochinhphu.vn]
+outputs:
+  root: data/source_census/phase10e_final_pre_reset_probes
+  artifacts: artifacts/source_census/phase10e_final_pre_reset_probes
+  report: artifacts/source_census/phase10e_final_pre_reset_probes_report.json
+  submissions: submissions/00_READY_TO_UPLOAD

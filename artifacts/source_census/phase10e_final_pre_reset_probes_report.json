@@ -1,0 +1,625 @@
+{
+  "experiment": "phase10e_final_pre_reset_probes",
+  "status": "READY_FOR_LEADERBOARD",
+  "new_acquisition": 0,
+  "new_embeddings": 0,
+  "new_reranker_inference": 0,
+  "full_source_accounting": {
+    "sources": {
+      "medlatec.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4992,
+        "chunks": 98333
+      },
+      "v.familydoctor.com.cn": {
+        "document_rows": 10,
+        "usable_documents": 10,
+        "chunks": 22
+      },
+      "vinmec.com": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 32811
+      },
+      "tiemchunglongchau.com.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4998,
+        "chunks": 53361
+      },
+      "cancer.39.net": {
+        "document_rows": 5000,
+        "usable_documents": 4911,
+        "chunks": 22260
+      },
+      "suckhoedoisong.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 114481
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "document_rows": 1200,
+        "usable_documents": 1200,
+        "chunks": 18726
+      },
+      "zydcd.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 14894
+      },
+      "hellobacsi.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 59148
+      },
+      "vov2.vov.vn": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 1177
+      },
+      "familydoctor.cn": {
+        "document_rows": 44,
+        "usable_documents": 43,
+        "chunks": 102
+      },
+      "suckhoeviet.org.vn": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 2985
+      },
+      "tuoitre.vn": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 2008
+      },
+      "qy.familydoctor.com.cn": {
+        "document_rows": 40,
+        "usable_documents": 39,
+        "chunks": 711
+      },
+      "tnb.39.net": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 472
+      },
+      "baoquangninh.vn": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 573
+      },
+      "jb39.com": {
+        "document_rows": 100,
+        "usable_documents": 99,
+        "chunks": 1199
+      },
+      "baochinhphu.vn": {
+        "document_rows": 100,
+        "usable_documents": 100,
+        "chunks": 640
+      }
+    },
+    "official_document_rows": 36994,
+    "chunks": 423903,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_ids": 0,
+    "passed": true
+  },
+  "candidate_cache": {
+    "sources": {
+      "medlatec.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\medlatec_vn.parquet"
+      },
+      "v.familydoctor.com.cn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\v_familydoctor_com_cn.parquet"
+      },
+      "vinmec.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\vinmec_com.parquet"
+      },
+      "cancer.39.net": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\cancer_39_net.parquet"
+      },
+      "suckhoedoisong.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\suckhoedoisong_vn.parquet"
+      },
+      "tiemchunglongchau.com.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\tiemchunglongchau_com_vn.parquet"
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\benhviennhitrunguong_gov_vn.parquet"
+      },
+      "hellobacsi.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\hellobacsi_com.parquet"
+      },
+      "zydcd.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\zydcd_com.parquet"
+      },
+      "baochinhphu.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\baochinhphu_vn.parquet"
+      },
+      "baoquangninh.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\baoquangninh_vn.parquet"
+      },
+      "familydoctor.cn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\familydoctor_cn.parquet"
+      },
+      "jb39.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\jb39_com.parquet"
+      },
+      "qy.familydoctor.com.cn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\qy_familydoctor_com_cn.parquet"
+      },
+      "suckhoeviet.org.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\suckhoeviet_org_vn.parquet"
+      },
+      "tnb.39.net": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\tnb_39_net.parquet"
+      },
+      "tuoitre.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\tuoitre_vn.parquet"
+      },
+      "vov2.vov.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\round1\\source_candidate_parts\\vov2_vov_vn.parquet"
+      }
+    },
+    "reuse_methods": {
+      "existing_exact": 18
+    },
+    "candidate_rows": 172800
+  },
+  "score_cache": {
+    "total": 172800,
+    "source_rows": {
+      "G1A": 28800,
+      "G6B": 28800,
+      "G5A": 28800,
+      "R3_RESURRECTION": 86400
+    },
+    "exact_intersections": {
+      "G1A": 28800,
+      "G6B": 28800,
+      "G5A": 28800,
+      "R3_RESURRECTION": 86400
+    },
+    "value_mismatches": {
+      "G1A": 0,
+      "G6B": 0,
+      "G5A": 0,
+      "R3_RESURRECTION": 0
+    },
+    "sqlite_integrity": "ok",
+    "new_inference": 0
+  },
+  "controls": {
+    "FULL_9_CONTROL": {
+      "name": "phase10e_final_pre_reset_probes_FULL_9_CONTROL",
+      "json_path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.json",
+      "zip_path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.zip",
+      "json_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+      "zip_sha256": "09b42889fc4df3d83a4001c32768b1169e2f9cfd53fd0af93b558c0de576850c",
+      "validation": {
+        "path": "data\\source_census\\phase10e_final_pre_reset_probes\\controls\\phase10e_final_pre_reset_probes_FULL_9_CONTROL.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 9627,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 24000
+      },
+      "determinism_verified": false,
+      "new_model_inference": 0,
+      "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+      "semantic_replay": {
+        "passed": true,
+        "comparison": "byte-identical canonical JSON",
+        "reference_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+        "replay_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459"
+      }
+    }
+  },
+  "canonical": {
+    "candidate_chunk_ids": 48720,
+    "candidate_doc_ids": 19242,
+    "chunks": {
+      "selected": 48720,
+      "written": 48720,
+      "duplicate_input_rows": 1127
+    },
+    "documents": {
+      "selected": 19242,
+      "written": 19242,
+      "duplicate_input_rows": 417
+    },
+    "disk_backed_store": {
+      "chunks": 48720,
+      "documents": 19242,
+      "sqlite_integrity": "ok"
+    }
+  },
+  "probes": {
+    "FULL_MINUS_MEDLATEC": {
+      "status": "READY_FOR_LEADERBOARD",
+      "sources": [
+        "v.familydoctor.com.cn",
+        "vinmec.com",
+        "tiemchunglongchau.com.vn",
+        "cancer.39.net",
+        "suckhoedoisong.vn",
+        "benhviennhitrunguong.gov.vn",
+        "zydcd.com",
+        "hellobacsi.com"
+      ],
+      "corpus": {
+        "sources": {
+          "v.familydoctor.com.cn": {
+            "document_rows": 10,
+            "usable_documents": 10,
+            "chunks": 22
+          },
+          "vinmec.com": {
+            "document_rows": 5000,
+            "usable_documents": 4999,
+            "chunks": 32811
+          },
+          "tiemchunglongchau.com.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4998,
+            "chunks": 53361
+          },
+          "cancer.39.net": {
+            "document_rows": 5000,
+            "usable_documents": 4911,
+            "chunks": 22260
+          },
+          "suckhoedoisong.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4999,
+            "chunks": 114481
+          },
+          "benhviennhitrunguong.gov.vn": {
+            "document_rows": 1200,
+            "usable_documents": 1200,
+            "chunks": 18726
+          },
+          "zydcd.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 14894
+          },
+          "hellobacsi.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 59148
+          }
+        },
+        "official_document_rows": 31210,
+        "usable_documents": 31117,
+        "chunks": 315703,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_ids": 0,
+        "passed": true
+      },
+      "embeddings_reused": 315703,
+      "embeddings_new": 0,
+      "candidate_rows": 76800,
+      "reranker_scores_reused": 76800,
+      "reranker_scores_new": 0,
+      "ranking_change_vs_full": {
+        "queries_top10_docs_changed": 1136,
+        "queries_top20_chunks_changed": 1181
+      },
+      "submission": {
+        "name": "phase10e_FULL_MINUS_MEDLATEC",
+        "json_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_MEDLATEC.json",
+        "zip_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_MEDLATEC.zip",
+        "json_sha256": "536101b4f8cb54f5bfe26964d16ead9394df507d9c207c50eb39f36eeaba1e0a",
+        "zip_sha256": "332a49b9e0abe345289352a030d772af9485bddb25e3117a8dd2de5f6f5a227a",
+        "validation": {
+          "path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_MEDLATEC.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 12000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 8422,
+          "document_minimum_per_query": 10,
+          "document_maximum_per_query": 10,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000
+        },
+        "determinism_verified": true,
+        "new_model_inference": 0,
+        "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
+      },
+      "audit": "artifacts/validation/phase10e_full_minus_medlatec_pre_submit_audit.json"
+    },
+    "FULL_MINUS_SUCKHOEDOISONG": {
+      "status": "READY_FOR_LEADERBOARD",
+      "sources": [
+        "medlatec.vn",
+        "v.familydoctor.com.cn",
+        "vinmec.com",
+        "tiemchunglongchau.com.vn",
+        "cancer.39.net",
+        "benhviennhitrunguong.gov.vn",
+        "zydcd.com",
+        "hellobacsi.com"
+      ],
+      "corpus": {
+        "sources": {
+          "medlatec.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4992,
+            "chunks": 98333
+          },
+          "v.familydoctor.com.cn": {
+            "document_rows": 10,
+            "usable_documents": 10,
+            "chunks": 22
+          },
+          "vinmec.com": {
+            "document_rows": 5000,
+            "usable_documents": 4999,
+            "chunks": 32811
+          },
+          "tiemchunglongchau.com.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4998,
+            "chunks": 53361
+          },
+          "cancer.39.net": {
+            "document_rows": 5000,
+            "usable_documents": 4911,
+            "chunks": 22260
+          },
+          "benhviennhitrunguong.gov.vn": {
+            "document_rows": 1200,
+            "usable_documents": 1200,
+            "chunks": 18726
+          },
+          "zydcd.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 14894
+          },
+          "hellobacsi.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 59148
+          }
+        },
+        "official_document_rows": 31210,
+        "usable_documents": 31110,
+        "chunks": 299555,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_ids": 0,
+        "passed": true
+      },
+      "embeddings_reused": 299555,
+      "embeddings_new": 0,
+      "candidate_rows": 76800,
+      "reranker_scores_reused": 76800,
+      "reranker_scores_new": 0,
+      "ranking_change_vs_full": {
+        "queries_top10_docs_changed": 824,
+        "queries_top20_chunks_changed": 1055
+      },
+      "submission": {
+        "name": "phase10e_FULL_MINUS_SUCKHOEDOISONG",
+        "json_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_SUCKHOEDOISONG.json",
+        "zip_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_SUCKHOEDOISONG.zip",
+        "json_sha256": "8308c6475b60947323108881a37c65abae76c08654d35e8f9fa9132604c683a4",
+        "zip_sha256": "5b23ae57f06f89abc70b00891893c4f983536501f091677f1a5abbdca8fd506a",
+        "validation": {
+          "path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_MINUS_SUCKHOEDOISONG.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 12000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 9497,
+          "document_minimum_per_query": 10,
+          "document_maximum_per_query": 10,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000
+        },
+        "determinism_verified": true,
+        "new_model_inference": 0,
+        "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
+      },
+      "audit": "artifacts/validation/phase10e_full_minus_suckhoedoisong_pre_submit_audit.json"
+    },
+    "FULL_PLUS_R3_RESURRECTION": {
+      "status": "READY_FOR_LEADERBOARD",
+      "sources": [
+        "medlatec.vn",
+        "v.familydoctor.com.cn",
+        "vinmec.com",
+        "tiemchunglongchau.com.vn",
+        "cancer.39.net",
+        "suckhoedoisong.vn",
+        "benhviennhitrunguong.gov.vn",
+        "zydcd.com",
+        "hellobacsi.com",
+        "vov2.vov.vn",
+        "familydoctor.cn",
+        "suckhoeviet.org.vn",
+        "tuoitre.vn",
+        "qy.familydoctor.com.cn",
+        "tnb.39.net",
+        "baoquangninh.vn",
+        "jb39.com",
+        "baochinhphu.vn"
+      ],
+      "corpus": {
+        "sources": {
+          "medlatec.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4992,
+            "chunks": 98333
+          },
+          "v.familydoctor.com.cn": {
+            "document_rows": 10,
+            "usable_documents": 10,
+            "chunks": 22
+          },
+          "vinmec.com": {
+            "document_rows": 5000,
+            "usable_documents": 4999,
+            "chunks": 32811
+          },
+          "tiemchunglongchau.com.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4998,
+            "chunks": 53361
+          },
+          "cancer.39.net": {
+            "document_rows": 5000,
+            "usable_documents": 4911,
+            "chunks": 22260
+          },
+          "suckhoedoisong.vn": {
+            "document_rows": 5000,
+            "usable_documents": 4999,
+            "chunks": 114481
+          },
+          "benhviennhitrunguong.gov.vn": {
+            "document_rows": 1200,
+            "usable_documents": 1200,
+            "chunks": 18726
+          },
+          "zydcd.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 14894
+          },
+          "hellobacsi.com": {
+            "document_rows": 5000,
+            "usable_documents": 5000,
+            "chunks": 59148
+          },
+          "vov2.vov.vn": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 1177
+          },
+          "familydoctor.cn": {
+            "document_rows": 44,
+            "usable_documents": 43,
+            "chunks": 102
+          },
+          "suckhoeviet.org.vn": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 2985
+          },
+          "tuoitre.vn": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 2008
+          },
+          "qy.familydoctor.com.cn": {
+            "document_rows": 40,
+            "usable_documents": 39,
+            "chunks": 711
+          },
+          "tnb.39.net": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 472
+          },
+          "baoquangninh.vn": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 573
+          },
+          "jb39.com": {
+            "document_rows": 100,
+            "usable_documents": 99,
+            "chunks": 1199
+          },
+          "baochinhphu.vn": {
+            "document_rows": 100,
+            "usable_documents": 100,
+            "chunks": 640
+          }
+        },
+        "official_document_rows": 36994,
+        "usable_documents": 36890,
+        "chunks": 423903,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_ids": 0,
+        "passed": true
+      },
+      "embeddings_reused": 423903,
+      "embeddings_new": 0,
+      "candidate_rows": 172800,
+      "reranker_scores_reused": 172800,
+      "reranker_scores_new": 0,
+      "ranking_change_vs_full": {
+        "queries_top10_docs_changed": 178,
+        "queries_top20_chunks_changed": 344
+      },
+      "submission": {
+        "name": "phase10e_FULL_PLUS_R3_RESURRECTION",
+        "json_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_PLUS_R3_RESURRECTION.json",
+        "zip_path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_PLUS_R3_RESURRECTION.zip",
+        "json_sha256": "6122740d3afe26123f68948cfec85d5b08dc389999208e350936c197acad53cf",
+        "zip_sha256": "fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5",
+        "validation": {
+          "path": "submissions\\00_READY_TO_UPLOAD\\phase10e_FULL_PLUS_R3_RESURRECTION.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 12000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 9698,
+          "document_minimum_per_query": 10,
+          "document_maximum_per_query": 10,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000
+        },
+        "determinism_verified": true,
+        "new_model_inference": 0,
+        "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
+      },
+      "audit": "artifacts/validation/phase10e_full_plus_r3_resurrection_pre_submit_audit.json"
+    }
+  }
+}
