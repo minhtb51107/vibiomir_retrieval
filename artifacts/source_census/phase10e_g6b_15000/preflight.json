@@ -1,0 +1,49 @@
+{
+  "experiment": "phase10e_g6b_15000",
+  "group": "G6B",
+  "passed": true,
+  "failures": [],
+  "chosen_m": 8,
+  "calibration_artifact": "artifacts\\source_census\\depth1000\\candidate_cap_calibration.json",
+  "contract": {
+    "chosen_m_is_8": true,
+    "reranker_revision_fixed": true,
+    "embedder_revision_fixed": true,
+    "embedder_dimension_1024": true,
+    "reranker_fp16": true,
+    "reranker_batch_2": true,
+    "reranker_max_length_512": true,
+    "submission_top10_top20": true,
+    "source_targets_match": true,
+    "experiment_scoped_reranker_control": true,
+    "streaming_embeddings_bounded": true
+  },
+  "model_cache": {
+    "embedder_revision_available": true,
+    "reranker_revision_available": true
+  },
+  "control_hashes": {
+    "json": {
+      "path": "data/source_census/depth1000/control_submissions/phase10d_DEPTH1000_FIXED_G6B.json",
+      "expected_sha256": "dd364c10ba853dad87958eb2721578c9b6cda715fa4355223ef3d86d0d7fade5",
+      "actual_sha256": "dd364c10ba853dad87958eb2721578c9b6cda715fa4355223ef3d86d0d7fade5",
+      "passed": true
+    },
+    "zip": {
+      "path": "submissions/10_SUBMITTED_VALID/phase10d_DEPTH1000_FIXED_G6B.zip",
+      "expected_sha256": "01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377",
+      "actual_sha256": "01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377",
+      "passed": true
+    }
+  },
+  "stale_run_recovery": "competition_supervisor reconciles RUNNING state against recorded process liveness",
+  "dependencies_checked": 24,
+  "writable_directories": [
+    "data\\source_census\\phase10e_g6b_15000",
+    "artifacts\\source_census\\phase10e_g6b_15000",
+    "submissions\\00_READY_TO_UPLOAD",
+    "artifacts\\validation"
+  ],
+  "manifest": "artifacts/source_census/phase10e_g6b_15000_manifest.json",
+  "disk_gate_passed": true
+}

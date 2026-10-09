@@ -1,0 +1,149 @@
+version: 1
+phase: phase10e_focused_scaling
+seed: vibiomir-phase10e-g6b-15000-v1
+focused_scaling:
+  phase_key: phase10e_g6b
+  experiment: phase10e_g6b_15000
+  group: G6B
+  submission_name: phase10e_G6B_15000
+  scientific_question: Does G6B retain organizer-relevant signal when all three sources scale from about 1,000 to 5,000 official IDs each?
+  control_submission_json: data/source_census/depth1000/control_submissions/phase10d_DEPTH1000_FIXED_G6B.json
+  control_submission_json_sha256: dd364c10ba853dad87958eb2721578c9b6cda715fa4355223ef3d86d0d7fade5
+  control_submission_zip: submissions/10_SUBMITTED_VALID/phase10d_DEPTH1000_FIXED_G6B.zip
+  control_submission_zip_sha256: 01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377
+  audit_path: artifacts/validation/phase10e_g6b_15000_pre_submit_audit.json
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  c1_candidate_pool: data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet
+sampling:
+  round1_documents_per_source: 100
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 3
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+triage:
+  minimum_successful_fetches: 1
+  minimum_extracted_documents: 1
+  blocked_fraction: 0.80
+candidate_cache:
+  candidate_caps: [8]
+  calibrated_cap_artifact: artifacts/source_census/depth1000/candidate_cap_calibration.json
+  calibration_document_retention: 0.95
+  calibration_chunk_retention: 0.95
+  dense_depth: 8
+  sparse_depth: 8
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    precision: fp16
+    batch_size: 2
+    max_length: 512
+    shard_size: 2000
+    equivalence:
+      investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
+      control_artifact: artifacts/source_census/phase10e_g6b_15000/reranker_equivalence_control.json
+      measured_absolute_tolerance: 0.005859375
+embedding_recovery:
+  profile_artifact: artifacts/source_census/phase10e_g6b_15000/embedding_memory_profile/profile.json
+  equivalence_artifact: artifacts/source_census/phase10e_g6b_15000/embedding_equivalence.json
+  measured_absolute_tolerance: 0.000732421875
+  measured_minimum_cosine: 0.9995
+  profile_rows: 2048
+  parquet_batch_rows: 128
+  num_workers: 0
+  prefetching: false
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  expansion_tokens: 1024
+  chunk_expansion_tokens: 1024
+outputs:
+  root: data/source_census/phase10e_g6b_15000
+  artifacts: artifacts/source_census/phase10e_g6b_15000
+  submissions: submissions/00_READY_TO_UPLOAD
+  serial_crawl_database: data/crawled/phase10e_g6b_15000_serial_unused.sqlite
+  serial_body_archive: data/crawled/phase10e_g6b_15000_serial_unused_bodies
+  worker_root: data/crawled/phase10e_g6b_15000_workers
+  crawl_database: data/crawled/phase10e_g6b_15000_merged.sqlite
+  body_archive: data/crawled/phase10e_g6b_15000_merged_bodies
+  processed_parts: data/processed/phase10e_g6b_15000_parts
+  chunks_parts: data/chunks/phase10e_g6b_15000_parts
+  documents: data/source_census/phase10e_g6b_15000/documents.parquet
+  chunks: data/source_census/phase10e_g6b_15000/chunks.parquet
+phase10e_g6b:
+  manifest: artifacts/source_census/phase10e_g6b_15000_manifest.json
+  sampling_seed: vibiomir-phase10e-g6b-15000-v1
+  targets:
+    tiemchunglongchau.com.vn: 5000
+    cancer.39.net: 5000
+    suckhoedoisong.vn: 5000
+  observed_urls_per_minute:
+    tiemchunglongchau.com.vn: 59.55
+    cancer.39.net: 59.32
+    suckhoedoisong.vn: 59.50
+  fallback_urls_per_minute: 20.0
+  previous_crawl_databases:
+    - data/crawled/source_census_round1_merged.sqlite
+    - data/crawled/source_census_depth1000_merged.sqlite
+    - data/crawled/phase10c1_C3.sqlite
+  previous_documents:
+    - data/source_census/round1/documents.parquet
+    - data/source_census/depth1000/new_documents.parquet
+    - data/phase10c1/C3/new_documents.parquet
+  previous_chunks: data/source_census/depth1000/chunks.parquet
+  supplemental_previous_chunks:
+    - data/phase10c1/C3/new_chunks.parquet
+    - data/source_census/round1/chunks.parquet
+  previous_embeddings: data/source_census/depth1000/round1/chunk_embeddings.f32
+  previous_score_database: data/source_census/depth1000/round1/source_scores.sqlite
+  previous_candidate_parts: data/source_census/depth1000/round1/source_candidate_parts
+  new_documents: data/source_census/phase10e_g6b_15000/new_documents.parquet
+  new_chunks: data/source_census/phase10e_g6b_15000/new_chunks.parquet
+  planning:
+    evidence:
+      baseline_report: artifacts/source_census/depth1000_fixed_report.json
+      streaming_reference_report: artifacts/source_census/phase10e_g1a_10010_report.json
+      streaming_memory_profile: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
+    source_baselines:
+      tiemchunglongchau.com.vn:
+        usable_documents: 1000
+        chunks: 10829
+        clean_utf8_bytes: 9082776
+      cancer.39.net:
+        usable_documents: 911
+        chunks: 4481
+        clean_utf8_bytes: 6354811
+      suckhoedoisong.vn:
+        usable_documents: 1099
+        chunks: 23994
+        clean_utf8_bytes: 45447412
+    reference_retained_paths:
+      - data/crawled/phase10e_g1a_10010_workers
+      - data/crawled/phase10e_g1a_10010_merged.sqlite
+      - data/crawled/phase10e_g1a_10010_merged_bodies
+      - data/processed/phase10e_g1a_10010_parts
+      - data/chunks/phase10e_g1a_10010_parts
+      - data/source_census/phase10e_g1a_10010
+    reference_incremental_ids: 8005
+    reference_union_chunks: 131166
+    reference_new_chunks: 105050
+    retained_contingency_fraction: 0.15
+    packaging_audit_minutes: 25

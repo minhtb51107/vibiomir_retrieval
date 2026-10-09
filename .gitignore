@@ -48,6 +48,7 @@ artifacts/source_census/phase10e_g5a_11200_manifest.json
 artifacts/source_census/phase10e_g5a_11200_report.json
 artifacts/source_census/phase10e_g1a_10010_manifest.json
 artifacts/source_census/phase10e_g1a_10010_report.json
+artifacts/source_census/phase10e_g6b_15000_manifest.json
 artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.f32
 artifacts/source_census/phase10e_g1a_10010/embedding_equivalence_profile/
 artifacts/source_census/phase10e_g1a_10010/embedding_fp16_load_profile/

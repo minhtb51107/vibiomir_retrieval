@@ -15,7 +15,7 @@ from src.source_census.pipeline import (
     stable_fold,
     stable_top_k_indices,
 )
-from src.source_census.phase10e import phase_contract, preflight_contract_checks
+from src.source_census.phase10e import assemble_union, phase_contract, preflight_contract_checks
 from src.source_census.round3 import ROUND3_GROUPS
 from src.source_census.depth1000 import DEPTH_GROUPS, seed_exact_scores
 from src.source_census.cached_subsets import _require_complete_score_cache
@@ -246,3 +246,45 @@ def test_g1a_preflight_rejects_changed_candidate_cap():
     config["candidate_cache"]["candidate_caps"]=[4]
     checks=preflight_contract_checks(config,8,sources)
     assert checks["chosen_m_is_8"] is False
+
+
+def test_g6b_reserve_contract_is_fixed_and_not_launched():
+    config=load_config("configs/phase10e_g6b_15000.yaml")
+    key,phase,sources,group,experiment=phase_contract(config)
+    assert (key,group,experiment)==("phase10e_g6b","G6B","phase10e_g6b_15000")
+    assert sources==["tiemchunglongchau.com.vn","cancer.39.net","suckhoedoisong.vn"]
+    assert set(phase["targets"].values())=={5000}
+    assert all(preflight_contract_checks(config,8,sources).values())
+    assert phase["supplemental_previous_chunks"]==[
+        "data/phase10c1/C3/new_chunks.parquet",
+        "data/source_census/round1/chunks.parquet",
+    ]
+    assert config["models"]["reranker"]["equivalence"]["control_artifact"].startswith(
+        "artifacts/source_census/phase10e_g6b_15000/"
+    )
+
+
+def test_phase10e_union_includes_supplemental_previous_chunks(tmp_path):
+    documents=tmp_path/"documents.parquet"; new_documents=tmp_path/"new_documents.parquet"
+    old_chunks=tmp_path/"old_chunks.parquet"; supplemental=tmp_path/"supplemental.parquet"; new_chunks=tmp_path/"new_chunks.parquet"
+    pq.write_table(pa.Table.from_pylist([
+        {"doc_id":1,"original_url":"https://example.org/one","extraction_status":"SUCCESS","normalized_text":"one"},
+        {"doc_id":2,"original_url":"https://example.org/two","extraction_status":"SUCCESS","normalized_text":"two"},
+    ]),documents)
+    pq.write_table(pa.Table.from_pylist([
+        {"doc_id":3,"original_url":"https://example.org/three","extraction_status":"SUCCESS","normalized_text":"three"},
+    ]),new_documents)
+    pq.write_table(pa.Table.from_pylist([{"doc_id":1,"chunk_id":"c1","chunk_index":0}]),old_chunks)
+    pq.write_table(pa.Table.from_pylist([{"doc_id":2,"chunk_id":"c2","chunk_index":0}]),supplemental)
+    pq.write_table(pa.Table.from_pylist([{"doc_id":3,"chunk_id":"c3","chunk_index":0}]),new_chunks)
+    manifest=tmp_path/"manifest.json"
+    manifest.write_text('{"sources":{"example.org":{"official_population":2,"target_ids":[1,2]}}}',encoding="utf-8")
+    config={
+        "focused_scaling":{"phase_key":"reserve","group":"X","experiment":"test"},
+        "reserve":{"targets":{"example.org":2},"manifest":str(manifest),"previous_documents":[str(documents)],"previous_chunks":str(old_chunks),"supplemental_previous_chunks":[str(supplemental)],"new_documents":str(new_documents),"new_chunks":str(new_chunks)},
+        "outputs":{"documents":str(tmp_path/"union_documents.parquet"),"chunks":str(tmp_path/"union_chunks.parquet"),"artifacts":str(tmp_path/"artifacts")},
+    }
+    result=assemble_union(config)
+    assert result["documents"]==2
+    assert result["chunks"]==2
+    assert set(pq.read_table(config["outputs"]["chunks"])["chunk_id"].to_pylist())=={"c1","c2"}
