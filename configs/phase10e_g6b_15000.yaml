@@ -62,8 +62,8 @@ models:
       control_artifact: artifacts/source_census/phase10e_g6b_15000/reranker_equivalence_control.json
       measured_absolute_tolerance: 0.005859375
 embedding_recovery:
-  profile_artifact: artifacts/source_census/phase10e_g6b_15000/embedding_memory_profile/profile.json
-  equivalence_artifact: artifacts/source_census/phase10e_g6b_15000/embedding_equivalence.json
+  profile_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
+  equivalence_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json
   measured_absolute_tolerance: 0.000732421875
   measured_minimum_cosine: 0.9995
   profile_rows: 2048

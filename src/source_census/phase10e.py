@@ -168,6 +168,8 @@ def preflight(config):
         config["inputs"]["pilot_rerank_scores"],config["inputs"]["c1_candidate_pool"],
         config["candidate_cache"]["calibrated_cap_artifact"],phase["previous_chunks"],
         phase["previous_embeddings"],phase["previous_score_database"],
+        config["embedding_recovery"]["profile_artifact"],
+        config["embedding_recovery"]["equivalence_artifact"],
         config["models"]["reranker"]["equivalence"]["investigation_artifact"],
         config["focused_scaling"]["control_submission_json"],
         config["focused_scaling"].get("control_submission_zip"),"submissions/MANIFEST.csv",

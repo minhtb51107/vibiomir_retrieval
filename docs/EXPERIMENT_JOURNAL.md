@@ -563,3 +563,21 @@ Next question: Does G6B also scale positively when its three sources reach 5,000
 Cost/resources: 10,010 official documents, 131,166 chunks, 28,800 candidate pairs, exact prior-score reuse plus only required new reranker inference; detailed stage costs remain in the Phase 10E report.
 Evidence: `artifacts/source_census/phase10e_g1a_10010_report.json`, `artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json`, `submissions/10_SUBMITTED_VALID/phase10e_G1A_10010.zip`, and organizer metrics supplied by the project owner.
 Commit: pending this checkpoint.
+
+## Phase 10E G6B post-reboot assembly recovery
+
+Date: 2026-10-09
+Phase / commit: Phase 10E G6B focused scaling / this checkpoint
+Question: Can the interrupted G6B 15K run resume from its first incomplete atomic boundary without repeating durable acquisition, extraction, or chunking?
+Why we tried it: An external machine shutdown left stale `ASSEMBLE/RUNNING` state after all 11,900 incremental official IDs, 11,900 new document rows, and 150,798 new chunks had been durably written.
+Hypothesis: The union outputs were absent rather than corrupt, so rebuilding only ASSEMBLE from verified old and new inputs would preserve the depth-only experiment contract.
+What we changed: Added an explicit `assemble` resume boundary, required the durable new document/chunk inputs before using it, strengthened preflight to require the validated streaming-embedding memory profile and equivalence evidence, and made the lightweight embedding continuation wait for measured physical-memory and commit headroom before loading the model. G6B reuses the validated G1A streaming profile because the embedding model, revision, precision, batch, dimensions, and streaming implementation are identical.
+What stayed fixed: G6B source membership and depth, all acquired/extracted/chunked data, `m=8`, dense and sparse retrieval, fusion, embedding and reranker contracts, top-10/top-20 policy, tie-breaking, provenance, and the 20 GiB disk floor.
+Result: The audit found no durable or partial ASSEMBLE outputs. Verified inputs contain 3,100 old plus 11,900 new official document rows and 39,304 old plus 150,798 new chunks, with zero old/new ID overlap. The expected union is 15,000 document rows, 14,908 usable documents, and 190,102 chunks. Recovery therefore starts at ASSEMBLE only and preserves all prior stages.
+What failed / surprised us: The run state remained `RUNNING` after reboot, and the worker previously had no ASSEMBLE-only resume choice. Disk remained safe, but current host-memory headroom was below the peak measured by the validated streaming embedding profile.
+What we learned: Every expensive atomic boundary needs an explicit resume entry point. A memory-safe implementation also needs a measured startup gate; after reboot, the supervisor should wait with checkpoints intact rather than loading a native model into insufficient host/commit headroom.
+Decision: Rebuild only the union atomically, then allow the unattended run to wait at `EMBEDDINGS_MEMORY_WAIT` until the evidence-based memory gate passes before continuing automatically.
+Next question: Does the fixed-policy G6B 15K depth checkpoint pass its control replay and mandatory pre-submission scientific audit?
+Cost/resources: No network acquisition, extraction, or chunking is repeated. At audit time D: had 30.73 GiB free; the validated embedding profile measured about 833.41 MiB peak RSS and 3,931.96 MiB projected peak private memory.
+Evidence: `data/source_census/phase10e_g6b_15000/new_documents.parquet`, `data/source_census/phase10e_g6b_15000/new_chunks.parquet`, `artifacts/source_census/phase10e_g6b_15000/new_chunk_merge.json`, and `artifacts/runs/phase10e_g6b_15000/state.json`.
+Commit: this checkpoint.

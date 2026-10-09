@@ -25,6 +25,8 @@ from src.validation.pre_submission import (
     audit_reuse, audit_score_cache, semantic_submission_comparison,
 )
 
+RESUME_STAGES=("full","assemble","embeddings","source_candidates","rerank")
+
 
 def run(command: list[str]) -> None:
     subprocess.run(command, cwd=ROOT, check=True)
@@ -64,7 +66,7 @@ def scientific_audit(config, submission, seed, replay):
 
 
 def main() -> int:
-    parser=argparse.ArgumentParser(); parser.add_argument("--config",required=True); parser.add_argument("--run-state",required=True); parser.add_argument("--resume-from",choices=["full","embeddings","source_candidates","rerank"],default="full"); args=parser.parse_args()
+    parser=argparse.ArgumentParser(); parser.add_argument("--config",required=True); parser.add_argument("--run-state",required=True); parser.add_argument("--resume-from",choices=RESUME_STAGES,default="full"); args=parser.parse_args()
     config=load_config(args.config); config["_config_path"]=args.config; out=config["outputs"]; _,phase,sources,group,experiment=phase_contract(config); groups={group:sources}; state=Path(args.run_state); python=sys.executable
     Path(out["artifacts"]).mkdir(parents=True,exist_ok=True)
     manifest=json.loads(Path(phase["manifest"]).read_text(encoding="utf-8"))
@@ -80,6 +82,11 @@ def main() -> int:
         run([python,"scripts/chunk_production.py","--documents",phase["new_documents"],"--output-directory",out["chunks_parts"],"--checkpoint",str(Path(out["root"])/"chunk.sqlite"),"--summary-out",str(Path(out["artifacts"])/"chunk.json")])
         run([python,"scripts/merge_chunk_partitions.py","--input-directory",out["chunks_parts"],"--output",phase["new_chunks"],"--summary-out",str(Path(out["artifacts"])/"new_chunk_merge.json")])
         stage(state,"ASSEMBLE"); assembly=assemble_union(config)
+    elif args.resume_from=="assemble":
+        required=[Path(phase["new_documents"]),Path(phase["new_chunks"])]
+        missing=[str(path) for path in required if not path.exists()]
+        if missing: raise FileNotFoundError(f"cannot resume ASSEMBLE; missing durable artifacts: {missing}")
+        stage(state,"ASSEMBLE"); assembly=assemble_union(config)
     elif args.resume_from=="embeddings":
         required=[Path(phase["new_documents"]),Path(phase["new_chunks"]),Path(out["documents"]),Path(out["chunks"]),Path(out["artifacts"])/"corpus_assembly.json"]
         missing=[str(path) for path in required if not path.exists()]
@@ -91,10 +98,10 @@ def main() -> int:
         if missing: raise FileNotFoundError(f"cannot resume SOURCE_CANDIDATES; missing durable artifacts: {missing}")
         assembly=json.loads((Path(out["artifacts"])/"corpus_assembly.json").read_text(encoding="utf-8"))
         embedding=json.loads((Path(out["artifacts"])/"embedding_summary.json").read_text(encoding="utf-8"))
-    if args.resume_from in {"full","embeddings"}:
+    if args.resume_from in {"full","assemble","embeddings"}:
         stage(state,"EMBEDDINGS")
         # Replace this PyArrow/NumPy-heavy orchestrator at the GPU boundary.
-        # The continuation parent uses only the standard library, preserving
+        # The continuation parent avoids PyArrow/NumPy/model imports, preserving
         # host RAM for the pinned BGE-M3 process before returning downstream.
         os.execv(python,[python,"tools/phase10e_embedding_continuation.py","--config",args.config,"--run-state",args.run_state])
     union=verify_union(config)
