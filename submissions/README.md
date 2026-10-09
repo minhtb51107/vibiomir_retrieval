@@ -8,12 +8,13 @@ and have moved to `10_SUBMITTED_VALID/`.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| _None_ | — | — | Awaiting the Phase 10E G1A focused-scaling package. |
+| _None_ | — | — | G1A 10K was submitted; G6B 15K is running and has no package yet. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 
 - `phase10e_G5A_11200.zip` — organizer FINAL `0.0085`
 - `phase10d_DEPTH1000_FIXED_G1A.zip` — organizer FINAL `0.0062`
+- `phase10e_G1A_10010.zip` — organizer FINAL `0.0234`
 - `phase10d_DEPTH1000_FIXED_G6B.zip` — organizer FINAL `0.0045`
 
 The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records current or historical paths, hashes, sizes, validation evidence, known organizer status, and local-retention state. `INTENTIONALLY_PURGED` means the local ZIP was removed through an audited storage cleanup while its scientific status and byte identity remain recorded; it does not make the experiment invalid. Historical reports retain their original generation-time paths; the manifest records the post-audit lifecycle location.

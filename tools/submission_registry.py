@@ -69,6 +69,7 @@ def phase_for(stem: str) -> str:
 
 
 def report_for(stem: str) -> tuple[str,str]:
+    if stem.startswith("phase10e_G1A_10010"): return "artifacts/source_census/phase10e_g1a_10010_report.json","artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json"
     if stem.startswith("phase10e_G5A_11200"): return "artifacts/source_census/phase10e_g5a_11200_report.json","artifacts/validation/phase10e_g5a_11200_pre_submit_audit.json"
     if stem.startswith("phase10d_DEPTH1000_FIXED"): return "artifacts/source_census/depth1000_fixed_report.json","artifacts/validation/phase10d_depth1000_fixed_pre_submit_audit.json"
     if stem.startswith("phase10d_DEPTH1000_"): return "artifacts/source_census/depth1000_report.json",""
@@ -128,7 +129,7 @@ def rebuild(output: Path) -> list[dict[str,str]]:
         group=""
         for token in ("G1A","G1B","G5A","G5B","G6A","G6B","group_A","group_B","group_C","group_1","group_2","group_3","group_4","group_5","group_6","group_7"):
             if token in stem: group=token; break
-        depth="11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else ""))
+        depth="10010" if "10010" in stem else ("11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else "")))
         note=""
         if status=="INVALID_DO_NOT_SUBMIT": note="Scientifically invalid or explicit smoke artifact; never upload."
         elif status=="READY_TO_SUBMIT": note="Mandatory validation passed; organizer result pending."

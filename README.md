@@ -20,14 +20,15 @@ precision, recall, and recall-weighted F2 metrics.
 > | Corrected G1A depth1000 | 2,005 | `0.0062` |
 > | Corrected G6B depth1000 | 2,910 | `0.0045` |
 > | Phase 10E G5A 11.2K | 11,200 | `0.0085` |
+> | Phase 10E G1A 10K | 10,010 | `0.0234` |
 >
-> G5A continued scaling to **11,200 documents / 92,768 chunks**. G1A currently
-> has the highest observed organizer yield per document among the tested
-> priority trios, without establishing global superiority. The next authorized
-> experiment is G1A focused scaling toward 5,000 Medlatec IDs, all 10
-> v.familydoctor IDs, and 5,000 Vinmec IDs.
+> G1A scaled to **10,010 official documents / 131,166 chunks** and reached
+> organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
+> This is strong organizer-confirmed depth scaling, not evidence that future
+> scaling will remain linear or that G1A contains most gold documents.
 >
-> G5A 21.2K and G6B 15K remain deferred until the G1A checkpoint is evaluated.
+> The next authorized experiment is the prepared G6B 15K checkpoint. No deeper
+> G1A or G5A run is authorized concurrently.
 
 ## Current ready submissions
 
@@ -112,7 +113,7 @@ the evidence and detailed results.
 | 10B | Search discovery, acquisition benchmark, source probe | Complete. Public/site search was insufficient; bounded source acquisition exposed strong domain differences. |
 | 10C | S4 targeting and source scaling | Complete. Metadata targeting failed, while broad S4 scaling from 1K to 5K improved organizer FINAL from `0.0004` to `0.0014`. |
 | 10D | Adaptive source census and depth testing | Complete for current checkpoints. Group tests isolated priority trios; corrected G5A depth1000 showed positive scaling. |
-| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`; corrected G1A/G6B reached `0.0062`/`0.0045`. G1A focused scaling is next. |
+| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`; G1A 10K reached `0.0234`; prepared G6B 15K is the next authorized checkpoint. |
 
 Detailed history:
 
@@ -139,6 +140,10 @@ Detailed history:
 - **Per-document yield differs sharply.** Corrected G1A reached `0.0062` with
   2,005 usable documents, making it the highest-yield tested priority trio per
   document so far; this is not a claim of global superiority.
+- **G1A has now shown strong positive depth scaling.** Its organizer FINAL rose
+  from corrected depth1000 `0.0062` to `0.0234` at 10,010 official documents,
+  while every reported precision/recall metric also increased. Later depth
+  checkpoints still require independent organizer confirmation.
 - **Document count is not content volume.** At Phase 10E, the three G5A sources
   have materially different chunks per document: 1,200/18,726, 5,000/14,894,
   and 5,000/59,148 documents/chunks respectively.

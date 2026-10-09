@@ -545,3 +545,21 @@ Next question: Does the completed G1A ~10K package pass control replay and the m
 Cost/resources: No acquisition, extraction, chunking, embedding, candidate generation, or completed reranking was repeated. The gate-only verification loaded the pinned GPU scorer once and scored eight controls.
 Evidence: `data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32`, its streaming bitmap/checkpoint, `data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite`, `artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json`, and the Phase 10E G1A run log/state.
 Commit: this checkpoint.
+
+## Phase 10E — G1A focused scaling to 10,010 official documents
+
+Date: 2026-10-09 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10E G1A focused scaling / pending this checkpoint
+Question: Does G1A retain its high organizer yield when Medlatec and Vinmec scale from about 1,000 to 5,000 official IDs each?
+Why we tried it: Corrected G1A depth1000 reached organizer FINAL `0.0062` with only 2,005 usable documents, the highest observed yield per document among the tested priority trios.
+Hypothesis: Increasing only G1A corpus depth under the fixed retrieval and submission contract would expose additional organizer-relevant documents and chunks.
+What we changed: Increased Medlatec and Vinmec to 5,000 official IDs each while retaining all 10 available `v.familydoctor.com.cn` IDs. The completed union contained 10,010 official documents and 131,166 chunks.
+What stayed fixed: All 1,200 queries, pilot control corpus, `m=8` source candidate cap, BGE-M3 dense retrieval, BM25/RRF policy, pinned BGE reranker revision, FP16 batch 2 and maximum length 512, top-10 documents, top-20 source-verbatim chunks, deterministic tie-breaking, provenance, and scientific validation gates.
+Result: Organizer FINAL reached `0.0234`; document F2/precision/recall were `0.0245/0.1204/0.0219`, and chunk F2/precision/recall were `0.0224/0.0830/0.0207`. This compares with corrected G1A depth1000 FINAL `0.0062`.
+What failed / surprised us: The improvement was substantially larger than the earlier G1A depth1000 checkpoint suggested, despite the same retrieval contract. This does not establish that the gain will remain linear at greater depth.
+What we learned: G1A has organizer-confirmed positive depth scaling and remains a high-density source family. Source-family behavior must still be measured independently; G1A success cannot be transferred to G6B by assumption.
+Decision: Mark `phase10e_G1A_10010.zip` `SUBMITTED_VALID`. Launch only the already-prepared G6B 15K reserve checkpoint next; do not run deeper G1A, G5A, or any other source-family acquisition concurrently.
+Next question: Does G6B also scale positively when its three sources reach 5,000 official IDs each?
+Cost/resources: 10,010 official documents, 131,166 chunks, 28,800 candidate pairs, exact prior-score reuse plus only required new reranker inference; detailed stage costs remain in the Phase 10E report.
+Evidence: `artifacts/source_census/phase10e_g1a_10010_report.json`, `artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json`, `submissions/10_SUBMITTED_VALID/phase10e_G1A_10010.zip`, and organizer metrics supplied by the project owner.
+Commit: pending this checkpoint.

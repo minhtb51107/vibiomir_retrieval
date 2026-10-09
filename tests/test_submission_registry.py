@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from tools.submission_registry import FOLDERS, LOCAL_PURGED, STATUSES, check_rows, classify
+from tools.submission_registry import FOLDERS, LOCAL_PURGED, STATUSES, check_rows, classify, report_for
 
 
 def test_every_lifecycle_status_has_a_human_folder():
@@ -22,6 +22,13 @@ def test_submitted_evidence_beats_unknown():
 def test_submitted_evidence_retires_former_ready_package():
     path=Path("phase10e_G5A_11200.zip")
     assert classify(path,{"phase10e_G5A_11200":{"final_score":"0.0085"}})=="SUBMITTED_VALID"
+
+
+def test_g1a_focused_submission_keeps_scientific_evidence_paths():
+    assert report_for("phase10e_G1A_10010")==(
+        "artifacts/source_census/phase10e_g1a_10010_report.json",
+        "artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json",
+    )
 
 
 def test_unknown_package_is_not_promoted_by_filename_guessing():
