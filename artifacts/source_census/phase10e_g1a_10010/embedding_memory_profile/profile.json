@@ -1,0 +1,223 @@
+{
+  "completed": true,
+  "rows": 2048,
+  "dimension": 1024,
+  "batch_rows": 128,
+  "inference_batch_size": 4,
+  "num_workers": 0,
+  "prefetching": false,
+  "accumulates_outputs_in_python": false,
+  "measurements": [
+    {
+      "phase": "process_start",
+      "rss_mib": 44.9,
+      "private_mib": 387.76,
+      "page_faults": 11985
+    },
+    {
+      "phase": "before_model_load",
+      "rss_mib": 490.54,
+      "private_mib": 1333.55,
+      "page_faults": 205793,
+      "gpu_allocated_mib": 0.0,
+      "gpu_reserved_mib": 0.0
+    },
+    {
+      "phase": "model_loaded",
+      "seconds": 13.58826350000163,
+      "rss_mib": 605.62,
+      "private_mib": 3850.37,
+      "page_faults": 1536021,
+      "gpu_allocated_mib": 1083.03,
+      "gpu_reserved_mib": 1090.0
+    },
+    {
+      "phase": "chunk_text_batch_loaded",
+      "processed_rows": 0,
+      "rss_mib": 623.94,
+      "private_mib": 3860.3,
+      "page_faults": 1540716,
+      "gpu_allocated_mib": 1083.03,
+      "gpu_reserved_mib": 1090.0
+    },
+    {
+      "phase": "tokenization",
+      "processed_rows": 0,
+      "rss_mib": 642.07,
+      "private_mib": 3867.54,
+      "page_faults": 1545373,
+      "gpu_allocated_mib": 1083.03,
+      "gpu_reserved_mib": 1090.0
+    },
+    {
+      "phase": "first_batch_written",
+      "processed_rows": 128,
+      "elapsed_seconds": 3.274755600003118,
+      "rss_mib": 598.58,
+      "private_mib": 3889.64,
+      "page_faults": 1649674,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1170.0
+    }
+  ],
+  "checkpoints": [
+    {
+      "processed_rows": 128,
+      "elapsed_seconds": 3.274755600003118,
+      "rss_mib": 598.58,
+      "private_mib": 3889.64,
+      "page_faults": 1649674,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1170.0
+    },
+    {
+      "processed_rows": 256,
+      "elapsed_seconds": 4.4129776999980095,
+      "rss_mib": 607.91,
+      "private_mib": 3890.37,
+      "page_faults": 1652113,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1170.0
+    },
+    {
+      "processed_rows": 384,
+      "elapsed_seconds": 5.826688499997545,
+      "rss_mib": 614.62,
+      "private_mib": 3914.21,
+      "page_faults": 1653884,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 512,
+      "elapsed_seconds": 7.292842100003327,
+      "rss_mib": 537.27,
+      "private_mib": 3919.38,
+      "page_faults": 1655419,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 640,
+      "elapsed_seconds": 8.643407700001262,
+      "rss_mib": 423.87,
+      "private_mib": 3920.55,
+      "page_faults": 1656198,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 768,
+      "elapsed_seconds": 9.99056759999803,
+      "rss_mib": 348.06,
+      "private_mib": 3921.69,
+      "page_faults": 1657495,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 896,
+      "elapsed_seconds": 11.115482900000643,
+      "rss_mib": 350.69,
+      "private_mib": 3921.88,
+      "page_faults": 1658219,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1024,
+      "elapsed_seconds": 12.287633600004483,
+      "rss_mib": 352.9,
+      "private_mib": 3922.9,
+      "page_faults": 1658822,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1152,
+      "elapsed_seconds": 13.552283199998783,
+      "rss_mib": 330.92,
+      "private_mib": 3923.34,
+      "page_faults": 1659383,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1280,
+      "elapsed_seconds": 14.892564000001585,
+      "rss_mib": 225.23,
+      "private_mib": 3923.22,
+      "page_faults": 1659734,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1408,
+      "elapsed_seconds": 16.11161749999883,
+      "rss_mib": 129.8,
+      "private_mib": 3923.8,
+      "page_faults": 1660216,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1536,
+      "elapsed_seconds": 17.29255710000143,
+      "rss_mib": 122.99,
+      "private_mib": 3923.81,
+      "page_faults": 1660766,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1664,
+      "elapsed_seconds": 18.56596069999796,
+      "rss_mib": 125.35,
+      "private_mib": 3924.89,
+      "page_faults": 1661370,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1792,
+      "elapsed_seconds": 19.693235300001106,
+      "rss_mib": 126.77,
+      "private_mib": 3924.39,
+      "page_faults": 1661740,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 1920,
+      "elapsed_seconds": 20.822365200001514,
+      "rss_mib": 128.12,
+      "private_mib": 3924.96,
+      "page_faults": 1662101,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    },
+    {
+      "processed_rows": 2048,
+      "elapsed_seconds": 22.033214200004295,
+      "rss_mib": 129.61,
+      "private_mib": 3925.52,
+      "page_faults": 1662564,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1186.0
+    }
+  ],
+  "runtime_seconds": 24.266346000003978,
+  "memory_gate": {
+    "passed": true,
+    "measured_rows": 2048,
+    "checkpoint_count": 16,
+    "tail_private_growth_mib": 2.1799999999998363,
+    "measured_model_private_mib": 3850.37,
+    "derived_warmup_limit_mib": 38.5037,
+    "observed_peak_rss_mib": 614.62,
+    "observed_peak_private_mib": 3925.52,
+    "projected_peak_private_mib": 3927.7,
+    "expected_rows": 2048,
+    "rule": "at least 8 checkpoints; second-half private-memory growth must remain below 1% of the measured loaded-model commitment; projected peak reserves one additional measured tail-growth interval"
+  }
+}

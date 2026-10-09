@@ -1,5 +1,5 @@
 from __future__ import annotations
-import gc,json,shutil,sqlite3,time
+import gc,json,shutil,sqlite3,subprocess,sys,time
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -180,24 +180,14 @@ def verify_union(config):
     return result
 
 def assemble_embeddings(config,state=None):
-    _,phase,_,_,_=phase_contract(config); chunks=pq.read_table(config["outputs"]["chunks"],columns=["chunk_id","normalized_text"]).to_pylist(); dim=int(config["models"]["embedder"]["dimension"]); output=Path(config["outputs"]["root"])/"round1/chunk_embeddings.f32"; output.parent.mkdir(parents=True,exist_ok=True)
-    oldchunks=pq.read_table(phase["previous_chunks"],columns=["chunk_id"]).column(0).to_pylist(); oldvec=np.memmap(phase["previous_embeddings"],dtype=np.float32,mode="r",shape=(len(oldchunks),dim)); lookup={str(c):i for i,c in enumerate(oldchunks)}
-    tmp=output.with_suffix('.f32.tmp'); vectors=np.memmap(tmp,dtype=np.float32,mode='w+',shape=(len(chunks),dim)); missing=[]; reused=0
-    for i,row in enumerate(chunks):
-        j=lookup.get(str(row["chunk_id"]));
-        if j is None: missing.append(i)
-        else: vectors[i]=oldvec[j]; reused+=1
-    del oldvec,lookup
-    started=time.perf_counter()
-    if missing:
-        import torch
-        from sentence_transformers import SentenceTransformer
-        m=config["models"]["embedder"]; model=SentenceTransformer(m["name"],revision=m["revision"],device='cpu'); model.max_seq_length=int(m["max_length"]); model.half(); model.to('cuda')
-        for off in range(0,len(missing),256):
-            ids=missing[off:off+256]; encoded=model.encode([normalize_text(str(chunks[i]["normalized_text"])) for i in ids],batch_size=int(m["batch_size"]),show_progress_bar=False,convert_to_numpy=True,normalize_embeddings=True); vectors[ids]=np.asarray(encoded,dtype=np.float32); vectors.flush()
-            if state: atomic_json(state,{"stage":"EMBEDDINGS","status":"RUNNING","total":len(missing),"done":min(off+len(ids),len(missing)),"reused_embeddings":reused})
-        del model; torch.cuda.empty_cache()
-    vectors.flush(); del vectors; tmp.replace(output); result={"chunks":len(chunks),"reused_embeddings":reused,"new_embeddings":len(missing),"runtime_seconds":time.perf_counter()-started,"path":str(output)}; atomic_json(Path(config["outputs"]["artifacts"])/"embedding_summary.json",result); gc.collect(); return result
+    summary=Path(config["outputs"]["artifacts"])/"embedding_summary.json"
+    if summary.exists() and (Path(config["outputs"]["root"])/"round1/chunk_embeddings.f32").exists(): return json.loads(summary.read_text(encoding="utf-8"))
+    command=[sys.executable,"tools/phase10e_embed_streaming.py","prepare","--config",config["_config_path"]]
+    subprocess.run(command,cwd=Path.cwd(),check=True)
+    command=[sys.executable,"tools/phase10e_embed_streaming.py","encode","--config",config["_config_path"]]
+    if state is not None: command.extend(["--run-state",str(state)])
+    subprocess.run(command,cwd=Path.cwd(),check=True)
+    return json.loads(summary.read_text(encoding="utf-8"))
 
 def seed_scores(config):
     _,phase,_,_,_=phase_contract(config); result=seed_exact_scores(Path(config["outputs"]["root"])/"round1/source_scores.sqlite",phase["previous_score_database"]); atomic_json(Path(config["outputs"]["artifacts"])/"rerank_seed_summary.json",result); return result

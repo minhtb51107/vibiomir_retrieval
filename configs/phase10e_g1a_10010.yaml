@@ -57,6 +57,15 @@ models:
       investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
       measured_absolute_tolerance: 0.005859375
       require_sample_keys: true
+embedding_recovery:
+  profile_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
+  equivalence_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json
+  measured_absolute_tolerance: 0.000732421875
+  measured_minimum_cosine: 0.9995
+  profile_rows: 2048
+  parquet_batch_rows: 128
+  num_workers: 0
+  prefetching: false
 submission:
   documents_per_query: 10
   chunks_per_query: 20

@@ -62,8 +62,8 @@ def scientific_audit(config, submission, seed, replay):
 
 
 def main() -> int:
-    parser=argparse.ArgumentParser(); parser.add_argument("--config",required=True); parser.add_argument("--run-state",required=True); parser.add_argument("--resume-from",choices=["full","source_candidates","rerank"],default="full"); args=parser.parse_args()
-    config=load_config(args.config); out=config["outputs"]; _,phase,sources,group,experiment=phase_contract(config); groups={group:sources}; state=Path(args.run_state); python=sys.executable
+    parser=argparse.ArgumentParser(); parser.add_argument("--config",required=True); parser.add_argument("--run-state",required=True); parser.add_argument("--resume-from",choices=["full","embeddings","source_candidates","rerank"],default="full"); args=parser.parse_args()
+    config=load_config(args.config); config["_config_path"]=args.config; out=config["outputs"]; _,phase,sources,group,experiment=phase_contract(config); groups={group:sources}; state=Path(args.run_state); python=sys.executable
     Path(out["artifacts"]).mkdir(parents=True,exist_ok=True)
     manifest=json.loads(Path(phase["manifest"]).read_text(encoding="utf-8"))
 
@@ -78,13 +78,19 @@ def main() -> int:
         run([python,"scripts/chunk_production.py","--documents",phase["new_documents"],"--output-directory",out["chunks_parts"],"--checkpoint",str(Path(out["root"])/"chunk.sqlite"),"--summary-out",str(Path(out["artifacts"])/"chunk.json")])
         run([python,"scripts/merge_chunk_partitions.py","--input-directory",out["chunks_parts"],"--output",phase["new_chunks"],"--summary-out",str(Path(out["artifacts"])/"new_chunk_merge.json")])
         stage(state,"ASSEMBLE"); assembly=assemble_union(config)
-        stage(state,"EMBEDDINGS"); embedding=assemble_embeddings(config,state)
+    elif args.resume_from=="embeddings":
+        required=[Path(phase["new_documents"]),Path(phase["new_chunks"]),Path(out["documents"]),Path(out["chunks"]),Path(out["artifacts"])/"corpus_assembly.json"]
+        missing=[str(path) for path in required if not path.exists()]
+        if missing: raise FileNotFoundError(f"cannot resume EMBEDDINGS; missing durable artifacts: {missing}")
+        assembly=json.loads((Path(out["artifacts"])/"corpus_assembly.json").read_text(encoding="utf-8"))
     else:
         required=[Path(phase["new_documents"]),Path(phase["new_chunks"]),Path(out["documents"]),Path(out["chunks"]),Path(out["root"])/"round1/chunk_embeddings.f32",Path(out["artifacts"])/"corpus_assembly.json",Path(out["artifacts"])/"embedding_summary.json"]
         missing=[str(path) for path in required if not path.exists()]
         if missing: raise FileNotFoundError(f"cannot resume SOURCE_CANDIDATES; missing durable artifacts: {missing}")
         assembly=json.loads((Path(out["artifacts"])/"corpus_assembly.json").read_text(encoding="utf-8"))
         embedding=json.loads((Path(out["artifacts"])/"embedding_summary.json").read_text(encoding="utf-8"))
+    if args.resume_from in {"full","embeddings"}:
+        stage(state,"EMBEDDINGS"); embedding=assemble_embeddings(config,state)
     union=verify_union(config)
     if args.resume_from!="rerank":
         stage(state,"SOURCE_CANDIDATES",completed_sources=0,total_sources=len(sources),total_query_source_pairs=1200*len(sources),completed_query_source_pairs=0)

@@ -1,0 +1,19 @@
+{
+  "contract": {
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "dimension": 1024,
+    "batch_size": 4,
+    "max_length": 512,
+    "precision": "FP16 CUDA",
+    "normalization": true
+  },
+  "rows": 1024,
+  "exact_rows": 920,
+  "max_absolute_difference": 0.000732421875,
+  "mean_absolute_difference": 4.448726940609049e-06,
+  "minimum_cosine": 0.9995120763778687,
+  "absolute_tolerance": 0.000732421875,
+  "minimum_cosine_required": 0.9995,
+  "passed": true
+}

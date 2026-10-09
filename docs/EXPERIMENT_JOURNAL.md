@@ -330,6 +330,24 @@ Cost/resources: No network requests and no model inference. Manifest constructio
 Evidence: `artifacts/source_census/phase10e_g1a_10010_manifest.json` and `artifacts/source_census/phase10e_g1a_10010/preflight.json`.
 Commit: pending.
 
+## Phase 10E — G1A embedding native-crash recovery
+
+Date: 2026-10-09
+Phase / commit: Phase 10E G1A ~10K embedding recovery / pending checkpoint
+Question: Could the completed G1A acquisition/extraction/chunking work be preserved while making BGE-M3 embedding safe on the 5.69 GiB host?
+Why we tried it: The original embedding process terminated with Windows access violation `0xC0000005` after all 8,005 IDs, 7,996 successful extractions, and 105,050 new chunks were already durable.
+Hypothesis: The model contract was valid, but co-locating all 131,166 text-heavy chunk rows, the 93,433-ID prior lookup, output memmap, and CUDA model in one process amplified host-memory commitment enough to trigger a native PyTorch failure.
+What we changed: Replaced whole-corpus materialization with isolated CPU preparation and a fresh GPU streaming process. CPU preparation copies exact old vectors to a new recovery memmap, records per-row completion in a durable byte map, and exits. GPU embedding reads 128-row Parquet batches, retains no corpus-wide text list, uses no DataLoader workers or prefetching, flushes vectors before completion bits, and checkpoints after each batch. The original `.f32.tmp` remains untouched as forensic evidence.
+What stayed fixed: BAAI/bge-m3 revision `5617a9f61b028005a4858fdac845db406aefb181`, tokenizer, 512-token limit, FP16 CUDA, inference batch size 4, normalization, output dimension/dtype/order, chunk corpus, and all downstream retrieval policy.
+Result: Windows Event 1000 identified `python.exe` faulting in PyTorch `c10.dll` at offset `0x6ce14`. The old temporary file had the exact expected 537,255,936-byte shape, 26,116 bit-exact reused rows, and zero nonzero new rows; without a row checkpoint it was not append-safe. A 2,048-new-row streaming profile completed with 16 checkpoints, peak working set 614.62 MiB, peak private commitment 3,925.52 MiB, only 2.18 MiB second-half private growth, and projected steady peak 3,927.70 MiB. A separate 1,024-row replay against valid stored embeddings had 920 bit-identical rows, maximum absolute difference `0.000732421875`, mean difference `4.45e-06`, and minimum cosine `0.999512`, passing the measured numerical-equivalence gate.
+What failed / surprised us: The original output file was fully preallocated and therefore looked complete by size even though no new embeddings had been written. File size alone was not a valid checkpoint.
+What we learned: Large embedding jobs require explicit row-completion state and process isolation. Model loading must never share a process with corpus-wide Python text objects, and native crash recovery must use completion keys rather than apparent file size.
+Decision: Preserve acquisition/extraction/chunking and all 26,116 exact prior embeddings. Resume only the 105,050 missing rows through the streaming checkpoint path, then continue the unchanged experiment if the live memory gate remains healthy.
+Next question: Does the focused G1A corpus pass the complete retrieval, reranking, replay, provenance, and pre-submission scientific gates?
+Cost/resources: Two bounded profiles totaling 3,072 rows; no acquisition or chunking repeated. Measured new-row embedding throughput was roughly 93 rows/s after model load.
+Evidence: `artifacts/incidents/20261009_165945_phase10e_g1a_10010`, `artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json`, `artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json`, and the streaming checkpoint under `data/source_census/phase10e_g1a_10010/round1/`.
+Commit: pending.
+
 ## Phase 10E organizer checkpoint — prioritize G1A focused scaling
 
 Date: 2026-10-09
