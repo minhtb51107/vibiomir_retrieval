@@ -10,10 +10,12 @@ from src.source_census.pipeline import (
     balanced_groups,
     balanced_round2_groups,
     calibrate_cap,
+    load_config,
     score_gate,
     stable_fold,
     stable_top_k_indices,
 )
+from src.source_census.phase10e import phase_contract, preflight_contract_checks
 from src.source_census.round3 import ROUND3_GROUPS
 from src.source_census.depth1000 import DEPTH_GROUPS, seed_exact_scores
 from src.source_census.cached_subsets import _require_complete_score_cache
@@ -225,3 +227,22 @@ def test_source_part_merge_normalizes_all_null_heading_lists(tmp_path):
     merged = pq.read_table(output)
     assert merged.schema.field("heading_path").type == pa.list_(pa.string())
     assert merged.num_rows == 2
+def test_g1a_focused_scaling_preflight_contract_is_fixed():
+    config=load_config("configs/phase10e_g1a_10010.yaml")
+    key,phase,sources,group,experiment=phase_contract(config)
+    assert key=="phase10e_g1a"
+    assert group=="G1A"
+    assert experiment=="phase10e_g1a_10010"
+    assert sources==["medlatec.vn","v.familydoctor.com.cn","vinmec.com"]
+    assert phase["targets"]=={"medlatec.vn":5000,"v.familydoctor.com.cn":10,"vinmec.com":5000}
+    assert all(preflight_contract_checks(config,8,sources).values())
+    assert config["candidate_cache"]["calibrated_cap_artifact"]=="artifacts/source_census/depth1000/candidate_cap_calibration.json"
+    assert config["inputs"]["c1_candidate_pool"]=="data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet"
+
+
+def test_g1a_preflight_rejects_changed_candidate_cap():
+    config=load_config("configs/phase10e_g1a_10010.yaml")
+    _,_,sources,_,_=phase_contract(config)
+    config["candidate_cache"]["candidate_caps"]=[4]
+    checks=preflight_contract_checks(config,8,sources)
+    assert checks["chosen_m_is_8"] is False

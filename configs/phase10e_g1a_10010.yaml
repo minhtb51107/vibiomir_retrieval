@@ -1,0 +1,100 @@
+version: 1
+phase: phase10e_focused_scaling
+seed: vibiomir-phase10e-g1a-10010-v1
+focused_scaling:
+  phase_key: phase10e_g1a
+  experiment: phase10e_g1a_10010
+  group: G1A
+  submission_name: phase10e_G1A_10010
+  scientific_question: Does G1A remain high-yield when medlatec.vn and vinmec.com scale from about 1,000 to 5,000 official IDs each?
+  control_submission_json: submissions/phase10d_DEPTH1000_FIXED_G1A.json
+  audit_path: artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  c1_candidate_pool: data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet
+sampling:
+  round1_documents_per_source: 100
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 2
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+triage:
+  minimum_successful_fetches: 1
+  minimum_extracted_documents: 1
+  blocked_fraction: 0.80
+candidate_cache:
+  candidate_caps: [8]
+  calibrated_cap_artifact: artifacts/source_census/depth1000/candidate_cap_calibration.json
+  calibration_document_retention: 0.95
+  calibration_chunk_retention: 0.95
+  dense_depth: 8
+  sparse_depth: 8
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    batch_size: 2
+    max_length: 512
+    shard_size: 2000
+    equivalence:
+      investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
+      measured_absolute_tolerance: 0.005859375
+      require_sample_keys: true
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  expansion_tokens: 1024
+  chunk_expansion_tokens: 1024
+outputs:
+  root: data/source_census/phase10e_g1a_10010
+  artifacts: artifacts/source_census/phase10e_g1a_10010
+  submissions: submissions/00_READY_TO_UPLOAD
+  serial_crawl_database: data/crawled/phase10e_g1a_10010_serial_unused.sqlite
+  serial_body_archive: data/crawled/phase10e_g1a_10010_serial_unused_bodies
+  worker_root: data/crawled/phase10e_g1a_10010_workers
+  crawl_database: data/crawled/phase10e_g1a_10010_merged.sqlite
+  body_archive: data/crawled/phase10e_g1a_10010_merged_bodies
+  processed_parts: data/processed/phase10e_g1a_10010_parts
+  chunks_parts: data/chunks/phase10e_g1a_10010_parts
+  documents: data/source_census/phase10e_g1a_10010/documents.parquet
+  chunks: data/source_census/phase10e_g1a_10010/chunks.parquet
+phase10e_g1a:
+  manifest: artifacts/source_census/phase10e_g1a_10010_manifest.json
+  sampling_seed: vibiomir-phase10e-g1a-10010-v1
+  targets:
+    medlatec.vn: 5000
+    v.familydoctor.com.cn: 10
+    vinmec.com: 5000
+  observed_urls_per_minute:
+    medlatec.vn: 59.03
+    vinmec.com: 59.51
+  fallback_urls_per_minute: 20.0
+  previous_crawl_databases:
+    - data/crawled/source_census_round1_merged.sqlite
+    - data/crawled/source_census_depth1000_merged.sqlite
+  previous_documents:
+    - data/source_census/round1/documents.parquet
+    - data/source_census/depth1000/new_documents.parquet
+  previous_chunks: data/source_census/depth1000/chunks.parquet
+  previous_embeddings: data/source_census/depth1000/round1/chunk_embeddings.f32
+  previous_score_database: data/source_census/depth1000/round1/source_scores.sqlite
+  previous_candidate_parts: data/source_census/depth1000/round1/source_candidate_parts
+  new_documents: data/source_census/phase10e_g1a_10010/new_documents.parquet
+  new_chunks: data/source_census/phase10e_g1a_10010/new_chunks.parquet

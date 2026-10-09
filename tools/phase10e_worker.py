@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
 
 from src.source_census.cached_subsets import build_cached_subset_rankings
 from src.source_census.phase10e import (
-    GROUPS, assemble_embeddings, assemble_union, finalize_report, seed_scores, verify_union,
+    assemble_embeddings, assemble_union, finalize_report, phase_contract, seed_scores, verify_union,
 )
 from src.source_census.pipeline import (
     _merge_source_parts, atomic_json, build_source_candidates, load_config,
@@ -33,7 +33,7 @@ def stage(path: Path, name: str, **extra: object) -> None:
 
 
 def scientific_audit(config, submission, seed, replay):
-    root=Path(config["outputs"]["root"]); phase=config["phase10e"]
+    root=Path(config["outputs"]["root"]); _,phase,_,group,_=phase_contract(config)
     cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
     reuse=audit_reuse(root/"round1/source_scores.sqlite",phase["previous_score_database"],seed)
     fixed={
@@ -56,19 +56,19 @@ def scientific_audit(config, submission, seed, replay):
         "score_cache_integrity":cache,
         "score_distribution_sanity":{"passed":cache["passed"],"distribution":cache["score_distribution"],"distinct_inference_ms_count":cache["distinct_inference_ms_count"]},
         "cache_reuse_audit":reuse,"control_replay":replay,
-        "experiment_contract":{"intended_variable":"G5A source acquisition depth only","fixed_field_checks":fixed,"passed":all(fixed.values())},
+        "experiment_contract":{"intended_variable":f"{group} source acquisition depth only","fixed_field_checks":fixed,"passed":all(fixed.values())},
         "structural_validation":structural,
     }
 
 
 def main() -> int:
     parser=argparse.ArgumentParser(); parser.add_argument("--config",required=True); parser.add_argument("--run-state",required=True); parser.add_argument("--resume-from",choices=["full","source_candidates","rerank"],default="full"); args=parser.parse_args()
-    config=load_config(args.config); out=config["outputs"]; phase=config["phase10e"]; state=Path(args.run_state); python=sys.executable
+    config=load_config(args.config); out=config["outputs"]; _,phase,sources,group,experiment=phase_contract(config); groups={group:sources}; state=Path(args.run_state); python=sys.executable
     Path(out["artifacts"]).mkdir(parents=True,exist_ok=True)
     manifest=json.loads(Path(phase["manifest"]).read_text(encoding="utf-8"))
 
     if args.resume_from=="full":
-        stage(state,"ACQUIRE",selected=manifest["total_incremental_ids"],completed=0,total_sources=3)
+        stage(state,"ACQUIRE",selected=manifest["total_incremental_ids"],completed=0,total_sources=len(sources))
         run([python,"tools/phase10e_acquire.py","--config",args.config,"--run-state",args.run_state])
         stage(state,"MERGE_ACQUISITION"); merge_acquisition(config)
         stage(state,"EXTRACT")
@@ -87,8 +87,8 @@ def main() -> int:
         embedding=json.loads((Path(out["artifacts"])/"embedding_summary.json").read_text(encoding="utf-8"))
     union=verify_union(config)
     if args.resume_from!="rerank":
-        stage(state,"SOURCE_CANDIDATES",completed_sources=0,total_sources=3,total_query_source_pairs=3600,completed_query_source_pairs=0)
-        candidates=build_source_candidates(config,run_state=state,groups=GROUPS)
+        stage(state,"SOURCE_CANDIDATES",completed_sources=0,total_sources=len(sources),total_query_source_pairs=1200*len(sources),completed_query_source_pairs=0)
+        candidates=build_source_candidates(config,run_state=state,groups=groups)
         seed=seed_scores(config)
     else:
         required=[Path(out["root"])/"round1/source_scores.sqlite",Path(out["artifacts"])/"source_candidate_summary.json",Path(out["artifacts"])/"rerank_seed_summary.json"]
@@ -107,24 +107,24 @@ def main() -> int:
     if status["integrity"]!="ok" or int(status["remaining"]): raise RuntimeError(f"invalid Phase10E score cache: {status}")
 
     stage(state,"RANKINGS")
-    rankings=Path(out["root"])/"rankings"; build_cached_subset_rankings(config,GROUPS,rankings)
+    rankings=Path(out["root"])/"rankings"; build_cached_subset_rankings(config,groups,rankings)
     canonical=Path(out["root"])/"round1"
     _merge_source_parts([Path(config["inputs"]["pilot_chunks"]),Path(out["chunks"])],canonical/"combined_chunks.parquet")
     _merge_source_parts([Path(config["inputs"]["pilot_documents"]),Path(out["documents"])],canonical/"combined_documents.parquet")
     stage(state,"PACKAGE",completed=0,total=1)
-    marker=Path(out["artifacts"])/"submission_G5A.json"
-    run([python,"tools/source_census_cached_subset.py","--config",args.config,"package-existing","--ranking-root",str(rankings),"--group","G5A","--submission-name","phase10e_G5A_11200","--output-dir",out["submissions"],"--marker",str(marker)])
+    marker=Path(out["artifacts"])/f"submission_{group}.json"
+    run([python,"tools/source_census_cached_subset.py","--config",args.config,"package-existing","--ranking-root",str(rankings),"--group",group,"--submission-name",config["focused_scaling"]["submission_name"],"--output-dir",out["submissions"],"--marker",str(marker)])
     submission=json.loads(marker.read_text(encoding="utf-8"))
 
     stage(state,"CONTROL_REPLAY")
-    depth_config="configs/source_census_depth1000.yaml"; control_root=Path(out["root"])/"control_depth1000_g5a"
-    run([python,"tools/source_census_cached_subset.py","--config",depth_config,"make-subset","--sources",",".join(GROUPS["G5A"]),"--name","phase10e_control_G5A","--work-dir",str(control_root),"--output-dir",str(control_root)])
-    replay=semantic_submission_comparison("submissions/phase10d_DEPTH1000_FIXED_G5A.json",control_root/"phase10e_control_G5A.json")
+    depth_config="configs/source_census_depth1000.yaml"; control_root=Path(out["root"])/f"control_depth1000_{group.lower()}"; control_name=f"phase10e_control_{group}"
+    run([python,"tools/source_census_cached_subset.py","--config",depth_config,"make-subset","--sources",",".join(sources),"--name",control_name,"--work-dir",str(control_root),"--output-dir",str(control_root)])
+    replay=semantic_submission_comparison(config["focused_scaling"]["control_submission_json"],control_root/f"{control_name}.json")
     audit=scientific_audit(config,submission,seed,replay)
     audit["change_accounting"]={"old_new_union":union,"reused_rerank_pairs":seed["reused"],"newly_inferred_pairs":audit["score_cache_integrity"]["non_null_scored_count"]-seed["reused"]}
-    audit_path=Path("artifacts/validation/phase10e_g5a_11200_pre_submit_audit.json"); atomic_json(audit_path,audit)
+    audit_path=Path(config["focused_scaling"]["audit_path"]); atomic_json(audit_path,audit)
     report=finalize_report(config,submission,assembly,embedding,candidates,seed,audit)
-    atomic_json(state,{"stage":audit["status"],"status":audit["status"],"report":"artifacts/source_census/phase10e_g5a_11200_report.json","audit":str(audit_path)})
+    atomic_json(state,{"stage":audit["status"],"status":audit["status"],"report":str(Path(out["artifacts"]).parent/f"{experiment}_report.json"),"audit":str(audit_path)})
     if not audit["passed"]: raise RuntimeError("Phase10E mandatory scientific gate failed")
     print(json.dumps(report,ensure_ascii=False,indent=2)); return 0
 

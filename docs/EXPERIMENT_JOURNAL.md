@@ -311,6 +311,24 @@ Cost/resources: 4,000 new S4 fetch/extract/chunk records, 18,594 newly embedded 
 Evidence: `artifacts/phase10c1_three_way/`, `artifacts/phase10c1_early_release/C1_early_release.json`, and `submissions/phase10c1_C1_S4_5k.zip`; organizer metrics supplied by the project owner.
 Commit: pending review; no commit requested yet.
 
+## Phase 10E — G1A focused-scaling preflight
+
+Date: 2026-10-09
+Phase / commit: Phase 10E G1A ~10K / pending checkpoint
+Question: Can the corrected depth-1000 G1A corpus be expanded to 5,000 Medlatec IDs, all 10 v.familydoctor IDs, and 5,000 Vinmec IDs while preserving the validated retrieval contract and local disk safety?
+Why we tried it: Organizer-confirmed G1A depth1000 reached `FINAL_SCORE=0.0062` from only 2,005 usable documents, the highest observed organizer yield per document among the tested priority trios.
+Hypothesis: Increasing only G1A source depth may preserve its high relevant-document density and produce the next useful scaling point.
+What we changed: Added a parameterized focused-scaling configuration and fail-fast preflight for G1A. The preflight validates the persisted `m=8` calibration, model and scorer contract, prior corpus/cache inputs, output writability, control replay input, and the 20 GiB disk floor before acquisition.
+What stayed fixed: Queries, baseline corpus, dense/BM25/RRF policy, candidate cap `m=8`, pinned models, reranker FP16/batch-2/max-length-512 policy, top-10 documents, top-20 chunks, provenance, and deterministic tie-breaking.
+Result: Durable counts were 996 successful/usable Medlatec documents, 10 v.familydoctor documents, and 999 Vinmec documents. Reaching official target depths `5,000/10/5,000` requires exactly `4,004/0/4,001` new successful official IDs, or 8,005 total. Preflight dependencies and scientific contract passed, but the disk gate failed: 20.37 GiB free minus a conservative 3.91 GiB retained-growth projection would leave 16.46 GiB, below the active 20 GiB floor. No crawl was launched.
+What failed / surprised us: The repository had only about 0.37 GiB headroom above the safety floor before acquisition, despite the experiment itself being bounded and operationally modest.
+What we learned: Disk capacity must be a launch gate rather than a runtime incident. A correct scientific plan is not authorization to consume the safety reserve.
+Decision: Stop at `NEEDS_AGENT`; preserve the exact manifest and implementation checkpoint, and do not launch G1A until at least the projected 3.91 GiB plus safety margin is safely reclaimed or another approved storage plan is provided.
+Next question: Which regenerable local artifacts can be removed safely without violating preservation policy and while keeping at least 20 GiB free after the G1A run?
+Cost/resources: No network requests and no model inference. Manifest construction scanned only local metadata. Projected concurrent crawl time is about 68 minutes; conservative end-to-end projection is about 2.88 hours once the disk gate is satisfied.
+Evidence: `artifacts/source_census/phase10e_g1a_10010_manifest.json` and `artifacts/source_census/phase10e_g1a_10010/preflight.json`.
+Commit: pending.
+
 ## Phase 10E organizer checkpoint — prioritize G1A focused scaling
 
 Date: 2026-10-09
