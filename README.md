@@ -31,8 +31,9 @@ precision, recall, and recall-weighted F2 metrics.
 >
 > G6B independently scaled from corrected depth1000 FINAL `0.0045` to `0.0140`
 > at 15,000 official IDs. Their zero-acquisition union reached organizer FINAL
-> `0.0332`, confirming complementary signal beyond G1A alone. The next bounded
-> test adds organizer-valid G5A 11.2K without new acquisition or model inference.
+> `0.0332`, confirming complementary signal beyond G1A alone. The nine-source
+> union adding organizer-valid G5A 11.2K is now `READY_FOR_LEADERBOARD`; its
+> organizer result is pending.
 
 ## Current ready submissions
 
@@ -43,8 +44,8 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-There is no current upload candidate while the G1A+G6B+G5A union is being
-validated.
+The current upload candidate is
+`phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.zip` (organizer result pending).
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

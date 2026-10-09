@@ -1,0 +1,42 @@
+{
+  "healthy_sources": [
+    "medlatec.vn",
+    "v.familydoctor.com.cn",
+    "vinmec.com",
+    "tiemchunglongchau.com.vn",
+    "cancer.39.net",
+    "suckhoedoisong.vn",
+    "benhviennhitrunguong.gov.vn",
+    "zydcd.com",
+    "hellobacsi.com"
+  ],
+  "sources": {
+    "medlatec.vn": {
+      "healthy": true
+    },
+    "v.familydoctor.com.cn": {
+      "healthy": true
+    },
+    "vinmec.com": {
+      "healthy": true
+    },
+    "tiemchunglongchau.com.vn": {
+      "healthy": true
+    },
+    "cancer.39.net": {
+      "healthy": true
+    },
+    "suckhoedoisong.vn": {
+      "healthy": true
+    },
+    "benhviennhitrunguong.gov.vn": {
+      "healthy": true
+    },
+    "zydcd.com": {
+      "healthy": true
+    },
+    "hellobacsi.com": {
+      "healthy": true
+    }
+  }
+}

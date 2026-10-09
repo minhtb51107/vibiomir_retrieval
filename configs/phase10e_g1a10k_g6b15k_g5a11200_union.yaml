@@ -1,0 +1,41 @@
+version: 1
+experiment: phase10e_g1a10k_g6b15k_g5a11200_union
+submission_name: phase10e_G1A_10010_G6B_15000_G5A_11200_UNION
+scientific_question: Does organizer-valid G5A add complementary relevant documents beyond the G1A 10K plus G6B 15K union?
+intended_variable: addition of the three G5A sources to the organizer-valid G1A plus G6B union
+expected_source_count: 9
+expected_candidate_pairs: 86400
+base_config: configs/phase10e_g1a_10010.yaml
+comparison_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_UNION.json
+parents:
+  G1A:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com]
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/phase10e_g5a_11200
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+controls:
+  G1A_CONTROL:
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com]
+  G6B_CONTROL:
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G6B_15000.json
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A_CONTROL:
+    submission_zip: submissions/10_SUBMITTED_VALID/phase10e_G5A_11200.zip
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  G1A_G6B_CONTROL:
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_UNION.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+outputs:
+  root: data/source_census/phase10e_g1a10k_g6b15k_g5a11200_union
+  artifacts: artifacts/source_census/phase10e_g1a10k_g6b15k_g5a11200_union
+  audit: artifacts/validation/phase10e_g1a10k_g6b15k_g5a11200_union_pre_submit_audit.json
+  report: artifacts/source_census/phase10e_g1a10k_g6b15k_g5a11200_union_report.json
+  submissions: submissions/00_READY_TO_UPLOAD

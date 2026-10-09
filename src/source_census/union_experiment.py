@@ -48,7 +48,7 @@ def _runtime_config(spec: dict) -> dict:
 
 def _contract(spec: dict) -> dict:
     parents={name:load_config(row["config"]) for name,row in spec["parents"].items()}
-    first=parents["G1A"]
+    first=next(iter(parents.values()))
     fixed={
         "queries":lambda c:c["inputs"]["queries"],
         "pilot_documents":lambda c:c["inputs"]["pilot_documents"],
@@ -62,7 +62,7 @@ def _contract(spec: dict) -> dict:
     }
     checks={name:all(getter(config)==getter(first) for config in parents.values()) for name,getter in fixed.items()}
     checks["chosen_m_is_8"]=first["candidate_cache"]["candidate_caps"]==[8]
-    checks["six_unique_sources"]=len({source for row in spec["parents"].values() for source in row["sources"]})==6
+    checks["expected_unique_sources"]=len({source for row in spec["parents"].values() for source in row["sources"]})==int(spec["expected_source_count"])
     return {"passed":all(checks.values()),"checks":checks,"intended_variable":spec["intended_variable"]}
 
 
@@ -156,13 +156,22 @@ def _embedding_audit(spec: dict) -> dict:
         if current_model!=model: raise ValueError("parent embedding contracts differ")
         root=Path(parent["root"]); rows=pq.ParquetFile(root/"chunks.parquet").metadata.num_rows; dimension=int(model["dimension"])
         vectors=root/"round1/chunk_embeddings.f32"; status=root/"round1/chunk_embeddings.streaming.status.u8"
-        if vectors.stat().st_size!=rows*dimension*4 or status.stat().st_size!=rows: raise ValueError(f"embedding shape mismatch: {name}")
-        bitmap=np.memmap(status,dtype=np.uint8,mode="r",shape=(rows,))
-        if int((bitmap==1).sum())!=rows or int(((bitmap!=0)&(bitmap!=1)).sum()): raise ValueError(f"embedding bitmap incomplete: {name}")
+        if vectors.stat().st_size!=rows*dimension*4: raise ValueError(f"embedding shape mismatch: {name}")
+        completion_evidence="transactional_bitmap"
+        if status.exists():
+            if status.stat().st_size!=rows: raise ValueError(f"embedding bitmap shape mismatch: {name}")
+            bitmap=np.memmap(status,dtype=np.uint8,mode="r",shape=(rows,))
+            if int((bitmap==1).sum())!=rows or int(((bitmap!=0)&(bitmap!=1)).sum()): raise ValueError(f"embedding bitmap incomplete: {name}")
+        else:
+            summary=Path(config["outputs"]["artifacts"])/"embedding_summary.json"
+            evidence=json.loads(summary.read_text(encoding="utf-8"))
+            if int(evidence.get("chunks",-1))!=rows or Path(evidence.get("path","")).resolve()!=vectors.resolve():
+                raise ValueError(f"legacy embedding completion evidence mismatch: {name}")
+            completion_evidence="validated_legacy_summary_and_exact_shape"
         matrix=np.memmap(vectors,dtype=np.float32,mode="r",shape=(rows,dimension)); nonfinite=0
         for start in range(0,rows,4096): nonfinite+=int((~np.isfinite(matrix[start:start+4096])).sum())
         if nonfinite: raise ValueError(f"non-finite parent embeddings: {name}")
-        parents[name]={"rows":rows,"dimension":dimension,"bytes":vectors.stat().st_size,"completed_bitmap_rows":rows,"nonfinite_values":nonfinite}
+        parents[name]={"rows":rows,"dimension":dimension,"bytes":vectors.stat().st_size,"completion_evidence":completion_evidence,"completed_rows":rows,"nonfinite_values":nonfinite}
         total+=rows
     return {"passed":True,"model":model,"parents":parents,"exact_embeddings_reused":total,"new_embeddings_computed":0}
 
@@ -230,6 +239,20 @@ def _official_id_audit(submission_json: Path, corpus: Path) -> dict:
 
 def _submission_signatures(path: Path) -> dict[int, tuple[list[int], list[tuple[int,str]]]]:
     return {int(row["id"]):(list(map(int,row["relevant_docs"])),[(int(chunk["doc_id"]),str(chunk["chunk_text"])) for chunk in row["relevant_chunks"]]) for row in _iter_json_array(path)}
+
+
+def _reference_json_sha256(row: dict) -> str:
+    if row.get("submission_json"):
+        return _digest(Path(row["submission_json"]))
+    path=Path(row["submission_zip"])
+    with zipfile.ZipFile(path) as archive:
+        names=archive.namelist()
+        if len(names)!=1 or "/" in names[0] or not names[0].endswith(".json"):
+            raise ValueError(f"invalid reference submission ZIP: {path}")
+        value=hashlib.sha256()
+        with archive.open(names[0]) as handle:
+            for block in iter(lambda:handle.read(1024*1024),b""): value.update(block)
+        return value.hexdigest()
 
 
 def _build_canonical_store(chunks_path: Path, documents_path: Path, destination: Path) -> dict:
@@ -371,7 +394,7 @@ def _stream_validate(json_path: Path, zip_path: Path, query_ids: list[int], cano
             "source_span_chunks_verified":source_spans}
 
 
-def _stream_package(config: dict, ranking_root: Path, group: str, name: str, output: Path, canonical_db: Path, tokenizer) -> dict:
+def _stream_package(config: dict, ranking_root: Path, group: str, name: str, output: Path, canonical_db: Path, tokenizer, *, verify_determinism: bool=True) -> dict:
     query_ids=expected_query_ids(config["inputs"]["queries"]); ranking=ranking_root/group; output.mkdir(parents=True,exist_ok=True)
     json_path=output/f"{name}.json"; zip_path=output/f"{name}.zip"
     kwargs={"query_ids":query_ids,"documents_path":ranking/"reranked_documents.parquet","chunks_path":ranking/"reranked_chunks.parquet",
@@ -379,11 +402,13 @@ def _stream_package(config: dict, ranking_root: Path, group: str, name: str, out
             "chunk_depth":int(config["submission"]["chunks_per_query"]),"target_tokens":int(config["submission"]["chunk_expansion_tokens"])}
     write_submission_stream(json_path,_submission_records_disk(**kwargs)); write_deterministic_zip(json_path,zip_path)
     first=(file_sha256(json_path),file_sha256(zip_path)); validation=_stream_validate(json_path,zip_path,query_ids,canonical_db)
-    write_submission_stream(json_path,_submission_records_disk(**kwargs)); write_deterministic_zip(json_path,zip_path)
-    second=(file_sha256(json_path),file_sha256(zip_path))
-    if first!=second: raise RuntimeError(f"submission regeneration was not deterministic: {group}")
+    second=first
+    if verify_determinism:
+        write_submission_stream(json_path,_submission_records_disk(**kwargs)); write_deterministic_zip(json_path,zip_path)
+        second=(file_sha256(json_path),file_sha256(zip_path))
+        if first!=second: raise RuntimeError(f"submission regeneration was not deterministic: {group}")
     return {"name":name,"json_path":str(json_path),"zip_path":str(zip_path),"json_sha256":second[0],"zip_sha256":second[1],
-            "validation":validation,"determinism_verified":True,"new_model_inference":0,"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
+            "validation":validation,"determinism_verified":verify_determinism,"new_model_inference":0,"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
 
 
 def run_union(spec_path: str|Path) -> dict:
@@ -398,7 +423,7 @@ def run_union(spec_path: str|Path) -> dict:
     scores=_merge_score_databases(spec,root/"round1/source_scores.sqlite")
     sources=[source for parent in spec["parents"].values() for source in parent["sources"]]
     atomic_json(artifacts/"technical_triage.json",{"healthy_sources":sources,"sources":{source:{"healthy":True} for source in sources}})
-    groups={"UNION":sources,"G1A_CONTROL":spec["parents"]["G1A"]["sources"],"G6B_CONTROL":spec["parents"]["G6B"]["sources"]}
+    groups={"UNION":sources,**{name:row["sources"] for name,row in spec["controls"].items()}}
     ranking_root=root/"rankings"; rankings=build_cached_subset_rankings(config,groups,ranking_root)
     canonical=_prepare_package_canonical(config,spec,ranking_root)
     canonical_db=root/"round1/canonical_text.sqlite"
@@ -409,24 +434,25 @@ def run_union(spec_path: str|Path) -> dict:
     union=_stream_package(config,ranking_root,"UNION",spec["submission_name"],Path(spec["outputs"]["submissions"]),canonical_db,tokenizer)
     atomic_json(artifacts/"submission_union.json",union)
     control_root=root/"controls"; controls={}
-    for group,parent_name in (("G1A_CONTROL","G1A"),("G6B_CONTROL","G6B")):
-        controls[group]=_stream_package(config,ranking_root,group,f"{spec['experiment']}_{group}",control_root,canonical_db,tokenizer)
-        reference=Path(spec["parents"][parent_name]["submission_json"])
-        controls[group]["semantic_replay"]={"passed":_digest(reference)==controls[group]["json_sha256"],"comparison":"byte-identical canonical JSON","reference_sha256":_digest(reference),"replay_sha256":controls[group]["json_sha256"]}
+    for group,control in spec["controls"].items():
+        controls[group]=_stream_package(config,ranking_root,group,f"{spec['experiment']}_{group}",control_root,canonical_db,tokenizer,verify_determinism=False)
+        reference_sha256=_reference_json_sha256(control)
+        controls[group]["semantic_replay"]={"passed":reference_sha256==controls[group]["json_sha256"],"comparison":"byte-identical canonical JSON","reference_sha256":reference_sha256,"replay_sha256":controls[group]["json_sha256"]}
         atomic_json(artifacts/f"submission_{group.lower()}.json",controls[group])
     cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
     official=_official_id_audit(Path(union["json_path"]),Path(config["inputs"]["corpus"]))
-    old=_submission_signatures(Path(spec["parents"]["G1A"]["submission_json"])); new=_submission_signatures(Path(union["json_path"]))
+    old=_submission_signatures(Path(spec["comparison_submission_json"])); new=_submission_signatures(Path(union["json_path"]))
     changes={"queries_top10_docs_changed":sum(old[q][0]!=new[q][0] for q in old),"queries_top20_chunks_changed":sum(old[q][1]!=new[q][1] for q in old)}
     failures=[]
     for name,value in (("contract",contract),("source_accounting",accounting),("embeddings",embeddings),("score_cache",cache),("official_ids",official)):
         if not value.get("passed",False): failures.append(name)
-    if parts["candidate_rows"]!=57600 or scores["total"]!=57600 or scores["new_inference"]!=0: failures.append("candidate_or_score_accounting")
+    expected_pairs=int(spec["expected_candidate_pairs"])
+    if parts["candidate_rows"]!=expected_pairs or scores["total"]!=expected_pairs or scores["new_inference"]!=0: failures.append("candidate_or_score_accounting")
     if not all(row["semantic_replay"]["passed"] for row in controls.values()): failures.append("parent_control_replay")
     if not union["validation"]["valid"] or not union["determinism_verified"]: failures.append("structural_or_determinism")
-    audit={"status":"READY_FOR_LEADERBOARD" if not failures else "NEEDS_AGENT","passed":not failures,"failures":failures,"experiment_contract":contract,"source_union":accounting,"embedding_reconciliation":embeddings,"candidate_reuse":parts,"score_cache_integrity":cache,"score_reuse":{"exact_parent_scores_reused":scores["total"],"new_inference_required":0,**scores},"parent_control_replays":controls,"package_canonical":{**canonical,"disk_backed_store":canonical_store},"official_id_audit":official,"structural_validation":union["validation"],"determinism_verified":union["determinism_verified"],"ranking_change_vs_g1a":changes,"submission":{"path":union["zip_path"],"sha256":union["zip_sha256"]}}
+    audit={"status":"READY_FOR_LEADERBOARD" if not failures else "NEEDS_AGENT","passed":not failures,"failures":failures,"experiment_contract":contract,"source_union":accounting,"embedding_reconciliation":embeddings,"candidate_reuse":parts,"score_cache_integrity":cache,"score_reuse":{"exact_parent_scores_reused":scores["total"],"new_inference_required":0,**scores},"parent_control_replays":controls,"package_canonical":{**canonical,"disk_backed_store":canonical_store},"official_id_audit":official,"structural_validation":union["validation"],"determinism_verified":union["determinism_verified"],"ranking_change_vs_comparison":changes,"submission":{"path":union["zip_path"],"sha256":union["zip_sha256"]}}
     atomic_json(spec["outputs"]["audit"],audit)
-    report={"experiment":spec["experiment"],"scientific_question":spec["scientific_question"],"status":audit["status"],"new_acquisition":0,"new_embeddings":0,"new_reranker_inference":0,"source_union":accounting,"candidate_pairs":parts["candidate_rows"],"reranker_scores_reused":scores["total"],"ranking_change_vs_g1a":changes,"submission":union,"audit":spec["outputs"]["audit"]}
+    report={"experiment":spec["experiment"],"scientific_question":spec["scientific_question"],"status":audit["status"],"new_acquisition":0,"new_embeddings":0,"new_reranker_inference":0,"source_union":accounting,"candidate_pairs":parts["candidate_rows"],"reranker_scores_reused":scores["total"],"ranking_change_vs_comparison":changes,"submission":union,"audit":spec["outputs"]["audit"]}
     atomic_json(spec["outputs"]["report"],report)
     if failures: raise RuntimeError(f"union scientific gate failed: {failures}")
     return report

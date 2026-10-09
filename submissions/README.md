@@ -6,7 +6,7 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| _None_ | — | — | The G1A+G6B union has an organizer result; the three-group union is not ready yet. |
+| G1A 10K + G6B 15K + G5A 11.2K union | `phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.zip` | `40f11379b2c23190ffcf54a884709e9a203e45a65bf7259a7f7de8b75e61048e` | `READY_FOR_LEADERBOARD`; organizer result pending. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 

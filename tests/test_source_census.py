@@ -27,6 +27,7 @@ from src.source_census.union_experiment import (
     _filter_parquet,
     _iter_json_array,
     _merge_score_databases,
+    _reference_json_sha256,
 )
 
 
@@ -185,6 +186,14 @@ def test_union_canonical_store_is_exact_and_integrity_checked(tmp_path):
     stored=connection.execute("SELECT * FROM chunks ORDER BY chunk_id").fetchall(); connection.close()
     assert result=={"chunks":2,"documents":2,"sqlite_integrity":"ok"}
     assert stored==[("a",1,"one",0,3),("b",2,"two",1,4)]
+
+
+def test_union_control_reference_accepts_one_root_json_zip(tmp_path):
+    import hashlib
+    import zipfile
+    payload=b'[{"id":1}]\n'; path=tmp_path/"control.zip"
+    with zipfile.ZipFile(path,"w") as archive: archive.writestr("control.json",payload)
+    assert _reference_json_sha256({"submission_zip":str(path)})==hashlib.sha256(payload).hexdigest()
 
 
 def test_cache_coverage_rejects_equal_row_count_with_wrong_key(tmp_path):

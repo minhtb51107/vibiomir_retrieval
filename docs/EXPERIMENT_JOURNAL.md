@@ -653,3 +653,21 @@ Next question: Does G5A add complementary relevant documents beyond the G1A+G6B 
 Cost/resources: No acquisition or new model inference was required for the scored two-group union.
 Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json`, `artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json`, and organizer metrics supplied by the project owner.
 Commit: pending this checkpoint.
+
+## Phase 10E — G1A 10K + G6B 15K + G5A 11.2K union
+
+Date: 2026-10-10
+Phase / commit: Phase 10E focused corpus scaling / this checkpoint
+Question: Does organizer-valid G5A add complementary relevant documents beyond the already strong G1A+G6B union?
+Why we tried it: The G1A+G6B union reached organizer FINAL `0.0332`, while G5A 11.2K independently reached `0.0085`. Only a full nine-source ranking can measure additional complementarity.
+Hypothesis: G5A may contribute distinct relevant documents and chunks after competing directly with the stronger two-group union.
+What we changed: Added `benhviennhitrunguong.gov.vn`, `zydcd.com`, and `hellobacsi.com` to the six G1A/G6B sources and recomputed combined candidate rankings.
+What stayed fixed: All 1,200 queries, pilot control corpus, `m=8`, BGE-M3 and reranker revisions, retrieval/fusion policy, FP16 batch 2/max length 512, top-10/top-20 policy, source-verbatim expansion, provenance, and deterministic tie-breaking.
+Result: The union contains 36,210 unique official document rows (36,109 usable) and 414,036 unique chunks. All embeddings and 86,400 reranker scores were reused exactly; no model inference ran. G1A, G6B, G5A, and G1A+G6B controls reproduced byte-for-byte. The final package passed structural, provenance, score-cache, official-ID, and determinism gates and is `READY_FOR_LEADERBOARD`; no organizer result exists yet.
+What failed / surprised us: The first packaging attempt from the previous union had already shown corpus-wide Python text materialization was unsafe, so this experiment used the disk-backed streaming path from the start. Adding G5A changed top-10 documents for 994 queries and top-20 chunks for 1,120 queries, but this movement is not itself relevance evidence.
+What we learned: The source-level cache architecture supports scientifically controlled multi-group unions with zero new inference, while byte-identical parent replays protect against silent semantic drift.
+Decision: Submit only the validated nine-source union manually. Do not start deeper acquisition until its organizer result is known.
+Next question: Does G5A improve organizer metrics beyond the two-group FINAL `0.0332`?
+Cost/resources: Zero acquisition, extraction, chunking, embedding, or reranker inference; CPU-only ranking, source-window expansion, packaging, and validation.
+Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_g5a11200_union_report.json`, `artifacts/validation/phase10e_g1a10k_g6b15k_g5a11200_union_pre_submit_audit.json`, and `submissions/00_READY_TO_UPLOAD/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.zip`.
+Commit: this checkpoint.
