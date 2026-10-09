@@ -1,0 +1,29 @@
+version: 1
+experiment: phase10e_g1a10k_g6b15k_union
+submission_name: phase10e_G1A_10010_G6B_15000_UNION
+scientific_question: Does the organizer-valid G1A 10K plus G6B 15K union improve retrieval beyond G1A alone?
+intended_variable: source corpus membership equals G1A plus G6B
+base_config: configs/phase10e_g1a_10010.yaml
+parents:
+  G1A:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010.json
+    sources:
+      - medlatec.vn
+      - v.familydoctor.com.cn
+      - vinmec.com
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G6B_15000.json
+    sources:
+      - tiemchunglongchau.com.vn
+      - cancer.39.net
+      - suckhoedoisong.vn
+outputs:
+  root: data/source_census/phase10e_g1a10k_g6b15k_union
+  artifacts: artifacts/source_census/phase10e_g1a10k_g6b15k_union
+  audit: artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json
+  report: artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json
+  submissions: submissions/00_READY_TO_UPLOAD

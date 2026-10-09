@@ -19,7 +19,7 @@ FOLDERS={
     "VALID_CONTROL":"20_VALID_CONTROLS","SUPERSEDED_VALID":"30_SUPERSEDED_VALID",
     "INVALID_DO_NOT_SUBMIT":"90_INVALID_DO_NOT_SUBMIT","UNKNOWN_REVIEW_REQUIRED":"99_REVIEW_REQUIRED",
 }
-READY=set()
+READY={"phase10e_G1A_10010_G6B_15000_UNION.zip"}
 INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip","smoke_medlatec_do_not_submit.zip"}
 SUPERSEDED={
     "phase9_B_pure_top3_mean.zip","phase9_C_max3_best_chunk.zip","phase9_D_controlled_best_chunk.zip",
@@ -69,6 +69,7 @@ def phase_for(stem: str) -> str:
 
 
 def report_for(stem: str) -> tuple[str,str]:
+    if stem=="phase10e_G1A_10010_G6B_15000_UNION": return "artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json","artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json"
     if stem.startswith("phase10e_G1A_10010"): return "artifacts/source_census/phase10e_g1a_10010_report.json","artifacts/validation/phase10e_g1a_10010_pre_submit_audit.json"
     if stem.startswith("phase10e_G6B_15000"): return "artifacts/source_census/phase10e_g6b_15000_report.json","artifacts/validation/phase10e_g6b_15000_pre_submit_audit.json"
     if stem.startswith("phase10e_G5A_11200"): return "artifacts/source_census/phase10e_g5a_11200_report.json","artifacts/validation/phase10e_g5a_11200_pre_submit_audit.json"
@@ -127,10 +128,10 @@ def rebuild(output: Path) -> list[dict[str,str]]:
     for path in discover():
         stem=path.stem; key=ALIASES.get(stem,stem); metrics=leaderboard.get(key,{})
         status=classify(path,leaderboard); report,audit=report_for(stem)
-        group=""
+        group="G1A+G6B" if "G1A_10010_G6B_15000_UNION" in stem else ""
         for token in ("G1A","G1B","G5A","G5B","G6A","G6B","group_A","group_B","group_C","group_1","group_2","group_3","group_4","group_5","group_6","group_7"):
-            if token in stem: group=token; break
-        depth="15000" if "15000" in stem else ("10010" if "10010" in stem else ("11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else ""))))
+            if not group and token in stem: group=token; break
+        depth="10010+15000" if "10010_G6B_15000_UNION" in stem else ("15000" if "15000" in stem else ("10010" if "10010" in stem else ("11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else "")))))
         note=""
         if status=="INVALID_DO_NOT_SUBMIT": note="Scientifically invalid or explicit smoke artifact; never upload."
         elif status=="READY_TO_SUBMIT": note="Mandatory validation passed; organizer result pending."

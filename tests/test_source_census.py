@@ -1,3 +1,5 @@
+import json
+
 import numpy as np
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -20,6 +22,12 @@ from src.source_census.round3 import ROUND3_GROUPS
 from src.source_census.depth1000 import DEPTH_GROUPS, seed_exact_scores
 from src.source_census.cached_subsets import _require_complete_score_cache
 from src.validation.pre_submission import audit_score_cache, score_distribution
+from src.source_census.union_experiment import (
+    _build_canonical_store,
+    _filter_parquet,
+    _iter_json_array,
+    _merge_score_databases,
+)
 
 
 def test_stable_fold_is_deterministic():
@@ -132,6 +140,51 @@ def test_exact_score_seed_reuses_only_full_composite_key(tmp_path):
     assert result["reused"] == 2 and result["missing"] == 1
     assert result["distinct_seeded_scores"] == 2
     assert result["incorrectly_seeded_nonmatches"] == 0
+
+
+def test_union_score_cache_preserves_exact_parent_values(tmp_path):
+    roots=[]
+    for name,rows in (
+        ("a",[(1,"a","q","a",1.25,10.0),(2,"b","q2","b",2.5,20.0)]),
+        ("b",[(1,"c","q","c",-3.0,30.0)]),
+    ):
+        root=tmp_path/name; (root/"round1").mkdir(parents=True); _score_db(root/"round1/source_scores.sqlite",rows); roots.append(root)
+    spec={"parents":{"A":{"root":str(roots[0])},"B":{"root":str(roots[1])}}}
+    result=_merge_score_databases(spec,tmp_path/"union.sqlite")
+    import sqlite3
+    connection=sqlite3.connect(tmp_path/"union.sqlite")
+    rows=connection.execute("SELECT query_id,chunk_id,rerank_score,inference_ms FROM pairs ORDER BY query_id,chunk_id").fetchall(); connection.close()
+    assert rows==[(1,"a",1.25,10.0),(1,"c",-3.0,30.0),(2,"b",2.5,20.0)]
+    assert result["total"]==3 and result["new_inference"]==0
+    assert result["value_mismatches"]=={"A":0,"B":0}
+
+
+def test_union_canonical_filter_is_complete_and_deduplicated(tmp_path):
+    first=tmp_path/"first.parquet"; second=tmp_path/"second.parquet"; output=tmp_path/"out.parquet"
+    pq.write_table(pa.table({"chunk_id":["a","b"],"doc_id":[1,2]}),first)
+    pq.write_table(pa.table({"chunk_id":["b","c"],"doc_id":[2,3]}),second)
+    result=_filter_parquet([first,second],output,"chunk_id",{"a","b","c"})
+    assert result=={"selected":3,"written":3,"duplicate_input_rows":1}
+    assert pq.read_table(output).column("chunk_id").to_pylist()==["a","b","c"]
+
+
+def test_union_streaming_json_reader_handles_large_record_boundaries(tmp_path):
+    path=tmp_path/"submission.json"
+    expected=[{"id":1,"value":"x"*(1024*1024+17)},{"id":2,"value":"y"}]
+    path.write_text(json.dumps(expected,separators=(",",":")),encoding="utf-8")
+    assert list(_iter_json_array(path))==expected
+
+
+def test_union_canonical_store_is_exact_and_integrity_checked(tmp_path):
+    chunks=tmp_path/"chunks.parquet"; documents=tmp_path/"documents.parquet"; database=tmp_path/"canonical.sqlite"
+    pq.write_table(pa.table({"chunk_id":["a","b"],"doc_id":[1,2],"raw_text":["one","two"],"start_offset":[0,1],"end_offset":[3,4]}),chunks)
+    pq.write_table(pa.table({"doc_id":[1,2],"normalized_text":["one document","a two document"]}),documents)
+    result=_build_canonical_store(chunks,documents,database)
+    import sqlite3
+    connection=sqlite3.connect(database)
+    stored=connection.execute("SELECT * FROM chunks ORDER BY chunk_id").fetchall(); connection.close()
+    assert result=={"chunks":2,"documents":2,"sqlite_integrity":"ok"}
+    assert stored==[("a",1,"one",0,3),("b",2,"two",1,4)]
 
 
 def test_cache_coverage_rejects_equal_row_count_with_wrong_key(tmp_path):

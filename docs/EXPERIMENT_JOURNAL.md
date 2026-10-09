@@ -617,3 +617,21 @@ Next question: Does the union improve organizer performance beyond G1A alone?
 Cost/resources: 15,000 official rows, 14,908 usable documents, 190,102 chunks, 28,800 candidate pairs, 5,836 exact reused reranker scores, and 22,964 necessary new inferences; detailed stage costs are in the Phase 10E report.
 Evidence: `artifacts/source_census/phase10e_g6b_15000_report.json`, `artifacts/validation/phase10e_g6b_15000_pre_submit_audit.json`, `submissions/10_SUBMITTED_VALID/phase10e_G6B_15000.zip`, and organizer metrics supplied by the project owner.
 Commit: pending this checkpoint.
+
+## Phase 10E — G1A 10K + G6B 15K union
+
+Date: 2026-10-10
+Phase / commit: Phase 10E focused corpus scaling / this checkpoint
+Question: Do the two strongest independently organizer-validated source groups provide complementary retrieval signal beyond G1A alone?
+Why we tried it: G1A 10K reached organizer FINAL `0.0234`, while G6B 15K independently reached `0.0140`. Scores are not additive, and only full cross-source competition can test complementarity.
+Hypothesis: Re-ranking the fixed per-source candidates from all six sources together may expose useful G6B documents without sacrificing G1A's stronger signal.
+What we changed: Source membership became the union of G1A (`medlatec.vn`, `v.familydoctor.com.cn`, `vinmec.com`) and G6B (`tiemchunglongchau.com.vn`, `cancer.39.net`, `suckhoedoisong.vn`). Final ranking was rebuilt over the combined candidates; parent final lists were not concatenated.
+What stayed fixed: All 1,200 queries, pilot control corpus, `m=8`, BGE-M3 embedding contract, dense/BM25/RRF policy, exact reranker model/revision and scores, FP16 batch 2/max length 512 contract, top-10 documents, top-20 source-verbatim chunks, deterministic tie-breaking, and provenance rules.
+Result: The union contains 25,010 official document rows (24,909 usable) and 321,268 chunks with zero duplicate document or chunk IDs. All 321,268 embeddings and all 57,600 reranker scores were reused exactly; no model inference ran. Both parent controls reproduced their organizer-valid canonical JSON byte-for-byte. The deterministic union package passed the mandatory scientific audit and is `READY_FOR_LEADERBOARD`; no organizer result exists yet.
+What failed / surprised us: The legacy package helper exhausted host memory by materializing a 118 MB compressed text parquet as Python strings and dictionaries. Candidate/ranking work was unaffected. A disk-backed canonical SQLite store and per-query streaming finalizer completed at bounded resident memory. The union changes top-10 documents and top-20 chunks for 1,199 of 1,200 queries, showing that it is a genuine competition test rather than a near-copy of G1A.
+What we learned: Cache reuse can eliminate all model inference for a source-union experiment, but final cross-source ranking must still be recomputed. Memory-bounded packaging is part of scientific reliability because a valid score cache is not sufficient if finalization cannot reproduce parent controls.
+Decision: Make `phase10e_G1A_10010_G6B_15000_UNION.zip` the sole current upload candidate. Do not deepen G1A or G6B until its organizer result is observed.
+Next question: Does the organizer score show complementary G6B signal beyond G1A 10K alone?
+Cost/resources: Zero network acquisition, zero extraction/chunking, zero new embeddings, and zero reranker inference. CPU work was limited to combined ranking, source-window expansion, deterministic packaging, and validation.
+Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json`, `artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json`, and `submissions/00_READY_TO_UPLOAD/phase10e_G1A_10010_G6B_15000_UNION.zip`.
+Commit: this checkpoint.

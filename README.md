@@ -29,9 +29,9 @@ precision, recall, and recall-weighted F2 metrics.
 > scaling will remain linear or that G1A contains most gold documents.
 >
 > G6B independently scaled from corrected depth1000 FINAL `0.0045` to `0.0140`
-> at 15,000 official IDs. The next experiment is a **zero-acquisition G1A 10K
-> + G6B 15K union test** of complementarity. No deeper acquisition is authorized
-> until that result is observed.
+> at 15,000 official IDs. The **zero-acquisition G1A 10K + G6B 15K union** is
+> now `READY_FOR_LEADERBOARD`; its organizer result is pending. No deeper
+> acquisition is authorized until that result is observed.
 
 ## Current ready submissions
 
@@ -41,6 +41,9 @@ guessing**. The authoritative operational sources are:
 - [Submission instructions and current upload list](submissions/README.md)
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
+
+The current upload candidate is
+`phase10e_G1A_10010_G6B_15000_UNION.zip` (organizer result pending).
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

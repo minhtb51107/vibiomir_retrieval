@@ -1,0 +1,33 @@
+{
+  "name": "phase10e_g1a10k_g6b15k_union_G6B_CONTROL",
+  "json_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.json",
+  "zip_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.zip",
+  "json_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3",
+  "zip_sha256": "9201d151724f0489bfcaf3be3f2ea69b72610d509d4d03f904f38e984f02499a",
+  "validation": {
+    "path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 5515,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 24000
+  },
+  "determinism_verified": true,
+  "new_model_inference": 0,
+  "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+  "semantic_replay": {
+    "passed": true,
+    "comparison": "byte-identical canonical JSON",
+    "reference_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3",
+    "replay_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3"
+  }
+}

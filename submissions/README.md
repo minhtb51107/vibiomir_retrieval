@@ -2,13 +2,11 @@
 
 ## CURRENT FILES TO UPLOAD
 
-Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates. The folder is
-currently empty: all three previously ready packages now have organizer results
-and have moved to `10_SUBMITTED_VALID/`.
+Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| _None_ | — | — | G1A 10K and G6B 15K have organizer results; the union package is not ready yet. |
+| G1A 10K + G6B 15K union | `phase10e_G1A_10010_G6B_15000_UNION.zip` | `3c2458a99b81861a8b60068300349715299166709916a4395582bffd4a59a4ee` | `READY_FOR_LEADERBOARD`; organizer result pending. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 

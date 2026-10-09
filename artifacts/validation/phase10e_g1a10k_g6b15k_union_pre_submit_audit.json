@@ -1,0 +1,281 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "failures": [],
+  "experiment_contract": {
+    "passed": true,
+    "checks": {
+      "queries": true,
+      "pilot_documents": true,
+      "pilot_chunks": true,
+      "pilot_pool": true,
+      "pilot_scores": true,
+      "candidate_policy": true,
+      "embedder": true,
+      "reranker": true,
+      "submission": true,
+      "chosen_m_is_8": true,
+      "six_unique_sources": true
+    },
+    "intended_variable": "source corpus membership equals G1A plus G6B"
+  },
+  "source_union": {
+    "sources": {
+      "medlatec.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4992,
+        "chunks": 98333
+      },
+      "v.familydoctor.com.cn": {
+        "document_rows": 10,
+        "usable_documents": 10,
+        "chunks": 22
+      },
+      "vinmec.com": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 32811
+      },
+      "tiemchunglongchau.com.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4998,
+        "chunks": 53361
+      },
+      "cancer.39.net": {
+        "document_rows": 5000,
+        "usable_documents": 4911,
+        "chunks": 22260
+      },
+      "suckhoedoisong.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 114481
+      }
+    },
+    "official_document_rows": 25010,
+    "chunks": 321268,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_ids": 0,
+    "passed": true
+  },
+  "embedding_reconciliation": {
+    "passed": true,
+    "model": {
+      "name": "BAAI/bge-m3",
+      "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+      "dimension": 1024,
+      "batch_size": 4,
+      "max_length": 512
+    },
+    "parents": {
+      "G1A": {
+        "rows": 131166,
+        "dimension": 1024,
+        "bytes": 537255936,
+        "completed_bitmap_rows": 131166,
+        "nonfinite_values": 0
+      },
+      "G6B": {
+        "rows": 190102,
+        "dimension": 1024,
+        "bytes": 778657792,
+        "completed_bitmap_rows": 190102,
+        "nonfinite_values": 0
+      }
+    },
+    "exact_embeddings_reused": 321268,
+    "new_embeddings_computed": 0
+  },
+  "candidate_reuse": {
+    "sources": {
+      "medlatec.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\medlatec_vn.parquet"
+      },
+      "v.familydoctor.com.cn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\v_familydoctor_com_cn.parquet"
+      },
+      "vinmec.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\vinmec_com.parquet"
+      },
+      "cancer.39.net": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\cancer_39_net.parquet"
+      },
+      "suckhoedoisong.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\suckhoedoisong_vn.parquet"
+      },
+      "tiemchunglongchau.com.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\tiemchunglongchau_com_vn.parquet"
+      }
+    },
+    "reuse_methods": {
+      "existing_exact": 6
+    },
+    "candidate_rows": 57600
+  },
+  "score_cache_integrity": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 57600,
+    "expected_unique_keys": 57600,
+    "stored_key_count": 57600,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 57600,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 57600,
+      "distinct": 11239,
+      "min": -11.046875,
+      "median": -3.2822265625,
+      "p95": 2.939453125,
+      "max": 10.46875
+    },
+    "distinct_inference_ms_count": 3644
+  },
+  "score_reuse": {
+    "exact_parent_scores_reused": 57600,
+    "new_inference_required": 0,
+    "total": 57600,
+    "source_rows": {
+      "G1A": 28800,
+      "G6B": 28800
+    },
+    "exact_intersections": {
+      "G1A": 28800,
+      "G6B": 28800
+    },
+    "value_mismatches": {
+      "G1A": 0,
+      "G6B": 0
+    },
+    "sqlite_integrity": "ok",
+    "new_inference": 0
+  },
+  "parent_control_replays": {
+    "G1A_CONTROL": {
+      "name": "phase10e_g1a10k_g6b15k_union_G1A_CONTROL",
+      "json_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G1A_CONTROL.json",
+      "zip_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G1A_CONTROL.zip",
+      "json_sha256": "b5e43242b8ce8857b4161487256a2939412bff93b5339ab9e180c82c9fd28f92",
+      "zip_sha256": "c9f75eac6ee3ce57bd7a74bf7942523ed9626f8a05cb9f4d0027d9392c14aa93",
+      "validation": {
+        "path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G1A_CONTROL.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 5970,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 24000
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0,
+      "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+      "semantic_replay": {
+        "passed": true,
+        "comparison": "byte-identical canonical JSON",
+        "reference_sha256": "b5e43242b8ce8857b4161487256a2939412bff93b5339ab9e180c82c9fd28f92",
+        "replay_sha256": "b5e43242b8ce8857b4161487256a2939412bff93b5339ab9e180c82c9fd28f92"
+      }
+    },
+    "G6B_CONTROL": {
+      "name": "phase10e_g1a10k_g6b15k_union_G6B_CONTROL",
+      "json_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.json",
+      "zip_path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.zip",
+      "json_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3",
+      "zip_sha256": "9201d151724f0489bfcaf3be3f2ea69b72610d509d4d03f904f38e984f02499a",
+      "validation": {
+        "path": "data\\source_census\\phase10e_g1a10k_g6b15k_union\\controls\\phase10e_g1a10k_g6b15k_union_G6B_CONTROL.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 5515,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 24000
+      },
+      "determinism_verified": true,
+      "new_model_inference": 0,
+      "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+      "semantic_replay": {
+        "passed": true,
+        "comparison": "byte-identical canonical JSON",
+        "reference_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3",
+        "replay_sha256": "664548014fbbdc585c5d2252a25775e3dc9d66b36551d9b5400d82e3fa70b9b3"
+      }
+    }
+  },
+  "package_canonical": {
+    "candidate_chunk_ids": 34295,
+    "candidate_doc_ids": 13828,
+    "chunks": {
+      "selected": 34295,
+      "written": 34295,
+      "duplicate_input_rows": 22
+    },
+    "documents": {
+      "selected": 13828,
+      "written": 13828,
+      "duplicate_input_rows": 4
+    },
+    "disk_backed_store": {
+      "chunks": 34295,
+      "documents": 13828,
+      "sqlite_integrity": "ok"
+    }
+  },
+  "official_id_audit": {
+    "unique_emitted_doc_ids": 6956,
+    "invalid_official_doc_ids": 0,
+    "passed": true
+  },
+  "structural_validation": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\phase10e_G1A_10010_G6B_15000_UNION.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 8676,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 24000
+  },
+  "determinism_verified": true,
+  "ranking_change_vs_g1a": {
+    "queries_top10_docs_changed": 1199,
+    "queries_top20_chunks_changed": 1199
+  },
+  "submission": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\phase10e_G1A_10010_G6B_15000_UNION.zip",
+    "sha256": "3c2458a99b81861a8b60068300349715299166709916a4395582bffd4a59a4ee"
+  }
+}
