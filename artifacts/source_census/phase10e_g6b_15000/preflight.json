@@ -37,7 +37,7 @@
     }
   },
   "stale_run_recovery": "competition_supervisor reconciles RUNNING state against recorded process liveness",
-  "dependencies_checked": 24,
+  "dependencies_checked": 26,
   "writable_directories": [
     "data\\source_census\\phase10e_g6b_15000",
     "artifacts\\source_census\\phase10e_g6b_15000",

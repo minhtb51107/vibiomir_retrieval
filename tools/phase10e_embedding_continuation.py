@@ -29,9 +29,20 @@ def system_memory() -> dict[str,float]:
 
 def memory_gate_status(profile: dict,current: dict[str,float]) -> dict:
     gate=profile["memory_gate"]
-    required_physical=float(gate["observed_peak_rss_mib"])
+    peak_rss=float(gate["observed_peak_rss_mib"])
+    model_loaded=next(
+        (float(item["rss_mib"]) for item in profile["measurements"] if item.get("phase")=="model_loaded"),
+        None,
+    )
+    if model_loaded is None or model_loaded>peak_rss:
+        raise ValueError("validated embedding profile lacks a usable model-loaded RSS measurement")
+    # Reserve one additional measured model-loaded-to-peak excursion. This is
+    # the observed tokenizer/first-batch warmup demand, not an arbitrary fixed
+    # machine-memory threshold.
+    physical_safety_headroom=peak_rss-model_loaded
+    required_physical=peak_rss+physical_safety_headroom
     required_commit=float(gate["projected_peak_private_mib"])
-    return {**current,"required_physical_mib":required_physical,"required_commit_mib":required_commit,"passed":current["available_physical_mib"]>=required_physical and current["available_commit_mib"]>=required_commit,"rule":"available physical memory must cover the measured peak RSS and available commit must cover the measured projected peak private bytes from the validated streaming profile"}
+    return {**current,"measured_peak_rss_mib":peak_rss,"physical_safety_headroom_mib":physical_safety_headroom,"required_physical_mib":required_physical,"required_commit_mib":required_commit,"passed":current["available_physical_mib"]>=required_physical and current["available_commit_mib"]>=required_commit,"rule":"available physical memory must cover the measured peak RSS plus one measured model-load-to-peak warmup excursion; available commit must cover the measured projected peak private bytes"}
 
 
 def wait_for_memory(config: dict,state: Path) -> dict:

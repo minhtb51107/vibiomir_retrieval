@@ -70,20 +70,23 @@ def process_alive(pid: int) -> bool:
 def recover_stale_run(run: Path, run_id: str) -> dict[str, Any] | None:
     """Mark a dead lock owner as interrupted without touching checkpoints."""
     lock=run/"run.lock"
-    if not lock.exists():
-        return None
-    raw=lock.read_text(encoding="utf-8",errors="replace")
-    try:
-        pid=int(next(part.split("=",1)[1] for part in raw.split() if part.startswith("pid=")))
-    except (StopIteration,ValueError,IndexError):
-        pid=-1
-    if process_alive(pid):
-        raise FileExistsError(f"live run owner pid={pid}: {lock}")
     state_path=run/"state.json"; events=run/"events.jsonl"
     try:
         prior=json.loads(state_path.read_text(encoding="utf-8"))
     except Exception:
         prior={}
+    if lock.exists():
+        raw=lock.read_text(encoding="utf-8",errors="replace")
+        try:
+            pid=int(next(part.split("=",1)[1] for part in raw.split() if part.startswith("pid=")))
+        except (StopIteration,ValueError,IndexError):
+            pid=-1
+        if process_alive(pid):
+            raise FileExistsError(f"live run owner pid={pid}: {lock}")
+    elif prior.get("status")!="RUNNING":
+        return None
+    else:
+        pid=None
     recovered={
         **prior,"run_id":run_id,"status":"STALE_RUNNING",
         "interrupted_pid":pid,"checkpoint_preserved":True,
@@ -91,7 +94,7 @@ def recover_stale_run(run: Path, run_id: str) -> dict[str, Any] | None:
     }
     atomic_json(state_path,recovered)
     event(events,"STALE_RUN_DETECTED",interrupted_pid=pid,checkpoint_preserved=True)
-    lock.unlink()
+    lock.unlink(missing_ok=True)
     return recovered
 
 

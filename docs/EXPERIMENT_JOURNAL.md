@@ -581,3 +581,21 @@ Next question: Does the fixed-policy G6B 15K depth checkpoint pass its control r
 Cost/resources: No network acquisition, extraction, or chunking is repeated. At audit time D: had 30.73 GiB free; the validated embedding profile measured about 833.41 MiB peak RSS and 3,931.96 MiB projected peak private memory.
 Evidence: `data/source_census/phase10e_g6b_15000/new_documents.parquet`, `data/source_census/phase10e_g6b_15000/new_chunks.parquet`, `artifacts/source_census/phase10e_g6b_15000/new_chunk_merge.json`, and `artifacts/runs/phase10e_g6b_15000/state.json`.
 Commit: this checkpoint.
+
+## Phase 10E G6B stale-embedding recovery
+
+Date: 2026-10-09
+Phase / commit: Phase 10E G6B focused scaling / this checkpoint
+Question: Can the post-reboot embedding stage resume from its transactional bitmap without accepting unsafe near-zero startup-memory headroom?
+Why we tried it: ASSEMBLE completed, but a reboot left stale `EMBEDDINGS/RUNNING` state with no live owner. Preparation had durably reused 37,434 of 190,102 rows and left 152,668 rows for inference.
+Hypothesis: The exact partial-vector shape, binary completion bitmap, and finite completed rows permit a lossless EMBEDDINGS-only resume; startup should wait until physical memory covers both the measured peak and a measured warmup excursion.
+What we changed: Reconciled lockless `RUNNING` state as `STALE_RUNNING`, preserving checkpoints. Revised the startup gate from bare peak RSS to peak RSS plus one additional observed model-loaded-to-peak excursion: `833.41 + (833.41 - 717.41) = 949.41 MiB`. Commit headroom remains tied to the measured projected peak private memory of 3,931.96 MiB.
+What stayed fixed: The 190,102-row union, 1,024-dimensional float32 layout, 37,434 reused vectors, completion bitmap, BGE-M3 model/revision, batch size 4, maximum length 512, 128-row Parquet windows, zero workers/prefetch, retrieval contract, and every stage before EMBEDDINGS.
+Result: The partial vector file is exactly 778,657,792 bytes, its bitmap contains 37,434 completed and 152,668 missing rows with no invalid status bytes, and all completed vectors are finite. Current free physical memory was below 949.41 MiB, so the unattended supervisor was configured to remain at `EMBEDDINGS_MEMORY_WAIT` without loading the model until the evidence-based gate passes.
+What failed / surprised us: The earlier gate technically passed with only 5.33 MiB above the measured peak, which is not enough to absorb the warmup excursion already observed in the same validated profile. Also, a missing lock previously prevented explicit stale-state annotation.
+What we learned: A measured peak is not itself an operational safety reserve. Reusing one additional observed warmup excursion gives a profile-derived margin without imposing a broad arbitrary RAM threshold, and lockless `RUNNING` state must be recorded as interrupted before resumption.
+Decision: Preserve all 37,434 completed rows and resume only the 152,668 missing embeddings once available physical memory is at least 949.41 MiB and available commit is at least 3,931.96 MiB.
+Next question: After embeddings complete, does G6B 15K pass fixed-policy candidate generation, reranking, control replay, and the mandatory scientific audit?
+Cost/resources: No acquisition, extraction, chunking, assembly, or completed embedding row was repeated. Only read-only checkpoint and finite-vector verification was performed before relaunch.
+Evidence: `data/source_census/phase10e_g6b_15000/round1/chunk_embeddings.streaming.checkpoint.json`, `.streaming.status.u8`, `.streaming.partial`, and `artifacts/runs/phase10e_g6b_15000/state.json`.
+Commit: this checkpoint.
