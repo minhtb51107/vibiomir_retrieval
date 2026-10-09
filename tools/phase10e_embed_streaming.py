@@ -50,17 +50,23 @@ def profile(config,chunks_path,limit,output):
     result["memory_gate"]=validate_profile(result,rows); _atomic_json(output/"profile.json",result); print(json.dumps(result,indent=2)); return 0 if result["memory_gate"]["passed"] else 2
 
 
-def encode(config,run_state):
+def encode(config,run_state,max_new_rows=0):
     import torch
     paths=recovery_paths(config); checkpoint=prepare_streaming_cache(config); rows=int(checkpoint["signature"]["rows"]); dimension=int(checkpoint["signature"]["dimension"])
     profile_path=Path(config["embedding_recovery"]["profile_artifact"]); profile_data=json.loads(profile_path.read_text(encoding="utf-8")); gate=validate_profile(profile_data,int(checkpoint["missing_rows"]))
     if not gate["passed"]: raise RuntimeError(f"embedding memory profile gate failed: {gate}")
     equivalence_result=json.loads(Path(config["embedding_recovery"]["equivalence_artifact"]).read_text(encoding="utf-8"))
     if not equivalence_result.get("passed"): raise RuntimeError(f"embedding equivalence gate failed: {equivalence_result}")
+    # Load CUDA before mapping the full output. On the 5.69 GiB host, mapping
+    # the 537 MiB recovery file first reproducibly caused c10.dll to access-
+    # violate during model load, while the same model loaded safely in the
+    # bounded profile with only a tiny output mapping.
+    measurements=[{"phase":"process_start",**process_memory()}]; model,torch=load_model(config,measurements)
     vectors=np.memmap(paths["partial"],dtype=np.float32,mode="r+",shape=(rows,dimension)); status=np.memmap(paths["status"],dtype=np.uint8,mode="r+",shape=(rows,))
-    measurements=[{"phase":"process_start",**process_memory()}]; model,torch=load_model(config,measurements); initial=int(status.sum()); processed_new=0; position=0; started=time.perf_counter(); checkpoint_rows=[]
+    initial=int(status.sum()); processed_new=0; position=0; started=time.perf_counter(); checkpoint_rows=[]
     for batch in pq.ParquetFile(config["outputs"]["chunks"]).iter_batches(batch_size=128,columns=["normalized_text"]):
         texts=batch.column(0).to_pylist(); indices=[position+i for i in range(len(texts)) if not status[position+i]]
+        if max_new_rows: indices=indices[:max(0,max_new_rows-processed_new)]
         if indices:
             pending=[normalize_text(str(texts[index-position])) for index in indices]
             encoded=model.encode(pending,batch_size=int(config["models"]["embedder"]["batch_size"]),show_progress_bar=False,convert_to_numpy=True,normalize_embeddings=True)
@@ -71,7 +77,13 @@ def encode(config,run_state):
             checkpoint.update({"embedded_rows":completed-int(checkpoint["reused_rows"]),"completed_rows":completed,"last_scanned_row":position,"last_memory":point}); _atomic_json(paths["checkpoint"],checkpoint)
             if run_state: atomic_json(run_state,{"stage":"EMBEDDINGS","status":"RUNNING","total":int(checkpoint["missing_rows"]),"done":checkpoint["embedded_rows"],"reused_embeddings":checkpoint["reused_rows"],"rss_mib":point["rss_mib"],"private_mib":point["private_mib"],"page_faults":point["page_faults"],"gpu_allocated_mib":point["gpu_allocated_mib"],"gpu_reserved_mib":point["gpu_reserved_mib"],"last_successful_checkpoint":checkpoint["embedded_rows"]})
         del texts,indices; gc.collect() if position%4096<128 else None
-    if int(status.sum())!=rows: raise RuntimeError("streaming embedding status is incomplete")
+        if max_new_rows and processed_new>=max_new_rows: break
+    completed_total=int(status.sum())
+    if completed_total!=rows:
+        if not max_new_rows: raise RuntimeError("streaming embedding status is incomplete")
+        del vectors,status,model; torch.cuda.empty_cache(); gc.collect()
+        checkpoint.update({"bounded_gate_rows":processed_new,"bounded_gate_complete":True,"last_bounded_gate_memory":checkpoint_rows[-1] if checkpoint_rows else None}); _atomic_json(paths["checkpoint"],checkpoint)
+        print(json.dumps({"bounded_gate_complete":True,"new_rows":processed_new,"completed_rows":completed_total,"remaining_rows":rows-completed_total,"memory":checkpoint_rows},indent=2)); return 0
     vectors.flush(); del vectors,status,model; torch.cuda.empty_cache(); gc.collect()
     if paths["final"].exists(): raise FileExistsError(f"refusing to overwrite unverified embedding artifact: {paths['final']}")
     os.replace(paths["partial"],paths["final"])
@@ -91,10 +103,10 @@ def equivalence(config,candidate_path,reference_path,rows,output):
 
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument("mode",choices=["prepare","profile","equivalence","encode"]); parser.add_argument("--config",required=True); parser.add_argument("--run-state"); parser.add_argument("--chunks"); parser.add_argument("--limit",type=int,default=2048); parser.add_argument("--output"); parser.add_argument("--candidate"); parser.add_argument("--reference")
+    parser=argparse.ArgumentParser(); parser.add_argument("mode",choices=["prepare","profile","equivalence","encode"]); parser.add_argument("--config",required=True); parser.add_argument("--run-state"); parser.add_argument("--chunks"); parser.add_argument("--limit",type=int,default=2048); parser.add_argument("--output"); parser.add_argument("--candidate"); parser.add_argument("--reference"); parser.add_argument("--max-new-rows",type=int,default=0)
     args=parser.parse_args(); config=load_config(args.config)
     if args.mode=="prepare": print(json.dumps(prepare_streaming_cache(config),indent=2)); return 0
     if args.mode=="profile": return profile(config,Path(args.chunks),args.limit,Path(args.output))
     if args.mode=="equivalence": return equivalence(config,Path(args.candidate),Path(args.reference),args.limit,Path(args.output))
-    return encode(config,Path(args.run_state) if args.run_state else None)
+    return encode(config,Path(args.run_state) if args.run_state else None,args.max_new_rows)
 if __name__=="__main__": raise SystemExit(main())
