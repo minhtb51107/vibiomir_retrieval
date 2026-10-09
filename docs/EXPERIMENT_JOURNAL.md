@@ -324,6 +324,7 @@ Result: Durable counts were 996 successful/usable Medlatec documents, 10 v.famil
 What failed / surprised us: The repository had only about 0.37 GiB headroom above the safety floor before acquisition, despite the experiment itself being bounded and operationally modest.
 What we learned: Disk capacity must be a launch gate rather than a runtime incident. A correct scientific plan is not authorization to consume the safety reserve.
 Decision: Stop at `NEEDS_AGENT`; preserve the exact manifest and implementation checkpoint, and do not launch G1A until at least the projected 3.91 GiB plus safety margin is safely reclaimed or another approved storage plan is provided.
+Resolution: Later on 2026-10-09, free space increased to 30.11 GiB. The unchanged 8,005-ID manifest projected 3.91 GiB retained growth and 26.20 GiB remaining, so the same preflight passed without changing the experiment contract or rebuilding prior artifacts. This authorizes the prepared unattended G1A run; it is not an experiment result.
 Next question: Which regenerable local artifacts can be removed safely without violating preservation policy and while keeping at least 20 GiB free after the G1A run?
 Cost/resources: No network requests and no model inference. Manifest construction scanned only local metadata. Projected concurrent crawl time is about 68 minutes; conservative end-to-end projection is about 2.88 hours once the disk gate is satisfied.
 Evidence: `artifacts/source_census/phase10e_g1a_10010_manifest.json` and `artifacts/source_census/phase10e_g1a_10010/preflight.json`.

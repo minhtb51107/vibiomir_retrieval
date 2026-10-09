@@ -1,10 +1,8 @@
 {
   "experiment": "phase10e_g1a_10010",
   "group": "G1A",
-  "passed": false,
-  "failures": [
-    "20 GiB disk gate failed"
-  ],
+  "passed": true,
+  "failures": [],
   "chosen_m": 8,
   "calibration_artifact": "artifacts\\source_census\\depth1000\\candidate_cap_calibration.json",
   "contract": {
@@ -23,5 +21,5 @@
     "artifacts\\validation"
   ],
   "manifest": "artifacts/source_census/phase10e_g1a_10010_manifest.json",
-  "disk_gate_passed": false
+  "disk_gate_passed": true
 }
