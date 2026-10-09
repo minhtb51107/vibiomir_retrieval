@@ -10,8 +10,23 @@ CONTRACT={
 
 
 def test_measured_fp16_jitter_with_stable_order_passes():
-    result=validate_score_equivalence([-2.80078125,-3.1171875],[-2.802734375,-3.111328125],["a","b"],measured_absolute_tolerance=.005859375,expected_contract=CONTRACT,actual_contract=CONTRACT)
+    result=validate_score_equivalence([-2.80078125,-3.1171875],[-2.802734375,-3.111328125],["a","b"],measured_absolute_tolerance=.005859375,expected_contract=CONTRACT,actual_contract=CONTRACT,expected_keys=["a","b"],expected_text_hashes=[("q1","c1"),("q2","c2")],observed_text_hashes=[("q1","c1"),("q2","c2")])
     assert result["passed"]
+
+
+def test_mutated_control_keys_fail():
+    result=validate_score_equivalence([1.0,0.0],[1.0,0.0],["current-a","current-b"],measured_absolute_tolerance=.005859375,expected_contract=CONTRACT,actual_contract=CONTRACT,expected_keys=["expected-a","expected-b"])
+    assert not result["passed"] and not result["sample_keys_match_control"]
+
+
+def test_different_experiment_with_its_own_deterministic_control_passes():
+    result=validate_score_equivalence([1.0,0.0],[1.0,0.0],["g1a-a","g1a-b"],measured_absolute_tolerance=.005859375,expected_contract=CONTRACT,actual_contract=CONTRACT,expected_keys=["g1a-a","g1a-b"])
+    assert result["passed"]
+
+
+def test_mutated_control_text_fails():
+    result=validate_score_equivalence([1.0],[1.0],["a"],measured_absolute_tolerance=.005859375,expected_contract=CONTRACT,actual_contract=CONTRACT,expected_keys=["a"],expected_text_hashes=[("query","chunk")],observed_text_hashes=[("query","mutated")])
+    assert not result["passed"] and not result["sample_texts_match_control"]
 
 
 def test_material_score_difference_fails():

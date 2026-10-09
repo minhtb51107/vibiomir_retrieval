@@ -47,8 +47,8 @@ models:
     shard_size: 2000
     equivalence:
       investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
+      control_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_control.json
       measured_absolute_tolerance: 0.005859375
-      require_sample_keys: true
 submission:
   documents_per_query: 10
   chunks_per_query: 20

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import ctypes
 import gc
+import hashlib
 import json
 import os
 import sqlite3
@@ -90,18 +91,32 @@ def main() -> int:
 
     equivalence = {"checked": 0, "max_absolute_difference": 0.0, "passed": True}
     if args.equivalence_sample:
-        sample = connection.execute(
-            "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
-            "WHERE rerank_score IS NOT NULL ORDER BY query_id,chunk_id LIMIT ?",
-            (args.equivalence_sample,),
-        ).fetchall()
+        control=json.loads(Path(model_config["equivalence"]["control_artifact"]).read_text(encoding="utf-8"))
+        control_pairs=control["pairs"][:args.equivalence_sample]
+        sample=[]
+        for item in control_pairs:
+            row=connection.execute(
+                "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
+                "WHERE query_id=? AND chunk_id=?",
+                (int(item["query_id"]),str(item["chunk_id"])),
+            ).fetchone()
+            if row is None:
+                raise RuntimeError(f"reranker control key missing from current cache: {item['query_id']}:{item['chunk_id']}")
+            sample.append(row)
         observed = reranker.score_pairs([(str(r[2]), str(r[3])) for r in sample])
         rule=model_config.get("equivalence")
         if not rule:
             raise RuntimeError("reranker equivalence contract is not configured")
         investigation=json.loads(Path(rule["investigation_artifact"]).read_text(encoding="utf-8"))
+        if control.get("contract") != investigation.get("contract"):
+            raise RuntimeError("per-experiment reranker control contract differs from the validated investigation contract")
         sample_keys=[f"{int(row[0])}:{row[1]}" for row in sample]
-        expected_keys=[f"{int(row['query_id'])}:{row['chunk_id']}" for row in investigation["pairs"]]
+        expected_keys=[f"{int(row['query_id'])}:{row['chunk_id']}" for row in control_pairs]
+        observed_text_hashes=[
+            (hashlib.sha256(str(row[2]).encode("utf-8")).hexdigest(),hashlib.sha256(str(row[3]).encode("utf-8")).hexdigest())
+            for row in sample
+        ]
+        expected_text_hashes=[(str(row["query_text_sha256"]),str(row["chunk_text_sha256"])) for row in control_pairs]
         actual_contract={
             "model":model_config["name"],"revision":model_config["revision"],
             "tokenizer_revision":model_config["revision"],"batch_size":2,"max_length":512,
@@ -110,12 +125,17 @@ def main() -> int:
             "input_order":"query, chunk",
         }
         equivalence=validate_score_equivalence(
-            [float(row[4]) for row in sample],observed.tolist(),[str(row[1]) for row in sample],
+            [float(row["reference_score"]) for row in control_pairs],observed.tolist(),sample_keys,
             measured_absolute_tolerance=float(rule["measured_absolute_tolerance"]),
             expected_contract=investigation["contract"],actual_contract=actual_contract,
+            expected_keys=expected_keys,expected_text_hashes=expected_text_hashes,
+            observed_text_hashes=observed_text_hashes,
         )
-        equivalence["sample_keys_match_investigation"]=sample_keys==expected_keys
-        equivalence["passed"]=bool(equivalence["passed"] and (not rule.get("require_sample_keys") or sample_keys==expected_keys))
+        equivalence["stored_reference_scores_match_control"]=all(
+            float(row[4])==float(item["reference_score"])
+            for row,item in zip(sample,control_pairs,strict=True)
+        )
+        equivalence["passed"]=bool(equivalence["passed"] and equivalence["stored_reference_scores_match_control"])
         del sample, observed
         if not equivalence["passed"]:
             raise RuntimeError(f"reranker score equivalence failed: {equivalence}")

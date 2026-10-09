@@ -55,8 +55,8 @@ models:
     shard_size: 2000
     equivalence:
       investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
+      control_artifact: artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json
       measured_absolute_tolerance: 0.005859375
-      require_sample_keys: true
 embedding_recovery:
   profile_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
   equivalence_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json

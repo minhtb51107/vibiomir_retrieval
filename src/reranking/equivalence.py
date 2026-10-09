@@ -15,6 +15,9 @@ def validate_score_equivalence(
     reference: Sequence[float], observed: Sequence[float], keys: Sequence[str], *,
     measured_absolute_tolerance: float,
     expected_contract: dict[str, Any], actual_contract: dict[str, Any],
+    expected_keys: Sequence[str] | None = None,
+    expected_text_hashes: Sequence[tuple[str, str]] | None = None,
+    observed_text_hashes: Sequence[tuple[str, str]] | None = None,
 ) -> dict[str, Any]:
     """Validate an FP16 replay without allowing config or rank-order drift."""
     contract_mismatches = {
@@ -33,6 +36,16 @@ def validate_score_equivalence(
         "contract_mismatches":contract_mismatches,"finite":finite,
         "reference_order":reference_order,"observed_order":observed_order,
         "ordering_unchanged":reference_order==observed_order,
+        "sample_keys_match_control":expected_keys is None or list(expected_keys)==list(keys),
+        "sample_texts_match_control":expected_text_hashes is None or (
+            observed_text_hashes is not None and list(expected_text_hashes)==list(observed_text_hashes)
+        ),
     }
-    result["passed"]=not contract_mismatches and finite and result["max_absolute_difference"]<=measured_absolute_tolerance and result["ordering_unchanged"]
+    result["passed"]=(
+        not contract_mismatches and finite
+        and result["max_absolute_difference"]<=measured_absolute_tolerance
+        and result["ordering_unchanged"]
+        and result["sample_keys_match_control"]
+        and result["sample_texts_match_control"]
+    )
     return result

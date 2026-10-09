@@ -14,7 +14,8 @@ if str(ROOT) not in sys.path:
 
 from src.source_census.cached_subsets import build_cached_subset_rankings
 from src.source_census.phase10e import (
-    assemble_embeddings, assemble_union, finalize_report, phase_contract, seed_scores, verify_union,
+    assemble_embeddings, assemble_union, ensure_reranker_equivalence_control,
+    finalize_report, phase_contract, seed_scores, verify_union,
 )
 from src.source_census.pipeline import (
     _merge_source_parts, atomic_json, build_source_candidates, load_config,
@@ -106,6 +107,7 @@ def main() -> int:
         missing=[str(path) for path in required if not path.exists()]
         if missing: raise FileNotFoundError(f"cannot resume RERANK; missing durable artifacts: {missing}")
         candidates=json.loads(required[1].read_text(encoding="utf-8")); seed=json.loads(required[2].read_text(encoding="utf-8"))
+        ensure_reranker_equivalence_control(config)
     stage(state,"RERANK",**score_database_status(config),cached_pairs_reused=seed["reused"])
     restarts=0; loads=0
     while int(score_database_status(config)["remaining"]):

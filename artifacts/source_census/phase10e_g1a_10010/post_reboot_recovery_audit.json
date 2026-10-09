@@ -1,0 +1,50 @@
+{
+  "experiment": "phase10e_g1a_10010",
+  "recovery_date": "2026-10-09",
+  "embeddings": {
+    "path": "data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32",
+    "rows": 131166,
+    "dimension": 1024,
+    "dtype": "float32",
+    "expected_size_bytes": 537255936,
+    "actual_size_bytes": 537255936,
+    "completion_bitmap_rows": 131166,
+    "completion_bitmap_missing": 0,
+    "non_finite_values": 0,
+    "reused_embeddings": 26116,
+    "new_embeddings": 105050,
+    "regenerated": false
+  },
+  "rerank_cache": {
+    "path": "data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite",
+    "sqlite_integrity": "ok",
+    "expected_keys": 28800,
+    "stored_keys": 28800,
+    "duplicate_key_groups": 0,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "completed_scores": 13432,
+    "remaining_scores": 15368,
+    "non_finite_completed_scores": 0,
+    "invalid_completed_timings": 0,
+    "exact_prior_key_matches": 13432,
+    "exact_prior_score_matches": 13432,
+    "exact_prior_timing_matches": 13432,
+    "fresh_inference_completed_before_recovery": 0
+  },
+  "equivalence_gate": {
+    "shared_investigation": "artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json",
+    "experiment_control": "artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json",
+    "checked": 8,
+    "max_absolute_difference": 0.0,
+    "measured_absolute_tolerance": 0.005859375,
+    "contract_mismatches": {},
+    "finite": true,
+    "sample_keys_match_control": true,
+    "sample_texts_match_control": true,
+    "ordering_unchanged": true,
+    "stored_reference_scores_match_control": true,
+    "passed": true,
+    "production_pairs_scored_by_gate_test": 0
+  }
+}

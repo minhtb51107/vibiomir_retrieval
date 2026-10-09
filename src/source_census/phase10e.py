@@ -1,5 +1,5 @@
 from __future__ import annotations
-import gc,json,shutil,sqlite3,subprocess,sys,time
+import gc,hashlib,json,shutil,sqlite3,subprocess,sys,time
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -107,6 +107,7 @@ def preflight(config):
 
 def preflight_contract_checks(config,chosen,sources):
     _,phase,_,_,_=phase_contract(config)
+    control_artifact=Path(config["models"]["reranker"]["equivalence"].get("control_artifact",""))
     return {
         "chosen_m_is_8":chosen==8 and list(config["candidate_cache"]["candidate_caps"])==[8],
         "reranker_revision_fixed":config["models"]["reranker"]["revision"]=="953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
@@ -114,6 +115,7 @@ def preflight_contract_checks(config,chosen,sources):
         "reranker_max_length_512":int(config["models"]["reranker"]["max_length"])==512,
         "submission_top10_top20":int(config["submission"]["documents_per_query"])==10 and int(config["submission"]["chunks_per_query"])==20,
         "source_targets_match":set(sources)==set(phase["targets"]),
+        "experiment_scoped_reranker_control":bool(str(control_artifact)) and control_artifact.parent==Path(config["outputs"]["artifacts"]),
     }
 
 def _write(path,rows):
@@ -189,8 +191,59 @@ def assemble_embeddings(config,state=None):
     subprocess.run(command,cwd=Path.cwd(),check=True)
     return json.loads(summary.read_text(encoding="utf-8"))
 
+def _text_sha256(value):
+    return hashlib.sha256(str(value).encode("utf-8")).hexdigest()
+
+def ensure_reranker_equivalence_control(config, sample_size=8):
+    """Build/verify a deterministic exact-reuse control for this experiment."""
+    _,phase,_,_,experiment=phase_contract(config)
+    rule=config["models"]["reranker"]["equivalence"]
+    destination=Path(config["outputs"]["root"])/"round1/source_scores.sqlite"
+    source=Path(phase["previous_score_database"])
+    investigation=json.loads(Path(rule["investigation_artifact"]).read_text(encoding="utf-8"))
+    dst=sqlite3.connect(f"file:{destination.resolve()}?mode=ro",uri=True)
+    src=sqlite3.connect(f"file:{source.resolve()}?mode=ro",uri=True)
+    selected=[]
+    for query_id,chunk_id,query_text,chunk_text,score in dst.execute(
+        "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
+        "WHERE rerank_score IS NOT NULL ORDER BY query_id,chunk_id"
+    ):
+        old=src.execute(
+            "SELECT rerank_score FROM pairs WHERE query_id=? AND chunk_id=?",
+            (int(query_id),str(chunk_id)),
+        ).fetchone()
+        if old is None or float(old[0])!=float(score):
+            continue
+        selected.append({
+            "query_id":int(query_id),"chunk_id":str(chunk_id),
+            "query_text_sha256":_text_sha256(query_text),
+            "chunk_text_sha256":_text_sha256(chunk_text),
+            "reference_score":float(score),
+        })
+        if len(selected)==sample_size:
+            break
+    dst.close(); src.close()
+    if len(selected)!=sample_size:
+        raise RuntimeError(f"insufficient exact-reuse pairs for reranker control: {len(selected)}/{sample_size}")
+    result={
+        "format_version":1,"experiment":experiment,
+        "selection_rule":"first exact reused (query_id, chunk_id) keys in ascending deterministic order",
+        "source_score_database":str(source),"destination_score_database":str(destination),
+        "investigation_artifact":str(rule["investigation_artifact"]),
+        "contract":investigation["contract"],"pairs":selected,
+        "exact_reuse_verified":True,
+    }
+    path=Path(rule["control_artifact"])
+    if path.exists():
+        existing=json.loads(path.read_text(encoding="utf-8"))
+        if existing!=result:
+            raise RuntimeError(f"reranker equivalence control drift: {path}")
+    else:
+        atomic_json(path,result)
+    return result
+
 def seed_scores(config):
-    _,phase,_,_,_=phase_contract(config); result=seed_exact_scores(Path(config["outputs"]["root"])/"round1/source_scores.sqlite",phase["previous_score_database"]); atomic_json(Path(config["outputs"]["artifacts"])/"rerank_seed_summary.json",result); return result
+    _,phase,_,_,_=phase_contract(config); result=seed_exact_scores(Path(config["outputs"]["root"])/"round1/source_scores.sqlite",phase["previous_score_database"]); atomic_json(Path(config["outputs"]["artifacts"])/"rerank_seed_summary.json",result); ensure_reranker_equivalence_control(config); return result
 
 def finalize_report(config, submission, assembly, embedding, candidate_summary, seed, audit):
     """Write the durable Phase 10E report from already-produced stage evidence."""

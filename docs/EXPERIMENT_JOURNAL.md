@@ -527,3 +527,21 @@ Next question: Which remaining untested sources merit deeper acquisition when sc
 Cost/resources: 5,000 sampled official S2 IDs; 18,838 novel reranker scores were checkpointed for the completed C2 run. Exact electricity cost was not measured.
 Evidence: `artifacts/runs/phase10c1_C2_S2_5k/final_report.json`, `artifacts/phase10c1_early_release/C2_early_release.json`, and `submissions/phase10c1_C2_S2_5k.zip`; organizer metrics supplied by the project owner.
 Commit: pending review; no commit requested yet.
+
+## Phase 10E G1A post-reboot reranker-gate recovery
+
+Date: 2026-10-09
+Phase / commit: Phase 10E G1A focused scaling / this checkpoint
+Question: Can the interrupted G1A rerank resume without rescoring durable pairs while retaining a scientifically meaningful startup-equivalence gate?
+Why we tried it: An unexpected reboot left 13,432 of 28,800 exact score rows durable and 15,368 missing. Startup replay was numerically exact, finite, contract-identical, and order-identical, yet the gate rejected it because G1A keys differed from a G5A investigation sample.
+Hypothesis: Numerical tolerance evidence may be shared across experiments, but exact control keys and source texts must be deterministic and scoped to the current experiment's valid reused-score population.
+What we changed: Separated the shared FP16 investigation contract/tolerance from a deterministic per-experiment control fixture. The G1A fixture selects the first eight exact reused `(query_id, chunk_id)` keys in stable order, records query/chunk text hashes and reference scores, and verifies their provenance against the corrected depth-1000 cache. Added stale-run recovery that marks a dead lock owner `STALE_RUNNING` while preserving checkpoints.
+What stayed fixed: Corpus, candidates, 28,800 score keys, the 13,432 durable reused scores, BGE reranker model/revision, FP16, batch size 2, maximum length 512, ranking policy, and submission policy.
+Result: Embeddings were independently verified at 131,166 × 1,024 float32 values with a complete 131,166-row bitmap and zero non-finite values. The score DB passed SQLite integrity with 28,800 unique expected keys, 13,432 finite completed rows, 15,368 missing rows, and no duplicate/missing/unexpected keys. The repaired startup gate passed all eight current controls with zero numerical difference, exact text/key identity, unchanged ordering, and zero production pairs scored during the test.
+What failed / surprised us: `sample_keys_match_investigation` incorrectly coupled every future experiment to the historical G5A keys used only to measure FP16 batch-shape variation. This converted a valid cross-experiment scorer check into an impossible global candidate-identity requirement.
+What we learned: Shared scorer invariants are model contract, finite bounded numerical behavior, and stable ordering. Candidate identity and text provenance belong to an experiment-scoped deterministic control, not to a prior experiment's investigation fixture. Reboot recovery must distinguish a live lock from stale `RUNNING` state without deleting durable work.
+Decision: Resume only the 15,368 NULL score rows under the persistent scorer after the experiment-scoped gate passes. Do not repeat embeddings, candidates, or the 13,432 reused scores.
+Next question: Does the completed G1A ~10K package pass control replay and the mandatory scientific audit?
+Cost/resources: No acquisition, extraction, chunking, embedding, candidate generation, or completed reranking was repeated. The gate-only verification loaded the pinned GPU scorer once and scored eight controls.
+Evidence: `data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32`, its streaming bitmap/checkpoint, `data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite`, `artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json`, and the Phase 10E G1A run log/state.
+Commit: this checkpoint.

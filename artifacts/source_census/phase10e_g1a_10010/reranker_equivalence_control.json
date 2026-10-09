@@ -1,0 +1,80 @@
+{
+  "format_version": 1,
+  "experiment": "phase10e_g1a_10010",
+  "selection_rule": "first exact reused (query_id, chunk_id) keys in ascending deterministic order",
+  "source_score_database": "data\\source_census\\depth1000\\round1\\source_scores.sqlite",
+  "destination_score_database": "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite",
+  "investigation_artifact": "artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json",
+  "contract": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "tokenizer_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "batch_size": 2,
+    "max_length": 512,
+    "precision": "float16",
+    "eval_mode": true,
+    "padding": true,
+    "truncation": "longest_first",
+    "score_extraction": "logits.reshape(-1).float().cpu().numpy()",
+    "input_order": "query, chunk"
+  },
+  "pairs": [
+    {
+      "query_id": 1,
+      "chunk_id": "175039-4786e5454247fd69cfcb666e",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "7c851fa3dbdb4ceb21a863cff392f5d4c692ce9e321e98b4f10eb9a691ddaf68",
+      "reference_score": 0.5380859375
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "177217-4277ff8a5d7754174a8e811a",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "8c523e55638244cf94349a58c8d88839ad89232b53c3029ce7f3c78de49d0e14",
+      "reference_score": 2.22265625
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551065-26946190e2d78dea63847139",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "abbc3d0375eb8612c59d63d3c81cfa72d24610f3045a4e5809c7d1a8d83e7045",
+      "reference_score": -9.34375
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551065-a688b08efdb08493d1b36c69",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "0e84bf89d5e3f554ea75bbc220d80e9f5c7362ce69288808018835d60a2455ee",
+      "reference_score": -7.33203125
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551065-d832105a1572c31894e11253",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "b083f4493e9a4edc72d6ca05ac8de87ed65bd7a1003b57305817e11ccb6b1fba",
+      "reference_score": -9.78125
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551069-2fe9ddd42468c568b7073e1d",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "80d6c33a26bed34916e07cd87366899a6eab708df36a909bfa07643486f79fce",
+      "reference_score": -6.43359375
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551070-1f82e1ded7cee84da9d3ed26",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "65ac71a2d0d13af145458d9bdf0e12b50b2265357f8abb1f78fd26a2d9abd16f",
+      "reference_score": -7.53515625
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "2551071-c8641239c0d7174d03f14c66",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "b49046d31466c86cf11a919d18d9ddc797d04c0e4e75893e62dc3538610d19b2",
+      "reference_score": -10.828125
+    }
+  ],
+  "exact_reuse_verified": true
+}

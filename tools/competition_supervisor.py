@@ -49,6 +49,52 @@ def prevent_sleep(active: bool) -> None:
             raise ctypes.WinError()
 
 
+def process_alive(pid: int) -> bool:
+    if pid <= 0:
+        return False
+    if sys.platform == "win32":
+        handle = ctypes.windll.kernel32.OpenProcess(0x1000, False, pid)
+        if not handle:
+            return False
+        code = ctypes.c_ulong()
+        ok = ctypes.windll.kernel32.GetExitCodeProcess(handle, ctypes.byref(code))
+        ctypes.windll.kernel32.CloseHandle(handle)
+        return bool(ok and code.value == 259)
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+
+
+def recover_stale_run(run: Path, run_id: str) -> dict[str, Any] | None:
+    """Mark a dead lock owner as interrupted without touching checkpoints."""
+    lock=run/"run.lock"
+    if not lock.exists():
+        return None
+    raw=lock.read_text(encoding="utf-8",errors="replace")
+    try:
+        pid=int(next(part.split("=",1)[1] for part in raw.split() if part.startswith("pid=")))
+    except (StopIteration,ValueError,IndexError):
+        pid=-1
+    if process_alive(pid):
+        raise FileExistsError(f"live run owner pid={pid}: {lock}")
+    state_path=run/"state.json"; events=run/"events.jsonl"
+    try:
+        prior=json.loads(state_path.read_text(encoding="utf-8"))
+    except Exception:
+        prior={}
+    recovered={
+        **prior,"run_id":run_id,"status":"STALE_RUNNING",
+        "interrupted_pid":pid,"checkpoint_preserved":True,
+        "stale_detected_at":dt.datetime.now(dt.timezone.utc).isoformat(),
+    }
+    atomic_json(state_path,recovered)
+    event(events,"STALE_RUN_DETECTED",interrupted_pid=pid,checkpoint_preserved=True)
+    lock.unlink()
+    return recovered
+
+
 def gpu_state() -> str:
     try:
         return subprocess.run(
@@ -101,15 +147,18 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     run = root / "artifacts" / "runs" / args.run_id
     logs = run / "logs"; logs.mkdir(parents=True, exist_ok=True)
-    lock = run / "run.lock"
+    lock = run / "run.lock"; state_path = run / "state.json"; events = run / "events.jsonl"
     try:
+        recovered=recover_stale_run(run,args.run_id)
         descriptor = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
     except FileExistsError:
         print(f"duplicate run refused: {lock}", file=sys.stderr); return 73
-    os.write(descriptor, f"pid={os.getpid()}\n".encode()); os.close(descriptor)
-    state_path = run / "state.json"; events = run / "events.jsonl"; log_path = logs / "worker.log"
+    os.write(descriptor, f"pid={os.getpid()}\nrun_id={args.run_id}\n".encode()); os.close(descriptor)
+    log_path = logs / "worker.log"
     started = time.time()
     state = {"run_id": args.run_id, "status": "RUNNING", "stage": "STARTING", "started_at": dt.datetime.now(dt.timezone.utc).isoformat(), "command": args.command}
+    if recovered:
+        state["recovered_from"]={"status":"STALE_RUNNING","interrupted_pid":recovered.get("interrupted_pid"),"last_stage":recovered.get("stage"),"last_successful_checkpoint":recovered.get("last_successful_checkpoint")}
     atomic_json(state_path, state); atomic_json(run / "manifest.json", state); event(events, "RUN_STARTED", command=args.command)
     prevent_sleep(True)
     exit_code = -1
