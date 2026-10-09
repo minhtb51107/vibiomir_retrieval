@@ -599,3 +599,21 @@ Next question: After embeddings complete, does G6B 15K pass fixed-policy candida
 Cost/resources: No acquisition, extraction, chunking, assembly, or completed embedding row was repeated. Only read-only checkpoint and finite-vector verification was performed before relaunch.
 Evidence: `data/source_census/phase10e_g6b_15000/round1/chunk_embeddings.streaming.checkpoint.json`, `.streaming.status.u8`, `.streaming.partial`, and `artifacts/runs/phase10e_g6b_15000/state.json`.
 Commit: this checkpoint.
+
+## Phase 10E — G6B focused scaling to 15K official IDs
+
+Date: 2026-10-10 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10E G6B focused scaling / pending this checkpoint
+Question: Does G6B retain organizer-relevant signal when all three sources scale from about 1,000 to 5,000 official IDs each?
+Why we tried it: Corrected G6B depth1000 reached organizer FINAL `0.0045`, exceeding corrected G5A at comparable depth and justifying one independent focused-scaling checkpoint.
+Hypothesis: Increasing only G6B corpus depth under the fixed retrieval and submission contract would expose additional organizer-relevant documents and chunks.
+What we changed: Increased `tiemchunglongchau.com.vn`, `cancer.39.net`, and `suckhoedoisong.vn` to 5,000 official IDs each. The final searchable corpus contained 15,000 official rows, 14,908 usable documents, and 190,102 chunks.
+What stayed fixed: All 1,200 queries, pilot control corpus, `m=8` source candidate cap, BGE-M3 dense retrieval, BM25/RRF policy, pinned BGE reranker revision, FP16 batch 2 and maximum length 512, top-10 documents, top-20 source-verbatim chunks, deterministic tie-breaking, provenance, and scientific validation gates.
+Result: Organizer FINAL reached `0.0140`; document F2/precision/recall were `0.0145/0.0762/0.0128`, and chunk F2/precision/recall were `0.0134/0.0697/0.0119`. This compares with corrected G6B depth1000 FINAL `0.0045`, an approximately 3.11x increase.
+What failed / surprised us: G6B scaled strongly but remained below independently validated G1A 10K FINAL `0.0234`. This does not show whether the groups retrieve overlapping or complementary gold documents.
+What we learned: G6B has organizer-confirmed positive depth scaling, independently of G1A. Scores cannot be assumed additive, so complementarity must be tested by full cross-source ranking competition rather than concatenating final lists.
+Decision: Mark `phase10e_G6B_15000.zip` `SUBMITTED_VALID`. Run one no-acquisition G1A 10K + G6B 15K union experiment, reusing exact embeddings and reranker scores but rebuilding final cross-source rankings. Do not start deeper acquisition yet.
+Next question: Does the union improve organizer performance beyond G1A alone?
+Cost/resources: 15,000 official rows, 14,908 usable documents, 190,102 chunks, 28,800 candidate pairs, 5,836 exact reused reranker scores, and 22,964 necessary new inferences; detailed stage costs are in the Phase 10E report.
+Evidence: `artifacts/source_census/phase10e_g6b_15000_report.json`, `artifacts/validation/phase10e_g6b_15000_pre_submit_audit.json`, `submissions/10_SUBMITTED_VALID/phase10e_G6B_15000.zip`, and organizer metrics supplied by the project owner.
+Commit: pending this checkpoint.

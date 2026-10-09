@@ -636,6 +636,19 @@
         "size_bytes": 24785498,
         "sha256": "5645aaf0cc2715cb9c5d9ecf435b972bcd1fdd2007ceabb3c87251cf35461f5b"
       }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10e_G6B_15000.zip",
+        "size_bytes": 22282028,
+        "sha256": "2185d4142bd7ee36c03c488b9bb01f85d2455979ecfbdf1c21324aa365f768db"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10e_G6B_15000.zip",
+        "size_bytes": 22282028,
+        "sha256": "2185d4142bd7ee36c03c488b9bb01f85d2455979ecfbdf1c21324aa365f768db"
+      }
     }
   ]
 }

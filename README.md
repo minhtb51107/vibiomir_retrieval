@@ -21,14 +21,17 @@ precision, recall, and recall-weighted F2 metrics.
 > | Corrected G6B depth1000 | 2,910 | `0.0045` |
 > | Phase 10E G5A 11.2K | 11,200 | `0.0085` |
 > | Phase 10E G1A 10K | 10,010 | `0.0234` |
+> | Phase 10E G6B 15K | 15,000 official IDs / 14,908 usable | `0.0140` |
 >
 > G1A scaled to **10,010 official documents / 131,166 chunks** and reached
 > organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
 > This is strong organizer-confirmed depth scaling, not evidence that future
 > scaling will remain linear or that G1A contains most gold documents.
 >
-> The next authorized experiment is the prepared G6B 15K checkpoint. No deeper
-> G1A or G5A run is authorized concurrently.
+> G6B independently scaled from corrected depth1000 FINAL `0.0045` to `0.0140`
+> at 15,000 official IDs. The next experiment is a **zero-acquisition G1A 10K
+> + G6B 15K union test** of complementarity. No deeper acquisition is authorized
+> until that result is observed.
 
 ## Current ready submissions
 
@@ -39,10 +42,9 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The three previously ready packages—G5A 11.2K and corrected G1A/G6B
-depth1000—now have organizer-confirmed results and are archived as
-`SUBMITTED_VALID`. At this checkpoint there is no stale package to upload;
-consult the manifest after the G1A focused run completes.
+Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
+are archived as `SUBMITTED_VALID`. Consult the registry for the exact current
+upload candidate; ZIP existence alone is not readiness evidence.
 
 > [!CAUTION]
 > **NEVER upload anything from
@@ -113,7 +115,7 @@ the evidence and detailed results.
 | 10B | Search discovery, acquisition benchmark, source probe | Complete. Public/site search was insufficient; bounded source acquisition exposed strong domain differences. |
 | 10C | S4 targeting and source scaling | Complete. Metadata targeting failed, while broad S4 scaling from 1K to 5K improved organizer FINAL from `0.0004` to `0.0014`. |
 | 10D | Adaptive source census and depth testing | Complete for current checkpoints. Group tests isolated priority trios; corrected G5A depth1000 showed positive scaling. |
-| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`; G1A 10K reached `0.0234`; prepared G6B 15K is the next authorized checkpoint. |
+| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`, G1A 10K reached `0.0234`, and G6B 15K reached `0.0140`. The next test combines G1A and G6B without new acquisition. |
 
 Detailed history:
 
@@ -144,6 +146,9 @@ Detailed history:
   from corrected depth1000 `0.0062` to `0.0234` at 10,010 official documents,
   while every reported precision/recall metric also increased. Later depth
   checkpoints still require independent organizer confirmation.
+- **G6B also scales positively.** Its organizer FINAL rose from corrected
+  depth1000 `0.0045` to `0.0140` at 15,000 official IDs. Whether its signal is
+  complementary to G1A remains an unanswered organizer-level question.
 - **Document count is not content volume.** At Phase 10E, the three G5A sources
   have materially different chunks per document: 1,200/18,726, 5,000/14,894,
   and 5,000/59,148 documents/chunks respectively.
