@@ -23,6 +23,7 @@ precision, recall, and recall-weighted F2 metrics.
 > | Phase 10E G1A 10K | 10,010 | `0.0234` |
 > | Phase 10E G6B 15K | 15,000 official IDs / 14,908 usable | `0.0140` |
 > | Phase 10E G1A 10K + G6B 15K | 25,010 official IDs / 24,909 usable | `0.0332` |
+> | Phase 10E full nine-source union | 36,210 official IDs / 36,109 usable | `0.0383` |
 >
 > G1A scaled to **10,010 official documents / 131,166 chunks** and reached
 > organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
@@ -32,8 +33,9 @@ precision, recall, and recall-weighted F2 metrics.
 > G6B independently scaled from corrected depth1000 FINAL `0.0045` to `0.0140`
 > at 15,000 official IDs. Their zero-acquisition union reached organizer FINAL
 > `0.0332`, confirming complementary signal beyond G1A alone. The nine-source
-> union adding organizer-valid G5A 11.2K is now `READY_FOR_LEADERBOARD`; its
-> organizer result is pending.
+> union adding organizer-valid G5A 11.2K reached organizer FINAL `0.0383`.
+> Three no-acquisition leave-out/resurrection probes are the final information
+> tests before the leaderboard quota resets.
 
 ## Current ready submissions
 
@@ -44,8 +46,8 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The current upload candidate is
-`phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.zip` (organizer result pending).
+The three pre-reset probe packages are not yet ready. Consult the submission
+registry rather than selecting a ZIP by filename.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

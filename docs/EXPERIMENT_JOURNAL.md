@@ -546,6 +546,24 @@ Cost/resources: No acquisition, extraction, chunking, embedding, candidate gener
 Evidence: `data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32`, its streaming bitmap/checkpoint, `data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite`, `artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json`, and the Phase 10E G1A run log/state.
 Commit: this checkpoint.
 
+## Phase 10E — Full nine-source union organizer result
+
+Date: 2026-10-10 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10E focused corpus scaling / pending this checkpoint
+Question: Does organizer-valid G5A add complementary signal beyond G1A+G6B?
+Why we tried it: G1A+G6B reached FINAL `0.0332`, while G5A independently reached `0.0085`.
+Hypothesis: Some G5A documents remain complementary after full competition with the stronger union.
+What we changed: Added the three G5A sources to the six-source union and recomputed rankings from cached source candidates and exact scores.
+What stayed fixed: Queries, pilot corpus, `m=8`, retrieval/fusion, model revisions, reranker policy, top-10/top-20 output, verbatim provenance, and deterministic tie-breaking.
+Result: Organizer FINAL reached `0.0383`; document F2/precision/recall were `0.0379/0.1796/0.0338`, and chunk F2/precision/recall were `0.0387/0.1465/0.0354`.
+What failed / surprised us: G5A added measurable value but less than its independent score, again showing overlap and competition between source families.
+What we learned: The full nine-source union is the strongest organizer-valid baseline. Marginal-source evidence now has greater decision value than another blind depth increase.
+Decision: Use the final three pre-reset slots for leave-out Medlatec, leave-out Sức Khỏe Đời Sống, and shallow Round-3 resurrection probes. Do not acquire deeper data yet.
+Next question: Which source contributes the most marginal value, and do eliminated shallow groups contain complementary gold?
+Cost/resources: No new acquisition or model inference was required for the scored union.
+Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_g5a11200_union_report.json`, its pre-submit audit, and organizer metrics supplied by the project owner.
+Commit: pending this checkpoint.
+
 ## Phase 10E — G1A focused scaling to 10,010 official documents
 
 Date: 2026-10-09 (organizer-confirmed result supplied by the project owner)
