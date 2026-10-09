@@ -22,8 +22,12 @@ def load_model(config,measurements):
     from sentence_transformers import SentenceTransformer
     model_cfg=config["models"]["embedder"]
     measurements.append({"phase":"before_model_load",**process_memory(),**gpu_memory(torch)})
-    started=time.perf_counter(); model=SentenceTransformer(model_cfg["name"],revision=model_cfg["revision"],device="cpu")
-    model.max_seq_length=int(model_cfg["max_length"]); model.half(); model.to("cuda")
+    # Load the already-required inference dtype directly. Loading FP32 on CPU,
+    # casting, and then moving to CUDA transiently duplicates model storage and
+    # intermittently crashes c10.dll on the 5.69 GiB host. The resulting model
+    # remains the same pinned FP16 CUDA scorer used by the original contract.
+    started=time.perf_counter(); model=SentenceTransformer(model_cfg["name"],revision=model_cfg["revision"],device="cuda",model_kwargs={"torch_dtype":torch.float16})
+    model.max_seq_length=int(model_cfg["max_length"])
     measurements.append({"phase":"model_loaded","seconds":time.perf_counter()-started,**process_memory(),**gpu_memory(torch)})
     return model,torch
 

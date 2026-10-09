@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -90,7 +91,11 @@ def main() -> int:
         assembly=json.loads((Path(out["artifacts"])/"corpus_assembly.json").read_text(encoding="utf-8"))
         embedding=json.loads((Path(out["artifacts"])/"embedding_summary.json").read_text(encoding="utf-8"))
     if args.resume_from in {"full","embeddings"}:
-        stage(state,"EMBEDDINGS"); embedding=assemble_embeddings(config,state)
+        stage(state,"EMBEDDINGS")
+        # Replace this PyArrow/NumPy-heavy orchestrator at the GPU boundary.
+        # The continuation parent uses only the standard library, preserving
+        # host RAM for the pinned BGE-M3 process before returning downstream.
+        os.execv(python,[python,"tools/phase10e_embedding_continuation.py","--config",args.config,"--run-state",args.run_state])
     union=verify_union(config)
     if args.resume_from!="rerank":
         stage(state,"SOURCE_CANDIDATES",completed_sources=0,total_sources=len(sources),total_query_source_pairs=1200*len(sources),completed_query_source_pairs=0)
