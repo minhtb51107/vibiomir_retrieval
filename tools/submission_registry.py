@@ -17,7 +17,7 @@ FOLDERS={
     "VALID_CONTROL":"20_VALID_CONTROLS","SUPERSEDED_VALID":"30_SUPERSEDED_VALID",
     "INVALID_DO_NOT_SUBMIT":"90_INVALID_DO_NOT_SUBMIT","UNKNOWN_REVIEW_REQUIRED":"99_REVIEW_REQUIRED",
 }
-READY={"phase10d_DEPTH1000_FIXED_G1A.zip","phase10d_DEPTH1000_FIXED_G6B.zip","phase10e_G5A_11200.zip"}
+READY=set()
 INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip","smoke_medlatec_do_not_submit.zip"}
 SUPERSEDED={
     "phase9_B_pure_top3_mean.zip","phase9_C_max3_best_chunk.zip","phase9_D_controlled_best_chunk.zip",
@@ -44,12 +44,12 @@ def digest(path: Path) -> str:
 
 def classify(path: Path, leaderboard: dict[str,dict[str,str]]) -> str:
     name=path.name; stem=path.stem
-    if name in READY: return "READY_TO_SUBMIT"
     if name in INVALID: return "INVALID_DO_NOT_SUBMIT"
     if name in CONTROLS: return "VALID_CONTROL"
-    if name in SUPERSEDED: return "SUPERSEDED_VALID"
     key=ALIASES.get(stem,stem)
     if key in leaderboard: return "SUBMITTED_VALID"
+    if name in READY: return "READY_TO_SUBMIT"
+    if name in SUPERSEDED: return "SUPERSEDED_VALID"
     return "UNKNOWN_REVIEW_REQUIRED"
 
 
@@ -124,14 +124,16 @@ def rebuild(output: Path) -> list[dict[str,str]]:
 
 
 def organize() -> list[dict[str,object]]:
-    """Move root ZIPs into lifecycle folders, retaining byte-level evidence."""
+    """Move submission ZIPs into lifecycle folders, retaining byte evidence."""
     with (ROOT/"docs/leaderboard_history.csv").open(encoding="utf-8",newline="") as handle:
         leaderboard={row["submission"]:row for row in csv.DictReader(handle)}
     submission_root=(ROOT/"submissions").resolve(); records=[]
-    for source in sorted((ROOT/"submissions").glob("*.zip")):
+    for source in sorted((ROOT/"submissions").rglob("*.zip")):
         status=classify(source,leaderboard); destination=(ROOT/"submissions"/FOLDERS[status]/source.name).resolve()
         if submission_root not in destination.parents:
             raise ValueError(f"unsafe submission destination: {destination}")
+        if source.resolve() == destination:
+            continue
         if destination.exists():
             raise FileExistsError(f"refusing to overwrite: {destination}")
         before={"path":source.relative_to(ROOT).as_posix(),"size_bytes":source.stat().st_size,"sha256":digest(source)}
@@ -141,7 +143,10 @@ def organize() -> list[dict[str,object]]:
             raise RuntimeError(f"byte-integrity failure moving {source.name}")
         records.append({"status":status,"before":before,"after":after})
     report=ROOT/"artifacts/submission_registry_cleanup.json"; report.parent.mkdir(parents=True,exist_ok=True)
-    temporary=report.with_suffix(".json.tmp"); temporary.write_text(json.dumps({"moved":records},indent=2)+"\n",encoding="utf-8"); os.replace(temporary,report)
+    prior=[]
+    if report.exists():
+        prior=json.loads(report.read_text(encoding="utf-8")).get("moved",[])
+    temporary=report.with_suffix(".json.tmp"); temporary.write_text(json.dumps({"moved":[*prior,*records]},indent=2)+"\n",encoding="utf-8"); os.replace(temporary,report)
     return records
 
 

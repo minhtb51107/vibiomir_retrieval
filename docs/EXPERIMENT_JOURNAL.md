@@ -311,6 +311,24 @@ Cost/resources: 4,000 new S4 fetch/extract/chunk records, 18,594 newly embedded 
 Evidence: `artifacts/phase10c1_three_way/`, `artifacts/phase10c1_early_release/C1_early_release.json`, and `submissions/phase10c1_C1_S4_5k.zip`; organizer metrics supplied by the project owner.
 Commit: pending review; no commit requested yet.
 
+## Phase 10E organizer checkpoint — prioritize G1A focused scaling
+
+Date: 2026-10-09
+Phase / commit: Phase 10E organizer checkpoint / pending checkpoint
+Question: After corrected depth-1000 scoring and the first focused G5A expansion, which source trio should receive the next bounded acquisition budget?
+Why we tried it: Source census isolated G1A, G5A, and G6B, but their organizer-valid scaling results were not yet all available. The next acquisition decision required organizer evidence rather than local ranking movement.
+Hypothesis: Source depth matters, but relevant-document density differs enough across source families that the highest-yield trio may deserve the next checkpoint even when another family has the highest absolute score.
+What we changed: No retrieval experiment changed in this checkpoint. We recorded three organizer-confirmed results and selected the next predeclared corpus-depth experiment.
+What stayed fixed: Organizer metrics are recorded verbatim; corrupted depth-1000 submissions remain invalid and excluded. No source-level attribution within a trio is claimed.
+Result: Corrected G1A depth1000 reached FINAL `0.0062` at exactly 2,005 usable documents and 26,116 chunks (Medlatec 996/19,559; v.familydoctor 10/22; Vinmec 999/6,535). Corrected G6B depth1000 reached FINAL `0.0045` at 2,910 usable documents. G5A at 11,200 searchable documents and 92,768 chunks reached FINAL `0.0085`, up from corrected G5A depth1000 FINAL `0.0037` at 2,997 usable documents. Full organizer metrics are recorded in `docs/leaderboard_history.csv`.
+What failed / surprised us: Absolute corpus size alone did not explain organizer yield. G1A approached the much larger G5A score with fewer than one fifth as many documents, while G6B also exceeded corrected G5A at roughly the same depth.
+What we learned: Source depth is important, but source quality or gold density differs materially. G1A is the highest-yield corpus per document among the tested priority trios; this does not prove that it is globally best or that its yield will persist at greater depth. G5A remains a proven scalable family, and G6B remains a justified reserve track.
+Decision: Run one G1A focused checkpoint with Medlatec and Vinmec targeted to 5,000 official IDs each and all 10 v.familydoctor IDs. Do not start G5A 21.2K or G6B 15K.
+Next question: Does G1A retain its high organizer yield when Medlatec and Vinmec scale from about 1K to 5K official IDs each?
+Cost/resources: Documentation and registry update only at this boundary; the G1A delta and operational projections must be computed from durable artifacts before acquisition.
+Evidence: Organizer metrics supplied by the project owner; `artifacts/source_census/depth1000_fixed_report.json`; `artifacts/validation/phase10d_depth1000_fixed_pre_submit_audit.json`; `artifacts/source_census/phase10e_g5a_11200_report.json`; and `artifacts/validation/phase10e_g5a_11200_pre_submit_audit.json`.
+Commit: pending Git checkpoint.
+
 ## Phase 10D Round 3 — Shallow trio baselines and depth-scaling decision
 
 Date: 2026-10-08 (organizer-confirmed results supplied by the project owner)

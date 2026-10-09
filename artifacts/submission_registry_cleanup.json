@@ -584,6 +584,45 @@
         "size_bytes": 24290901,
         "sha256": "4ecfa3c365a8c4a24465917a3f5bc53eac49408ea73e234341ac66b1b47ba5d3"
       }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10d_DEPTH1000_FIXED_G1A.zip",
+        "size_bytes": 23022772,
+        "sha256": "2b9034fe452c66bc3e8539317dd28d501c388aa14c0dcf5ddfbc301d25d6ecfb"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10d_DEPTH1000_FIXED_G1A.zip",
+        "size_bytes": 23022772,
+        "sha256": "2b9034fe452c66bc3e8539317dd28d501c388aa14c0dcf5ddfbc301d25d6ecfb"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10d_DEPTH1000_FIXED_G6B.zip",
+        "size_bytes": 20880664,
+        "sha256": "01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10d_DEPTH1000_FIXED_G6B.zip",
+        "size_bytes": 20880664,
+        "sha256": "01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10e_G5A_11200.zip",
+        "size_bytes": 22678789,
+        "sha256": "6881d21914aa44e307254f352354439077426f043c0e6f8c4d4f2afea12fb635"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10e_G5A_11200.zip",
+        "size_bytes": 22678789,
+        "sha256": "6881d21914aa44e307254f352354439077426f043c0e6f8c4d4f2afea12fb635"
+      }
     }
   ]
 }

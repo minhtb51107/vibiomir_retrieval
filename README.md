@@ -10,20 +10,24 @@ precision, recall, and recall-weighted F2 metrics.
 > [!IMPORTANT]
 > ## Current status — Phase 10E: Focused Corpus Scaling
 >
-> The strongest organizer-confirmed depth-scaling evidence is the G5A source
-> trio:
+> Organizer-confirmed scaling now shows both depth effects and substantial
+> source-density differences:
 >
-> | Checkpoint | Organizer FINAL |
-> |---|---:|
-> | Shallow G5A, about 100 documents/source | `0.0009` |
-> | Corrected G5A, up to 1,000 documents/source | `0.0037` |
+> | Checkpoint | Searchable documents | Organizer FINAL |
+> |---|---:|---:|
+> | Shallow G5A | about 300 | `0.0009` |
+> | Corrected G5A depth1000 | 2,997 | `0.0037` |
+> | Corrected G1A depth1000 | 2,005 | `0.0062` |
+> | Corrected G6B depth1000 | 2,910 | `0.0045` |
+> | Phase 10E G5A 11.2K | 11,200 | `0.0085` |
 >
-> The current Phase 10E G5A checkpoint contains **11,200 searchable documents**
-> and **92,768 chunks**. It passed the mandatory scientific audit and is
-> `READY_FOR_LEADERBOARD`; its organizer result is **pending**.
+> G5A continued scaling to **11,200 documents / 92,768 chunks**. G1A currently
+> has the highest observed organizer yield per document among the tested
+> priority trios, without establishing global superiority. The next authorized
+> experiment is G1A focused scaling toward 5,000 Medlatec IDs, all 10
+> v.familydoctor IDs, and 5,000 Vinmec IDs.
 >
-> No 21.2K checkpoint or other deeper acquisition is automatically authorized.
-> The 11.2K organizer result must be observed first.
+> G5A 21.2K and G6B 15K remain deferred until the G1A checkpoint is evaluated.
 
 ## Current ready submissions
 
@@ -34,14 +38,10 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The registry currently identifies three ready packages:
-
-- `phase10e_G5A_11200.zip`
-- `phase10d_DEPTH1000_FIXED_G1A.zip`
-- `phase10d_DEPTH1000_FIXED_G6B.zip`
-
-Their organizer results are pending. The G5A 11.2K package has SHA-256
-`6881d21914aa44e307254f352354439077426f043c0e6f8c4d4f2afea12fb635`.
+The three previously ready packages—G5A 11.2K and corrected G1A/G6B
+depth1000—now have organizer-confirmed results and are archived as
+`SUBMITTED_VALID`. At this checkpoint there is no stale package to upload;
+consult the manifest after the G1A focused run completes.
 
 > [!CAUTION]
 > **NEVER upload anything from
@@ -112,7 +112,7 @@ the evidence and detailed results.
 | 10B | Search discovery, acquisition benchmark, source probe | Complete. Public/site search was insufficient; bounded source acquisition exposed strong domain differences. |
 | 10C | S4 targeting and source scaling | Complete. Metadata targeting failed, while broad S4 scaling from 1K to 5K improved organizer FINAL from `0.0004` to `0.0014`. |
 | 10D | Adaptive source census and depth testing | Complete for current checkpoints. Group tests isolated priority trios; corrected G5A depth1000 showed positive scaling. |
-| 10E | Focused corpus scaling | Active. G5A 11.2K is scientifically validated and awaiting its first organizer result. |
+| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`; corrected G1A/G6B reached `0.0062`/`0.0045`. G1A focused scaling is next. |
 
 Detailed history:
 
@@ -134,7 +134,11 @@ Detailed history:
   value at 5K under the fixed pipeline, while S4 improved and corrected G5A
   improved from `0.0009` to `0.0037`.
 - **G5A has one confirmed positive depth interval, not a guaranteed curve.**
-  The project is measuring corpus depth rather than assuming linear gains.
+  G5A continued from corrected `0.0037` to `0.0085`, but the project still
+  measures each checkpoint rather than assuming linear gains.
+- **Per-document yield differs sharply.** Corrected G1A reached `0.0062` with
+  2,005 usable documents, making it the highest-yield tested priority trio per
+  document so far; this is not a claim of global superiority.
 - **Document count is not content volume.** At Phase 10E, the three G5A sources
   have materially different chunks per document: 1,200/18,726, 5,000/14,894,
   and 5,000/59,148 documents/chunks respectively.

@@ -2,13 +2,19 @@
 
 ## CURRENT FILES TO UPLOAD
 
-Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
+Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates. The folder is
+currently empty: all three previously ready packages now have organizer results
+and have moved to `10_SUBMITTED_VALID/`.
 
-| Experiment | ZIP | SHA-256 | Why ready | Organizer result |
-|---|---|---|---|---|
-| Phase 10E G5A 11.2K | `00_READY_TO_UPLOAD/phase10e_G5A_11200.zip` | `6881d21914aa44e307254f352354439077426f043c0e6f8c4d4f2afea12fb635` | Mandatory structural and scientific audits passed, including exact-key cache reuse and corrected-depth1000 control replay. | Pending |
-| Phase 10D corrected G1A depth1000 | `00_READY_TO_UPLOAD/phase10d_DEPTH1000_FIXED_G1A.zip` | `2b9034fe452c66bc3e8539317dd28d501c388aa14c0dcf5ddfbc301d25d6ecfb` | Corrected cache, strict validation, determinism, and mandatory scientific audit passed. | Pending |
-| Phase 10D corrected G6B depth1000 | `00_READY_TO_UPLOAD/phase10d_DEPTH1000_FIXED_G6B.zip` | `01555bd9368ba74c353c6c806ae69e799a09dea797484d5eebc4af7649d5b377` | Corrected cache, strict validation, determinism, and mandatory scientific audit passed. | Pending |
+| Experiment | ZIP | SHA-256 | Status |
+|---|---|---|---|
+| _None_ | — | — | Awaiting the Phase 10E G1A focused-scaling package. |
+
+Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
+
+- `phase10e_G5A_11200.zip` — organizer FINAL `0.0085`
+- `phase10d_DEPTH1000_FIXED_G1A.zip` — organizer FINAL `0.0062`
+- `phase10d_DEPTH1000_FIXED_G6B.zip` — organizer FINAL `0.0045`
 
 The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records current paths, hashes, sizes, validation evidence, and known organizer status. Historical reports retain their original generation-time paths; the manifest records the post-audit lifecycle location.
 
