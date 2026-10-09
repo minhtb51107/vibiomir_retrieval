@@ -635,3 +635,21 @@ Next question: Does the organizer score show complementary G6B signal beyond G1A
 Cost/resources: Zero network acquisition, zero extraction/chunking, zero new embeddings, and zero reranker inference. CPU work was limited to combined ranking, source-window expansion, deterministic packaging, and validation.
 Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json`, `artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json`, and `submissions/00_READY_TO_UPLOAD/phase10e_G1A_10010_G6B_15000_UNION.zip`.
 Commit: this checkpoint.
+
+## Phase 10E — G1A 10K + G6B 15K organizer result
+
+Date: 2026-10-10 (organizer-confirmed result supplied by the project owner)
+Phase / commit: Phase 10E focused corpus scaling / pending this checkpoint
+Question: Do organizer-valid G1A and G6B provide complementary signal when ranked together over the full union?
+Why we tried it: G1A 10K reached FINAL `0.0234` and G6B 15K reached `0.0140`, but separate scores cannot establish overlap or complementarity.
+Hypothesis: Full cross-source competition would improve over G1A alone if G6B contributes distinct relevant documents and chunks.
+What we changed: Added G6B source membership to G1A while reusing exact embeddings and reranker scores and recomputing combined rankings.
+What stayed fixed: Queries, pilot control corpus, `m=8`, retrieval/fusion, BGE-M3 and reranker revisions, FP16 batch 2/max length 512, top-10/top-20 policy, verbatim provenance, and deterministic tie-breaking.
+Result: Organizer FINAL reached `0.0332`; document F2/precision/recall were `0.0334/0.1597/0.0299`, and chunk F2/precision/recall were `0.0331/0.1323/0.0303`. This exceeds G1A alone at `0.0234` and confirms complementary signal.
+What failed / surprised us: The gain is substantial but not additive, reinforcing that source groups must compete under one ranking rather than having their independent scores summed or final lists concatenated.
+What we learned: Independently useful source families can contribute complementary organizer signal under a fixed retrieval contract. Exact cached source-level scores make further controlled union tests inexpensive.
+Decision: Mark the two-group union `SUBMITTED_VALID`. Add organizer-valid G5A 11.2K in one no-acquisition nine-source union before authorizing deeper crawling.
+Next question: Does G5A add complementary relevant documents beyond the G1A+G6B union?
+Cost/resources: No acquisition or new model inference was required for the scored two-group union.
+Evidence: `artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json`, `artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json`, and organizer metrics supplied by the project owner.
+Commit: pending this checkpoint.
