@@ -24,6 +24,9 @@ precision, recall, and recall-weighted F2 metrics.
 > | Phase 10E G6B 15K | 15,000 official IDs / 14,908 usable | `0.0140` |
 > | Phase 10E G1A 10K + G6B 15K | 25,010 official IDs / 24,909 usable | `0.0332` |
 > | Phase 10E full nine-source union | 36,210 official IDs / 36,109 usable | `0.0383` |
+> | Full minus Medlatec | 31,210 official IDs / 31,117 usable | `0.0288` |
+> | Full minus Suckhoedoisong | 31,210 official IDs / 31,110 usable | `0.0351` |
+> | Full plus shallow Round-3 resurrection | 36,994 official IDs / 36,890 usable | `0.0383` |
 >
 > G1A scaled to **10,010 official documents / 131,166 chunks** and reached
 > organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
@@ -34,8 +37,10 @@ precision, recall, and recall-weighted F2 metrics.
 > at 15,000 official IDs. Their zero-acquisition union reached organizer FINAL
 > `0.0332`, confirming complementary signal beyond G1A alone. The nine-source
 > union adding organizer-valid G5A 11.2K reached organizer FINAL `0.0383`.
-> Three no-acquisition leave-out/resurrection probes are now scientifically
-> validated and ready as the final information tests before quota reset.
+> Organizer attribution now shows a `0.0095` marginal FINAL contribution from
+> Medlatec and `0.0032` from Suckhoedoisong. The shallow Round-3 resurrection
+> set produced no measurable FINAL gain at its current depth; this does not
+> establish that those sources cannot become useful after deeper acquisition.
 
 ## Current ready submissions
 

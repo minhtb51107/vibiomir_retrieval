@@ -6,9 +6,7 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| Full union minus Medlatec | `phase10e_FULL_MINUS_MEDLATEC.zip` | `332a49b9e0abe345289352a030d772af9485bddb25e3117a8dd2de5f6f5a227a` | Ready; organizer result pending |
-| Full union minus Suckhoedoisong | `phase10e_FULL_MINUS_SUCKHOEDOISONG.zip` | `5b23ae57f06f89abc70b00891893c4f983536501f091677f1a5abbdca8fd506a` | Ready; organizer result pending |
-| Full union plus shallow Round-3 resurrection sources | `phase10e_FULL_PLUS_R3_RESURRECTION.zip` | `fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5` | Ready; organizer result pending |
+| _None_ | — | — | Three next-source ablations are being prepared. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 
@@ -19,6 +17,9 @@ Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 - `phase10e_G1A_10010_G6B_15000_UNION.zip` — organizer FINAL `0.0332`
 - `phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.zip` — organizer FINAL `0.0383`
 - `phase10d_DEPTH1000_FIXED_G6B.zip` — organizer FINAL `0.0045`
+- `phase10e_FULL_MINUS_MEDLATEC.zip` — organizer FINAL `0.0288`
+- `phase10e_FULL_MINUS_SUCKHOEDOISONG.zip` — organizer FINAL `0.0351`
+- `phase10e_FULL_PLUS_R3_RESURRECTION.zip` — organizer FINAL `0.0383`
 
 The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records current or historical paths, hashes, sizes, validation evidence, known organizer status, and local-retention state. `INTENTIONALLY_PURGED` means the local ZIP was removed through an audited storage cleanup while its scientific status and byte identity remain recorded; it does not make the experiment invalid. Historical reports retain their original generation-time paths; the manifest records the post-audit lifecycle location.
 

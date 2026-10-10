@@ -707,3 +707,21 @@ Next question: Which probe deltas, after organizer scoring, identify the best so
 Cost/resources: CPU-only cached ranking, disk-backed canonical text expansion, deterministic packaging, and validation. Reused 1,039,161 embedding rows across the three evaluated corpora and 326,400 exact reranker scores in total; new model inference and network requests were zero.
 Evidence: `artifacts/source_census/phase10e_final_pre_reset_probes_report.json`, the three `artifacts/validation/phase10e_full_*_pre_submit_audit.json` files, and the registered packages under `submissions/00_READY_TO_UPLOAD/`.
 Commit: this checkpoint.
+
+## Phase 10F — pre-reset source attribution results
+
+Date: 2026-10-10 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 10F source attribution and focused scaling / this checkpoint
+Question: Which current source contributes the greatest marginal organizer-visible value, and do the eliminated shallow Round-3 sources add complementary signal?
+Why we tried it: The nine-source union reached FINAL `0.0383`, but a scaling decision requires marginal evidence rather than independent source-group scores or local ranking movement.
+Hypothesis: Removing a high-value source would reduce organizer score materially, while adding complementary shallow sources could improve the full union without new acquisition.
+What we changed: Submitted three fixed-contract source-membership probes: full union minus `medlatec.vn`, full union minus `suckhoedoisong.vn`, and full union plus the durable shallow G1B/G5B/G6A sources.
+What stayed fixed: Queries, pilot corpus, calibrated `m=8`, retrieval/fusion, model revisions, exact reranker policy, top-10/top-20 output, verbatim provenance, and deterministic tie-breaking.
+Result: FULL_MINUS_MEDLATEC reached FINAL `0.0288`, a `0.0095` decline from the `0.0383` baseline. FULL_MINUS_SUCKHOEDOISONG reached `0.0351`, a `0.0032` decline. FULL_PLUS_R3_RESURRECTION remained at `0.0383`, with no measurable displayed FINAL gain.
+What failed / surprised us: The shallow resurrection corpus changed hundreds of local rankings but produced no displayed organizer gain, again demonstrating that output movement is not relevance evidence. Its flat score does not prove those sources cannot scale at greater depth.
+What we learned: Medlatec currently provides very strong marginal organizer value; Suckhoedoisong provides smaller but positive marginal value. The shallow resurrection set does not presently justify priority over already validated sources.
+Decision: Scale only Medlatec from 5K toward 10K while retaining the other eight union sources unchanged. In parallel, prepare zero-acquisition leave-one-out probes for Vinmec, Tiemchunglongchau, and Hellobacsi to identify the next scaling target.
+Next question: What is Medlatec's depth response at 7.5K and 10K, and which of Vinmec, Tiemchunglongchau, or Hellobacsi has the largest current marginal value?
+Cost/resources: Organizer evaluation only; probe construction previously required no acquisition or new model inference.
+Evidence: `docs/leaderboard_history.csv`, the three Phase 10E probe audits, and organizer metrics supplied by the project owner.
+Commit: this checkpoint.

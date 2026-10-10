@@ -675,6 +675,45 @@
         "size_bytes": 26738294,
         "sha256": "40f11379b2c23190ffcf54a884709e9a203e45a65bf7259a7f7de8b75e61048e"
       }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10e_FULL_MINUS_MEDLATEC.zip",
+        "size_bytes": 25697134,
+        "sha256": "332a49b9e0abe345289352a030d772af9485bddb25e3117a8dd2de5f6f5a227a"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10e_FULL_MINUS_MEDLATEC.zip",
+        "size_bytes": 25697134,
+        "sha256": "332a49b9e0abe345289352a030d772af9485bddb25e3117a8dd2de5f6f5a227a"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10e_FULL_MINUS_SUCKHOEDOISONG.zip",
+        "size_bytes": 28509277,
+        "sha256": "5b23ae57f06f89abc70b00891893c4f983536501f091677f1a5abbdca8fd506a"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10e_FULL_MINUS_SUCKHOEDOISONG.zip",
+        "size_bytes": 28509277,
+        "sha256": "5b23ae57f06f89abc70b00891893c4f983536501f091677f1a5abbdca8fd506a"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10e_FULL_PLUS_R3_RESURRECTION.zip",
+        "size_bytes": 26931503,
+        "sha256": "fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase10e_FULL_PLUS_R3_RESURRECTION.zip",
+        "size_bytes": 26931503,
+        "sha256": "fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5"
+      }
     }
   ]
 }
