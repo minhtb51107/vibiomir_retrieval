@@ -725,3 +725,21 @@ Next question: What is Medlatec's depth response at 7.5K and 10K, and which of V
 Cost/resources: Organizer evaluation only; probe construction previously required no acquisition or new model inference.
 Evidence: `docs/leaderboard_history.csv`, the three Phase 10E probe audits, and organizer metrics supplied by the project owner.
 Commit: this checkpoint.
+
+## Phase 10F — Medlatec depth-scaling preflight and ablation packaging safety stop
+
+Date: 2026-10-10
+Phase / commit: Phase 10F source attribution and focused scaling / this checkpoint
+Question: Can three cached source ablations and nested Medlatec 7.5K/10K checkpoints execute safely on the current laptop without changing the validated retrieval contract?
+Why we tried it: Organizer attribution made Medlatec the strongest current scaling priority, while Vinmec, Tiemchunglongchau, and Hellobacsi still require cheap marginal attribution before receiving future acquisition budget.
+Hypothesis: The ablations require zero inference, and acquiring one additional 5K Medlatec tranche should remain bounded under the streaming pipeline if the 20 GiB disk floor holds.
+What we changed: Added fixed-contract ablation and Medlatec configurations, deterministic nested 7.5K/10K ID checkpoints, measured checkpoint-output allowances, and a streaming query-by-query submission comparator. No retrieval, model, or output policy changed.
+What stayed fixed: The organizer-valid nine-source control, all source populations except proposed Medlatec depth, `m=8`, BGE-M3 and reranker revisions, dense/BM25/RRF policy, FP16 batch 2/max length 512, top-10/top-20 policy, verbatim provenance, and deterministic tie-breaking.
+Result: Medlatec has 24,762 official IDs, 5,004 attempted IDs, 4,992 successful/usable documents, and 98,333 current chunks. Reaching 10,000 requires exactly 5,008 deterministic unattempted IDs; the nested 7,500 checkpoint requires the first 2,508 of those IDs. The projection estimates 5,000 new usable documents, 98,491 new chunks/embedding rows, 3.015 GiB retained growth including both union checkpoints, a 4.266 GiB transient peak, and about 4.52 hours end to end. With 22.24 GiB free, projected minimum free space is 17.97 GiB, so preflight correctly failed. The ablation packager also crossed the disk floor through transient pagefile commitment; its incomplete Vinmec ZIP was quarantined and no ablation was marked ready.
+What failed / surprised us: Even a zero-inference package can create several GiB of Windows private/pagefile commitment. The earlier ranking-change comparator amplified this by materializing two text-heavy JSON submissions; it is now streaming, but current disk headroom is still insufficient for a scientifically complete run.
+What we learned: Disk preflight must include model-independent packaging, pagefile/transient commitment, and both requested depth checkpoints—not just retained crawl data. A ZIP from a first pass is not ready without deterministic regeneration and the mandatory audit.
+Decision: Do not launch Medlatec acquisition or resume ablation packaging until D: has at least 26 GiB free. Preserve the deterministic manifest and quarantine the incomplete ZIP under `99_REVIEW_REQUIRED`.
+Next question: After storage is reclaimed, do the three leave-one-source-out scores identify the next source, and does Medlatec continue scaling from 5K to 7.5K and 10K?
+Cost/resources: No network acquisition or model inference. CPU-only packaging was stopped when the disk floor was crossed; all organizer-valid parent artifacts remain unchanged.
+Evidence: `artifacts/source_census/phase10f_medlatec_10000_manifest.json`, `artifacts/source_census/phase10f_medlatec_10000/preflight.json`, and `artifacts/source_census/phase10f_source_ablations_status.json`.
+Commit: this checkpoint.

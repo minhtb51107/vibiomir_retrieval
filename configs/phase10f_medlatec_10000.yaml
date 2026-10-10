@@ -1,0 +1,145 @@
+version: 1
+phase: phase10e_focused_scaling
+seed: vibiomir-phase10f-medlatec-10000-v1
+focused_scaling:
+  phase_key: phase10f_medlatec
+  experiment: phase10f_medlatec_10000
+  group: MEDLATEC
+  submission_name: phase10f_MEDLATEC_SOURCE_CACHE
+  scientific_question: Does Medlatec retain organizer-visible marginal value as its official depth increases from 5000 through 7500 to 10000?
+  control_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+  audit_path: artifacts/validation/phase10f_medlatec_10000_source_cache_audit.json
+inputs:
+  corpus: data/raw/links_corpus.parquet
+  queries: data/raw/query.parquet
+  pilot_documents: data/processed/phase3_pilot_documents.parquet
+  pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  pilot_rerank_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  c1_candidate_pool: data/retrieval/phase10c1_early_release/C1/candidate_pool.parquet
+sampling:
+  round1_documents_per_source: 100
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 1
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+triage:
+  minimum_successful_fetches: 1
+  minimum_extracted_documents: 1
+  blocked_fraction: 0.80
+candidate_cache:
+  candidate_caps: [8]
+  calibrated_cap_artifact: artifacts/source_census/depth1000/candidate_cap_calibration.json
+  calibration_document_retention: 0.95
+  calibration_chunk_retention: 0.95
+  dense_depth: 8
+  sparse_depth: 8
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    cache_dir: .cache/huggingface
+    batch_size: 2
+    max_length: 512
+    shard_size: 2000
+    equivalence:
+      investigation_artifact: artifacts/source_census/phase10e_g5a_11200/reranker_equivalence_investigation.json
+      control_artifact: artifacts/source_census/phase10f_medlatec_10000/reranker_equivalence_control.json
+      measured_absolute_tolerance: 0.005859375
+embedding_recovery:
+  profile_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
+  equivalence_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json
+  measured_absolute_tolerance: 0.000732421875
+  measured_minimum_cosine: 0.9995
+  profile_rows: 2048
+  parquet_batch_rows: 128
+  num_workers: 0
+  prefetching: false
+submission:
+  documents_per_query: 10
+  chunks_per_query: 20
+  expansion_tokens: 1024
+  chunk_expansion_tokens: 1024
+outputs:
+  root: data/source_census/phase10f_medlatec_10000
+  artifacts: artifacts/source_census/phase10f_medlatec_10000
+  submissions: submissions/00_READY_TO_UPLOAD
+  serial_crawl_database: data/crawled/phase10f_medlatec_10000_serial_unused.sqlite
+  serial_body_archive: data/crawled/phase10f_medlatec_10000_serial_unused_bodies
+  worker_root: data/crawled/phase10f_medlatec_10000_workers
+  crawl_database: data/crawled/phase10f_medlatec_10000_merged.sqlite
+  body_archive: data/crawled/phase10f_medlatec_10000_merged_bodies
+  processed_parts: data/processed/phase10f_medlatec_10000_parts
+  chunks_parts: data/chunks/phase10f_medlatec_10000_parts
+  documents: data/source_census/phase10f_medlatec_10000/documents.parquet
+  chunks: data/source_census/phase10f_medlatec_10000/chunks.parquet
+phase10f_medlatec:
+  manifest: artifacts/source_census/phase10f_medlatec_10000_manifest.json
+  sampling_seed: vibiomir-phase10f-medlatec-10000-v1
+  targets:
+    medlatec.vn: 10000
+  depth_checkpoints: [7500, 10000]
+  checkpoint_submissions:
+    7500: FULL_MEDLATEC_7500
+    10000: FULL_MEDLATEC_10000
+  fixed_union_sources:
+    - v.familydoctor.com.cn
+    - vinmec.com
+    - tiemchunglongchau.com.vn
+    - cancer.39.net
+    - suckhoedoisong.vn
+    - benhviennhitrunguong.gov.vn
+    - zydcd.com
+    - hellobacsi.com
+  observed_urls_per_minute:
+    medlatec.vn: 59.03
+  fallback_urls_per_minute: 20.0
+  previous_crawl_databases:
+    - data/crawled/source_census_round1_merged.sqlite
+    - data/crawled/source_census_depth1000_merged.sqlite
+    - data/crawled/phase10e_g1a_10010_merged.sqlite
+  previous_documents:
+    - data/source_census/phase10e_g1a_10010/documents.parquet
+  previous_chunks: data/source_census/phase10e_g1a_10010/chunks.parquet
+  previous_embeddings: data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32
+  previous_score_database: data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite
+  previous_candidate_parts: data/source_census/phase10e_g1a_10010/round1/source_candidate_parts
+  new_documents: data/source_census/phase10f_medlatec_10000/new_documents.parquet
+  new_chunks: data/source_census/phase10f_medlatec_10000/new_chunks.parquet
+  planning:
+    evidence:
+      streaming_reference_report: artifacts/source_census/phase10e_g1a_10010_report.json
+    source_baselines:
+      medlatec.vn:
+        official_depth: 5000
+        usable_documents: 4992
+        chunks: 98333
+        clean_utf8_bytes: 46438199
+    reference_incremental_ids: 8005
+    reference_new_chunks: 105050
+    retained_contingency_fraction: 0.15
+    packaging_audit_minutes: 55
+    # Two full-union depth checkpoints need independent candidate/ranking,
+    # canonical-text, deterministic JSON/ZIP, and audit outputs. This bounded
+    # allowance is based on the existing ~1.70 GiB nine-source union workspace,
+    # with immutable source caches hard-linked/reused rather than duplicated.
+    additional_checkpoint_retained_bytes: 1610612736
+    additional_checkpoint_transient_bytes: 536870912
+    reference_retained_paths:
+      - data/crawled/phase10e_g1a_10010_workers
+      - data/crawled/phase10e_g1a_10010_merged.sqlite
+      - data/crawled/phase10e_g1a_10010_merged_bodies
+      - data/processed/phase10e_g1a_10010_parts
+      - data/chunks/phase10e_g1a_10010_parts
+      - data/source_census/phase10e_g1a_10010

@@ -1,0 +1,44 @@
+version: 1
+experiment: phase10f_next_source_ablations
+scientific_question: Which of Vinmec, Tiemchunglongchau, or Hellobacsi has the greatest current marginal organizer-visible value?
+intended_variable: one omitted source from the organizer-valid nine-source union
+expected_source_count: 9
+expected_candidate_pairs: 86400
+base_config: configs/phase10e_g1a_10010.yaml
+comparison_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+canonical_group: FULL_9_CONTROL
+parents:
+  G1A:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com]
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/phase10e_g5a_11200
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+controls:
+  FULL_9_CONTROL:
+    submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+probes:
+  FULL_MINUS_VINMEC:
+    submission_name: phase10f_FULL_MINUS_VINMEC
+    audit: artifacts/validation/phase10f_full_minus_vinmec_pre_submit_audit.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  FULL_MINUS_TIEMCHUNGLONGCHAU:
+    submission_name: phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU
+    audit: artifacts/validation/phase10f_full_minus_tiemchunglongchau_pre_submit_audit.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  FULL_MINUS_HELLOBACSI:
+    submission_name: phase10f_FULL_MINUS_HELLOBACSI
+    audit: artifacts/validation/phase10f_full_minus_hellobacsi_pre_submit_audit.json
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com]
+outputs:
+  root: data/source_census/phase10f_next_source_ablations
+  artifacts: artifacts/source_census/phase10f_next_source_ablations
+  report: artifacts/source_census/phase10f_next_source_ablations_report.json
+  submissions: submissions/00_READY_TO_UPLOAD

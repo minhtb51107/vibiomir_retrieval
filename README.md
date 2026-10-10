@@ -41,6 +41,9 @@ precision, recall, and recall-weighted F2 metrics.
 > Medlatec and `0.0032` from Suckhoedoisong. The shallow Round-3 resurrection
 > set produced no measurable FINAL gain at its current depth; this does not
 > establish that those sources cannot become useful after deeper acquisition.
+> Phase 10F Medlatec 7.5K/10K manifests and three next-source ablation configs
+> are prepared, but execution is currently blocked by the mandatory 20 GiB
+> disk-floor projection. No Medlatec acquisition has started.
 
 ## Current ready submissions
 

@@ -714,6 +714,19 @@
         "size_bytes": 26931503,
         "sha256": "fa5a2bca841869381aae550f39100b93d700c6b03a406e688c1627427c0ca1e5"
       }
+    },
+    {
+      "status": "UNKNOWN_REVIEW_REQUIRED",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10f_FULL_MINUS_VINMEC.zip",
+        "size_bytes": 26200549,
+        "sha256": "91635fac70d8ff3e8eda7fb43509637073ff06f5e899c3ba05b1e3eb5c622247"
+      },
+      "after": {
+        "path": "submissions/99_REVIEW_REQUIRED/phase10f_FULL_MINUS_VINMEC.zip",
+        "size_bytes": 26200549,
+        "sha256": "91635fac70d8ff3e8eda7fb43509637073ff06f5e899c3ba05b1e3eb5c622247"
+      }
     }
   ]
 }

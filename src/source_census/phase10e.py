@@ -68,14 +68,15 @@ def _planning_projection(config,source_rows,free_bytes,crawl_minutes):
     for source in sources:
         current=source_rows[source]; baseline=baselines[source]
         usable=int(baseline["usable_documents"]); successful=max(int(current["already_successful"]),1)
-        projected_new_usable=round(int(current["new_ids_required"])*(usable/successful))
+        observed_official_depth=max(int(baseline.get("official_depth",successful)),1)
+        projected_new_usable=round(int(current["new_ids_required"])*(usable/observed_official_depth))
         projected_final_usable=usable+projected_new_usable
         chunks_per_usable=float(baseline["chunks"])/max(usable,1)
         bytes_per_usable=float(baseline["clean_utf8_bytes"])/max(usable,1)
         source_final_chunks=round(projected_final_usable*chunks_per_usable)
         source_final_clean=round(projected_final_usable*bytes_per_usable)
         row={
-            "observed_usable_yield":usable/successful,
+            "observed_usable_yield":usable/observed_official_depth,
             "projected_new_usable_documents":projected_new_usable,
             "projected_final_usable_documents":projected_final_usable,
             "observed_chunks_per_usable_document":chunks_per_usable,
@@ -90,9 +91,9 @@ def _planning_projection(config,source_rows,free_bytes,crawl_minutes):
     reference_retained=_path_bytes_without_temporary_files(planning["reference_retained_paths"])
     scale=sum(int(source_rows[s]["new_ids_required"]) for s in sources)/float(planning["reference_incremental_ids"])
     contingency=1.0+float(planning.get("retained_contingency_fraction",0.15))
-    retained=round(reference_retained*scale*contingency)
+    retained=round(reference_retained*scale*contingency)+int(planning.get("additional_checkpoint_retained_bytes",0))
     embedding_bytes=final_chunks*int(config["models"]["embedder"]["dimension"])*4
-    transient_peak=retained+embedding_bytes
+    transient_peak=retained+embedding_bytes+int(planning.get("additional_checkpoint_transient_bytes",0))
     reference_new_chunks=int(planning["reference_new_chunks"])
     extraction_seconds=float(reference_report["extraction"]["runtime_seconds"])/int(planning["reference_incremental_ids"])*sum(int(source_rows[s]["new_ids_required"]) for s in sources)
     chunk_seconds=float(reference_report["chunking"]["runtime_seconds"])/reference_new_chunks*new_chunks
@@ -108,14 +109,24 @@ def _planning_projection(config,source_rows,free_bytes,crawl_minutes):
         "projected_final_chunks":final_chunks,"projected_new_embedding_rows":new_chunks,
         "projected_final_clean_utf8_bytes":final_clean,"projected_incremental_clean_utf8_bytes":new_clean,
         "reference_retained_bytes_excluding_temporary_files":reference_retained,
+        "additional_checkpoint_retained_bytes":int(planning.get("additional_checkpoint_retained_bytes",0)),
+        "additional_checkpoint_transient_bytes":int(planning.get("additional_checkpoint_transient_bytes",0)),
         "projected_retained_bytes_with_15pct_contingency":retained,
         "projected_transient_peak_bytes":transient_peak,
         "projected_minimum_free_bytes":free_bytes-transient_peak,
         "disk_gate_passed_at_transient_peak":free_bytes-transient_peak>=float(config["acquisition"]["minimum_free_gib"])*2**30,
         "runtime_seconds":{"concurrent_acquisition":crawl_minutes*60,"extraction":extraction_seconds,"chunking":chunk_seconds,"streaming_embeddings":embedding_seconds,"source_candidates":candidate_seconds,"rerank_conservative":rerank_seconds,"ranking_packaging_audit":package_seconds,"end_to_end_modeled":modeled_seconds,"end_to_end_with_25pct_contingency":modeled_seconds*1.25},
         "streaming_embedding_memory":{"observed_reference_peak_rss_mib":memory.get("observed_peak_rss_mib"),"observed_reference_peak_private_mib":memory.get("observed_peak_private_mib"),"projected_peak_private_mib":memory.get("projected_peak_private_mib"),"scales_with_corpus_rows":False,"parquet_batch_rows":int(config["embedding_recovery"]["parquet_batch_rows"]),"num_workers":int(config["embedding_recovery"]["num_workers"]),"prefetching":bool(config["embedding_recovery"]["prefetching"])},
-        "methodology":"Current source-specific usable/chunk/text density; completed G1A streaming stage rates; measured G1A retained paths excluding *.tmp, scaled by incremental IDs with 15% contingency; transient peak adds one full embedding matrix for transactional output.",
+        "methodology":"Current source-specific usable/chunk/text density; completed G1A streaming stage rates; measured G1A retained paths excluding *.tmp, scaled by incremental IDs with 15% contingency; configured checkpoint-output allowance; transient peak adds one full embedding matrix and configured packaging allowance.",
     }
+
+
+def _depth_checkpoint_ids(successful,incremental,checkpoint,target):
+    checkpoint=min(int(checkpoint),int(target)); checkpoint_need=max(0,checkpoint-len(successful))
+    checkpoint_ids=sorted(successful)+[int(row["doc_id"]) for row in incremental[:checkpoint_need]]
+    if len(checkpoint_ids)!=checkpoint or len(checkpoint_ids)!=len(set(checkpoint_ids)):
+        raise RuntimeError(f"invalid depth checkpoint {checkpoint}")
+    return {"target_depth":checkpoint,"new_ids_required":checkpoint_need,"target_ids":checkpoint_ids}
 
 def prepare_manifest(config,enforce_disk_gate=True):
     _,phase,sources,_,experiment=phase_contract(config); targets={k:int(v) for k,v in phase["targets"].items()}
@@ -137,7 +148,11 @@ def prepare_manifest(config,enforce_disk_gate=True):
         if len(incremental)!=need: raise RuntimeError(f"insufficient unattempted IDs for {source}")
         target_ids=sorted(successful)+[int(row["doc_id"]) for row in incremental]
         if len(target_ids)!=target or len(target_ids)!=len(set(target_ids)): raise RuntimeError(f"invalid target population {source}")
-        sources[source]={"official_population":population,"already_attempted":len(attempted),"already_successful":len(successful),"usable_documents":len(usable[source]),"current_effective_depth":len(usable[source]),"target_depth":target,"new_ids_required":need,"failed_ids_not_retried":sorted(attempted-successful),"target_ids":target_ids,"incremental_records":incremental}
+        checkpoints={}
+        for checkpoint in phase.get("depth_checkpoints",[]):
+            row=_depth_checkpoint_ids(successful,incremental,checkpoint,target)
+            checkpoints[str(row["target_depth"])]=row
+        sources[source]={"official_population":population,"already_attempted":len(attempted),"already_successful":len(successful),"usable_documents":len(usable[source]),"current_effective_depth":len(usable[source]),"target_depth":target,"new_ids_required":need,"failed_ids_not_retried":sorted(attempted-successful),"target_ids":target_ids,"incremental_records":incremental,"depth_checkpoints":checkpoints}
         total+=need
     free=shutil.disk_usage(Path.cwd()).free
     # Measured retained Phase10D directories, excluding submissions, were about

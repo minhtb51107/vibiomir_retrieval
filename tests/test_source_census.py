@@ -210,6 +210,22 @@ def test_union_streaming_json_reader_handles_large_record_boundaries(tmp_path):
     assert list(_iter_json_array(path))==expected
 
 
+def test_union_submission_comparison_streams_exact_semantics(tmp_path):
+    from src.source_census.union_experiment import _compare_submission_signatures
+    reference=tmp_path/"reference.json"; current=tmp_path/"current.json"
+    reference.write_text(json.dumps([
+        {"id":1,"relevant_docs":[1,2],"relevant_chunks":[{"doc_id":1,"chunk_text":"same"}]},
+        {"id":2,"relevant_docs":[3],"relevant_chunks":[{"doc_id":3,"chunk_text":"old"}]},
+    ],separators=(",",":")),encoding="utf-8")
+    current.write_text(json.dumps([
+        {"id":1,"relevant_docs":[1,2],"relevant_chunks":[{"doc_id":1,"chunk_text":"same"}]},
+        {"id":2,"relevant_docs":[4],"relevant_chunks":[{"doc_id":3,"chunk_text":"new"}]},
+    ],separators=(",",":")),encoding="utf-8")
+    assert _compare_submission_signatures(reference,current)=={
+        "queries_compared":2,"queries_top10_docs_changed":1,"queries_top20_chunks_changed":1,
+    }
+
+
 def test_union_canonical_store_is_exact_and_integrity_checked(tmp_path):
     chunks=tmp_path/"chunks.parquet"; documents=tmp_path/"documents.parquet"; database=tmp_path/"canonical.sqlite"
     pq.write_table(pa.table({"chunk_id":["a","b"],"doc_id":[1,2],"raw_text":["one","two"],"start_offset":[0,1],"end_offset":[3,4]}),chunks)
@@ -358,6 +374,30 @@ def test_g6b_reserve_contract_is_fixed_and_not_launched():
     assert config["models"]["reranker"]["equivalence"]["control_artifact"].startswith(
         "artifacts/source_census/phase10e_g6b_15000/"
     )
+
+
+def test_medlatec_depth_checkpoints_are_nested_and_deterministic():
+    from src.source_census.phase10e import _depth_checkpoint_ids
+    successful={9,3}; incremental=[{"doc_id":20},{"doc_id":10},{"doc_id":30}]
+    depth4=_depth_checkpoint_ids(successful,incremental,4,5)
+    depth5=_depth_checkpoint_ids(successful,incremental,5,5)
+    assert depth4=={"target_depth":4,"new_ids_required":2,"target_ids":[3,9,20,10]}
+    assert depth5["target_ids"]==[3,9,20,10,30]
+    assert depth4["target_ids"]==depth5["target_ids"][:4]
+
+
+def test_phase10f_medlatec_contract_prepares_two_depths_only():
+    config=load_config("configs/phase10f_medlatec_10000.yaml")
+    key,phase,sources,group,experiment=phase_contract(config)
+    assert (key,group,experiment)==("phase10f_medlatec","MEDLATEC","phase10f_medlatec_10000")
+    assert sources==["medlatec.vn"]
+    assert phase["targets"]=={"medlatec.vn":10000}
+    assert phase["depth_checkpoints"]==[7500,10000]
+    assert set(phase["fixed_union_sources"])=={
+        "v.familydoctor.com.cn","vinmec.com","tiemchunglongchau.com.vn","cancer.39.net",
+        "suckhoedoisong.vn","benhviennhitrunguong.gov.vn","zydcd.com","hellobacsi.com",
+    }
+    assert all(preflight_contract_checks(config,8,sources).values())
 
 
 def test_phase10e_union_includes_supplemental_previous_chunks(tmp_path):

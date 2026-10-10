@@ -1,0 +1,38 @@
+{
+  "experiment": "phase10f_next_source_ablations",
+  "status": "NEEDS_AGENT",
+  "reason": "The mandatory 20 GiB free-disk floor was crossed by transient pagefile/private-memory commitment during deterministic packaging.",
+  "new_acquisition": 0,
+  "new_embeddings": 0,
+  "new_reranker_inference": 0,
+  "probes": {
+    "FULL_MINUS_VINMEC": {
+      "official_document_rows": 31210,
+      "usable_documents": 31110,
+      "chunks": 381225,
+      "candidate_pairs_expected": 76800,
+      "status": "INCOMPLETE_QUARANTINED",
+      "package": "submissions/99_REVIEW_REQUIRED/phase10f_FULL_MINUS_VINMEC.zip",
+      "note": "A first package pass exists, but deterministic regeneration and the mandatory scientific audit did not complete. Do not upload."
+    },
+    "FULL_MINUS_TIEMCHUNGLONGCHAU": {
+      "official_document_rows": 31210,
+      "usable_documents": 31111,
+      "chunks": 360675,
+      "candidate_pairs_expected": 76800,
+      "status": "NOT_PACKAGED"
+    },
+    "FULL_MINUS_HELLOBACSI": {
+      "official_document_rows": 31210,
+      "usable_documents": 31109,
+      "chunks": 354888,
+      "candidate_pairs_expected": 76800,
+      "status": "NOT_PACKAGED"
+    }
+  },
+  "recovery": {
+    "implementation_fix": "Submission ranking-change comparison now streams one query from each JSON at a time instead of materializing both text-heavy submissions.",
+    "resume_condition": "Free enough D: storage that packaging transient commitment and the Medlatec scaling projection both remain above the 20 GiB floor.",
+    "recommended_free_space_before_resume_gib": 26
+  }
+}

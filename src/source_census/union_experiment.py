@@ -7,6 +7,7 @@ import shutil
 import sqlite3
 import zipfile
 from collections import Counter
+from itertools import zip_longest
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -252,8 +253,19 @@ def _official_id_audit(submission_json: Path, corpus: Path) -> dict:
     return {"unique_emitted_doc_ids":expected,"invalid_official_doc_ids":len(remaining),"passed":not remaining}
 
 
-def _submission_signatures(path: Path) -> dict[int, tuple[list[int], list[tuple[int,str]]]]:
-    return {int(row["id"]):(list(map(int,row["relevant_docs"])),[(int(chunk["doc_id"]),str(chunk["chunk_text"])) for chunk in row["relevant_chunks"]]) for row in _iter_json_array(path)}
+def _submission_signature(row: dict) -> tuple[int,list[int],list[tuple[int,str]]]:
+    return (int(row["id"]),list(map(int,row["relevant_docs"])),[(int(chunk["doc_id"]),str(chunk["chunk_text"])) for chunk in row["relevant_chunks"]])
+
+
+def _compare_submission_signatures(reference: Path, current: Path) -> dict[str,int]:
+    document_changes=chunk_changes=queries=0
+    for expected,observed in zip_longest(_iter_json_array(reference),_iter_json_array(current)):
+        if expected is None or observed is None: raise ValueError("submission query counts differ")
+        expected_id,expected_docs,expected_chunks=_submission_signature(expected)
+        observed_id,observed_docs,observed_chunks=_submission_signature(observed)
+        if expected_id!=observed_id: raise ValueError(f"submission query order differs: {expected_id} != {observed_id}")
+        document_changes+=expected_docs!=observed_docs; chunk_changes+=expected_chunks!=observed_chunks; queries+=1
+    return {"queries_compared":queries,"queries_top10_docs_changed":document_changes,"queries_top20_chunks_changed":chunk_changes}
 
 
 def _reference_json_sha256(row: dict) -> str:
@@ -477,10 +489,10 @@ def run_probe_set(spec_path: str|Path) -> dict:
         reference=_reference_json_sha256(row); package["semantic_replay"]={"passed":reference==package["json_sha256"],"comparison":"byte-identical canonical JSON","reference_sha256":reference,"replay_sha256":package["json_sha256"]}
         controls[group]=package; atomic_json(artifacts/f"submission_{group.lower()}.json",package)
     shared_cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
-    baseline=_submission_signatures(Path(spec["comparison_submission_json"])); outputs={}; any_failure=False
+    baseline=Path(spec["comparison_submission_json"]); outputs={}; any_failure=False
     for group,row in spec["probes"].items():
         package=_stream_package(config,ranking_root,group,row["submission_name"],Path(spec["outputs"]["submissions"]),canonical_db,tokenizer)
-        current=_submission_signatures(Path(package["json_path"])); changes={"queries_top10_docs_changed":sum(baseline[q][0]!=current[q][0] for q in baseline),"queries_top20_chunks_changed":sum(baseline[q][1]!=current[q][1] for q in baseline)}
+        changes=_compare_submission_signatures(baseline,Path(package["json_path"]))
         scoped_scores=_group_score_audit(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts",row["sources"])
         official=_official_id_audit(Path(package["json_path"]),Path(config["inputs"]["corpus"])); subset=_subset_accounting(accounting,row["sources"])
         failures=[]
@@ -532,8 +544,7 @@ def run_union(spec_path: str|Path) -> dict:
         atomic_json(artifacts/f"submission_{group.lower()}.json",controls[group])
     cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
     official=_official_id_audit(Path(union["json_path"]),Path(config["inputs"]["corpus"]))
-    old=_submission_signatures(Path(spec["comparison_submission_json"])); new=_submission_signatures(Path(union["json_path"]))
-    changes={"queries_top10_docs_changed":sum(old[q][0]!=new[q][0] for q in old),"queries_top20_chunks_changed":sum(old[q][1]!=new[q][1] for q in old)}
+    changes=_compare_submission_signatures(Path(spec["comparison_submission_json"]),Path(union["json_path"]))
     failures=[]
     for name,value in (("contract",contract),("source_accounting",accounting),("embeddings",embeddings),("score_cache",cache),("official_ids",official)):
         if not value.get("passed",False): failures.append(name)

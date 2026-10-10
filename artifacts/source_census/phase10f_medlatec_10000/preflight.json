@@ -1,0 +1,51 @@
+{
+  "experiment": "phase10f_medlatec_10000",
+  "group": "MEDLATEC",
+  "passed": false,
+  "failures": [
+    "20 GiB disk gate failed"
+  ],
+  "chosen_m": 8,
+  "calibration_artifact": "artifacts\\source_census\\depth1000\\candidate_cap_calibration.json",
+  "contract": {
+    "chosen_m_is_8": true,
+    "reranker_revision_fixed": true,
+    "embedder_revision_fixed": true,
+    "embedder_dimension_1024": true,
+    "reranker_fp16": true,
+    "reranker_batch_2": true,
+    "reranker_max_length_512": true,
+    "submission_top10_top20": true,
+    "source_targets_match": true,
+    "experiment_scoped_reranker_control": true,
+    "streaming_embeddings_bounded": true
+  },
+  "model_cache": {
+    "embedder_revision_available": true,
+    "reranker_revision_available": true
+  },
+  "control_hashes": {
+    "json": {
+      "path": "submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json",
+      "expected_sha256": null,
+      "actual_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+      "passed": true
+    },
+    "zip": {
+      "path": null,
+      "expected_sha256": null,
+      "actual_sha256": null,
+      "passed": true
+    }
+  },
+  "stale_run_recovery": "competition_supervisor reconciles RUNNING state against recorded process liveness",
+  "dependencies_checked": 21,
+  "writable_directories": [
+    "data\\source_census\\phase10f_medlatec_10000",
+    "artifacts\\source_census\\phase10f_medlatec_10000",
+    "submissions\\00_READY_TO_UPLOAD",
+    "artifacts\\validation"
+  ],
+  "manifest": "artifacts/source_census/phase10f_medlatec_10000_manifest.json",
+  "disk_gate_passed": false
+}
