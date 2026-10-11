@@ -1,0 +1,16 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "sources": [
+    "medlatec.vn",
+    "v.familydoctor.com.cn",
+    "vinmec.com",
+    "tiemchunglongchau.com.vn",
+    "cancer.39.net",
+    "suckhoedoisong.vn",
+    "benhviennhitrunguong.gov.vn",
+    "zydcd.com",
+    "hellobacsi.com"
+  ],
+  "original_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+  "replay_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459"
+}

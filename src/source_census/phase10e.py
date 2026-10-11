@@ -329,33 +329,59 @@ def ensure_reranker_equivalence_control(config, sample_size=8):
     investigation=json.loads(Path(rule["investigation_artifact"]).read_text(encoding="utf-8"))
     dst=sqlite3.connect(f"file:{destination.resolve()}?mode=ro",uri=True)
     src=sqlite3.connect(f"file:{source.resolve()}?mode=ro",uri=True)
-    selected=[]
-    for query_id,chunk_id,query_text,chunk_text,score in dst.execute(
-        "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
-        "WHERE rerank_score IS NOT NULL ORDER BY query_id,chunk_id"
-    ):
-        old=src.execute(
-            "SELECT rerank_score FROM pairs WHERE query_id=? AND chunk_id=?",
-            (int(query_id),str(chunk_id)),
-        ).fetchone()
-        if old is None or float(old[0])!=float(score):
-            continue
-        selected.append({
-            "query_id":int(query_id),"chunk_id":str(chunk_id),
-            "query_text_sha256":_text_sha256(query_text),
-            "chunk_text_sha256":_text_sha256(chunk_text),
-            "reference_score":float(score),
-        })
-        if len(selected)==sample_size:
-            break
+    canonical_path=rule.get("canonical_control_artifact")
+    if canonical_path:
+        canonical=json.loads(Path(canonical_path).read_text(encoding="utf-8"))
+        selected=[]
+        for pair in canonical["pairs"]:
+            row=dst.execute(
+                "SELECT query_text,chunk_text,rerank_score FROM pairs WHERE query_id=? AND chunk_id=?",
+                (int(pair["query_id"]),str(pair["chunk_id"])),
+            ).fetchone()
+            old=src.execute(
+                "SELECT rerank_score FROM pairs WHERE query_id=? AND chunk_id=?",
+                (int(pair["query_id"]),str(pair["chunk_id"])),
+            ).fetchone()
+            if row is None or old is None:
+                raise RuntimeError(f"canonical reranker control key unavailable: {(pair['query_id'],pair['chunk_id'])}")
+            query_text,chunk_text,score=row
+            if (_text_sha256(query_text)!=pair["query_text_sha256"]
+                or _text_sha256(chunk_text)!=pair["chunk_text_sha256"]
+                or float(score)!=float(pair["reference_score"])
+                or float(old[0])!=float(pair["reference_score"])):
+                raise RuntimeError(f"canonical reranker control drift: {(pair['query_id'],pair['chunk_id'])}")
+            selected.append(dict(pair))
+        selection_rule=f"canonical batch-context fixture from {canonical_path}"
+    else:
+        selected=[]
+        for query_id,chunk_id,query_text,chunk_text,score in dst.execute(
+            "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
+            "WHERE rerank_score IS NOT NULL ORDER BY query_id,chunk_id"
+        ):
+            old=src.execute(
+                "SELECT rerank_score FROM pairs WHERE query_id=? AND chunk_id=?",
+                (int(query_id),str(chunk_id)),
+            ).fetchone()
+            if old is None or float(old[0])!=float(score):
+                continue
+            selected.append({
+                "query_id":int(query_id),"chunk_id":str(chunk_id),
+                "query_text_sha256":_text_sha256(query_text),
+                "chunk_text_sha256":_text_sha256(chunk_text),
+                "reference_score":float(score),
+            })
+            if len(selected)==sample_size:
+                break
+        selection_rule="first exact reused (query_id, chunk_id) keys in ascending deterministic order"
     dst.close(); src.close()
     if len(selected)!=sample_size:
         raise RuntimeError(f"insufficient exact-reuse pairs for reranker control: {len(selected)}/{sample_size}")
     result={
         "format_version":1,"experiment":experiment,
-        "selection_rule":"first exact reused (query_id, chunk_id) keys in ascending deterministic order",
+        "selection_rule":selection_rule,
         "source_score_database":str(source),"destination_score_database":str(destination),
         "investigation_artifact":str(rule["investigation_artifact"]),
+        "canonical_control_artifact":str(canonical_path) if canonical_path else None,
         "contract":investigation["contract"],"pairs":selected,
         "exact_reuse_verified":True,
     }

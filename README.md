@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 10E: Focused Corpus Scaling
+> ## Current status — Phase 10F: Source Attribution and Focused Scaling
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -41,9 +41,11 @@ precision, recall, and recall-weighted F2 metrics.
 > Medlatec and `0.0032` from Suckhoedoisong. The shallow Round-3 resurrection
 > set produced no measurable FINAL gain at its current depth; this does not
 > establish that those sources cannot become useful after deeper acquisition.
-> Phase 10F Medlatec 7.5K/10K manifests and three next-source ablation configs
-> are prepared, but execution is currently blocked by the mandatory 20 GiB
-> disk-floor projection. No Medlatec acquisition has started.
+> Phase 10F has now completed the fixed-policy Medlatec depth experiment.
+> The full nine-source union at Medlatec depths 7,500 and 10,000 passed the
+> frozen 5K/full-union control replay, exact cache reconciliation, provenance,
+> structural, and deterministic packaging gates. Organizer results for these
+> two checkpoints are pending; deeper acquisition is not authorized yet.
 
 ## Current ready submissions
 
@@ -54,9 +56,10 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The three current upload candidates are the full union minus Medlatec, the full
-union minus Suckhoedoisong, and the full union plus the shallow Round-3
-resurrection sources. Consult the registry for canonical paths and hashes.
+Current upload candidates are the Medlatec 7,500 and 10,000 full-union depth
+checkpoints plus three leave-one-source-out attribution probes (Vinmec,
+Tiemchunglongchau, and Hellobacsi). Consult the registry for canonical paths
+and hashes.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

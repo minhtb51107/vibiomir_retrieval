@@ -14,6 +14,10 @@ def test_invalid_package_cannot_be_ready():
     assert classify(path,{"phase10d_DEPTH1000_G5A":{"final_score":"0.0002"}})=="INVALID_DO_NOT_SUBMIT"
 
 
+def test_medlatec_source_cache_intermediate_cannot_be_uploaded():
+    assert classify(Path("phase10f_MEDLATEC_SOURCE_CACHE.zip"),{})=="INVALID_DO_NOT_SUBMIT"
+
+
 def test_submitted_evidence_beats_unknown():
     path=Path("phase10d_R1_group_A.zip")
     assert classify(path,{"phase10d_R1_group_A":{"final_score":"0.0016"}})=="SUBMITTED_VALID"
@@ -56,6 +60,16 @@ def test_phase10f_source_ablations_are_ready_only_with_explicit_evidence_paths()
         assert report_for(stem)==(
             "artifacts/source_census/phase10f_next_source_ablations_report.json",
             f"artifacts/validation/{audit}",
+        )
+
+
+def test_phase10f_medlatec_depth_packages_have_explicit_ready_evidence():
+    for depth in (7500,10000):
+        stem=f"FULL_MEDLATEC_{depth}"
+        assert classify(Path(f"{stem}.zip"),{})=="READY_TO_SUBMIT"
+        assert report_for(stem)==(
+            f"artifacts/source_census/phase10f_full_medlatec_{depth}_report.json",
+            f"artifacts/validation/phase10f_full_medlatec_{depth}_pre_submit_audit.json",
         )
 
 

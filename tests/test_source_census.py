@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import numpy as np
 import pyarrow as pa
@@ -24,11 +25,15 @@ from src.source_census.cached_subsets import _require_complete_score_cache
 from src.validation.pre_submission import audit_score_cache, score_distribution
 from src.source_census.union_experiment import (
     _build_canonical_store,
+    _experiment_inference_accounting,
+    _external_control_fixture,
     _filter_parquet,
     _iter_json_array,
     _merge_score_databases,
+    _publish_readiness,
     _reference_json_sha256,
 )
+from src.source_census.phase10f_medlatec import derive_checkpoint_config
 
 
 def test_stable_fold_is_deterministic():
@@ -398,6 +403,51 @@ def test_phase10f_medlatec_contract_prepares_two_depths_only():
         "suckhoedoisong.vn","benhviennhitrunguong.gov.vn","zydcd.com","hellobacsi.com",
     }
     assert all(preflight_contract_checks(config,8,sources).values())
+
+
+def test_phase10f_checkpoint_config_preserves_scientific_contract(tmp_path,monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    # The derivation changes only experiment-scoped output/control locations.
+    base=load_config(Path(__file__).parents[1]/"configs/phase10f_medlatec_10000.yaml")
+    monkeypatch.setattr("src.source_census.phase10f_medlatec.load_config",lambda _:json.loads(json.dumps(base)))
+    derived,runtime=derive_checkpoint_config("unused",7500)
+    assert derived["candidate_cache"]==base["candidate_cache"]
+    assert derived["models"]["embedder"]==base["models"]["embedder"]
+    assert derived["models"]["reranker"]["batch_size"]==2
+    assert derived["models"]["reranker"]["max_length"]==512
+    assert derived["models"]["reranker"]["equivalence"]["canonical_control_artifact"].endswith(
+        "phase10f_medlatec_10000/reranker_equivalence_control.json"
+    )
+    assert derived["outputs"]["root"].endswith("phase10f_medlatec_7500")
+    assert runtime.exists()
+
+
+def test_external_control_fixture_requires_exact_hashes_and_sources(tmp_path):
+    original=tmp_path/"original.json"; replay=tmp_path/"replay.json"
+    original.write_text("[]",encoding="utf-8"); replay.write_text("[]",encoding="utf-8")
+    from src.source_census.union_experiment import _digest
+    digest=_digest(original); artifact=tmp_path/"fixture.json"
+    artifact.write_text(json.dumps({"status":"READY_FOR_LEADERBOARD","sources":["a"],"original_sha256":digest,"replay_sha256":digest}),encoding="utf-8")
+    spec={"control_fixture":{"original_submission_json":str(original),"replay_submission_json":str(replay),"fixture_artifact":str(artifact),"sources":["a"]}}
+    assert _external_control_fixture(spec)["passed"] is True
+    replay.write_text("[{}]",encoding="utf-8")
+    assert _external_control_fixture(spec)["passed"] is False
+
+
+def test_experiment_inference_accounting_distinguishes_packaging(tmp_path):
+    seed=tmp_path/"seed.json"; seed.write_text(json.dumps({"total":9600,"reused":4862,"missing":4738}),encoding="utf-8")
+    result=_experiment_inference_accounting({"experiment_inference":{"seed_summary":str(seed),"expected_new_inference":4738}})
+    assert result["newly_inferred_pairs"]==4738
+    assert result["model_inference_during_packaging"]==0
+    assert result["passed"] is True
+
+
+def test_scientific_gate_replaces_provisional_package_readiness():
+    package={"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY","sha256":"abc"}
+    ready=_publish_readiness(package,"READY_FOR_LEADERBOARD")
+    assert ready["readiness_status"]=="READY_FOR_LEADERBOARD"
+    assert ready["sha256"]=="abc"
+    assert package["readiness_status"]=="STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
 
 
 def test_phase10e_union_includes_supplemental_previous_chunks(tmp_path):

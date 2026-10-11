@@ -1,0 +1,60 @@
+{
+  "model_load_seconds": 31.163388,
+  "model_load_count": 1,
+  "scorer_restarts": 0,
+  "window_size": 2000,
+  "windows_completed": 1,
+  "pairs_scored": 823,
+  "initial_done": 8777,
+  "total": 9600,
+  "done": 9600,
+  "remaining": 0,
+  "effective_pairs_per_second": 15.453,
+  "equivalence": {
+    "checked": 8,
+    "max_absolute_difference": 0.00146484375,
+    "measured_absolute_tolerance": 0.005859375,
+    "contract_mismatches": {},
+    "finite": true,
+    "reference_order": [
+      1,
+      5,
+      2,
+      0,
+      3,
+      7,
+      4,
+      6
+    ],
+    "observed_order": [
+      1,
+      5,
+      2,
+      0,
+      3,
+      7,
+      4,
+      6
+    ],
+    "ordering_unchanged": true,
+    "sample_keys_match_control": true,
+    "sample_texts_match_control": true,
+    "passed": true,
+    "stored_reference_scores_match_control": true
+  },
+  "windows": [
+    {
+      "window": 1,
+      "scored": 823,
+      "active_seconds": 19.50356,
+      "checkpoint_seconds": 0.258701,
+      "wall_seconds": 20.677706,
+      "active_pairs_per_second": 42.197,
+      "rss_mib": 296.89,
+      "private_mib": 8448.55,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 9600
+    }
+  ]
+}

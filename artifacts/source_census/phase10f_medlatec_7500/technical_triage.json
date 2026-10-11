@@ -1,0 +1,11 @@
+{
+  "healthy_sources": [
+    "medlatec.vn"
+  ],
+  "sources": {
+    "medlatec.vn": {
+      "healthy": true,
+      "usable_documents": 7500
+    }
+  }
+}

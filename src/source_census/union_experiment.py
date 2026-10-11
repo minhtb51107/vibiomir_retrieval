@@ -435,7 +435,53 @@ def _stream_package(config: dict, ranking_root: Path, group: str, name: str, out
         second=(file_sha256(json_path),file_sha256(zip_path))
         if first!=second: raise RuntimeError(f"submission regeneration was not deterministic: {group}")
     return {"name":name,"json_path":str(json_path),"zip_path":str(zip_path),"json_sha256":second[0],"zip_sha256":second[1],
-            "validation":validation,"determinism_verified":verify_determinism,"new_model_inference":0,"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
+            "validation":validation,"determinism_verified":verify_determinism,"model_inference_during_packaging":0,
+            "readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
+
+
+def _external_control_fixture(spec: dict) -> dict:
+    """Validate a frozen control replay that is independent of depth artifacts."""
+    row=spec.get("control_fixture")
+    if not row:
+        return {"required":False,"passed":True}
+    original=Path(row["original_submission_json"]); replay=Path(row["replay_submission_json"])
+    fixture=json.loads(Path(row["fixture_artifact"]).read_text(encoding="utf-8"))
+    expected_sources=sorted(map(str,row["sources"])); observed_sources=sorted(map(str,fixture["sources"]))
+    original_sha=_digest(original); replay_sha=_digest(replay)
+    passed=(
+        fixture.get("status")=="READY_FOR_LEADERBOARD"
+        and observed_sources==expected_sources
+        and fixture.get("original_sha256")==original_sha
+        and fixture.get("replay_sha256")==replay_sha
+        and original_sha==replay_sha
+    )
+    return {
+        "required":True,"passed":passed,"sources":observed_sources,
+        "original_submission_json":str(original),"replay_submission_json":str(replay),
+        "original_sha256":original_sha,"replay_sha256":replay_sha,
+        "fixture_artifact":str(row["fixture_artifact"]),
+    }
+
+
+def _experiment_inference_accounting(spec: dict) -> dict:
+    row=spec.get("experiment_inference")
+    if not row:
+        return {"score_cache_reused":0,"newly_inferred_pairs":0,"model_inference_during_packaging":0,"passed":True}
+    seed=json.loads(Path(row["seed_summary"]).read_text(encoding="utf-8"))
+    total=int(seed["total"]); reused=int(seed["reused"]); missing_before=int(seed["missing"])
+    newly_inferred=total-reused
+    expected=row.get("expected_new_inference")
+    passed=missing_before==newly_inferred and (expected is None or int(expected)==newly_inferred)
+    return {"score_cache_reused":reused,"newly_inferred_pairs":newly_inferred,
+            "missing_before_inference":missing_before,"model_inference_during_packaging":0,
+            "seed_summary":str(row["seed_summary"]),"passed":passed}
+
+
+def _publish_readiness(package: dict, status: str) -> dict:
+    """Replace the packager's provisional lifecycle state after all gates run."""
+    result=dict(package)
+    result["readiness_status"]=status
+    return result
 
 
 def _group_score_audit(score_db: Path, parts_root: Path, sources: list[str]) -> dict:
@@ -545,16 +591,29 @@ def run_union(spec_path: str|Path) -> dict:
     cache=audit_score_cache(root/"round1/source_scores.sqlite",root/"round1/source_candidate_parts")
     official=_official_id_audit(Path(union["json_path"]),Path(config["inputs"]["corpus"]))
     changes=_compare_submission_signatures(Path(spec["comparison_submission_json"]),Path(union["json_path"]))
+    external_control=_external_control_fixture(spec)
+    inference=_experiment_inference_accounting(spec)
     failures=[]
     for name,value in (("contract",contract),("source_accounting",accounting),("embeddings",embeddings),("score_cache",cache),("official_ids",official)):
         if not value.get("passed",False): failures.append(name)
     expected_pairs=int(spec["expected_candidate_pairs"])
     if parts["candidate_rows"]!=expected_pairs or scores["total"]!=expected_pairs or scores["new_inference"]!=0: failures.append("candidate_or_score_accounting")
     if not all(row["semantic_replay"]["passed"] for row in controls.values()): failures.append("parent_control_replay")
+    if not external_control["passed"]: failures.append("external_control_replay")
+    if not inference["passed"]: failures.append("experiment_inference_accounting")
+    if spec.get("require_comparison_byte_identical") and (
+        changes["queries_top10_docs_changed"] or changes["queries_top20_chunks_changed"]
+        or _digest(Path(spec["comparison_submission_json"]))!=union["json_sha256"]
+    ): failures.append("comparison_not_byte_identical")
     if not union["validation"]["valid"] or not union["determinism_verified"]: failures.append("structural_or_determinism")
-    audit={"status":"READY_FOR_LEADERBOARD" if not failures else "NEEDS_AGENT","passed":not failures,"failures":failures,"experiment_contract":contract,"source_union":accounting,"embedding_reconciliation":embeddings,"candidate_reuse":parts,"score_cache_integrity":cache,"score_reuse":{"exact_parent_scores_reused":scores["total"],"new_inference_required":0,**scores},"parent_control_replays":controls,"package_canonical":{**canonical,"disk_backed_store":canonical_store},"official_id_audit":official,"structural_validation":union["validation"],"determinism_verified":union["determinism_verified"],"ranking_change_vs_comparison":changes,"submission":{"path":union["zip_path"],"sha256":union["zip_sha256"]}}
+    audit={"status":"READY_FOR_LEADERBOARD" if not failures else "NEEDS_AGENT","passed":not failures,"failures":failures,"experiment_contract":contract,"source_union":accounting,"embedding_reconciliation":embeddings,"candidate_reuse":parts,"score_cache_integrity":cache,"score_reuse":{"exact_parent_scores_reused":scores["total"],"new_inference_required":0,**scores},"experiment_inference_accounting":inference,"parent_control_replays":controls,"external_control_replay":external_control,"package_canonical":{**canonical,"disk_backed_store":canonical_store},"official_id_audit":official,"structural_validation":union["validation"],"determinism_verified":union["determinism_verified"],"ranking_change_vs_comparison":changes,"submission":{"path":union["zip_path"],"sha256":union["zip_sha256"]}}
     atomic_json(spec["outputs"]["audit"],audit)
-    report={"experiment":spec["experiment"],"scientific_question":spec["scientific_question"],"status":audit["status"],"new_acquisition":0,"new_embeddings":0,"new_reranker_inference":0,"source_union":accounting,"candidate_pairs":parts["candidate_rows"],"reranker_scores_reused":scores["total"],"ranking_change_vs_comparison":changes,"submission":union,"audit":spec["outputs"]["audit"]}
+    # Packaging is intentionally structural-only until every scientific gate has
+    # run.  Publish the resulting lifecycle state in the final report rather
+    # than leaking the packager's provisional status into a READY experiment.
+    union=_publish_readiness(union,audit["status"])
+    atomic_json(artifacts/"submission_union.json",union)
+    report={"experiment":spec["experiment"],"scientific_question":spec["scientific_question"],"status":audit["status"],"new_acquisition":0,"new_embeddings":0,"new_reranker_inference":inference["newly_inferred_pairs"],"model_inference_during_packaging":0,"source_union":accounting,"candidate_pairs":parts["candidate_rows"],"reranker_scores_reused":scores["total"],"experiment_inference_accounting":inference,"ranking_change_vs_comparison":changes,"submission":union,"audit":spec["outputs"]["audit"]}
     atomic_json(spec["outputs"]["report"],report)
     if failures: raise RuntimeError(f"union scientific gate failed: {failures}")
     return report

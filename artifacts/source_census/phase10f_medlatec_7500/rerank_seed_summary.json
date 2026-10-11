@@ -1,0 +1,16 @@
+{
+  "total": 9600,
+  "before": 0,
+  "expected_exact_matches": 8777,
+  "reused": 8777,
+  "after": 8777,
+  "missing": 823,
+  "remaining_now": 823,
+  "exact_match_mismatches": 0,
+  "incorrectly_seeded_nonmatches": 0,
+  "source_reuse": {
+    "data/source_census/phase10f_medlatec_10000/round1/source_scores.sqlite": 7086,
+    "data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite": 6535
+  },
+  "integrity": "ok"
+}

@@ -1,0 +1,298 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "failures": [],
+  "experiment_contract": {
+    "passed": true,
+    "checks": {
+      "queries": true,
+      "pilot_documents": true,
+      "pilot_chunks": true,
+      "pilot_pool": true,
+      "pilot_scores": true,
+      "candidate_policy": true,
+      "embedder": true,
+      "reranker": true,
+      "submission": true,
+      "chosen_m_is_8": true,
+      "expected_unique_sources": true
+    },
+    "intended_variable": "medlatec.vn official-ID depth only"
+  },
+  "source_union": {
+    "sources": {
+      "medlatec.vn": {
+        "document_rows": 7500,
+        "usable_documents": 7490,
+        "chunks": 147243
+      },
+      "v.familydoctor.com.cn": {
+        "document_rows": 10,
+        "usable_documents": 10,
+        "chunks": 22
+      },
+      "vinmec.com": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 32811
+      },
+      "tiemchunglongchau.com.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4998,
+        "chunks": 53361
+      },
+      "cancer.39.net": {
+        "document_rows": 5000,
+        "usable_documents": 4911,
+        "chunks": 22260
+      },
+      "suckhoedoisong.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 114481
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "document_rows": 1200,
+        "usable_documents": 1200,
+        "chunks": 18726
+      },
+      "zydcd.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 14894
+      },
+      "hellobacsi.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 59148
+      }
+    },
+    "official_document_rows": 38710,
+    "chunks": 462946,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_ids": 0,
+    "passed": true
+  },
+  "embedding_reconciliation": {
+    "passed": true,
+    "model": {
+      "name": "BAAI/bge-m3",
+      "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+      "dimension": 1024,
+      "batch_size": 4,
+      "max_length": 512
+    },
+    "parents": {
+      "MEDLATEC": {
+        "selected_rows": 147243,
+        "storage_rows": 147243,
+        "dimension": 1024,
+        "bytes": 603107328,
+        "completion_evidence": "transactional_bitmap",
+        "completed_storage_rows": 147243,
+        "nonfinite_values": 0
+      },
+      "G1A_OTHER": {
+        "selected_rows": 32833,
+        "storage_rows": 131166,
+        "dimension": 1024,
+        "bytes": 537255936,
+        "completion_evidence": "transactional_bitmap",
+        "completed_storage_rows": 131166,
+        "nonfinite_values": 0
+      },
+      "G6B": {
+        "selected_rows": 190102,
+        "storage_rows": 190102,
+        "dimension": 1024,
+        "bytes": 778657792,
+        "completion_evidence": "transactional_bitmap",
+        "completed_storage_rows": 190102,
+        "nonfinite_values": 0
+      },
+      "G5A": {
+        "selected_rows": 92768,
+        "storage_rows": 92768,
+        "dimension": 1024,
+        "bytes": 379977728,
+        "completion_evidence": "validated_legacy_artifact:artifacts/source_census/phase10e_g5a_11200/embedding_summary.json",
+        "completed_storage_rows": 92768,
+        "nonfinite_values": 0
+      }
+    },
+    "exact_embeddings_reused": 462946,
+    "new_embeddings_computed": 0
+  },
+  "candidate_reuse": {
+    "sources": {
+      "medlatec.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10f_medlatec_7500\\round1\\source_candidate_parts\\medlatec_vn.parquet"
+      },
+      "v.familydoctor.com.cn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\v_familydoctor_com_cn.parquet"
+      },
+      "vinmec.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g1a_10010\\round1\\source_candidate_parts\\vinmec_com.parquet"
+      },
+      "cancer.39.net": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\cancer_39_net.parquet"
+      },
+      "suckhoedoisong.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\suckhoedoisong_vn.parquet"
+      },
+      "tiemchunglongchau.com.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g6b_15000\\round1\\source_candidate_parts\\tiemchunglongchau_com_vn.parquet"
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\benhviennhitrunguong_gov_vn.parquet"
+      },
+      "hellobacsi.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\hellobacsi_com.parquet"
+      },
+      "zydcd.com": {
+        "rows": 9600,
+        "parent": "data\\source_census\\phase10e_g5a_11200\\round1\\source_candidate_parts\\zydcd_com.parquet"
+      }
+    },
+    "reuse_methods": {
+      "hardlink": 9
+    },
+    "candidate_rows": 86400
+  },
+  "score_cache_integrity": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 86400,
+    "expected_unique_keys": 86400,
+    "stored_key_count": 86400,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 86400,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 86400,
+      "distinct": 12100,
+      "min": -11.046875,
+      "median": -3.978515625,
+      "p95": 2.69140625,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 4811
+  },
+  "score_reuse": {
+    "exact_parent_scores_reused": 86400,
+    "new_inference_required": 0,
+    "total": 86400,
+    "source_rows": {
+      "MEDLATEC": 9600,
+      "G1A_OTHER": 19200,
+      "G6B": 28800,
+      "G5A": 28800
+    },
+    "exact_intersections": {
+      "MEDLATEC": 9600,
+      "G1A_OTHER": 19200,
+      "G6B": 28800,
+      "G5A": 28800
+    },
+    "value_mismatches": {
+      "MEDLATEC": 0,
+      "G1A_OTHER": 0,
+      "G6B": 0,
+      "G5A": 0
+    },
+    "sqlite_integrity": "ok",
+    "new_inference": 0
+  },
+  "experiment_inference_accounting": {
+    "score_cache_reused": 8777,
+    "newly_inferred_pairs": 823,
+    "missing_before_inference": 823,
+    "model_inference_during_packaging": 0,
+    "seed_summary": "artifacts/source_census/phase10f_medlatec_7500/rerank_seed_summary.json",
+    "passed": true
+  },
+  "parent_control_replays": {},
+  "external_control_replay": {
+    "required": true,
+    "passed": true,
+    "sources": [
+      "benhviennhitrunguong.gov.vn",
+      "cancer.39.net",
+      "hellobacsi.com",
+      "medlatec.vn",
+      "suckhoedoisong.vn",
+      "tiemchunglongchau.com.vn",
+      "v.familydoctor.com.cn",
+      "vinmec.com",
+      "zydcd.com"
+    ],
+    "original_submission_json": "submissions\\10_SUBMITTED_VALID\\phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json",
+    "replay_submission_json": "data\\source_census\\phase10f_full9_control_replay\\output\\phase10f_FULL9_CONTROL_REPLAY.json",
+    "original_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+    "replay_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+    "fixture_artifact": "artifacts/source_census/phase10f_full9_control_fixture.json"
+  },
+  "package_canonical": {
+    "candidate_chunk_ids": 45437,
+    "candidate_doc_ids": 19149,
+    "chunks": {
+      "selected": 45437,
+      "written": 45437,
+      "duplicate_input_rows": 5141
+    },
+    "documents": {
+      "selected": 19149,
+      "written": 19149,
+      "duplicate_input_rows": 2653
+    },
+    "disk_backed_store": {
+      "chunks": 45437,
+      "documents": 19149,
+      "sqlite_integrity": "ok"
+    }
+  },
+  "official_id_audit": {
+    "unique_emitted_doc_ids": 7689,
+    "invalid_official_doc_ids": 0,
+    "passed": true
+  },
+  "structural_validation": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\FULL_MEDLATEC_7500.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 10066,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 24000
+  },
+  "determinism_verified": true,
+  "ranking_change_vs_comparison": {
+    "queries_compared": 1200,
+    "queries_top10_docs_changed": 809,
+    "queries_top20_chunks_changed": 960
+  },
+  "submission": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\FULL_MEDLATEC_7500.zip",
+    "sha256": "60b01c5982829b9b8c073b3003ca7ee41700e45005bad112d13e7a4c95ce221a"
+  }
+}

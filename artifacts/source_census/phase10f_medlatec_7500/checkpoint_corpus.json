@@ -1,0 +1,9 @@
+{
+  "depth": 7500,
+  "official_ids": 7500,
+  "usable_documents": 7500,
+  "chunks": 147243,
+  "embeddings_reused": 147243,
+  "embeddings_new": 0,
+  "runtime_config": "artifacts\\source_census\\phase10f_medlatec_7500\\runtime_config.yaml"
+}

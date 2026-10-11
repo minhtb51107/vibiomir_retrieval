@@ -1,0 +1,9 @@
+{
+  "chunks": 147243,
+  "dimension": 1024,
+  "reused_embeddings": 147243,
+  "new_embeddings": 0,
+  "path": "data\\source_census\\phase10f_medlatec_7500\\round1\\chunk_embeddings.f32",
+  "streaming": true,
+  "complete": true
+}

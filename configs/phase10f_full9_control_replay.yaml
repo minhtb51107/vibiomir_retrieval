@@ -1,0 +1,30 @@
+version: 1
+experiment: phase10f_full9_control_replay
+submission_name: phase10f_FULL9_CONTROL_REPLAY
+scientific_question: Can the frozen organizer-valid nine-source Medlatec-5K control be reproduced byte-for-byte?
+intended_variable: none; immutable control replay
+expected_source_count: 9
+expected_candidate_pairs: 86400
+require_comparison_byte_identical: true
+base_config: configs/phase10e_g1a_10010.yaml
+comparison_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+parents:
+  G1A:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com]
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/phase10e_g5a_11200
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+controls: {}
+outputs:
+  root: data/source_census/phase10f_full9_control_replay
+  artifacts: artifacts/source_census/phase10f_full9_control_replay
+  audit: artifacts/validation/phase10f_full9_control_replay_audit.json
+  report: artifacts/source_census/phase10f_full9_control_replay_report.json
+  submissions: data/source_census/phase10f_full9_control_replay/output

@@ -761,3 +761,21 @@ Next question: Which ablation loses the most organizer score, and does Medlatec 
 Cost/resources: Zero network requests and zero embedding/reranker inference; CPU-only cached ranking, streaming packaging, and validation.
 Evidence: `artifacts/source_census/phase10f_next_source_ablations_report.json`, `artifacts/source_census/phase10f_source_ablations_status.json`, and the three Phase 10F pre-submit audits under `artifacts/validation/`.
 Commit: this checkpoint.
+
+## Phase 10F — Medlatec 7.5K/10K scientific-gate recovery
+
+Date: 2026-10-11
+Phase / commit: Phase 10F Medlatec focused scaling / this checkpoint
+Question: Can the completed Medlatec depth run be finalized as two scientifically controlled full-union checkpoints without repeating its expensive stages?
+Why we tried it: Acquisition, extraction, chunking, embeddings, source candidates, and the Medlatec-10K reranker cache had completed, but the mandatory control replay compared unlike corpora and the intermediate Medlatec-only source package returned only nine documents for one query.
+Hypothesis: The score cache was valid; freezing the organizer-valid nine-source/Medlatec-5K control and rebuilding final competition over the actual nine-source 7.5K and 10K unions would repair experiment scoping without changing retrieval policy.
+What we changed: Replaced the cross-wired Medlatec-only replay with an immutable full-nine-source control fixture; added nested deterministic 7,500-ID corpus construction; reused embeddings and scores by exact keys; inferred only the 823 genuinely missing 7.5K pairs; separated experiment-wide inference from packaging-only inference; and published readiness only after all scientific gates complete.
+What stayed fixed: The 1,200 queries, other eight source corpora, calibrated `m=8`, BGE-M3 model/revision, BM25/RRF policy, pinned reranker, FP16 batch 2/max length 512, top-10 documents, top-20 source-verbatim chunks, tie-breaking, and provenance rules.
+Result: The historical control replay is byte-identical (`fead3f75...459`). `FULL_MEDLATEC_7500` contains 38,710 official rows and 462,946 chunks; its package hash is `60b01c5982829b9b8c073b3003ca7ee41700e45005bad112d13e7a4c95ce221a`. `FULL_MEDLATEC_10000` contains 41,210 official rows and 512,356 chunks; its package hash is `bd83efe0cf909981cfa034be053dbd2dddf0223b0da00bf75ed608fbafcfa72d`. Both contain exactly 10 documents and 20 chunks for all 1,200 queries, pass provenance/determinism/cache audits, and are `READY_FOR_LEADERBOARD`. No organizer result exists yet.
+What failed / surprised us: The old control replay used the new Medlatec source cache and compared a Medlatec-only ranking against the historical full-nine-source submission, causing 0/1,200 matches by construction. Query `1195` had only nine unique documents in the intermediate package because its pilot candidates represented four documents and fixed `m=8` Medlatec candidates represented five; no result was lost by an output deduplication bug. The intermediate source-cache package was therefore never a valid final leaderboard artifact.
+What we learned: A control must freeze corpus membership and ranking inputs, not merely reuse the same code. Source-level caches are reusable building blocks, not final submissions. Inference accounting must distinguish model work performed for the experiment (823 new 7.5K pairs; 4,738 new 10K pairs) from zero inference during packaging.
+Decision: Register both full-union depth checkpoints as current upload candidates and quarantine the Medlatec source-cache intermediate from the upload directory. Do not deepen Medlatec until organizer results establish the depth response.
+Next question: How does organizer performance change from the known Medlatec-5K full-union FINAL `0.0383` to 7.5K and 10K?
+Cost/resources: Heavy 10K stages were reused unchanged. The 7.5K checkpoint reused 147,243 embeddings and 8,777 exact reranker scores, requiring 823 new reranker inferences; final union packaging reused all 86,400 source scores at each depth.
+Evidence: `artifacts/source_census/phase10f_full9_control_fixture.json`, `artifacts/source_census/phase10f_full_medlatec_7500_report.json`, `artifacts/source_census/phase10f_full_medlatec_10000_report.json`, and corresponding pre-submit audits under `artifacts/validation/`.
+Commit: this checkpoint.

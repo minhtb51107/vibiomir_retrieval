@@ -727,6 +727,32 @@
         "size_bytes": 26200549,
         "sha256": "91635fac70d8ff3e8eda7fb43509637073ff06f5e899c3ba05b1e3eb5c622247"
       }
+    },
+    {
+      "status": "UNKNOWN_REVIEW_REQUIRED",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase10f_MEDLATEC_SOURCE_CACHE.zip",
+        "size_bytes": 21390966,
+        "sha256": "9068b2fe471083e9fca4496394d02cd8da2c5bbd6345f774643b4eb56fd5e6b4"
+      },
+      "after": {
+        "path": "submissions/99_REVIEW_REQUIRED/phase10f_MEDLATEC_SOURCE_CACHE.zip",
+        "size_bytes": 21390966,
+        "sha256": "9068b2fe471083e9fca4496394d02cd8da2c5bbd6345f774643b4eb56fd5e6b4"
+      }
+    },
+    {
+      "status": "INVALID_DO_NOT_SUBMIT",
+      "before": {
+        "path": "submissions/99_REVIEW_REQUIRED/phase10f_MEDLATEC_SOURCE_CACHE.zip",
+        "size_bytes": 21390966,
+        "sha256": "9068b2fe471083e9fca4496394d02cd8da2c5bbd6345f774643b4eb56fd5e6b4"
+      },
+      "after": {
+        "path": "submissions/90_INVALID_DO_NOT_SUBMIT/phase10f_MEDLATEC_SOURCE_CACHE.zip",
+        "size_bytes": 21390966,
+        "sha256": "9068b2fe471083e9fca4496394d02cd8da2c5bbd6345f774643b4eb56fd5e6b4"
+      }
     }
   ]
 }

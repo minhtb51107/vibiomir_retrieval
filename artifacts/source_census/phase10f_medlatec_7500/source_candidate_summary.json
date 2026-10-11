@@ -1,0 +1,9 @@
+{
+  "chosen_m": 8,
+  "healthy_sources": 1,
+  "candidate_rows": 9600,
+  "unique_pairs": 9600,
+  "candidate_path": "data\\source_census\\phase10f_medlatec_7500\\round1\\source_candidates.parquet",
+  "source_parts": 1,
+  "runtime_seconds": 0.325
+}

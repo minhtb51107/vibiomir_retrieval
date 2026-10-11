@@ -1,0 +1,41 @@
+version: 1
+experiment: phase10f_full_medlatec_10000
+submission_name: FULL_MEDLATEC_10000
+scientific_question: Does the validated full union improve when Medlatec depth increases from 5,000 to 10,000 official IDs?
+intended_variable: medlatec.vn official-ID depth only
+expected_source_count: 9
+expected_candidate_pairs: 86400
+base_config: configs/phase10e_g1a_10010.yaml
+comparison_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+parents:
+  MEDLATEC:
+    config: configs/phase10f_medlatec_10000.yaml
+    root: data/source_census/phase10f_medlatec_10000
+    sources: [medlatec.vn]
+  G1A_OTHER:
+    config: configs/phase10e_g1a_10010.yaml
+    root: data/source_census/phase10e_g1a_10010
+    sources: [v.familydoctor.com.cn, vinmec.com]
+  G6B:
+    config: configs/phase10e_g6b_15000.yaml
+    root: data/source_census/phase10e_g6b_15000
+    sources: [tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn]
+  G5A:
+    config: configs/phase10e_g5a_11200.yaml
+    root: data/source_census/phase10e_g5a_11200
+    sources: [benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+controls: {}
+control_fixture:
+  sources: [medlatec.vn, v.familydoctor.com.cn, vinmec.com, tiemchunglongchau.com.vn, cancer.39.net, suckhoedoisong.vn, benhviennhitrunguong.gov.vn, zydcd.com, hellobacsi.com]
+  original_submission_json: submissions/10_SUBMITTED_VALID/phase10e_G1A_10010_G6B_15000_G5A_11200_UNION.json
+  replay_submission_json: data/source_census/phase10f_full9_control_replay/output/phase10f_FULL9_CONTROL_REPLAY.json
+  fixture_artifact: artifacts/source_census/phase10f_full9_control_fixture.json
+experiment_inference:
+  seed_summary: artifacts/source_census/phase10f_medlatec_10000/rerank_seed_summary.json
+  expected_new_inference: 4738
+outputs:
+  root: data/source_census/phase10f_full_medlatec_10000
+  artifacts: artifacts/source_census/phase10f_full_medlatec_10000
+  audit: artifacts/validation/phase10f_full_medlatec_10000_pre_submit_audit.json
+  report: artifacts/source_census/phase10f_full_medlatec_10000_report.json
+  submissions: submissions/00_READY_TO_UPLOAD

@@ -28,8 +28,11 @@ READY={
     "phase10f_FULL_MINUS_VINMEC.zip",
     "phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip",
     "phase10f_FULL_MINUS_HELLOBACSI.zip",
+    "FULL_MEDLATEC_7500.zip",
+    "FULL_MEDLATEC_10000.zip",
 }
-INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip","smoke_medlatec_do_not_submit.zip"}
+INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip",
+         "phase10f_MEDLATEC_SOURCE_CACHE.zip","smoke_medlatec_do_not_submit.zip"}
 SUPERSEDED={
     "phase9_B_pure_top3_mean.zip","phase9_C_max3_best_chunk.zip","phase9_D_controlled_best_chunk.zip",
     *(f"phase10a_E{i}_{suffix}.zip" for i,suffix in [(1,"docs20"),(2,"docs50"),(3,"docs_max"),(4,"chunks20"),(5,"chunks_more"),(6,"chunk_expand_768"),(7,"chunk_expand_1024"),(8,"hybrid"),(9,"sparse")]),
@@ -65,6 +68,7 @@ def classify(path: Path, leaderboard: dict[str,dict[str,str]]) -> str:
 
 
 def phase_for(stem: str) -> str:
+    if stem.startswith("phase10f_") or stem.startswith("FULL_MEDLATEC_"): return "Phase 10F"
     if stem.startswith("phase10e_"): return "Phase 10E"
     if stem.startswith("phase10d_DEPTH"): return "Phase 10D depth1000"
     if stem.startswith("phase10d_R3"): return "Phase 10D Round 3"
@@ -78,6 +82,8 @@ def phase_for(stem: str) -> str:
 
 
 def report_for(stem: str) -> tuple[str,str]:
+    if stem=="FULL_MEDLATEC_7500": return "artifacts/source_census/phase10f_full_medlatec_7500_report.json","artifacts/validation/phase10f_full_medlatec_7500_pre_submit_audit.json"
+    if stem=="FULL_MEDLATEC_10000": return "artifacts/source_census/phase10f_full_medlatec_10000_report.json","artifacts/validation/phase10f_full_medlatec_10000_pre_submit_audit.json"
     probe_audits={
         "phase10e_FULL_MINUS_MEDLATEC":"artifacts/validation/phase10e_full_minus_medlatec_pre_submit_audit.json",
         "phase10e_FULL_MINUS_SUCKHOEDOISONG":"artifacts/validation/phase10e_full_minus_suckhoedoisong_pre_submit_audit.json",
@@ -150,6 +156,8 @@ def rebuild(output: Path) -> list[dict[str,str]]:
         stem=path.stem; key=ALIASES.get(stem,stem); metrics=leaderboard.get(key,{})
         status=classify(path,leaderboard); report,audit=report_for(stem)
         probe_groups={
+            "FULL_MEDLATEC_7500":"FULL-MEDLATEC-7500",
+            "FULL_MEDLATEC_10000":"FULL-MEDLATEC-10000",
             "phase10e_FULL_MINUS_MEDLATEC":"FULL-MEDLATEC",
             "phase10e_FULL_MINUS_SUCKHOEDOISONG":"FULL-SUCKHOEDOISONG",
             "phase10e_FULL_PLUS_R3_RESURRECTION":"FULL+R3",
@@ -160,7 +168,7 @@ def rebuild(output: Path) -> list[dict[str,str]]:
         group=probe_groups.get(stem,"G1A+G6B+G5A" if "G1A_10010_G6B_15000_G5A_11200_UNION" in stem else ("G1A+G6B" if "G1A_10010_G6B_15000_UNION" in stem else ""))
         for token in ("G1A","G1B","G5A","G5B","G6A","G6B","group_A","group_B","group_C","group_1","group_2","group_3","group_4","group_5","group_6","group_7"):
             if not group and token in stem: group=token; break
-        depth="10010+15000+11200" if "10010_G6B_15000_G5A_11200_UNION" in stem else ("10010+15000" if "10010_G6B_15000_UNION" in stem else ("15000" if "15000" in stem else ("10010" if "10010" in stem else ("11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else ""))))))
+        depth="10010+15000+11200" if "10010_G6B_15000_G5A_11200_UNION" in stem else ("10010+15000" if "10010_G6B_15000_UNION" in stem else ("7500" if stem=="FULL_MEDLATEC_7500" else ("10000" if stem=="FULL_MEDLATEC_10000" else ("15000" if "15000" in stem else ("10010" if "10010" in stem else ("11200" if "11200" in stem else ("1000" if "DEPTH1000" in stem else ("5000" if "_5k" in stem.lower() else ""))))))))
         note=""
         if status=="INVALID_DO_NOT_SUBMIT": note="Scientifically invalid or explicit smoke artifact; never upload."
         elif status=="READY_TO_SUBMIT": note="Mandatory validation passed; organizer result pending."

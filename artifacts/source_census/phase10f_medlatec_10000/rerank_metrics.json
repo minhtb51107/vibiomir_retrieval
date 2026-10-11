@@ -1,0 +1,86 @@
+{
+  "model_load_seconds": 49.585767,
+  "model_load_count": 1,
+  "scorer_restarts": 0,
+  "window_size": 2000,
+  "windows_completed": 3,
+  "pairs_scored": 4738,
+  "initial_done": 4862,
+  "total": 9600,
+  "done": 9600,
+  "remaining": 0,
+  "effective_pairs_per_second": 27.983,
+  "equivalence": {
+    "checked": 8,
+    "max_absolute_difference": 0.00146484375,
+    "measured_absolute_tolerance": 0.005859375,
+    "contract_mismatches": {},
+    "finite": true,
+    "reference_order": [
+      1,
+      5,
+      2,
+      0,
+      3,
+      7,
+      4,
+      6
+    ],
+    "observed_order": [
+      1,
+      5,
+      2,
+      0,
+      3,
+      7,
+      4,
+      6
+    ],
+    "ordering_unchanged": true,
+    "sample_keys_match_control": true,
+    "sample_texts_match_control": true,
+    "passed": true,
+    "stored_reference_scores_match_control": true
+  },
+  "windows": [
+    {
+      "window": 1,
+      "scored": 2000,
+      "active_seconds": 48.525805,
+      "checkpoint_seconds": 0.704897,
+      "wall_seconds": 50.115928,
+      "active_pairs_per_second": 41.215,
+      "rss_mib": 402.33,
+      "private_mib": 8000.95,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 6862
+    },
+    {
+      "window": 2,
+      "scored": 2000,
+      "active_seconds": 49.062529,
+      "checkpoint_seconds": 0.401775,
+      "wall_seconds": 49.925799,
+      "active_pairs_per_second": 40.764,
+      "rss_mib": 350.98,
+      "private_mib": 8006.2,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 8862
+    },
+    {
+      "window": 3,
+      "scored": 738,
+      "active_seconds": 17.933596,
+      "checkpoint_seconds": 0.163303,
+      "wall_seconds": 18.249711,
+      "active_pairs_per_second": 41.152,
+      "rss_mib": 321.52,
+      "private_mib": 8006.2,
+      "gpu_allocated_mib": 1091.16,
+      "gpu_reserved_mib": 1110.0,
+      "done": 9600
+    }
+  ]
+}
