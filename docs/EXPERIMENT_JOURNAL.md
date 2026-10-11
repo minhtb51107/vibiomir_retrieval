@@ -743,3 +743,21 @@ Next question: After storage is reclaimed, do the three leave-one-source-out sco
 Cost/resources: No network acquisition or model inference. CPU-only packaging was stopped when the disk floor was crossed; all organizer-valid parent artifacts remain unchanged.
 Evidence: `artifacts/source_census/phase10f_medlatec_10000_manifest.json`, `artifacts/source_census/phase10f_medlatec_10000/preflight.json`, and `artifacts/source_census/phase10f_source_ablations_status.json`.
 Commit: this checkpoint.
+
+## Phase 10F — next-source ablations completed after storage recovery
+
+Date: 2026-10-11
+Phase / commit: Phase 10F source attribution and focused scaling / this checkpoint
+Question: Which of `vinmec.com`, `tiemchunglongchau.com.vn`, or `hellobacsi.com` contributes the largest current marginal organizer value within the validated nine-source union?
+Why we tried it: Medlatec already has strong organizer-visible marginal value. Three zero-acquisition leave-one-source-out controls can identify the next scaling candidate without spending crawl or model budget.
+Hypothesis: Removing a valuable source will produce an organizer-visible loss even though local ranking movement alone is not relevance evidence.
+What we changed: Recomputed full candidate competition and rankings three times, excluding exactly one declared source in each experiment.
+What stayed fixed: All 1,200 queries, the other eight source corpora, pilot control, calibrated `m=8`, retrieval/fusion policy, exact embedding and reranker caches, top-10/top-20 policy, source-verbatim provenance, and deterministic tie-breaking.
+Result: All three packages passed structural validation, full-union replay, exact cache reconciliation, provenance, and deterministic regeneration and reached `READY_FOR_LEADERBOARD`. Minus Vinmec has 31,110 usable documents/381,225 chunks and changes top-10 documents for 1,053 queries; minus Tiemchunglongchau has 31,111/360,675 and changes 1,146; minus Hellobacsi has 31,109/354,888 and changes 889. No organizer results exist yet.
+What failed / surprised us: The original attempt was stopped by transient pagefile pressure even though it required no model inference. After disk recovery, the fixed per-query streaming comparator completed all three packages at bounded memory. The quarantined first-pass Vinmec ZIP was byte-identical to the newly audited package, but it remains separately labeled as a historical duplicate rather than an upload candidate.
+What we learned: Deterministic validation and comparison can consume meaningful transient resources independently of acquisition or inference. Local ranking-change counts remain diagnostics only; organizer scores are required for attribution.
+Decision: Register exactly the three audited canonical ZIPs as upload candidates. Proceed with the separately authorized Medlatec 7.5K/10K acquisition only after its current disk preflight passes.
+Next question: Which ablation loses the most organizer score, and does Medlatec continue scaling from 5K to 7.5K and 10K?
+Cost/resources: Zero network requests and zero embedding/reranker inference; CPU-only cached ranking, streaming packaging, and validation.
+Evidence: `artifacts/source_census/phase10f_next_source_ablations_report.json`, `artifacts/source_census/phase10f_source_ablations_status.json`, and the three Phase 10F pre-submit audits under `artifacts/validation/`.
+Commit: this checkpoint.

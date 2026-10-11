@@ -25,6 +25,9 @@ READY={
     "phase10e_FULL_MINUS_MEDLATEC.zip",
     "phase10e_FULL_MINUS_SUCKHOEDOISONG.zip",
     "phase10e_FULL_PLUS_R3_RESURRECTION.zip",
+    "phase10f_FULL_MINUS_VINMEC.zip",
+    "phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip",
+    "phase10f_FULL_MINUS_HELLOBACSI.zip",
 }
 INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip","smoke_medlatec_do_not_submit.zip"}
 SUPERSEDED={
@@ -79,7 +82,12 @@ def report_for(stem: str) -> tuple[str,str]:
         "phase10e_FULL_MINUS_MEDLATEC":"artifacts/validation/phase10e_full_minus_medlatec_pre_submit_audit.json",
         "phase10e_FULL_MINUS_SUCKHOEDOISONG":"artifacts/validation/phase10e_full_minus_suckhoedoisong_pre_submit_audit.json",
         "phase10e_FULL_PLUS_R3_RESURRECTION":"artifacts/validation/phase10e_full_plus_r3_resurrection_pre_submit_audit.json",
+        "phase10f_FULL_MINUS_VINMEC":"artifacts/validation/phase10f_full_minus_vinmec_pre_submit_audit.json",
+        "phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU":"artifacts/validation/phase10f_full_minus_tiemchunglongchau_pre_submit_audit.json",
+        "phase10f_FULL_MINUS_HELLOBACSI":"artifacts/validation/phase10f_full_minus_hellobacsi_pre_submit_audit.json",
     }
+    if stem in probe_audits and stem.startswith("phase10f_FULL_MINUS_"):
+        return "artifacts/source_census/phase10f_next_source_ablations_report.json",probe_audits[stem]
     if stem in probe_audits: return "artifacts/source_census/phase10e_final_pre_reset_probes_report.json",probe_audits[stem]
     if stem=="phase10e_G1A_10010_G6B_15000_G5A_11200_UNION": return "artifacts/source_census/phase10e_g1a10k_g6b15k_g5a11200_union_report.json","artifacts/validation/phase10e_g1a10k_g6b15k_g5a11200_union_pre_submit_audit.json"
     if stem=="phase10e_G1A_10010_G6B_15000_UNION": return "artifacts/source_census/phase10e_g1a10k_g6b15k_union_report.json","artifacts/validation/phase10e_g1a10k_g6b15k_union_pre_submit_audit.json"
@@ -141,7 +149,14 @@ def rebuild(output: Path) -> list[dict[str,str]]:
     for path in discover():
         stem=path.stem; key=ALIASES.get(stem,stem); metrics=leaderboard.get(key,{})
         status=classify(path,leaderboard); report,audit=report_for(stem)
-        probe_groups={"phase10e_FULL_MINUS_MEDLATEC":"FULL-MEDLATEC","phase10e_FULL_MINUS_SUCKHOEDOISONG":"FULL-SUCKHOEDOISONG","phase10e_FULL_PLUS_R3_RESURRECTION":"FULL+R3"}
+        probe_groups={
+            "phase10e_FULL_MINUS_MEDLATEC":"FULL-MEDLATEC",
+            "phase10e_FULL_MINUS_SUCKHOEDOISONG":"FULL-SUCKHOEDOISONG",
+            "phase10e_FULL_PLUS_R3_RESURRECTION":"FULL+R3",
+            "phase10f_FULL_MINUS_VINMEC":"FULL-VINMEC",
+            "phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU":"FULL-TIEMCHUNGLONGCHAU",
+            "phase10f_FULL_MINUS_HELLOBACSI":"FULL-HELLOBACSI",
+        }
         group=probe_groups.get(stem,"G1A+G6B+G5A" if "G1A_10010_G6B_15000_G5A_11200_UNION" in stem else ("G1A+G6B" if "G1A_10010_G6B_15000_UNION" in stem else ""))
         for token in ("G1A","G1B","G5A","G5B","G6A","G6B","group_A","group_B","group_C","group_1","group_2","group_3","group_4","group_5","group_6","group_7"):
             if not group and token in stem: group=token; break

@@ -45,6 +45,20 @@ def test_pre_reset_probes_are_ready_only_with_explicit_evidence_paths():
         )
 
 
+def test_phase10f_source_ablations_are_ready_only_with_explicit_evidence_paths():
+    names={
+        "phase10f_FULL_MINUS_VINMEC":"phase10f_full_minus_vinmec_pre_submit_audit.json",
+        "phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU":"phase10f_full_minus_tiemchunglongchau_pre_submit_audit.json",
+        "phase10f_FULL_MINUS_HELLOBACSI":"phase10f_full_minus_hellobacsi_pre_submit_audit.json",
+    }
+    for stem,audit in names.items():
+        assert classify(Path(f"{stem}.zip"),{})=="READY_TO_SUBMIT"
+        assert report_for(stem)==(
+            "artifacts/source_census/phase10f_next_source_ablations_report.json",
+            f"artifacts/validation/{audit}",
+        )
+
+
 def test_unknown_package_is_not_promoted_by_filename_guessing():
     assert classify(Path("phase10e_G5A_11200.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"
     assert classify(Path("phase10e_future.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"

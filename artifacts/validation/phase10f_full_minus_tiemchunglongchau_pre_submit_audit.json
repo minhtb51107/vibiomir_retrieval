@@ -1,0 +1,232 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "failures": [],
+  "experiment_contract": {
+    "passed": true,
+    "checks": {
+      "queries": true,
+      "pilot_documents": true,
+      "pilot_chunks": true,
+      "pilot_pool": true,
+      "pilot_scores": true,
+      "candidate_policy": true,
+      "embedder": true,
+      "reranker": true,
+      "submission": true,
+      "chosen_m_is_8": true,
+      "expected_unique_sources": true
+    },
+    "intended_variable": "one omitted source from the organizer-valid nine-source union"
+  },
+  "source_membership": [
+    "medlatec.vn",
+    "v.familydoctor.com.cn",
+    "vinmec.com",
+    "cancer.39.net",
+    "suckhoedoisong.vn",
+    "benhviennhitrunguong.gov.vn",
+    "zydcd.com",
+    "hellobacsi.com"
+  ],
+  "corpus_accounting": {
+    "sources": {
+      "medlatec.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4992,
+        "chunks": 98333
+      },
+      "v.familydoctor.com.cn": {
+        "document_rows": 10,
+        "usable_documents": 10,
+        "chunks": 22
+      },
+      "vinmec.com": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 32811
+      },
+      "cancer.39.net": {
+        "document_rows": 5000,
+        "usable_documents": 4911,
+        "chunks": 22260
+      },
+      "suckhoedoisong.vn": {
+        "document_rows": 5000,
+        "usable_documents": 4999,
+        "chunks": 114481
+      },
+      "benhviennhitrunguong.gov.vn": {
+        "document_rows": 1200,
+        "usable_documents": 1200,
+        "chunks": 18726
+      },
+      "zydcd.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 14894
+      },
+      "hellobacsi.com": {
+        "document_rows": 5000,
+        "usable_documents": 5000,
+        "chunks": 59148
+      }
+    },
+    "official_document_rows": 31210,
+    "usable_documents": 31111,
+    "chunks": 360675,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_ids": 0,
+    "passed": true
+  },
+  "embedding_reconciliation": {
+    "reused": 360675,
+    "computed": 0,
+    "parent_audit": {
+      "passed": true,
+      "model": {
+        "name": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+        "dimension": 1024,
+        "batch_size": 4,
+        "max_length": 512
+      },
+      "parents": {
+        "G1A": {
+          "selected_rows": 131166,
+          "storage_rows": 131166,
+          "dimension": 1024,
+          "bytes": 537255936,
+          "completion_evidence": "transactional_bitmap",
+          "completed_storage_rows": 131166,
+          "nonfinite_values": 0
+        },
+        "G6B": {
+          "selected_rows": 190102,
+          "storage_rows": 190102,
+          "dimension": 1024,
+          "bytes": 778657792,
+          "completion_evidence": "transactional_bitmap",
+          "completed_storage_rows": 190102,
+          "nonfinite_values": 0
+        },
+        "G5A": {
+          "selected_rows": 92768,
+          "storage_rows": 92768,
+          "dimension": 1024,
+          "bytes": 379977728,
+          "completion_evidence": "validated_legacy_artifact:artifacts/source_census/phase10e_g5a_11200/embedding_summary.json",
+          "completed_storage_rows": 92768,
+          "nonfinite_values": 0
+        }
+      },
+      "exact_embeddings_reused": 414036,
+      "new_embeddings_computed": 0
+    }
+  },
+  "candidate_score_reconciliation": {
+    "candidate_rows": 76800,
+    "unique_candidate_keys": 76800,
+    "matched_score_keys": 76800,
+    "missing_keys": 0,
+    "unscored_keys": 0,
+    "nonfinite_scores": 0,
+    "invalid_inference_timings": 0,
+    "distinct_scores": 11250,
+    "min_score": -11.046875,
+    "max_score": 10.6953125,
+    "reused_scores": 76800,
+    "new_inference": 0,
+    "passed": true
+  },
+  "shared_score_cache": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 86400,
+    "expected_unique_keys": 86400,
+    "stored_key_count": 86400,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 86400,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 86400,
+      "distinct": 12064,
+      "min": -11.046875,
+      "median": -4.015625,
+      "p95": 2.6171875,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 4753
+  },
+  "control_replays": {
+    "FULL_9_CONTROL": {
+      "name": "phase10f_next_source_ablations_FULL_9_CONTROL",
+      "json_path": "data\\source_census\\phase10f_next_source_ablations\\controls\\phase10f_next_source_ablations_FULL_9_CONTROL.json",
+      "zip_path": "data\\source_census\\phase10f_next_source_ablations\\controls\\phase10f_next_source_ablations_FULL_9_CONTROL.zip",
+      "json_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+      "zip_sha256": "0b54abc1e578f05d1963beb62c74a490e2fc80b4f5928dfe4221e5c7acba0fbc",
+      "validation": {
+        "path": "data\\source_census\\phase10f_next_source_ablations\\controls\\phase10f_next_source_ablations_FULL_9_CONTROL.zip",
+        "valid": true,
+        "query_count": 1200,
+        "document_result_count": 12000,
+        "chunk_result_count": 24000,
+        "unique_doc_ids": 9627,
+        "document_minimum_per_query": 10,
+        "document_maximum_per_query": 10,
+        "chunk_minimum_per_query": 20,
+        "chunk_maximum_per_query": 20,
+        "invalid_doc_ids": 0,
+        "duplicate_doc_ids": 0,
+        "duplicate_chunk_objects": 0,
+        "chunk_provenance_mismatches": 0,
+        "source_span_chunks_verified": 24000
+      },
+      "determinism_verified": false,
+      "new_model_inference": 0,
+      "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY",
+      "semantic_replay": {
+        "passed": true,
+        "comparison": "byte-identical canonical JSON",
+        "reference_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459",
+        "replay_sha256": "fead3f75ae0731829c2fcc14879501d20805fff30f201760155ce05786b30459"
+      }
+    }
+  },
+  "ranking_change_vs_full": {
+    "queries_compared": 1200,
+    "queries_top10_docs_changed": 1146,
+    "queries_top20_chunks_changed": 1190
+  },
+  "official_id_audit": {
+    "unique_emitted_doc_ids": 6639,
+    "invalid_official_doc_ids": 0,
+    "passed": true
+  },
+  "structural_validation": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 12000,
+    "chunk_result_count": 24000,
+    "unique_doc_ids": 8382,
+    "document_minimum_per_query": 10,
+    "document_maximum_per_query": 10,
+    "chunk_minimum_per_query": 20,
+    "chunk_maximum_per_query": 20,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 24000
+  },
+  "determinism_verified": true,
+  "submission": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip",
+    "sha256": "7ad8c68c4be22c54d49fe48788d370af4a292dda10793977830ce77adc4fde57"
+  }
+}

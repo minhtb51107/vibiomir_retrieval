@@ -6,7 +6,9 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| _None_ | — | — | Three next-source ablations are being prepared. |
+| FULL minus Vinmec | `phase10f_FULL_MINUS_VINMEC.zip` | `91635fac70d8ff3e8eda7fb43509637073ff06f5e899c3ba05b1e3eb5c622247` | Ready; organizer result pending. |
+| FULL minus Tiemchunglongchau | `phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip` | `7ad8c68c4be22c54d49fe48788d370af4a292dda10793977830ce77adc4fde57` | Ready; organizer result pending. |
+| FULL minus Hellobacsi | `phase10f_FULL_MINUS_HELLOBACSI.zip` | `3f399709057cf71f8d3965132e73fdbde896d194146bb8b74e2b07fde6852553` | Ready; organizer result pending. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 
