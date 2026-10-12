@@ -1,0 +1,46 @@
+version: 1
+experiment: phase12_full_pubmed_multilingual
+outputs:
+  root: data/pubmed_phase12
+  manifest: data/pubmed_phase12/official_pubmed_manifest.parquet
+  records: data/pubmed_phase12/records
+  raw_xml: data/pubmed_phase12/raw_xml
+  processed: data/pubmed_phase12/processed
+  retrieval: data/pubmed_phase12/retrieval
+  artifacts: artifacts/phase12_pubmed
+acquisition:
+  endpoint: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+  database: pubmed
+  batch_size: 300
+  requests_per_second: 2.5
+  maximum_attempts: 6
+  request_timeout_seconds: 120
+  tool: ViBioMIRRetrieval
+  user_agent: ViBioMIRRetrieval/1.0 (public biomedical corpus acquisition)
+  minimum_free_gib: 20
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    max_length: 512
+    preferred_batch_size: 2
+    stream_rows: 128
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    batch_size: 2
+    max_length: 512
+retrieval:
+  pubmed_documents_per_query: 100
+  search_block_rows: 4096
+submission:
+  documents_per_query: 20
+  chunks_per_query: 40
+inputs:
+  queries: data/raw/query.parquet
+  official_corpus: data/raw/links_corpus_vi_en_zh.parquet
+  phase11c_root: data/source_census/phase11c_broad_existing_new
+  phase11c_report: artifacts/phase11c_broad_existing_new/phase11c_report.json
+  phase11c_submission_json: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.json
+  phase11c_submission_zip: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.zip
