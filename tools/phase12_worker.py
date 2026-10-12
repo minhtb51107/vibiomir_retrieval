@@ -161,6 +161,53 @@ def verify_processed_outputs(config: dict) -> dict:
     return {**report, "processed_checkpoints_reused": 800, "checkpoint_integrity": "ok"}
 
 
+def validate_embedding_checkpoint(config: dict, documents: Path) -> dict:
+    """Prove the transactional prefix is safe before resuming model work."""
+    retrieval=ROOT/config["outputs"]["retrieval"]
+    artifacts=ROOT/config["outputs"]["artifacts"]
+    partial=retrieval/"pubmed_document_embeddings.streaming.partial"
+    status_path=retrieval/"pubmed_document_embeddings.streaming.status.u8"
+    checkpoint_path=retrieval/"pubmed_document_embeddings.streaming.checkpoint.json"
+    checkpoint=json.loads(checkpoint_path.read_text(encoding="utf-8"))
+    rows=pq.ParquetFile(documents).metadata.num_rows
+    dimension=int(config["models"]["embedder"]["dimension"])
+    signature=digest_text(f"{sha256_file(documents)}:{config['models']['embedder']['revision']}:{rows}:{dimension}")
+    if checkpoint.get("signature")!=signature:
+        raise ValueError("PubMed embedding checkpoint signature/model/document-order mismatch")
+    if int(checkpoint.get("rows",-1))!=rows or int(checkpoint.get("dimension",-1))!=dimension:
+        raise ValueError("PubMed embedding checkpoint shape mismatch")
+    if partial.stat().st_size!=rows*dimension*4 or status_path.stat().st_size!=rows:
+        raise ValueError("PubMed embedding checkpoint file-size mismatch")
+    status=np.memmap(status_path,dtype=np.uint8,mode="r",shape=(rows,))
+    completed=int(checkpoint.get("completed",-1))
+    observed=int(np.count_nonzero(status))
+    if observed!=completed or np.any(status[:completed]!=1) or np.any(status[completed:]!=0):
+        raise ValueError(f"embedding completion bitmap is not one committed prefix: checkpoint={completed} observed={observed}")
+    stream_rows=int(config["models"]["embedder"]["stream_rows"])
+    if completed!=rows and completed%stream_rows:
+        raise ValueError(f"embedding checkpoint is not on a {stream_rows}-row transaction boundary: {completed}")
+    vectors=np.memmap(partial,dtype=np.float32,mode="r",shape=(rows,dimension))
+    nonfinite=0; zero_norm=0
+    for start in range(0,completed,1024):
+        block=np.asarray(vectors[start:min(completed,start+1024)])
+        nonfinite+=int((~np.isfinite(block)).sum())
+        zero_norm+=int((np.linalg.norm(block,axis=1)==0).sum())
+    if nonfinite or zero_norm:
+        raise ValueError(f"committed embedding prefix invalid: nonfinite={nonfinite} zero_norm={zero_norm}")
+    prefix_ids=[]
+    remaining=completed
+    for batch in pq.ParquetFile(documents).iter_batches(columns=["doc_id"],batch_size=4096):
+        values=list(map(int,batch.column(0).to_pylist()))[:remaining]
+        prefix_ids.extend(values); remaining-=len(values)
+        if remaining<=0: break
+    if len(prefix_ids)!=completed or len(set(prefix_ids))!=completed:
+        raise ValueError("committed embedding prefix document mapping is incomplete or duplicated")
+    result={"passed":True,"completed":completed,"remaining":rows-completed,"rows":rows,"dimension":dimension,"dtype":"float32","model_revision":config["models"]["embedder"]["revision"],"document_order_sha256":sha256_file(documents),"signature":signature,"bitmap_prefix_complete":True,"vectors_flushed_before_status":checkpoint.get("vectors_flushed_before_status") is True,"committed_nonfinite_values":0,"committed_zero_norm_rows":0,"unique_prefix_doc_ids":completed,"first_uncommitted_row":completed,"transaction_rows":stream_rows,"checkpoint_path":str(checkpoint_path)}
+    if not result["vectors_flushed_before_status"]: raise ValueError("checkpoint does not prove vector flush before completion bit")
+    atomic_json(artifacts/"embedding_checkpoint_audit.json",result)
+    return result
+
+
 def digest_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
@@ -387,8 +434,8 @@ def embed_documents(config: dict, documents: Path, run_state: Path, benchmark: d
         if int(status.sum()) == rows:
             return json.loads((artifacts / "embedding_summary.json").read_text(encoding="utf-8"))
     if checkpoint_path.exists():
-        checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
-        if checkpoint.get("signature") != signature or partial.stat().st_size != rows * dimension * 4 or status_path.stat().st_size != rows:
+        checkpoint_audit=validate_embedding_checkpoint(config,documents)
+        if checkpoint_audit["signature"]!=signature:
             raise ValueError("PubMed embedding checkpoint contract mismatch")
     else:
         vectors = np.memmap(partial, dtype=np.float32, mode="w+", shape=(rows, dimension)); vectors.flush(); del vectors

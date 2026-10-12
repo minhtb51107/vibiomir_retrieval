@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pyarrow as pa
 import pyarrow.parquet as pq
+import numpy as np
 import pytest
 
 from tools import phase12_pubmed as pubmed
@@ -99,6 +100,23 @@ def test_phase12_dependency_preflight_imports_every_remaining_stage_module(monke
     result=phase12_worker.dependency_preflight({},verify_runtime=False)
     assert result["passed"] is True
     assert seen==list(phase12_worker.REMAINING_STAGE_MODULES)
+
+
+def test_embedding_checkpoint_requires_one_contiguous_committed_prefix(tmp_path,monkeypatch):
+    monkeypatch.setattr(phase12_worker,"ROOT",tmp_path)
+    config={"outputs":{"retrieval":"retrieval","artifacts":"artifacts"},"models":{"embedder":{"dimension":2,"revision":"rev","stream_rows":2}}}
+    documents=tmp_path/"documents.parquet"
+    pq.write_table(pa.table({"doc_id":[10,11,12,13]}),documents)
+    root=tmp_path/"retrieval";root.mkdir()
+    vectors=np.memmap(root/"pubmed_document_embeddings.streaming.partial",dtype=np.float32,mode="w+",shape=(4,2));vectors[:2]=[[1,0],[0,1]];vectors.flush()
+    np.asarray([1,1,0,0],dtype=np.uint8).tofile(root/"pubmed_document_embeddings.streaming.status.u8")
+    signature=phase12_worker.digest_text(f"{phase12_worker.sha256_file(documents)}:rev:4:2")
+    (root/"pubmed_document_embeddings.streaming.checkpoint.json").write_text(json.dumps({"signature":signature,"rows":4,"dimension":2,"completed":2,"vectors_flushed_before_status":True}),encoding="utf-8")
+    result=phase12_worker.validate_embedding_checkpoint(config,documents)
+    assert result["completed"]==2 and result["first_uncommitted_row"]==2
+    np.asarray([1,0,1,0],dtype=np.uint8).tofile(root/"pubmed_document_embeddings.streaming.status.u8")
+    with pytest.raises(ValueError,match="committed prefix"):
+        phase12_worker.validate_embedding_checkpoint(config,documents)
 
 
 def _config(tmp_path:Path,attempts:int=3)->dict:

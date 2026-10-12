@@ -73,6 +73,17 @@ recovery adds `psutil` explicitly and performs a remaining-stage import, CUDA,
 local tokenizer, and pinned model-revision preflight before any long worker is
 allowed to start.
 
+The first full embedding continuation later became stale at 11,520/239,896:
+both supervisor and worker disappeared without a new traceback, Windows Error
+Reporting record, resource-exhaustion event, or supervisor terminal event.
+Accordingly, the termination cause is recorded as unknown rather than inferred
+from the older `psutil` traceback. The completion bitmap proved one contiguous
+11,520-row prefix of finite float32 1,024-dimensional vectors, bound to the
+document-order hash and pinned model revision; row 11,520 is the exact resume
+boundary. Supervisor state now records supervisor/worker PIDs and a heartbeat,
+refuses a competing restart if an orphan worker is alive, and retains the last
+successful checkpoint/done counter for stale-run recovery.
+
 ## Results
 
 Processing, embedding/index, candidate, reranker, attribution, validation, and

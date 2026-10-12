@@ -36,6 +36,17 @@ def test_running_state_without_lock_is_reconciled_as_stale(tmp_path):
     assert recovered["interrupted_pid"] is None
     assert recovered["completed"]==37434
     assert recovered["checkpoint_preserved"] is True
+    assert recovered["termination_reason"]=="Cause of process termination unknown."
+
+
+def test_dead_supervisor_does_not_start_competitor_while_worker_is_alive(tmp_path,monkeypatch):
+    run=tmp_path/"run";run.mkdir()
+    (run/"run.lock").write_text("pid=123\n",encoding="utf-8")
+    (run/"state.json").write_text(json.dumps({"status":"RUNNING","worker_pid":456}),encoding="utf-8")
+    monkeypatch.setattr("tools.competition_supervisor.process_alive",lambda pid:pid==456)
+    with pytest.raises(FileExistsError,match="live worker"):
+        recover_stale_run(run,"phase12_test")
+    assert (run/"run.lock").exists()
 
 
 def test_phase10e_can_resume_at_atomic_assemble_boundary():

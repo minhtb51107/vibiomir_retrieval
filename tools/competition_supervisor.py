@@ -75,6 +75,9 @@ def recover_stale_run(run: Path, run_id: str) -> dict[str, Any] | None:
         prior=json.loads(state_path.read_text(encoding="utf-8"))
     except Exception:
         prior={}
+    worker_pid=prior.get("worker_pid")
+    if worker_pid is not None and process_alive(int(worker_pid)):
+        raise FileExistsError(f"live worker pid={worker_pid}: refusing competing supervisor")
     if lock.exists():
         raw=lock.read_text(encoding="utf-8",errors="replace")
         try:
@@ -90,6 +93,8 @@ def recover_stale_run(run: Path, run_id: str) -> dict[str, Any] | None:
     recovered={
         **prior,"run_id":run_id,"status":"STALE_RUNNING",
         "interrupted_pid":pid,"checkpoint_preserved":True,
+        "worker_pid_alive":False,
+        "termination_reason":"Cause of process termination unknown.",
         "stale_detected_at":dt.datetime.now(dt.timezone.utc).isoformat(),
     }
     atomic_json(state_path,recovered)
@@ -159,19 +164,28 @@ def main() -> int:
     os.write(descriptor, f"pid={os.getpid()}\nrun_id={args.run_id}\n".encode()); os.close(descriptor)
     log_path = logs / "worker.log"
     started = time.time()
-    state = {"run_id": args.run_id, "status": "RUNNING", "stage": "STARTING", "started_at": dt.datetime.now(dt.timezone.utc).isoformat(), "command": args.command}
+    state = {"run_id": args.run_id, "status": "RUNNING", "stage": "STARTING", "started_at": dt.datetime.now(dt.timezone.utc).isoformat(), "command": args.command, "supervisor_pid":os.getpid(), "heartbeat_at":dt.datetime.now(dt.timezone.utc).isoformat()}
     if recovered:
         state["recovered_from"]={"status":"STALE_RUNNING","interrupted_pid":recovered.get("interrupted_pid"),"last_stage":recovered.get("stage"),"last_successful_checkpoint":recovered.get("last_successful_checkpoint")}
     atomic_json(state_path, state); atomic_json(run / "manifest.json", state); event(events, "RUN_STARTED", command=args.command)
     prevent_sleep(True)
     exit_code = -1
     try:
-        with log_path.open("a", encoding="utf-8") as log:
-            process = subprocess.Popen(args.command, cwd=root, stdout=log, stderr=subprocess.STDOUT)
+        with log_path.open("a", encoding="utf-8", buffering=1) as log:
+            environment={**os.environ,"PYTHONUNBUFFERED":"1"}
+            process = subprocess.Popen(args.command, cwd=root, stdout=log, stderr=subprocess.STDOUT, env=environment)
+            state.update(worker_pid=process.pid,worker_alive=True,heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat())
+            atomic_json(state_path,state); event(events,"WORKER_STARTED",worker_pid=process.pid,supervisor_pid=os.getpid())
             last_stage = None
             while process.poll() is None:
                 try: state = json.loads(state_path.read_text(encoding="utf-8"))
                 except Exception: pass
+                state.update(supervisor_pid=os.getpid(),worker_pid=process.pid,worker_alive=True,heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat())
+                if state.get("checkpoint"):
+                    state["last_successful_checkpoint"]=state["checkpoint"]
+                if state.get("done") is not None:
+                    state["last_successful_done"]=state["done"]
+                atomic_json(state_path,state)
                 free = shutil.disk_usage(root).free / 2**30
                 if free < args.minimum_free_gib:
                     process.terminate(); state.update(status="FAILED_SAFE", stage="DISK_GUARD", free_disk_gib=free); atomic_json(state_path,state); event(events,"DISK_GUARD",free_disk_gib=free); break
@@ -224,6 +238,8 @@ def main() -> int:
                 atomic_json(run / "metrics.json", {"updated_at":dt.datetime.now(dt.timezone.utc).isoformat(),"stage":state.get("stage"),"free_disk_gib":free,"gpu":gpu_state(),"elapsed_seconds":time.time()-started})
                 time.sleep(5)
             exit_code = process.wait()
+            state.update(worker_alive=False,heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat())
+            atomic_json(state_path,state)
         try: state = json.loads(state_path.read_text(encoding="utf-8"))
         except Exception: state = {"stage":"UNKNOWN"}
         if state.get("status") == "FAILED_SAFE": terminal="FAILED_SAFE"
