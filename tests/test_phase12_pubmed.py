@@ -9,6 +9,7 @@ import pytest
 
 from tools import phase12_pubmed as pubmed
 from tools.phase12_pubmed import parse_pubmed_xml, pmid_from_url
+from tools import phase12_worker
 from tools.phase12_worker import process_record
 
 
@@ -81,6 +82,23 @@ def test_phase12_processing_does_not_fabricate_missing_record():
     document,chunks=process_record(_processed_row("MISSING"))
     assert document is None
     assert chunks==[]
+
+
+def test_phase12_dependency_preflight_fails_before_long_worker(monkeypatch):
+    monkeypatch.setattr(phase12_worker.importlib.util,"find_spec",lambda name: None if name=="psutil" else object())
+    with pytest.raises(ModuleNotFoundError,match="psutil"):
+        phase12_worker.dependency_preflight({},verify_runtime=False)
+
+
+def test_phase12_dependency_preflight_imports_every_remaining_stage_module(monkeypatch):
+    class Available:
+        __version__="test"
+    seen=[]
+    monkeypatch.setattr(phase12_worker.importlib.util,"find_spec",lambda name: object())
+    monkeypatch.setattr(phase12_worker.importlib,"import_module",lambda name: seen.append(name) or Available())
+    result=phase12_worker.dependency_preflight({},verify_runtime=False)
+    assert result["passed"] is True
+    assert seen==list(phase12_worker.REMAINING_STAGE_MODULES)
 
 
 def _config(tmp_path:Path,attempts:int=3)->dict:

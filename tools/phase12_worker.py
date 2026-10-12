@@ -6,6 +6,8 @@ import argparse
 import datetime as dt
 import gc
 import hashlib
+import importlib
+import importlib.util
 import json
 import math
 import os
@@ -41,6 +43,12 @@ from src.source_census.union_experiment import (
 from src.validation.pre_submission import audit_score_cache
 from tools.phase11a_bottleneck import _copy_or_link, _init_score_db, _seed_exact, tokenizer
 from tools.phase12_pubmed import audit_completed, load, sha256_file
+
+
+REMAINING_STAGE_MODULES = (
+    "numpy", "pyarrow", "yaml", "psutil", "torch", "transformers",
+    "sentence_transformers",
+)
 
 
 SECTION = pa.struct([
@@ -87,6 +95,70 @@ def update_state(path: Path, **fields) -> None:
         current = {}
     current.update(fields)
     atomic_json(path, current)
+
+
+def dependency_preflight(config: dict, *, verify_runtime: bool = True) -> dict:
+    """Fail before expensive stages if a remaining-stage dependency is absent."""
+    missing = [name for name in REMAINING_STAGE_MODULES if importlib.util.find_spec(name) is None]
+    if missing:
+        raise ModuleNotFoundError(f"Phase 12 remaining-stage dependencies missing: {missing}")
+    imported = {}
+    for name in REMAINING_STAGE_MODULES:
+        module = importlib.import_module(name)
+        imported[name] = str(getattr(module, "__version__", "available"))
+    result = {"passed": True, "modules": imported, "remaining_stages": ["BENCHMARK_EMBED", "EMBED_AND_INDEX", "RETRIEVE_PUBMED", "RERANK_PUBMED", "MERGE_AND_PACKAGE", "FINAL_AUDIT"]}
+    if verify_runtime:
+        import torch
+        from transformers import AutoConfig, AutoTokenizer
+        if not torch.cuda.is_available():
+            raise RuntimeError("Phase 12 requires the configured local CUDA runtime, but torch.cuda.is_available() is false")
+        gpu = torch.cuda.get_device_properties(0)
+        result["cuda"] = {"device": gpu.name, "total_vram_mib": round(gpu.total_memory/2**20, 1), "torch_cuda": str(torch.version.cuda)}
+        contracts = {}
+        for role in ("embedder", "reranker"):
+            model = config["models"][role]
+            kwargs = {"revision": model["revision"], "local_files_only": True}
+            if model.get("cache_dir"):
+                kwargs["cache_dir"] = str(ROOT/model["cache_dir"])
+            loaded = AutoConfig.from_pretrained(model["name"], **kwargs)
+            tokenizer_config = AutoTokenizer.from_pretrained(model["name"], **kwargs)
+            contracts[role] = {"name": model["name"], "revision": model["revision"], "config_type": type(loaded).__name__, "tokenizer_type": type(tokenizer_config).__name__}
+        result["model_contracts"] = contracts
+        result["nvidia_smi"] = shutil.which("nvidia-smi")
+        if not result["nvidia_smi"]:
+            raise RuntimeError("nvidia-smi is unavailable for Phase 12 runtime monitoring")
+    return result
+
+
+def verify_processed_outputs(config: dict) -> dict:
+    """Validate and reuse the 800 durable processed parts and consolidated files."""
+    output = ROOT/config["outputs"]["processed"]
+    artifacts = ROOT/config["outputs"]["artifacts"]
+    report_path = artifacts/"processing_quality_audit.json"
+    documents = output/"documents.parquet"; chunks = output/"chunks.parquet"; parts = output/"parts"
+    if not (report_path.exists() and documents.exists() and chunks.exists()):
+        raise FileNotFoundError("completed Phase 12 processing outputs are not all present")
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    markers = sorted(parts.glob("part-*.done.json"))
+    if len(markers) != 800 or [path.stem.split(".done")[0] for path in markers] != [f"part-{index:06d}" for index in range(800)]:
+        raise ValueError(f"processed checkpoint coverage mismatch: {len(markers)}/800")
+    document_rows = chunk_rows = 0
+    for marker in markers:
+        checkpoint = json.loads(marker.read_text(encoding="utf-8")); stem = marker.name.removesuffix(".done.json")
+        doc_part = parts/f"{stem}.documents.parquet"; chunk_part = parts/f"{stem}.chunks.parquet"
+        if not doc_part.exists() or not chunk_part.exists():
+            raise ValueError(f"processed checkpoint has missing outputs: {marker}")
+        if checkpoint["documents_sha256"] != sha256_file(doc_part) or checkpoint["chunks_sha256"] != sha256_file(chunk_part):
+            raise ValueError(f"processed checkpoint hash mismatch: {marker}")
+        document_rows += int(checkpoint["documents"]); chunk_rows += int(checkpoint["chunks"])
+    actual_docs = pq.ParquetFile(documents).metadata.num_rows; actual_chunks = pq.ParquetFile(chunks).metadata.num_rows
+    failures = []
+    if document_rows != actual_docs or actual_docs != int(report["valid_documents"]): failures.append("document row accounting")
+    if chunk_rows != actual_chunks or actual_chunks != int(report["chunks"]): failures.append("chunk row accounting")
+    if sha256_file(documents) != report["documents_sha256"]: failures.append("consolidated document hash")
+    if sha256_file(chunks) != report["chunks_sha256"]: failures.append("consolidated chunk hash")
+    if failures: raise ValueError(f"processed Phase 12 output integrity failure: {failures}")
+    return {**report, "processed_checkpoints_reused": 800, "checkpoint_integrity": "ok"}
 
 
 def digest_text(value: str) -> str:
@@ -555,11 +627,17 @@ def acquisition_audit(config: dict) -> dict:
 def main() -> int:
     parser=argparse.ArgumentParser(); parser.add_argument("--config",default="configs/phase12_pubmed.yaml"); parser.add_argument("--run-state",required=True); args=parser.parse_args()
     config=load(ROOT/args.config); run_state=ROOT/args.run_state
-    update_state(run_state,stage="ACQUISITION_AUDIT",status="RUNNING",total=800,done=0,checkpoint=str(ROOT/config["outputs"]["artifacts"]/"acquisition_summary.json"))
-    acquisition=acquisition_audit(config)
-    update_state(run_state,stage="PROCESS_PUBMED",status="RUNNING",total=800,done=0,acquisition=acquisition,checkpoint=str(ROOT/config["outputs"]["artifacts"]/"final_acquisition_audit.json"))
-    processed=process_pubmed(config,run_state)
+    artifacts=ROOT/config["outputs"]["artifacts"]
+    update_state(run_state,stage="DEPENDENCY_PREFLIGHT",status="RUNNING",total=len(REMAINING_STAGE_MODULES),done=0,checkpoint="remaining-stage import and model-contract audit")
+    preflight=dependency_preflight(config)
+    atomic_json(artifacts/"dependency_preflight.json",preflight)
+    acquisition_path=artifacts/"final_acquisition_audit.json"
+    acquisition=json.loads(acquisition_path.read_text(encoding="utf-8"))
+    if acquisition.get("passed") is not True or int(acquisition.get("completed",-1))!=240000:
+        raise ValueError(f"durable acquisition audit is not complete: {acquisition}")
+    processed=verify_processed_outputs(config)
     documents=ROOT/config["outputs"]["processed"]/"documents.parquet"
+    update_state(run_state,stage="BENCHMARK_EMBED",status="RUNNING",total=2,done=0,acquisition=acquisition,processed_documents=processed["valid_documents"],processed_chunks=processed["chunks"],processed_checkpoints_reused=processed["processed_checkpoints_reused"],dependency_preflight=preflight,checkpoint=str(artifacts/"dependency_preflight.json"))
     benchmark=benchmark_embed(config,documents,run_state)
     embed_documents(config,documents,run_state,benchmark)
     retrieve_pubmed(config,documents,run_state)

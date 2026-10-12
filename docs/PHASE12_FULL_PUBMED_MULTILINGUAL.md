@@ -65,6 +65,14 @@ before completion bits. Dense search is blockwise over the full available
 PubMed population, avoiding a corpus-wide in-memory matrix. Exact reranker
 reuse remains keyed only by `(query_id, chunk_id)`.
 
+The first post-processing launch stopped before model load because `psutil`,
+used only by the benchmark/memory telemetry, was absent from the project
+environment and dependency manifest. All 800 processed checkpoints and the
+consolidated 239,896-document/744,861-chunk artifacts remained valid. The
+recovery adds `psutil` explicitly and performs a remaining-stage import, CUDA,
+local tokenizer, and pinned model-revision preflight before any long worker is
+allowed to start.
+
 ## Results
 
 Processing, embedding/index, candidate, reranker, attribution, validation, and

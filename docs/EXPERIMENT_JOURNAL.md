@@ -546,6 +546,24 @@ Cost/resources: No acquisition, extraction, chunking, embedding, candidate gener
 Evidence: `data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32`, its streaming bitmap/checkpoint, `data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite`, `artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json`, and the Phase 10E G1A run log/state.
 Commit: this checkpoint.
 
+## Phase 12 — PubMed acquisition and benchmark-dependency recovery
+
+Date: 2026-10-13
+Phase / commit: Phase 12 full PubMed multilingual retrieval / this checkpoint
+Question: Can the complete new-official PubMed block be acquired and converted into a crash-resumable multilingual retrieval arm without corrupting the Phase 11C control?
+Why we tried it: Phase 11C reached organizer FINAL `0.0492`, while all 240,000 official English PubMed IDs remained absent locally; this was the largest high-quality coverage gap.
+Hypothesis: Full PubMed coverage plus pinned BGE-M3 Vietnamese-to-English dense retrieval can add complementary evidence, but acquisition, embeddings, reranking, and packaging must remain transactional on the laptop.
+What we changed: Acquired all 800 exact-PMID EFetch batches with atomic raw/parsed/checkpoint triples, added bounded transport recovery, repaired historical `PubmedBookArticle` parsing, created deterministic source-grounded evidence processing, and added a resumable processing-to-package state machine. A missing `psutil` dependency was then caught at `BENCHMARK_EMBED`; recovery added it to `pyproject.toml` and introduced a fail-fast remaining-stage dependency/CUDA/model-contract preflight.
+What stayed fixed: The new official ID universe, pinned BGE-M3 and reranker revisions, Phase 11C control candidates and scores, exact-key reranker reuse, Docs@20/Chunks@40 output, and source-verbatim provenance.
+Result: Acquisition accounts for 240,000/240,000 PMIDs: 239,770 abstracts, 126 title-only records, and 104 confirmed unavailable records. The corrected parser recovered 197 book records from retained XML. Processing completed 800/800 checkpoints into 239,896 valid documents and 744,861 deterministic evidence chunks; their consolidated hashes and all per-part hashes passed recovery verification. No Phase 12 organizer result exists.
+What failed / surprised us: Memory telemetry was imported only when benchmarking began, so the absent dependency was discovered after processing rather than at launch. No acquisition or processing data was lost.
+What we learned: Long state machines need a complete remaining-stage dependency and pinned-model cache preflight before any expensive work, even when later imports are intentionally lazy.
+Decision: Resume only at `BENCHMARK_EMBED`; preserve all acquisition and processing checkpoints, then continue the full PubMed arm unattended if the measured RTX 3050 benchmark is safe.
+Next question: What full-index throughput and PubMed attribution does BGE-M3 achieve, and do PubMed candidates enter the final Phase 11C union meaningfully?
+Cost/resources: Public NCBI acquisition at 2.5 requests/second; processing was CPU-only. Embedding and reranker costs remain pending measured execution.
+Evidence: `artifacts/phase12_pubmed/acquisition_summary.json`, `artifacts/phase12_pubmed/processing_quality_audit.json`, and `artifacts/incidents/20261013_035705_phase12_full_pubmed`.
+Commit: this checkpoint.
+
 ## Phase 11B — New official corpus control and document Recall@K curve
 
 Date: 2026-10-12
