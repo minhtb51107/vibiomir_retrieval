@@ -1,0 +1,290 @@
+{
+  "status": "MIGRATION_AUDIT_COMPLETE",
+  "official_corpus_diff": {
+    "old": {
+      "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\raw\\links_corpus.parquet",
+      "rows": 4394718,
+      "unique_ids": 4394718,
+      "duplicate_ids": 0,
+      "ids_sorted": true,
+      "sha256": "dee1153f5b9d9010dea18e1b7724b4915ff847b711d036bec8b933486802a971"
+    },
+    "new": {
+      "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\raw\\links_corpus_vi_en_zh.parquet",
+      "rows": 1194469,
+      "unique_ids": 1194469,
+      "duplicate_ids": 0,
+      "ids_sorted": false,
+      "sha256": "9e34cb4b7d6424b80ed2634ada581ea9e2d97da69c245d80bdbb31413a78e8ce",
+      "url_unique": 1194469,
+      "url_duplicates": 0
+    },
+    "retained_ids": 954469,
+    "removed_ids": 3440249,
+    "newly_introduced_ids": 240000,
+    "retained_url_mapping_changes": 0,
+    "stream_retained_crosscheck": 954469,
+    "new_language_by_source_association": {
+      "en": 240000,
+      "unknown": 371405,
+      "vi": 552153,
+      "zh": 30911
+    },
+    "new_top_domains": {
+      "pubmed.ncbi.nlm.nih.gov": 240000,
+      "suckhoecongdongonline.vn": 154503,
+      "120ask.com": 98160,
+      "suckhoedoisong.vn": 85823,
+      "nhathuoclongchau.com.vn": 79598,
+      "thanhnien.vn": 72111,
+      "cnkang.com": 40046,
+      "ask.39.net": 32772,
+      "laodong.vn": 31282,
+      "phunusuckhoe.giadinhonline.vn": 27577,
+      "familydoctor.com.cn": 26819,
+      "medlatec.vn": 24762,
+      "giadinhonline.vn": 16729,
+      "baohaiphong.vn": 16286,
+      "baonghean.vn": 15941,
+      "vietnamnet.vn": 15543,
+      "baodanang.vn": 14500,
+      "tiemchunglongchau.com.vn": 13281,
+      "baocantho.com.vn": 12016,
+      "hellobacsi.com": 11747,
+      "baoangiang.com.vn": 10738,
+      "vov.vn": 9784,
+      "khoahocphothong.vn": 8143,
+      "youmed.vn": 7189,
+      "vov2.vov.vn": 6899,
+      "zysjonline.com": 6591,
+      "phuyen.baodaklak.vn": 6252,
+      "zhongyibaodian.net": 6061,
+      "suckhoeviet.org.vn": 5627,
+      "baoquangtri.vn": 5483
+    },
+    "removed_language_by_source_association": {
+      "unknown": 2870342,
+      "vi": 26129,
+      "zh": 543778
+    },
+    "unexpected_non_chinese_removed_top_domains": {
+      "cnkang.com": 923392,
+      "120ask.com": 820319,
+      "familydoctor.com.cn": 420634,
+      "ask.39.net": 304603,
+      "zysjonline.com": 236756,
+      "a-hospital.com": 164638,
+      "vinmec.com": 26129
+    },
+    "new_pubmed_ids": 240000,
+    "organizer_declared_language_composition": {
+      "vi": 714469,
+      "zh": 240000,
+      "en": 240000
+    },
+    "organizer_change_accounting": {
+      "retained_vietnamese_ids": 714469,
+      "retained_chinese_ids": 240000,
+      "new_english_ids": 240000,
+      "removed_chinese_ids": 3414120,
+      "unexpected_vietnamese_removals": 26129,
+      "unexpected_vietnamese_removed_domains": {
+        "vinmec.com": 26129
+      },
+      "basis": "organizer-declared new totals plus exact ID-set/domain diff; the local old file contains 26,129 vinmec.com IDs absent from the new file"
+    }
+  },
+  "local_retention": {
+    "focused_current_best": {
+      "old_local_official_docs": 41210,
+      "retained_official_docs": 26639,
+      "removed_official_docs": 14571,
+      "retained_usable_docs": 26639,
+      "retained_chunks": 444411,
+      "source_domain_count": 7,
+      "language_counts": {
+        "vi": 26185,
+        "zh": 454
+      },
+      "source_counts": {
+        "medlatec.vn": 9988,
+        "suckhoedoisong.vn": 4999,
+        "tiemchunglongchau.com.vn": 4998,
+        "cancer.39.net": 440,
+        "hellobacsi.com": 5000,
+        "benhviennhitrunguong.gov.vn": 1200,
+        "zydcd.com": 14
+      }
+    },
+    "phase11a_m16_corpus": {
+      "old_local_official_docs": 41210,
+      "retained_official_docs": 26639,
+      "removed_official_docs": 14571,
+      "retained_usable_docs": 26639,
+      "retained_chunks": 444411,
+      "source_domain_count": 7,
+      "language_counts": {
+        "vi": 26185,
+        "zh": 454
+      },
+      "source_counts": {
+        "medlatec.vn": 9988,
+        "suckhoedoisong.vn": 4999,
+        "tiemchunglongchau.com.vn": 4998,
+        "cancer.39.net": 440,
+        "hellobacsi.com": 5000,
+        "benhviennhitrunguong.gov.vn": 1200,
+        "zydcd.com": 14
+      },
+      "note": "M16 uses the same nine-source document corpus; candidate reconciliation remains pending"
+    },
+    "broad_existing": {
+      "old_local_official_docs": 59142,
+      "retained_official_docs": 35690,
+      "removed_official_docs": 23452,
+      "retained_usable_docs": 35690,
+      "retained_chunks": 523482,
+      "source_domain_count": 65,
+      "language_counts": {
+        "unknown": 5702,
+        "vi": 29396,
+        "zh": 592
+      },
+      "source_counts": {
+        "medlatec.vn": 10005,
+        "hellobacsi.com": 5011,
+        "tiemchunglongchau.com.vn": 5009,
+        "suckhoecongdongonline.vn": 5000,
+        "suckhoedoisong.vn": 4999,
+        "benhviennhitrunguong.gov.vn": 1200,
+        "cancer.39.net": 440,
+        "familydoctor.com.cn": 320,
+        "thanhnien.vn": 190,
+        "phunusuckhoe.giadinhonline.vn": 133,
+        "baocantho.com.vn": 122,
+        "giadinhonline.vn": 120,
+        "vietnamnet.vn": 118,
+        "khoahocphothong.vn": 116,
+        "vov.vn": 115,
+        "baoangiang.com.vn": 114,
+        "120ask.com": 112,
+        "baoquangtri.vn": 109,
+        "baovinhlong.com.vn": 107,
+        "nhandan.vn": 107,
+        "suckhoeviet.org.vn": 107,
+        "vov2.vov.vn": 107,
+        "phuyen.baodaklak.vn": 105,
+        "dantri.com.vn": 104,
+        "tienphong.vn": 104,
+        "tuoitre.vn": 104,
+        "qdnd.vn": 104,
+        "vietnamplus.vn": 104,
+        "baochinhphu.vn": 103,
+        "baogialai.com.vn": 103,
+        "baoquangninh.vn": 103,
+        "baotayninh.vn": 103,
+        "thaythuocvietnam.vn": 103,
+        "bachmai.gov.vn": 101,
+        "vnexpress.net": 101,
+        "baophutho.vn": 100,
+        "baothanhhoa.vn": 100,
+        "sggp.org.vn": 100,
+        "benhvienvietduc.org": 70,
+        "pharmacity.vn": 65,
+        "cnkang.com": 53,
+        "ask.39.net": 37,
+        "test.pmphai.com": 23,
+        "msdmanuals.cn": 17,
+        "zydcd.com": 15,
+        "jbk.39.net": 12,
+        "zhongyibaodian.net": 12,
+        "tnb.39.net": 11,
+        "wei.39.net": 10,
+        "a-hospital.com": 9,
+        "woman.39.net": 8,
+        "jb39.com": 8,
+        "youlai.cn": 8,
+        "baby.39.net": 7,
+        "health.people.com.cn": 7,
+        "care.39.net": 3,
+        "qy.familydoctor.com.cn": 2,
+        "baidianfeng.familydoctor.com.cn": 2,
+        "familydoctor.cn": 2,
+        "special.vietnamplus.vn": 1,
+        "fitness.39.net": 1,
+        "food.39.net": 1,
+        "gk.39.net": 1,
+        "man.39.net": 1,
+        "shen.39.net": 1
+      }
+    },
+    "acquired_source_census_roots": {
+      "phase10f_medlatec_10000": {
+        "old_local_official_docs": 10000,
+        "retained_official_docs": 9988,
+        "removed_official_docs": 12,
+        "retained_usable_docs": 9988,
+        "retained_chunks": 196653,
+        "source_domain_count": 1,
+        "language_counts": {
+          "vi": 9988
+        },
+        "source_counts": {
+          "medlatec.vn": 9988
+        }
+      },
+      "phase10e_g1a_10010": {
+        "old_local_official_docs": 10010,
+        "retained_official_docs": 4992,
+        "removed_official_docs": 5018,
+        "retained_usable_docs": 4992,
+        "retained_chunks": 98333,
+        "source_domain_count": 1,
+        "language_counts": {
+          "vi": 4992
+        },
+        "source_counts": {
+          "medlatec.vn": 4992
+        }
+      },
+      "phase10e_g6b_15000": {
+        "old_local_official_docs": 15000,
+        "retained_official_docs": 10437,
+        "removed_official_docs": 4563,
+        "retained_usable_docs": 10437,
+        "retained_chunks": 169846,
+        "source_domain_count": 3,
+        "language_counts": {
+          "vi": 9997,
+          "zh": 440
+        },
+        "source_counts": {
+          "suckhoedoisong.vn": 4999,
+          "tiemchunglongchau.com.vn": 4998,
+          "cancer.39.net": 440
+        }
+      },
+      "phase10e_g5a_11200": {
+        "old_local_official_docs": 11200,
+        "retained_official_docs": 6214,
+        "removed_official_docs": 4986,
+        "retained_usable_docs": 6214,
+        "retained_chunks": 77912,
+        "source_domain_count": 3,
+        "language_counts": {
+          "vi": 6200,
+          "zh": 14
+        },
+        "source_counts": {
+          "hellobacsi.com": 5000,
+          "benhviennhitrunguong.gov.vn": 1200,
+          "zydcd.com": 14
+        }
+      }
+    },
+    "new_pubmed_official_ids": 240000,
+    "new_pubmed_with_local_content": 0,
+    "new_pubmed_without_local_content": 240000
+  },
+  "no_crawling": true
+}

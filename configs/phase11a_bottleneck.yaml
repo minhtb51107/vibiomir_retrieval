@@ -1,0 +1,24 @@
+version: 1
+experiment: phase11a_bottleneck
+base_config: configs/phase10f_medlatec_10000.yaml
+current_best:
+  ranking_root: data/source_census/phase10f_full_medlatec_10000/rankings/UNION
+  cache_root: data/source_census/phase10f_full_medlatec_10000/round1
+  submission_json: submissions/00_READY_TO_UPLOAD/FULL_MEDLATEC_10000.json
+  submission_zip: submissions/10_SUBMITTED_VALID/FULL_MEDLATEC_10000.zip
+output_probe:
+  documents_per_query: 20
+  chunks_per_query: 40
+  name: phase11a_OUTPUT20_CHUNKS40
+candidate_probe:
+  source_cap: 16
+  dense_depth: 16
+  sparse_depth: 16
+  name: phase11a_CANDIDATE_M16
+broad_probe:
+  lexical_candidates_per_query: 32
+  name: phase11a_BROAD_EXISTING_CORPUS
+outputs:
+  root: data/source_census/phase11a_bottleneck
+  artifacts: artifacts/phase11a_bottleneck
+  submissions: submissions/00_READY_TO_UPLOAD

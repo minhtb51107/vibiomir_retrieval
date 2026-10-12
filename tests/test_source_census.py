@@ -24,6 +24,7 @@ from src.source_census.depth1000 import DEPTH_GROUPS, seed_exact_scores
 from src.source_census.cached_subsets import _require_complete_score_cache
 from src.validation.pre_submission import audit_score_cache, score_distribution
 from src.source_census.union_experiment import (
+    _audit_ranked_provenance_closure,
     _build_canonical_store,
     _experiment_inference_accounting,
     _external_control_fixture,
@@ -34,6 +35,7 @@ from src.source_census.union_experiment import (
     _reference_json_sha256,
 )
 from src.source_census.phase10f_medlatec import derive_checkpoint_config
+from src.submission.validator import SubmissionValidationError, normalize_validation_result
 
 
 def test_stable_fold_is_deterministic():
@@ -208,11 +210,80 @@ def test_union_canonical_filter_unifies_null_and_string_columns(tmp_path):
     assert table.column("error_message").to_pylist()==[None,"failed"]
 
 
+def test_union_canonical_filter_creates_nested_destination_parent(tmp_path):
+    source=tmp_path/"source.parquet"
+    destination=tmp_path/"previously"/"missing"/"documents.parquet"
+    pq.write_table(pa.table({"doc_id":[1,2],"text":["one","two"]}),source)
+
+    result=_filter_parquet([source],destination,"doc_id",{2})
+
+    assert result=={"selected":1,"written":1,"duplicate_input_rows":0}
+    assert destination.exists()
+    assert pq.read_table(destination).to_pylist()==[{"doc_id":2,"text":"two"}]
+
+
 def test_union_streaming_json_reader_handles_large_record_boundaries(tmp_path):
     path=tmp_path/"submission.json"
     expected=[{"id":1,"value":"x"*(1024*1024+17)},{"id":2,"value":"y"}]
     path.write_text(json.dumps(expected,separators=(",",":")),encoding="utf-8")
     assert list(_iter_json_array(path))==expected
+
+
+def test_union_stream_validator_honors_legal_configured_depths(tmp_path):
+    import sqlite3
+    from src.source_census.union_experiment import _stream_validate
+    from src.submission.common import write_deterministic_zip
+    database=tmp_path/"canonical.sqlite"
+    connection=sqlite3.connect(database)
+    connection.executescript("CREATE TABLE documents(doc_id INTEGER PRIMARY KEY,normalized_text TEXT NOT NULL);")
+    connection.executemany("INSERT INTO documents VALUES (?,?)",[(i,f"document {i} text") for i in range(1,41)])
+    connection.commit();connection.close()
+    payload=[{"id":7,"relevant_docs":list(range(1,21)),"relevant_chunks":[{"doc_id":i,"chunk_text":f"document {i} text"} for i in range(1,41)]}]
+    raw=tmp_path/"deep.json"; raw.write_text(json.dumps(payload,separators=(",",":")),encoding="utf-8")
+    packed=tmp_path/"deep.zip"; write_deterministic_zip(raw,packed)
+    result=_stream_validate(raw,packed,[7],database,document_depth=20,chunk_depth=40)
+    assert result["document_result_count"]==20
+    assert result["chunk_result_count"]==40
+
+
+def _actual_validation_shape(**updates):
+    result={
+        "path":"submission.zip","valid":True,"query_count":1200,
+        "document_result_count":12000,"chunk_result_count":24000,
+        "invalid_doc_ids":0,"duplicate_doc_ids":0,"duplicate_chunk_objects":0,
+        "chunk_provenance_mismatches":0,
+    }
+    result.update(updates);return result
+
+
+def test_submission_validation_contract_normalizes_actual_stream_shape():
+    normalized=normalize_validation_result(_actual_validation_shape())
+    assert normalized["valid"] is True
+    assert normalized["passed"] is True
+
+
+def test_submission_validation_contract_preserves_real_failure():
+    normalized=normalize_validation_result(_actual_validation_shape(valid=False,invalid_doc_ids=1))
+    assert normalized["passed"] is False
+
+
+def test_submission_validation_contract_rejects_unknown_incomplete_shape():
+    with pytest.raises(SubmissionValidationError,match="missing required fields"):
+        normalize_validation_result({"valid":True})
+
+
+def test_stream_package_exposes_normalized_validation_contract(tmp_path,monkeypatch):
+    from src.source_census import union_experiment as module
+    monkeypatch.setattr(module,"expected_query_ids",lambda _: [1])
+    monkeypatch.setattr(module,"write_submission_stream",lambda path,records: Path(path).write_text("[]\n",encoding="utf-8"))
+    monkeypatch.setattr(module,"write_deterministic_zip",lambda raw,packed: Path(packed).write_bytes(b"zip"))
+    monkeypatch.setattr(module,"_stream_validate",lambda *args,**kwargs:_actual_validation_shape(query_count=1,document_result_count=10,chunk_result_count=20))
+    monkeypatch.setattr(module,"_submission_records_disk",lambda **kwargs: iter(()))
+    ranking=tmp_path/"rankings"/"G";ranking.mkdir(parents=True)
+    (ranking/"reranked_documents.parquet").touch();(ranking/"reranked_chunks.parquet").touch()
+    config={"inputs":{"queries":"unused"},"submission":{"documents_per_query":10,"chunks_per_query":20,"chunk_expansion_tokens":1024}}
+    result=module._stream_package(config,tmp_path/"rankings","G","probe",tmp_path/"out",tmp_path/"canonical.sqlite",object(),verify_determinism=False)
+    assert result["validation"]["passed"] is True
 
 
 def test_union_submission_comparison_streams_exact_semantics(tmp_path):
@@ -241,6 +312,48 @@ def test_union_canonical_store_is_exact_and_integrity_checked(tmp_path):
     stored=connection.execute("SELECT * FROM chunks ORDER BY chunk_id").fetchall(); connection.close()
     assert result=={"chunks":2,"documents":2,"sqlite_integrity":"ok"}
     assert stored==[("a",1,"one",0,3),("b",2,"two",1,4)]
+
+
+def _provenance_gate_fixture(tmp_path, *, ranked_chunk="a", ranked_doc=1, official_ids=(1,)):
+    chunks=tmp_path/"chunks.parquet"; documents=tmp_path/"documents.parquet"; database=tmp_path/"canonical.sqlite"
+    rankings=tmp_path/"rankings.parquet"; official=tmp_path/"official.parquet"; report=tmp_path/"closure.json"
+    pq.write_table(pa.table({"chunk_id":["a"],"doc_id":[1],"raw_text":["one"],"start_offset":[0],"end_offset":[3]}),chunks)
+    pq.write_table(pa.table({"doc_id":[1],"normalized_text":["one document"]}),documents)
+    _build_canonical_store(chunks,documents,database)
+    pq.write_table(pa.table({"query_id":[7],"chunk_id":[ranked_chunk],"doc_id":[ranked_doc]}),rankings)
+    pq.write_table(pa.table({"id":list(official_ids)}),official)
+    return rankings,database,official,report
+
+
+def test_prepackage_provenance_gate_rejects_missing_ranked_chunk_with_report(tmp_path):
+    rankings,database,official,report=_provenance_gate_fixture(tmp_path,ranked_chunk="missing")
+    with pytest.raises(ValueError,match="ranked provenance closure failed"):
+        _audit_ranked_provenance_closure(rankings,database,official,report)
+    diagnostic=json.loads(report.read_text(encoding="utf-8"))
+    assert diagnostic["missing_canonical_ids"]==1
+    assert diagnostic["missing_sample"]==["missing"]
+
+
+def test_prepackage_provenance_gate_accepts_exact_canonical_chunk(tmp_path):
+    rankings,database,official,report=_provenance_gate_fixture(tmp_path)
+    result=_audit_ranked_provenance_closure(rankings,database,official,report)
+    assert result["passed"] is True
+    assert result["missing_canonical_ids"]==0
+    assert result["reconstruction_failures"]==0
+
+
+def test_prepackage_provenance_gate_rejects_nonofficial_candidate(tmp_path):
+    rankings,database,official,report=_provenance_gate_fixture(tmp_path,official_ids=(2,))
+    with pytest.raises(ValueError,match="ranked provenance closure failed"):
+        _audit_ranked_provenance_closure(rankings,database,official,report)
+    assert json.loads(report.read_text(encoding="utf-8"))["non_official_doc_ids"]==1
+
+
+def test_prepackage_provenance_gate_rejects_doc_id_mismatch(tmp_path):
+    rankings,database,official,report=_provenance_gate_fixture(tmp_path,ranked_doc=2,official_ids=(1,2))
+    with pytest.raises(ValueError,match="ranked provenance closure failed"):
+        _audit_ranked_provenance_closure(rankings,database,official,report)
+    assert json.loads(report.read_text(encoding="utf-8"))["doc_id_mismatches"]==1
 
 
 def test_union_control_reference_accepts_one_root_json_zip(tmp_path):

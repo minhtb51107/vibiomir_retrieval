@@ -20,7 +20,7 @@ from src.source_census.cached_subsets import build_cached_subset_rankings
 from src.source_census.pipeline import atomic_json, load_config
 from src.submission.common import file_sha256, write_deterministic_zip, write_submission_stream
 from src.submission.expansion import SourceWindowExpander
-from src.submission.validator import expected_query_ids
+from src.submission.validator import expected_query_ids, normalize_validation_result
 from src.validation.pre_submission import audit_score_cache
 
 
@@ -194,6 +194,7 @@ def _embedding_audit(spec: dict) -> dict:
 
 
 def _filter_parquet(paths: list[Path], destination: Path, key: str, selected: set[str|int]) -> dict:
+    destination.parent.mkdir(parents=True,exist_ok=True)
     temporary=destination.with_suffix(destination.suffix+".tmp"); temporary.unlink(missing_ok=True)
     writer=None; schema=pa.unify_schemas([pq.ParquetFile(path).schema_arrow for path in paths]); seen=set(); written=0; duplicates=0
     try:
@@ -309,6 +310,104 @@ def _build_canonical_store(chunks_path: Path, documents_path: Path, destination:
     return {"chunks":chunk_rows,"documents":document_rows,"sqlite_integrity":integrity}
 
 
+def _audit_ranked_provenance_closure(
+    ranked_chunks_path: Path,
+    canonical_db: Path,
+    official_corpus: Path,
+    report_path: Path,
+) -> dict:
+    """Hard-gate packaging on exact ranked/canonical/official provenance closure.
+
+    The canonical store may contain unused valid rows, but every ranked chunk must
+    have exactly one canonical owner, agree on its document ID, belong to the
+    current official corpus, and reconstruct exactly from the canonical document.
+    """
+    ranked: dict[str, int] = {}
+    ranked_queries: dict[str, set[int]] = {}
+    ranked_owner_conflicts: set[str] = set()
+    for batch in pq.ParquetFile(ranked_chunks_path).iter_batches(
+        columns=["query_id", "chunk_id", "doc_id"], batch_size=8192
+    ):
+        for query_id, chunk_id, doc_id in zip(
+            *(column.to_pylist() for column in batch.columns), strict=True
+        ):
+            chunk_id = str(chunk_id); doc_id = int(doc_id)
+            previous = ranked.setdefault(chunk_id, doc_id)
+            if previous != doc_id:
+                ranked_owner_conflicts.add(chunk_id)
+            ranked_queries.setdefault(chunk_id, set()).add(int(query_id))
+
+    connection = sqlite3.connect(canonical_db)
+    try:
+        integrity = str(connection.execute("PRAGMA integrity_check").fetchone()[0])
+        canonical_total = int(connection.execute("SELECT COUNT(*) FROM chunks").fetchone()[0])
+        canonical_distinct = int(connection.execute("SELECT COUNT(DISTINCT chunk_id) FROM chunks").fetchone()[0])
+        canonical: dict[str, tuple[int, str, int, int]] = {}
+        keys = list(ranked)
+        for start in range(0, len(keys), 800):
+            window = keys[start:start + 800]
+            marks = ",".join("?" for _ in window)
+            for chunk_id, doc_id, raw_text, span_start, span_end in connection.execute(
+                f"SELECT chunk_id,doc_id,raw_text,start_offset,end_offset FROM chunks WHERE chunk_id IN ({marks})",
+                window,
+            ):
+                canonical[str(chunk_id)] = (int(doc_id), str(raw_text), int(span_start), int(span_end))
+        doc_ids = sorted({doc_id for doc_id in ranked.values()})
+        documents = _fetch_map(connection, "documents", "doc_id", doc_ids)
+    finally:
+        connection.close()
+
+    missing = sorted(set(ranked) - set(canonical))
+    mismatched = sorted(
+        chunk_id for chunk_id, doc_id in ranked.items()
+        if chunk_id in canonical and canonical[chunk_id][0] != doc_id
+    )
+    reconstruction_failures = []
+    for chunk_id, (doc_id, raw_text, start, end) in canonical.items():
+        document = documents.get(doc_id)
+        text = "" if document is None else str(document[1])
+        if not raw_text or not text or start < 0 or end < start or end > len(text) or text[start:end] != raw_text:
+            reconstruction_failures.append(chunk_id)
+
+    remaining_official = set(doc_ids)
+    for batch in pq.ParquetFile(official_corpus).iter_batches(columns=["id"], batch_size=131072):
+        remaining_official.difference_update(map(int, batch.column(0).to_pylist()))
+        if not remaining_official:
+            break
+    affected_chunks = set(missing) | set(mismatched) | set(reconstruction_failures) | ranked_owner_conflicts
+    affected_queries = sorted({query for chunk_id in affected_chunks for query in ranked_queries.get(chunk_id, ())})
+    report = {
+        "ranked_unique_chunk_ids": len(ranked),
+        "canonical_unique_chunk_ids": canonical_distinct,
+        "missing_canonical_ids": len(missing),
+        "unexpected_canonical_ids": canonical_total - len(set(ranked) & set(canonical)),
+        "ranked_owner_conflicts": len(ranked_owner_conflicts),
+        "canonical_duplicate_owners": canonical_total - canonical_distinct,
+        "doc_id_mismatches": len(mismatched),
+        "non_official_doc_ids": len(remaining_official),
+        "reconstruction_failures": len(reconstruction_failures),
+        "affected_queries": len(affected_queries),
+        "missing_sample": missing[:20],
+        "mismatch_sample": mismatched[:20],
+        "non_official_doc_id_sample": sorted(remaining_official)[:20],
+        "reconstruction_failure_sample": sorted(reconstruction_failures)[:20],
+        "sqlite_integrity": integrity,
+    }
+    report["passed"] = (
+        integrity == "ok"
+        and report["missing_canonical_ids"] == 0
+        and report["ranked_owner_conflicts"] == 0
+        and report["canonical_duplicate_owners"] == 0
+        and report["doc_id_mismatches"] == 0
+        and report["non_official_doc_ids"] == 0
+        and report["reconstruction_failures"] == 0
+    )
+    atomic_json(report_path, report)
+    if not report["passed"]:
+        raise ValueError(f"ranked provenance closure failed; diagnostic={report_path}; summary={report}")
+    return report
+
+
 def _fetch_map(connection: sqlite3.Connection, table: str, key: str, values: list[str|int]) -> dict:
     unique=list(dict.fromkeys(values))
     output={}
@@ -340,6 +439,9 @@ def _submission_records_disk(
                 if doc_id not in seen_docs: docs.append(doc_id); seen_docs.add(doc_id)
                 if len(docs)==document_depth: break
             canonical=_fetch_map(connection,"chunks","chunk_id",[str(row["chunk_id"]) for row in chunk_rows])
+            missing=[str(row["chunk_id"]) for row in chunk_rows if str(row["chunk_id"]) not in canonical]
+            if missing:
+                raise ValueError(f"ranked chunks are absent from canonical provenance: count={len(missing)} sample={missing[:10]}")
             candidate_doc_ids=[int(canonical[str(row["chunk_id"])][1]) for row in chunk_rows]
             stored_docs=_fetch_map(connection,"documents","doc_id",candidate_doc_ids)
             document_text={int(doc_id):str(row[1]) for doc_id,row in stored_docs.items()}
@@ -386,15 +488,23 @@ def _iter_json_array(path: Path):
             yield value; buffer=buffer[index:]
 
 
-def _stream_validate(json_path: Path, zip_path: Path, query_ids: list[int], canonical_db: Path) -> dict:
+def _stream_validate(
+    json_path: Path,
+    zip_path: Path,
+    query_ids: list[int],
+    canonical_db: Path,
+    *,
+    document_depth: int = 10,
+    chunk_depth: int = 20,
+) -> dict:
     connection=sqlite3.connect(canonical_db); seen_queries=[]; document_total=chunk_total=source_spans=0; emitted_docs=set()
     try:
         for index,record in enumerate(_iter_json_array(json_path)):
             if set(record)!={"id","relevant_docs","relevant_chunks"}: raise ValueError(f"incorrect fields at query {index}")
             query_id=int(record["id"]); seen_queries.append(query_id)
             docs=record["relevant_docs"]; chunks=record["relevant_chunks"]
-            if len(docs)!=10 or len(docs)!=len(set(map(int,docs))): raise ValueError(f"invalid documents at query {query_id}")
-            if len(chunks)!=20: raise ValueError(f"invalid chunk count at query {query_id}")
+            if len(docs)!=document_depth or len(docs)!=len(set(map(int,docs))): raise ValueError(f"invalid documents at query {query_id}")
+            if len(chunks)!=chunk_depth: raise ValueError(f"invalid chunk count at query {query_id}")
             objects=[(int(row["doc_id"]),str(row["chunk_text"])) for row in chunks]
             if len(objects)!=len(set(objects)): raise ValueError(f"duplicate chunks at query {query_id}")
             doc_ids=[*map(int,docs),*(doc_id for doc_id,_ in objects)]; stored=_fetch_map(connection,"documents","doc_id",doc_ids)
@@ -415,8 +525,8 @@ def _stream_validate(json_path: Path, zip_path: Path, query_ids: list[int], cano
             for block in iter(lambda:raw.read(1024*1024),b""): raw_hash.update(block)
             if packed_hash.digest()!=raw_hash.digest(): raise ValueError("ZIP JSON differs from canonical JSON")
     return {"path":str(zip_path),"valid":True,"query_count":len(seen_queries),"document_result_count":document_total,
-            "chunk_result_count":chunk_total,"unique_doc_ids":len(emitted_docs),"document_minimum_per_query":10,
-            "document_maximum_per_query":10,"chunk_minimum_per_query":20,"chunk_maximum_per_query":20,
+            "chunk_result_count":chunk_total,"unique_doc_ids":len(emitted_docs),"document_minimum_per_query":document_depth,
+            "document_maximum_per_query":document_depth,"chunk_minimum_per_query":chunk_depth,"chunk_maximum_per_query":chunk_depth,
             "invalid_doc_ids":0,"duplicate_doc_ids":0,"duplicate_chunk_objects":0,"chunk_provenance_mismatches":0,
             "source_span_chunks_verified":source_spans}
 
@@ -428,7 +538,13 @@ def _stream_package(config: dict, ranking_root: Path, group: str, name: str, out
             "canonical_db":canonical_db,"tokenizer":tokenizer,"document_depth":int(config["submission"]["documents_per_query"]),
             "chunk_depth":int(config["submission"]["chunks_per_query"]),"target_tokens":int(config["submission"]["chunk_expansion_tokens"])}
     write_submission_stream(json_path,_submission_records_disk(**kwargs)); write_deterministic_zip(json_path,zip_path)
-    first=(file_sha256(json_path),file_sha256(zip_path)); validation=_stream_validate(json_path,zip_path,query_ids,canonical_db)
+    first=(file_sha256(json_path),file_sha256(zip_path)); validation=normalize_validation_result(_stream_validate(
+        json_path,zip_path,query_ids,canonical_db,
+        document_depth=int(config["submission"]["documents_per_query"]),
+        chunk_depth=int(config["submission"]["chunks_per_query"]),
+    ))
+    if not validation["passed"]:
+        raise ValueError(f"submission validation failed: {validation}")
     second=first
     if verify_determinism:
         write_submission_stream(json_path,_submission_records_disk(**kwargs)); write_deterministic_zip(json_path,zip_path)

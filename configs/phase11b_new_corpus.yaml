@@ -1,0 +1,32 @@
+version: 1
+experiment: phase11b_new_corpus
+inputs:
+  old_official_corpus: data/raw/links_corpus.parquet
+  official_corpus: data/raw/links_corpus_vi_en_zh.parquet
+  queries: data/raw/query.parquet
+  broad_documents: data/source_census/phase11a_bottleneck/broad/documents.parquet
+  broad_chunks: data/source_census/phase11a_bottleneck/broad/chunks.parquet
+  focused_roots:
+    - data/source_census/phase10f_medlatec_10000
+    - data/source_census/phase10e_g1a_10010
+    - data/source_census/phase10e_g6b_15000
+    - data/source_census/phase10e_g5a_11200
+  m16_root: data/source_census/phase11a_bottleneck/m16
+outputs:
+  root: data/source_census/phase11b_new_corpus
+  artifacts: artifacts/phase11b_new_corpus
+  submissions: submissions/00_READY_TO_UPLOAD
+retrieval:
+  candidate_cap: 16
+submission:
+  chunk_depth: 20
+  requested_document_depths: [10, 20, 50, 100]
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    batch_size: 2
+    max_length: 512

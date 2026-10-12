@@ -1,0 +1,15 @@
+{
+  "total": 134400,
+  "reused": 100655,
+  "newly_seeded": 100655,
+  "missing": 33745,
+  "source_contributions": {
+    "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite": 100655,
+    "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite": 0,
+    "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite": 0,
+    "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite": 0,
+    "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite": 0
+  },
+  "value_mismatches": 0,
+  "sqlite_integrity": "ok"
+}

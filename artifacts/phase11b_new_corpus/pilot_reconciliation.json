@@ -1,0 +1,13 @@
+{
+  "source_pool": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\retrieval\\phase7_reranking\\unified_candidate_pool_depth100.parquet",
+  "filtered_pool": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase11b_new_corpus\\round1\\pilot_rerank_pool.new_official.parquet",
+  "total_rows": 120000,
+  "retained_rows": 91971,
+  "removed_rows": 28029,
+  "total_doc_ids": 966,
+  "retained_doc_ids": 297,
+  "removed_doc_ids": 669,
+  "removed_unique_chunk_ids": 1715,
+  "queries": 1200,
+  "new_model_inference": 0
+}

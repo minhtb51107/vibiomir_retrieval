@@ -58,3 +58,15 @@ experiment
 -> commit
 -> push
 -> report commit hash
+
+## Long-Running Worker Handoff
+
+When a computation is expected to exceed roughly two minutes:
+
+1. launch it through the repository's resumable local supervisor;
+2. verify one healthy durable state/checkpoint update;
+3. report the run ID, supervisor/worker PID, state/checkpoint path, and progress command;
+4. stop the agent turn instead of repeatedly polling a healthy worker.
+
+On recovery, resume from durable checkpoints and never repeat a completed
+expensive stage unless integrity evidence proves that checkpoint unusable.

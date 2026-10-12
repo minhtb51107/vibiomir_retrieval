@@ -73,6 +73,15 @@ def test_phase10f_medlatec_depth_packages_have_explicit_ready_evidence():
         )
 
 
+def test_phase11b_recall_curve_packages_have_shared_scientific_evidence():
+    for stem in ("phase11b_NEW_CORPUS_CONTROL","phase11b_DOCS20_CHUNKS20","phase11b_DOCS50_CHUNKS20"):
+        assert classify(Path(f"{stem}.zip"),{})=="READY_TO_SUBMIT"
+        assert report_for(stem)==(
+            "artifacts/phase11b_new_corpus/phase11b_report.json",
+            "artifacts/phase11b_new_corpus/phase11b_pre_submit_audit.json",
+        )
+
+
 def test_unknown_package_is_not_promoted_by_filename_guessing():
     assert classify(Path("phase10e_G5A_11200.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"
     assert classify(Path("phase10e_future.zip"),{})=="UNKNOWN_REVIEW_REQUIRED"

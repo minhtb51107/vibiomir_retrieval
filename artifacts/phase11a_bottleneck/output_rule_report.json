@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-11",
+  "competition_api": "https://leaderboard.aiguru.com.vn/api/competitions/15/",
+  "repository_evidence": [
+    "docs/SUBMISSION_GENERATION.md",
+    "artifacts/phase9_submission/organizer_schema.json"
+  ],
+  "required_query_count": 1200,
+  "relevant_docs": {
+    "organizer_exact_count": null,
+    "organizer_maximum": null,
+    "empty_array_legal": true,
+    "internal_phase10_default": 10
+  },
+  "relevant_chunks": {
+    "organizer_exact_count": null,
+    "organizer_maximum": null,
+    "empty_array_legal": true,
+    "internal_phase10_default": 20,
+    "must_be_source_derived": true
+  },
+  "variable_or_deeper_lists_accepted_by_schema": true,
+  "explicit_extra_result_penalty_or_limit": null,
+  "metric_effect": "Additional results affect the ordinary precision denominator; recall and F2 then change naturally.",
+  "conclusion": "10 documents and 20 chunks are internal project defaults, not organizer hard maxima. A controlled 20/40 output-depth probe is legal."
+}

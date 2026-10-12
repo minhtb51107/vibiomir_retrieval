@@ -546,6 +546,60 @@ Cost/resources: No acquisition, extraction, chunking, embedding, candidate gener
 Evidence: `data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32`, its streaming bitmap/checkpoint, `data/source_census/phase10e_g1a_10010/round1/source_scores.sqlite`, `artifacts/source_census/phase10e_g1a_10010/reranker_equivalence_control.json`, and the Phase 10E G1A run log/state.
 Commit: this checkpoint.
 
+## Phase 11B — New official corpus control and document Recall@K curve
+
+Date: 2026-10-12
+Phase / commit: Phase 11B-0/11B-1 / this checkpoint
+Question: Under the organizer's new 1,194,469-row corpus membership, are useful documents already present deeper in one fixed ranking, or are they missing before ranking?
+Why we tried it: The organizer replaced the 4,394,718-row official corpus with a Vietnamese/Chinese/English corpus while preserving document IDs as keys. Historical outputs could contain removed IDs. Phase 11A had also shown organizer gains from legal deeper output (`0.0470`) and M16 candidates (`0.0450`) over the `0.0426` baseline, so a clean new-corpus depth curve was required before further acquisition.
+Hypothesis: If relevant documents exist deeper in the reconciled ranking, organizer recall should continue improving as document output increases while chunks remain fixed at 20.
+What we changed: Replaced official membership with `links_corpus_vi_en_zh.parquet`; reconciled source and frozen-pilot candidates to exact new IDs; rebuilt rankings from the completed score cache; and emitted document depths 10, 20, and 50 from one ranking with identical 20-chunk output.
+What stayed fixed: All 1,200 queries, retained local content, M16 retrieval/fusion policy, BGE-M3 and reranker revisions, reranker scores, deterministic ordering, source-verbatim chunks, and chunk depth 20. There was no crawling or new model inference.
+Result: The official diff retained 954,469 old IDs, removed 3,440,249, and introduced 240,000 PubMed IDs; no retained ID changed URL. The focused corpus retained 26,639 documents/444,411 chunks, and the broad inventory retained 35,690/523,482. The final ranking's unique-document depth distribution was min/p5/median/p95/max `54/80/96/111/120`, making K=10/20/50 scientifically common and K=100 invalid. All three packages passed new-official membership, score-cache, deterministic, fixed-prefix/chunk, structural, and provenance gates and reached `READY_FOR_LEADERBOARD`. Organizer results are pending.
+What failed / surprised us: Recovery exposed four implementation boundaries rather than scientific failures: a missing nested output directory, doc-ID selection where exact chunk IDs were required, a canonical store that omitted valid pilot provenance while stale pilot candidates retained removed IDs, and a Phase 11B consumer that expected `validation.passed` although strict validators expose `valid`. The shared validator adapter now rejects incomplete schemas rather than defaulting to success.
+What we learned: Corpus migration requires reconciling candidate membership and provenance together. A ZIP can be structurally present yet scientifically blocked by a contract mismatch. Document-depth variants can safely reuse frozen chunks only when prefix, chunk identity, official membership, and deterministic regeneration are verified explicitly.
+Decision: Submit Docs@10, then Docs@20, then Docs@50. Do not fabricate Docs@100 or start PubMed/Broad/ICD/model experiments until organizer results characterize the curve.
+Next question: Does organizer document recall continue rising strongly from K=10 to K=50, or plateau early enough to implicate candidate/corpus coverage?
+Cost/resources: Zero network requests and zero new embedding/reranker inference during recovery. All 134,400 scores were preserved; package-only streaming produced three deterministic ZIPs.
+Evidence: `docs/PHASE11B_NEW_CORPUS_MIGRATION.md`, `artifacts/phase11b_new_corpus/migration_audit.json`, `provenance_closure.json`, `phase11b_report.json`, and `phase11b_pre_submit_audit.json`.
+Commit: this checkpoint.
+
+## Phase 11A — output and candidate bottleneck organizer probes
+
+Date: 2026-10-12 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 11A bottleneck diagnosis / this checkpoint
+Question: Is the Medlatec-10K baseline primarily limited by final output depth or by the M8 per-source candidate cap?
+Why we tried it: FULL_MEDLATEC_10000 reached FINAL `0.0426`, but the system could discard useful ranked results at either the candidate or final-output boundary.
+Hypothesis: Changing one boundary at a time would reveal whether either truncation suppresses organizer recall.
+What we changed: One experiment changed only final output from 10/20 to 20 documents/40 chunks; a second changed only candidate depth from M8 to M16 while retaining 10/20 output.
+What stayed fixed: The historical official corpus, queries, focused corpus, retrieval/reranker contracts apart from the declared variable, provenance, and deterministic ranking.
+Result: OUTPUT20/40 reached FINAL `0.0470` (`DOCS_F2=0.0487`, `CHUNKS_F2=0.0454`). M16 reached FINAL `0.0450` (`DOCS_F2=0.0431`, `CHUNKS_F2=0.0469`). Both improved over `0.0426`; output depth produced the larger FINAL gain. These remain historical diagnostics after the official corpus migration.
+What failed / surprised us: The old Broad-existing package became stale before organizer use because the official corpus changed. It cannot answer the new-corpus breadth question.
+What we learned: Both output and candidate truncation matter, and a clean document-only depth curve is more informative than the historical OUTPUT20/40 experiment because the latter changed document and chunk depths together.
+Decision: Migrate first, then hold chunks at 20 while varying only document K. Preserve the Phase 11A organizer results as historical evidence; do not reuse the stale Broad package.
+Next question: On the new corpus, how far does organizer document recall rise with K alone?
+Cost/resources: Organizer evaluation of two no-crawl diagnostic packages.
+Evidence: `artifacts/phase11a_bottleneck/`, `docs/leaderboard_history.csv`, and organizer metrics supplied by the project owner.
+Commit: this checkpoint.
+
+## Phase 10F — Medlatec depth response and Phase 11A pivot
+
+Date: 2026-10-11 (organizer-confirmed results supplied by the project owner)
+Phase / commit: Phase 10F to Phase 11A transition / this checkpoint
+Question: Does Medlatec continue improving the organizer score through 10,000 official IDs, and should the next budget deepen it again?
+Why we tried it: Medlatec had the largest measured marginal contribution inside the nine-source union, but one more bounded depth curve was needed before allocating another crawl tranche.
+Hypothesis: If Medlatec retained useful uncovered documents, organizer FINAL would continue rising from the 5K checkpoint through 7.5K and 10K under the fixed retrieval contract.
+What we changed: Increased only Medlatec official-ID depth while holding the other eight sources, queries, retrieval, reranker, and output policy fixed.
+What stayed fixed: The full nine-source composition apart from Medlatec depth, 1,200 queries, `m=8`, BGE-M3 and reranker revisions, dense/BM25/RRF policy, FP16 batch 2/max length 512, top-10 documents, top-20 chunks, provenance, and deterministic tie-breaking.
+Result: Organizer FINAL increased from `0.0383` at Medlatec 5K to `0.0398` at 7.5K and `0.0426` at 10K. At 10K, document F2/precision/recall were `0.0418/0.1971/0.0370`; chunk F2/precision/recall were `0.0435/0.1576/0.0399`. This is the current organizer best.
+What failed / surprised us: Scaling still helped through 10K, but the absolute recall remains low relative to the 4,394,718-row official corpus. Another single-source crawl would not reveal whether the larger ceiling is final output depth, per-source candidate truncation, or corpus breadth.
+What we learned: Medlatec remains valuable at 10K, but depth response alone cannot identify the dominant end-to-end bottleneck.
+Decision: Pause further Medlatec acquisition. Start Phase 11A with three controlled no-crawl probes: legal deeper output, `m=16` candidate depth, and the widest provenance-valid existing local corpus.
+Next question: Is current performance limited primarily by final output depth, candidate recall, or missing corpus coverage?
+Cost/resources: Organizer evaluation of already prepared packages; no additional local model or network work for this checkpoint.
+Evidence: `docs/leaderboard_history.csv`, `artifacts/source_census/phase10f_full_medlatec_7500_report.json`, `artifacts/source_census/phase10f_full_medlatec_10000_report.json`, and organizer metrics supplied by the project owner.
+Commit: this checkpoint.
+
 ## Phase 10E — Full nine-source union organizer result
 
 Date: 2026-10-10 (organizer-confirmed result supplied by the project owner)

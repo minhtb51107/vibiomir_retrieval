@@ -753,6 +753,58 @@
         "size_bytes": 21390966,
         "sha256": "9068b2fe471083e9fca4496394d02cd8da2c5bbd6345f774643b4eb56fd5e6b4"
       }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/FULL_MEDLATEC_10000.zip",
+        "size_bytes": 26932196,
+        "sha256": "bd83efe0cf909981cfa034be053dbd2dddf0223b0da00bf75ed608fbafcfa72d"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/FULL_MEDLATEC_10000.zip",
+        "size_bytes": 26932196,
+        "sha256": "bd83efe0cf909981cfa034be053dbd2dddf0223b0da00bf75ed608fbafcfa72d"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/FULL_MEDLATEC_7500.zip",
+        "size_bytes": 26858712,
+        "sha256": "60b01c5982829b9b8c073b3003ca7ee41700e45005bad112d13e7a4c95ce221a"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/FULL_MEDLATEC_7500.zip",
+        "size_bytes": 26858712,
+        "sha256": "60b01c5982829b9b8c073b3003ca7ee41700e45005bad112d13e7a4c95ce221a"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase11a_CANDIDATE_M16.zip",
+        "size_bytes": 26244639,
+        "sha256": "67f62c688d37d6b66bf44e244d86bafa7e834dfb82cc09380e808bef6265706e"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase11a_CANDIDATE_M16.zip",
+        "size_bytes": 26244639,
+        "sha256": "67f62c688d37d6b66bf44e244d86bafa7e834dfb82cc09380e808bef6265706e"
+      }
+    },
+    {
+      "status": "SUBMITTED_VALID",
+      "before": {
+        "path": "submissions/00_READY_TO_UPLOAD/phase11a_OUTPUT20_CHUNKS40.zip",
+        "size_bytes": 52956562,
+        "sha256": "9aa265f43650d20b439581213c3a74dfab9db4cc6a0ade0878344171654aea93"
+      },
+      "after": {
+        "path": "submissions/10_SUBMITTED_VALID/phase11a_OUTPUT20_CHUNKS40.zip",
+        "size_bytes": 52956562,
+        "sha256": "9aa265f43650d20b439581213c3a74dfab9db4cc6a0ade0878344171654aea93"
+      }
     }
   ]
 }

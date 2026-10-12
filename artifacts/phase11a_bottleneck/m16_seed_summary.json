@@ -1,0 +1,15 @@
+{
+  "total": 172800,
+  "reused": 89663,
+  "newly_seeded": 89663,
+  "missing": 83137,
+  "source_contributions": {
+    "data\\source_census\\phase10f_full_medlatec_10000\\round1\\source_scores.sqlite": 86400,
+    "data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite": 3263,
+    "data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite": 0
+  },
+  "value_mismatches": 0,
+  "sqlite_integrity": "ok"
+}

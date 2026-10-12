@@ -1,0 +1,241 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "new_official_corpus": "data/raw/links_corpus_vi_en_zh.parquet",
+  "corpus": {
+    "documents": 17317,
+    "chunks": 57057,
+    "reused_reconciled_checkpoint": true
+  },
+  "candidate_rows": 134400,
+  "score_reuse": {
+    "total": 134400,
+    "reused": 100655,
+    "newly_seeded": 100655,
+    "missing": 33745,
+    "source_contributions": {
+      "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite": 100655,
+      "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite": 0,
+      "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite": 0,
+      "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite": 0,
+      "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite": 0
+    },
+    "value_mismatches": 0,
+    "sqlite_integrity": "ok"
+  },
+  "pilot_reconciliation": {
+    "source_pool": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\retrieval\\phase7_reranking\\unified_candidate_pool_depth100.parquet",
+    "filtered_pool": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\data\\source_census\\phase11b_new_corpus\\round1\\pilot_rerank_pool.new_official.parquet",
+    "total_rows": 120000,
+    "retained_rows": 91971,
+    "removed_rows": 28029,
+    "total_doc_ids": 966,
+    "retained_doc_ids": 297,
+    "removed_doc_ids": 669,
+    "removed_unique_chunk_ids": 1715,
+    "queries": 1200,
+    "new_model_inference": 0
+  },
+  "canonical_store": {
+    "chunks": 57057,
+    "documents": 17317,
+    "sqlite_integrity": "ok"
+  },
+  "provenance_closure": {
+    "ranked_unique_chunk_ids": 57057,
+    "canonical_unique_chunk_ids": 57057,
+    "missing_canonical_ids": 0,
+    "unexpected_canonical_ids": 0,
+    "ranked_owner_conflicts": 0,
+    "canonical_duplicate_owners": 0,
+    "doc_id_mismatches": 0,
+    "non_official_doc_ids": 0,
+    "reconstruction_failures": 0,
+    "affected_queries": 0,
+    "missing_sample": [],
+    "mismatch_sample": [],
+    "non_official_doc_id_sample": [],
+    "reconstruction_failure_sample": [],
+    "sqlite_integrity": "ok",
+    "passed": true
+  },
+  "unique_document_depth": {
+    "min": 54,
+    "p5": 80.0,
+    "median": 96.0,
+    "p95": 111.0,
+    "max": 120
+  },
+  "requested_depths": [
+    10,
+    20,
+    50,
+    100
+  ],
+  "feasible_depths": [
+    10,
+    20,
+    50
+  ],
+  "chunk_depth": 20,
+  "packages": {
+    "10": {
+      "status": "READY_FOR_LEADERBOARD",
+      "package": {
+        "name": "phase11b_NEW_CORPUS_CONTROL",
+        "json_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_NEW_CORPUS_CONTROL.json",
+        "zip_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_NEW_CORPUS_CONTROL.zip",
+        "json_sha256": "9a2779a78466ebc0a29c93aea44aa5cd272adf47abe734d8cf754badd93e2921",
+        "zip_sha256": "d094358409475d28a71dc8591a75d71c0412d8b9dc83d69bd93de1e4b494b35a",
+        "validation": {
+          "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_NEW_CORPUS_CONTROL.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 12000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 9346,
+          "document_minimum_per_query": 10,
+          "document_maximum_per_query": 10,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000,
+          "passed": true
+        },
+        "determinism_verified": true,
+        "model_inference_during_packaging": 0,
+        "readiness_status": "READY_FOR_LEADERBOARD"
+      },
+      "official_id_audit": {
+        "unique_emitted_doc_ids": 7545,
+        "invalid_official_doc_ids": 0,
+        "passed": true
+      },
+      "control_replay": {
+        "passed": true,
+        "docs10_control": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\phase11b_new_corpus\\docs10_chunks20_frozen_control.json",
+        "fixed_ranking_depth_comparison": {
+          "queries": 1200,
+          "document_prefix_equal": 1200,
+          "chunks20_equal": 1200
+        }
+      }
+    },
+    "20": {
+      "status": "READY_FOR_LEADERBOARD",
+      "package": {
+        "name": "phase11b_DOCS20_CHUNKS20",
+        "json_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS20_CHUNKS20.json",
+        "zip_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS20_CHUNKS20.zip",
+        "json_sha256": "300eed920175c2afbd519390fe646ec31d69b258b7a9c309a17f5d8eb02cfab4",
+        "zip_sha256": "9a4a9a3adc9d0f1319b924b34ea7f11abaab29b8d8516e734e3176b8131d12c9",
+        "validation": {
+          "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS20_CHUNKS20.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 24000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 11375,
+          "document_minimum_per_query": 20,
+          "document_maximum_per_query": 20,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000,
+          "passed": true
+        },
+        "determinism_verified": true,
+        "model_inference_during_packaging": 0,
+        "readiness_status": "READY_FOR_LEADERBOARD"
+      },
+      "official_id_audit": {
+        "unique_emitted_doc_ids": 11375,
+        "invalid_official_doc_ids": 0,
+        "passed": true
+      },
+      "control_replay": {
+        "passed": true,
+        "docs10_control": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\phase11b_new_corpus\\docs10_chunks20_frozen_control.json",
+        "fixed_ranking_depth_comparison": {
+          "queries": 1200,
+          "document_prefix_equal": 1200,
+          "chunks20_equal": 1200
+        }
+      }
+    },
+    "50": {
+      "status": "READY_FOR_LEADERBOARD",
+      "package": {
+        "name": "phase11b_DOCS50_CHUNKS20",
+        "json_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS50_CHUNKS20.json",
+        "zip_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS50_CHUNKS20.zip",
+        "json_sha256": "bdae90dc2d761e180e290c1859348bf1c99b02eb14f03350453df214bc0fb516",
+        "zip_sha256": "069480b6ec2b88ab1a00ee17ec22da4c0e9409debff35b958eddc2984453bfee",
+        "validation": {
+          "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11b_DOCS50_CHUNKS20.zip",
+          "valid": true,
+          "query_count": 1200,
+          "document_result_count": 60000,
+          "chunk_result_count": 24000,
+          "unique_doc_ids": 15975,
+          "document_minimum_per_query": 50,
+          "document_maximum_per_query": 50,
+          "chunk_minimum_per_query": 20,
+          "chunk_maximum_per_query": 20,
+          "invalid_doc_ids": 0,
+          "duplicate_doc_ids": 0,
+          "duplicate_chunk_objects": 0,
+          "chunk_provenance_mismatches": 0,
+          "source_span_chunks_verified": 24000,
+          "passed": true
+        },
+        "determinism_verified": true,
+        "model_inference_during_packaging": 0,
+        "readiness_status": "READY_FOR_LEADERBOARD"
+      },
+      "official_id_audit": {
+        "unique_emitted_doc_ids": 15975,
+        "invalid_official_doc_ids": 0,
+        "passed": true
+      },
+      "control_replay": {
+        "passed": true,
+        "docs10_control": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\phase11b_new_corpus\\docs10_chunks20_frozen_control.json",
+        "fixed_ranking_depth_comparison": {
+          "queries": 1200,
+          "document_prefix_equal": 1200,
+          "chunks20_equal": 1200
+        }
+      }
+    }
+  },
+  "no_crawling": true,
+  "score_cache": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 134400,
+    "expected_unique_keys": 134400,
+    "stored_key_count": 134400,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 134400,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 134400,
+      "distinct": 13394,
+      "min": -11.046875,
+      "median": -4.171875,
+      "p95": 2.40234375,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 5070
+  }
+}

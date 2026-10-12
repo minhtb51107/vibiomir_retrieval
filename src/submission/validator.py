@@ -14,6 +14,48 @@ class SubmissionValidationError(ValueError):
     """Raised when an organizer submission fails strict validation."""
 
 
+_VALIDATION_REQUIRED_FIELDS = {
+    "path",
+    "valid",
+    "query_count",
+    "document_result_count",
+    "chunk_result_count",
+    "invalid_doc_ids",
+    "duplicate_doc_ids",
+    "duplicate_chunk_objects",
+    "chunk_provenance_mismatches",
+}
+
+
+def normalize_validation_result(result: Mapping[str, Any]) -> dict[str, Any]:
+    """Normalize the canonical strict-validator result to a shared gate contract.
+
+    Validators historically expose ``valid`` and raise for malformed payloads.
+    Scientific gates expose ``passed``.  This adapter is the sole explicit
+    boundary between those contracts; unknown or incomplete shapes are errors,
+    never implicit success.
+    """
+    if not isinstance(result, Mapping):
+        raise SubmissionValidationError("validation result must be a mapping")
+    missing = sorted(_VALIDATION_REQUIRED_FIELDS - set(result))
+    if missing:
+        raise SubmissionValidationError(f"validation result is missing required fields: {missing}")
+    if not isinstance(result["valid"], bool):
+        raise SubmissionValidationError("validation result field 'valid' must be boolean")
+    error_fields = (
+        "invalid_doc_ids",
+        "duplicate_doc_ids",
+        "duplicate_chunk_objects",
+        "chunk_provenance_mismatches",
+    )
+    try:
+        errors = {field: int(result[field]) for field in error_fields}
+    except (TypeError, ValueError) as exc:
+        raise SubmissionValidationError("validation error counters must be integers") from exc
+    passed = bool(result["valid"] and not any(errors.values()))
+    return {**dict(result), "passed": passed}
+
+
 def _is_int(value: Any) -> bool:
     return isinstance(value, int) and not isinstance(value, bool)
 

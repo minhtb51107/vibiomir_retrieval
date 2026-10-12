@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 10F: Source Attribution and Focused Scaling
+> ## Current status — Phase 11B: New-Corpus Document Recall Curve
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -27,6 +27,10 @@ precision, recall, and recall-weighted F2 metrics.
 > | Full minus Medlatec | 31,210 official IDs / 31,117 usable | `0.0288` |
 > | Full minus Suckhoedoisong | 31,210 official IDs / 31,110 usable | `0.0351` |
 > | Full plus shallow Round-3 resurrection | 36,994 official IDs / 36,890 usable | `0.0383` |
+> | Full union, Medlatec 7.5K | 38,710 official IDs | `0.0398` |
+> | **Full union, Medlatec 10K** | **41,210 official IDs / 41,105 usable** | **`0.0426`** |
+> | Historical OUTPUT20/40 diagnostic | same historical corpus | `0.0470` |
+> | Historical M16 diagnostic | same historical corpus | `0.0450` |
 >
 > G1A scaled to **10,010 official documents / 131,166 chunks** and reached
 > organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
@@ -41,11 +45,14 @@ precision, recall, and recall-weighted F2 metrics.
 > Medlatec and `0.0032` from Suckhoedoisong. The shallow Round-3 resurrection
 > set produced no measurable FINAL gain at its current depth; this does not
 > establish that those sources cannot become useful after deeper acquisition.
-> Phase 10F has now completed the fixed-policy Medlatec depth experiment.
-> The full nine-source union at Medlatec depths 7,500 and 10,000 passed the
-> frozen 5K/full-union control replay, exact cache reconciliation, provenance,
-> structural, and deterministic packaging gates. Organizer results for these
-> two checkpoints are pending; deeper acquisition is not authorized yet.
+> Phase 10F completed the fixed-policy Medlatec depth experiment. Organizer
+> FINAL rose from `0.0383` at 5K to `0.0398` at 7.5K and `0.0426` at 10K.
+> Phase 11A showed that both output and candidate truncation matter. The
+> organizer then replaced the official corpus with a 1,194,469-row
+> Vietnamese/Chinese/English corpus. Phase 11B has reconciled local content to
+> that membership and prepared a clean document-only Recall@K curve at
+> K=10/20/50 with chunks fixed at 20. Organizer results are pending; K=100 is
+> not emitted because the common ranked depth is only 54.
 
 ## Current ready submissions
 
@@ -56,10 +63,10 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-Current upload candidates are the Medlatec 7,500 and 10,000 full-union depth
-checkpoints plus three leave-one-source-out attribution probes (Vinmec,
-Tiemchunglongchau, and Hellobacsi). Consult the registry for canonical paths
-and hashes.
+The current diagnostic upload sequence is the Phase 11B new-corpus control
+(Docs@10/Chunks@20), followed by Docs@20/Chunks@20 and Docs@50/Chunks@20.
+Consult the registry for canonical paths and hashes; older pre-migration
+packages are historical evidence rather than new-corpus controls.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current
@@ -75,9 +82,9 @@ upload candidate; ZIP existence alone is not readiness evidence.
 
 - The official query set contains **1,200 unique Vietnamese biomedical
   queries**.
-- The official corpus metadata contains **4,394,718 document IDs across 97
-  domains**. A returned document ID must belong to that official identifier
-  space.
+- The current official corpus contains **1,194,469 document IDs**: organizer-
+  declared totals are 714,469 Vietnamese, 240,000 Chinese, and 240,000 English
+  rows. A returned document ID must belong to this current identifier space.
 - Source pages are multilingual. Observed and domain-associated material spans
   Vietnamese, Chinese, and English.
 - A submission is a ZIP containing one root-level UTF-8 JSON file with exactly
@@ -359,9 +366,9 @@ Reproducibility is enforced through:
 - a durable journal, timeline, leaderboard history, incident bundles, and run
   state.
 
-Snapshot on 2026-10-09: the complete offline suite passed **164 tests** after
-the submission-registry cleanup. This is a point-in-time result, not a promise
-about future worktree changes.
+Snapshot on 2026-10-12: the complete offline suite passed **211 tests** after
+the Phase 11B package-contract recovery. This is a point-in-time result, not a
+promise about future worktree changes.
 
 ## Documentation map
 
@@ -370,6 +377,8 @@ about future worktree changes.
 | [Experiment Journal](docs/EXPERIMENT_JOURNAL.md) | Detailed questions, changes, failures, lessons, decisions, costs, and evidence |
 | [Timeline](docs/TIMELINE.md) | Compact chronological list of direction-changing milestones |
 | [Leaderboard history](docs/leaderboard_history.csv) | Organizer-confirmed metrics, including explicitly invalid historical runs |
+| [Phase 11A bottleneck audit](docs/PHASE11A_BOTTLENECK_AUDIT.md) | Historical output/candidate diagnostics and the pre-migration breadth design |
+| [Phase 11B new-corpus migration](docs/PHASE11B_NEW_CORPUS_MIGRATION.md) | Official corpus diff, local retention, recovery incidents, and the clean Recall@K design |
 | [Submission operations](submissions/README.md) | Human upload instructions and current ready packages |
 | [Submission manifest](submissions/MANIFEST.csv) | Machine-readable current paths, statuses, hashes, reports, and audits |
 | [Task ledger](docs/TASKS.md) | Phase-by-phase implementation status |

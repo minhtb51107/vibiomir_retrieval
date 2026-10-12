@@ -30,6 +30,12 @@ READY={
     "phase10f_FULL_MINUS_HELLOBACSI.zip",
     "FULL_MEDLATEC_7500.zip",
     "FULL_MEDLATEC_10000.zip",
+    "phase11a_OUTPUT20_CHUNKS40.zip",
+    "phase11a_CANDIDATE_M16.zip",
+    "phase11a_BROAD_EXISTING_CORPUS.zip",
+    "phase11b_NEW_CORPUS_CONTROL.zip",
+    "phase11b_DOCS20_CHUNKS20.zip",
+    "phase11b_DOCS50_CHUNKS20.zip",
 }
 INVALID={"phase10d_DEPTH1000_G1A.zip","phase10d_DEPTH1000_G5A.zip","phase10d_DEPTH1000_G6B.zip",
          "phase10f_MEDLATEC_SOURCE_CACHE.zip","smoke_medlatec_do_not_submit.zip"}
@@ -68,6 +74,8 @@ def classify(path: Path, leaderboard: dict[str,dict[str,str]]) -> str:
 
 
 def phase_for(stem: str) -> str:
+    if stem.startswith("phase11b_"): return "Phase 11B"
+    if stem.startswith("phase11a_"): return "Phase 11A"
     if stem.startswith("phase10f_") or stem.startswith("FULL_MEDLATEC_"): return "Phase 10F"
     if stem.startswith("phase10e_"): return "Phase 10E"
     if stem.startswith("phase10d_DEPTH"): return "Phase 10D depth1000"
@@ -82,6 +90,16 @@ def phase_for(stem: str) -> str:
 
 
 def report_for(stem: str) -> tuple[str,str]:
+    if stem.startswith("phase11b_"):
+        return "artifacts/phase11b_new_corpus/phase11b_report.json","artifacts/phase11b_new_corpus/phase11b_pre_submit_audit.json"
+    phase11={
+        "phase11a_OUTPUT20_CHUNKS40":"output_depth",
+        "phase11a_CANDIDATE_M16":"phase11a_CANDIDATE_M16",
+        "phase11a_BROAD_EXISTING_CORPUS":"phase11a_BROAD_EXISTING_CORPUS",
+    }
+    if stem in phase11:
+        key=phase11[stem]
+        return f"artifacts/phase11a_bottleneck/{key}_report.json",f"artifacts/phase11a_bottleneck/{key}_pre_submit_audit.json"
     if stem=="FULL_MEDLATEC_7500": return "artifacts/source_census/phase10f_full_medlatec_7500_report.json","artifacts/validation/phase10f_full_medlatec_7500_pre_submit_audit.json"
     if stem=="FULL_MEDLATEC_10000": return "artifacts/source_census/phase10f_full_medlatec_10000_report.json","artifacts/validation/phase10f_full_medlatec_10000_pre_submit_audit.json"
     probe_audits={

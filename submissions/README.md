@@ -6,14 +6,19 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| Full union, Medlatec 7,500 | `FULL_MEDLATEC_7500.zip` | `60b01c5982829b9b8c073b3003ca7ee41700e45005bad112d13e7a4c95ce221a` | Ready; organizer result pending. |
-| Full union, Medlatec 10,000 | `FULL_MEDLATEC_10000.zip` | `bd83efe0cf909981cfa034be053dbd2dddf0223b0da00bf75ed608fbafcfa72d` | Ready; organizer result pending. |
+| Phase 11B NEW-corpus control — Docs@10 / Chunks@20 | `phase11b_NEW_CORPUS_CONTROL.zip` | `d094358409475d28a71dc8591a75d71c0412d8b9dc83d69bd93de1e4b494b35a` | Ready; organizer result pending. |
+| Phase 11B Docs@20 / Chunks@20 | `phase11b_DOCS20_CHUNKS20.zip` | `9a4a9a3adc9d0f1319b924b34ea7f11abaab29b8d8516e734e3176b8131d12c9` | Ready; organizer result pending. |
+| Phase 11B Docs@50 / Chunks@20 | `phase11b_DOCS50_CHUNKS20.zip` | `069480b6ec2b88ab1a00ee17ec22da4c0e9409debff35b958eddc2984453bfee` | Ready; organizer result pending. |
 | FULL minus Vinmec | `phase10f_FULL_MINUS_VINMEC.zip` | `91635fac70d8ff3e8eda7fb43509637073ff06f5e899c3ba05b1e3eb5c622247` | Ready; organizer result pending. |
 | FULL minus Tiemchunglongchau | `phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip` | `7ad8c68c4be22c54d49fe48788d370af4a292dda10793977830ce77adc4fde57` | Ready; organizer result pending. |
 | FULL minus Hellobacsi | `phase10f_FULL_MINUS_HELLOBACSI.zip` | `3f399709057cf71f8d3965132e73fdbde896d194146bb8b74e2b07fde6852553` | Ready; organizer result pending. |
 
 Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
 
+- `phase11a_OUTPUT20_CHUNKS40.zip` — organizer FINAL `0.0470` (historical pre-migration diagnostic)
+- `phase11a_CANDIDATE_M16.zip` — organizer FINAL `0.0450` (historical pre-migration diagnostic)
+- `FULL_MEDLATEC_7500.zip` — organizer FINAL `0.0398`
+- `FULL_MEDLATEC_10000.zip` — organizer FINAL `0.0426`
 - `phase10e_G5A_11200.zip` — organizer FINAL `0.0085`
 - `phase10d_DEPTH1000_FIXED_G1A.zip` — organizer FINAL `0.0062`
 - `phase10e_G1A_10010.zip` — organizer FINAL `0.0234`
