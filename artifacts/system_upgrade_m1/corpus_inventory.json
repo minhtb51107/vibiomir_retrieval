@@ -1,0 +1,393 @@
+{
+  "generated_at": "2026-10-13T17:19:00.839958+00:00",
+  "count_semantics": "Each stage is separate: official URL != acquired != extracted/usable != indexed != candidate != reranked != emitted.",
+  "official": {
+    "documents": 1194469,
+    "unique_ids": 1194469,
+    "sha256": "9e34cb4b7d6424b80ed2634ada581ea9e2d97da69c245d80bdbb31413a78e8ce",
+    "organizer_declared_languages": {
+      "vi": 714469,
+      "zh": 240000,
+      "en": 240000
+    },
+    "domains": 93,
+    "top_domains": {
+      "pubmed.ncbi.nlm.nih.gov": 240000,
+      "suckhoecongdongonline.vn": 154503,
+      "120ask.com": 98160,
+      "suckhoedoisong.vn": 85823,
+      "nhathuoclongchau.com.vn": 79598,
+      "thanhnien.vn": 72111,
+      "cnkang.com": 40046,
+      "ask.39.net": 32772,
+      "laodong.vn": 31282,
+      "phunusuckhoe.giadinhonline.vn": 27577,
+      "familydoctor.com.cn": 26819,
+      "medlatec.vn": 24762,
+      "giadinhonline.vn": 16729,
+      "baohaiphong.vn": 16286,
+      "baonghean.vn": 15941,
+      "vietnamnet.vn": 15543,
+      "baodanang.vn": 14500,
+      "tiemchunglongchau.com.vn": 13281,
+      "baocantho.com.vn": 12016,
+      "hellobacsi.com": 11747,
+      "baoangiang.com.vn": 10738,
+      "vov.vn": 9784,
+      "khoahocphothong.vn": 8143,
+      "youmed.vn": 7189,
+      "vov2.vov.vn": 6899,
+      "zysjonline.com": 6591,
+      "phuyen.baodaklak.vn": 6252,
+      "zhongyibaodian.net": 6061,
+      "suckhoeviet.org.vn": 5627,
+      "baoquangtri.vn": 5483,
+      "pmc-ecm-healthblog.beta.pharmacity.io": 5333,
+      "nhandan.vn": 5225,
+      "baovinhlong.com.vn": 5113,
+      "a-hospital.com": 4701,
+      "tamanhhospital.vn": 4261,
+      "youlai.cn": 4139,
+      "tuoitre.vn": 3893,
+      "qdnd.vn": 3700,
+      "vietnamplus.vn": 3695,
+      "baby.39.net": 3368
+    },
+    "url_domain_language_is_not_authoritative": true
+  },
+  "local_content": {
+    "broad_existing": {
+      "usable_documents": 35690,
+      "chunks": 523482,
+      "domains": 65,
+      "source": "verified migration audit"
+    },
+    "pubmed": {
+      "official_rows": 240000,
+      "acquired_usable_documents": 239896,
+      "unavailable": 104,
+      "chunks": 744861
+    },
+    "deduplicated_union": {
+      "usable_documents": 275586,
+      "chunks": 1268343,
+      "official_gap_documents": 918883,
+      "identified_language_counts": {
+        "vi": 29396,
+        "zh": 592,
+        "en": 239896,
+        "unknown": 5702
+      }
+    }
+  },
+  "indexes": {
+    "focused": {
+      "documents": 26639,
+      "chunks": 444411,
+      "method": "per-source BGE-M3 dense + BM25/RRF; M16 candidates"
+    },
+    "broad_extra": {
+      "documents": 9051,
+      "chunks": 79071,
+      "method": "global BM25 only"
+    },
+    "pubmed": {
+      "documents": 239896,
+      "chunks": 744861,
+      "dense_document_embeddings": 239896,
+      "embedding_dimension": 1024,
+      "embedding_file_bytes": 982614016,
+      "method": "BGE-M3 document dense blockwise exact search"
+    },
+    "single_unified_index_exists": false
+  },
+  "phase11c": {
+    "candidate_parts": {
+      "benhviennhitrunguong.gov.vn": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\benhviennhitrunguong_gov_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 15332614,
+        "sha256": "decb3092dc414abf6dfe8f0a0184f7b3eb2a2c3962b832b1aaf4eac6073d9ce9"
+      },
+      "BROAD_EXTRA": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\BROAD_EXTRA.parquet",
+        "rows": 120000,
+        "size_bytes": 75291929,
+        "sha256": "204c21ef9163475775593f899caa31b1c9d9eed4ea45c4f2ff52b2f25c8f2080"
+      },
+      "cancer.39.net": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\cancer_39_net.parquet",
+        "rows": 19200,
+        "size_bytes": 14600312,
+        "sha256": "7b37082035f8a5fb93025fbc9308a082bde8c41f7fa5ff917bd8bf2cdc233b86"
+      },
+      "hellobacsi.com": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\hellobacsi_com.parquet",
+        "rows": 19200,
+        "size_bytes": 9090580,
+        "sha256": "2e24348873eda052792629dfe6362ab272034eeacb9e7f869a46ba4e05b1c294"
+      },
+      "medlatec.vn": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\medlatec_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 10724429,
+        "sha256": "12dfab73f5e19af5d69abfe492fc3f68c653ea4ea2ed7f80619407b9fec37c6f"
+      },
+      "suckhoedoisong.vn": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\suckhoedoisong_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 13578066,
+        "sha256": "12e54e59fe0b0c3e6b2ce27b5f8859155d131eb093fa84035bb6c30a091d94cc"
+      },
+      "tiemchunglongchau.com.vn": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\tiemchunglongchau_com_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 10470716,
+        "sha256": "b7950bf05f99192327dff2d515e635998654d0a83d826220ebf34183cb98aab5"
+      },
+      "zydcd.com": {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_candidate_parts\\zydcd_com.parquet",
+        "rows": 19200,
+        "size_bytes": 253094,
+        "sha256": "4d837b2df1a8e388a498c8f723491a3893e7c4c825c3596aa5572d25a6260e9f"
+      }
+    },
+    "reranker_score_keys": 254400,
+    "final_document_slots": 24000,
+    "final_chunk_slots": 48000,
+    "organizer_final": 0.0492
+  },
+  "phase12": {
+    "candidate_parts": {
+      "benhviennhitrunguong.gov.vn": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\benhviennhitrunguong_gov_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 15332614,
+        "sha256": "decb3092dc414abf6dfe8f0a0184f7b3eb2a2c3962b832b1aaf4eac6073d9ce9"
+      },
+      "BROAD_EXTRA": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\BROAD_EXTRA.parquet",
+        "rows": 120000,
+        "size_bytes": 75291929,
+        "sha256": "204c21ef9163475775593f899caa31b1c9d9eed4ea45c4f2ff52b2f25c8f2080"
+      },
+      "cancer.39.net": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\cancer_39_net.parquet",
+        "rows": 19200,
+        "size_bytes": 14600312,
+        "sha256": "7b37082035f8a5fb93025fbc9308a082bde8c41f7fa5ff917bd8bf2cdc233b86"
+      },
+      "hellobacsi.com": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\hellobacsi_com.parquet",
+        "rows": 19200,
+        "size_bytes": 9090580,
+        "sha256": "2e24348873eda052792629dfe6362ab272034eeacb9e7f869a46ba4e05b1c294"
+      },
+      "medlatec.vn": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\medlatec_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 10724429,
+        "sha256": "12dfab73f5e19af5d69abfe492fc3f68c653ea4ea2ed7f80619407b9fec37c6f"
+      },
+      "PUBMED": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\PUBMED.parquet",
+        "rows": 349187,
+        "size_bytes": 75064061,
+        "sha256": "9ff6c289daaa9cc0faf0bd5bbcc2b4f4f067ec98552f51c8f6ae71281d606b60"
+      },
+      "suckhoedoisong.vn": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\suckhoedoisong_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 13578066,
+        "sha256": "12e54e59fe0b0c3e6b2ce27b5f8859155d131eb093fa84035bb6c30a091d94cc"
+      },
+      "tiemchunglongchau.com.vn": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\tiemchunglongchau_com_vn.parquet",
+        "rows": 19200,
+        "size_bytes": 10470716,
+        "sha256": "b7950bf05f99192327dff2d515e635998654d0a83d826220ebf34183cb98aab5"
+      },
+      "zydcd.com": {
+        "path": "data\\pubmed_phase12\\retrieval\\round1\\source_candidate_parts\\zydcd_com.parquet",
+        "rows": 19200,
+        "size_bytes": 253094,
+        "sha256": "4d837b2df1a8e388a498c8f723491a3893e7c4c825c3596aa5572d25a6260e9f"
+      }
+    },
+    "reranker_score_keys": 603587,
+    "frozen_full_unique_score_keys": 695539,
+    "final_document_slots": 24000,
+    "final_chunk_slots": 48000,
+    "organizer_final": 0.0451
+  },
+  "retrieval_funnel_reference": {
+    "BROAD_EXTRA": {
+      "indexed_valid_documents": 9051,
+      "indexed_chunks": 79071,
+      "retrieval_method": "global BM25 top-100 chunks/query",
+      "candidate_pairs": 120000,
+      "candidate_pairs_per_query": 100.0,
+      "unique_candidate_documents": 6134,
+      "candidates_reaching_reranker": 120000,
+      "final_document_slots": 1483,
+      "final_chunk_slots": 2964,
+      "candidate_to_final_chunk_discard_fraction": 0.9753000000000001,
+      "query_language": "vi",
+      "source_language": "mixed vi/zh/unknown",
+      "chunks_per_indexed_document": 8.736161750082864,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "ORIGINAL_PILOT": {
+      "indexed_valid_documents": 297,
+      "indexed_chunks": null,
+      "retrieval_method": "frozen historical pilot hybrid/reranker pool",
+      "candidate_pairs": 91971,
+      "candidate_pairs_per_query": 76.6425,
+      "unique_candidate_documents": 297,
+      "candidates_reaching_reranker": 91971,
+      "final_document_slots": 180,
+      "final_chunk_slots": 1029,
+      "candidate_to_final_chunk_discard_fraction": 0.9888116906416153,
+      "query_language": "vi",
+      "source_language": "mixed vi/zh/unknown",
+      "chunks_per_indexed_document": null,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "PUBMED": {
+      "indexed_valid_documents": 239896,
+      "indexed_chunks": 744861,
+      "retrieval_method": "BGE-M3 dense top-100 documents/query, then every evidence chunk from those documents",
+      "candidate_pairs": 349187,
+      "candidate_pairs_per_query": 290.9891666666667,
+      "unique_candidate_documents": 88362,
+      "candidates_reaching_reranker": 349187,
+      "final_document_slots": 5913,
+      "final_chunk_slots": 11592,
+      "candidate_to_final_chunk_discard_fraction": 0.9668028878509223,
+      "query_language": "vi",
+      "source_language": "en",
+      "chunks_per_indexed_document": 3.10493297095408,
+      "text_availability": {
+        "abstract_documents": 239770,
+        "title_only_documents": 126,
+        "unavailable_official_records": 104
+      }
+    },
+    "benhviennhitrunguong.gov.vn": {
+      "indexed_valid_documents": 1200,
+      "indexed_chunks": 18726,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 1078,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 787,
+      "final_chunk_slots": 1660,
+      "candidate_to_final_chunk_discard_fraction": 0.9135416666666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 15.605,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "cancer.39.net": {
+      "indexed_valid_documents": 440,
+      "indexed_chunks": 2004,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 437,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 56,
+      "final_chunk_slots": 133,
+      "candidate_to_final_chunk_discard_fraction": 0.9930729166666666,
+      "query_language": "vi",
+      "source_language": "zh",
+      "chunks_per_indexed_document": 4.554545454545455,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "hellobacsi.com": {
+      "indexed_valid_documents": 5000,
+      "indexed_chunks": 59148,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 3067,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 2638,
+      "final_chunk_slots": 4927,
+      "candidate_to_final_chunk_discard_fraction": 0.7433854166666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 11.8296,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "medlatec.vn": {
+      "indexed_valid_documents": 9988,
+      "indexed_chunks": 196653,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 6257,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 6158,
+      "final_chunk_slots": 9719,
+      "candidate_to_final_chunk_discard_fraction": 0.4938020833333333,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 19.688926712054464,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "suckhoedoisong.vn": {
+      "indexed_valid_documents": 4999,
+      "indexed_chunks": 114481,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 2201,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 1870,
+      "final_chunk_slots": 7678,
+      "candidate_to_final_chunk_discard_fraction": 0.6001041666666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 22.900780156031207,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "tiemchunglongchau.com.vn": {
+      "indexed_valid_documents": 4998,
+      "indexed_chunks": 53361,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 3967,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 4915,
+      "final_chunk_slots": 8297,
+      "candidate_to_final_chunk_discard_fraction": 0.5678645833333333,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 10.676470588235293,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "zydcd.com": {
+      "indexed_valid_documents": 14,
+      "indexed_chunks": 38,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 14,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 0,
+      "final_chunk_slots": 1,
+      "candidate_to_final_chunk_discard_fraction": 0.9999479166666667,
+      "query_language": "vi",
+      "source_language": "zh",
+      "chunks_per_indexed_document": 2.7142857142857144,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    }
+  },
+  "provenance": {
+    "migration_audit_sha256": "f151012c9e2d575a411289428999508c61e2a3992e3cedeaa9547b76f0a1af12",
+    "coverage_funnel_sha256": "7f5667aaa340aef2d5562fb88a93eb7e714cc985ad06a6c0eda17d9841792188"
+  }
+}

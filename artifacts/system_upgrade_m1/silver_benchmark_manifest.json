@@ -1,0 +1,35 @@
+{
+  "status": "INSUFFICIENT_FOR_ARCHITECTURE_SELECTION",
+  "validation": {
+    "passed": true,
+    "queries": 21,
+    "positive_pairs": 21,
+    "official_positive_ids": 21,
+    "normalized_cross_split_leakage": 0,
+    "verbatim_source_queries": 21
+  },
+  "rows": 21,
+  "languages": {
+    "vi": 4,
+    "zh": 17
+  },
+  "splits": {
+    "development": 17,
+    "held_out": 4
+  },
+  "benchmark_sha256": "72cc8c257d3e9081c0ae23c5f97d71cb7ef8c311c629dda3b49d0177200ab927",
+  "positive_semantics": "Known source-document relation from a question-like source title plus extracted answer section.",
+  "limitations": [
+    "Every query is copied from its positive source title: useful for source-lookup/index regression, not generalization.",
+    "No trustworthy English or Vietnamese-to-English positives were found locally.",
+    "No organizer hidden gold; official Recall@K remains UNKNOWN."
+  ],
+  "tracks": {
+    "vi_source_lookup": "available",
+    "zh_source_lookup": "available",
+    "en": "INSUFFICIENT",
+    "vi_to_en": "INSUFFICIENT"
+  },
+  "no_official_query_scoring": true,
+  "evaluator": "tools/offline_evaluator.py"
+}

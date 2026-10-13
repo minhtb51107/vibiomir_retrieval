@@ -1,0 +1,52 @@
+{
+  "method": "deterministic one-min-hash sample per language/rank-band/extraction-method stratum plus corpus-wide lightweight flags",
+  "heuristic_warning": "Flags (including truncation, concatenation, wrong-language and near-duplicate heuristics) require human review; they are not automatic rejection. Short medical answers remain valid candidates.",
+  "collections": {
+    "broad_existing": {
+      "official_usable_documents": 35690,
+      "flag_counts": {
+        "near_duplicate_adjacent_paragraphs": 5629,
+        "navigation_or_boilerplate": 1201,
+        "possible_unrelated_concatenation_review": 199,
+        "short_lt_200_review_not_reject": 797,
+        "repeated_paragraphs": 102,
+        "html_or_js_remnant": 19,
+        "replacement_characters": 1,
+        "missing_title": 1
+      },
+      "flag_rates": {
+        "near_duplicate_adjacent_paragraphs": 0.1577192490893808,
+        "navigation_or_boilerplate": 0.03365088260016812,
+        "possible_unrelated_concatenation_review": 0.005575791538246007,
+        "short_lt_200_review_not_reject": 0.02233118520594004,
+        "repeated_paragraphs": 0.002857943401513029,
+        "html_or_js_remnant": 0.0005323620061641916,
+        "replacement_characters": 2.8019052956010088e-05,
+        "missing_title": 2.8019052956010088e-05
+      }
+    },
+    "pubmed": {
+      "official_usable_documents": 239896,
+      "flag_counts": {
+        "short_lt_200_review_not_reject": 233,
+        "html_or_js_remnant": 58,
+        "missing_abstract_title_only": 126,
+        "navigation_or_boilerplate": 10,
+        "missing_title": 48,
+        "replacement_characters": 2
+      },
+      "flag_rates": {
+        "short_lt_200_review_not_reject": 0.000971254210157735,
+        "html_or_js_remnant": 0.00024177143428819156,
+        "missing_abstract_title_only": 0.0005252275986260713,
+        "navigation_or_boilerplate": 4.16847300496882e-05,
+        "missing_title": 0.00020008670423850335,
+        "replacement_characters": 8.33694600993764e-06
+      }
+    }
+  },
+  "exact_duplicate_document_instances": 720,
+  "exact_duplicate_content_groups": 284,
+  "sample_rows": 26,
+  "examples_path": "artifacts\\system_upgrade_m1\\data_quality_examples.csv"
+}

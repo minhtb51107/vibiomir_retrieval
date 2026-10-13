@@ -56,9 +56,12 @@ precision, recall, and recall-weighted F2 metrics.
 > declined. Phase 13 therefore pauses new acquisition and inference while it
 > diagnoses candidate-volume, cross-lingual retrieval, and source-fusion
 > behavior using frozen artifacts and a 60-query human review set. Phase 13A's
-> seven CPU-only aggregation/fusion replays are complete, both frozen controls
-> match 1,200/1,200 queries, and the run is `READY_FOR_HUMAN_REVIEW`; no method
-> has been selected without relevance labels.
+> controlled Top-3-mean document candidate reached organizer FINAL `0.0472`,
+> partially recovering Phase 12 but remaining below Phase 11C. Architecture
+> Upgrade Milestone 1 therefore stops ranking tweaks: it audits 275,586 local
+> usable documents and establishes an offline evaluator. Its current 21-pair
+> silver set is valid only for source-lookup regression and is insufficient for
+> architecture selection or official Recall@K; Milestone 2 is not yet authorized.
 
 ## Current ready submissions
 
