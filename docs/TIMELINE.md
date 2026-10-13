@@ -68,3 +68,9 @@ so its date and commit are explicitly unknown.
 - A bounded dense-seed Vietnamese-to-English bridge produced lexical top-100 for 1,200/1,200 queries: 97,811 lexical-only and 22,189 dense/lexical-overlap query-document pairs.
 - The two-chunk-per-document evidence pool contains 435,558 pairs; 239,954 exact scores are reusable and 195,604 remain for a gated M2B experiment.
 - Novel candidates remain relevance-UNKNOWN. M2B is authorized only as one controlled reranking experiment after drift review and exact Phase 12 isolation replay.
+
+### 2026-10-14 — Milestone 2B stopped at query-bridge gate
+
+- The mandatory Vietnamese-to-English trace review found repeated topic drift caused by rare terms inherited from imperfect dense seeds.
+- M2B stopped before Phase 12 replay, resource preflight, GPU loading, or any of the 195,604 missing exact scores.
+- No candidate ZIP or leaderboard submission was produced; lexical candidate relevance remains UNKNOWN.

@@ -943,3 +943,7 @@ Result: All 1,200 queries produced lexical candidates. The lexical arm contribut
 Limitations: Candidate novelty is not relevance. The Vietnamese-to-English bridge is pseudo-relevance feedback derived from dense seeds and may drift; it requires trace review before GPU scoring. The 21-pair title-derived silver set is insufficient evidence of general retrieval quality. No reranker inference or leaderboard package was produced in M2A.
 
 Decision: M2A is operationally complete. M2B may proceed only after query-bridge trace review, an exact dense-only Phase 12 replay, exact missing-score reconciliation, and resource preflight.
+
+## 2026-10-14 — Milestone 2B controlled hybrid reranking gate
+
+The mandatory pre-inference trace review blocked M2B. Across the deliberately low-overlap M2A trace sample, pseudo-relevance feedback repeatedly replaced the Vietnamese medical intent with rare terminology from imperfect dense seeds: tonsillectomy became hymen/endometriosis, meningitis-related paralysis became hemiarthroplasty/Alzheimer topics, a liver ultrasound nodule became thyroid nodules, and chronic colitis treatment became biliary chemotherapy/H. pylori. Some traces (vitamin E; gout/COVID vaccination) preserved topic, so lexical novelty is not declared useless; relevance remains UNKNOWN. Because drift recurred across symptom, disease, treatment, and short-query groups, no GPU gate, reranker inference, ranking merge, package, or submission was run. Exact M2B new inference is zero.
