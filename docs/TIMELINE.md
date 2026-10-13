@@ -80,3 +80,9 @@ so its date and commit are explicitly unknown.
 - Replaced uncontrolled dense-seed terms with provenance-bearing local bilingual anchors and exact Dense fallback.
 - The 60-query diagnostic found traceable anchors for only 15 queries; the independent half had 3/30 and 45/60 total queries required fallback.
 - The repaired bridge is mechanically topic-safe but too sparse for a useful M2B hybrid arm. No GPU inference or leaderboard artifact was produced.
+
+### 2026-10-14 — Direct VI→EN translation feasibility stopped at RAM gate
+
+- Pinned `Helsinki-NLP/opus-mt-vi-en` to official revision `c8d2853e77f5fae31124d993e0b35176b1c8914e` (Apache-2.0); no cached local copy existed.
+- Disk passed, but free physical RAM fell to 772.2 MiB versus a measured, evidence-based minimum of 1.25 GiB (1.5 GiB recommended), so the model was neither downloaded nor loaded.
+- The 60-query frozen diagnostic remains untouched; translation accuracy, PubMed Top-5 behavior, and the 1,200-query rollout decision remain UNKNOWN. No TF-IDF patch or new retrieval phase started.
