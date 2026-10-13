@@ -887,3 +887,20 @@ Next question: Can source-neutral document aggregation, bounded representative c
 Cost/resources: Read-only CPU analysis of existing Parquet/SQLite artifacts; zero network or model inference.
 Evidence: `artifacts/phase13_diagnosis/ranking_displacement.json`, `source_score_analysis.json`, `coverage_funnel.json`, `human_review.csv`, `diagnosis_summary.md`, and `phase13_prioritized_plan.md`.
 Commit: this checkpoint.
+
+## Phase 13A — source-neutral aggregation/fusion replay
+
+Date: 2026-10-13
+Phase / commit: Phase 13A frozen-score diagnostics / this checkpoint
+Question: Can document aggregation or source-fusion policy reduce harmful candidate-volume competition without new model computation?
+Why we tried it: Phase 12 added 239,896 PubMed documents but reduced organizer FINAL from `0.0492` to `0.0451`; diagnostics showed 5,913 displaced document slots and a much larger PubMed scored-candidate arm.
+What we changed: Replayed seven CPU-only aggregation/fusion variants over the frozen exact score universe. Canonical document ownership is now distinct from candidate-arm origin, multi-arm discoveries are deduplicated, and evidence chunks are selected independently from the valid ranked chunk pool as permitted by the organizer schema. The supervisor now supports an explicit `READY_FOR_HUMAN_REVIEW` terminal state and preserves fast-worker terminal updates.
+What stayed fixed: Phase 11C/12 submissions, candidates, 695,539 unique exact query/chunk scores, embeddings, canonical provenance, and original evidence text. There was zero crawling, embedding, reranker inference, or leaderboard submission.
+Result: Phase 11C and Phase 12 replayed exactly for 1,200/1,200 queries. All seven variants produced 24,000 document and 48,000 chunk slots with zero provenance mismatch. Top-2/top-3 document aggregation reduced PubMed document slots from 5,913 to 4,046/3,514, while RRF reduced them to 2,404 but displaced 12,567 Phase 11C document slots. These are diagnostics, not relevance results. No winner was selected.
+What failed / surprised us: The completed worker exited `0`, but it did not publish a supported terminal state; the supervisor therefore labeled it `NEEDS_AGENT`. A second short-worker race overwrote its terminal update with a stale `STARTING` snapshot. Both lifecycle bugs are now regression-tested. The current reports preserve aggregate displacement and PubMed-query counts, but not the exact total number of changed queries for every non-control aggregation; recomputing that statistic alone is not scientifically necessary before review.
+What we learned: Reducing PubMed presence is not evidence of improved relevance. Top-2/top-3 aggregation changes competition substantially, while source-arm RRF also disrupts many non-PubMed results. Human judgments are the remaining scientific gate.
+Decision: The computation is complete and the run is `READY_FOR_HUMAN_REVIEW`. Use the blinded 60-query interface; treat unjudged items as UNKNOWN and do not select a fusion winner until labels exist.
+Next question: Which aggregation/fusion policy improves judged precision and ranking quality on the pooled review set without degrading evidence quality?
+Cost/resources: CPU-only replay, 4,224.60 seconds measured wall time, peak RSS 851,337,216 bytes, zero new model inference.
+Evidence: `artifacts/phase13a_fusion/baseline_replay_audit.json`, `aggregation_comparison.json`, `fusion_comparison.json`, `document_chunk_consistency.json`, `candidate_ownership_audit.json`, `post_run_audit.json`, and `review_interface.html`.
+Commit: this checkpoint.

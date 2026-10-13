@@ -19,6 +19,11 @@ from typing import Any
 
 ES_CONTINUOUS = 0x80000000
 ES_SYSTEM_REQUIRED = 0x00000001
+SUCCESS_TERMINAL_STATES = {
+    "WAITING_FOR_LEADERBOARD",
+    "READY_FOR_LEADERBOARD",
+    "READY_FOR_HUMAN_REVIEW",
+}
 
 
 def atomic_json(path: Path, value: Any) -> None:
@@ -34,6 +39,20 @@ def atomic_json(path: Path, value: Any) -> None:
                 temporary.unlink(missing_ok=True)
                 raise
             time.sleep(0.025 * (attempt + 1))
+
+
+def reconcile_worker_exit_state(state_path: Path, fallback: dict[str, Any], worker_pid: int) -> dict[str, Any]:
+    """Preserve a worker terminal update made between supervisor polls."""
+    try:
+        current = json.loads(state_path.read_text(encoding="utf-8"))
+    except Exception:
+        current = dict(fallback)
+    current.update(
+        worker_pid=worker_pid,
+        worker_alive=False,
+        heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat(),
+    )
+    return current
 
 
 def event(path: Path, kind: str, **fields: Any) -> None:
@@ -238,17 +257,17 @@ def main() -> int:
                 atomic_json(run / "metrics.json", {"updated_at":dt.datetime.now(dt.timezone.utc).isoformat(),"stage":state.get("stage"),"free_disk_gib":free,"gpu":gpu_state(),"elapsed_seconds":time.time()-started})
                 time.sleep(5)
             exit_code = process.wait()
-            state.update(worker_alive=False,heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat())
+            state = reconcile_worker_exit_state(state_path, state, process.pid)
             atomic_json(state_path,state)
         try: state = json.loads(state_path.read_text(encoding="utf-8"))
         except Exception: state = {"stage":"UNKNOWN"}
         if state.get("status") == "FAILED_SAFE": terminal="FAILED_SAFE"
-        elif exit_code == 0 and state.get("status") in {"WAITING_FOR_LEADERBOARD", "READY_FOR_LEADERBOARD"}: terminal=state["status"]
+        elif exit_code == 0 and state.get("status") in SUCCESS_TERMINAL_STATES: terminal=state["status"]
         else:
             terminal="NEEDS_AGENT"; incident=create_incident(root,args.run_id,args.command,exit_code,log_path,state); state["incident_bundle"]=str(incident)
         state.update(status=terminal, exit_code=exit_code, completed_at=dt.datetime.now(dt.timezone.utc).isoformat())
         atomic_json(state_path,state); atomic_json(run/"final_report.json",state); event(events,"RUN_TERMINAL",status=terminal,exit_code=exit_code)
-        return 0 if terminal in {"WAITING_FOR_LEADERBOARD", "READY_FOR_LEADERBOARD"} else 2
+        return 0 if terminal in SUCCESS_TERMINAL_STATES else 2
     finally:
         prevent_sleep(False)
         lock.unlink(missing_ok=True)

@@ -55,7 +55,10 @@ precision, recall, and recall-weighted F2 metrics.
 > English documents. All document and chunk precision/recall/F2 metrics
 > declined. Phase 13 therefore pauses new acquisition and inference while it
 > diagnoses candidate-volume, cross-lingual retrieval, and source-fusion
-> behavior using frozen artifacts and a 60-query human review set.
+> behavior using frozen artifacts and a 60-query human review set. Phase 13A's
+> seven CPU-only aggregation/fusion replays are complete, both frozen controls
+> match 1,200/1,200 queries, and the run is `READY_FOR_HUMAN_REVIEW`; no method
+> has been selected without relevance labels.
 
 ## Current ready submissions
 

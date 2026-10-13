@@ -1,0 +1,2239 @@
+{
+  "scope": {
+    "frozen_score_rows": 695539,
+    "new_model_inference": 0,
+    "new_embeddings": 0,
+    "new_crawling": 0,
+    "cpu_only": true,
+    "query_count": 1200,
+    "peak_rss_bytes": 851337216,
+    "chunk_policy": "independent global raw-score chunk ranking over the same full frozen pool; canonical-ID and deterministic near-duplicate suppression",
+    "human_labels_used": 0,
+    "winner_selected": false
+  },
+  "variants": {
+    "max_chunk_rrf_by_candidate_arm": {
+      "queries": 1200,
+      "pubmed_document_slots": 2404,
+      "pubmed_chunk_slots": 12787,
+      "retained_phase11c_document_slots": 11433,
+      "displaced_phase11c_document_slots": 12567,
+      "rank_inversions_vs_phase11c": 8694,
+      "near_duplicate_chunks_suppressed": 3735,
+      "chunk_owners_inside_top20": 22157,
+      "chunk_owners_outside_top20": 25843,
+      "provenance_mismatches": 0,
+      "queries_with_pubmed_documents": 1200,
+      "queries_with_pubmed_chunks": 1066,
+      "pubmed_documents_per_query": {
+        "count": 1200,
+        "min": 2.0,
+        "p5": 2.0,
+        "median": 2.0,
+        "p95": 2.0,
+        "max": 3.0
+      },
+      "pubmed_chunks_per_query": {
+        "count": 1200,
+        "min": 0.0,
+        "p5": 0.0,
+        "median": 9.0,
+        "p95": 29.0,
+        "max": 40.0
+      },
+      "scored_chunks_per_selected_document": {
+        "count": 24000,
+        "min": 1.0,
+        "p5": 1.0,
+        "median": 2.0,
+        "p95": 10.0,
+        "max": 76.0
+      },
+      "document_aware_chunk_capacity": {
+        "count": 1200,
+        "min": 24.0,
+        "p5": 35.95,
+        "median": 50.0,
+        "p95": 71.0,
+        "max": 100.0
+      },
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 159,
+      "source_document_rank_distribution": {
+        "120ask.com": {
+          "count": 370,
+          "min": 1.0,
+          "p5": 6.0,
+          "median": 9.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "a-hospital.com": {
+          "count": 19,
+          "min": 8.0,
+          "p5": 8.0,
+          "median": 16.0,
+          "p95": 19.099999999999998,
+          "max": 20.0
+        },
+        "ask.39.net": {
+          "count": 65,
+          "min": 5.0,
+          "p5": 6.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 19.0
+        },
+        "bachmai.gov.vn": {
+          "count": 68,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 8.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "baoangiang.com.vn": {
+          "count": 30,
+          "min": 3.0,
+          "p5": 3.45,
+          "median": 11.0,
+          "p95": 16.549999999999997,
+          "max": 17.0
+        },
+        "baocantho.com.vn": {
+          "count": 65,
+          "min": 1.0,
+          "p5": 3.2,
+          "median": 14.0,
+          "p95": 17.0,
+          "max": 17.0
+        },
+        "baochinhphu.vn": {
+          "count": 10,
+          "min": 3.0,
+          "p5": 3.0,
+          "median": 6.0,
+          "p95": 15.549999999999999,
+          "max": 16.0
+        },
+        "baogialai.com.vn": {
+          "count": 33,
+          "min": 2.0,
+          "p5": 4.6,
+          "median": 14.0,
+          "p95": 16.4,
+          "max": 17.0
+        },
+        "baoquangninh.vn": {
+          "count": 48,
+          "min": 1.0,
+          "p5": 2.35,
+          "median": 12.0,
+          "p95": 16.65,
+          "max": 17.0
+        },
+        "baoquangtri.vn": {
+          "count": 45,
+          "min": 2.0,
+          "p5": 3.2,
+          "median": 13.0,
+          "p95": 16.0,
+          "max": 18.0
+        },
+        "baotayninh.vn": {
+          "count": 2,
+          "min": 13.0,
+          "p5": 13.1,
+          "median": 14.0,
+          "p95": 14.9,
+          "max": 15.0
+        },
+        "baothanhhoa.vn": {
+          "count": 14,
+          "min": 2.0,
+          "p5": 2.0,
+          "median": 13.0,
+          "p95": 16.0,
+          "max": 16.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 70,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 13.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 2400,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 10.5,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "benhvienvietduc.org": {
+          "count": 112,
+          "min": 1.0,
+          "p5": 3.5500000000000007,
+          "median": 8.5,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "cancer.39.net": {
+          "count": 2400,
+          "min": 2.0,
+          "p5": 7.0,
+          "median": 11.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "cnkang.com": {
+          "count": 46,
+          "min": 5.0,
+          "p5": 7.0,
+          "median": 9.0,
+          "p95": 18.0,
+          "max": 19.0
+        },
+        "dantri.com.vn": {
+          "count": 102,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 6.0,
+          "p95": 16.0,
+          "max": 17.0
+        },
+        "familydoctor.com.cn": {
+          "count": 17,
+          "min": 7.0,
+          "p5": 7.8,
+          "median": 17.0,
+          "p95": 19.0,
+          "max": 19.0
+        },
+        "food.39.net": {
+          "count": 2,
+          "min": 8.0,
+          "p5": 8.05,
+          "median": 8.5,
+          "p95": 8.95,
+          "max": 9.0
+        },
+        "giadinhonline.vn": {
+          "count": 73,
+          "min": 2.0,
+          "p5": 3.6,
+          "median": 8.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "hellobacsi.com": {
+          "count": 2418,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 9.0,
+          "p95": 17.0,
+          "max": 19.0
+        },
+        "khoahocphothong.vn": {
+          "count": 115,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 8.0,
+          "p95": 17.0,
+          "max": 19.0
+        },
+        "medlatec.vn": {
+          "count": 2500,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 11.0,
+          "p95": 14.0,
+          "max": 20.0
+        },
+        "nhandan.vn": {
+          "count": 47,
+          "min": 3.0,
+          "p5": 3.0,
+          "median": 9.0,
+          "p95": 16.699999999999996,
+          "max": 17.0
+        },
+        "pharmacity.vn": {
+          "count": 141,
+          "min": 2.0,
+          "p5": 4.0,
+          "median": 8.0,
+          "p95": 16.0,
+          "max": 19.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 116,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 12.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 9,
+          "min": 4.0,
+          "p5": 4.0,
+          "median": 14.0,
+          "p95": 16.6,
+          "max": 17.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 2404,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 11.0,
+          "p95": 17.0,
+          "max": 20.0
+        },
+        "qdnd.vn": {
+          "count": 1,
+          "min": 16.0,
+          "p5": 16.0,
+          "median": 16.0,
+          "p95": 16.0,
+          "max": 16.0
+        },
+        "sggp.org.vn": {
+          "count": 9,
+          "min": 4.0,
+          "p5": 4.4,
+          "median": 13.0,
+          "p95": 16.6,
+          "max": 17.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 814,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 11.0,
+          "p95": 18.0,
+          "max": 20.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 3788,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 11.0,
+          "p95": 18.0,
+          "max": 20.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 58,
+          "min": 1.0,
+          "p5": 2.85,
+          "median": 14.5,
+          "p95": 17.0,
+          "max": 17.0
+        },
+        "thanhnien.vn": {
+          "count": 259,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 19.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 40,
+          "min": 2.0,
+          "p5": 3.0,
+          "median": 8.5,
+          "p95": 18.0,
+          "max": 19.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 2453,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 11.0,
+          "p95": 15.0,
+          "max": 20.0
+        },
+        "tienphong.vn": {
+          "count": 53,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 13.0,
+          "p95": 17.4,
+          "max": 19.0
+        },
+        "tnb.39.net": {
+          "count": 1,
+          "min": 15.0,
+          "p5": 15.0,
+          "median": 15.0,
+          "p95": 15.0,
+          "max": 15.0
+        },
+        "tuoitre.vn": {
+          "count": 1,
+          "min": 15.0,
+          "p5": 15.0,
+          "median": 15.0,
+          "p95": 15.0,
+          "max": 15.0
+        },
+        "vietnamnet.vn": {
+          "count": 79,
+          "min": 2.0,
+          "p5": 3.0,
+          "median": 7.0,
+          "p95": 16.099999999999994,
+          "max": 19.0
+        },
+        "vietnamplus.vn": {
+          "count": 53,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 13.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "vnexpress.net": {
+          "count": 97,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 6.0,
+          "p95": 16.0,
+          "max": 18.0
+        },
+        "vov.vn": {
+          "count": 62,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 10.0,
+          "p95": 17.0,
+          "max": 18.0
+        },
+        "vov2.vov.vn": {
+          "count": 43,
+          "min": 1.0,
+          "p5": 3.1,
+          "median": 13.0,
+          "p95": 17.9,
+          "max": 18.0
+        },
+        "zhongyibaodian.net": {
+          "count": 48,
+          "min": 6.0,
+          "p5": 7.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "zydcd.com": {
+          "count": 2400,
+          "min": 6.0,
+          "p5": 9.0,
+          "median": 13.5,
+          "p95": 20.0,
+          "max": 20.0
+        }
+      },
+      "source_chunk_rank_distribution": {
+        "120ask.com": {
+          "count": 51,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "a-hospital.com": {
+          "count": 3,
+          "min": 28.0,
+          "p5": 28.8,
+          "median": 36.0,
+          "p95": 37.8,
+          "max": 38.0
+        },
+        "ask.39.net": {
+          "count": 10,
+          "min": 6.0,
+          "p5": 6.9,
+          "median": 27.0,
+          "p95": 36.65,
+          "max": 38.0
+        },
+        "bachmai.gov.vn": {
+          "count": 99,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "baoangiang.com.vn": {
+          "count": 53,
+          "min": 2.0,
+          "p5": 5.6,
+          "median": 24.0,
+          "p95": 39.4,
+          "max": 40.0
+        },
+        "baocantho.com.vn": {
+          "count": 102,
+          "min": 1.0,
+          "p5": 6.050000000000001,
+          "median": 26.0,
+          "p95": 37.94999999999999,
+          "max": 40.0
+        },
+        "baochinhphu.vn": {
+          "count": 27,
+          "min": 7.0,
+          "p5": 8.0,
+          "median": 30.0,
+          "p95": 39.7,
+          "max": 40.0
+        },
+        "baogialai.com.vn": {
+          "count": 34,
+          "min": 9.0,
+          "p5": 12.3,
+          "median": 25.5,
+          "p95": 38.349999999999994,
+          "max": 39.0
+        },
+        "baoquangninh.vn": {
+          "count": 69,
+          "min": 1.0,
+          "p5": 3.4000000000000004,
+          "median": 24.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "baoquangtri.vn": {
+          "count": 94,
+          "min": 3.0,
+          "p5": 5.65,
+          "median": 26.5,
+          "p95": 39.349999999999994,
+          "max": 40.0
+        },
+        "baotayninh.vn": {
+          "count": 11,
+          "min": 6.0,
+          "p5": 10.5,
+          "median": 36.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "baothanhhoa.vn": {
+          "count": 23,
+          "min": 2.0,
+          "p5": 2.4000000000000004,
+          "median": 17.0,
+          "p95": 34.699999999999996,
+          "max": 37.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 103,
+          "min": 1.0,
+          "p5": 10.100000000000001,
+          "median": 30.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 1659,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhvienvietduc.org": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 6.800000000000001,
+          "median": 27.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "cancer.39.net": {
+          "count": 134,
+          "min": 2.0,
+          "p5": 9.0,
+          "median": 27.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "cnkang.com": {
+          "count": 2,
+          "min": 35.0,
+          "p5": 35.15,
+          "median": 36.5,
+          "p95": 37.85,
+          "max": 38.0
+        },
+        "dantri.com.vn": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "giadinhonline.vn": {
+          "count": 94,
+          "min": 2.0,
+          "p5": 7.0,
+          "median": 26.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "hellobacsi.com": {
+          "count": 5164,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 19.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "khoahocphothong.vn": {
+          "count": 114,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 26.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "medlatec.vn": {
+          "count": 10059,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 15.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "nhandan.vn": {
+          "count": 71,
+          "min": 3.0,
+          "p5": 7.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "pharmacity.vn": {
+          "count": 98,
+          "min": 2.0,
+          "p5": 4.0,
+          "median": 22.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 153,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 29.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 9,
+          "min": 7.0,
+          "p5": 8.2,
+          "median": 19.0,
+          "p95": 34.8,
+          "max": 38.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 12787,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "qdnd.vn": {
+          "count": 2,
+          "min": 25.0,
+          "p5": 25.05,
+          "median": 25.5,
+          "p95": 25.95,
+          "max": 26.0
+        },
+        "sggp.org.vn": {
+          "count": 6,
+          "min": 8.0,
+          "p5": 10.75,
+          "median": 25.0,
+          "p95": 32.5,
+          "max": 34.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 896,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 6000,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 20.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.9000000000000004,
+          "median": 28.5,
+          "p95": 38.099999999999994,
+          "max": 40.0
+        },
+        "thanhnien.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.95,
+          "median": 23.5,
+          "p95": 36.05,
+          "max": 40.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 44,
+          "min": 2.0,
+          "p5": 6.0,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 9079,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 17.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "tienphong.vn": {
+          "count": 70,
+          "min": 1.0,
+          "p5": 1.4500000000000002,
+          "median": 27.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamnet.vn": {
+          "count": 116,
+          "min": 2.0,
+          "p5": 4.75,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamplus.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 3.1,
+          "median": 26.0,
+          "p95": 38.9,
+          "max": 40.0
+        },
+        "vnexpress.net": {
+          "count": 155,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 38.29999999999998,
+          "max": 40.0
+        },
+        "vov.vn": {
+          "count": 81,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 23.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vov2.vov.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 5.300000000000001,
+          "median": 29.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "zhongyibaodian.net": {
+          "count": 3,
+          "min": 26.0,
+          "p5": 26.1,
+          "median": 27.0,
+          "p95": 36.9,
+          "max": 38.0
+        },
+        "zydcd.com": {
+          "count": 1,
+          "min": 38.0,
+          "p5": 38.0,
+          "median": 38.0,
+          "p95": 38.0,
+          "max": 38.0
+        }
+      },
+      "runtime_seconds": 4224.5958,
+      "diagnostic_only": true
+    },
+    "max_chunk_balanced_premerge_top40_per_arm": {
+      "queries": 1200,
+      "pubmed_document_slots": 5913,
+      "pubmed_chunk_slots": 12787,
+      "retained_phase11c_document_slots": 18087,
+      "displaced_phase11c_document_slots": 5913,
+      "rank_inversions_vs_phase11c": 0,
+      "near_duplicate_chunks_suppressed": 3735,
+      "chunk_owners_inside_top20": 35658,
+      "chunk_owners_outside_top20": 12342,
+      "provenance_mismatches": 0,
+      "queries_with_pubmed_documents": 932,
+      "queries_with_pubmed_chunks": 1066,
+      "pubmed_documents_per_query": {
+        "count": 1200,
+        "min": 0.0,
+        "p5": 0.0,
+        "median": 3.0,
+        "p95": 15.0,
+        "max": 20.0
+      },
+      "pubmed_chunks_per_query": {
+        "count": 1200,
+        "min": 0.0,
+        "p5": 0.0,
+        "median": 9.0,
+        "p95": 29.0,
+        "max": 40.0
+      },
+      "scored_chunks_per_selected_document": {
+        "count": 24000,
+        "min": 1.0,
+        "p5": 1.0,
+        "median": 2.0,
+        "p95": 6.0,
+        "max": 76.0
+      },
+      "document_aware_chunk_capacity": {
+        "count": 1200,
+        "min": 14.0,
+        "p5": 28.0,
+        "median": 43.0,
+        "p95": 77.04999999999995,
+        "max": 114.0
+      },
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 447,
+      "source_document_rank_distribution": {
+        "120ask.com": {
+          "count": 23,
+          "min": 1.0,
+          "p5": 2.1,
+          "median": 9.0,
+          "p95": 19.9,
+          "max": 20.0
+        },
+        "ask.39.net": {
+          "count": 4,
+          "min": 3.0,
+          "p5": 3.75,
+          "median": 10.5,
+          "p95": 18.949999999999996,
+          "max": 20.0
+        },
+        "bachmai.gov.vn": {
+          "count": 40,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 10.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoangiang.com.vn": {
+          "count": 26,
+          "min": 2.0,
+          "p5": 4.25,
+          "median": 13.5,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "baocantho.com.vn": {
+          "count": 42,
+          "min": 1.0,
+          "p5": 4.050000000000001,
+          "median": 13.0,
+          "p95": 19.949999999999996,
+          "max": 20.0
+        },
+        "baochinhphu.vn": {
+          "count": 11,
+          "min": 5.0,
+          "p5": 6.0,
+          "median": 10.0,
+          "p95": 19.5,
+          "max": 20.0
+        },
+        "baogialai.com.vn": {
+          "count": 31,
+          "min": 8.0,
+          "p5": 9.0,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoquangninh.vn": {
+          "count": 36,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 11.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoquangtri.vn": {
+          "count": 38,
+          "min": 3.0,
+          "p5": 3.0,
+          "median": 11.0,
+          "p95": 19.15,
+          "max": 20.0
+        },
+        "baotayninh.vn": {
+          "count": 4,
+          "min": 6.0,
+          "p5": 7.050000000000001,
+          "median": 13.5,
+          "p95": 18.25,
+          "max": 19.0
+        },
+        "baothanhhoa.vn": {
+          "count": 11,
+          "min": 2.0,
+          "p5": 2.0,
+          "median": 9.0,
+          "p95": 12.0,
+          "max": 12.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 40,
+          "min": 1.0,
+          "p5": 5.9,
+          "median": 15.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 787,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "benhvienvietduc.org": {
+          "count": 55,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "cancer.39.net": {
+          "count": 56,
+          "min": 2.0,
+          "p5": 4.75,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "dantri.com.vn": {
+          "count": 56,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "giadinhonline.vn": {
+          "count": 44,
+          "min": 3.0,
+          "p5": 5.0,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "hellobacsi.com": {
+          "count": 2649,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "khoahocphothong.vn": {
+          "count": 50,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 12.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "medlatec.vn": {
+          "count": 6206,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 9.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "nhandan.vn": {
+          "count": 31,
+          "min": 3.0,
+          "p5": 5.0,
+          "median": 11.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "pharmacity.vn": {
+          "count": 46,
+          "min": 2.0,
+          "p5": 3.25,
+          "median": 13.0,
+          "p95": 19.75,
+          "max": 20.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 12.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 7,
+          "min": 7.0,
+          "p5": 7.9,
+          "median": 12.0,
+          "p95": 15.7,
+          "max": 16.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 5913,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "sggp.org.vn": {
+          "count": 3,
+          "min": 6.0,
+          "p5": 6.4,
+          "median": 10.0,
+          "p95": 18.099999999999998,
+          "max": 19.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 435,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 1997,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 26,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 13.5,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "thanhnien.vn": {
+          "count": 44,
+          "min": 1.0,
+          "p5": 3.15,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 30,
+          "min": 2.0,
+          "p5": 3.9000000000000004,
+          "median": 12.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 4933,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 9.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "tienphong.vn": {
+          "count": 32,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 14.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vietnamnet.vn": {
+          "count": 54,
+          "min": 2.0,
+          "p5": 3.0,
+          "median": 11.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vietnamplus.vn": {
+          "count": 25,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 10.0,
+          "p95": 17.799999999999997,
+          "max": 20.0
+        },
+        "vnexpress.net": {
+          "count": 78,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 14.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vov.vn": {
+          "count": 46,
+          "min": 1.0,
+          "p5": 1.25,
+          "median": 12.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vov2.vov.vn": {
+          "count": 27,
+          "min": 1.0,
+          "p5": 1.9000000000000001,
+          "median": 12.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "zhongyibaodian.net": {
+          "count": 1,
+          "min": 17.0,
+          "p5": 17.0,
+          "median": 17.0,
+          "p95": 17.0,
+          "max": 17.0
+        }
+      },
+      "source_chunk_rank_distribution": {
+        "120ask.com": {
+          "count": 51,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "a-hospital.com": {
+          "count": 3,
+          "min": 28.0,
+          "p5": 28.8,
+          "median": 36.0,
+          "p95": 37.8,
+          "max": 38.0
+        },
+        "ask.39.net": {
+          "count": 10,
+          "min": 6.0,
+          "p5": 6.9,
+          "median": 27.0,
+          "p95": 36.65,
+          "max": 38.0
+        },
+        "bachmai.gov.vn": {
+          "count": 99,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "baoangiang.com.vn": {
+          "count": 53,
+          "min": 2.0,
+          "p5": 5.6,
+          "median": 24.0,
+          "p95": 39.4,
+          "max": 40.0
+        },
+        "baocantho.com.vn": {
+          "count": 102,
+          "min": 1.0,
+          "p5": 6.050000000000001,
+          "median": 26.0,
+          "p95": 37.94999999999999,
+          "max": 40.0
+        },
+        "baochinhphu.vn": {
+          "count": 27,
+          "min": 7.0,
+          "p5": 8.0,
+          "median": 30.0,
+          "p95": 39.7,
+          "max": 40.0
+        },
+        "baogialai.com.vn": {
+          "count": 34,
+          "min": 9.0,
+          "p5": 12.3,
+          "median": 25.5,
+          "p95": 38.349999999999994,
+          "max": 39.0
+        },
+        "baoquangninh.vn": {
+          "count": 69,
+          "min": 1.0,
+          "p5": 3.4000000000000004,
+          "median": 24.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "baoquangtri.vn": {
+          "count": 94,
+          "min": 3.0,
+          "p5": 5.65,
+          "median": 26.5,
+          "p95": 39.349999999999994,
+          "max": 40.0
+        },
+        "baotayninh.vn": {
+          "count": 11,
+          "min": 6.0,
+          "p5": 10.5,
+          "median": 36.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "baothanhhoa.vn": {
+          "count": 23,
+          "min": 2.0,
+          "p5": 2.4000000000000004,
+          "median": 17.0,
+          "p95": 34.699999999999996,
+          "max": 37.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 103,
+          "min": 1.0,
+          "p5": 10.100000000000001,
+          "median": 30.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 1659,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhvienvietduc.org": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 6.800000000000001,
+          "median": 27.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "cancer.39.net": {
+          "count": 134,
+          "min": 2.0,
+          "p5": 9.0,
+          "median": 27.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "cnkang.com": {
+          "count": 2,
+          "min": 35.0,
+          "p5": 35.15,
+          "median": 36.5,
+          "p95": 37.85,
+          "max": 38.0
+        },
+        "dantri.com.vn": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "giadinhonline.vn": {
+          "count": 94,
+          "min": 2.0,
+          "p5": 7.0,
+          "median": 26.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "hellobacsi.com": {
+          "count": 5164,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 19.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "khoahocphothong.vn": {
+          "count": 114,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 26.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "medlatec.vn": {
+          "count": 10059,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 15.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "nhandan.vn": {
+          "count": 71,
+          "min": 3.0,
+          "p5": 7.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "pharmacity.vn": {
+          "count": 98,
+          "min": 2.0,
+          "p5": 4.0,
+          "median": 22.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 153,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 29.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 9,
+          "min": 7.0,
+          "p5": 8.2,
+          "median": 19.0,
+          "p95": 34.8,
+          "max": 38.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 12787,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "qdnd.vn": {
+          "count": 2,
+          "min": 25.0,
+          "p5": 25.05,
+          "median": 25.5,
+          "p95": 25.95,
+          "max": 26.0
+        },
+        "sggp.org.vn": {
+          "count": 6,
+          "min": 8.0,
+          "p5": 10.75,
+          "median": 25.0,
+          "p95": 32.5,
+          "max": 34.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 896,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 6000,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 20.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.9000000000000004,
+          "median": 28.5,
+          "p95": 38.099999999999994,
+          "max": 40.0
+        },
+        "thanhnien.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.95,
+          "median": 23.5,
+          "p95": 36.05,
+          "max": 40.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 44,
+          "min": 2.0,
+          "p5": 6.0,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 9079,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 17.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "tienphong.vn": {
+          "count": 70,
+          "min": 1.0,
+          "p5": 1.4500000000000002,
+          "median": 27.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamnet.vn": {
+          "count": 116,
+          "min": 2.0,
+          "p5": 4.75,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamplus.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 3.1,
+          "median": 26.0,
+          "p95": 38.9,
+          "max": 40.0
+        },
+        "vnexpress.net": {
+          "count": 155,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 38.29999999999998,
+          "max": 40.0
+        },
+        "vov.vn": {
+          "count": 81,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 23.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vov2.vov.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 5.300000000000001,
+          "median": 29.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "zhongyibaodian.net": {
+          "count": 3,
+          "min": 26.0,
+          "p5": 26.1,
+          "median": 27.0,
+          "p95": 36.9,
+          "max": 38.0
+        },
+        "zydcd.com": {
+          "count": 1,
+          "min": 38.0,
+          "p5": 38.0,
+          "median": 38.0,
+          "p95": 38.0,
+          "max": 38.0
+        }
+      },
+      "runtime_seconds": 4224.5958,
+      "diagnostic_only": true
+    },
+    "max_chunk_pubmed_cap5_diagnostic": {
+      "queries": 1200,
+      "pubmed_document_slots": 3547,
+      "pubmed_chunk_slots": 12787,
+      "retained_phase11c_document_slots": 20453,
+      "displaced_phase11c_document_slots": 3547,
+      "rank_inversions_vs_phase11c": 0,
+      "near_duplicate_chunks_suppressed": 3735,
+      "chunk_owners_inside_top20": 33827,
+      "chunk_owners_outside_top20": 14173,
+      "provenance_mismatches": 0,
+      "queries_with_pubmed_documents": 932,
+      "queries_with_pubmed_chunks": 1066,
+      "pubmed_documents_per_query": {
+        "count": 1200,
+        "min": 0.0,
+        "p5": 0.0,
+        "median": 3.0,
+        "p95": 5.0,
+        "max": 5.0
+      },
+      "pubmed_chunks_per_query": {
+        "count": 1200,
+        "min": 0.0,
+        "p5": 0.0,
+        "median": 9.0,
+        "p95": 29.0,
+        "max": 40.0
+      },
+      "scored_chunks_per_selected_document": {
+        "count": 24000,
+        "min": 1.0,
+        "p5": 1.0,
+        "median": 2.0,
+        "p95": 6.0,
+        "max": 76.0
+      },
+      "document_aware_chunk_capacity": {
+        "count": 1200,
+        "min": 14.0,
+        "p5": 28.0,
+        "median": 41.0,
+        "p95": 61.0,
+        "max": 91.0
+      },
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 511,
+      "source_document_rank_distribution": {
+        "120ask.com": {
+          "count": 50,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "ask.39.net": {
+          "count": 12,
+          "min": 3.0,
+          "p5": 5.75,
+          "median": 17.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "bachmai.gov.vn": {
+          "count": 45,
+          "min": 1.0,
+          "p5": 1.2000000000000002,
+          "median": 11.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoangiang.com.vn": {
+          "count": 31,
+          "min": 2.0,
+          "p5": 4.5,
+          "median": 15.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "baocantho.com.vn": {
+          "count": 52,
+          "min": 1.0,
+          "p5": 4.550000000000001,
+          "median": 13.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baochinhphu.vn": {
+          "count": 12,
+          "min": 5.0,
+          "p5": 6.1,
+          "median": 10.0,
+          "p95": 18.45,
+          "max": 19.0
+        },
+        "baogialai.com.vn": {
+          "count": 36,
+          "min": 6.0,
+          "p5": 8.75,
+          "median": 15.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoquangninh.vn": {
+          "count": 43,
+          "min": 1.0,
+          "p5": 2.1,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "baoquangtri.vn": {
+          "count": 47,
+          "min": 3.0,
+          "p5": 3.0,
+          "median": 12.0,
+          "p95": 19.699999999999996,
+          "max": 20.0
+        },
+        "baotayninh.vn": {
+          "count": 5,
+          "min": 6.0,
+          "p5": 7.4,
+          "median": 14.0,
+          "p95": 19.0,
+          "max": 19.0
+        },
+        "baothanhhoa.vn": {
+          "count": 14,
+          "min": 2.0,
+          "p5": 2.0,
+          "median": 10.5,
+          "p95": 19.35,
+          "max": 20.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 50,
+          "min": 1.0,
+          "p5": 6.45,
+          "median": 16.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 932,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "benhvienvietduc.org": {
+          "count": 81,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "cancer.39.net": {
+          "count": 100,
+          "min": 2.0,
+          "p5": 6.95,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "cnkang.com": {
+          "count": 1,
+          "min": 19.0,
+          "p5": 19.0,
+          "median": 19.0,
+          "p95": 19.0,
+          "max": 19.0
+        },
+        "dantri.com.vn": {
+          "count": 71,
+          "min": 1.0,
+          "p5": 1.5,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "giadinhonline.vn": {
+          "count": 49,
+          "min": 3.0,
+          "p5": 5.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "hellobacsi.com": {
+          "count": 3033,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 11.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "khoahocphothong.vn": {
+          "count": 66,
+          "min": 1.0,
+          "p5": 3.25,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "medlatec.vn": {
+          "count": 6861,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "nhandan.vn": {
+          "count": 33,
+          "min": 3.0,
+          "p5": 5.2,
+          "median": 11.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "pharmacity.vn": {
+          "count": 70,
+          "min": 2.0,
+          "p5": 4.0,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 73,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 7,
+          "min": 7.0,
+          "p5": 7.9,
+          "median": 12.0,
+          "p95": 15.7,
+          "max": 16.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 3547,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "qdnd.vn": {
+          "count": 1,
+          "min": 20.0,
+          "p5": 20.0,
+          "median": 20.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "sggp.org.vn": {
+          "count": 6,
+          "min": 6.0,
+          "p5": 6.75,
+          "median": 11.0,
+          "p95": 18.0,
+          "max": 19.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 507,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 2276,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 11.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 30,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "thanhnien.vn": {
+          "count": 50,
+          "min": 1.0,
+          "p5": 3.45,
+          "median": 14.0,
+          "p95": 19.549999999999997,
+          "max": 20.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 30,
+          "min": 2.0,
+          "p5": 3.9000000000000004,
+          "median": 12.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 5472,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 10.0,
+          "p95": 19.0,
+          "max": 20.0
+        },
+        "tienphong.vn": {
+          "count": 41,
+          "min": 1.0,
+          "p5": 1.0,
+          "median": 14.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "tuoitre.vn": {
+          "count": 1,
+          "min": 17.0,
+          "p5": 17.0,
+          "median": 17.0,
+          "p95": 17.0,
+          "max": 17.0
+        },
+        "vietnamnet.vn": {
+          "count": 62,
+          "min": 2.0,
+          "p5": 3.0500000000000003,
+          "median": 13.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vietnamplus.vn": {
+          "count": 28,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 12.0,
+          "p95": 18.65,
+          "max": 20.0
+        },
+        "vnexpress.net": {
+          "count": 88,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 15.0,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vov.vn": {
+          "count": 50,
+          "min": 1.0,
+          "p5": 1.4500000000000002,
+          "median": 12.5,
+          "p95": 20.0,
+          "max": 20.0
+        },
+        "vov2.vov.vn": {
+          "count": 32,
+          "min": 1.0,
+          "p5": 2.6500000000000004,
+          "median": 13.0,
+          "p95": 19.45,
+          "max": 20.0
+        },
+        "zhongyibaodian.net": {
+          "count": 3,
+          "min": 17.0,
+          "p5": 17.0,
+          "median": 17.0,
+          "p95": 17.9,
+          "max": 18.0
+        },
+        "zydcd.com": {
+          "count": 2,
+          "min": 19.0,
+          "p5": 19.05,
+          "median": 19.5,
+          "p95": 19.95,
+          "max": 20.0
+        }
+      },
+      "source_chunk_rank_distribution": {
+        "120ask.com": {
+          "count": 51,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "a-hospital.com": {
+          "count": 3,
+          "min": 28.0,
+          "p5": 28.8,
+          "median": 36.0,
+          "p95": 37.8,
+          "max": 38.0
+        },
+        "ask.39.net": {
+          "count": 10,
+          "min": 6.0,
+          "p5": 6.9,
+          "median": 27.0,
+          "p95": 36.65,
+          "max": 38.0
+        },
+        "bachmai.gov.vn": {
+          "count": 99,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "baoangiang.com.vn": {
+          "count": 53,
+          "min": 2.0,
+          "p5": 5.6,
+          "median": 24.0,
+          "p95": 39.4,
+          "max": 40.0
+        },
+        "baocantho.com.vn": {
+          "count": 102,
+          "min": 1.0,
+          "p5": 6.050000000000001,
+          "median": 26.0,
+          "p95": 37.94999999999999,
+          "max": 40.0
+        },
+        "baochinhphu.vn": {
+          "count": 27,
+          "min": 7.0,
+          "p5": 8.0,
+          "median": 30.0,
+          "p95": 39.7,
+          "max": 40.0
+        },
+        "baogialai.com.vn": {
+          "count": 34,
+          "min": 9.0,
+          "p5": 12.3,
+          "median": 25.5,
+          "p95": 38.349999999999994,
+          "max": 39.0
+        },
+        "baoquangninh.vn": {
+          "count": 69,
+          "min": 1.0,
+          "p5": 3.4000000000000004,
+          "median": 24.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "baoquangtri.vn": {
+          "count": 94,
+          "min": 3.0,
+          "p5": 5.65,
+          "median": 26.5,
+          "p95": 39.349999999999994,
+          "max": 40.0
+        },
+        "baotayninh.vn": {
+          "count": 11,
+          "min": 6.0,
+          "p5": 10.5,
+          "median": 36.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "baothanhhoa.vn": {
+          "count": 23,
+          "min": 2.0,
+          "p5": 2.4000000000000004,
+          "median": 17.0,
+          "p95": 34.699999999999996,
+          "max": 37.0
+        },
+        "baovinhlong.com.vn": {
+          "count": 103,
+          "min": 1.0,
+          "p5": 10.100000000000001,
+          "median": 30.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhviennhitrunguong.gov.vn": {
+          "count": 1659,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "benhvienvietduc.org": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 6.800000000000001,
+          "median": 27.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "cancer.39.net": {
+          "count": 134,
+          "min": 2.0,
+          "p5": 9.0,
+          "median": 27.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "cnkang.com": {
+          "count": 2,
+          "min": 35.0,
+          "p5": 35.15,
+          "median": 36.5,
+          "p95": 37.85,
+          "max": 38.0
+        },
+        "dantri.com.vn": {
+          "count": 139,
+          "min": 1.0,
+          "p5": 2.9000000000000004,
+          "median": 28.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "giadinhonline.vn": {
+          "count": 94,
+          "min": 2.0,
+          "p5": 7.0,
+          "median": 26.0,
+          "p95": 38.349999999999994,
+          "max": 40.0
+        },
+        "hellobacsi.com": {
+          "count": 5164,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 19.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "khoahocphothong.vn": {
+          "count": 114,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 26.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "medlatec.vn": {
+          "count": 10059,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 15.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "nhandan.vn": {
+          "count": 71,
+          "min": 3.0,
+          "p5": 7.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "pharmacity.vn": {
+          "count": 98,
+          "min": 2.0,
+          "p5": 4.0,
+          "median": 22.0,
+          "p95": 37.0,
+          "max": 40.0
+        },
+        "phunusuckhoe.giadinhonline.vn": {
+          "count": 153,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 29.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "phuyen.baodaklak.vn": {
+          "count": 9,
+          "min": 7.0,
+          "p5": 8.2,
+          "median": 19.0,
+          "p95": 34.8,
+          "max": 38.0
+        },
+        "pubmed.ncbi.nlm.nih.gov": {
+          "count": 12787,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "qdnd.vn": {
+          "count": 2,
+          "min": 25.0,
+          "p5": 25.05,
+          "median": 25.5,
+          "p95": 25.95,
+          "max": 26.0
+        },
+        "sggp.org.vn": {
+          "count": 6,
+          "min": 8.0,
+          "p5": 10.75,
+          "median": 25.0,
+          "p95": 32.5,
+          "max": 34.0
+        },
+        "suckhoecongdongonline.vn": {
+          "count": 896,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "suckhoedoisong.vn": {
+          "count": 6000,
+          "min": 1.0,
+          "p5": 3.0,
+          "median": 20.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "suckhoeviet.org.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.9000000000000004,
+          "median": 28.5,
+          "p95": 38.099999999999994,
+          "max": 40.0
+        },
+        "thanhnien.vn": {
+          "count": 60,
+          "min": 1.0,
+          "p5": 3.95,
+          "median": 23.5,
+          "p95": 36.05,
+          "max": 40.0
+        },
+        "thaythuocvietnam.vn": {
+          "count": 44,
+          "min": 2.0,
+          "p5": 6.0,
+          "median": 28.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "tiemchunglongchau.com.vn": {
+          "count": 9079,
+          "min": 1.0,
+          "p5": 2.0,
+          "median": 17.0,
+          "p95": 38.0,
+          "max": 40.0
+        },
+        "tienphong.vn": {
+          "count": 70,
+          "min": 1.0,
+          "p5": 1.4500000000000002,
+          "median": 27.5,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamnet.vn": {
+          "count": 116,
+          "min": 2.0,
+          "p5": 4.75,
+          "median": 25.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vietnamplus.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 3.1,
+          "median": 26.0,
+          "p95": 38.9,
+          "max": 40.0
+        },
+        "vnexpress.net": {
+          "count": 155,
+          "min": 1.0,
+          "p5": 5.0,
+          "median": 26.0,
+          "p95": 38.29999999999998,
+          "max": 40.0
+        },
+        "vov.vn": {
+          "count": 81,
+          "min": 1.0,
+          "p5": 4.0,
+          "median": 23.0,
+          "p95": 39.0,
+          "max": 40.0
+        },
+        "vov2.vov.vn": {
+          "count": 63,
+          "min": 1.0,
+          "p5": 5.300000000000001,
+          "median": 29.0,
+          "p95": 40.0,
+          "max": 40.0
+        },
+        "zhongyibaodian.net": {
+          "count": 3,
+          "min": 26.0,
+          "p5": 26.1,
+          "median": 27.0,
+          "p95": 36.9,
+          "max": 38.0
+        },
+        "zydcd.com": {
+          "count": 1,
+          "min": 38.0,
+          "p5": 38.0,
+          "median": 38.0,
+          "p95": 38.0,
+          "max": 38.0
+        }
+      },
+      "runtime_seconds": 4224.5958,
+      "diagnostic_only": true
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "scope": {
+    "frozen_score_rows": 695539,
+    "new_model_inference": 0,
+    "new_embeddings": 0,
+    "new_crawling": 0,
+    "cpu_only": true,
+    "query_count": 1200,
+    "peak_rss_bytes": 851337216,
+    "chunk_policy": "independent global raw-score chunk ranking over the same full frozen pool; canonical-ID and deterministic near-duplicate suppression",
+    "human_labels_used": 0,
+    "winner_selected": false
+  },
+  "variants": {
+    "max_chunk_global_raw": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 35658,
+      "chunk_owners_outside_top20": 12342,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 447,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.742875,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "top2_mean_global_raw": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 35475,
+      "chunk_owners_outside_top20": 12525,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 574,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.7390625,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "top3_mean_global_raw": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 34668,
+      "chunk_owners_outside_top20": 13332,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 680,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.72225,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "robust_top3_mean_global_raw": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 34632,
+      "chunk_owners_outside_top20": 13368,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 685,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.7215,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "max_chunk_rrf_by_candidate_arm": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 22157,
+      "chunk_owners_outside_top20": 25843,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 159,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.46160416666666665,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "max_chunk_balanced_premerge_top40_per_arm": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 35658,
+      "chunk_owners_outside_top20": 12342,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 447,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.742875,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    },
+    "max_chunk_pubmed_cap5_diagnostic": {
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "chunk_owners_inside_top20": 33827,
+      "chunk_owners_outside_top20": 14173,
+      "queries_where_top20_owners_cannot_supply_40_distinct_chunks": 511,
+      "near_duplicate_chunks_suppressed": 3735,
+      "top20_owner_slot_rate": 0.7047291666666666,
+      "official_schema_allows_independent_chunk_owners": true,
+      "provenance_mismatches": 0,
+      "original_chunk_text_preserved": true,
+      "provenance_inherited_from_passed_phase12_closure": true
+    }
+  }
+}

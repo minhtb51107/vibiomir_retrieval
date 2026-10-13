@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "phase11c": {
+    "label": "Phase 11C",
+    "passed": true,
+    "query_count": 1200,
+    "semantic_exact_queries": 1200,
+    "mismatch_count": 0,
+    "mismatch_sample": [],
+    "frozen_json": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.json",
+    "frozen_json_sha256": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",
+    "replay_mode": "actual _submission_records_disk reconstruction from frozen rankings and canonical provenance"
+  },
+  "phase12": {
+    "label": "Phase 12",
+    "passed": true,
+    "query_count": 1200,
+    "semantic_exact_queries": 1200,
+    "mismatch_count": 0,
+    "mismatch_sample": [],
+    "frozen_json": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.json",
+    "frozen_json_sha256": "b1492b8a9e523a15acc6dec140c4fbbdbe869b739e34d3cbda30c369128a78cf",
+    "replay_mode": "actual _submission_records_disk reconstruction from frozen rankings and canonical provenance"
+  },
+  "checkpoint_reused": true,
+  "checkpoint_integrity": "frozen hashes match"
+}

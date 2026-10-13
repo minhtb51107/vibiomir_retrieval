@@ -1,0 +1,405 @@
+{
+  "passed": true,
+  "canonical_document_count": 111812,
+  "candidate_rows_by_arm": {
+    "BROAD_EXTRA": 120000,
+    "ORIGINAL_PILOT": 91971,
+    "PUBMED": 349187,
+    "benhviennhitrunguong.gov.vn": 19200,
+    "cancer.39.net": 19200,
+    "hellobacsi.com": 19200,
+    "medlatec.vn": 19200,
+    "suckhoedoisong.vn": 19200,
+    "tiemchunglongchau.com.vn": 19200,
+    "zydcd.com": 19200
+  },
+  "documents_with_multiple_candidate_arms": 2,
+  "query_document_pairs_with_multiple_candidate_arms": 19,
+  "chunks_present_in_multiple_candidate_arms": 4,
+  "recorded_final_url_alias_documents": 595,
+  "cross_domain_redirect_documents": 110,
+  "final_url_alias_sample": {
+    "583": [
+      "https://special.vietnamplus.vn/2019/12/09/benh_vien_nhan_ai/"
+    ],
+    "1862": [
+      "https://bachmai.gov.vn/bai-viet/khi-ung-thu-%E2%80%9Cgo-cua%E2%80%9D-nguoi-tre-dung-de-su-chu-quan-tuoc-di-co-hoi-vang?id=90827684-98fa-4efa-a659-5d7d73956f83"
+    ],
+    "26328": [
+      "https://xaydungchinhsach.chinhphu.vn/bo-y-te-chan-chinh-cong-tac-kham-chua-benh-doi-voi-nguoi-dong-tinh-song-tinh-va-chuyen-gioi-119220808185623935.htm"
+    ],
+    "27270": [
+      "https://xaydungchinhsach.chinhphu.vn/huong-dan-phong-ngua-lay-nhiem-benh-dau-mua-khi-trong-co-so-kham-chua-benh-119220828204940999.htm"
+    ],
+    "28185": [
+      "https://xaydungchinhsach.chinhphu.vn/tre-em-co-the-mac-benh-dau-mua-khi-khong-can-lam-gi-neu-co-trieu-chung-nghi-ngo-119221003161139492.htm"
+    ],
+    "119022": [
+      "https://hellobacsi.com/suc-khoe/kien-thuc-suc-khoe/hoi-dap-chi-so-bmi-va-bmr-la-gi/"
+    ],
+    "119144": [
+      "https://hellobacsi.com/an-uong-lanh-manh/bi-quyet-an-uong-lanh-manh/"
+    ],
+    "119150": [
+      "https://hellobacsi.com/an-uong-lanh-manh/bi-quyet-an-uong-lanh-manh/an-chuoi-buoi-toi/"
+    ],
+    "119921": [
+      "https://hellobacsi.com/an-uong-lanh-manh/thong-tin-dinh-duong/tac-dung-cua-vitamin-e/"
+    ],
+    "120119": [
+      "https://hellobacsi.com/an-uong-lanh-manh/thong-tin-dinh-duong/10-thuc-pham-giau-canxi-nen-biet/"
+    ],
+    "120222": [
+      "https://hellobacsi.com/an-uong-lanh-manh/thong-tin-dinh-duong/loi-ich-cua-gao-lut/"
+    ],
+    "120463": [
+      "https://hellobacsi.com/da-lieu/cham-soc-da/nep-nhan-vung-mat/"
+    ],
+    "120473": [
+      "https://hellobacsi.com/da-lieu/cham-soc-da/top-6-kem-duong-am-cho-da-kho-nhay-cam-nen-chon-loai-nao/"
+    ],
+    "120697": [
+      "https://hellobacsi.com/da-lieu/cham-soc-da/cach-lam-moi-hong/"
+    ],
+    "120842": [
+      "https://hellobacsi.com/da-lieu/cham-soc-da/da-mat-bi-bong-troc/"
+    ],
+    "120941": [
+      "https://hellobacsi.com/da-lieu/cham-soc-da/da-mun-co-nen-tay-te-bao-chet/"
+    ],
+    "121019": [
+      "https://hellobacsi.com/da-lieu/cham-soc-mong/lay-khoe-mong-chan-bi-sung-mu-phai-lam-sao/"
+    ],
+    "121098": [
+      "https://hellobacsi.com/da-lieu/cham-soc-toc-da-dau/dau-goi-tri-nam-da-dau/"
+    ],
+    "121179": [
+      "https://hellobacsi.com/da-lieu/van-de-ve-da/cac-loai-nam-da/"
+    ],
+    "121261": [
+      "https://hellobacsi.com/da-lieu/tri-mun/"
+    ]
+  },
+  "unknown_url_conflicts": 0,
+  "canonical_chunk_conflicts": 0,
+  "affected_candidate_arms": [
+    "BROAD_EXTRA",
+    "ORIGINAL_PILOT",
+    "suckhoedoisong.vn"
+  ],
+  "document_495914": {
+    "official_doc_id": 495914,
+    "canonical_url": "https://suckhoedoisong.vn/bo-y-te-de-xuat-tiep-tuc-gia-han-giay-dang-ky-luu-hanh-12700-thuoc-nguyen-lieu-lam-thuoc-den-31-12-2024-169221213180004538.htm",
+    "canonical_domain": "suckhoedoisong.vn",
+    "candidate_arms": [
+      "ORIGINAL_PILOT",
+      "suckhoedoisong.vn"
+    ],
+    "candidate_chunk_ids": [
+      "495914-124f78539ad6f42c5fcefb35",
+      "495914-1c55142f6c4b6e660be4f267",
+      "495914-1cf880875088feb738fb35c5",
+      "495914-1e8ebb073523252124d8990c",
+      "495914-2cf5dbe72759de1c92716ff2",
+      "495914-319d2437b241b47ace2dbeef",
+      "495914-362c7e9f634599df6283ea0b",
+      "495914-364cccd40d090fc5215df99e",
+      "495914-39a440e1b1e7ccb8b9f6f8d8",
+      "495914-3e786500cef78937aff8491a",
+      "495914-3fb3f2a4f7c7e0290569470e",
+      "495914-40b6dda5236c6a504cb9832f",
+      "495914-435f364f13cf19c3a549b18c",
+      "495914-4690e2a7819f8ea973cb8ac1",
+      "495914-559a2f4796efc1c4be7653b1",
+      "495914-56fe6887a010856e9fe4b134",
+      "495914-59a625d46538eb1949ac50e5",
+      "495914-6b61d672cef20c535ed042ea",
+      "495914-6d65e16d51163232438edb5e",
+      "495914-76aeb4b910d900819ad07900",
+      "495914-79a7680d53574350a96c1cb5",
+      "495914-7b73271084c1560291450f88",
+      "495914-7c8d141f17aa1b0858428d94",
+      "495914-868a0eeb44f78e41c8a07a46",
+      "495914-887f56a2de6c7a04369b73fc",
+      "495914-8a1ce3b904d928fe7df424ec",
+      "495914-8c8e6ace1ada217b43296e94",
+      "495914-8e1333c2d9e4acddac5ce5ba",
+      "495914-9981325637729be622a18803",
+      "495914-9d7200e46558097c06c82209",
+      "495914-a2596b87754fc110a3a0d236",
+      "495914-a39c58d6e0ce18630865afd7",
+      "495914-a5a2f04d91e2171725bf9702",
+      "495914-a6824d49f029896e86463404",
+      "495914-a7d7062d2a9e949e6e97b91b",
+      "495914-b0da7db23b6c40768031832b",
+      "495914-b4b2f27b5b4909e19790653f",
+      "495914-b4e24be275cbc6641e8d8893",
+      "495914-bbfc45af693d9e309fcab3f5",
+      "495914-c2f2812cd70d23aea2d60171",
+      "495914-c3253d77a68e934e4ba1febd",
+      "495914-cd2f59e437dfc50a1caa79d4",
+      "495914-d6d6c554a6707be3b6732201",
+      "495914-d9a2d5381c01f42fee577128",
+      "495914-dc730f7b7709c11fec1c9338",
+      "495914-e418fe06f9686d36b29a4458",
+      "495914-e5112ac87e2591adf0bb150f",
+      "495914-ec06fcfd8d1ae0658ed1051b",
+      "495914-f0e67c92bd339c296fc1eaba",
+      "495914-f234c38efbe35f4b834ea61e",
+      "495914-f77de38bed608e198825d595"
+    ],
+    "query_ids": [
+      18,
+      22,
+      83,
+      91,
+      100,
+      103,
+      104,
+      119,
+      135,
+      160,
+      162,
+      168,
+      193,
+      219,
+      223,
+      252,
+      268,
+      277,
+      280,
+      294,
+      352,
+      374,
+      379,
+      380,
+      391,
+      403,
+      408,
+      417,
+      418,
+      442,
+      463,
+      483,
+      485,
+      492,
+      515,
+      554,
+      635,
+      653,
+      663,
+      666,
+      716,
+      744,
+      751,
+      754,
+      781,
+      785,
+      786,
+      790,
+      812,
+      832,
+      842,
+      849,
+      853,
+      874,
+      914,
+      923,
+      927,
+      946,
+      948,
+      978,
+      983,
+      985,
+      987,
+      1014,
+      1027,
+      1028,
+      1040,
+      1098,
+      1102,
+      1112,
+      1136,
+      1151,
+      1170,
+      1172,
+      1190,
+      1191
+    ],
+    "valid_canonical_provenance": true,
+    "real_conflict": false
+  },
+  "multi_arm_document_sample": [
+    {
+      "doc_id": 385686,
+      "canonical_domain": "suckhoecongdongonline.vn",
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "doc_id": 495914,
+      "canonical_domain": "suckhoedoisong.vn",
+      "arms": [
+        "ORIGINAL_PILOT",
+        "suckhoedoisong.vn"
+      ]
+    }
+  ],
+  "multi_arm_query_document_sample": [
+    {
+      "query_id": 14,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 94,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 103,
+      "doc_id": 495914,
+      "arms": [
+        "ORIGINAL_PILOT",
+        "suckhoedoisong.vn"
+      ]
+    },
+    {
+      "query_id": 148,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 206,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 261,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 309,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 399,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 477,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 492,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 568,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 661,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 823,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 867,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 913,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 960,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 973,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 1079,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    },
+    {
+      "query_id": 1107,
+      "doc_id": 385686,
+      "arms": [
+        "BROAD_EXTRA",
+        "ORIGINAL_PILOT"
+      ]
+    }
+  ],
+  "multi_arm_rule": "preserve the arm set; canonical URL/domain remains singular; exact query-chunk score is counted once"
+}

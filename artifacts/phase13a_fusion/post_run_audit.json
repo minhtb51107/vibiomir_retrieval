@@ -1,0 +1,48 @@
+{
+  "run_id": "phase13a_fusion_replay",
+  "status": "READY_FOR_HUMAN_REVIEW",
+  "stage": "AWAITING_HUMAN_REVIEW",
+  "passed": true,
+  "checks": {
+    "required_files_present": true,
+    "phase11c_exact_replay": true,
+    "phase12_exact_replay": true,
+    "frozen_hashes_still_match": true,
+    "seven_variants_present": true,
+    "all_variants_cover_1200_queries": true,
+    "all_variants_have_24000_docs": true,
+    "all_variants_have_48000_chunks": true,
+    "zero_provenance_mismatches": true,
+    "consistency_covers_all_variants": true,
+    "ownership_audit_passed": true,
+    "no_model_or_data_work": true,
+    "no_winner_selected": true,
+    "review_has_60_unique_queries": true,
+    "review_has_seven_blinded_alternatives_per_query": true,
+    "review_has_source_ids_scores_and_evidence": true,
+    "review_starts_blank_and_exports": true,
+    "display_uses_blind_label": true
+  },
+  "failed_checks": [],
+  "variant_count": 7,
+  "review_query_count": 60,
+  "report_sha256": {
+    "aggregation_comparison.json": "037aaa18626d3a5c58a7e3d793f7ec009ef029a8e3dcf931bd19a94a796f1471",
+    "baseline_replay_audit.json": "8f606969560ce613882f581c3fc38547f7255d573965b9eb30cac5f561e61410",
+    "candidate_ownership_audit.json": "ed5b8e7059846852eca3e58ed4e375d1cb0eb487b2a010fe0b17eace4c5aad2c",
+    "document_chunk_consistency.json": "8d8490cc8151ffcf07346bb38d518aedaa44f007a7f66c9e4c089039e875d945",
+    "experiment_summary.md": "67f5e9923a0decbbfbd8509c8c8bb1b6dcca654b30befe6dd24550bfbf7d8cbb",
+    "fusion_comparison.json": "8bdf8a24806021f2085a485a13bf3ee50667d96e8bc71f19a934ddf689b92a51",
+    "review_interface.html": "7fa17b97c903e1745b4e30858466532202430411575845583376055b874db8c1"
+  },
+  "frozen_control_sha256": {
+    "phase11c": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",
+    "phase12": "b1492b8a9e523a15acc6dec140c4fbbdbe869b739e34d3cbda30c369128a78cf"
+  },
+  "candidate_score_contract": {
+    "raw_candidate_rows": 695558,
+    "unique_exact_query_chunk_scores": 695539,
+    "new_model_inference": 0
+  },
+  "scientific_gate": "Human relevance labels are required before selecting a winning variant."
+}
