@@ -74,3 +74,9 @@ so its date and commit are explicitly unknown.
 - The mandatory Vietnamese-to-English trace review found repeated topic drift caused by rare terms inherited from imperfect dense seeds.
 - M2B stopped before Phase 12 replay, resource preflight, GPU loading, or any of the 195,604 missing exact scores.
 - No candidate ZIP or leaderboard submission was produced; lexical candidate relevance remains UNKNOWN.
+
+### 2026-10-14 — M2A query bridge repair remains GPU-blocked
+
+- Replaced uncontrolled dense-seed terms with provenance-bearing local bilingual anchors and exact Dense fallback.
+- The 60-query diagnostic found traceable anchors for only 15 queries; the independent half had 3/30 and 45/60 total queries required fallback.
+- The repaired bridge is mechanically topic-safe but too sparse for a useful M2B hybrid arm. No GPU inference or leaderboard artifact was produced.

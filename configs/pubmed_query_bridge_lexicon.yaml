@@ -1,0 +1,97 @@
+version: 1
+policy: local_source_explicit_bilingual_pairs_only
+entries:
+  - concept_id: tonsillitis
+    kind: disease
+    vietnamese: ["viêm amidan", "viêm a-mi-đan", "a-mi-đan"]
+    english: ["tonsillitis"]
+    source_doc_id: 663522
+    source_url: https://tiemchunglongchau.com.vn/kien-thuc-tiem-chung/benh-a-z-viem-amidan-hoc-mu
+    source_excerpt: "Viêm amidan hốc mủ (Cryptic Tonsillitis)"
+  - concept_id: meningitis
+    kind: disease
+    vietnamese: ["viêm màng não"]
+    english: ["meningitis"]
+    source_doc_id: 670002
+    source_url: https://tiemchunglongchau.com.vn/kien-thuc-tiem-chung/nhung-dieu-can-biet-ve-virus-quai-bi-va-cach-phong-ngua-benh
+    source_excerpt: "Viêm màng não (meningitis)"
+  - concept_id: asthma
+    kind: disease
+    vietnamese: ["hen suyễn"]
+    english: ["asthma"]
+    source_doc_id: 734218
+    source_url: https://www.vinmec.com/vie/bai-viet/benh-cham-co-dan-den-hen-suyen-nhu-nao-vi
+    source_excerpt: "hen suyễn (tên tiếng Anh là asthma)"
+  - concept_id: tetanus
+    kind: disease
+    vietnamese: ["uốn ván", "bệnh uốn ván"]
+    english: ["tetanus"]
+    source_doc_id: 189271
+    source_url: https://medlatec.vn/tin-tuc/nhung-dieu-can-biet-khi-tiem-vac-xin-6in1-cho-tre-nho-s121-n16230
+    source_excerpt: "Bệnh uốn ván (Tetanus)"
+  - concept_id: gastroesophageal_reflux
+    kind: disease
+    vietnamese: ["trào ngược dạ dày thực quản"]
+    english: ["gastroesophageal reflux", "GERD"]
+    source_doc_id: 174289
+    source_url: https://medlatec.vn/barrett-thuc-quan-nguyen-nhan-muc-do-nguy-hiem-va-phuong-phap-chan-doan
+    source_excerpt: "trào ngược dạ dày thực quản (GERD)"
+  - concept_id: hypertension
+    kind: disease
+    vietnamese: ["hội chứng áo choàng trắng"]
+    english: ["white coat hypertension"]
+    source_doc_id: 667582
+    source_url: https://tiemchunglongchau.com.vn/kien-thuc-tiem-chung/hoi-chung-ao-choang-trang-la-gi-cach-theo-doi-va-kiem-soat-hoi-chung
+    source_excerpt: "Hội chứng áo choàng trắng (White Coat Hypertension)"
+  - concept_id: colitis
+    kind: disease
+    vietnamese: ["viêm đại tràng"]
+    english: ["colitis"]
+    source_doc_id: 668419
+    source_url: https://tiemchunglongchau.com.vn/kien-thuc-tiem-chung/ly-amip
+    source_excerpt: "Viêm đại tràng amip hoại tử tối cấp (Fulminant necrotizing amoebic colitis)"
+  - concept_id: roseola
+    kind: disease
+    vietnamese: ["ban đào"]
+    english: ["roseola"]
+    source_doc_id: 665082
+    source_url: https://tiemchunglongchau.com.vn/kien-thuc-tiem-chung/cach-phan-biet-benh-soi-va-ban-dao-o-tre-em-nhung-dieu-cha-me-can-luu-y
+    source_excerpt: "Ban đào (roseola infantum)"
+  - concept_id: eczema
+    kind: disease
+    vietnamese: ["bệnh chàm"]
+    english: ["eczema"]
+    source_doc_id: 734218
+    source_url: https://www.vinmec.com/vie/bai-viet/benh-cham-co-dan-den-hen-suyen-nhu-nao-vi
+    source_excerpt: "Bệnh chàm (tên tiếng Anh là eczema)"
+  - concept_id: polycystic_ovary_syndrome
+    kind: disease
+    vietnamese: ["buồng trứng đa nang"]
+    english: ["polycystic ovary syndrome", "PCOS"]
+    source_doc_id: 174441
+    source_url: https://medlatec.vn/tin-tuc/-fsh-y-nghia-lam-sang-va-chi-dinh-s58-n10884
+    source_excerpt: "buồng trứng đa nang (PCOS- Polycystic ovary syndrome)"
+  - concept_id: paracetamol
+    kind: medicine
+    vietnamese: ["paracetamol"]
+    english: ["acetaminophen", "paracetamol"]
+    source_doc_id: 174355
+    source_url: https://medlatec.vn/phan-biet-sot-sieu-vi-va-sot-xuat-huyet-chuan-xac-qua-cac-dau-hieu-dac-trung
+    source_excerpt: "Paracetamol (Acetaminophen)"
+
+literal_medical_anchors:
+  - covid
+  - covid-19
+  - sars-cov-2
+  - hiv
+  - aids
+  - gout
+  - rubella
+  - hpv
+  - pcos
+  - cyfra21-1
+  - vitamin e
+  - vitamin d
+  - d3
+  - h. pylori
+  - helicobacter pylori
