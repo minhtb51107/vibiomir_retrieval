@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "documents": 239896,
+  "duplicate_pmids": 0,
+  "sqlite_integrity": "ok",
+  "source_path": "data\\pubmed_phase12\\processed\\documents.parquet",
+  "source_sha256": "96cb021126a11dd2d7d85965f5943a2ee1acbedc6962c8b4a7f4fb23e9823fcc",
+  "source_content_manifest_sha256": "a2879b4657941f507954359f10454b475be62fbab12c3a6d06ec6fdcb90a76e5",
+  "index_path": "data\\system_upgrade_m2a\\pubmed_lexical.sqlite",
+  "index_size_bytes": 678948864,
+  "build_seconds": 2.0220636999999897,
+  "documents_per_second": 118639.19024905161,
+  "peak_process_rss_bytes": 61648896,
+  "tokenizer": "SQLite FTS5 unicode61 remove_diacritics=2",
+  "title_bm25_weight": 4.0,
+  "abstract_bm25_weight": 1.0,
+  "incremental_resume": "ordinal checkpoint committed atomically with each FTS batch"
+}

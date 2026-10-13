@@ -61,3 +61,10 @@ so its date and commit are explicitly unknown.
 - Built a canonical CPU-only registry for 275,877 NEW-official local documents; this corrected the M1 union by adding 291 valid frozen-pilot documents that participated in retrieval but were absent from the broad/PubMed inventory.
 - Built a 332,407-row document candidate ledger covering all 1,200 queries and the complete frozen Phase 12 candidate universe.
 - Expanded benchmark discovery found no defensible non-title biomedical or VI→EN positive pairs; architecture selection remains evaluation-gated.
+
+### 2026-10-14 — Milestone 2A PubMed lexical candidate arm
+
+- Built a 239,896-document SQLite FTS5 PubMed index without crawling, embedding, or reranker inference.
+- A bounded dense-seed Vietnamese-to-English bridge produced lexical top-100 for 1,200/1,200 queries: 97,811 lexical-only and 22,189 dense/lexical-overlap query-document pairs.
+- The two-chunk-per-document evidence pool contains 435,558 pairs; 239,954 exact scores are reusable and 195,604 remain for a gated M2B experiment.
+- Novel candidates remain relevance-UNKNOWN. M2B is authorized only as one controlled reranking experiment after drift review and exact Phase 12 isolation replay.

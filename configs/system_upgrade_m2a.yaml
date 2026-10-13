@@ -1,0 +1,30 @@
+version: 1
+run_id: system_upgrade_m2a
+inputs:
+  pubmed_documents: data/pubmed_phase12/processed/documents.parquet
+  pubmed_chunks: data/pubmed_phase12/processed/chunks.parquet
+  dense_top100: data/pubmed_phase12/retrieval/pubmed_top100_documents.parquet
+  queries: data/raw/query.parquet
+  phase12_scores: data/pubmed_phase12/retrieval/round1/source_scores.sqlite
+outputs:
+  root: data/system_upgrade_m2a
+  index: data/system_upgrade_m2a/pubmed_lexical.sqlite
+  hybrid_candidates: data/system_upgrade_m2a/hybrid_document_candidates.parquet
+  evidence_candidates: data/system_upgrade_m2a/bounded_evidence_candidates.parquet
+  artifacts: artifacts/system_upgrade_m2a
+retrieval:
+  dense_seed_documents: 8
+  expansion_terms: 12
+  maximum_term_document_frequency_ratio: 0.05
+  lexical_depth: 100
+  dense_depth: 100
+  hybrid_depth: 200
+  rrf_constant: 60
+  evidence_chunks_per_document: 2
+resources:
+  sqlite_cache_mib: 32
+  build_batch_rows: 256
+  maximum_incremental_rss_mib: 800
+  maximum_additional_disk_gib: 3
+  minimum_free_disk_gib: 20
+  preflight_sample_rows: 5000

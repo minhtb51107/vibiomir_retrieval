@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "control": "existing dense top100 unchanged",
+  "new": "dense top100 union independent lexical top100 with rank-only RRF",
+  "dense_lexical_overlap": 22189,
+  "additional_distinct_documents": 97811,
+  "candidate_diversity_boundary": "Counts measure independence, not relevance",
+  "provenance_valid": true,
+  "exact_reproducibility": {
+    "candidate_sha256": "6abfe1332010f76825f6a0a0f09d70946e7005d8044b86039c6cfdd7a8107091",
+    "evidence_sha256": "56e37badbdb962f5bb24940920d1b41cdeb5a75336c835c9ced9ea064de09c60"
+  }
+}

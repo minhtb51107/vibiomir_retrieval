@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "queries": 1200,
+  "successful_english_expansions": 1200,
+  "empty_or_degenerate_queries": 0,
+  "dense_candidate_rows": 120000,
+  "lexical_candidate_rows": 120000,
+  "dense_lexical_overlap": 22189,
+  "additional_distinct_query_document_pairs": 97811,
+  "overlap_per_query": 18.490833333333335,
+  "additional_per_query": 81.50916666666667,
+  "hybrid_pool_size": {
+    "min": 136,
+    "median": 184,
+    "max": 198
+  },
+  "lexical_latency_seconds": {
+    "min": 0.011261099999956059,
+    "p5": 0.03466787500003648,
+    "median": 0.11941989999991165,
+    "p95": 0.42131382500009507,
+    "max": 2.484726599999931
+  },
+  "claim_boundary": "Novel candidates are UNKNOWN, not automatically relevant.",
+  "candidate_path": "data\\system_upgrade_m2a\\hybrid_document_candidates.parquet",
+  "candidate_sha256": "6abfe1332010f76825f6a0a0f09d70946e7005d8044b86039c6cfdd7a8107091"
+}

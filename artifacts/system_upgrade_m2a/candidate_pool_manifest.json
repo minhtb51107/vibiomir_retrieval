@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "candidate_documents": 132627,
+  "evidence_candidate_pairs": 435558,
+  "exact_scores_reused": 239954,
+  "genuinely_missing_reranker_pairs": 195604,
+  "new_model_inference_performed": 0,
+  "ownership_mismatches": 0,
+  "maximum_chunks_per_document": 2,
+  "selection_rule": "first two source-grounded PubMed evidence chunks by durable chunk_index; resource-control prototype, not relevance-optimal",
+  "path": "data\\system_upgrade_m2a\\bounded_evidence_candidates.parquet",
+  "sha256": "56e37badbdb962f5bb24940920d1b41cdeb5a75336c835c9ced9ea064de09c60"
+}

@@ -931,3 +931,15 @@ Milestone 1.5 added diagnostic infrastructure without crawling, model inference,
 The document candidate ledger contains 332,407 unique query-document pairs for all 1,200 queries. Per query, the frozen Phase 12 universe contains 229–316 unique candidate documents (median 278); 308,407 pairs do not reach Docs@20. This is structural truncation, not measured relevance loss. Phase 12 displaced 5,913 Phase 11C document slots and inserted exactly 5,913 alternatives.
 
 The broader benchmark audit explained why M1 found only 21 title-derived pairs. After NEW-official filtering, four non-title structured question/answer candidates were found, all from a non-medical highway interview. No defensible primary VI→VI, VI→EN, EN→EN, or ZH→ZH held-out pairs were discovered. Title-derived candidates remain audit-only and the offline architecture-selection gate remains `INSUFFICIENT`.
+
+## 2026-10-14 — Milestone 2A PubMed hybrid first-stage retrieval
+
+Question: Can an independent disk-backed lexical arm add a materially different PubMed candidate signal to the existing BGE-M3 dense top-100 without new model inference?
+
+Method: Built a deterministic SQLite FTS5 document index over 239,896 processed PubMed documents. For each Vietnamese query, the frozen dense top-100 supplied a bounded seed set; discriminative English terms were selected using corpus document frequency and used for an independent lexical top-100. Dense and lexical candidates were deduplicated by official document ID, while retaining arm ranks. At most two original evidence chunks per document were selected for cost accounting.
+
+Result: All 1,200 queries produced lexical candidates. The lexical arm contributed 97,811 query-document pairs not present in dense top-100; 22,189 pairs overlapped. The bounded evidence pool contains 435,558 exact query/chunk pairs: 239,954 already have exact cached reranker scores and 195,604 require new inference. Provenance and ownership checks passed. The index occupies 678,948,864 bytes; measured incremental peak RSS during construction was 271 MiB.
+
+Limitations: Candidate novelty is not relevance. The Vietnamese-to-English bridge is pseudo-relevance feedback derived from dense seeds and may drift; it requires trace review before GPU scoring. The 21-pair title-derived silver set is insufficient evidence of general retrieval quality. No reranker inference or leaderboard package was produced in M2A.
+
+Decision: M2A is operationally complete. M2B may proceed only after query-bridge trace review, an exact dense-only Phase 12 replay, exact missing-score reconciliation, and resource preflight.
