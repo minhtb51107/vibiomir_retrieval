@@ -29,3 +29,5 @@ Cần con người chấm pooled candidates bằng RELEVANT / PARTIALLY_RELEVANT
 ## Trạng thái vòng đời
 
 Post-run audit đã kiểm tra đủ 7 variant, 1.200 query/variant, 24.000 document slots và 48.000 chunk slots/variant, ownership/provenance, hash của hai frozen control, và giao diện review 60 query. Trạng thái hợp lệ là `READY_FOR_HUMAN_REVIEW`, stage `AWAITING_HUMAN_REVIEW`; đây không phải `READY_FOR_LEADERBOARD`.
+
+Giao diện review đã được kiểm thử trực tiếp bằng Chrome qua `file://`: 60 query và 4.200 dòng đánh giá có thể truy cập, chỉ render một query mỗi trang để tránh treo trình duyệt, và CSV ghi mục chưa trả lời là `UNKNOWN`. Nếu JavaScript khởi tạo thất bại, trang hiển thị lỗi rõ ràng thay vì để trống.

@@ -1,7 +1,11 @@
 import json
+import os
+import subprocess
 import sqlite3
 import zipfile
 from pathlib import Path
+
+import pytest
 
 from src.source_census.union_experiment import _stream_validate
 from tools.phase13a_fusion_replay import (
@@ -9,6 +13,7 @@ from tools.phase13a_fusion_replay import (
     conservative_pubmed,
     document_aware_chunk_capacity,
     near_duplicate,
+    load_embedded_review,
     rank_rrf,
     representative_chunks,
     select_submission_chunks,
@@ -152,3 +157,46 @@ def test_completed_report_set_is_ready_for_human_review():
     assert audit["variant_count"] == 7
     assert audit["review_query_count"] == 60
     assert audit["candidate_score_contract"]["new_model_inference"] == 0
+
+
+def test_review_payload_retains_all_queries_methods_and_exact_evidence_ids():
+    review = load_embedded_review(Path("artifacts/phase13a_fusion/review_interface.html"))
+    assert len(review) == 60
+    assert all(len(methods) == 7 for methods in review.values())
+    assert all(len(documents) == 10 for methods in review.values() for documents in methods.values())
+    assert all(
+        {"doc_id", "source", "chunk_id", "evidence", "score"} <= set(document)
+        for methods in review.values() for documents in methods.values() for document in documents
+    )
+
+
+def test_review_interface_executes_from_file_url_in_chrome(tmp_path):
+    candidates = [
+        Path(r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"),
+        Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe"),
+    ]
+    chrome = next((path for path in candidates if path.exists()), None)
+    if chrome is None:
+        pytest.skip("Chrome is not installed; browser integration test is Windows-local")
+    html_path = Path("artifacts/phase13a_fusion/review_interface.html").resolve()
+    url = html_path.as_uri() + "#browser-self-test"
+    environment = {**os.environ, "CHROME_HEADLESS": "1"}
+    completed = subprocess.run(
+        [
+            str(chrome), "--headless=new", "--disable-gpu", "--no-first-run",
+            f"--user-data-dir={tmp_path / 'chrome-profile'}", "--enable-logging=stderr",
+            "--log-level=0", "--dump-dom", url,
+        ],
+        capture_output=True, text=True, encoding="utf-8", errors="replace",
+        timeout=90, check=True, env=environment,
+    )
+    dom = completed.stdout
+    assert 'data-review-ready="true"' in dom
+    assert 'data-review-query-count="60"' in dom
+    assert 'data-review-candidate-count="4200"' in dom
+    assert 'data-export-rows="4200"' in dom
+    assert '<div id="browser-self-test" data-passed="true">BROWSER_SELF_TEST_PASS</div>' in dom
+    assert '<h2>Query 2</h2>' in dom
+    assert 'doc 179426' in dom
+    assert 'id="init-error" role="alert" hidden' in dom
+    assert "Uncaught" not in completed.stderr

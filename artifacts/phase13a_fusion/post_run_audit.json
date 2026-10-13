@@ -20,8 +20,10 @@
     "review_has_60_unique_queries": true,
     "review_has_seven_blinded_alternatives_per_query": true,
     "review_has_source_ids_scores_and_evidence": true,
-    "review_starts_blank_and_exports": true,
-    "display_uses_blind_label": true
+    "review_starts_blank_and_exports_unknown": true,
+    "display_uses_blind_label": true,
+    "review_is_paginated": true,
+    "visible_initialization_error": true
   },
   "failed_checks": [],
   "variant_count": 7,
@@ -31,9 +33,9 @@
     "baseline_replay_audit.json": "8f606969560ce613882f581c3fc38547f7255d573965b9eb30cac5f561e61410",
     "candidate_ownership_audit.json": "ed5b8e7059846852eca3e58ed4e375d1cb0eb487b2a010fe0b17eace4c5aad2c",
     "document_chunk_consistency.json": "8d8490cc8151ffcf07346bb38d518aedaa44f007a7f66c9e4c089039e875d945",
-    "experiment_summary.md": "67f5e9923a0decbbfbd8509c8c8bb1b6dcca654b30befe6dd24550bfbf7d8cbb",
+    "experiment_summary.md": "5d0058ace99799e4d4a198464371b99a26b9885ce3fd6ba4ebd915ac0bd45c31",
     "fusion_comparison.json": "8bdf8a24806021f2085a485a13bf3ee50667d96e8bc71f19a934ddf689b92a51",
-    "review_interface.html": "7fa17b97c903e1745b4e30858466532202430411575845583376055b874db8c1"
+    "review_interface.html": "077312a8b42eb26c02bfeaf998eecc25d9a855ad60d7668fa8cf0052fa51f213"
   },
   "frozen_control_sha256": {
     "phase11c": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",

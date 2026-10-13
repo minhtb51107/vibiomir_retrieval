@@ -551,13 +551,102 @@ def build_review_interface(review: dict[int, dict[str, list[dict]]]) -> None:
                              for index, method in enumerate(methods)],
         })
     encoded = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
-    page = f"""<!doctype html><html lang='vi'><head><meta charset='utf-8'><title>Phase 13A blind review</title>
-<style>body{{font:15px system-ui;max-width:1450px;margin:auto;padding:20px}}.query{{border-top:3px solid #333;margin-top:35px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px}}.system{{border:1px solid #aaa;padding:10px}}.doc{{background:#f6f6f6;margin:8px 0;padding:8px}}small{{color:#555}}textarea{{width:100%}}</style></head><body>
-<h1>Phase 13A — đánh giá mù</h1><p>Không xem tên phương pháp khi chấm. Nhãn cho từng tài liệu: RELEVANT / PARTIALLY_RELEVANT / IRRELEVANT / UNCLEAR. Bỏ trống nếu chưa đánh giá; kết quả chưa chấm là UNKNOWN, không phải IRRELEVANT.</p>
-<button onclick='exportCsv()'>Xuất CSV đánh giá</button><div id='app'></div><script>const DATA={encoded}; const LABELS=['','RELEVANT','PARTIALLY_RELEVANT','IRRELEVANT','UNCLEAR'];
-const app=document.getElementById('app'); for(const q of DATA){{let root=document.createElement('section');root.className='query';root.innerHTML=`<h2>Query ${{q.query_id}}</h2><p>${{esc(q.question)}}</p><div class="grid"></div>`;let grid=root.querySelector('.grid');for(const a of q.alternatives){{let box=document.createElement('div');box.className='system';box.innerHTML=`<h3>${{a.blind_label}}</h3>`;a.documents.forEach((d,i)=>{{let item=document.createElement('div');item.className='doc';item.innerHTML=`<b>#${{i+1}} · doc ${{d.doc_id}}</b><br><small>${{esc(d.source)}} · score ${{d.score}} · chunk ${{esc(d.chunk_id)}}</small><p>${{esc(d.evidence)}}</p><select data-q="${{q.query_id}}" data-system="${{a.blind_label}}" data-method="${{a.method}}" data-doc="${{d.doc_id}}">${{LABELS.map(x=>`<option>${{x}}</option>`).join('')}}</select>`;box.appendChild(item)}});grid.appendChild(box)}}app.appendChild(root)}}
-function esc(x){{return String(x).replace(/[&<>\"']/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}}[c]))}}function exportCsv(){{let lines=['query_id,blind_system,method,doc_id,judgment'];document.querySelectorAll('select').forEach(s=>lines.push([s.dataset.q,s.dataset.system,s.dataset.method,s.dataset.doc,s.value].map(x=>'"'+String(x).replaceAll('"','""')+'"').join(',')));let b=new Blob([lines.join('\n')],{{type:'text/csv'}}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='phase13a_human_judgments.csv';a.click()}}</script></body></html>"""
+    page = f"""<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Phase 13A blind review</title>
+<style>
+body{{font:15px system-ui;max-width:1450px;margin:auto;padding:20px;color:#202124}}button,select{{font:inherit;padding:6px}}.toolbar{{position:sticky;top:0;background:#fff;border-bottom:1px solid #bbb;padding:10px 0;z-index:2;display:flex;gap:8px;align-items:center;flex-wrap:wrap}}.query{{border-top:3px solid #333;margin-top:20px}}.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px}}.system{{border:1px solid #aaa;padding:10px}}.doc{{background:#f6f6f6;margin:8px 0;padding:8px}}.doc p{{white-space:pre-wrap}}small{{color:#555}}#init-error{{background:#fee;border:2px solid #b00020;color:#7f0015;padding:12px;margin:12px 0;white-space:pre-wrap}}#status{{font-weight:600}}
+</style></head><body>
+<h1>Phase 13A — đánh giá mù</h1><p>Không xem tên phương pháp khi chấm. Nhãn cho từng tài liệu: RELEVANT / PARTIALLY_RELEVANT / IRRELEVANT / UNCLEAR. Giao diện bắt đầu để trống; khi xuất CSV, mục chưa chấm được ghi rõ là UNKNOWN.</p>
+<div id="init-error" role="alert" hidden></div>
+<div class="toolbar"><button id="previous" type="button">← Query trước</button><label>Query <select id="query-picker"></select></label><button id="next" type="button">Query sau →</button><span id="status">Đang khởi tạo…</span><button id="export" type="button">Xuất CSV đánh giá</button></div>
+<main id="app" aria-live="polite"></main>
+<script>
+(function(){{
+  const errorBox=document.getElementById('init-error');
+  window.showReviewError=function(error){{errorBox.hidden=false;errorBox.textContent='Không thể khởi tạo giao diện đánh giá. Chi tiết: '+String(error && (error.stack||error.message)||error);}};
+  window.addEventListener('error',event=>window.showReviewError(event.error||event.message));
+  window.addEventListener('unhandledrejection',event=>window.showReviewError(event.reason));
+}})();
+</script>
+<script id="review-data" type="application/json">{encoded}</script>
+<script>
+(function(){{
+try {{
+  const DATA=JSON.parse(document.getElementById('review-data').textContent);
+  const LABELS=['','RELEVANT','PARTIALLY_RELEVANT','IRRELEVANT','UNCLEAR'];
+  const judgments=new Map(); let currentIndex=0;
+  const app=document.getElementById('app'), picker=document.getElementById('query-picker'), status=document.getElementById('status');
+  const esc=value=>String(value).replace(/[&<>\"']/g,char=>({{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}}[char]));
+  const key=(queryId,method,docId)=>`${{queryId}}|${{method}}|${{docId}}`;
+  const csvCell=value=>'"'+String(value).replaceAll('"','""')+'"';
+  function buildCsv() {{
+    const lines=[['query_id','blind_system','method','doc_id','chunk_id','source','judgment'].map(csvCell).join(',')];
+    for(const query of DATA) for(const alternative of query.alternatives) for(const document of alternative.documents) {{
+      const judgment=judgments.get(key(query.query_id,alternative.method,document.doc_id))||'UNKNOWN';
+      lines.push([query.query_id,alternative.blind_label,alternative.method,document.doc_id,document.chunk_id,document.source,judgment].map(csvCell).join(','));
+    }}
+    return lines.join(String.fromCharCode(13,10));
+  }}
+  function renderQuery(index) {{
+    currentIndex=Math.max(0,Math.min(DATA.length-1,index)); const query=DATA[currentIndex];
+    const root=document.createElement('section'); root.className='query';
+    root.innerHTML=`<h2>Query ${{query.query_id}}</h2><p class="question">${{esc(query.question)}}</p><div class="grid"></div>`;
+    const grid=root.querySelector('.grid');
+    for(const alternative of query.alternatives) {{
+      const box=document.createElement('article'); box.className='system'; box.innerHTML=`<h3>${{esc(alternative.blind_label)}}</h3>`;
+      alternative.documents.forEach((candidate,indexWithinSystem)=>{{
+        const item=document.createElement('div'); item.className='doc';
+        const selectId=`judgment-${{query.query_id}}-${{alternative.blind_label.replace(' ','-')}}-${{indexWithinSystem}}`;
+        item.innerHTML=`<b>#${{indexWithinSystem+1}} · doc ${{candidate.doc_id}}</b><br><small>${{esc(candidate.source)}} · score ${{candidate.score}} · chunk ${{esc(candidate.chunk_id)}}</small><p>${{esc(candidate.evidence)}}</p><label for="${{selectId}}">Đánh giá</label> <select id="${{selectId}}"></select>`;
+        const select=item.querySelector('select');
+        LABELS.forEach(label=>{{const option=document.createElement('option');option.value=label;option.textContent=label||'— Chưa chấm (UNKNOWN) —';select.appendChild(option);}});
+        const judgmentKey=key(query.query_id,alternative.method,candidate.doc_id); select.value=judgments.get(judgmentKey)||'';
+        select.addEventListener('change',()=>{{if(select.value)judgments.set(judgmentKey,select.value);else judgments.delete(judgmentKey);}});
+        box.appendChild(item);
+      }});
+      grid.appendChild(box);
+    }}
+    app.replaceChildren(root); picker.value=String(currentIndex); status.textContent=`Query ${{currentIndex+1}} / ${{DATA.length}} · ${{query.alternatives.length}} hệ thống · ${{query.alternatives.reduce((total,item)=>total+item.documents.length,0)}} tài liệu`;
+    document.getElementById('previous').disabled=currentIndex===0; document.getElementById('next').disabled=currentIndex===DATA.length-1;
+  }}
+  DATA.forEach((query,index)=>{{const option=document.createElement('option');option.value=String(index);option.textContent=`${{index+1}} — Query ${{query.query_id}}`;picker.appendChild(option);}});
+  picker.addEventListener('change',()=>renderQuery(Number(picker.value)));
+  document.getElementById('previous').addEventListener('click',()=>renderQuery(currentIndex-1)); document.getElementById('next').addEventListener('click',()=>renderQuery(currentIndex+1));
+  function downloadCsv(browserTest=false) {{const csv=buildCsv(),blob=new Blob([csv],{{type:'text/csv;charset=utf-8'}}),anchor=document.createElement('a');const url=URL.createObjectURL(blob);anchor.href=url;anchor.download='phase13a_human_judgments.csv';if(!browserTest){{document.body.appendChild(anchor);anchor.click();anchor.remove();}}setTimeout(()=>URL.revokeObjectURL(url),1000);document.documentElement.dataset.exportRows=String(csv.split(String.fromCharCode(13,10)).length-1);return csv;}}
+  document.getElementById('export').addEventListener('click',downloadCsv);
+  window.__phase13aReview={{queryCount:DATA.length,candidateCount:DATA.reduce((sum,q)=>sum+q.alternatives.reduce((subtotal,a)=>subtotal+a.documents.length,0),0),buildCsv,renderQuery,setJudgment:(q,m,d,label)=>{{if(!LABELS.includes(label)||!label)throw new Error('invalid nonblank judgment');judgments.set(key(q,m,d),label);}},getJudgment:(q,m,d)=>judgments.get(key(q,m,d))||''}};
+  renderQuery(0); document.documentElement.dataset.reviewReady='true';document.documentElement.dataset.reviewQueryCount=String(DATA.length);document.documentElement.dataset.reviewCandidateCount=String(DATA.reduce((sum,q)=>sum+q.alternatives.reduce((subtotal,a)=>subtotal+a.documents.length,0),0));
+  if(location.hash==='#browser-self-test') {{
+    const first=DATA[0].alternatives[0].documents[0],method=DATA[0].alternatives[0].method,select=app.querySelector('select');
+    select.value='RELEVANT';select.dispatchEvent(new Event('change'));const csv=downloadCsv(true);
+    const passed=judgments.get(key(DATA[0].query_id,method,first.doc_id))==='RELEVANT'&&csv.includes(csvCell(first.chunk_id))&&csv.includes('"RELEVANT"')&&csv.includes('"UNKNOWN"');
+    const result=document.createElement('div');result.id='browser-self-test';result.dataset.passed=String(passed);result.textContent=passed?'BROWSER_SELF_TEST_PASS':'BROWSER_SELF_TEST_FAIL';document.body.prepend(result);
+  }}
+}} catch(error) {{ window.showReviewError(error); }}
+}})();
+</script></body></html>"""
     path = OUT / "review_interface.html"; path.write_text(page, encoding="utf-8")
+
+
+def load_embedded_review(path: Path) -> dict[int, dict[str, list[dict]]]:
+    """Recover the intact review payload from either review-interface format."""
+    text = path.read_text(encoding="utf-8")
+    match = re.search(r'<script id="review-data" type="application/json">(.*?)</script>', text, flags=re.DOTALL)
+    if match:
+        payload = json.loads(match.group(1).replace("<\\/", "</"))
+    else:
+        match = re.search(r"const DATA=(.*?); const LABELS=", text, flags=re.DOTALL)
+        if not match:
+            raise ValueError("review interface has no recoverable embedded DATA payload")
+        payload = json.loads(match.group(1).replace("<\\/", "</"))
+    review: dict[int, dict[str, list[dict]]] = {}
+    for query in payload:
+        alternatives = {str(item["method"]): item["documents"] for item in query["alternatives"]}
+        if len(alternatives) != 7:
+            raise ValueError(f"query {query['query_id']} does not contain seven unique methods")
+        review[int(query["query_id"])] = alternatives
+    if len(review) != 60:
+        raise ValueError(f"review payload has {len(review)} unique queries, expected 60")
+    return review
 
 
 def write_summary(replay: dict, aggregation: dict, fusion: dict) -> None:
@@ -629,7 +718,7 @@ def validate_existing_outputs() -> dict[str, Any]:
     }
 
     html_text = (OUT / "review_interface.html").read_text(encoding="utf-8")
-    match = re.search(r"const DATA=(.*?); const LABELS=", html_text, flags=re.DOTALL)
+    match = re.search(r'<script id="review-data" type="application/json">(.*?)</script>', html_text, flags=re.DOTALL)
     if not match:
         raise ValueError("review interface does not contain its deterministic DATA payload")
     review = json.loads(match.group(1).replace("<\\/", "</"))
@@ -643,9 +732,11 @@ def validate_existing_outputs() -> dict[str, Any]:
             and all({"doc_id", "source", "candidate_arms", "score", "evidence", "chunk_id"} <= set(doc) for doc in alt["documents"])
             for alt in alternatives
         ),
-        "review_starts_blank_and_exports": "const LABELS=['','RELEVANT'" in html_text
-        and "phase13a_human_judgments.csv" in html_text,
-        "display_uses_blind_label": "<h3>${a.blind_label}</h3>" in html_text,
+        "review_starts_blank_and_exports_unknown": "const LABELS=['','RELEVANT'" in html_text
+        and "||'UNKNOWN'" in html_text and "phase13a_human_judgments.csv" in html_text,
+        "display_uses_blind_label": "<h3>${esc(alternative.blind_label)}</h3>" in html_text,
+        "review_is_paginated": "function renderQuery(index)" in html_text and "app.replaceChildren(root)" in html_text,
+        "visible_initialization_error": 'id="init-error"' in html_text and "showReviewError" in html_text,
     })
     failed = sorted(name for name, passed in checks.items() if not passed)
     report = {
@@ -675,8 +766,15 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-state", type=Path)
     parser.add_argument("--finalize-existing", action="store_true")
+    parser.add_argument("--repair-review-interface", action="store_true")
     args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
+    if args.repair_review_interface:
+        review = load_embedded_review(OUT / "review_interface.html")
+        build_review_interface(review)
+        report = validate_existing_outputs()
+        print(json.dumps({"review_queries": len(review), "post_run_audit": report}, ensure_ascii=False, indent=2))
+        return 0
     if args.finalize_existing:
         update_run_state(args.run_state, status="RUNNING", stage="POST_RUN_AUDIT", done=0, total=1)
         report = validate_existing_outputs()
