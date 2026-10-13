@@ -1,0 +1,609 @@
+{
+  "official_corpus": {
+    "documents": 1194469,
+    "declared_language_counts": {
+      "vi": 714469,
+      "zh": 240000,
+      "en": 240000
+    }
+  },
+  "local_usable_union": {
+    "documents": 275586,
+    "chunks": 1268343,
+    "identified_language_counts": {
+      "unknown": 5702,
+      "vi": 29396,
+      "zh": 592,
+      "en": 239896
+    },
+    "note": "5,702 broad-existing documents have unknown source-associated language; they are not silently assigned to VI or ZH."
+  },
+  "language_coverage": {
+    "en": {
+      "official": 240000,
+      "local_identified": 239896,
+      "missing": 104
+    },
+    "vi": {
+      "official": 714469,
+      "local_identified": 29396,
+      "unclassified_local_may_include_vi": 5702
+    },
+    "zh": {
+      "official": 240000,
+      "local_identified": 592,
+      "unclassified_local_may_include_zh": 5702
+    }
+  },
+  "logical_candidate_funnel": {
+    "BROAD_EXTRA": {
+      "indexed_valid_documents": 9051,
+      "indexed_chunks": 79071,
+      "retrieval_method": "global BM25 top-100 chunks/query",
+      "candidate_pairs": 120000,
+      "candidate_pairs_per_query": 100.0,
+      "unique_candidate_documents": 6134,
+      "candidates_reaching_reranker": 120000,
+      "final_document_slots": 1483,
+      "final_chunk_slots": 2964,
+      "candidate_to_final_chunk_discard_fraction": 0.9753000000000001,
+      "query_language": "vi",
+      "source_language": "mixed vi/zh/unknown",
+      "chunks_per_indexed_document": 8.736161750082864,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "ORIGINAL_PILOT": {
+      "indexed_valid_documents": 297,
+      "indexed_chunks": null,
+      "retrieval_method": "frozen historical pilot hybrid/reranker pool",
+      "candidate_pairs": 91971,
+      "candidate_pairs_per_query": 76.6425,
+      "unique_candidate_documents": 297,
+      "candidates_reaching_reranker": 91971,
+      "final_document_slots": 180,
+      "final_chunk_slots": 1029,
+      "candidate_to_final_chunk_discard_fraction": 0.9888116906416153,
+      "query_language": "vi",
+      "source_language": "mixed vi/zh/unknown",
+      "chunks_per_indexed_document": null,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "PUBMED": {
+      "indexed_valid_documents": 239896,
+      "indexed_chunks": 744861,
+      "retrieval_method": "BGE-M3 dense top-100 documents/query, then every evidence chunk from those documents",
+      "candidate_pairs": 349187,
+      "candidate_pairs_per_query": 290.9891666666667,
+      "unique_candidate_documents": 88362,
+      "candidates_reaching_reranker": 349187,
+      "final_document_slots": 5913,
+      "final_chunk_slots": 11592,
+      "candidate_to_final_chunk_discard_fraction": 0.9668028878509223,
+      "query_language": "vi",
+      "source_language": "en",
+      "chunks_per_indexed_document": 3.10493297095408,
+      "text_availability": {
+        "abstract_documents": 239770,
+        "title_only_documents": 126,
+        "unavailable_official_records": 104
+      }
+    },
+    "benhviennhitrunguong.gov.vn": {
+      "indexed_valid_documents": 1200,
+      "indexed_chunks": 18726,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 1078,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 787,
+      "final_chunk_slots": 1660,
+      "candidate_to_final_chunk_discard_fraction": 0.9135416666666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 15.605,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "cancer.39.net": {
+      "indexed_valid_documents": 440,
+      "indexed_chunks": 2004,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 437,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 56,
+      "final_chunk_slots": 133,
+      "candidate_to_final_chunk_discard_fraction": 0.9930729166666666,
+      "query_language": "vi",
+      "source_language": "zh",
+      "chunks_per_indexed_document": 4.554545454545455,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "hellobacsi.com": {
+      "indexed_valid_documents": 5000,
+      "indexed_chunks": 59148,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 3067,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 2638,
+      "final_chunk_slots": 4927,
+      "candidate_to_final_chunk_discard_fraction": 0.7433854166666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 11.8296,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "medlatec.vn": {
+      "indexed_valid_documents": 9988,
+      "indexed_chunks": 196653,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 6257,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 6158,
+      "final_chunk_slots": 9719,
+      "candidate_to_final_chunk_discard_fraction": 0.4938020833333333,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 19.688926712054464,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "suckhoedoisong.vn": {
+      "indexed_valid_documents": 4999,
+      "indexed_chunks": 114481,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 2201,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 1870,
+      "final_chunk_slots": 7678,
+      "candidate_to_final_chunk_discard_fraction": 0.6001041666666667,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 22.900780156031207,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "tiemchunglongchau.com.vn": {
+      "indexed_valid_documents": 4998,
+      "indexed_chunks": 53361,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 3967,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 4915,
+      "final_chunk_slots": 8297,
+      "candidate_to_final_chunk_discard_fraction": 0.5678645833333333,
+      "query_language": "vi",
+      "source_language": "vi",
+      "chunks_per_indexed_document": 10.676470588235293,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    },
+    "zydcd.com": {
+      "indexed_valid_documents": 14,
+      "indexed_chunks": 38,
+      "retrieval_method": "per-source dense + BM25 + RRF, fixed M16",
+      "candidate_pairs": 19200,
+      "candidate_pairs_per_query": 16.0,
+      "unique_candidate_documents": 14,
+      "candidates_reaching_reranker": 19200,
+      "final_document_slots": 0,
+      "final_chunk_slots": 1,
+      "candidate_to_final_chunk_discard_fraction": 0.9999479166666667,
+      "query_language": "vi",
+      "source_language": "zh",
+      "chunks_per_indexed_document": 2.7142857142857144,
+      "text_availability": "All counted documents are retained usable extractions with source-grounded chunks."
+    }
+  },
+  "highest_missing_domains": [
+    {
+      "domain": "suckhoecongdongonline.vn",
+      "language_association": "unknown",
+      "official_documents": 154503,
+      "local_usable_documents": 5000,
+      "missing_local_content": 149503,
+      "coverage_fraction": 0.03236183116185446
+    },
+    {
+      "domain": "120ask.com",
+      "language_association": "unknown",
+      "official_documents": 98160,
+      "local_usable_documents": 112,
+      "missing_local_content": 98048,
+      "coverage_fraction": 0.0011409942950285248
+    },
+    {
+      "domain": "suckhoedoisong.vn",
+      "language_association": "vi",
+      "official_documents": 85823,
+      "local_usable_documents": 4999,
+      "missing_local_content": 80824,
+      "coverage_fraction": 0.05824778905421624
+    },
+    {
+      "domain": "nhathuoclongchau.com.vn",
+      "language_association": "vi",
+      "official_documents": 79598,
+      "local_usable_documents": 0,
+      "missing_local_content": 79598,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "thanhnien.vn",
+      "language_association": "vi",
+      "official_documents": 72111,
+      "local_usable_documents": 190,
+      "missing_local_content": 71921,
+      "coverage_fraction": 0.0026348268641400063
+    },
+    {
+      "domain": "cnkang.com",
+      "language_association": "unknown",
+      "official_documents": 40046,
+      "local_usable_documents": 53,
+      "missing_local_content": 39993,
+      "coverage_fraction": 0.0013234780002996554
+    },
+    {
+      "domain": "ask.39.net",
+      "language_association": "unknown",
+      "official_documents": 32772,
+      "local_usable_documents": 37,
+      "missing_local_content": 32735,
+      "coverage_fraction": 0.0011290125717075552
+    },
+    {
+      "domain": "laodong.vn",
+      "language_association": "vi",
+      "official_documents": 31282,
+      "local_usable_documents": 0,
+      "missing_local_content": 31282,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "phunusuckhoe.giadinhonline.vn",
+      "language_association": "vi",
+      "official_documents": 27577,
+      "local_usable_documents": 133,
+      "missing_local_content": 27444,
+      "coverage_fraction": 0.004822859629401313
+    },
+    {
+      "domain": "familydoctor.com.cn",
+      "language_association": "unknown",
+      "official_documents": 26819,
+      "local_usable_documents": 320,
+      "missing_local_content": 26499,
+      "coverage_fraction": 0.011931839367612513
+    },
+    {
+      "domain": "giadinhonline.vn",
+      "language_association": "vi",
+      "official_documents": 16729,
+      "local_usable_documents": 120,
+      "missing_local_content": 16609,
+      "coverage_fraction": 0.00717317233546536
+    },
+    {
+      "domain": "baohaiphong.vn",
+      "language_association": "vi",
+      "official_documents": 16286,
+      "local_usable_documents": 0,
+      "missing_local_content": 16286,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "baonghean.vn",
+      "language_association": "vi",
+      "official_documents": 15941,
+      "local_usable_documents": 0,
+      "missing_local_content": 15941,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "vietnamnet.vn",
+      "language_association": "vi",
+      "official_documents": 15543,
+      "local_usable_documents": 118,
+      "missing_local_content": 15425,
+      "coverage_fraction": 0.007591841986746445
+    },
+    {
+      "domain": "medlatec.vn",
+      "language_association": "vi",
+      "official_documents": 24762,
+      "local_usable_documents": 10005,
+      "missing_local_content": 14757,
+      "coverage_fraction": 0.40404652289798887
+    },
+    {
+      "domain": "baodanang.vn",
+      "language_association": "vi",
+      "official_documents": 14500,
+      "local_usable_documents": 0,
+      "missing_local_content": 14500,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "baocantho.com.vn",
+      "language_association": "vi",
+      "official_documents": 12016,
+      "local_usable_documents": 122,
+      "missing_local_content": 11894,
+      "coverage_fraction": 0.01015312916111851
+    },
+    {
+      "domain": "baoangiang.com.vn",
+      "language_association": "vi",
+      "official_documents": 10738,
+      "local_usable_documents": 114,
+      "missing_local_content": 10624,
+      "coverage_fraction": 0.01061650214192587
+    },
+    {
+      "domain": "vov.vn",
+      "language_association": "vi",
+      "official_documents": 9784,
+      "local_usable_documents": 115,
+      "missing_local_content": 9669,
+      "coverage_fraction": 0.011753883892068684
+    },
+    {
+      "domain": "tiemchunglongchau.com.vn",
+      "language_association": "vi",
+      "official_documents": 13281,
+      "local_usable_documents": 5009,
+      "missing_local_content": 8272,
+      "coverage_fraction": 0.377155334688653
+    },
+    {
+      "domain": "khoahocphothong.vn",
+      "language_association": "vi",
+      "official_documents": 8143,
+      "local_usable_documents": 116,
+      "missing_local_content": 8027,
+      "coverage_fraction": 0.01424536411641901
+    },
+    {
+      "domain": "youmed.vn",
+      "language_association": "vi",
+      "official_documents": 7189,
+      "local_usable_documents": 0,
+      "missing_local_content": 7189,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "vov2.vov.vn",
+      "language_association": "vi",
+      "official_documents": 6899,
+      "local_usable_documents": 107,
+      "missing_local_content": 6792,
+      "coverage_fraction": 0.015509494129583998
+    },
+    {
+      "domain": "hellobacsi.com",
+      "language_association": "vi",
+      "official_documents": 11747,
+      "local_usable_documents": 5011,
+      "missing_local_content": 6736,
+      "coverage_fraction": 0.42657699838256574
+    },
+    {
+      "domain": "zysjonline.com",
+      "language_association": "unknown",
+      "official_documents": 6591,
+      "local_usable_documents": 0,
+      "missing_local_content": 6591,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "phuyen.baodaklak.vn",
+      "language_association": "vi",
+      "official_documents": 6252,
+      "local_usable_documents": 105,
+      "missing_local_content": 6147,
+      "coverage_fraction": 0.016794625719769675
+    },
+    {
+      "domain": "zhongyibaodian.net",
+      "language_association": "zh",
+      "official_documents": 6061,
+      "local_usable_documents": 12,
+      "missing_local_content": 6049,
+      "coverage_fraction": 0.001979871308364956
+    },
+    {
+      "domain": "suckhoeviet.org.vn",
+      "language_association": "vi",
+      "official_documents": 5627,
+      "local_usable_documents": 107,
+      "missing_local_content": 5520,
+      "coverage_fraction": 0.019015461169362004
+    },
+    {
+      "domain": "baoquangtri.vn",
+      "language_association": "vi",
+      "official_documents": 5483,
+      "local_usable_documents": 109,
+      "missing_local_content": 5374,
+      "coverage_fraction": 0.01987962794090826
+    },
+    {
+      "domain": "pmc-ecm-healthblog.beta.pharmacity.io",
+      "language_association": "unknown",
+      "official_documents": 5333,
+      "local_usable_documents": 0,
+      "missing_local_content": 5333,
+      "coverage_fraction": 0.0
+    }
+  ],
+  "highest_missing_vietnamese_domains": [
+    {
+      "domain": "suckhoedoisong.vn",
+      "language_association": "vi",
+      "official_documents": 85823,
+      "local_usable_documents": 4999,
+      "missing_local_content": 80824,
+      "coverage_fraction": 0.05824778905421624
+    },
+    {
+      "domain": "nhathuoclongchau.com.vn",
+      "language_association": "vi",
+      "official_documents": 79598,
+      "local_usable_documents": 0,
+      "missing_local_content": 79598,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "thanhnien.vn",
+      "language_association": "vi",
+      "official_documents": 72111,
+      "local_usable_documents": 190,
+      "missing_local_content": 71921,
+      "coverage_fraction": 0.0026348268641400063
+    },
+    {
+      "domain": "laodong.vn",
+      "language_association": "vi",
+      "official_documents": 31282,
+      "local_usable_documents": 0,
+      "missing_local_content": 31282,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "phunusuckhoe.giadinhonline.vn",
+      "language_association": "vi",
+      "official_documents": 27577,
+      "local_usable_documents": 133,
+      "missing_local_content": 27444,
+      "coverage_fraction": 0.004822859629401313
+    },
+    {
+      "domain": "giadinhonline.vn",
+      "language_association": "vi",
+      "official_documents": 16729,
+      "local_usable_documents": 120,
+      "missing_local_content": 16609,
+      "coverage_fraction": 0.00717317233546536
+    },
+    {
+      "domain": "baohaiphong.vn",
+      "language_association": "vi",
+      "official_documents": 16286,
+      "local_usable_documents": 0,
+      "missing_local_content": 16286,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "baonghean.vn",
+      "language_association": "vi",
+      "official_documents": 15941,
+      "local_usable_documents": 0,
+      "missing_local_content": 15941,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "vietnamnet.vn",
+      "language_association": "vi",
+      "official_documents": 15543,
+      "local_usable_documents": 118,
+      "missing_local_content": 15425,
+      "coverage_fraction": 0.007591841986746445
+    },
+    {
+      "domain": "medlatec.vn",
+      "language_association": "vi",
+      "official_documents": 24762,
+      "local_usable_documents": 10005,
+      "missing_local_content": 14757,
+      "coverage_fraction": 0.40404652289798887
+    },
+    {
+      "domain": "baodanang.vn",
+      "language_association": "vi",
+      "official_documents": 14500,
+      "local_usable_documents": 0,
+      "missing_local_content": 14500,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "baocantho.com.vn",
+      "language_association": "vi",
+      "official_documents": 12016,
+      "local_usable_documents": 122,
+      "missing_local_content": 11894,
+      "coverage_fraction": 0.01015312916111851
+    },
+    {
+      "domain": "baoangiang.com.vn",
+      "language_association": "vi",
+      "official_documents": 10738,
+      "local_usable_documents": 114,
+      "missing_local_content": 10624,
+      "coverage_fraction": 0.01061650214192587
+    },
+    {
+      "domain": "vov.vn",
+      "language_association": "vi",
+      "official_documents": 9784,
+      "local_usable_documents": 115,
+      "missing_local_content": 9669,
+      "coverage_fraction": 0.011753883892068684
+    },
+    {
+      "domain": "tiemchunglongchau.com.vn",
+      "language_association": "vi",
+      "official_documents": 13281,
+      "local_usable_documents": 5009,
+      "missing_local_content": 8272,
+      "coverage_fraction": 0.377155334688653
+    },
+    {
+      "domain": "khoahocphothong.vn",
+      "language_association": "vi",
+      "official_documents": 8143,
+      "local_usable_documents": 116,
+      "missing_local_content": 8027,
+      "coverage_fraction": 0.01424536411641901
+    },
+    {
+      "domain": "youmed.vn",
+      "language_association": "vi",
+      "official_documents": 7189,
+      "local_usable_documents": 0,
+      "missing_local_content": 7189,
+      "coverage_fraction": 0.0
+    },
+    {
+      "domain": "vov2.vov.vn",
+      "language_association": "vi",
+      "official_documents": 6899,
+      "local_usable_documents": 107,
+      "missing_local_content": 6792,
+      "coverage_fraction": 0.015509494129583998
+    },
+    {
+      "domain": "hellobacsi.com",
+      "language_association": "vi",
+      "official_documents": 11747,
+      "local_usable_documents": 5011,
+      "missing_local_content": 6736,
+      "coverage_fraction": 0.42657699838256574
+    },
+    {
+      "domain": "phuyen.baodaklak.vn",
+      "language_association": "vi",
+      "official_documents": 6252,
+      "local_usable_documents": 105,
+      "missing_local_content": 6147,
+      "coverage_fraction": 0.016794625719769675
+    }
+  ],
+  "coverage_caveat": "Official language totals are organizer-declared. Local source-associated labels are deterministic but incomplete, so unknown documents remain a separate bucket."
+}

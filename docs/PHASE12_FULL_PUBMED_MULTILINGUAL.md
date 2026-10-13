@@ -86,9 +86,9 @@ successful checkpoint/done counter for stale-run recovery.
 
 ## Release result
 
-The full local pipeline is complete and the package
-`phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` is
-`READY_FOR_LEADERBOARD`; no Phase 12 organizer result exists yet. The release
+The full local pipeline completed and the package
+`phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` reached
+`READY_FOR_LEADERBOARD`. The release
 reuses 603,587/603,587 finite cached reranker scores and required no model
 inference during final packaging. It contains 1,200 queries, exactly 20
 documents and 40 chunks per query, and passed NEW-official membership,
@@ -111,3 +111,10 @@ owners across both those arrays and the owners of emitted chunks. The extra
 PubMed occupies 5,913 final document slots and 11,592 final chunk slots. It
 appears in the document output of 932 queries and the chunk output of 1,039
 queries. These are local attribution facts, not an organizer score.
+
+The organizer result is FINAL `0.0451` (`DOCS_F2=0.0446`,
+`CHUNKS_F2=0.0457`, `DOCS_PRECISION=0.1235`, `DOCS_RECALL=0.0415`,
+`CHUNKS_PRECISION=0.1122`, `CHUNKS_RECALL=0.0437`). Every reported metric is
+below the Phase 11C control. This valid negative result is preserved; Phase 13
+uses frozen outputs and scores to diagnose harmful displacement before any new
+model or acquisition work.

@@ -869,3 +869,21 @@ Next question: What organizer score does the full-PubMed additive arm achieve re
 Cost/resources: Release verification only; zero new crawling, embedding, retrieval, reranking, or packaging inference.
 Evidence: `artifacts/phase12_pubmed/phase12_pre_submit_audit.json`, `artifacts/phase12_pubmed/phase12_pubmed_attribution.json`, `artifacts/phase12_pubmed/document_provenance_closure.json`, and `artifacts/phase12_pubmed/provenance_closure.json`.
 Commit: this checkpoint.
+
+## Phase 12 organizer failure diagnosis and Phase 13 strategy
+
+Date: 2026-10-13
+Phase / commit: Phase 12 result → Phase 13 diagnosis / this checkpoint
+Question: Why did adding the complete locally available PubMed block reduce every organizer metric, and what should change before more coverage is added?
+Why we tried it: Phase 12 added 239,896 usable official English documents yet FINAL fell from `0.0492` to `0.0451`; document and chunk precision, recall, and F2 all declined.
+Hypothesis: The failure is not explained by corpus size alone. The additive PubMed arm may have poor VI→EN candidates, cross-language reranker errors, or volume-sensitive max-chunk competition that displaces stronger Vietnamese evidence.
+What we changed: Added a read-only deterministic diagnostic over frozen Phase 11C/12 submissions, rankings, candidate parts, SQLite scores, and official/local manifests. It produces per-query displacement, per-arm score/margin/rank analysis, exact coverage funnels, and a 60-query topic-stratified human review sheet. No retrieval or model artifacts changed.
+What stayed fixed: Both submissions and ZIPs, 603,587 Phase 12 source scores, pilot scores, embeddings, candidate pools, canonical text, and official corpus membership.
+Result: PubMed displaced exactly 5,913 Phase 11C document slots across 932 queries and 11,592 chunk slots across 1,039 queries. Every inserted slot was PubMed; retained Phase 11C items had zero relative-order inversions. PubMed supplied 349,187 reranked chunk pairs (median score `-5.0977`, per-query maximum median `0.6812`) versus 19,200 per focused source. Because documents are ranked by their highest-scoring chunk, candidate multiplicity creates an extreme-value opportunity advantage. This is observed volume-sensitive fusion, not proof that the reranker score scale itself is broken.
+What failed / surprised us: Near-complete English coverage did not improve recall. Local coverage is now 239,896/240,000 identified English documents, but only 29,396 identified Vietnamese and 592 identified Chinese documents plus 5,702 unknown-language local documents. Coverage breadth and ranking quality are separate bottlenecks.
+What we learned: More corpus can reduce quality when a large arm is allowed to compete through many more chunks per query. Hidden organizer gold prevents attributing error to dense retrieval versus reranking without human review.
+Decision: Phase 13A will first replay document-level aggregation/fusion on existing scores and annotate the 60-query review set. No new acquisition, embedding, inference, or leaderboard submission is authorized.
+Next question: Can source-neutral document aggregation, bounded representative chunks, and docs/chunks consistency recover Phase 11C quality while retaining genuinely relevant PubMed evidence?
+Cost/resources: Read-only CPU analysis of existing Parquet/SQLite artifacts; zero network or model inference.
+Evidence: `artifacts/phase13_diagnosis/ranking_displacement.json`, `source_score_analysis.json`, `coverage_funnel.json`, `human_review.csv`, `diagnosis_summary.md`, and `phase13_prioritized_plan.md`.
+Commit: this checkpoint.

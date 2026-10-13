@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 12: Full PubMed Multilingual Retrieval
+> ## Current status — Phase 13: Diagnose coverage-versus-ranking bottleneck
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -50,11 +50,12 @@ precision, recall, and recall-weighted F2 metrics.
 > Phase 11A showed that both output and candidate truncation matter. The
 > organizer then replaced the official corpus with a 1,194,469-row
 > Vietnamese/Chinese/English corpus. The current organizer-best Phase 11C
-> BROAD_EXISTING_NEW result is FINAL `0.0492`. Phase 12 has completed the
-> additive full-PubMed arm over 239,896 valid PubMed documents and produced an
-> audited Docs@20/Chunks@40 package. It is `READY_FOR_LEADERBOARD`; its
-> organizer result is pending and no further experiment is automatically
-> authorized.
+> BROAD_EXISTING_NEW reached FINAL `0.0492`. The organizer-confirmed Phase 12
+> full-PubMed arm then fell to FINAL `0.0451` despite adding 239,896 usable
+> English documents. All document and chunk precision/recall/F2 metrics
+> declined. Phase 13 therefore pauses new acquisition and inference while it
+> diagnoses candidate-volume, cross-lingual retrieval, and source-fusion
+> behavior using frozen artifacts and a 60-query human review set.
 
 ## Current ready submissions
 
@@ -65,10 +66,9 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The current Phase 12 upload candidate is
-`phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip`. Consult the registry for its
-canonical path and SHA-256; older packages remain historical controls or
-completed organizer submissions and must not be chosen by name alone.
+Phase 12 has already been submitted and is not a current upload candidate.
+Consult the registry before every upload; no Phase 13 package exists or is
+authorized yet.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

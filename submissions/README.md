@@ -2,11 +2,11 @@
 
 ## CURRENT FILES TO UPLOAD
 
-Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
+Only ZIPs with `READY_TO_SUBMIT` status in [`MANIFEST.csv`](MANIFEST.csv) are
+current upload candidates. Physical folder placement alone is not authoritative.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
-| Phase 12 full PubMed dense — Docs@20 / Chunks@40 | `phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` | `777316f54e563586c19e9ec59fa1598467f557b7db323d1c87eaff5c13f9e361` | Ready; full scientific audit passed, organizer result pending. |
 | Phase 11B NEW-corpus control — Docs@10 / Chunks@20 | `phase11b_NEW_CORPUS_CONTROL.zip` | `d094358409475d28a71dc8591a75d71c0412d8b9dc83d69bd93de1e4b494b35a` | Ready; organizer result pending. |
 | Phase 11B Docs@20 / Chunks@20 | `phase11b_DOCS20_CHUNKS20.zip` | `9a4a9a3adc9d0f1319b924b34ea7f11abaab29b8d8516e734e3176b8131d12c9` | Ready; organizer result pending. |
 | Phase 11B Docs@50 / Chunks@20 | `phase11b_DOCS50_CHUNKS20.zip` | `069480b6ec2b88ab1a00ee17ec22da4c0e9409debff35b958eddc2984453bfee` | Ready; organizer result pending. |
@@ -14,8 +14,10 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 | FULL minus Tiemchunglongchau | `phase10f_FULL_MINUS_TIEMCHUNGLONGCHAU.zip` | `7ad8c68c4be22c54d49fe48788d370af4a292dda10793977830ce77adc4fde57` | Ready; organizer result pending. |
 | FULL minus Hellobacsi | `phase10f_FULL_MINUS_HELLOBACSI.zip` | `3f399709057cf71f8d3965132e73fdbde896d194146bb8b74e2b07fde6852553` | Ready; organizer result pending. |
 
-Recently submitted valid packages are retained under `10_SUBMITTED_VALID/`:
+Recently submitted valid packages are retained under `10_SUBMITTED_VALID/` or
+at an explicitly frozen path recorded in the manifest:
 
+- `phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` — organizer FINAL `0.0451`; immutable bytes remain at the recorded release path while Phase 13 diagnoses the regression
 - `phase11a_OUTPUT20_CHUNKS40.zip` — organizer FINAL `0.0470` (historical pre-migration diagnostic)
 - `phase11a_CANDIDATE_M16.zip` — organizer FINAL `0.0450` (historical pre-migration diagnostic)
 - `FULL_MEDLATEC_7500.zip` — organizer FINAL `0.0398`
@@ -35,7 +37,7 @@ The authoritative inventory is [`MANIFEST.csv`](MANIFEST.csv). It records curren
 
 ## Folder meanings
 
-- `00_READY_TO_UPLOAD/`: passed all required gates and has no recorded organizer result.
+- `00_READY_TO_UPLOAD/`: passed all required gates and has no recorded organizer result; confirm against the manifest.
 - `10_SUBMITTED_VALID/`: organizer-submitted, scientifically valid historical packages.
 - `20_VALID_CONTROLS/`: local replay/control packages; not upload candidates.
 - `30_SUPERSEDED_VALID/`: structurally valid historical variants superseded by later experiments.
