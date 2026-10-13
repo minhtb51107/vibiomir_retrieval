@@ -27,6 +27,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.source_census.union_experiment import _iter_json_array, _submission_records_disk
+from src.runtime.state_file import update_json, write_json
 from tools.phase12_worker import tokenizer
 
 
@@ -39,22 +40,17 @@ PILOT_POOL = ROOT / "data/source_census/phase11b_new_corpus/round1/pilot_rerank_
 
 
 def atomic_json(path: Path, value: object) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    temporary.replace(path)
+    write_json(path, value)  # unique temporary path + bounded Windows replace retries
 
 
 def update_run_state(path: Path | None, **updates: object) -> None:
     """Atomically publish worker progress without inventing supervisor state."""
     if path is None:
         return
-    current: dict[str, Any] = {}
-    if path.exists():
-        current = json.loads(path.read_text(encoding="utf-8"))
-    current.update(updates)
-    current["worker_updated_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
-    atomic_json(path, current)
+    update_json(path, {
+        **updates,
+        "worker_updated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+    })
 
 
 def sha256(path: Path) -> str:

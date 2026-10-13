@@ -16,6 +16,12 @@ import time
 from pathlib import Path
 from typing import Any
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.runtime.state_file import update_json, write_json
+
 
 ES_CONTINUOUS = 0x80000000
 ES_SYSTEM_REQUIRED = 0x00000001
@@ -27,18 +33,7 @@ SUCCESS_TERMINAL_STATES = {
 
 
 def atomic_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + f".tmp.{os.getpid()}.{threading.get_ident()}")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    for attempt in range(8):
-        try:
-            os.replace(temporary, path)
-            return
-        except PermissionError:
-            if attempt == 7:
-                temporary.unlink(missing_ok=True)
-                raise
-            time.sleep(0.025 * (attempt + 1))
+    write_json(path, value)
 
 
 def reconcile_worker_exit_state(state_path: Path, fallback: dict[str, Any], worker_pid: int) -> dict[str, Any]:
@@ -171,7 +166,7 @@ def main() -> int:
     args = parser.parse_args()
     if args.command and args.command[0] == "--": args.command = args.command[1:]
     if not args.command: raise ValueError("worker command is required after --")
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
     run = root / "artifacts" / "runs" / args.run_id
     logs = run / "logs"; logs.mkdir(parents=True, exist_ok=True)
     lock = run / "run.lock"; state_path = run / "state.json"; events = run / "events.jsonl"
@@ -194,7 +189,8 @@ def main() -> int:
             environment={**os.environ,"PYTHONUNBUFFERED":"1"}
             process = subprocess.Popen(args.command, cwd=root, stdout=log, stderr=subprocess.STDOUT, env=environment)
             state.update(worker_pid=process.pid,worker_alive=True,heartbeat_at=dt.datetime.now(dt.timezone.utc).isoformat())
-            atomic_json(state_path,state); event(events,"WORKER_STARTED",worker_pid=process.pid,supervisor_pid=os.getpid())
+            state=update_json(state_path,{"worker_pid":process.pid,"worker_alive":True,"supervisor_pid":os.getpid(),"heartbeat_at":state["heartbeat_at"]})
+            event(events,"WORKER_STARTED",worker_pid=process.pid,supervisor_pid=os.getpid())
             last_stage = None
             while process.poll() is None:
                 try: state = json.loads(state_path.read_text(encoding="utf-8"))
@@ -204,10 +200,15 @@ def main() -> int:
                     state["last_successful_checkpoint"]=state["checkpoint"]
                 if state.get("done") is not None:
                     state["last_successful_done"]=state["done"]
-                atomic_json(state_path,state)
+                state=update_json(state_path,{
+                    "supervisor_pid":os.getpid(),"worker_pid":process.pid,"worker_alive":True,
+                    "heartbeat_at":state["heartbeat_at"],
+                    **({"last_successful_checkpoint":state["checkpoint"]} if state.get("checkpoint") else {}),
+                    **({"last_successful_done":state["done"]} if state.get("done") is not None else {}),
+                })
                 free = shutil.disk_usage(root).free / 2**30
                 if free < args.minimum_free_gib:
-                    process.terminate(); state.update(status="FAILED_SAFE", stage="DISK_GUARD", free_disk_gib=free); atomic_json(state_path,state); event(events,"DISK_GUARD",free_disk_gib=free); break
+                    process.terminate(); state=update_json(state_path,{"status":"FAILED_SAFE", "stage":"DISK_GUARD", "free_disk_gib":free}); event(events,"DISK_GUARD",free_disk_gib=free); break
                 if state.get("stage") != last_stage:
                     event(events,"STAGE",stage=state.get("stage")); last_stage=state.get("stage")
                 if state.get("stage") == "SOURCE_CANDIDATES":
@@ -258,7 +259,7 @@ def main() -> int:
                 time.sleep(5)
             exit_code = process.wait()
             state = reconcile_worker_exit_state(state_path, state, process.pid)
-            atomic_json(state_path,state)
+            state=update_json(state_path,{"worker_pid":process.pid,"worker_alive":False,"heartbeat_at":state["heartbeat_at"]})
         try: state = json.loads(state_path.read_text(encoding="utf-8"))
         except Exception: state = {"stage":"UNKNOWN"}
         if state.get("status") == "FAILED_SAFE": terminal="FAILED_SAFE"
@@ -266,7 +267,8 @@ def main() -> int:
         else:
             terminal="NEEDS_AGENT"; incident=create_incident(root,args.run_id,args.command,exit_code,log_path,state); state["incident_bundle"]=str(incident)
         state.update(status=terminal, exit_code=exit_code, completed_at=dt.datetime.now(dt.timezone.utc).isoformat())
-        atomic_json(state_path,state); atomic_json(run/"final_report.json",state); event(events,"RUN_TERMINAL",status=terminal,exit_code=exit_code)
+        state=update_json(state_path,{"status":terminal,"exit_code":exit_code,"completed_at":state["completed_at"],**({"incident_bundle":state["incident_bundle"]} if state.get("incident_bundle") else {})},preserve_terminal=False)
+        atomic_json(run/"final_report.json",state); event(events,"RUN_TERMINAL",status=terminal,exit_code=exit_code)
         return 0 if terminal in SUCCESS_TERMINAL_STATES else 2
     finally:
         prevent_sleep(False)

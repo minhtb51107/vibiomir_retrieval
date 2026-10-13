@@ -1,0 +1,70 @@
+{
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "method": "top3_mean_global_raw",
+  "source_universe": "frozen Phase 12 FULL",
+  "phase12_universe_match": true,
+  "scientific_comparison": {
+    "versus_phase12_documents": "same candidate universe and frozen scores; document aggregation changes to top3 mean",
+    "versus_phase11c_documents": "confounded by Phase12 corpus expansion plus aggregation change",
+    "chunks": "copied exactly from frozen Phase11C for every query"
+  },
+  "ranking_manifest": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\phase13a_fusion\\top3_mean_full_rankings_manifest.json",
+  "ranking_sha256": "e285ff8f43b2963f3a6084f1dd2b67fb7c2559ee7b0a1ce8e966ebb0ee5ee055",
+  "review_verification": {
+    "queries": 60,
+    "ordered_positions": 600,
+    "matches": 600,
+    "missing_queries": 0,
+    "ambiguous_provenance": 0
+  },
+  "validation": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase13a_TOP3MEAN_DOCS20_PHASE11C_CHUNKS40.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 24000,
+    "chunk_result_count": 48000,
+    "unique_doc_ids": 17208,
+    "document_minimum_per_query": 20,
+    "document_maximum_per_query": 20,
+    "chunk_minimum_per_query": 40,
+    "chunk_maximum_per_query": 40,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 48000,
+    "passed": true
+  },
+  "official_id_audit": {
+    "unique_emitted_doc_ids": 14221,
+    "invalid_official_doc_ids": 0,
+    "passed": true
+  },
+  "phase11c_chunk_arrays": {
+    "queries_compared": 1200,
+    "exact_matches": 1200,
+    "changed": 0
+  },
+  "frozen_controls": {
+    "passed": true,
+    "phase11c_sha256": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",
+    "phase12_sha256": "b1492b8a9e523a15acc6dec140c4fbbdbe869b739e34d3cbda30c369128a78cf"
+  },
+  "zip": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase13a_TOP3MEAN_DOCS20_PHASE11C_CHUNKS40.zip",
+    "size_bytes": 53160298,
+    "sha256": "08757801d0a64832359e8eb6f720bb25d9c3d0f3e00f1253c48a67740373288d",
+    "crc_error": null,
+    "names": [
+      "phase13a_TOP3MEAN_DOCS20_PHASE11C_CHUNKS40.json"
+    ]
+  },
+  "json": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\phase13a_TOP3MEAN_DOCS20_PHASE11C_CHUNKS40.json",
+    "size_bytes": 246140714,
+    "sha256": "30c29790fac695ddf6c1bb34bdbfb122ac659a8ab9394729ccdb5692bf26c05f"
+  },
+  "deterministic_regeneration": true,
+  "new_model_inference": 0
+}
