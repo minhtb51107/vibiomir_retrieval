@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "registry_path": "data\\system_upgrade_m15\\canonical_document_registry.parquet",
+  "rows": 275877,
+  "unique_doc_ids": 275877,
+  "official_membership": 275877,
+  "language_counts": {
+    "en": 239896,
+    "unknown": 3,
+    "vi": 34790,
+    "zh": 1188
+  },
+  "dense_available": 266535,
+  "sparse_available": 35690,
+  "broad_extra_sparse_only": 9051,
+  "m1_union_count": 275586,
+  "official_pilot_documents_omitted_from_m1_union": 291,
+  "corrected_retrieval_participating_union": 275877,
+  "document_reference_files": [
+    "data\\pubmed_phase12\\processed\\documents.parquet",
+    "data\\pubmed_phase12\\retrieval\\round1\\combined_documents.parquet",
+    "data\\source_census\\phase11a_bottleneck\\broad\\documents.parquet"
+  ],
+  "missing_reference_files": 0,
+  "official_url_mismatches": 0,
+  "old_corpus_broad_rows_excluded": 23452,
+  "duplicate_content_groups": 260,
+  "duplicate_content_instances": 670,
+  "size_bytes": 14398525,
+  "sha256": "7ec9d764d7bd4a43baba4dfc30c74e8a395c1049ad9fe1a1b0a93dd3f1ebd5a3"
+}

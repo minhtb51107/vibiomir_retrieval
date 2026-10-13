@@ -1,0 +1,73 @@
+{
+  "status": "INSUFFICIENT_FOR_ARCHITECTURE_SELECTION",
+  "m1_pair_count": 21,
+  "m1_failure_mode": "M1 scanned only BROAD title questions and required an answer section whose own text was >=80 characters; many Q&A pages store a short answer heading followed by content sections.",
+  "classes": {
+    "A_genuine_source_linked": {
+      "structural_candidates": 4,
+      "eligible_biomedical_pairs": 0,
+      "inspection_result": "No useful non-title biomedical pair: all four questions concern a highway inspection.",
+      "examples": [
+        {
+          "doc_id": 438460,
+          "source_url": "https://suckhoecongdongonline.vn/thanh-tra-chinh-phu-theo-sat-kiem-tra-cao-toc-34-500-ty",
+          "language": "vi",
+          "question": "- Cao tốc Đà Nẵng - Quảng Ngãi xuất hiện hàng loạt hạng mục hư hỏng, xuống cấp nhanh chóng khi mới khai thác. Vậy Thanh tra Chính phủ có chủ động vào cuộc kiểm tra hay không?",
+          "answer_excerpt": "- Phó tổng Thanh tra Chính phủ Bùi Ngọc Lam: Chúng tôi tôn trọng quyết định phân công kiểm tra của Thủ tướng Nguyễn Xuân Phúc giao cho Bộ Giao thông Vận tải. Mặt khác, thẩm quyền quản lý Nhà nước về lĩnh vực giao thông là của Bộ GTVT, do đó Bộ này phải tiến hành thanh tra dự án."
+        },
+        {
+          "doc_id": 438460,
+          "source_url": "https://suckhoecongdongonline.vn/thanh-tra-chinh-phu-theo-sat-kiem-tra-cao-toc-34-500-ty",
+          "language": "vi",
+          "question": "- Ông đánh giá thế nào về tính khách quan khi chính Bộ GTVT lại đi kiểm tra dự án cao tốc?",
+          "answer_excerpt": "- Ông Bùi Ngọc Lam: Dù Bộ GTVT hay TTCP tiến hành thì chất lượng của cuộc thanh tra là quan trọng nhất. Kết luận đó phải đảm bảo chính xác, khách quan. Những người làm công tác thanh tra, Bộ GTVT phải chịu trách nhiệm về kết luận thanh của mình. Với trách nhiệm của TTCP, chúng tôi sẽ theo dõi sát việc thanh tra dự án của Bộ GTVT. Nếu thấy rằng kết luận của Bộ GTVT không đảm bảo đúng quy định của pháp luật, TTCP sẽ tiến hành kiểm tra lại theo đúng quy định của pháp luật."
+        },
+        {
+          "doc_id": 438460,
+          "source_url": "https://suckhoecongdongonline.vn/thanh-tra-chinh-phu-theo-sat-kiem-tra-cao-toc-34-500-ty",
+          "language": "vi",
+          "question": "- Các chuyên gia kiến nghị Thanh tra Chính phủ vào cuộc để thanh tra toàn diện, giám định lại chất lượng cao tốc. Quan điểm của ông thế nào?",
+          "answer_excerpt": "- Bộ trưởng Mai Tiến Dũng : Sau khi nhận được tin của báo chí về dự án cao tốc Đà Nẵng - Quảng Ngãi, Thủ tướng Nguyễn Xuân Phúc đã chỉ đạo Bộ GTVT rà soát, báo cáo, công bố chính thức kết quả kiểm tra. Sau đó Bộ này phải báo cáo Thủ tướng. Ngày 18/10, Bộ GTVT đã công bố quyết định kiểm tra dự án này và đang tiến hành. Tôi xin nói thêm là Thủ tướng đã chỉ đạo Bộ GTVT sớm có báo cáo kết quả kiểm tra để công bố."
+        },
+        {
+          "doc_id": 438460,
+          "source_url": "https://suckhoecongdongonline.vn/thanh-tra-chinh-phu-theo-sat-kiem-tra-cao-toc-34-500-ty",
+          "language": "vi",
+          "question": "- Tại gói thầu A5, Thanh tra Bộ GTVT phát hiện Posco (nhà thầu chính) chuyển thầu cho 17 công ty khác. Các chuyên gia cho rằng hành vi giao thầu như thế rất có khả năng dẫn đến việc thất thoát vốn và chất lượng công trình không đảm bảo?",
+          "answer_excerpt": "- Ông Nguyễn Ngọc Đông: Trong các quy định của hợp đồng, đặc biệt là hợp đồng của nhà tài trợ có quy định nhà thầu chính có thể có nhà thầu phụ. Nhà thầu phụ có thể được xác định ngay trong quá trình bỏ thầu của nhà thầu chính, cũng như quá trình thi công những hạng mục, phần việc có thể thuê các thầu phụ. Trách nhiệm vẫn thuộc nhà thầu chính. Bao nhiêu nhà thầu phụ thuộc về số lượng hạng mục. Trách nhiệm của nhà thầu chính không được thoái thác trong cả quá trình thi công, hoàn thiện, đảm bảo chất lượng, bảo hành."
+        }
+      ]
+    },
+    "B_near_verbatim_title_derived": {
+      "broad_question_title_with_usable_text": {
+        "vi": 10406,
+        "zh": 188
+      },
+      "broad_question_title_with_answer_marker": {
+        "vi": 51,
+        "zh": 22
+      },
+      "pubmed_english_question_title_with_abstract": 8714,
+      "eligible_for_primary_heldout": false,
+      "official_query_exact_normalized_overlap": {}
+    },
+    "C_derived_or_synthetic": {
+      "pairs": 0,
+      "eligible_for_primary_heldout": false
+    },
+    "D_external_verified_ids": {
+      "pairs": 0,
+      "eligible_for_primary_heldout": true,
+      "finding": "No local public benchmark manifest maps verified questions to NEW-official doc IDs."
+    }
+  },
+  "primary_track_counts": {
+    "vi_to_vi": 0,
+    "vi_to_en": 0,
+    "en_to_en": 0,
+    "zh_to_zh": 0
+  },
+  "vi_to_en_status": "INSUFFICIENT",
+  "leakage_policy": "Title-derived candidates remain audit-only; primary A/D split would be clustered by normalized near-duplicate query and source document before assignment.",
+  "pubmed_policy": "PMID mappings prove document identity only. Abstracts/titles were not converted into relevance questions."
+}

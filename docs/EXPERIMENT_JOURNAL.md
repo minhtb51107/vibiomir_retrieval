@@ -924,3 +924,10 @@ Decision: **NO-GO for Milestone 2 retrieval-architecture implementation.** First
 Cost/resources: CPU-only streaming audit; approximately 275K documents scanned, bounded samples, no GPU/network. The first implementation item is low-cost (hours of engineering, under 1 GiB additional working storage); unified BM25/dense builds require separate approval and resource measurement.
 Evidence: `artifacts/system_upgrade_m1/`, `tools/system_upgrade_m1.py`, `tools/offline_evaluator.py`, and `src/evaluation/silver.py`.
 Commit: this checkpoint.
+## 2026-10-14 — System Upgrade Milestone 1.5
+
+Milestone 1.5 added diagnostic infrastructure without crawling, model inference, index rebuilding, or leaderboard submission. The canonical registry contains 275,877 unique NEW-official documents with zero official-URL mismatches and valid document references. This is 291 higher than the M1 total because valid `ORIGINAL_PILOT` documents in the frozen Phase 12 candidate universe were not members of either the broad-existing or PubMed inventory.
+
+The document candidate ledger contains 332,407 unique query-document pairs for all 1,200 queries. Per query, the frozen Phase 12 universe contains 229–316 unique candidate documents (median 278); 308,407 pairs do not reach Docs@20. This is structural truncation, not measured relevance loss. Phase 12 displaced 5,913 Phase 11C document slots and inserted exactly 5,913 alternatives.
+
+The broader benchmark audit explained why M1 found only 21 title-derived pairs. After NEW-official filtering, four non-title structured question/answer candidates were found, all from a non-medical highway interview. No defensible primary VI→VI, VI→EN, EN→EN, or ZH→ZH held-out pairs were discovered. Title-derived candidates remain audit-only and the offline architecture-selection gate remains `INSUFFICIENT`.
