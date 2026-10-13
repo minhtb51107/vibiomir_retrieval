@@ -7,6 +7,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import numpy as np
 import pytest
+import yaml
 
 from tools import phase12_pubmed as pubmed
 from tools.phase12_pubmed import parse_pubmed_xml, pmid_from_url
@@ -117,6 +118,63 @@ def test_embedding_checkpoint_requires_one_contiguous_committed_prefix(tmp_path,
     np.asarray([1,0,1,0],dtype=np.uint8).tofile(root/"pubmed_document_embeddings.streaming.status.u8")
     with pytest.raises(ValueError,match="committed prefix"):
         phase12_worker.validate_embedding_checkpoint(config,documents)
+
+
+def test_phase12_runtime_uses_new_official_filtered_pilot_pool(tmp_path,monkeypatch):
+    monkeypatch.setattr(phase12_worker,"ROOT",tmp_path)
+    source=tmp_path/"data/source_census/phase11b_new_corpus/runtime.yaml";source.parent.mkdir(parents=True)
+    source.write_text("inputs:\n  pilot_rerank_pool: old.parquet\noutputs:\n  root: old\n  artifacts: old\nsubmission:\n  documents_per_query: 10\n  chunks_per_query: 20\n",encoding="utf-8")
+    filtered=tmp_path/"filtered/pilot.parquet";filtered.parent.mkdir();pq.write_table(pa.table({"doc_id":[1]}),filtered)
+    config={"outputs":{"retrieval":"retrieval","artifacts":"artifacts"},"inputs":{"new_official_pilot_rerank_pool":"filtered/pilot.parquet"}}
+
+    runtime=yaml.safe_load(phase12_worker.runtime_config(config).read_text(encoding="utf-8"))
+
+    assert runtime["inputs"]["pilot_rerank_pool"]==str(filtered)
+
+
+def test_ranked_document_closure_rejects_nonofficial_or_missing_provenance(tmp_path):
+    ranked=tmp_path/"ranked.parquet";documents=tmp_path/"documents.parquet";official=tmp_path/"official.parquet";report=tmp_path/"report.json"
+    pq.write_table(pa.table({"doc_id":[1,2]}),ranked)
+    pq.write_table(pa.table({"doc_id":[1],"original_url":["https://example/1"]}),documents)
+    pq.write_table(pa.table({"id":[1]}),official)
+    with pytest.raises(ValueError,match="document closure failed"):
+        phase12_worker.audit_ranked_document_closure(ranked,documents,official,report)
+    result=json.loads(report.read_text(encoding="utf-8"))
+    assert result["missing_canonical_docs"]==1
+    assert result["non_official_ranked_docs"]==1
+    assert result["passed"] is False
+
+
+def test_phase12_attribution_uses_actual_public_chunk_schema_without_chunk_id():
+    record={"id":1,"relevant_docs":[10,20],"relevant_chunks":[{"doc_id":20,"chunk_text":"original PubMed span"},{"doc_id":10,"chunk_text":"original control span"}]}
+
+    result=phase12_worker.attribute_submission_records(iter([record]),iter([record]),{20},{10})
+
+    assert result["serialized_chunk_schema"]["internal_chunk_id_exposed"] is False
+    assert result["pubmed_document_slots"]==1
+    assert result["pubmed_chunk_slots"]==1
+    assert result["phase11c_document_slots"]==1
+    assert result["phase11c_chunk_slots"]==1
+    assert result["unmapped_output_objects"]==0
+
+
+def test_phase12_attribution_hard_fails_unmapped_or_nonidentical_chunks():
+    expected={"id":1,"relevant_docs":[10],"relevant_chunks":[{"doc_id":10,"chunk_text":"exact"}]}
+    changed={"id":1,"relevant_docs":[10],"relevant_chunks":[{"doc_id":10,"chunk_text":"changed"}]}
+    with pytest.raises(ValueError,match="differs from authoritative internal replay"):
+        phase12_worker.attribute_submission_records(iter([changed]),iter([expected]),set(),{10})
+    unmapped={"id":1,"relevant_docs":[99],"relevant_chunks":[{"doc_id":99,"chunk_text":"exact"}]}
+    with pytest.raises(ValueError,match="unmapped document ownership"):
+        phase12_worker.attribute_submission_records(iter([unmapped]),iter([unmapped]),set(),{10})
+
+
+def test_phase12_final_readiness_preserves_preliminary_package_stage():
+    package={"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY","validation":{"passed":True}}
+
+    released=phase12_worker._publish_readiness(package,"READY_FOR_LEADERBOARD")
+
+    assert released["package_stage_status"]=="STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
+    assert released["readiness_status"]=="READY_FOR_LEADERBOARD"
 
 
 def _config(tmp_path:Path,attempts:int=3)->dict:

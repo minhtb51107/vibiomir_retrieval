@@ -193,6 +193,24 @@ def _embedding_audit(spec: dict) -> dict:
     return {"passed":True,"model":model,"parents":parents,"exact_embeddings_reused":total,"new_embeddings_computed":0}
 
 
+def _align_table_to_schema(table: pa.Table, schema: pa.Schema) -> pa.Table:
+    """Align a parquet batch to a union schema without dropping source fields.
+
+    ``Table.cast`` can convert types but cannot add columns that are absent from
+    a source table.  Canonical stores combine experiment generations whose
+    metadata columns legitimately differ, so missing union fields must be
+    represented explicitly as typed nulls before the batch is written.
+    """
+    arrays=[]
+    for field in schema:
+        if field.name not in table.column_names:
+            arrays.append(pa.nulls(table.num_rows,type=field.type))
+            continue
+        column=table[field.name]
+        arrays.append(column if column.type==field.type else column.cast(field.type))
+    return pa.Table.from_arrays(arrays,schema=schema)
+
+
 def _filter_parquet(paths: list[Path], destination: Path, key: str, selected: set[str|int]) -> dict:
     destination.parent.mkdir(parents=True,exist_ok=True)
     temporary=destination.with_suffix(destination.suffix+".tmp"); temporary.unlink(missing_ok=True)
@@ -210,7 +228,7 @@ def _filter_parquet(paths: list[Path], destination: Path, key: str, selected: se
                     seen.add(normalized); indices.append(index)
                 if not indices: continue
                 filtered=table.take(pa.array(indices,type=pa.int64()))
-                if filtered.schema!=schema: filtered=filtered.cast(schema)
+                if filtered.schema!=schema: filtered=_align_table_to_schema(filtered,schema)
                 if writer is None: writer=pq.ParquetWriter(temporary,schema)
                 writer.write_table(filtered); written+=filtered.num_rows
     finally:
@@ -596,6 +614,9 @@ def _experiment_inference_accounting(spec: dict) -> dict:
 def _publish_readiness(package: dict, status: str) -> dict:
     """Replace the packager's provisional lifecycle state after all gates run."""
     result=dict(package)
+    provisional=result.get("readiness_status")
+    if provisional is not None and provisional != status:
+        result["package_stage_status"]=provisional
     result["readiness_status"]=status
     return result
 

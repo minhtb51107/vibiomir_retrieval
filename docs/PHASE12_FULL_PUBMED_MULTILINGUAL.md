@@ -84,7 +84,30 @@ boundary. Supervisor state now records supervisor/worker PIDs and a heartbeat,
 refuses a competing restart if an orphan worker is alive, and retains the last
 successful checkpoint/done counter for stale-run recovery.
 
-## Results
+## Release result
 
-Processing, embedding/index, candidate, reranker, attribution, validation, and
-organizer-result fields remain pending. No Phase 12 leaderboard result exists.
+The full local pipeline is complete and the package
+`phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` is
+`READY_FOR_LEADERBOARD`; no Phase 12 organizer result exists yet. The release
+reuses 603,587/603,587 finite cached reranker scores and required no model
+inference during final packaging. It contains 1,200 queries, exactly 20
+documents and 40 chunks per query, and passed NEW-official membership,
+document/chunk provenance closure, source reconstruction, deterministic
+generation, ZIP integrity, and the frozen Phase 11C control.
+
+The package-stage status
+`STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY` is intentionally
+provisional: it means serialization and structural validation finished before
+the independent scientific gates ran. The final audit preserves that value as
+`package.package_stage_status` and publishes
+`package.readiness_status = READY_FOR_LEADERBOARD` only after every scientific
+gate passes.
+
+The official-ID audit reports 15,559 unique IDs from the emitted
+`relevant_docs` arrays. Structural validation reports 22,678 unique document
+owners across both those arrays and the owners of emitted chunks. The extra
+7,119 are chunk-only owners; the scopes differ by design.
+
+PubMed occupies 5,913 final document slots and 11,592 final chunk slots. It
+appears in the document output of 932 queries and the chunk output of 1,039
+queries. These are local attribution facts, not an organizer score.

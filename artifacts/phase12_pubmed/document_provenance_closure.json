@@ -1,0 +1,14 @@
+{
+  "ranked_unique_doc_ids": 111812,
+  "canonical_unique_doc_ids": 111812,
+  "missing_canonical_docs": 0,
+  "unexpected_canonical_docs": 0,
+  "duplicate_provenance_ownership": 0,
+  "missing_original_urls": 0,
+  "non_official_ranked_docs": 0,
+  "missing_sample": [],
+  "duplicate_sample": [],
+  "missing_url_sample": [],
+  "non_official_sample": [],
+  "passed": true
+}

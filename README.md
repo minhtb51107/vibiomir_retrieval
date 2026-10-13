@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 11B: New-Corpus Document Recall Curve
+> ## Current status — Phase 12: Full PubMed Multilingual Retrieval
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -49,10 +49,12 @@ precision, recall, and recall-weighted F2 metrics.
 > FINAL rose from `0.0383` at 5K to `0.0398` at 7.5K and `0.0426` at 10K.
 > Phase 11A showed that both output and candidate truncation matter. The
 > organizer then replaced the official corpus with a 1,194,469-row
-> Vietnamese/Chinese/English corpus. Phase 11B has reconciled local content to
-> that membership and prepared a clean document-only Recall@K curve at
-> K=10/20/50 with chunks fixed at 20. Organizer results are pending; K=100 is
-> not emitted because the common ranked depth is only 54.
+> Vietnamese/Chinese/English corpus. The current organizer-best Phase 11C
+> BROAD_EXISTING_NEW result is FINAL `0.0492`. Phase 12 has completed the
+> additive full-PubMed arm over 239,896 valid PubMed documents and produced an
+> audited Docs@20/Chunks@40 package. It is `READY_FOR_LEADERBOARD`; its
+> organizer result is pending and no further experiment is automatically
+> authorized.
 
 ## Current ready submissions
 
@@ -63,10 +65,10 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-The current diagnostic upload sequence is the Phase 11B new-corpus control
-(Docs@10/Chunks@20), followed by Docs@20/Chunks@20 and Docs@50/Chunks@20.
-Consult the registry for canonical paths and hashes; older pre-migration
-packages are historical evidence rather than new-corpus controls.
+The current Phase 12 upload candidate is
+`phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip`. Consult the registry for its
+canonical path and SHA-256; older packages remain historical controls or
+completed organizer submissions and must not be chosen by name alone.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

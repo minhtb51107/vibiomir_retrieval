@@ -6,6 +6,7 @@ Only ZIPs in `00_READY_TO_UPLOAD/` are current upload candidates.
 
 | Experiment | ZIP | SHA-256 | Status |
 |---|---|---|---|
+| Phase 12 full PubMed dense — Docs@20 / Chunks@40 | `phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.zip` | `777316f54e563586c19e9ec59fa1598467f557b7db323d1c87eaff5c13f9e361` | Ready; full scientific audit passed, organizer result pending. |
 | Phase 11B NEW-corpus control — Docs@10 / Chunks@20 | `phase11b_NEW_CORPUS_CONTROL.zip` | `d094358409475d28a71dc8591a75d71c0412d8b9dc83d69bd93de1e4b494b35a` | Ready; organizer result pending. |
 | Phase 11B Docs@20 / Chunks@20 | `phase11b_DOCS20_CHUNKS20.zip` | `9a4a9a3adc9d0f1319b924b34ea7f11abaab29b8d8516e734e3176b8131d12c9` | Ready; organizer result pending. |
 | Phase 11B Docs@50 / Chunks@20 | `phase11b_DOCS50_CHUNKS20.zip` | `069480b6ec2b88ab1a00ee17ec22da4c0e9409debff35b958eddc2984453bfee` | Ready; organizer result pending. |

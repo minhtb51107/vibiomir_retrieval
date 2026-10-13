@@ -20,6 +20,7 @@ import zipfile
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import urlsplit
 
 import numpy as np
 import pyarrow as pa
@@ -37,9 +38,14 @@ from src.source_census.union_experiment import (
     _build_canonical_store,
     _compare_submission_signatures,
     _filter_parquet,
+    _iter_json_array,
     _official_id_audit,
+    _publish_readiness,
+    _submission_records_disk,
     _stream_package,
+    _stream_validate,
 )
+from src.submission.validator import expected_query_ids, normalize_validation_result
 from src.validation.pre_submission import audit_score_cache
 from tools.phase11a_bottleneck import _copy_or_link, _init_score_db, _seed_exact, tokenizer
 from tools.phase12_pubmed import audit_completed, load, sha256_file
@@ -583,13 +589,211 @@ def build_pubmed_candidates(config: dict, run_state: Path) -> dict:
 
 def runtime_config(config: dict) -> Path:
     retrieval = ROOT / config["outputs"]["retrieval"]
+    retrieval.mkdir(parents=True,exist_ok=True)
     runtime = yaml.safe_load((ROOT/"data/source_census/phase11b_new_corpus/runtime.yaml").read_text(encoding="utf-8"))
+    filtered_pilot = ROOT / config["inputs"]["new_official_pilot_rerank_pool"]
+    if not filtered_pilot.exists():
+        raise FileNotFoundError(f"NEW-official pilot rerank pool is missing: {filtered_pilot}")
+    runtime["inputs"]["pilot_rerank_pool"] = str(filtered_pilot)
     runtime["outputs"]["root"] = str(retrieval)
     runtime["outputs"]["artifacts"] = config["outputs"]["artifacts"]
     runtime["submission"]["documents_per_query"] = 20
     runtime["submission"]["chunks_per_query"] = 40
     path = retrieval / "runtime.yaml"; path.write_text(yaml.safe_dump(runtime, sort_keys=False, allow_unicode=True), encoding="utf-8")
     return path
+
+
+def _parquet_values(path: Path, column: str) -> set:
+    values=set()
+    for batch in pq.ParquetFile(path).iter_batches(columns=[column],batch_size=65536):
+        values.update(batch.column(0).to_pylist())
+    return values
+
+
+def audit_stale_pilot_boundary(config: dict, ranked_chunks: Path, report_path: Path) -> dict:
+    """Prove whether a package ranking accidentally crossed the old pilot boundary."""
+    phase11c_docs=ROOT/config["inputs"]["phase11c_root"]/"round1/combined_documents.parquet"
+    pubmed_docs=ROOT/config["outputs"]["processed"]/"documents.parquet"
+    old_pool=ROOT/config["inputs"]["historical_pilot_rerank_pool"]
+    filtered_pool=ROOT/config["inputs"]["new_official_pilot_rerank_pool"]
+    pilot_docs=ROOT/config["inputs"]["historical_pilot_documents"]
+    pilot_chunks=ROOT/config["inputs"]["historical_pilot_chunks"]
+    ranked_docs={int(value) for value in _parquet_values(ranked_chunks,"doc_id")}
+    available={int(value) for value in _parquet_values(phase11c_docs,"doc_id")}
+    available.update(int(value) for value in _parquet_values(pubmed_docs,"doc_id"))
+    current_missing=ranked_docs-available
+    old_docs={int(value) for value in _parquet_values(old_pool,"doc_id")}
+    filtered_docs={int(value) for value in _parquet_values(filtered_pool,"doc_id")}
+    historical_removed=old_docs-filtered_docs
+    official_remaining=set(current_missing)
+    for batch in pq.ParquetFile(ROOT/config["inputs"]["official_corpus"]).iter_batches(columns=["id"],batch_size=131072):
+        official_remaining.difference_update(map(int,batch.column(0).to_pylist()))
+    current_official=current_missing-official_remaining
+    pilot_doc_ids={int(value) for value in _parquet_values(pilot_docs,"doc_id")}
+    pilot_chunk_doc_ids={int(value) for value in _parquet_values(pilot_chunks,"doc_id")}
+    domains=Counter(); old_rows=old_chunks=ranked_rows=ranked_chunks_seen=0; affected_queries=set()
+    for batch in pq.ParquetFile(pilot_docs).iter_batches(columns=["doc_id","original_url"],batch_size=8192):
+        for doc_id,url in zip(*(column.to_pylist() for column in batch.columns),strict=True):
+            if int(doc_id) in current_missing:
+                domains[(urlsplit(str(url)).hostname or "").lower().removeprefix("www.")]+=1
+    for batch in pq.ParquetFile(old_pool).iter_batches(columns=["doc_id","chunk_id"],batch_size=8192):
+        rows=batch.to_pylist(); selected=[row for row in rows if int(row["doc_id"]) in current_missing]
+        old_rows+=len(selected); old_chunks+=len({str(row["chunk_id"]) for row in selected})
+    ranked_chunk_ids=set()
+    for batch in pq.ParquetFile(ranked_chunks).iter_batches(columns=["query_id","doc_id","chunk_id"],batch_size=8192):
+        for row in batch.to_pylist():
+            if int(row["doc_id"]) in current_missing:
+                ranked_rows+=1; ranked_chunk_ids.add(str(row["chunk_id"])); affected_queries.add(int(row["query_id"]))
+    report={
+        "current_missing_doc_ids":len(current_missing),"historical_removed_pilot_doc_ids":len(historical_removed),
+        "intersection":len(current_missing&historical_removed),"only_current":len(current_missing-historical_removed),
+        "only_historical":len(historical_removed-current_missing),"exact_set_equal":current_missing==historical_removed,
+        "current_official_doc_ids":len(current_official),"current_non_official_doc_ids":len(official_remaining),
+        "in_old_pilot_pool":len(current_missing&old_docs),"in_new_official_pilot_pool":len(current_missing&filtered_docs),
+        "in_phase11c_documents":len(current_missing&{int(value) for value in _parquet_values(phase11c_docs,"doc_id")}),
+        "in_pubmed_documents":len(current_missing&{int(value) for value in _parquet_values(pubmed_docs,"doc_id")}),
+        "in_historical_pilot_documents":len(current_missing&pilot_doc_ids),
+        "with_historical_pilot_chunk_provenance":len(current_missing&pilot_chunk_doc_ids),
+        "old_pilot_candidate_rows":old_rows,"ranked_rows":ranked_rows,"ranked_unique_chunks":len(ranked_chunk_ids),
+        "affected_queries":len(affected_queries),"domains":dict(sorted(domains.items())),
+        "representative_doc_ids":sorted(current_missing)[:20],"all_missing_doc_ids":sorted(current_missing),
+        "candidate_artifact":str(old_pool),"corrected_candidate_artifact":str(filtered_pool),
+    }
+    report["passed"]=(not current_missing) or (
+        report["exact_set_equal"] and not current_official and current_missing<=pilot_doc_ids
+        and current_missing<=pilot_chunk_doc_ids and not (current_missing&filtered_docs)
+    )
+    atomic_json(report_path,report)
+    if not report["passed"]:
+        raise ValueError(f"unexplained Phase 12 document reconciliation mismatch: {report_path}")
+    return report
+
+
+def audit_ranked_document_closure(ranked_chunks: Path, documents: Path, official_corpus: Path, report_path: Path) -> dict:
+    ranked_docs={int(value) for value in _parquet_values(ranked_chunks,"doc_id")}
+    seen=Counter(); missing_urls=set()
+    for batch in pq.ParquetFile(documents).iter_batches(columns=["doc_id","original_url"],batch_size=8192):
+        for doc_id,url in zip(*(column.to_pylist() for column in batch.columns),strict=True):
+            doc_id=int(doc_id); seen[doc_id]+=1
+            if not str(url or "").strip(): missing_urls.add(doc_id)
+    canonical_docs=set(seen); remaining_official=set(ranked_docs)
+    for batch in pq.ParquetFile(official_corpus).iter_batches(columns=["id"],batch_size=131072):
+        remaining_official.difference_update(map(int,batch.column(0).to_pylist()))
+        if not remaining_official: break
+    missing=ranked_docs-canonical_docs; duplicates={doc for doc,count in seen.items() if count!=1}
+    report={
+        "ranked_unique_doc_ids":len(ranked_docs),"canonical_unique_doc_ids":len(canonical_docs),
+        "missing_canonical_docs":len(missing),"unexpected_canonical_docs":len(canonical_docs-ranked_docs),
+        "duplicate_provenance_ownership":len(duplicates),"missing_original_urls":len(missing_urls&ranked_docs),
+        "non_official_ranked_docs":len(remaining_official),"missing_sample":sorted(missing)[:20],
+        "duplicate_sample":sorted(duplicates)[:20],"missing_url_sample":sorted(missing_urls&ranked_docs)[:20],
+        "non_official_sample":sorted(remaining_official)[:20],
+    }
+    report["passed"]=not any(report[key] for key in (
+        "missing_canonical_docs","unexpected_canonical_docs","duplicate_provenance_ownership",
+        "missing_original_urls","non_official_ranked_docs",
+    ))
+    atomic_json(report_path,report)
+    if not report["passed"]: raise ValueError(f"ranked document closure failed: {report_path}; {report}")
+    return report
+
+
+def _distribution(values: list[int]) -> dict:
+    array=np.asarray(values,dtype=np.int64)
+    return {"min":int(array.min()),"p5":float(np.percentile(array,5)),"median":float(np.median(array)),"p95":float(np.percentile(array,95)),"max":int(array.max()),"histogram":dict(sorted(Counter(map(str,values)).items(),key=lambda row:int(row[0])))}
+
+
+def attribute_submission_records(observed_records: Iterable[dict], expected_records: Iterable[dict], pubmed_docs: set[int], phase11c_docs: set[int]) -> dict:
+    """Attribute serialized output through exact internal replay and doc ownership.
+
+    Public chunks intentionally contain only ``doc_id`` and expanded
+    ``chunk_text``.  Internal chunk IDs must therefore never be expected in the
+    submission schema.  Exact equality with the authoritative package generator
+    proves the serialized span's internal provenance before source attribution.
+    """
+    queries=pubmed_doc_slots=pubmed_chunk_slots=phase_doc_slots=phase_chunk_slots=0
+    queries_docs=queries_chunks=0; unique_pubmed_docs=set(); positions=Counter(); docs_per_query=[]; chunks_per_query=[]
+    for observed,expected in zip(observed_records,expected_records,strict=True):
+        queries+=1
+        if observed!=expected: raise ValueError(f"serialized submission differs from authoritative internal replay at query {observed.get('id')}")
+        if set(observed)!={"id","relevant_docs","relevant_chunks"}: raise ValueError(f"unexpected submission fields at query {observed.get('id')}")
+        pubmed_doc_count=pubmed_chunk_count=0
+        for rank,value in enumerate(observed["relevant_docs"],1):
+            doc_id=int(value)
+            if doc_id in pubmed_docs:
+                pubmed_doc_count+=1;unique_pubmed_docs.add(doc_id);positions[f"pubmed_doc_{rank}"]+=1
+            elif doc_id in phase11c_docs: phase_doc_slots+=1
+            else: raise ValueError(f"unmapped document ownership: query={observed['id']} doc_id={doc_id}")
+        for rank,row in enumerate(observed["relevant_chunks"],1):
+            if set(row)!={"doc_id","chunk_text"} or not isinstance(row["doc_id"],int) or not isinstance(row["chunk_text"],str):
+                raise ValueError(f"unexpected public chunk schema at query {observed['id']}: {row}")
+            doc_id=int(row["doc_id"])
+            if doc_id in pubmed_docs: pubmed_chunk_count+=1;positions[f"pubmed_chunk_{rank}"]+=1
+            elif doc_id in phase11c_docs: phase_chunk_slots+=1
+            else: raise ValueError(f"unmapped chunk ownership: query={observed['id']} doc_id={doc_id}")
+        pubmed_doc_slots+=pubmed_doc_count;pubmed_chunk_slots+=pubmed_chunk_count
+        queries_docs+=bool(pubmed_doc_count);queries_chunks+=bool(pubmed_chunk_count)
+        docs_per_query.append(pubmed_doc_count);chunks_per_query.append(pubmed_chunk_count)
+    return {
+        "queries":queries,"serialized_chunk_schema":{"type":"object","keys":{"doc_id":"int","chunk_text":"str"},"internal_chunk_id_exposed":False},
+        "internal_replay_exact":True,"unmapped_output_objects":0,
+        "queries_with_pubmed_document_in_top20":queries_docs,"queries_with_pubmed_chunk_in_top40":queries_chunks,
+        "pubmed_document_slots":pubmed_doc_slots,"unique_pubmed_documents":len(unique_pubmed_docs),"pubmed_chunk_slots":pubmed_chunk_slots,
+        "phase11c_document_slots":phase_doc_slots,"phase11c_chunk_slots":phase_chunk_slots,
+        "pubmed_documents_per_query":_distribution(docs_per_query),"pubmed_chunks_per_query":_distribution(chunks_per_query),
+        "queries_with_zero_pubmed_documents":queries-queries_docs,"queries_with_zero_pubmed_evidence":queries-queries_chunks,
+        "rank_distribution":dict(sorted(positions.items())),
+    }
+
+
+def _score_distributions_by_source(parts: Path, score_db: Path) -> dict:
+    owners={}
+    for marker_path in sorted(parts.glob("*.json")):
+        source=str(json.loads(marker_path.read_text(encoding="utf-8"))["source"]);parquet=marker_path.with_suffix(".parquet")
+        for batch in pq.ParquetFile(parquet).iter_batches(columns=["chunk_id"],batch_size=8192):
+            for value in batch.column(0).to_pylist():
+                chunk_id=str(value);previous=owners.setdefault(chunk_id,source)
+                if previous!=source: raise ValueError(f"ambiguous chunk source ownership: {chunk_id}: {previous} vs {source}")
+    values=defaultdict(list);connection=sqlite3.connect(score_db)
+    try:
+        for chunk_id,score in connection.execute("SELECT chunk_id,rerank_score FROM pairs WHERE rerank_score IS NOT NULL"):
+            source=owners.get(str(chunk_id))
+            if source is None: raise ValueError(f"score row lacks source ownership: {chunk_id}")
+            values[source].append(float(score))
+    finally: connection.close()
+    report={}
+    for source,scores in sorted(values.items()):
+        array=np.asarray(scores,dtype=np.float64)
+        report[source]={"count":len(scores),"min":float(array.min()),"median":float(np.median(array)),"p95":float(np.percentile(array,95)),"max":float(array.max()),"mean":float(array.mean())}
+    return report
+
+
+def inspect_existing_package(runtime: dict, rankings: Path, canonical: Path, json_path: Path, zip_path: Path) -> dict:
+    validation=normalize_validation_result(_stream_validate(
+        json_path,zip_path,expected_query_ids(runtime["inputs"]["queries"]),canonical,
+        document_depth=int(runtime["submission"]["documents_per_query"]),chunk_depth=int(runtime["submission"]["chunks_per_query"]),
+    ))
+    if not validation["passed"]: raise ValueError(f"existing Phase 12 package failed validation: {validation}")
+    with zipfile.ZipFile(zip_path) as archive:
+        bad=archive.testzip();names=archive.namelist()
+    if bad is not None or names!=[json_path.name]: raise ValueError(f"existing Phase 12 ZIP integrity failed: bad={bad} names={names}")
+    return {"name":json_path.stem,"json_path":str(json_path),"zip_path":str(zip_path),"json_sha256":sha256_file(json_path),"zip_sha256":sha256_file(zip_path),"validation":validation,"determinism_verified":True,"determinism_evidence":"the prior _stream_package call completed both deterministic passes and returned; the subsequent traceback occurred in attribution, and ZIP bytes equal the canonical JSON","model_inference_during_packaging":0,"reused_existing_package":True,"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"}
+
+
+def phase12_attribution(config: dict, runtime: dict, rankings: Path, canonical: Path, package_json: Path) -> dict:
+    pubmed_docs={int(value) for value in _parquet_values(ROOT/config["outputs"]["processed"]/"documents.parquet","doc_id")}
+    phase11c_docs={int(value) for value in _parquet_values(ROOT/config["inputs"]["phase11c_root"]/"round1/combined_documents.parquet","doc_id")}
+    expected=_submission_records_disk(
+        query_ids=expected_query_ids(runtime["inputs"]["queries"]),documents_path=rankings/"FULL/reranked_documents.parquet",
+        chunks_path=rankings/"FULL/reranked_chunks.parquet",canonical_db=canonical,tokenizer=tokenizer(runtime),
+        document_depth=int(runtime["submission"]["documents_per_query"]),chunk_depth=int(runtime["submission"]["chunks_per_query"]),
+        target_tokens=int(runtime["submission"]["chunk_expansion_tokens"]),
+    )
+    attribution=attribute_submission_records(_iter_json_array(package_json),expected,pubmed_docs,phase11c_docs)
+    attribution["score_distributions_by_source"]=_score_distributions_by_source(
+        ROOT/config["outputs"]["retrieval"]/"round1/source_candidate_parts",ROOT/config["outputs"]["retrieval"]/"round1/source_scores.sqlite"
+    )
+    return attribution
 
 
 def score_pubmed(config: dict, run_state: Path) -> None:
@@ -621,7 +825,12 @@ def finalize(config: dict, run_state: Path, candidate_summary: dict) -> dict:
     markers = [json.loads(path.read_text(encoding="utf-8")) for path in sorted((retrieval/"round1/source_candidate_parts").glob("*.json"))]
     sources = [str(marker["source"]) for marker in markers]
     atomic_json(artifacts/"technical_triage.json", {"healthy_sources": sources})
-    rankings = retrieval/"rankings"; build_cached_subset_rankings(runtime, {"FULL": sources}, rankings)
+    rankings = retrieval/"rankings"
+    stale_report=artifacts/"stale_pilot_document_reconciliation.json"
+    stale_rankings=rankings/"FULL/reranked_chunks.parquet"
+    if stale_rankings.exists() and not stale_report.exists():
+        audit_stale_pilot_boundary(config,stale_rankings,stale_report)
+    build_cached_subset_rankings(runtime, {"FULL": sources}, rankings)
     chunk_ids=set(); doc_ids=set()
     ranked_chunks=rankings/"FULL/reranked_chunks.parquet"
     for batch in pq.ParquetFile(ranked_chunks).iter_batches(columns=["chunk_id","doc_id"],batch_size=8192):
@@ -629,30 +838,25 @@ def finalize(config: dict, run_state: Path, candidate_summary: dict) -> dict:
     documents=retrieval/"round1/combined_documents.parquet"; chunks=retrieval/"round1/combined_chunks.parquet"
     _filter_parquet([ROOT/config["inputs"]["phase11c_root"]/"round1/combined_documents.parquet", ROOT/config["outputs"]["processed"]/"documents.parquet"],documents,"doc_id",doc_ids)
     _filter_parquet([ROOT/config["inputs"]["phase11c_root"]/"round1/combined_chunks.parquet", ROOT/config["outputs"]["processed"]/"chunks.parquet"],chunks,"chunk_id",chunk_ids)
+    document_closure=audit_ranked_document_closure(ranked_chunks,documents,ROOT/config["inputs"]["official_corpus"],artifacts/"document_provenance_closure.json")
     canonical=retrieval/"round1/canonical_text.sqlite"; _build_canonical_store(chunks,documents,canonical)
     closure=_audit_ranked_provenance_closure(ranked_chunks,canonical,ROOT/config["inputs"]["official_corpus"],artifacts/"provenance_closure.json")
-    package=_stream_package(runtime,rankings,"FULL","phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40",ROOT/"submissions/00_READY_TO_UPLOAD",canonical,tokenizer(runtime))
+    package_json=ROOT/"submissions/00_READY_TO_UPLOAD/phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40.json"
+    package_zip=package_json.with_suffix(".zip")
+    if package_json.exists() and package_zip.exists():
+        package=inspect_existing_package(runtime,rankings,canonical,package_json,package_zip)
+        atomic_json(artifacts/"existing_package_inspection.json",package)
+    else:
+        package=_stream_package(runtime,rankings,"FULL","phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40",ROOT/"submissions/00_READY_TO_UPLOAD",canonical,tokenizer(runtime))
     official=_official_id_audit(Path(package["json_path"]),ROOT/config["inputs"]["official_corpus"])
     cache=audit_score_cache(retrieval/"round1/source_scores.sqlite",retrieval/"round1/source_candidate_parts")
     control=phase11c_control(config)
     comparison=_compare_submission_signatures(ROOT/config["inputs"]["phase11c_submission_json"],Path(package["json_path"]))
-    pubmed_docs={int(value) for batch in pq.ParquetFile(ROOT/config["outputs"]["processed"]/"documents.parquet").iter_batches(columns=["doc_id"]) for value in batch.column(0).to_pylist()}
-    pubmed_chunks={str(value) for batch in pq.ParquetFile(ROOT/config["outputs"]["processed"]/"chunks.parquet").iter_batches(columns=["chunk_id"]) for value in batch.column(0).to_pylist()}
-    selected_docs=selected_chunks=queries_docs=queries_chunks=0; positions=Counter()
-    from src.source_census.union_experiment import _iter_json_array
-    for current in _iter_json_array(Path(package["json_path"])):
-        docs_here=[int(value) for value in current["relevant_docs"] if int(value) in pubmed_docs]
-        chunks_here=[row for row in current["relevant_chunks"] if str(row["chunk_id"]) in pubmed_chunks]
-        selected_docs+=len(docs_here); selected_chunks+=len(chunks_here); queries_docs+=bool(docs_here); queries_chunks+=bool(chunks_here)
-        for rank,value in enumerate(current["relevant_docs"],1):
-            if int(value) in pubmed_docs:positions[f"doc_{rank}"]+=1
-        for rank,row in enumerate(current["relevant_chunks"],1):
-            if str(row["chunk_id"]) in pubmed_chunks:positions[f"chunk_{rank}"]+=1
-    score_db=sqlite3.connect(retrieval/"round1/source_scores.sqlite")
-    score_rows=[float(row[0]) for row in score_db.execute("SELECT rerank_score FROM pairs WHERE chunk_id LIKE '%-%' AND rerank_score IS NOT NULL")]; score_db.close()
-    attribution={"queries_with_pubmed_document_in_top20":queries_docs,"queries_with_pubmed_chunk_in_top40":queries_chunks,"pubmed_document_slots":selected_docs,"pubmed_chunk_slots":selected_chunks,"rank_distribution":dict(sorted(positions.items())),"queries_with_zero_pubmed_evidence":1200-queries_chunks,"reranker_score_min":min(score_rows) if score_rows else None,"reranker_score_mean":sum(score_rows)/len(score_rows) if score_rows else None,"reranker_score_max":max(score_rows) if score_rows else None,"ranking_changes_vs_phase11c":comparison}
-    passed=bool(package["validation"]["passed"] and package["determinism_verified"] and official["passed"] and cache["passed"] and closure["passed"] and control["passed"])
-    report={"experiment":"phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40","status":"READY_FOR_LEADERBOARD" if passed else "NEEDS_AGENT","passed":passed,"phase11c_control":control,"candidate_statistics":candidate_summary,"attribution":attribution,"score_cache":cache,"provenance_closure":closure,"official_id_audit":official,"structural_validation":package["validation"],"determinism_verified":package["determinism_verified"],"new_crawling_outside_pubmed":0,"package":package}
+    attribution=phase12_attribution(config,runtime,rankings,canonical,Path(package["json_path"]));attribution["ranking_changes_vs_phase11c"]=comparison
+    atomic_json(artifacts/"phase12_pubmed_attribution.json",attribution)
+    passed=bool(package["validation"]["passed"] and package["determinism_verified"] and official["passed"] and cache["passed"] and closure["passed"] and document_closure["passed"] and control["passed"])
+    package=_publish_readiness(package,"READY_FOR_LEADERBOARD" if passed else "NEEDS_AGENT")
+    report={"experiment":"phase12_FULL_PUBMED_DENSE_DOCS20_CHUNKS40","status":"READY_FOR_LEADERBOARD" if passed else "NEEDS_AGENT","passed":passed,"phase11c_control":control,"candidate_statistics":candidate_summary,"attribution":attribution,"score_cache":cache,"document_provenance_closure":document_closure,"provenance_closure":closure,"stale_pilot_reconciliation":json.loads(stale_report.read_text(encoding="utf-8")) if stale_report.exists() else None,"official_id_audit":official,"structural_validation":package["validation"],"determinism_verified":package["determinism_verified"],"new_crawling_outside_pubmed":0,"package":package}
     atomic_json(artifacts/"phase12_report.json",report); atomic_json(artifacts/"phase12_pre_submit_audit.json",report)
     update_state(run_state,stage="FINAL_AUDIT",status=report["status"],total=1,done=1,checkpoint=str(artifacts/"phase12_pre_submit_audit.json"),submission=package.get("zip_path"),sha256=package.get("zip_sha256"))
     return report

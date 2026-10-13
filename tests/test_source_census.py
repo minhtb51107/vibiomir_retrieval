@@ -210,6 +210,22 @@ def test_union_canonical_filter_unifies_null_and_string_columns(tmp_path):
     assert table.column("error_message").to_pylist()==[None,"failed"]
 
 
+def test_union_canonical_filter_unifies_heterogeneous_metadata_columns(tmp_path):
+    focused=tmp_path/"focused.parquet"; enriched=tmp_path/"enriched.parquet"; output=tmp_path/"out.parquet"
+    pq.write_table(pa.table({"doc_id":[1],"normalized_text":["focused"]}),focused)
+    pq.write_table(pa.table({"doc_id":[2],"normalized_text":["pubmed"],"pmid":[200],"mesh_terms":[["term"]]}),enriched)
+
+    result=_filter_parquet([focused,enriched],output,"doc_id",{1,2})
+
+    table=pq.read_table(output)
+    assert result=={"selected":2,"written":2,"duplicate_input_rows":0}
+    assert table.column_names==["doc_id","normalized_text","pmid","mesh_terms"]
+    assert table.to_pylist()==[
+        {"doc_id":1,"normalized_text":"focused","pmid":None,"mesh_terms":None},
+        {"doc_id":2,"normalized_text":"pubmed","pmid":200,"mesh_terms":["term"]},
+    ]
+
+
 def test_union_canonical_filter_creates_nested_destination_parent(tmp_path):
     source=tmp_path/"source.parquet"
     destination=tmp_path/"previously"/"missing"/"documents.parquet"
@@ -559,6 +575,7 @@ def test_scientific_gate_replaces_provisional_package_readiness():
     package={"readiness_status":"STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY","sha256":"abc"}
     ready=_publish_readiness(package,"READY_FOR_LEADERBOARD")
     assert ready["readiness_status"]=="READY_FOR_LEADERBOARD"
+    assert ready["package_stage_status"]=="STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
     assert ready["sha256"]=="abc"
     assert package["readiness_status"]=="STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
 

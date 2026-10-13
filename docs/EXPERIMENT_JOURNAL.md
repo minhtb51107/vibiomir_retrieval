@@ -851,3 +851,21 @@ Next question: How does organizer performance change from the known Medlatec-5K 
 Cost/resources: Heavy 10K stages were reused unchanged. The 7.5K checkpoint reused 147,243 embeddings and 8,777 exact reranker scores, requiring 823 new reranker inferences; final union packaging reused all 86,400 source scores at each depth.
 Evidence: `artifacts/source_census/phase10f_full9_control_fixture.json`, `artifacts/source_census/phase10f_full_medlatec_7500_report.json`, `artifacts/source_census/phase10f_full_medlatec_10000_report.json`, and corresponding pre-submit audits under `artifacts/validation/`.
 Commit: this checkpoint.
+
+## Phase 12 — full PubMed release checkpoint
+
+Date: 2026-10-13
+Phase / commit: Phase 12 full PubMed multilingual retrieval / this checkpoint
+Question: Can the completed full-PubMed arm be released without changing or rerunning any expensive scientific stage?
+Why we tried it: Acquisition, processing, embeddings, dense retrieval, and all 603,587 exact reranker pairs were already durable; the final task was to reconcile provenance and package lifecycle semantics before spending a leaderboard submission.
+Hypothesis: The existing ZIP is scientifically ready if its bytes match the audited package, both provenance closures are complete, the Phase 11C frozen control remains intact, and the preliminary package-stage status is correctly distinguished from final scientific readiness.
+What we changed: Fixed Phase 12 document/provenance boundaries and public-chunk attribution in the completed recovery work, then normalized the package lifecycle so the provisional structural status is preserved as `package_stage_status` and the terminal status is published only after all scientific gates pass. No package bytes or model outputs were regenerated in this release checkpoint.
+What stayed fixed: The NEW official corpus, 1,200 queries, full Phase 11C frozen control, 239,896 PubMed documents, 744,861 PubMed chunks, embeddings, 120,000 PubMed retrieval rows, 603,587 reranker scores, Docs@20/Chunks@40 output, and the existing submission ZIP.
+Result: The existing 46,774,263-byte ZIP has SHA-256 `777316f54e563586c19eec59fa1598467f557b7db323d1c87eaff5c13f9e361`. It contains 1,200 queries, exactly 20 documents and 40 chunks per query, zero invalid IDs or duplicate outputs, complete document/chunk provenance and reconstruction, deterministic bytes, and a passing frozen Phase 11C control. PubMed contributes 5,913 document slots and 11,592 chunk slots across 932 and 1,039 queries respectively. The final state is `READY_FOR_LEADERBOARD`; no organizer result exists yet.
+What failed / surprised us: The nested package object retained the preliminary `STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY` label even after the top-level scientific audit passed. This was lifecycle-reporting ambiguity, not a missing gate. Also, official-ID and structural unique-document counts differed because one counts only document outputs while the other includes chunk-owner documents.
+What we learned: Provisional packaging state and terminal scientific readiness must be separate explicit fields, and every audit count must document its population scope.
+Decision: This exact ZIP is the sole new Phase 12 upload candidate. Do not regenerate it, start another experiment, or record an organizer result until the human submits it and returns metrics.
+Next question: What organizer score does the full-PubMed additive arm achieve relative to Phase 11C FINAL `0.0492`?
+Cost/resources: Release verification only; zero new crawling, embedding, retrieval, reranking, or packaging inference.
+Evidence: `artifacts/phase12_pubmed/phase12_pre_submit_audit.json`, `artifacts/phase12_pubmed/phase12_pubmed_attribution.json`, `artifacts/phase12_pubmed/document_provenance_closure.json`, and `artifacts/phase12_pubmed/provenance_closure.json`.
+Commit: this checkpoint.

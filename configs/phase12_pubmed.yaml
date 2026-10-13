@@ -45,3 +45,7 @@ inputs:
   phase11c_report: artifacts/phase11c_broad_existing_new/phase11c_report.json
   phase11c_submission_json: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.json
   phase11c_submission_zip: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.zip
+  new_official_pilot_rerank_pool: data/source_census/phase11b_new_corpus/round1/pilot_rerank_pool.new_official.parquet
+  historical_pilot_rerank_pool: data/retrieval/phase7_reranking/unified_candidate_pool_depth100.parquet
+  historical_pilot_documents: data/processed/phase3_pilot_documents.parquet
+  historical_pilot_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
