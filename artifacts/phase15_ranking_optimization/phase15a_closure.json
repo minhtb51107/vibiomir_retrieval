@@ -1,0 +1,25 @@
+{
+  "phase": "Phase 15A",
+  "status": "NO_WINNER_PENDING_RELEVANCE_EVIDENCE",
+  "passed_technical_gates": true,
+  "winner_selected": false,
+  "leaderboard_package_created": false,
+  "new_model_inference": 0,
+  "frozen_best": {"experiment": "Phase 14 bounded Medlatec coverage", "organizer_final": 0.0533, "preserved": true},
+  "control": {"semantic_exact_queries": 1200, "passed": true},
+  "variants": {
+    "DOC_TOP2_MEAN": {"queries_changed": 1196, "document_slots_replaced": 1614, "chunks_unchanged": 48000, "technical_validation_passed": true},
+    "CHUNK_DIVERSITY": {"queries_changed": 1156, "chunk_slots_replaced": 6952, "documents_unchanged": 24000, "technical_validation_passed": true}
+  },
+  "evidence_gate": {
+    "trustworthy_human_labels": 0,
+    "silver_benchmark_sufficient_for_selection": false,
+    "reason": "Structural change is not relevance evidence; no biomedical adjudication or adequate held-out silver benchmark exists."
+  },
+  "artifact_sha256": {
+    "frozen_control_replay.json": "d22dd8366c05b4215e7eb0c876309af0a350bc25320f383f03ca70ca00bde125",
+    "phase14_system_audit.json": "12062d2304d4379e20c1dc7f8115737d5927b29c131ab43bc0c0f97b55eaa259",
+    "variant_comparison.json": "0c69b3ec6cca066801ff7084501ebee230bdabb2b22ce8d4a73baef5a2149ed6",
+    "experiment_summary.md": "ffd72aae58d65ffd274d8b6c1aab61498f8f7b698229d2662bbde48d51ec2201"
+  }
+}

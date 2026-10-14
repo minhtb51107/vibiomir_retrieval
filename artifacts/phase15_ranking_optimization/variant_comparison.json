@@ -1,0 +1,200 @@
+{
+  "CONTROL": {
+    "semantic_exact_queries": 1200,
+    "passed": true
+  },
+  "DOC_TOP2_MEAN": {
+    "documents": {
+      "queries_changed": 1196,
+      "slots_retained": 22386,
+      "slots_added_or_replaced": 1614,
+      "mean_overlap": 0.9327500000000002,
+      "chunk_owners_in_top20": null,
+      "chunk_owners_outside_top20": null
+    },
+    "chunks": {
+      "queries_changed": 0,
+      "slots_retained": 48000,
+      "slots_added_or_replaced": 0,
+      "mean_overlap": 1.0,
+      "chunk_owners_in_top20": 37693,
+      "chunk_owners_outside_top20": 10307
+    },
+    "preview_sha256": "53d8b55247b41d7e7a9af619f57ae6da330f5f594319b17e6b240f2d8b815c5c",
+    "validation": {
+      "passed": true,
+      "query_count": 1200,
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "invalid_official_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "duplicate_chunk_objects": 0,
+      "source_reconstruction_failures": 0
+    },
+    "composition": {
+      "document_slots_by_domain": {
+        "120ask.com": 73,
+        "ask.39.net": 20,
+        "bachmai.gov.vn": 52,
+        "baoangiang.com.vn": 30,
+        "baocantho.com.vn": 56,
+        "baochinhphu.vn": 15,
+        "baogialai.com.vn": 42,
+        "baoquangninh.vn": 41,
+        "baoquangtri.vn": 52,
+        "baotayninh.vn": 8,
+        "baothanhhoa.vn": 13,
+        "baovinhlong.com.vn": 56,
+        "benhviennhitrunguong.gov.vn": 1133,
+        "benhvienvietduc.org": 85,
+        "cancer.39.net": 139,
+        "cnkang.com": 2,
+        "dantri.com.vn": 81,
+        "giadinhonline.vn": 48,
+        "hellobacsi.com": 3549,
+        "khoahocphothong.vn": 68,
+        "medlatec.vn": 8506,
+        "nhandan.vn": 36,
+        "pharmacity.vn": 95,
+        "phunusuckhoe.giadinhonline.vn": 79,
+        "phuyen.baodaklak.vn": 8,
+        "qdnd.vn": 1,
+        "sggp.org.vn": 8,
+        "suckhoecongdongonline.vn": 516,
+        "suckhoedoisong.vn": 2616,
+        "suckhoeviet.org.vn": 35,
+        "thanhnien.vn": 56,
+        "thaythuocvietnam.vn": 29,
+        "tiemchunglongchau.com.vn": 6129,
+        "tienphong.vn": 34,
+        "tuoitre.vn": 1,
+        "vietnamnet.vn": 70,
+        "vietnamplus.vn": 38,
+        "vnexpress.net": 75,
+        "vov.vn": 54,
+        "vov2.vov.vn": 44,
+        "zhongyibaodian.net": 5,
+        "zydcd.com": 2
+      },
+      "document_slots_by_language_signal": {
+        "vi": 23759,
+        "zh": 241
+      },
+      "unmapped_document_ids": 0
+    },
+    "chunk_quality": {
+      "exact_duplicate_text_pairs": 1298,
+      "near_duplicate_text_pairs_jaccard_0_85": 13685,
+      "chunks_per_owner_document": {
+        "count": 32931,
+        "min": 1.0,
+        "p5": 1.0,
+        "median": 1.0,
+        "p95": 3.0,
+        "max": 27.0
+      }
+    }
+  },
+  "CHUNK_DIVERSITY": {
+    "documents": {
+      "queries_changed": 0,
+      "slots_retained": 24000,
+      "slots_added_or_replaced": 0,
+      "mean_overlap": 1.0,
+      "chunk_owners_in_top20": null,
+      "chunk_owners_outside_top20": null
+    },
+    "chunks": {
+      "queries_changed": 1156,
+      "slots_retained": 41048,
+      "slots_added_or_replaced": 6952,
+      "mean_overlap": 0.8551666666666665,
+      "chunk_owners_in_top20": 31939,
+      "chunk_owners_outside_top20": 16061
+    },
+    "preview_sha256": "2c4433f004385805e8f73870e84049f9f265e5eb74c0e9d0ddfefa8b5abedac6",
+    "validation": {
+      "passed": true,
+      "query_count": 1200,
+      "document_slots": 24000,
+      "chunk_slots": 48000,
+      "invalid_official_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "duplicate_chunk_objects": 0,
+      "source_reconstruction_failures": 0
+    },
+    "composition": {
+      "document_slots_by_domain": {
+        "120ask.com": 78,
+        "ask.39.net": 18,
+        "bachmai.gov.vn": 56,
+        "baoangiang.com.vn": 39,
+        "baocantho.com.vn": 56,
+        "baochinhphu.vn": 14,
+        "baogialai.com.vn": 43,
+        "baoquangninh.vn": 50,
+        "baoquangtri.vn": 61,
+        "baotayninh.vn": 8,
+        "baothanhhoa.vn": 15,
+        "baovinhlong.com.vn": 60,
+        "benhviennhitrunguong.gov.vn": 1163,
+        "benhvienvietduc.org": 106,
+        "cancer.39.net": 148,
+        "cnkang.com": 2,
+        "dantri.com.vn": 89,
+        "giadinhonline.vn": 58,
+        "hellobacsi.com": 3527,
+        "khoahocphothong.vn": 95,
+        "medlatec.vn": 8256,
+        "nhandan.vn": 41,
+        "pharmacity.vn": 106,
+        "phunusuckhoe.giadinhonline.vn": 91,
+        "phuyen.baodaklak.vn": 9,
+        "qdnd.vn": 1,
+        "sggp.org.vn": 6,
+        "suckhoecongdongonline.vn": 639,
+        "suckhoedoisong.vn": 2600,
+        "suckhoeviet.org.vn": 41,
+        "thanhnien.vn": 65,
+        "thaythuocvietnam.vn": 30,
+        "tiemchunglongchau.com.vn": 6040,
+        "tienphong.vn": 46,
+        "tuoitre.vn": 1,
+        "vietnamnet.vn": 81,
+        "vietnamplus.vn": 44,
+        "vnexpress.net": 105,
+        "vov.vn": 57,
+        "vov2.vov.vn": 46,
+        "zhongyibaodian.net": 6,
+        "zydcd.com": 3
+      },
+      "document_slots_by_language_signal": {
+        "vi": 23745,
+        "zh": 255
+      },
+      "unmapped_document_ids": 0
+    },
+    "chunk_quality": {
+      "exact_duplicate_text_pairs": 949,
+      "near_duplicate_text_pairs_jaccard_0_85": 4268,
+      "chunks_per_owner_document": {
+        "count": 38755,
+        "min": 1.0,
+        "p5": 1.0,
+        "median": 1.0,
+        "p95": 2.0,
+        "max": 6.0
+      }
+    }
+  },
+  "review": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\phase15_ranking_optimization\\review_interface.html",
+    "query_count": 46,
+    "changed_queries": 45,
+    "unchanged_controls": 1,
+    "labels_initialized_blank": true
+  },
+  "decision": "NO_WINNER_PENDING_RELEVANCE_EVIDENCE",
+  "winner_selected": false,
+  "reason": "No trustworthy human relevance labels are present; structural changes are not relevance evidence."
+}

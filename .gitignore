@@ -38,6 +38,9 @@ submissions/*
 # Local unattended execution state and incident bundles
 artifacts/runs/
 artifacts/incidents/
+artifacts/phase15_ranking_optimization/*.sqlite*
+artifacts/phase15_ranking_optimization/*.lock
+artifacts/phase15_ranking_optimization/review_interface.html
 
 # Regenerable long-run manifests and per-shard telemetry
 artifacts/phase10c1_early_release/fresh_scoring_*.json

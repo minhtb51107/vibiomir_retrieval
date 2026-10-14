@@ -46,6 +46,15 @@ def test_running_heartbeat_cannot_overwrite_terminal_status(tmp_path):
     assert result["heartbeat_at"] == "later"
 
 
+def test_no_winner_relevance_gate_is_a_preserved_terminal_status(tmp_path):
+    path = tmp_path / "state.json"
+    write_json(path, {"status": "NO_WINNER_PENDING_RELEVANCE_EVIDENCE", "stage": "COMPLETE"})
+    update_json(path, {"status": "RUNNING", "stage": "PACKAGING", "heartbeat_at": "later"})
+    result = json.loads(path.read_text())
+    assert result["status"] == "NO_WINNER_PENDING_RELEVANCE_EVIDENCE"
+    assert result["stage"] == "COMPLETE"
+
+
 def test_top3_checkpoint_enforces_query_rank_and_document_uniqueness(tmp_path, monkeypatch):
     path = tmp_path / "checkpoint.sqlite"
     monkeypatch.setattr("tools.phase13a_top3_recovery.RUN_DB", path)

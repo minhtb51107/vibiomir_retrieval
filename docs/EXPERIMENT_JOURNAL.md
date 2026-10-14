@@ -977,3 +977,21 @@ Follow-up audit found that the first package treated consecutive pending rows as
 Phase 14 added a bounded 2,996 usable official Medlatec documents and 58,839 chunks to the frozen Phase 11C architecture. Local BGE-M3 embedding and the pinned reranker completed transactionally; 250,114/254,400 exact scores were reused and 4,286 were newly inferred. The reranker control initially failed because the eight unchanged target pairs were regrouped into different FP16 padding batches; replaying their exact historical batch-size-two contexts restored 8/8 equivalence with maximum difference `0.0` without changing tolerance or historical scores. Final canonical closure recovered 15 valid historical Medlatec document/chunk owners from the Phase 10F source artifacts; no ranked ID was removed or fabricated.
 
 The final package passed 1,200-query Docs@20/Chunks@40 validation, official-ID/provenance closure, frozen Phase 11C hashes, score-cache audit, deterministic regeneration, and ZIP integrity. It inserted 1,884 new Medlatec document slots and 2,767 new chunk slots; zero flagged boilerplate/navigation chunks reached the final output. Organizer-confirmed results are FINAL `0.0533`, Docs F2 `0.0536`, Chunks F2 `0.0529`, Docs precision/recall `0.1458/0.0503`, and Chunks precision/recall `0.1297/0.0507`. This is the new frozen BEST; it is organizer evidence, not an offline estimate.
+
+### Phase 15A — controlled ranking replay closed without a winner
+
+Phase 15A reproduced frozen Phase 14 exactly for all 1,200 queries and tested
+two CPU-only variants with zero inference. `DOC_TOP2_MEAN` changed 1,196 queries
+and 1,614 document slots while all 48,000 Phase 14 chunk slots stayed fixed.
+`CHUNK_DIVERSITY` changed 1,156 queries and 6,952 chunk slots while all 24,000
+Phase 14 document slots stayed fixed. Both variants passed deterministic,
+official-ID and provenance gates. No trustworthy human labels or adequate
+held-out silver benchmark exists, so structural changes cannot select a
+relevance winner. Status is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no ZIP was
+created and Phase 14 FINAL `0.0533` remains frozen BEST.
+
+The single Phase 15B plan is a 120-query, same-language Vietnamese unified
+document-BM25 pilot over existing local content. It does not repeat failed
+PubMed PRF, sparse bilingual anchors or blocked translation. It must integrate
+the shared overall/stage progress contract before launch and performs no crawl,
+embedding or reranker inference in the pilot.

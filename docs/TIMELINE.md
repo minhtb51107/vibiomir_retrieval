@@ -106,3 +106,9 @@ so its date and commit are explicitly unknown.
 - Recovered exact historical FP16 batch contexts for the mandatory reranker gate and exact canonical provenance for 15 historical Medlatec documents exposed by the new ranking.
 - The deterministic Docs@20/Chunks@40 package passed every local gate and reached organizer FINAL `0.0533` (Docs F2 `0.0536`, Chunks F2 `0.0529`), replacing Phase 11C `0.0492` as the frozen best.
 - Next direction: CPU-only controlled ranking replay over the frozen Phase 14 candidate/score universe; no new acquisition or model inference.
+
+### 2026-10-15 — Phase 15A closes without a relevance winner
+
+- Exact Phase 14 replay and both zero-inference ranking variants passed all technical gates.
+- No trustworthy relevance labels exist, so status is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no submission ZIP was created.
+- Phase 14 FINAL `0.0533` remains frozen BEST. Phase 15B is plan-only: one 120-query Vietnamese unified document-BM25 candidate pilot with mandatory overall/stage progress telemetry.

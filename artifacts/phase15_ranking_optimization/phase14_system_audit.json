@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "query_count": 1200,
+  "candidate_ranking_rows": 346371,
+  "document_ranking_rows": 212672,
+  "score_cache_rows": 254400,
+  "candidate_distinct_docs_per_query": {
+    "count": 1200,
+    "min": 131.0,
+    "p5": 154.0,
+    "median": 178.0,
+    "p95": 198.0,
+    "max": 217.0
+  },
+  "candidate_chunks_per_document": {
+    "count": 212672,
+    "min": 1.0,
+    "p5": 1.0,
+    "median": 1.0,
+    "p95": 4.0,
+    "max": 76.0
+  },
+  "phase14_output_chunk_quality": {
+    "exact_duplicate_text_pairs": 1298,
+    "near_duplicate_text_pairs_jaccard_0_85": 13685,
+    "chunks_per_owner_document": {
+      "count": 32931,
+      "min": 1.0,
+      "p5": 1.0,
+      "median": 1.0,
+      "p95": 3.0,
+      "max": 27.0
+    }
+  },
+  "phase14_chunk_owner_overlap": {
+    "queries_changed": 0,
+    "slots_retained": 48000,
+    "slots_added_or_replaced": 0,
+    "mean_overlap": 1.0,
+    "chunk_owners_in_top20": 37778,
+    "chunk_owners_outside_top20": 10222
+  },
+  "new_model_inference": 0,
+  "runtime_seconds": 3441.6578290000034,
+  "peak_rss_bytes": 1163386880,
+  "human_labels_found": 0,
+  "human_labels_reusable": false
+}
