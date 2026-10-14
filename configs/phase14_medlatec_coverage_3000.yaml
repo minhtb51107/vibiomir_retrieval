@@ -1,0 +1,94 @@
+version: 1
+phase: phase14_medlatec_coverage
+run_id: phase14_medlatec_coverage_3000
+seed: vibiomir-phase14-medlatec-coverage-v1
+focused_scaling:
+  phase_key: phase14_medlatec
+  experiment: phase14_medlatec_coverage_3000
+  group: MEDLATEC
+  control_submission_json: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.json
+  control_submission_zip: submissions/00_READY_TO_UPLOAD/phase11c_BROAD_EXISTING_NEW_DOCS20_CHUNKS40.zip
+  control_json_sha256: 678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a
+  control_zip_sha256: c1422901e64337cc227e14260a754ad691e2284d28667e8a1e8ae854507c527d
+inputs:
+  corpus: data/raw/links_corpus_vi_en_zh.parquet
+  queries: data/raw/query.parquet
+  canonical_registry: data/system_upgrade_m15/canonical_document_registry.parquet
+  old_medlatec_manifest: artifacts/source_census/phase10f_medlatec_10000_manifest.json
+  old_medlatec_documents: data/source_census/phase10f_medlatec_10000/documents.parquet
+  old_medlatec_chunks: data/source_census/phase10f_medlatec_10000/chunks.parquet
+  old_medlatec_embeddings: data/source_census/phase10f_medlatec_10000/round1/chunk_embeddings.f32
+  old_medlatec_scores: data/source_census/phase11b_new_corpus/round1/source_scores.sqlite
+  old_medlatec_candidate_part: data/source_census/phase11b_new_corpus/round1/source_candidate_parts/medlatec_vn.parquet
+  phase11c_root: data/source_census/phase11c_broad_existing_new
+  phase11c_audit: artifacts/phase11c_broad_existing_new/phase11c_pre_submit_audit.json
+acquisition:
+  crawler_config: configs/crawler.yaml
+  global_concurrency: 1
+  per_domain_concurrency: 2
+  body_documents_per_shard: 1000
+  minimum_free_gib: 20
+candidate_cache:
+  candidate_caps: [16]
+  dense_depth: 16
+  sparse_depth: 16
+  rrf_constant: 60
+  bm25_k1: 1.2
+  bm25_b: 0.75
+models:
+  embedder:
+    name: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181
+    dimension: 1024
+    batch_size: 4
+    max_length: 512
+  reranker:
+    name: BAAI/bge-reranker-v2-m3
+    revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e
+    batch_size: 2
+    max_length: 512
+    precision: fp16
+embedding_recovery:
+  profile_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json
+  equivalence_artifact: artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json
+  parquet_batch_rows: 128
+  num_workers: 0
+  prefetching: false
+submission:
+  documents_per_query: 20
+  chunks_per_query: 40
+outputs:
+  root: data/source_census/phase14_medlatec_coverage_3000
+  artifacts: artifacts/phase14_medlatec_coverage_3000
+  submissions: submissions/00_READY_TO_UPLOAD
+  worker_root: data/crawled/phase14_medlatec_coverage_3000_workers
+  crawl_database: data/crawled/phase14_medlatec_coverage_3000_merged.sqlite
+  body_archive: data/crawled/phase14_medlatec_coverage_3000_merged_bodies
+  processed_parts: data/processed/phase14_medlatec_coverage_3000_parts
+  chunks_parts: data/chunks/phase14_medlatec_coverage_3000_parts
+phase14_medlatec:
+  manifest: artifacts/phase14_medlatec_coverage_3000/manifest.json
+  preflight: artifacts/phase14_medlatec_coverage_3000/preflight.json
+  targets:
+    medlatec.vn: 13000
+  maximum_new_ids: 3000
+  minimum_usable_documents: 2000
+  sampling_seed: vibiomir-phase14-medlatec-coverage-v1
+  previous_crawl_databases:
+    - data/crawled/source_census_round1_merged.sqlite
+    - data/crawled/source_census_depth1000_merged.sqlite
+    - data/crawled/phase10e_g1a_10010_merged.sqlite
+    - data/crawled/phase10f_medlatec_10000_merged.sqlite
+  historical_measurement:
+    attempted_ids: 5008
+    usable_documents: 4996
+    chunks: 98320
+    clean_characters: 35114804
+    acquisition_urls_per_minute: 59.03
+    extraction_seconds: 1181.515309
+    chunking_seconds: 111.952085
+    embedding_seconds: 1366.6475085
+    medlatec_m16_candidate_seconds: 1080.359183
+    observed_embedding_peak_rss_mib: 833.41
+    required_embedding_physical_mib: 949.41
+    projected_embedding_private_mib: 3931.96
