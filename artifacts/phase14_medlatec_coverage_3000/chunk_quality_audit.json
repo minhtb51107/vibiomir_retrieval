@@ -1,0 +1,23 @@
+{
+  "chunk_rows": 58839,
+  "unique_chunk_ids": 58839,
+  "duplicate_chunk_ids": 0,
+  "usable_document_owners": 2996,
+  "document_owners_with_chunks": 2996,
+  "usable_documents_without_chunks": [],
+  "invalid_owner_chunks": [],
+  "reconstruction_failures": [],
+  "over_budget_chunks": [],
+  "empty_chunks": [],
+  "token_count": {
+    "minimum": 3,
+    "median": 21,
+    "p95": 423,
+    "maximum": 508
+  },
+  "exact_duplicate_text_groups": 353,
+  "chunks_in_exact_duplicate_text_groups": 32893,
+  "passed": true,
+  "chunks_path": "data\\source_census\\phase14_medlatec_coverage_3000\\chunks.parquet",
+  "sha256": "490d68106a9e4911ecc952e0dd380466ac5f16b80a634ec758430d127f642c4b"
+}

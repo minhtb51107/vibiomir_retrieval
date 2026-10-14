@@ -4,19 +4,28 @@ import json
 import sqlite3
 from pathlib import Path
 
+import pyarrow as pa
+import pyarrow.parquet as pq
 import pytest
 import yaml
 
 from src.ingestion.checkpoint import CheckpointStore
 from src.ingestion.models import CrawlResult, CrawlStatus
+from src.production.chunking import CHUNK_SCHEMA
+from src.production.extraction import DOCUMENT_SCHEMA
+from src.processing.models import CleanDocument, DocumentSection, ExtractionStatus
 from src.source_census.phase14 import (
     PHASE14_NAME,
     acquisition_manifest,
     acquisition_progress,
+    acquisition_content_audit,
+    chunk_quality_audit,
     crawl_checkpoint_audit,
+    document_quality_audit,
     load_acquisition_config,
 )
 from src.source_census.pipeline import load_config as load_legacy_config
+from src.storage.body_archive import BodyArchive, BodyMetadata
 
 
 def _config(tmp_path: Path) -> Path:
@@ -84,3 +93,60 @@ def test_stage_progress_exposes_both_monitor_contracts(tmp_path):
     assert (state["selected"], state["completed"]) == (3000, 856)
     assert (state["total"], state["done"], state["remaining"]) == (3000, 856, 2144)
     assert state["progress"] == {"stage": "ACQUIRE", "total": 3000, "done": 856, "remaining": 2144}
+
+
+def test_phase14_content_audit_requires_exact_success_body_closure(tmp_path):
+    records = [{"doc_id": 1, "original_url": "https://medlatec.vn/a"},
+               {"doc_id": 2, "original_url": "https://medlatec.vn/b"}]
+    database = tmp_path / "crawl.sqlite"
+    with CheckpointStore(database) as store:
+        store.save(CrawlResult(1, records[0]["original_url"], records[0]["original_url"],
+                               final_url=records[0]["original_url"], status=CrawlStatus.SUCCESS,
+                               http_status=200, attempt_count=1))
+        store.save(CrawlResult(2, records[1]["original_url"], records[1]["original_url"],
+                               status=CrawlStatus.HTTP_ERROR, http_status=404, attempt_count=1))
+    archive_path = tmp_path / "bodies"
+    with BodyArchive(archive_path, documents_per_shard=1) as archive:
+        archive.add(BodyMetadata(1, records[0]["original_url"], records[0]["original_url"],
+                                 "2026-10-14T00:00:00Z", "text/html", "utf-8"), b"<p>medical</p>")
+    audit = acquisition_content_audit(database, archive_path, records)
+    assert audit["passed"] is True
+    assert audit["status_counts"] == {"HTTP_ERROR": 1, "SUCCESS": 1}
+    assert audit["verified_body_rows"] == 1
+    assert audit["missing_success_bodies"] == []
+
+
+def _document_row(doc_id: int, text: str) -> dict:
+    return CleanDocument(
+        doc_id=doc_id, original_url=f"https://medlatec.vn/{doc_id}",
+        final_url=f"https://medlatec.vn/{doc_id}", title="Medical", language_signal="vi",
+        selected_encoding="utf-8", normalized_text=text,
+        sections=[DocumentSection("article", text, 0, len(text), [])],
+        extraction_method="semantic", extraction_status=ExtractionStatus.SUCCESS,
+        raw_byte_length=len(text.encode()), raw_char_count=len(text), clean_char_count=len(text),
+        paragraph_count=1, replacement_character_count=0, semantic_char_count=len(text),
+        density_char_count=len(text), boilerplate_signal_count=0, raw_sha256="a" * 64,
+        archive_shard="shard-000000.gz", archive_member_offset=0,
+        archive_checksum_sha256="b" * 64,
+    ).as_dict()
+
+
+def test_phase14_document_and_chunk_quality_gates_use_actual_usable_rows(tmp_path):
+    text = "Nội dung y khoa nguồn gốc rõ ràng."
+    documents = tmp_path / "documents.parquet"
+    pq.write_table(pa.Table.from_pylist([_document_row(1, text)], schema=DOCUMENT_SCHEMA), documents)
+    records = [{"doc_id": 1, "original_url": "https://medlatec.vn/1"}]
+    doc_audit = document_quality_audit(documents, records, minimum_usable=1)
+    assert doc_audit["passed"] is True
+    assert doc_audit["usable_documents"] == 1
+    assert document_quality_audit(documents, records, minimum_usable=2)["passed"] is False
+
+    chunks = tmp_path / "chunks.parquet"
+    row = {"chunk_id": "1-abc", "doc_id": 1, "chunk_index": 0, "raw_text": text,
+           "normalized_text": text, "token_count": 9, "start_offset": 0, "end_offset": len(text),
+           "section_type": "article", "heading_path": [], "source_url": records[0]["original_url"],
+           "extraction_method": "semantic"}
+    pq.write_table(pa.Table.from_pylist([row], schema=CHUNK_SCHEMA), chunks)
+    chunk_audit = chunk_quality_audit(chunks, documents)
+    assert chunk_audit["passed"] is True
+    assert chunk_audit["reconstruction_failures"] == []

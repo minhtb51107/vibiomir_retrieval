@@ -1,0 +1,7 @@
+{
+  "partition_count": 3,
+  "document_count": 3000,
+  "unique_doc_ids": 3000,
+  "output": "data\\source_census\\phase14_medlatec_coverage_3000\\documents.parquet",
+  "output_size_bytes": 25795768
+}

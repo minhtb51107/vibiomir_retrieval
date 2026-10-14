@@ -1,0 +1,59 @@
+{
+  "crawl_sqlite_integrity": "ok",
+  "archive_sqlite_integrity": "ok",
+  "selected_rows": 3000,
+  "crawl_rows": 3000,
+  "unique_crawl_doc_ids": 3000,
+  "unique_crawl_urls": 3000,
+  "status_counts": {
+    "HTTP_ERROR": 4,
+    "SUCCESS": 2996
+  },
+  "body_rows": 2996,
+  "unique_body_doc_ids": 2996,
+  "unique_body_urls": 2996,
+  "verified_body_rows": 2996,
+  "body_original_bytes": 519303012,
+  "body_compressed_bytes": 150781798,
+  "missing_success_bodies": [],
+  "unexpected_body_ids": [],
+  "body_url_mismatches": [],
+  "selection_url_mismatches": [],
+  "duplicate_crawl_doc_ids": 0,
+  "body_integrity_issues": [],
+  "error_rows": [
+    {
+      "doc_id": 179678,
+      "status": "HTTP_ERROR",
+      "http_status": 404,
+      "error_type": "HTTPStatusError",
+      "error_message": "HTTP 404",
+      "original_url": "https://medlatec.vn/tin-tuc/chi-so-duong-huyet-bao-nhieu-la-chuan--tu-van-chi-tiet-tu-bac-si-s58-n25406"
+    },
+    {
+      "doc_id": 187425,
+      "status": "HTTP_ERROR",
+      "http_status": 404,
+      "error_type": "HTTPStatusError",
+      "error_message": "HTTP 404",
+      "original_url": "https://medlatec.vn/tin-tuc/mot-so-meo-tri-het-ngua-mui-don-gian--hieu-qua-s98-n32217"
+    },
+    {
+      "doc_id": 191960,
+      "status": "HTTP_ERROR",
+      "http_status": 404,
+      "error_type": "HTTPStatusError",
+      "error_message": "HTTP 404",
+      "original_url": "https://medlatec.vn/tin-tuc/suy-nhuoc-than-kinh-nen-an-gi--6-loai-thuc-pham-khong-the-bo-qua-s65-n21417"
+    },
+    {
+      "doc_id": 193494,
+      "status": "HTTP_ERROR",
+      "http_status": 404,
+      "error_type": "HTTPStatusError",
+      "error_message": "HTTP 404",
+      "original_url": "https://medlatec.vn/tin-tuc/thuoc-tranh-thai-amariston--nhung-luu-y-truoc-khi-su-dung-s74-n31550"
+    }
+  ],
+  "passed": true
+}

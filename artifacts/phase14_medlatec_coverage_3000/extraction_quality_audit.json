@@ -1,0 +1,39 @@
+{
+  "document_rows": 3000,
+  "unique_doc_ids": 3000,
+  "selected_ids_missing": [],
+  "unexpected_doc_ids": [],
+  "duplicate_doc_ids": 0,
+  "status_counts": {
+    "EXTRACTION_FAILED": 4,
+    "SUCCESS": 2996
+  },
+  "usable_documents": 2996,
+  "minimum_usable_documents": 2000,
+  "usable_gate_passed": true,
+  "clean_text_characters": 20986334,
+  "clean_text_length": {
+    "minimum": 776,
+    "p5": 5948,
+    "median": 6917,
+    "p95": 8381,
+    "maximum": 42293
+  },
+  "short_success_documents_lt_80_chars": 0,
+  "exact_duplicate_content_groups": 0,
+  "documents_in_exact_duplicate_content_groups": 0,
+  "extraction_methods": {
+    "NONE": 4,
+    "semantic_container": 2996
+  },
+  "language_signals": {
+    "unknown": 4,
+    "vi-signal": 2996
+  },
+  "error_types": {},
+  "provenance_failures": [],
+  "url_mismatches": [],
+  "passed": true,
+  "documents_path": "data\\source_census\\phase14_medlatec_coverage_3000\\documents.parquet",
+  "sha256": "ba2c0e92b1dceced50759b41c424af500ff5a22d225895aa527be51bd38c0ad2"
+}

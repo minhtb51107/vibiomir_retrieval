@@ -67,6 +67,10 @@ def test_human_review_is_a_supported_success_terminal_state():
     assert "READY_FOR_HUMAN_REVIEW" in SUCCESS_TERMINAL_STATES
 
 
+def test_colab_embedding_wait_is_a_supported_success_terminal_state():
+    assert "AWAITING_COLAB_EMBEDDING_EQUIVALENCE" in SUCCESS_TERMINAL_STATES
+
+
 def test_fast_worker_terminal_update_is_not_overwritten_by_stale_supervisor_state(tmp_path):
     state_path = tmp_path / "state.json"
     state_path.write_text(

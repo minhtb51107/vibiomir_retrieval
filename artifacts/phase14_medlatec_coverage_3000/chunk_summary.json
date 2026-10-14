@@ -1,0 +1,18 @@
+{
+  "source_documents": "data\\source_census\\phase14_medlatec_coverage_3000\\documents.parquet",
+  "source_sha256": "ba2c0e92b1dceced50759b41c424af500ff5a22d225895aa527be51bd38c0ad2",
+  "tokenizer_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+  "content_token_budget": 508,
+  "maximum_tokens_with_specials": 512,
+  "overlap_tokens": 64,
+  "documents_per_partition": 1000,
+  "initial_completed_documents": 0,
+  "final_completed_documents": 3000,
+  "documents_written_this_run": 3000,
+  "chunks_written_this_run": 58839,
+  "partitions_written_this_run": 3,
+  "maximum_content_tokens": 508,
+  "runtime_seconds": 67.909919,
+  "output_directory": "data\\chunks\\phase14_medlatec_coverage_3000_parts",
+  "checkpoint": "data\\source_census\\phase14_medlatec_coverage_3000\\chunk_checkpoint.sqlite"
+}

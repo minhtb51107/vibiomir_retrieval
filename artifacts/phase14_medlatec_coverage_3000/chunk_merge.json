@@ -1,0 +1,9 @@
+{
+  "input_directory": "data/chunks/phase14_medlatec_coverage_3000_parts",
+  "partition_count": 3,
+  "chunk_count": 58839,
+  "unique_chunk_ids": 58839,
+  "chunk_id_order_sha256": "f8830044c9c3f69d4f9a8516fd624897fd19b29518f083559baca18cbd27189a",
+  "output": "data\\source_census\\phase14_medlatec_coverage_3000\\chunks.parquet",
+  "output_size_bytes": 27015284
+}

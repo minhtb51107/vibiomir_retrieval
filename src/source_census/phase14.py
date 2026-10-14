@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import hashlib
+import gzip
 import json
+import math
 import shutil
 import sqlite3
+from collections import Counter
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -93,6 +96,242 @@ def crawl_checkpoint_audit(database: str | Path, selected_records: list[dict]) -
         "remaining": len(selected) - len(ids), "unexpected_ids": len(unexpected),
         "url_mismatches": len(mismatches),
     }
+
+
+def acquisition_content_audit(
+    database: str | Path,
+    archive_directory: str | Path,
+    selected_records: list[dict],
+) -> dict:
+    """Verify the crawl DB and every archived body without mutating either store."""
+    database = Path(database)
+    archive = Path(archive_directory)
+    selected = {int(row["doc_id"]): str(row["original_url"]) for row in selected_records}
+    crawl = sqlite3.connect(f"file:{database.resolve().as_posix()}?mode=ro", uri=True)
+    crawl.row_factory = sqlite3.Row
+    try:
+        crawl_integrity = str(crawl.execute("PRAGMA integrity_check").fetchone()[0])
+        crawl_rows = list(crawl.execute("SELECT * FROM crawl_results ORDER BY doc_id"))
+    finally:
+        crawl.close()
+    index_path = archive / "index.sqlite"
+    index = sqlite3.connect(f"file:{index_path.resolve().as_posix()}?mode=ro", uri=True)
+    index.row_factory = sqlite3.Row
+    try:
+        archive_integrity = str(index.execute("PRAGMA integrity_check").fetchone()[0])
+        body_rows = list(index.execute("SELECT * FROM bodies ORDER BY doc_id"))
+    finally:
+        index.close()
+
+    crawl_ids = [int(row["doc_id"]) for row in crawl_rows]
+    success = {int(row["doc_id"]): row for row in crawl_rows if row["status"] == "SUCCESS"}
+    bodies = {int(row["doc_id"]): row for row in body_rows}
+    status_counts = Counter(str(row["status"]) for row in crawl_rows)
+    body_issues: list[dict] = []
+    original_bytes = compressed_bytes = 0
+    for doc_id, row in bodies.items():
+        path = archive / str(row["shard_name"])
+        try:
+            with path.open("rb") as handle:
+                handle.seek(int(row["member_offset"]))
+                compressed = handle.read(int(row["compressed_length"]))
+            if len(compressed) != int(row["compressed_length"]):
+                raise ValueError("compressed member is truncated")
+            body = gzip.decompress(compressed)
+            if len(body) != int(row["original_length"]):
+                raise ValueError("original length mismatch")
+            if hashlib.sha256(body).hexdigest() != str(row["checksum_sha256"]):
+                raise ValueError("body SHA256 mismatch")
+            original_bytes += len(body)
+            compressed_bytes += len(compressed)
+        except Exception as error:
+            body_issues.append({"doc_id": doc_id, "error": f"{type(error).__name__}: {error}"})
+    success_ids = set(success)
+    body_ids = set(bodies)
+    url_mismatches = [
+        doc_id for doc_id, row in success.items()
+        if doc_id not in bodies or str(row["original_url"]) != str(bodies[doc_id]["original_url"])
+    ]
+    selected_url_mismatches = [
+        int(row["doc_id"]) for row in crawl_rows
+        if selected.get(int(row["doc_id"])) != str(row["original_url"])
+    ]
+    result = {
+        "crawl_sqlite_integrity": crawl_integrity,
+        "archive_sqlite_integrity": archive_integrity,
+        "selected_rows": len(selected),
+        "crawl_rows": len(crawl_rows),
+        "unique_crawl_doc_ids": len(set(crawl_ids)),
+        "unique_crawl_urls": len({str(row["original_url"]) for row in crawl_rows}),
+        "status_counts": dict(sorted(status_counts.items())),
+        "body_rows": len(body_rows),
+        "unique_body_doc_ids": len(body_ids),
+        "unique_body_urls": len({str(row["original_url"]) for row in body_rows}),
+        "verified_body_rows": len(body_rows) - len(body_issues),
+        "body_original_bytes": original_bytes,
+        "body_compressed_bytes": compressed_bytes,
+        "missing_success_bodies": sorted(success_ids - body_ids),
+        "unexpected_body_ids": sorted(body_ids - success_ids),
+        "body_url_mismatches": sorted(url_mismatches),
+        "selection_url_mismatches": sorted(selected_url_mismatches),
+        "duplicate_crawl_doc_ids": len(crawl_ids) - len(set(crawl_ids)),
+        "body_integrity_issues": body_issues,
+        "error_rows": [
+            {key: row[key] for key in ("doc_id", "status", "http_status", "error_type", "error_message", "original_url")}
+            for row in crawl_rows if row["status"] != "SUCCESS"
+        ],
+    }
+    result["passed"] = bool(
+        crawl_integrity == archive_integrity == "ok"
+        and len(crawl_rows) == len(selected)
+        and len(set(crawl_ids)) == len(selected)
+        and set(crawl_ids) == set(selected)
+        and success_ids == body_ids
+        and not body_issues
+        and not url_mismatches
+        and not selected_url_mismatches
+    )
+    return result
+
+
+def _percentile(values: list[int], percentile: float) -> int:
+    if not values:
+        return 0
+    ordered = sorted(values)
+    return ordered[min(len(ordered) - 1, math.ceil(percentile * len(ordered)) - 1)]
+
+
+def document_quality_audit(path: str | Path, selected_records: list[dict], minimum_usable: int) -> dict:
+    selected = {int(row["doc_id"]): str(row["original_url"]) for row in selected_records}
+    parquet = pq.ParquetFile(path)
+    ids: list[int] = []
+    status = Counter()
+    methods = Counter()
+    languages = Counter()
+    lengths: list[int] = []
+    hashes = Counter()
+    errors = Counter()
+    provenance_failures: list[int] = []
+    url_mismatches: list[int] = []
+    for batch in parquet.iter_batches(batch_size=256):
+        for row in batch.to_pylist():
+            doc_id = int(row["doc_id"])
+            ids.append(doc_id)
+            state = str(row["extraction_status"])
+            status[state] += 1
+            methods[str(row.get("extraction_method") or "NONE")] += 1
+            languages[str(row.get("language_signal") or "UNKNOWN")] += 1
+            if selected.get(doc_id) != str(row["original_url"]):
+                url_mismatches.append(doc_id)
+            if state == "SUCCESS":
+                text = str(row.get("normalized_text") or "")
+                lengths.append(len(text))
+                hashes[hashlib.sha256(text.encode("utf-8")).hexdigest()] += 1
+                if not text or not row.get("raw_sha256") or not row.get("archive_checksum_sha256"):
+                    provenance_failures.append(doc_id)
+            elif row.get("error_type"):
+                errors[str(row["error_type"])] += 1
+    usable = status.get("SUCCESS", 0)
+    result = {
+        "document_rows": len(ids),
+        "unique_doc_ids": len(set(ids)),
+        "selected_ids_missing": sorted(set(selected) - set(ids)),
+        "unexpected_doc_ids": sorted(set(ids) - set(selected)),
+        "duplicate_doc_ids": len(ids) - len(set(ids)),
+        "status_counts": dict(sorted(status.items())),
+        "usable_documents": usable,
+        "minimum_usable_documents": minimum_usable,
+        "usable_gate_passed": usable >= minimum_usable,
+        "clean_text_characters": sum(lengths),
+        "clean_text_length": {
+            "minimum": min(lengths, default=0), "p5": _percentile(lengths, .05),
+            "median": _percentile(lengths, .5), "p95": _percentile(lengths, .95),
+            "maximum": max(lengths, default=0),
+        },
+        "short_success_documents_lt_80_chars": sum(value < 80 for value in lengths),
+        "exact_duplicate_content_groups": sum(count > 1 for count in hashes.values()),
+        "documents_in_exact_duplicate_content_groups": sum(count for count in hashes.values() if count > 1),
+        "extraction_methods": dict(sorted(methods.items())),
+        "language_signals": dict(sorted(languages.items())),
+        "error_types": dict(sorted(errors.items())),
+        "provenance_failures": sorted(provenance_failures),
+        "url_mismatches": sorted(url_mismatches),
+    }
+    result["passed"] = bool(
+        len(ids) == len(selected) == len(set(ids))
+        and set(ids) == set(selected)
+        and not url_mismatches
+        and not provenance_failures
+        and result["usable_gate_passed"]
+    )
+    return result
+
+
+def chunk_quality_audit(chunks_path: str | Path, documents_path: str | Path) -> dict:
+    documents: dict[int, tuple[str, str]] = {}
+    for batch in pq.ParquetFile(documents_path).iter_batches(
+        columns=["doc_id", "normalized_text", "extraction_status"], batch_size=256
+    ):
+        for row in batch.to_pylist():
+            if row["extraction_status"] == "SUCCESS":
+                documents[int(row["doc_id"])] = (str(row["normalized_text"]), "SUCCESS")
+    chunk_ids: set[str] = set()
+    owners: set[int] = set()
+    duplicate_ids = 0
+    invalid_owners: list[str] = []
+    reconstruction_failures: list[str] = []
+    over_budget: list[str] = []
+    empty_chunks: list[str] = []
+    text_hashes = Counter()
+    rows = 0
+    tokens: list[int] = []
+    for batch in pq.ParquetFile(chunks_path).iter_batches(batch_size=512):
+        for row in batch.to_pylist():
+            rows += 1
+            chunk_id = str(row["chunk_id"])
+            doc_id = int(row["doc_id"])
+            if chunk_id in chunk_ids:
+                duplicate_ids += 1
+            chunk_ids.add(chunk_id)
+            owners.add(doc_id)
+            raw = str(row.get("raw_text") or "")
+            text_hashes[hashlib.sha256(raw.encode("utf-8")).hexdigest()] += 1
+            token_count = int(row["token_count"])
+            tokens.append(token_count)
+            if doc_id not in documents:
+                invalid_owners.append(chunk_id)
+                continue
+            source = documents[doc_id][0]
+            if raw != source[int(row["start_offset"]):int(row["end_offset"])]:
+                reconstruction_failures.append(chunk_id)
+            if token_count > 508:
+                over_budget.append(chunk_id)
+            if not raw:
+                empty_chunks.append(chunk_id)
+    result = {
+        "chunk_rows": rows,
+        "unique_chunk_ids": len(chunk_ids),
+        "duplicate_chunk_ids": duplicate_ids,
+        "usable_document_owners": len(documents),
+        "document_owners_with_chunks": len(owners),
+        "usable_documents_without_chunks": sorted(set(documents) - owners),
+        "invalid_owner_chunks": invalid_owners,
+        "reconstruction_failures": reconstruction_failures,
+        "over_budget_chunks": over_budget,
+        "empty_chunks": empty_chunks,
+        "token_count": {
+            "minimum": min(tokens, default=0), "median": _percentile(tokens, .5),
+            "p95": _percentile(tokens, .95), "maximum": max(tokens, default=0),
+        },
+        "exact_duplicate_text_groups": sum(count > 1 for count in text_hashes.values()),
+        "chunks_in_exact_duplicate_text_groups": sum(count for count in text_hashes.values() if count > 1),
+    }
+    result["passed"] = bool(
+        rows > 0 and duplicate_ids == 0 and not invalid_owners
+        and not reconstruction_failures and not over_budget and not empty_chunks
+        and not result["usable_documents_without_chunks"]
+    )
+    return result
 
 
 def acquisition_progress(total: int, done: int, *, rate: float, database: Path) -> dict:

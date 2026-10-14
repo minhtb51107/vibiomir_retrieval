@@ -92,3 +92,9 @@ so its date and commit are explicitly unknown.
 - Exported a deterministic 200-pair proof-of-concept package from already cached Phase 12 scores, covering EN/VI/ZH, available passage-length strata, and query-local close scores.
 - Added a pinned FP16 batch-2 Colab runner and a strict local dry-run verifier that cannot overwrite production scores.
 - Local structure, CRC, hashes, and tests pass; A100 numerical equivalence and performance remain `AWAITING_COLAB_RESULT` until the manual Colab run is returned.
+
+### 2026-10-14 — Phase 14 extraction/chunking and embedding PoC
+
+- Completed the bounded Medlatec acquisition boundary as 2,996 usable documents and 58,839 unique chunks; extraction and source-span reconstruction gates passed.
+- Exact-duplicate analysis identified 32,762 chunk slots (55.68% of all chunks) as site boilerplate or related-article navigation risk; no dataset rows were altered.
+- Exported a deterministic 200-row, batch-context-preserving BGE-M3 reference package. Full embedding remains stopped at `AWAITING_COLAB_EMBEDDING_EQUIVALENCE`; reranker A100 score import remains prohibited after its failed equivalence test.

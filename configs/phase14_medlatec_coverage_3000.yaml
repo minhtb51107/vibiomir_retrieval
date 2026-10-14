@@ -66,6 +66,10 @@ outputs:
   body_archive: data/crawled/phase14_medlatec_coverage_3000_merged_bodies
   processed_parts: data/processed/phase14_medlatec_coverage_3000_parts
   chunks_parts: data/chunks/phase14_medlatec_coverage_3000_parts
+  documents: data/source_census/phase14_medlatec_coverage_3000/documents.parquet
+  chunks: data/source_census/phase14_medlatec_coverage_3000/chunks.parquet
+  extraction_checkpoint: data/source_census/phase14_medlatec_coverage_3000/extraction_checkpoint.sqlite
+  chunk_checkpoint: data/source_census/phase14_medlatec_coverage_3000/chunk_checkpoint.sqlite
 phase14_medlatec:
   manifest: artifacts/phase14_medlatec_coverage_3000/manifest.json
   preflight: artifacts/phase14_medlatec_coverage_3000/preflight.json

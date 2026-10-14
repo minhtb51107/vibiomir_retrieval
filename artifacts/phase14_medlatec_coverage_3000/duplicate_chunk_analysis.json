@@ -1,0 +1,224 @@
+{
+  "chunks_path": "data\\source_census\\phase14_medlatec_coverage_3000\\chunks.parquet",
+  "chunks_sha256": "490d68106a9e4911ecc952e0dd380466ac5f16b80a634ec758430d127f642c4b",
+  "total_chunks": 58839,
+  "exact_duplicate_groups": 353,
+  "chunks_in_exact_duplicate_groups": 32893,
+  "duplicate_slot_fraction": 0.5590339740648209,
+  "category_groups": {
+    "potential_legitimate_repetition": 21,
+    "related_article_navigation": 327,
+    "site_boilerplate": 5
+  },
+  "category_chunk_slots": {
+    "potential_legitimate_repetition": 131,
+    "related_article_navigation": 17906,
+    "site_boilerplate": 14856
+  },
+  "retrieval_noise_risk_chunk_slots": 32762,
+  "retrieval_noise_risk_fraction_of_all_chunks": 0.556807559611822,
+  "interpretation": "Risk estimate flags exact site-wide boilerplate and related-article navigation. It is not a relevance label and no rows were removed.",
+  "top_groups": [
+    {
+      "rank": 1,
+      "occurrences": 2996,
+      "unique_doc_ids": 2996,
+      "token_length_min": 21,
+      "token_length_max": 21,
+      "category": "site_boilerplate",
+      "classification_basis": "site-wide service/comment/footer text",
+      "text_excerpt": "Lựa chọn dịch vụ\n\nQuý khách hàng vui lòng lựa chọn dịch vụ y tế theo nhu cầu!"
+    },
+    {
+      "rank": 2,
+      "occurrences": 2996,
+      "unique_doc_ids": 2996,
+      "token_length_min": 8,
+      "token_length_max": 8,
+      "category": "site_boilerplate",
+      "classification_basis": "site-wide service/comment/footer text",
+      "text_excerpt": "Đặt lịch thăm khám tại MEDLATEC"
+    },
+    {
+      "rank": 3,
+      "occurrences": 2996,
+      "unique_doc_ids": 2996,
+      "token_length_min": 8,
+      "token_length_max": 8,
+      "category": "site_boilerplate",
+      "classification_basis": "site-wide service/comment/footer text",
+      "text_excerpt": "Lấy mẫu xét nghiệm tại nhà"
+    },
+    {
+      "rank": 4,
+      "occurrences": 2996,
+      "unique_doc_ids": 2996,
+      "token_length_min": 6,
+      "token_length_max": 6,
+      "category": "site_boilerplate",
+      "classification_basis": "site-wide service/comment/footer text",
+      "text_excerpt": "Đăng ký khám và tư vấn"
+    },
+    {
+      "rank": 5,
+      "occurrences": 2996,
+      "unique_doc_ids": 2996,
+      "token_length_min": 4,
+      "token_length_max": 4,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Tin cùng chuyên mục"
+    },
+    {
+      "rank": 6,
+      "occurrences": 2872,
+      "unique_doc_ids": 2872,
+      "token_length_min": 4,
+      "token_length_max": 4,
+      "category": "site_boilerplate",
+      "classification_basis": "site-wide service/comment/footer text",
+      "text_excerpt": "Bình luận ( )"
+    },
+    {
+      "rank": 7,
+      "occurrences": 409,
+      "unique_doc_ids": 409,
+      "token_length_min": 12,
+      "token_length_max": 12,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Cách làm giảm đau sỏi thận tại nhà an toàn"
+    },
+    {
+      "rank": 8,
+      "occurrences": 407,
+      "unique_doc_ids": 407,
+      "token_length_min": 19,
+      "token_length_max": 19,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Chữa đau dạ dày bằng hạt đậu rồng có hiệu quả không và lư..."
+    },
+    {
+      "rank": 9,
+      "occurrences": 394,
+      "unique_doc_ids": 394,
+      "token_length_min": 16,
+      "token_length_max": 16,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Áp dụng cách chữa ngộ độc thức ăn bằng gừng giúp giảm khó..."
+    },
+    {
+      "rank": 10,
+      "occurrences": 382,
+      "unique_doc_ids": 382,
+      "token_length_min": 49,
+      "token_length_max": 49,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Bỏ thuốc lá đột ngột có hại không và phương pháp cai thuố...\n\nLiên hệ ngay với số hotline của MEDLATEC để được phục vụ và sử dụng các dịch vụ khám, chữa bệnh hiện đại & cao cấp nhất."
+    },
+    {
+      "rank": 11,
+      "occurrences": 382,
+      "unique_doc_ids": 382,
+      "token_length_min": 13,
+      "token_length_max": 13,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Người bị bệnh tiểu đường có hiến máu được không và những..."
+    },
+    {
+      "rank": 12,
+      "occurrences": 222,
+      "unique_doc_ids": 222,
+      "token_length_min": 18,
+      "token_length_max": 18,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Phát hiện khối phồng vùng bẹn chỉ xuất hiện khi đứng, ngư..."
+    },
+    {
+      "rank": 13,
+      "occurrences": 207,
+      "unique_doc_ids": 207,
+      "token_length_min": 18,
+      "token_length_max": 18,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Dấu hiệu tiểu đường thai kỳ 3 tháng cuối mẹ bầu chớ nên b..."
+    },
+    {
+      "rank": 14,
+      "occurrences": 199,
+      "unique_doc_ids": 199,
+      "token_length_min": 47,
+      "token_length_max": 47,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Nhịp tim thai 6 tuần và những lưu ý dành cho mẹ bầu\n\nLiên hệ ngay với số hotline của MEDLATEC để được phục vụ và sử dụng các dịch vụ khám, chữa bệnh hiện đại & cao cấp nhất."
+    },
+    {
+      "rank": 15,
+      "occurrences": 199,
+      "unique_doc_ids": 199,
+      "token_length_min": 15,
+      "token_length_max": 15,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Góc giải đáp: Các loại thuốc tránh thai có estrogen và pr..."
+    },
+    {
+      "rank": 16,
+      "occurrences": 199,
+      "unique_doc_ids": 199,
+      "token_length_min": 13,
+      "token_length_max": 13,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Dùng thuốc nội tiết cho bà bầu có ảnh hưởng gì không?"
+    },
+    {
+      "rank": 17,
+      "occurrences": 195,
+      "unique_doc_ids": 195,
+      "token_length_min": 12,
+      "token_length_max": 12,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Hướng dẫn cách đọc kết quả xét nghiệm tuyến giáp chi tiết"
+    },
+    {
+      "rank": 18,
+      "occurrences": 186,
+      "unique_doc_ids": 186,
+      "token_length_min": 18,
+      "token_length_max": 18,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Khỏe mạnh bình thường nhưng 2 lần sảy thai liên tiếp: Sự..."
+    },
+    {
+      "rank": 19,
+      "occurrences": 185,
+      "unique_doc_ids": 185,
+      "token_length_min": 10,
+      "token_length_max": 10,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Tìm hiểu ký hiệu xét nghiệm máu cơ bản"
+    },
+    {
+      "rank": 20,
+      "occurrences": 181,
+      "unique_doc_ids": 181,
+      "token_length_min": 17,
+      "token_length_max": 17,
+      "category": "related_article_navigation",
+      "classification_basis": "medical-looking related-article/navigation text, not the owning article body",
+      "text_excerpt": "Xét nghiệm chức năng gan có cần nhịn ăn không và một số v..."
+    }
+  ],
+  "dataset_modified": false
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS_EXTRACT_CHUNK_STOP_BEFORE_GPU",
+  "selection_sha256": "4b6b48a2697daf960fc45d92bdb464f4e546e8f21ee8a1ce2a7b35ba6151a6e8",
+  "usable_documents": 2996,
+  "new_embedding_rows": 58839,
+  "embedding_dimension": 1024,
+  "embedding_dtype": "float32",
+  "embedding_vector_bytes": 241004544,
+  "transactional_two_vector_files_bytes": 482009088,
+  "documents_bytes": 25795768,
+  "chunks_bytes": 27015284,
+  "free_disk_bytes": 137821552640,
+  "disk_floor_bytes": 21474836480,
+  "available_physical_mib": 1171.812,
+  "local_historical_embedding_rows_per_second": 71.942,
+  "local_projected_embedding_seconds": 817.9,
+  "colab_next_step": {
+    "allowed_now": false,
+    "reason": "A separate BGE-M3 embedding-equivalence proof and bounded export/import manifest are required first.",
+    "reranker_import_allowed": false,
+    "reranker_equivalence_status": "STOP_EQUIVALENCE_UNACCEPTABLE",
+    "reranker_max_absolute_difference": 0.01171875,
+    "reranker_ordering_changed_queries": 9,
+    "plan": [
+      "Export exact chunk_id/text/hash rows in bounded shards without model scores.",
+      "Benchmark pinned BGE-M3 revision on a deterministic Windows/Colab equivalence fixture.",
+      "Only after embedding equivalence passes, encode shards and import by exact chunk_id/text hash.",
+      "Keep reranker scores local until its separate A100 equivalence gate passes."
+    ]
+  }
+}
