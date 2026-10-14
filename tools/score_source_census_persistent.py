@@ -52,6 +52,70 @@ def process_memory() -> dict[str, float]:
     }
 
 
+def score_equivalence_control(reranker, connection: sqlite3.Connection, control: dict) -> tuple[list[tuple], list[float], list[dict]]:
+    """Score unchanged control targets in their recorded historical FP16 batches."""
+    sample = []
+    observed = []
+    contexts = []
+    source_connections: dict[Path, sqlite3.Connection] = {}
+    try:
+        for item in control["pairs"]:
+            row = connection.execute(
+                "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
+                "WHERE query_id=? AND chunk_id=?",
+                (int(item["query_id"]), str(item["chunk_id"])),
+            ).fetchone()
+            if row is None:
+                raise RuntimeError(f"reranker control key missing from current cache: {item['query_id']}:{item['chunk_id']}")
+            sample.append(row)
+            context = item.get("historical_batch")
+            if context is None:
+                # Backward-compatible behavior for validated historical controls.
+                continue
+            source_path = Path(context["source_score_database"]).resolve()
+            source = source_connections.get(source_path)
+            if source is None:
+                source = sqlite3.connect(f"file:{source_path.as_posix()}?mode=ro", uri=True)
+                source_connections[source_path] = source
+            batch_rows = []
+            for expected in context["pairs"]:
+                batch_row = source.execute(
+                    "SELECT query_id,chunk_id,query_text,chunk_text FROM pairs WHERE query_id=? AND chunk_id=?",
+                    (int(expected["query_id"]), str(expected["chunk_id"])),
+                ).fetchone()
+                if batch_row is None:
+                    raise RuntimeError(f"historical reranker batch key missing: {expected['query_id']}:{expected['chunk_id']}")
+                hashes = (
+                    hashlib.sha256(str(batch_row[2]).encode("utf-8")).hexdigest(),
+                    hashlib.sha256(str(batch_row[3]).encode("utf-8")).hexdigest(),
+                )
+                expected_hashes = (str(expected["query_text_sha256"]), str(expected["chunk_text_sha256"]))
+                if hashes != expected_hashes:
+                    raise RuntimeError(f"historical reranker batch text changed: {expected['query_id']}:{expected['chunk_id']}")
+                batch_rows.append(batch_row)
+            target_index = int(context["target_index"])
+            target_key = (int(row[0]), str(row[1]))
+            context_target = (int(batch_rows[target_index][0]), str(batch_rows[target_index][1]))
+            if target_key != context_target or len(batch_rows) != 2:
+                raise RuntimeError(f"invalid historical reranker batch context for {target_key}")
+            values = reranker.score_pairs([(str(value[2]), str(value[3])) for value in batch_rows])
+            observed.append(float(values[target_index]))
+            contexts.append({
+                "target": f"{target_key[0]}:{target_key[1]}",
+                "batch_keys": [f"{int(value[0])}:{value[1]}" for value in batch_rows],
+                "target_index": target_index,
+            })
+        if any(item.get("historical_batch") is not None for item in control["pairs"]):
+            if len(observed) != len(sample):
+                raise RuntimeError("reranker control mixes contextual and context-free targets")
+        else:
+            observed = reranker.score_pairs([(str(row[2]), str(row[3])) for row in sample]).tolist()
+        return sample, observed, contexts
+    finally:
+        for source in source_connections.values():
+            source.close()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/source_census.yaml")
@@ -93,17 +157,8 @@ def main() -> int:
     if args.equivalence_sample:
         control=json.loads(Path(model_config["equivalence"]["control_artifact"]).read_text(encoding="utf-8"))
         control_pairs=control["pairs"][:args.equivalence_sample]
-        sample=[]
-        for item in control_pairs:
-            row=connection.execute(
-                "SELECT query_id,chunk_id,query_text,chunk_text,rerank_score FROM pairs "
-                "WHERE query_id=? AND chunk_id=?",
-                (int(item["query_id"]),str(item["chunk_id"])),
-            ).fetchone()
-            if row is None:
-                raise RuntimeError(f"reranker control key missing from current cache: {item['query_id']}:{item['chunk_id']}")
-            sample.append(row)
-        observed = reranker.score_pairs([(str(r[2]), str(r[3])) for r in sample])
+        scoped_control = {**control, "pairs": control_pairs}
+        sample, observed, contexts = score_equivalence_control(reranker, connection, scoped_control)
         rule=model_config.get("equivalence")
         if not rule:
             raise RuntimeError("reranker equivalence contract is not configured")
@@ -125,7 +180,7 @@ def main() -> int:
             "input_order":"query, chunk",
         }
         equivalence=validate_score_equivalence(
-            [float(row["reference_score"]) for row in control_pairs],observed.tolist(),sample_keys,
+            [float(row["reference_score"]) for row in control_pairs],observed,sample_keys,
             measured_absolute_tolerance=float(rule["measured_absolute_tolerance"]),
             expected_contract=investigation["contract"],actual_contract=actual_contract,
             expected_keys=expected_keys,expected_text_hashes=expected_text_hashes,
@@ -135,6 +190,7 @@ def main() -> int:
             float(row[4])==float(item["reference_score"])
             for row,item in zip(sample,control_pairs,strict=True)
         )
+        equivalence["historical_batch_contexts"] = contexts
         equivalence["passed"]=bool(equivalence["passed"] and equivalence["stored_reference_scores_match_control"])
         del sample, observed
         if not equivalence["passed"]:

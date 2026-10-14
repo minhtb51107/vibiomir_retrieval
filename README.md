@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 13: Diagnose coverage-versus-ranking bottleneck
+> ## Current status — Phase 15A: controlled ranking replay
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -31,6 +31,8 @@ precision, recall, and recall-weighted F2 metrics.
 > | **Full union, Medlatec 10K** | **41,210 official IDs / 41,105 usable** | **`0.0426`** |
 > | Historical OUTPUT20/40 diagnostic | same historical corpus | `0.0470` |
 > | Historical M16 diagnostic | same historical corpus | `0.0450` |
+> | Phase 11C BROAD_EXISTING_NEW | 35,690 usable documents | `0.0492` |
+> | **Phase 14 bounded Medlatec coverage** | **2,996 additional usable documents** | **`0.0533`** |
 >
 > G1A scaled to **10,010 official documents / 131,166 chunks** and reached
 > organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
@@ -49,8 +51,8 @@ precision, recall, and recall-weighted F2 metrics.
 > FINAL rose from `0.0383` at 5K to `0.0398` at 7.5K and `0.0426` at 10K.
 > Phase 11A showed that both output and candidate truncation matter. The
 > organizer then replaced the official corpus with a 1,194,469-row
-> Vietnamese/Chinese/English corpus. The current organizer-best Phase 11C
-> BROAD_EXISTING_NEW reached FINAL `0.0492`. The organizer-confirmed Phase 12
+> Vietnamese/Chinese/English corpus. Phase 11C BROAD_EXISTING_NEW reached FINAL
+> `0.0492`. The organizer-confirmed Phase 12
 > full-PubMed arm then fell to FINAL `0.0451` despite adding 239,896 usable
 > English documents. All document and chunk precision/recall/F2 metrics
 > declined. Phase 13 therefore pauses new acquisition and inference while it
@@ -61,7 +63,10 @@ precision, recall, and recall-weighted F2 metrics.
 > Upgrade Milestone 1 therefore stops ranking tweaks: it audits 275,586 local
 > usable documents and establishes an offline evaluator. Its current 21-pair
 > silver set is valid only for source-lookup regression and is insufficient for
-> architecture selection or official Recall@K; Milestone 2 is not yet authorized.
+> architecture selection or official Recall@K. Phase 14 then added exactly one
+> bounded Medlatec coverage arm and reached the new organizer-best FINAL
+> `0.0533` with Docs F2 `0.0536` and Chunks F2 `0.0529`. Phase 15A freezes that
+> package and tests two CPU-only ranking replays without new model inference.
 
 ## Current ready submissions
 
@@ -72,9 +77,9 @@ guessing**. The authoritative operational sources are:
 - [Submission registry](submissions/MANIFEST.csv)
 - [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
 
-Phase 12 has already been submitted and is not a current upload candidate.
-Consult the registry before every upload; no Phase 13 package exists or is
-authorized yet.
+Phase 14 has already been submitted and is the frozen organizer-best control.
+Consult the registry before every upload; Phase 15A may create review artifacts
+but is not authorized for upload without independent relevance evidence.
 
 Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
 are archived as `SUBMITTED_VALID`. Consult the registry for the exact current

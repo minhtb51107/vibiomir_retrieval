@@ -1,0 +1,27 @@
+{
+  "dataset_modified": false,
+  "risk_chunks_in_phase14_corpus": 32762,
+  "expected_risk_chunks": 32762,
+  "risk_count_matches_prior_audit": true,
+  "candidate_rows_flagged": 35,
+  "candidate_row_fraction": 0.0018229166666666667,
+  "queries_affected": 12,
+  "unique_flagged_documents": 20,
+  "flagged_candidate_rank_distribution": {
+    "1": 1,
+    "2": 1,
+    "3": 2,
+    "4": 1,
+    "5": 2,
+    "6": 1,
+    "7": 2,
+    "9": 4,
+    "10": 1,
+    "11": 5,
+    "13": 5,
+    "14": 2,
+    "15": 7,
+    "16": 1
+  },
+  "interpretation": "Diagnostic flag only; no chunk was deleted, modified, penalized, or reranked."
+}

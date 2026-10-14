@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "available_physical_mib": 2082.79,
+  "required_physical_mib": 656.11,
+  "available_commit_headroom_mib": 22399.88,
+  "required_commit_headroom_mib": 4193.38,
+  "gpu_free_mib": 3977.0,
+  "required_gpu_mib": 1387.5,
+  "free_disk_gib": 126.93,
+  "minimum_free_disk_gib": 20,
+  "historical_profile": "artifacts\\phase12_pubmed\\rerank_metrics.json",
+  "historical_pairs_per_second": 40.273,
+  "missing_pairs": 4222,
+  "estimated_scoring_seconds": 104.8
+}

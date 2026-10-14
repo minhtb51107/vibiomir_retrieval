@@ -99,3 +99,10 @@ so its date and commit are explicitly unknown.
 - Exact-duplicate analysis identified 32,762 chunk slots (55.68% of all chunks) as site boilerplate or related-article navigation risk; no dataset rows were altered.
 - Exported a deterministic 200-row, batch-context-preserving BGE-M3 reference package. Full embedding remains stopped at `AWAITING_COLAB_EMBEDDING_EQUIVALENCE`; reranker A100 score import remains prohibited after its failed equivalence test.
 - Corrected the Phase 14 embedding PoC to reproduce SentenceTransformers' historical per-window length sort before batch slicing. The new runner encodes 50 recovered batch-4 groups independently; no equivalence claim is made until a real Colab result is verified.
+
+### 2026-10-15 — Phase 14 becomes organizer-best
+
+- Completed the bounded Medlatec coverage experiment with 2,996 usable documents, 58,839 chunks, 254,400 exact reranker scores, and zero remote score imports.
+- Recovered exact historical FP16 batch contexts for the mandatory reranker gate and exact canonical provenance for 15 historical Medlatec documents exposed by the new ranking.
+- The deterministic Docs@20/Chunks@40 package passed every local gate and reached organizer FINAL `0.0533` (Docs F2 `0.0536`, Chunks F2 `0.0529`), replacing Phase 11C `0.0492` as the frozen best.
+- Next direction: CPU-only controlled ranking replay over the frozen Phase 14 candidate/score universe; no new acquisition or model inference.

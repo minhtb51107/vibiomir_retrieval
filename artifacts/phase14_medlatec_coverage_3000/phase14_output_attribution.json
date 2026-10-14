@@ -1,0 +1,10 @@
+{
+  "phase14_new_document_slots": 1884,
+  "phase14_new_chunk_slots": 2767,
+  "queries_with_phase14_new_documents": 947,
+  "queries_with_phase14_new_chunks": 1001,
+  "historical_document_slots": 22116,
+  "historical_chunk_slots": 45233,
+  "flagged_boilerplate_navigation_chunk_slots": 0,
+  "flagged_chunks_modified_or_penalized": 0
+}

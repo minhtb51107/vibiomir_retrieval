@@ -1,0 +1,970 @@
+{
+  "experiment": "phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40",
+  "status": "READY_FOR_LEADERBOARD",
+  "passed": true,
+  "new_crawling": 0,
+  "new_embeddings": 0,
+  "remote_scores_imported": 0,
+  "candidate_audit": {
+    "passed": true,
+    "candidate_rows": 19200,
+    "unique_exact_keys": 19200,
+    "queries": 1200,
+    "minimum_candidates_per_query": 16,
+    "maximum_candidates_per_query": 16,
+    "duplicate_exact_keys": 0,
+    "duplicate_chunks_within_query": 0,
+    "unknown_chunk_ids": 0,
+    "doc_id_ownership_mismatches": 0,
+    "source_mismatches": 0,
+    "unique_doc_ids": 7235,
+    "non_official_doc_ids": 0,
+    "checkpoint_sqlite_integrity": "ok",
+    "candidate_sha256": "c875d0b81b805c1f0ca791cfa67c5f6996c407ad78ecd64da195ea9f52d70a88"
+  },
+  "score_reconciliation": {
+    "total": 254400,
+    "reused": 250114,
+    "newly_seeded": 250114,
+    "missing": 4286,
+    "source_contributions": {
+      "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite": 250101,
+      "data\\source_census\\phase11b_new_corpus\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase11a_bottleneck\\broad_probe\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase10f_full_medlatec_10000\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase10e_g1a10k_g6b15k_g5a11200_union\\round1\\source_scores.sqlite": 13,
+      "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite": 0,
+      "data\\source_census\\round1\\source_scores.sqlite": 0,
+      "data\\retrieval\\phase10c1_early_release\\C1\\rerank_scores.sqlite": 0,
+      "data\\retrieval\\phase10c1_early_release\\C2\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S1\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S2\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S3\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S4\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S5\\rerank_scores.sqlite": 0,
+      "data\\source_relevance_probe\\S6\\rerank_scores.sqlite": 0
+    },
+    "value_mismatches": 0,
+    "sqlite_integrity": "ok",
+    "reuse_fraction": 0.9831525157232704,
+    "phase14_medlatec_candidate_rows": 19200,
+    "historical_caches_audited": [
+      {
+        "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 254400,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase11b_new_corpus\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 134400,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 172800,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase11a_bottleneck\\broad_probe\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 124800,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10f_full_medlatec_10000\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 86400,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 9600,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10e_g1a10k_g6b15k_g5a11200_union\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 86400,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 28800,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 28800,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 28800,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_census\\round1\\source_scores.sqlite",
+        "table": "pairs",
+        "rows": 582000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\retrieval\\phase10c1_early_release\\C1\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\retrieval\\phase10c1_early_release\\C2\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S1\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S2\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S3\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S4\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S5\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      },
+      {
+        "path": "data\\source_relevance_probe\\S6\\rerank_scores.sqlite",
+        "table": "scores",
+        "rows": 120000,
+        "integrity": "ok"
+      }
+    ],
+    "candidate_parts_copied_from_frozen_phase11c": [
+      "benhviennhitrunguong_gov_vn.json",
+      "benhviennhitrunguong_gov_vn.parquet",
+      "BROAD_EXTRA.json",
+      "BROAD_EXTRA.parquet",
+      "cancer_39_net.json",
+      "cancer_39_net.parquet",
+      "hellobacsi_com.json",
+      "hellobacsi_com.parquet",
+      "suckhoedoisong_vn.json",
+      "suckhoedoisong_vn.parquet",
+      "tiemchunglongchau_com_vn.json",
+      "tiemchunglongchau_com_vn.parquet",
+      "zydcd_com.json",
+      "zydcd_com.parquet"
+    ]
+  },
+  "final_score_audit": {
+    "passed": true,
+    "total_rows": 254400,
+    "unique_score_keys": 254400,
+    "scored_rows": 254400,
+    "missing_scores": 0,
+    "duplicate_keys": 0,
+    "nonfinite_scores": 0,
+    "reused_scores": 250114,
+    "newly_computed_scores": 4286,
+    "new_scores_without_positive_inference_timing": 0,
+    "sqlite_integrity": "ok",
+    "reuse_guard": {
+      "passed": true,
+      "phase11c_reused": 250101,
+      "phase11c_text_mismatches": 0,
+      "phase11c_score_mismatches": 0,
+      "fallback_reused": 13,
+      "fallback_missing": 0,
+      "fallback_text_mismatches": 0,
+      "fallback_score_mismatches": 0,
+      "expected_total_reused": 250114
+    },
+    "equivalence": {
+      "checked": 8,
+      "max_absolute_difference": 0.0,
+      "measured_absolute_tolerance": 0.005859375,
+      "contract_mismatches": {},
+      "finite": true,
+      "reference_order": [
+        0,
+        1,
+        2,
+        7,
+        4,
+        6,
+        5,
+        3
+      ],
+      "observed_order": [
+        0,
+        1,
+        2,
+        7,
+        4,
+        6,
+        5,
+        3
+      ],
+      "ordering_unchanged": true,
+      "sample_keys_match_control": true,
+      "sample_texts_match_control": true,
+      "passed": true,
+      "stored_reference_scores_match_control": true,
+      "historical_batch_contexts": [
+        {
+          "target": "1:100213-a1dfb856a743580c1a49d8b8",
+          "batch_keys": [
+            "1:100074-90313ba86df5f45cae0f6475",
+            "1:100213-a1dfb856a743580c1a49d8b8"
+          ],
+          "target_index": 1
+        },
+        {
+          "target": "1:100213-c1b1b030a73ffd1afbbcb150",
+          "batch_keys": [
+            "1:100213-c1b1b030a73ffd1afbbcb150",
+            "1:100254-55b8ca6ddff323edd0c57506"
+          ],
+          "target_index": 0
+        },
+        {
+          "target": "1:100343-7a8579864f2dd5a16ee97efe",
+          "batch_keys": [
+            "1:100343-7a8579864f2dd5a16ee97efe",
+            "1:1026-b5c39c6b3ab87dd2334609ee"
+          ],
+          "target_index": 0
+        },
+        {
+          "target": "1:100570-f65a1daa6b2b0529c28b7d0f",
+          "batch_keys": [
+            "1:100570-f65a1daa6b2b0529c28b7d0f",
+            "1:101816-76a06e341c029a79648147a7"
+          ],
+          "target_index": 0
+        },
+        {
+          "target": "1:1026-b5c39c6b3ab87dd2334609ee",
+          "batch_keys": [
+            "1:100343-7a8579864f2dd5a16ee97efe",
+            "1:1026-b5c39c6b3ab87dd2334609ee"
+          ],
+          "target_index": 1
+        },
+        {
+          "target": "1:103653-ea7c886fbd4b60b4c1a910c7",
+          "batch_keys": [
+            "1:10304-350fd0954f2bf2bad5b669a1",
+            "1:103653-ea7c886fbd4b60b4c1a910c7"
+          ],
+          "target_index": 1
+        },
+        {
+          "target": "1:108052-fd4f1494b3883e322b17a16e",
+          "batch_keys": [
+            "1:105671-150ba32bd08b808e01db29ea",
+            "1:108052-fd4f1494b3883e322b17a16e"
+          ],
+          "target_index": 1
+        },
+        {
+          "target": "1:111245-815212bb72028b8d1853f554",
+          "batch_keys": [
+            "1:111245-1d0d90cd8be9680e88b6a7d2",
+            "1:111245-815212bb72028b8d1853f554"
+          ],
+          "target_index": 1
+        }
+      ]
+    },
+    "model_contract": {
+      "model": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "tokenizer_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "batch_size": 2,
+      "max_length": 512,
+      "precision": "float16",
+      "eval_mode": true,
+      "padding": true,
+      "truncation": "longest_first",
+      "score_extraction": "logits.reshape(-1).float().cpu().numpy()",
+      "input_order": "query, chunk"
+    }
+  },
+  "score_cache": {
+    "passed": true,
+    "failures": [],
+    "expected_candidate_rows": 254400,
+    "expected_unique_keys": 254400,
+    "stored_key_count": 254400,
+    "missing_keys": 0,
+    "unexpected_keys": 0,
+    "duplicate_keys": 0,
+    "non_null_scored_count": 254400,
+    "non_finite_scores": 0,
+    "invalid_inference_timings": 0,
+    "sqlite_integrity": "ok",
+    "score_distribution": {
+      "count": 254400,
+      "distinct": 13883,
+      "min": -11.046875,
+      "median": -5.72265625,
+      "p95": 1.51171875,
+      "max": 10.6953125
+    },
+    "distinct_inference_ms_count": 15238
+  },
+  "provenance_closure": {
+    "ranked_unique_chunk_ids": 76946,
+    "canonical_unique_chunk_ids": 76946,
+    "missing_canonical_ids": 0,
+    "unexpected_canonical_ids": 0,
+    "ranked_owner_conflicts": 0,
+    "canonical_duplicate_owners": 0,
+    "doc_id_mismatches": 0,
+    "non_official_doc_ids": 0,
+    "reconstruction_failures": 0,
+    "affected_queries": 0,
+    "missing_sample": [],
+    "mismatch_sample": [],
+    "non_official_doc_id_sample": [],
+    "reconstruction_failure_sample": [],
+    "sqlite_integrity": "ok",
+    "passed": true
+  },
+  "official_id_audit": {
+    "unique_emitted_doc_ids": 12310,
+    "invalid_official_doc_ids": 0,
+    "passed": true
+  },
+  "canonical_document_recovery": {
+    "passed": true,
+    "ranked_unique_doc_ids": 24428,
+    "missing_from_phase11c_plus_phase14": 15,
+    "missing_doc_ids": [
+      175609,
+      177378,
+      177410,
+      178448,
+      178490,
+      179052,
+      179434,
+      180963,
+      181723,
+      185743,
+      185988,
+      188108,
+      194121,
+      195389,
+      196041
+    ],
+    "root_cause": "Phase 14 ranking exposed historical Medlatec candidates that were not selected into Phase 11C's ranking-scoped combined_documents; Phase 14 documents.parquet contains only the newly acquired 3,000-ID arm.",
+    "recovery_document_source": "data\\source_census\\phase10f_medlatec_10000\\documents.parquet",
+    "recovery_chunk_source": "data\\source_census\\phase10f_medlatec_10000\\chunks.parquet",
+    "entries": [
+      {
+        "doc_id": 175609,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/bac-si-tu-van-sua-dau-nanh-co-gay-vo-sinh-nam-khong"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "175609-ab53080f57f43890ffb6c1e6"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/bac-si-tu-van-sua-dau-nanh-co-gay-vo-sinh-nam-khong",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "9d9364d1effb13359f0c32fea08caec553aca70ccbaa26df68e791134edbc35f",
+          "content_length": 6505
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 177378,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/bom-tinh-trung-o-dau-tot-nhat-cho-cac-cap-vo-chong-s74-n16853"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "177378-caf0afc187fa202fa15ee996"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/bom-tinh-trung-o-dau-tot-nhat-cho-cac-cap-vo-chong-s74-n16853",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "78a21f634c8ac5d91c4852e97b270a85788dec16fa7893bb10767ef1fab0d4b3",
+          "content_length": 7025
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 177410,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/bsckii-nguyen-chi-anh-chuyen-gia-tai-mui-hong-medlatec-30-nam-kinh-nghiem-tan-tam-voi-nguoi-benh"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "177410-a215601a4406a40a29284fb6"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/bsckii-nguyen-chi-anh-chuyen-gia-tai-mui-hong-medlatec-30-nam-kinh-nghiem-tan-tam-voi-nguoi-benh",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "4ce63f7c979e14c63802a4d2f062f65a1ea34cd634d64fff2f9e54e6615bcd4f",
+          "content_length": 6586
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 178448,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/cach-so-cuu-nguoi-bi-duoi-nuoc-va-nhung-viec-khong-nen-lam"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "178448-7d2a936d0c3b235dc3f8b25e"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/cach-so-cuu-nguoi-bi-duoi-nuoc-va-nhung-viec-khong-nen-lam",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "dce018bf5ea543358b0e75901e367ff5424e1ed57e841647352c2274f5ababb6",
+          "content_length": 8891
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 178490,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/cach-tieu-hoa-nhanh-sau-khi-an-neu-lo-an-qua-no"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "178490-40ae7db62fe15d2c30be44de"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/cach-tieu-hoa-nhanh-sau-khi-an-neu-lo-an-qua-no",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "e170dc36010f144594c4f127bdc9c7fa5afdb9f5572fab4debc262666fc68d11",
+          "content_length": 6239
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 179052,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/cat-bao-quy-dau-o-dau-dam-bao-an-toan-ma-tiet-kiem-chi-phi-s78-n23413"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "179052-a5a75991a506370ff723f56a"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/cat-bao-quy-dau-o-dau-dam-bao-an-toan-ma-tiet-kiem-chi-phi-s78-n23413",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "e09e3218a823f8b7b19914a70fcbd64d737a5d6466f0b0a37c54b76945f23ab8",
+          "content_length": 7358
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 179434,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/chay-mau-mui-thuong-xuyen-co-phai-ung-thu-khong-bien-phap-xu-tri-va-chan-doan-dung"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "179434-377b9ba06c84438cf6cbfe8d"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/chay-mau-mui-thuong-xuyen-co-phai-ung-thu-khong-bien-phap-xu-tri-va-chan-doan-dung",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "9df6cac14325f59c29f4fb928a7427b2544b64757c389441a32828c8fee1e4f8",
+          "content_length": 7101
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 180963,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/dat-thuoc-phu-khoa-bao-lau-thi-di-tieu-duoc-la-chuan-nhat"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "180963-57668b5b1b12f3904badc051"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/dat-thuoc-phu-khoa-bao-lau-thi-di-tieu-duoc-la-chuan-nhat",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "7f16ccad161f3c7b691fc6c9a45494fadd81d688583e41841406f438562f5027",
+          "content_length": 7653
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 181723,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/di-vat-trong-mui-co-roi-xuong-phoi-khong-huong-dan-cach-xu-tri-an-toan"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "181723-bc63764e2f79a86e6cd1db24"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/di-vat-trong-mui-co-roi-xuong-phoi-khong-huong-dan-cach-xu-tri-an-toan",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "380378f285160b9e4f625b98ab84800973cc5d709f198df09cbd82e2b2647268",
+          "content_length": 8150
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 185743,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/khong-dap-ung-voi-khang-sinh-ho-hap-thong-thuong-nguoi-phu-nu-phat-hien-mac-viem-phoi-do-phe-cau"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "185743-bbe7e82673d40b7bf0fc2891"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/khong-dap-ung-voi-khang-sinh-ho-hap-thong-thuong-nguoi-phu-nu-phat-hien-mac-viem-phoi-do-phe-cau",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "65c59d896928f8d21808a62feca109a0ab6acdf1e7ed3807e9d3dfceee63f9d1",
+          "content_length": 7707
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 185988,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/lam-the-nao-de-phan-biet-con-go-chuyen-da-that-va-gia-s74-n19512"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "185988-200752fc6ff750a7078d94de"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/lam-the-nao-de-phan-biet-con-go-chuyen-da-that-va-gia-s74-n19512",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "d9aa7cdedb610a69b2407600654df4b23d5efa85596577f680b4a70daf62322f",
+          "content_length": 7758
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 188108,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/nguoi-gia-kho-tho-nguyen-nhan-cach-khac-phuc-va-phong-ngua"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "188108-990cd4d31cb51385de9762e6"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/nguoi-gia-kho-tho-nguyen-nhan-cach-khac-phuc-va-phong-ngua",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "fa8d80b606fbeb2242f974c7c2cac341d94dc572e85c1aafd944e79a63e9acc3",
+          "content_length": 6356
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 194121,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/tim-hieu-ve-benh-trao-nguoc-da-day-thuc-quan-s67-n21519"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "194121-abeb4e1d74ec0764edbf44a3"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/tim-hieu-ve-benh-trao-nguoc-da-day-thuc-quan-s67-n21519",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "ac821edc310971c0ebf522643579b0a97e4c7bb478243c18f88cae93bf901db4",
+          "content_length": 7930
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 195389,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/trieu-chung-huyet-khoi-tinh-mach-noi-so-va-cach-dieu-tri-benh"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "195389-b7f7187da3244f12c9079395"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/trieu-chung-huyet-khoi-tinh-mach-noi-so-va-cach-dieu-tri-benh",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "ef192dd8e12a918bd6ac59775192da239ab923a0957411c1e6daefb872601931",
+          "content_length": 6722
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      },
+      {
+        "doc_id": 196041,
+        "official_new_corpus_member": true,
+        "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+        "candidate_parts": [
+          "medlatec_vn.parquet"
+        ],
+        "candidate_sources": [
+          "medlatec.vn"
+        ],
+        "candidate_urls": [
+          "https://medlatec.vn/tin-tuc/u-thanh-quan-lanh-tinh-muc-do-nguy-hiem-va-phuong-phap-khac-phuc-3"
+        ],
+        "ranked_references": 1,
+        "ranked_chunk_ids": [
+          "196041-ec7eb20f1ad788fac8753f9f"
+        ],
+        "in_phase11c_combined_documents": false,
+        "in_phase14_new_documents": false,
+        "in_phase10f_medlatec_documents": true,
+        "canonical": {
+          "original_url": "https://medlatec.vn/tin-tuc/u-thanh-quan-lanh-tinh-muc-do-nguy-hiem-va-phuong-phap-khac-phuc-3",
+          "canonical_domain": "medlatec.vn",
+          "extraction_status": "SUCCESS",
+          "content_sha256": "e277ae8be960043503e92b36a8e3f9f19b5eef1823c202733de8ca7a4176ac72",
+          "content_length": 7048
+        },
+        "candidate_url_matches_canonical": true,
+        "all_ranked_chunks_in_phase10f": true,
+        "id_type_or_normalization_issue": false
+      }
+    ]
+  },
+  "structural_validation": {
+    "path": "submissions\\00_READY_TO_UPLOAD\\phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.zip",
+    "valid": true,
+    "query_count": 1200,
+    "document_result_count": 24000,
+    "chunk_result_count": 48000,
+    "unique_doc_ids": 14576,
+    "document_minimum_per_query": 20,
+    "document_maximum_per_query": 20,
+    "chunk_minimum_per_query": 40,
+    "chunk_maximum_per_query": 40,
+    "invalid_doc_ids": 0,
+    "duplicate_doc_ids": 0,
+    "duplicate_chunk_objects": 0,
+    "chunk_provenance_mismatches": 0,
+    "source_span_chunks_verified": 48000,
+    "passed": true
+  },
+  "determinism_verified": true,
+  "frozen_phase11c_control": {
+    "passed": true,
+    "json_sha256": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",
+    "zip_sha256": "c1422901e64337cc227e14260a754ad691e2284d28667e8a1e8ae854507c527d",
+    "zip_json_sha256": "678ed1bb2ed2d3499268a3dedea5643fabebce0e5e8d05c4f27c9b8cd850793a",
+    "queries": 1200,
+    "docs": 20,
+    "chunks": 40
+  },
+  "ranking_change_vs_phase11c": {
+    "queries_compared": 1200,
+    "queries_top10_docs_changed": 1024,
+    "queries_top20_chunks_changed": 1087
+  },
+  "boilerplate_impact": {
+    "dataset_modified": false,
+    "risk_chunks_in_phase14_corpus": 32762,
+    "expected_risk_chunks": 32762,
+    "risk_count_matches_prior_audit": true,
+    "candidate_rows_flagged": 35,
+    "candidate_row_fraction": 0.0018229166666666667,
+    "queries_affected": 12,
+    "unique_flagged_documents": 20,
+    "flagged_candidate_rank_distribution": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 1,
+      "5": 2,
+      "6": 1,
+      "7": 2,
+      "9": 4,
+      "10": 1,
+      "11": 5,
+      "13": 5,
+      "14": 2,
+      "15": 7,
+      "16": 1
+    },
+    "interpretation": "Diagnostic flag only; no chunk was deleted, modified, penalized, or reranked."
+  },
+  "reuse_guard": {
+    "passed": true,
+    "phase11c_reused": 250101,
+    "phase11c_text_mismatches": 0,
+    "phase11c_score_mismatches": 0,
+    "fallback_reused": 13,
+    "fallback_missing": 0,
+    "fallback_text_mismatches": 0,
+    "fallback_score_mismatches": 0,
+    "expected_total_reused": 250114
+  },
+  "output_attribution": {
+    "phase14_new_document_slots": 1884,
+    "phase14_new_chunk_slots": 2767,
+    "queries_with_phase14_new_documents": 947,
+    "queries_with_phase14_new_chunks": 1001,
+    "historical_document_slots": 22116,
+    "historical_chunk_slots": 45233,
+    "flagged_boilerplate_navigation_chunk_slots": 0,
+    "flagged_chunks_modified_or_penalized": 0
+  },
+  "package": {
+    "name": "phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40",
+    "json_path": "submissions\\00_READY_TO_UPLOAD\\phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.json",
+    "zip_path": "submissions\\00_READY_TO_UPLOAD\\phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.zip",
+    "json_sha256": "1a99cff3c211b01f594f8fa5502e304c1a4c8b1526439d772c8802a89436167e",
+    "zip_sha256": "44a125ecba80691dcc0714b5977b48f1a8d35c26cbe8a21f8298e82bb49002c8",
+    "validation": {
+      "path": "submissions\\00_READY_TO_UPLOAD\\phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.zip",
+      "valid": true,
+      "query_count": 1200,
+      "document_result_count": 24000,
+      "chunk_result_count": 48000,
+      "unique_doc_ids": 14576,
+      "document_minimum_per_query": 20,
+      "document_maximum_per_query": 20,
+      "chunk_minimum_per_query": 40,
+      "chunk_maximum_per_query": 40,
+      "invalid_doc_ids": 0,
+      "duplicate_doc_ids": 0,
+      "duplicate_chunk_objects": 0,
+      "chunk_provenance_mismatches": 0,
+      "source_span_chunks_verified": 48000,
+      "passed": true
+    },
+    "determinism_verified": true,
+    "model_inference_during_packaging": 0,
+    "readiness_status": "STRUCTURALLY_VALIDATED_NOT_SCIENTIFICALLY_READY"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "total_rows": 254400,
+  "unique_score_keys": 254400,
+  "scored_rows": 254400,
+  "missing_scores": 0,
+  "duplicate_keys": 0,
+  "nonfinite_scores": 0,
+  "reused_scores": 250114,
+  "newly_computed_scores": 4286,
+  "new_scores_without_positive_inference_timing": 0,
+  "sqlite_integrity": "ok",
+  "reuse_guard": {
+    "passed": true,
+    "phase11c_reused": 250101,
+    "phase11c_text_mismatches": 0,
+    "phase11c_score_mismatches": 0,
+    "fallback_reused": 13,
+    "fallback_missing": 0,
+    "fallback_text_mismatches": 0,
+    "fallback_score_mismatches": 0,
+    "expected_total_reused": 250114
+  },
+  "equivalence": {
+    "checked": 8,
+    "max_absolute_difference": 0.0,
+    "measured_absolute_tolerance": 0.005859375,
+    "contract_mismatches": {},
+    "finite": true,
+    "reference_order": [
+      0,
+      1,
+      2,
+      7,
+      4,
+      6,
+      5,
+      3
+    ],
+    "observed_order": [
+      0,
+      1,
+      2,
+      7,
+      4,
+      6,
+      5,
+      3
+    ],
+    "ordering_unchanged": true,
+    "sample_keys_match_control": true,
+    "sample_texts_match_control": true,
+    "passed": true,
+    "stored_reference_scores_match_control": true,
+    "historical_batch_contexts": [
+      {
+        "target": "1:100213-a1dfb856a743580c1a49d8b8",
+        "batch_keys": [
+          "1:100074-90313ba86df5f45cae0f6475",
+          "1:100213-a1dfb856a743580c1a49d8b8"
+        ],
+        "target_index": 1
+      },
+      {
+        "target": "1:100213-c1b1b030a73ffd1afbbcb150",
+        "batch_keys": [
+          "1:100213-c1b1b030a73ffd1afbbcb150",
+          "1:100254-55b8ca6ddff323edd0c57506"
+        ],
+        "target_index": 0
+      },
+      {
+        "target": "1:100343-7a8579864f2dd5a16ee97efe",
+        "batch_keys": [
+          "1:100343-7a8579864f2dd5a16ee97efe",
+          "1:1026-b5c39c6b3ab87dd2334609ee"
+        ],
+        "target_index": 0
+      },
+      {
+        "target": "1:100570-f65a1daa6b2b0529c28b7d0f",
+        "batch_keys": [
+          "1:100570-f65a1daa6b2b0529c28b7d0f",
+          "1:101816-76a06e341c029a79648147a7"
+        ],
+        "target_index": 0
+      },
+      {
+        "target": "1:1026-b5c39c6b3ab87dd2334609ee",
+        "batch_keys": [
+          "1:100343-7a8579864f2dd5a16ee97efe",
+          "1:1026-b5c39c6b3ab87dd2334609ee"
+        ],
+        "target_index": 1
+      },
+      {
+        "target": "1:103653-ea7c886fbd4b60b4c1a910c7",
+        "batch_keys": [
+          "1:10304-350fd0954f2bf2bad5b669a1",
+          "1:103653-ea7c886fbd4b60b4c1a910c7"
+        ],
+        "target_index": 1
+      },
+      {
+        "target": "1:108052-fd4f1494b3883e322b17a16e",
+        "batch_keys": [
+          "1:105671-150ba32bd08b808e01db29ea",
+          "1:108052-fd4f1494b3883e322b17a16e"
+        ],
+        "target_index": 1
+      },
+      {
+        "target": "1:111245-815212bb72028b8d1853f554",
+        "batch_keys": [
+          "1:111245-1d0d90cd8be9680e88b6a7d2",
+          "1:111245-815212bb72028b8d1853f554"
+        ],
+        "target_index": 1
+      }
+    ]
+  },
+  "model_contract": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "tokenizer_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "batch_size": 2,
+    "max_length": 512,
+    "precision": "float16",
+    "eval_mode": true,
+    "padding": true,
+    "truncation": "longest_first",
+    "score_extraction": "logits.reshape(-1).float().cpu().numpy()",
+    "input_order": "query, chunk"
+  }
+}

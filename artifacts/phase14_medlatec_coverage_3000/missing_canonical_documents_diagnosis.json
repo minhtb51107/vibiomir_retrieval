@@ -1,0 +1,492 @@
+{
+  "passed": true,
+  "ranked_unique_doc_ids": 24428,
+  "missing_from_phase11c_plus_phase14": 15,
+  "missing_doc_ids": [
+    175609,
+    177378,
+    177410,
+    178448,
+    178490,
+    179052,
+    179434,
+    180963,
+    181723,
+    185743,
+    185988,
+    188108,
+    194121,
+    195389,
+    196041
+  ],
+  "root_cause": "Phase 14 ranking exposed historical Medlatec candidates that were not selected into Phase 11C's ranking-scoped combined_documents; Phase 14 documents.parquet contains only the newly acquired 3,000-ID arm.",
+  "recovery_document_source": "data\\source_census\\phase10f_medlatec_10000\\documents.parquet",
+  "recovery_chunk_source": "data\\source_census\\phase10f_medlatec_10000\\chunks.parquet",
+  "entries": [
+    {
+      "doc_id": 175609,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/bac-si-tu-van-sua-dau-nanh-co-gay-vo-sinh-nam-khong"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "175609-ab53080f57f43890ffb6c1e6"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/bac-si-tu-van-sua-dau-nanh-co-gay-vo-sinh-nam-khong",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "9d9364d1effb13359f0c32fea08caec553aca70ccbaa26df68e791134edbc35f",
+        "content_length": 6505
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 177378,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/bom-tinh-trung-o-dau-tot-nhat-cho-cac-cap-vo-chong-s74-n16853"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "177378-caf0afc187fa202fa15ee996"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/bom-tinh-trung-o-dau-tot-nhat-cho-cac-cap-vo-chong-s74-n16853",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "78a21f634c8ac5d91c4852e97b270a85788dec16fa7893bb10767ef1fab0d4b3",
+        "content_length": 7025
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 177410,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/bsckii-nguyen-chi-anh-chuyen-gia-tai-mui-hong-medlatec-30-nam-kinh-nghiem-tan-tam-voi-nguoi-benh"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "177410-a215601a4406a40a29284fb6"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/bsckii-nguyen-chi-anh-chuyen-gia-tai-mui-hong-medlatec-30-nam-kinh-nghiem-tan-tam-voi-nguoi-benh",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "4ce63f7c979e14c63802a4d2f062f65a1ea34cd634d64fff2f9e54e6615bcd4f",
+        "content_length": 6586
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 178448,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/cach-so-cuu-nguoi-bi-duoi-nuoc-va-nhung-viec-khong-nen-lam"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "178448-7d2a936d0c3b235dc3f8b25e"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/cach-so-cuu-nguoi-bi-duoi-nuoc-va-nhung-viec-khong-nen-lam",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "dce018bf5ea543358b0e75901e367ff5424e1ed57e841647352c2274f5ababb6",
+        "content_length": 8891
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 178490,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/cach-tieu-hoa-nhanh-sau-khi-an-neu-lo-an-qua-no"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "178490-40ae7db62fe15d2c30be44de"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/cach-tieu-hoa-nhanh-sau-khi-an-neu-lo-an-qua-no",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "e170dc36010f144594c4f127bdc9c7fa5afdb9f5572fab4debc262666fc68d11",
+        "content_length": 6239
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 179052,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/cat-bao-quy-dau-o-dau-dam-bao-an-toan-ma-tiet-kiem-chi-phi-s78-n23413"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "179052-a5a75991a506370ff723f56a"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/cat-bao-quy-dau-o-dau-dam-bao-an-toan-ma-tiet-kiem-chi-phi-s78-n23413",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "e09e3218a823f8b7b19914a70fcbd64d737a5d6466f0b0a37c54b76945f23ab8",
+        "content_length": 7358
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 179434,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/chay-mau-mui-thuong-xuyen-co-phai-ung-thu-khong-bien-phap-xu-tri-va-chan-doan-dung"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "179434-377b9ba06c84438cf6cbfe8d"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/chay-mau-mui-thuong-xuyen-co-phai-ung-thu-khong-bien-phap-xu-tri-va-chan-doan-dung",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "9df6cac14325f59c29f4fb928a7427b2544b64757c389441a32828c8fee1e4f8",
+        "content_length": 7101
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 180963,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/dat-thuoc-phu-khoa-bao-lau-thi-di-tieu-duoc-la-chuan-nhat"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "180963-57668b5b1b12f3904badc051"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/dat-thuoc-phu-khoa-bao-lau-thi-di-tieu-duoc-la-chuan-nhat",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "7f16ccad161f3c7b691fc6c9a45494fadd81d688583e41841406f438562f5027",
+        "content_length": 7653
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 181723,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/di-vat-trong-mui-co-roi-xuong-phoi-khong-huong-dan-cach-xu-tri-an-toan"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "181723-bc63764e2f79a86e6cd1db24"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/di-vat-trong-mui-co-roi-xuong-phoi-khong-huong-dan-cach-xu-tri-an-toan",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "380378f285160b9e4f625b98ab84800973cc5d709f198df09cbd82e2b2647268",
+        "content_length": 8150
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 185743,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/khong-dap-ung-voi-khang-sinh-ho-hap-thong-thuong-nguoi-phu-nu-phat-hien-mac-viem-phoi-do-phe-cau"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "185743-bbe7e82673d40b7bf0fc2891"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/khong-dap-ung-voi-khang-sinh-ho-hap-thong-thuong-nguoi-phu-nu-phat-hien-mac-viem-phoi-do-phe-cau",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "65c59d896928f8d21808a62feca109a0ab6acdf1e7ed3807e9d3dfceee63f9d1",
+        "content_length": 7707
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 185988,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/lam-the-nao-de-phan-biet-con-go-chuyen-da-that-va-gia-s74-n19512"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "185988-200752fc6ff750a7078d94de"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/lam-the-nao-de-phan-biet-con-go-chuyen-da-that-va-gia-s74-n19512",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "d9aa7cdedb610a69b2407600654df4b23d5efa85596577f680b4a70daf62322f",
+        "content_length": 7758
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 188108,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/nguoi-gia-kho-tho-nguyen-nhan-cach-khac-phuc-va-phong-ngua"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "188108-990cd4d31cb51385de9762e6"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/nguoi-gia-kho-tho-nguyen-nhan-cach-khac-phuc-va-phong-ngua",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "fa8d80b606fbeb2242f974c7c2cac341d94dc572e85c1aafd944e79a63e9acc3",
+        "content_length": 6356
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 194121,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/tim-hieu-ve-benh-trao-nguoc-da-day-thuc-quan-s67-n21519"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "194121-abeb4e1d74ec0764edbf44a3"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/tim-hieu-ve-benh-trao-nguoc-da-day-thuc-quan-s67-n21519",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "ac821edc310971c0ebf522643579b0a97e4c7bb478243c18f88cae93bf901db4",
+        "content_length": 7930
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 195389,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/trieu-chung-huyet-khoi-tinh-mach-noi-so-va-cach-dieu-tri-benh"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "195389-b7f7187da3244f12c9079395"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/trieu-chung-huyet-khoi-tinh-mach-noi-so-va-cach-dieu-tri-benh",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "ef192dd8e12a918bd6ac59775192da239ab923a0957411c1e6daefb872601931",
+        "content_length": 6722
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    },
+    {
+      "doc_id": 196041,
+      "official_new_corpus_member": true,
+      "classification": "historical_phase10f_medlatec_candidate_not_phase14_new",
+      "candidate_parts": [
+        "medlatec_vn.parquet"
+      ],
+      "candidate_sources": [
+        "medlatec.vn"
+      ],
+      "candidate_urls": [
+        "https://medlatec.vn/tin-tuc/u-thanh-quan-lanh-tinh-muc-do-nguy-hiem-va-phuong-phap-khac-phuc-3"
+      ],
+      "ranked_references": 1,
+      "ranked_chunk_ids": [
+        "196041-ec7eb20f1ad788fac8753f9f"
+      ],
+      "in_phase11c_combined_documents": false,
+      "in_phase14_new_documents": false,
+      "in_phase10f_medlatec_documents": true,
+      "canonical": {
+        "original_url": "https://medlatec.vn/tin-tuc/u-thanh-quan-lanh-tinh-muc-do-nguy-hiem-va-phuong-phap-khac-phuc-3",
+        "canonical_domain": "medlatec.vn",
+        "extraction_status": "SUCCESS",
+        "content_sha256": "e277ae8be960043503e92b36a8e3f9f19b5eef1823c202733de8ca7a4176ac72",
+        "content_length": 7048
+      },
+      "candidate_url_matches_canonical": true,
+      "all_ranked_chunks_in_phase10f": true,
+      "id_type_or_normalization_issue": false
+    }
+  ]
+}

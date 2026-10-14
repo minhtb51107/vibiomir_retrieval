@@ -1,0 +1,225 @@
+{
+  "format_version": 2,
+  "experiment": "phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40",
+  "selection_rule": "first 8 exact reused keys in deterministic query_id/chunk_id order",
+  "batch_context_rule": "replay each target in its original deterministic missing-key batch of 2",
+  "source_score_database": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite",
+  "destination_score_database": "data\\source_census\\phase14_medlatec_coverage_3000\\round1\\source_scores.sqlite",
+  "investigation_artifact": "artifacts\\source_census\\phase10e_g5a_11200\\reranker_equivalence_investigation.json",
+  "contract": {
+    "model": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "tokenizer_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "batch_size": 2,
+    "max_length": 512,
+    "precision": "float16",
+    "eval_mode": true,
+    "padding": true,
+    "truncation": "longest_first",
+    "score_extraction": "logits.reshape(-1).float().cpu().numpy()",
+    "input_order": "query, chunk"
+  },
+  "pairs": [
+    {
+      "query_id": 1,
+      "chunk_id": "100213-a1dfb856a743580c1a49d8b8",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "d5180ea687050ce1ce1a511595bd278347fb3b231f78f974039ccb9b9e239178",
+      "reference_score": -4.33203125,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 1,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "100074-90313ba86df5f45cae0f6475",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "473c556fb4aca5deaab9559dbe6baf2064f03f9714d429235568d68f6ac1800c"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "100213-a1dfb856a743580c1a49d8b8",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "d5180ea687050ce1ce1a511595bd278347fb3b231f78f974039ccb9b9e239178"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "100213-c1b1b030a73ffd1afbbcb150",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "fc223f14caa39b4cab8cb7d5800b100931d90797f872297702eacc850a7368f9",
+      "reference_score": -4.765625,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 0,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "100213-c1b1b030a73ffd1afbbcb150",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "fc223f14caa39b4cab8cb7d5800b100931d90797f872297702eacc850a7368f9"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "100254-55b8ca6ddff323edd0c57506",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "bba69f81a010e7496938c7d4b27823bc252f7453da0cea2bf66008927545304f"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "100343-7a8579864f2dd5a16ee97efe",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "03be987461af59b03fb794bfeffa833076645ce9f43ed8f171b515544fae3131",
+      "reference_score": -4.90234375,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite",
+        "target_index": 0,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "100343-7a8579864f2dd5a16ee97efe",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "03be987461af59b03fb794bfeffa833076645ce9f43ed8f171b515544fae3131"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "1026-b5c39c6b3ab87dd2334609ee",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "21672d557a825d31d9cc7edc2c888f0f91f75cf7973699d910ad7b1c1559fca2"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "100570-f65a1daa6b2b0529c28b7d0f",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "a014f0afd5acb5e657a9d65ea3a528efc16cb7eaa8e3f1b3dd4e2ecca0b14c75",
+      "reference_score": -8.21875,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 0,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "100570-f65a1daa6b2b0529c28b7d0f",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "a014f0afd5acb5e657a9d65ea3a528efc16cb7eaa8e3f1b3dd4e2ecca0b14c75"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "101816-76a06e341c029a79648147a7",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "ddff4f47b13ab206d898eee3d0cd2cfeab20288157c96ad4085898782708f4a1"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "1026-b5c39c6b3ab87dd2334609ee",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "21672d557a825d31d9cc7edc2c888f0f91f75cf7973699d910ad7b1c1559fca2",
+      "reference_score": -6.1328125,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite",
+        "target_index": 1,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "100343-7a8579864f2dd5a16ee97efe",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "03be987461af59b03fb794bfeffa833076645ce9f43ed8f171b515544fae3131"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "1026-b5c39c6b3ab87dd2334609ee",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "21672d557a825d31d9cc7edc2c888f0f91f75cf7973699d910ad7b1c1559fca2"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "103653-ea7c886fbd4b60b4c1a910c7",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "c3cb48558f40a7c3656c0dfa7f0f89fc413d282338dc01a273f9534214928e25",
+      "reference_score": -7.97265625,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 1,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "10304-350fd0954f2bf2bad5b669a1",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "9b91744b9ec32ff5d27d496367f5095f37d9cc510b986278c4493cfa10eb3fc9"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "103653-ea7c886fbd4b60b4c1a910c7",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "c3cb48558f40a7c3656c0dfa7f0f89fc413d282338dc01a273f9534214928e25"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "108052-fd4f1494b3883e322b17a16e",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "813b65f475b78d8bd273b1f5519b4c46677417dbd26e5b870a79f960140ba604",
+      "reference_score": -7.921875,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 1,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "105671-150ba32bd08b808e01db29ea",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "ffcee6ef88c5ccca92ae8356d45012fe420f50e43ec370ba954be005e21ceed2"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "108052-fd4f1494b3883e322b17a16e",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "813b65f475b78d8bd273b1f5519b4c46677417dbd26e5b870a79f960140ba604"
+          }
+        ]
+      }
+    },
+    {
+      "query_id": 1,
+      "chunk_id": "111245-815212bb72028b8d1853f554",
+      "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+      "chunk_text_sha256": "76a9e6a3c5f6b0ed158325948582e885fc09ad14a6bd487050d788a1dcd2bb31",
+      "reference_score": -5.71875,
+      "historical_batch": {
+        "source_score_database": "data\\source_census\\round1\\source_scores.sqlite",
+        "target_index": 1,
+        "pairs": [
+          {
+            "query_id": 1,
+            "chunk_id": "111245-1d0d90cd8be9680e88b6a7d2",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "0775bd1ea9f85b08409143ca316754ce0de3140c8666cd5a8cad3178d34985c0"
+          },
+          {
+            "query_id": 1,
+            "chunk_id": "111245-815212bb72028b8d1853f554",
+            "query_text_sha256": "216a2bd43dc9f8b4d8d661e2f11645513398dc42b7c4d3c7177978947c062beb",
+            "chunk_text_sha256": "76a9e6a3c5f6b0ed158325948582e885fc09ad14a6bd487050d788a1dcd2bb31"
+          }
+        ]
+      }
+    }
+  ],
+  "exact_reuse_verified": true
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "trial": true,
+  "before": 250114,
+  "after": 250178,
+  "new_scores": 64,
+  "remaining": 4222,
+  "sqlite_integrity": "ok"
+}

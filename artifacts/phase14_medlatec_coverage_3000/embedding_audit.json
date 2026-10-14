@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "rows": 58839,
+  "dimension": 1024,
+  "shape": [
+    58839,
+    1024
+  ],
+  "dtype": "float32",
+  "completed_bitmap_rows": 58839,
+  "bitmap_values": [
+    1
+  ],
+  "finite": true,
+  "normalized": true,
+  "norm_minimum": 0.999755859375,
+  "norm_maximum": 1.000489354133606,
+  "chunks_sha256": "490d68106a9e4911ecc952e0dd380466ac5f16b80a634ec758430d127f642c4b",
+  "embedding_sha256": "43cc92eee514b6a27f4915d2d493065f15204ed26caceb336e24be098937992a",
+  "embedding_path": "data\\source_census\\phase14_medlatec_coverage_3000\\round1\\chunk_embeddings.f32",
+  "row_order": "exact chunks.parquet physical row order"
+}

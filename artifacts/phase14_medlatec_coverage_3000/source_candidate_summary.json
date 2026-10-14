@@ -1,0 +1,18 @@
+{
+  "source": "medlatec.vn",
+  "query_count": 1200,
+  "chosen_m": 16,
+  "source_chunk_count": 255492,
+  "candidate_rows": 19200,
+  "candidate_part_sha256": "c875d0b81b805c1f0ca791cfa67c5f6996c407ad78ecd64da195ea9f52d70a88",
+  "runtime_seconds": 10434.085,
+  "passed": true,
+  "old_source_chunks": 196653,
+  "new_source_chunks": 58839,
+  "union_source_chunks": 255492,
+  "new_phase14_candidate_rows": 4197,
+  "unique_new_phase14_candidate_chunks": 3264,
+  "candidate_path": "data\\source_census\\phase14_medlatec_coverage_3000\\round1\\source_candidate_parts\\medlatec_vn.parquet",
+  "boilerplate_impact": "artifacts\\phase14_medlatec_coverage_3000\\candidate_boilerplate_impact.json",
+  "next_stage": "RERANK_SCORE_RECONCILIATION"
+}

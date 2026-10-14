@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "phase11c_reused": 250101,
+  "phase11c_text_mismatches": 0,
+  "phase11c_score_mismatches": 0,
+  "fallback_reused": 13,
+  "fallback_missing": 0,
+  "fallback_text_mismatches": 0,
+  "fallback_score_mismatches": 0,
+  "expected_total_reused": 250114
+}

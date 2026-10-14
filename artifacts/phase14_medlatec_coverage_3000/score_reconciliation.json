@@ -1,0 +1,163 @@
+{
+  "total": 254400,
+  "reused": 250114,
+  "newly_seeded": 250114,
+  "missing": 4286,
+  "source_contributions": {
+    "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite": 250101,
+    "data\\source_census\\phase11b_new_corpus\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase11a_bottleneck\\broad_probe\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10f_full_medlatec_10000\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10e_g1a10k_g6b15k_g5a11200_union\\round1\\source_scores.sqlite": 13,
+    "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite": 0,
+    "data\\source_census\\round1\\source_scores.sqlite": 0,
+    "data\\retrieval\\phase10c1_early_release\\C1\\rerank_scores.sqlite": 0,
+    "data\\retrieval\\phase10c1_early_release\\C2\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S1\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S2\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S3\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S4\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S5\\rerank_scores.sqlite": 0,
+    "data\\source_relevance_probe\\S6\\rerank_scores.sqlite": 0
+  },
+  "value_mismatches": 0,
+  "sqlite_integrity": "ok",
+  "reuse_fraction": 0.9831525157232704,
+  "phase14_medlatec_candidate_rows": 19200,
+  "historical_caches_audited": [
+    {
+      "path": "data\\source_census\\phase11c_broad_existing_new\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 254400,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase11b_new_corpus\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 134400,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase11a_bottleneck\\m16\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 172800,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase11a_bottleneck\\broad_probe\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 124800,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10f_full_medlatec_10000\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 86400,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10f_medlatec_10000\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 9600,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10e_g1a10k_g6b15k_g5a11200_union\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 86400,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10e_g1a_10010\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 28800,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10e_g6b_15000\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 28800,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\phase10e_g5a_11200\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 28800,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_census\\round1\\source_scores.sqlite",
+      "table": "pairs",
+      "rows": 582000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\retrieval\\phase10c1_early_release\\C1\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\retrieval\\phase10c1_early_release\\C2\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S1\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S2\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S3\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S4\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S5\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    },
+    {
+      "path": "data\\source_relevance_probe\\S6\\rerank_scores.sqlite",
+      "table": "scores",
+      "rows": 120000,
+      "integrity": "ok"
+    }
+  ],
+  "candidate_parts_copied_from_frozen_phase11c": [
+    "benhviennhitrunguong_gov_vn.json",
+    "benhviennhitrunguong_gov_vn.parquet",
+    "BROAD_EXTRA.json",
+    "BROAD_EXTRA.parquet",
+    "cancer_39_net.json",
+    "cancer_39_net.parquet",
+    "hellobacsi_com.json",
+    "hellobacsi_com.parquet",
+    "suckhoedoisong_vn.json",
+    "suckhoedoisong_vn.parquet",
+    "tiemchunglongchau_com_vn.json",
+    "tiemchunglongchau_com_vn.parquet",
+    "zydcd_com.json",
+    "zydcd_com.parquet"
+  ]
+}

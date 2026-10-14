@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "candidate_rows": 19200,
+  "unique_exact_keys": 19200,
+  "queries": 1200,
+  "minimum_candidates_per_query": 16,
+  "maximum_candidates_per_query": 16,
+  "duplicate_exact_keys": 0,
+  "duplicate_chunks_within_query": 0,
+  "unknown_chunk_ids": 0,
+  "doc_id_ownership_mismatches": 0,
+  "source_mismatches": 0,
+  "unique_doc_ids": 7235,
+  "non_official_doc_ids": 0,
+  "checkpoint_sqlite_integrity": "ok",
+  "candidate_sha256": "c875d0b81b805c1f0ca791cfa67c5f6996c407ad78ecd64da195ea9f52d70a88"
+}
