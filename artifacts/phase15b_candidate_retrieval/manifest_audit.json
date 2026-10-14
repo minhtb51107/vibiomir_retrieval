@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "documents": 37786,
+  "domains": 38,
+  "source_files": [
+    "data/pubmed_phase12/retrieval/round1/combined_documents.parquet",
+    "data/source_census/phase11a_bottleneck/broad/documents.parquet",
+    "data/source_census/phase14_medlatec_coverage_3000/documents.parquet"
+  ],
+  "official_missing": 0,
+  "url_mismatches": 0,
+  "content_missing": 0,
+  "duplicate_doc_ids": 0,
+  "source_text_bytes": 487528544,
+  "projected_index_bytes_conservative": 1373592816,
+  "manifest_sha256": "1f8b934263ff8f931222b3a7a0ae880ac1c96b5828d2bb1d32bf54d4979cdbfd"
+}

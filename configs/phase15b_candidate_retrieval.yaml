@@ -1,0 +1,38 @@
+version: 1
+run_id: phase15b_candidate_retrieval_pilot
+seed: vibiomir-phase15b-vietnamese-bm25-v1
+inputs:
+  official_corpus: data/raw/links_corpus_vi_en_zh.parquet
+  queries: data/raw/query.parquet
+  registry: data/system_upgrade_m15/canonical_document_registry.parquet
+  broad_documents: data/source_census/phase11a_bottleneck/broad/documents.parquet
+  broad_chunks: data/source_census/phase11a_bottleneck/broad/chunks.parquet
+  closure_documents: data/pubmed_phase12/retrieval/round1/combined_documents.parquet
+  closure_chunks: data/pubmed_phase12/retrieval/round1/combined_chunks.parquet
+  phase14_documents: data/source_census/phase14_medlatec_coverage_3000/documents.parquet
+  phase14_chunks: data/source_census/phase14_medlatec_coverage_3000/chunks.parquet
+  phase14_ranked_chunks: data/source_census/phase14_medlatec_coverage_3000/rankings/PHASE14/reranked_chunks.parquet
+  phase14_scores: data/source_census/phase14_medlatec_coverage_3000/round1/source_scores.sqlite
+  pilot_scores: data/retrieval/phase7_reranking/rerank_scores.sqlite
+  phase14_json: submissions/00_READY_TO_UPLOAD/phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.json
+  phase14_zip: submissions/00_READY_TO_UPLOAD/phase14_MEDLATEC_COVERAGE_3000_DOCS20_CHUNKS40.zip
+outputs:
+  data: data/source_census/phase15b_candidate_retrieval
+  artifacts: artifacts/phase15b_candidate_retrieval
+  run: artifacts/runs/phase15b_candidate_retrieval_pilot
+  manifest: data/source_census/phase15b_candidate_retrieval/vietnamese_document_manifest.parquet
+  index: data/source_census/phase15b_candidate_retrieval/vietnamese_documents_fts5.sqlite
+  candidates: data/source_census/phase15b_candidate_retrieval/pilot_candidates.sqlite
+contracts:
+  phase14_json_sha256: 1a99cff3c211b01f594f8fa5502e304c1a4c8b1526439d772c8802a89436167e
+  phase14_zip_sha256: 44a125ecba80691dcc0714b5977b48f1a8d35c26cbe8a21f8298e82bb49002c8
+  official_query_count: 1200
+  pilot_query_count: 120
+  lexical_depth: 100
+  evidence_chunks_per_document: 2
+  model_inference: 0
+resources:
+  maximum_incremental_rss_mib: 800
+  maximum_additional_disk_gib: 1
+  minimum_free_disk_gib: 20
+  index_batch_rows: 128

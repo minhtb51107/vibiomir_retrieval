@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "claim_boundary": "Candidate structure only; lexical-only is UNKNOWN relevance and is not Recall/F2 evidence.",
+  "queries": 120,
+  "lexical_candidate_rows": 12000,
+  "unique_candidate_documents": 9329,
+  "phase14_candidate_overlap": {
+    "mean_at_100": 14.55,
+    "min": 0,
+    "max": 48,
+    "total_shared_slots": 1746
+  },
+  "lexical_only_query_document_pairs": 10254,
+  "duplicate_content_exposure_slots": 82,
+  "source_diversity": {
+    "mean_domains_per_query": 8.983333333333333,
+    "min": 4,
+    "max": 17
+  },
+  "evidence_pairs": 23973,
+  "candidate_documents_without_original_chunks": 0,
+  "exact_scores_reused": 1607,
+  "genuinely_missing_reranker_pairs": 22366,
+  "new_model_inference": 0,
+  "determinism_mismatches": 0,
+  "provenance_owner_mismatches": 0,
+  "frozen_phase14": true,
+  "phase14_hashes": {
+    "json": "1a99cff3c211b01f594f8fa5502e304c1a4c8b1526439d772c8802a89436167e",
+    "zip": "44a125ecba80691dcc0714b5977b48f1a8d35c26cbe8a21f8298e82bb49002c8"
+  },
+  "index": {
+    "passed": true,
+    "documents": 37786,
+    "resumed_documents": 0,
+    "integrity": "ok",
+    "seconds": 47.822005900001386,
+    "index_bytes": 186785792,
+    "index_sha256": "12be49f188b040b4946b17dfd13bd8b4e9fde83d5bc6e77b4bef3db180a04bf3"
+  },
+  "retrieval": {
+    "passed": true,
+    "queries": 120,
+    "candidate_rows": 12000,
+    "latency_seconds": {
+      "median": 0.7119794499994896,
+      "max": 5.172594099996786
+    }
+  }
+}

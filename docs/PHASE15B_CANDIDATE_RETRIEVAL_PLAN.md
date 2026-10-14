@@ -76,4 +76,25 @@ hoặc exact missing reranker work vượt budget phải khai báo trước infe
 - Kết quả cấu trúc tốt chỉ cho phép đề xuất một reranking budget nhỏ sau phê
   duyệt; không cho phép tạo ZIP hay tuyên bố relevance improvement.
 
-Trạng thái: **PLAN_ONLY — NOT_LAUNCHED**.
+## Kết quả pilot
+
+- Trạng thái kỹ thuật: **COMPLETE / GO_FOR_BOUNDED_RELEVANCE_EVALUATION**.
+- Manifest đóng 37.786 tài liệu tiếng Việt NEW-official thuộc 38 domain; không
+  thiếu ID, URL hay content provenance.
+- 120 query sinh 12.000 BM25 rows và 9.329 tài liệu distinct. So với universe
+  Phase 14 cùng query, có 10.254 lexical-only query-document pairs; cả 120 query
+  đều có ít nhất một lexical-only candidate.
+- Mean overlap là 14,55/100; exact duplicate-content exposure là 82/12.000
+  slots; mean source diversity là 8,98 domain/query.
+- Evidence pool hai chunk/document có 23.973 exact keys: 1.607 reusable và
+  22.366 chưa có reranker score. Không có inference nào được chạy.
+- Official-ID, provenance, ownership, determinism, SQLite integrity và frozen
+  Phase 14 hashes đều PASS. Không tạo ZIP.
+
+Giới hạn: đây là candidate-independence evidence, không phải relevance. Audit
+pilot chưa ánh xạ cờ boilerplate cấp document/chunk cho arm mới; 82 duplicate
+slots không thể được diễn giải thay cho boilerplate. Benchmark discovery hiện
+không có held-out relevance set đủ tin cậy, nên chưa được phép rerank hoặc mở
+rộng 1.200 query.
+
+Trạng thái khoa học: **NO-GO_FOR_RERANKING; GO_ONLY_FOR_BOUNDED_AUTOMATIC_EVIDENCE_GATE**.

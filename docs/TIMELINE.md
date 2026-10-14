@@ -112,3 +112,15 @@ so its date and commit are explicitly unknown.
 - Exact Phase 14 replay and both zero-inference ranking variants passed all technical gates.
 - No trustworthy relevance labels exist, so status is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no submission ZIP was created.
 - Phase 14 FINAL `0.0533` remains frozen BEST. Phase 15B is plan-only: one 120-query Vietnamese unified document-BM25 candidate pilot with mandatory overall/stage progress telemetry.
+
+### 2026-10-15 — Phase 15B Vietnamese BM25 pilot
+
+- Built a 37,786-document, 38-domain NEW-official Vietnamese FTS5 index and
+  completed the deterministic 120-query pilot with actual stage/overall
+  progress telemetry.
+- BM25 contributed 10,254 lexical-only query-document pairs; all 120 queries
+  received an independent lexical signal. Integrity, provenance, determinism,
+  resource limits and frozen Phase 14 hashes passed with zero inference.
+- Candidate novelty is not relevance. With no trustworthy held-out labels,
+  the project is GO only for a bounded automatic evidence gate and remains
+  NO-GO for reranking, full scale-up, ZIP generation or leaderboard use.

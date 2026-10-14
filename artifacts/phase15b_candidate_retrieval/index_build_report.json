@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "documents": 37786,
+  "resumed_documents": 0,
+  "integrity": "ok",
+  "seconds": 47.822005900001386,
+  "index_bytes": 186785792,
+  "index_sha256": "12be49f188b040b4946b17dfd13bd8b4e9fde83d5bc6e77b4bef3db180a04bf3"
+}

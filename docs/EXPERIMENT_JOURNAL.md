@@ -995,3 +995,24 @@ document-BM25 pilot over existing local content. It does not repeat failed
 PubMed PRF, sparse bilingual anchors or blocked translation. It must integrate
 the shared overall/stage progress contract before launch and performs no crawl,
 embedding or reranker inference in the pilot.
+
+### Phase 15B — unified Vietnamese document BM25 pilot
+
+The CPU-only pilot indexed 37,786 provenance-valid NEW-official Vietnamese
+documents across 38 domains in a 186,785,792-byte contentless SQLite FTS5
+index. All 120 deterministic stratified queries returned Top-100: 12,000 rows,
+9,329 distinct documents, and 10,254 query-document pairs absent from the
+Phase 14 candidate universe. Every query had lexical-only candidates (52–100,
+median 86). Mean Phase 14 overlap was 14.55/100 and mean domain diversity was
+8.98/query. The bounded evidence estimate contains 23,973 exact keys; 1,607
+are reusable and 22,366 are unscored. No inference ran.
+
+All official-ID, provenance, ownership, determinism, index-integrity, resource,
+and frozen Phase 14 gates passed. Exact duplicate-content exposure was
+82/12,000 slots; a Phase15B-specific boilerplate mapping was not measured and
+must not be inferred from the Phase 14 35-row diagnostic. Novelty and diversity
+are structural evidence only. Existing relevance assets remain insufficient:
+the 21 silver pairs are title-derived (only four VI), and there is no verified
+external benchmark mapped to NEW-official IDs. Decision: GO only for a bounded
+automatic evidence gate; NO-GO for reranking, 1,200-query scale-up, packaging,
+or any F2 claim.

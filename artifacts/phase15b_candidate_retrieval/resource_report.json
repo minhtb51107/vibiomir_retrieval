@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "frozen_phase14": true,
+  "phase14_hashes": {
+    "json": "1a99cff3c211b01f594f8fa5502e304c1a4c8b1526439d772c8802a89436167e",
+    "zip": "44a125ecba80691dcc0714b5977b48f1a8d35c26cbe8a21f8298e82bb49002c8"
+  },
+  "manifest": {
+    "passed": true,
+    "documents": 37786,
+    "domains": 38,
+    "source_files": [
+      "data/pubmed_phase12/retrieval/round1/combined_documents.parquet",
+      "data/source_census/phase11a_bottleneck/broad/documents.parquet",
+      "data/source_census/phase14_medlatec_coverage_3000/documents.parquet"
+    ],
+    "official_missing": 0,
+    "url_mismatches": 0,
+    "content_missing": 0,
+    "duplicate_doc_ids": 0,
+    "source_text_bytes": 487528544,
+    "projected_index_bytes_conservative": 1373592816,
+    "manifest_sha256": "1f8b934263ff8f931222b3a7a0ae880ac1c96b5828d2bb1d32bf54d4979cdbfd"
+  },
+  "free_disk_gib": 125.044189453125,
+  "projected_additional_disk_gib": 0.2998701948672533,
+  "preflight_rss_mib": 245.01953125,
+  "projection_basis": {
+    "sample_documents": 768,
+    "sample_text_bytes": 9543219,
+    "sample_index_bytes": 5042176,
+    "safety_factor": 1.25,
+    "projected_index_bytes": 321983170,
+    "engine": "SQLite FTS5 contentless"
+  },
+  "limits": {
+    "maximum_incremental_rss_mib": 800,
+    "maximum_additional_disk_gib": 1,
+    "minimum_free_disk_gib": 20,
+    "index_batch_rows": 128
+  },
+  "model_inference": 0,
+  "actual_index_bytes": 186785792,
+  "incremental_rss_mib": 101.30859375,
+  "free_disk_gib_after": 124.86808395385742,
+  "passed_runtime_limits": true
+}

@@ -8,7 +8,7 @@ English-associated sources. Organizer evaluation reports document and chunk
 precision, recall, and recall-weighted F2 metrics.
 
 > [!IMPORTANT]
-> ## Current status — Phase 15A closed; Phase 15B plan-only
+> ## Current status — Phase 15B pilot complete; relevance gate required
 >
 > Organizer-confirmed scaling now shows both depth effects and substantial
 > source-density differences:
@@ -68,8 +68,8 @@ precision, recall, and recall-weighted F2 metrics.
 > `0.0533` with Docs F2 `0.0536` and Chunks F2 `0.0529`. Phase 15A reproduced
 > that package exactly and completed two CPU-only ranking variants, but neither
 > can be selected without trustworthy relevance evidence. Its terminal status
-> is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no ZIP was created. Phase 15B is
-> currently plan-only: one bounded Vietnamese unified document-BM25 candidate
+> is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no ZIP was created. Phase 15B
+> completed one bounded Vietnamese unified document-BM25 candidate
 > pilot over existing local content. No new worker has been launched.
 
 ## Current ready submissions
