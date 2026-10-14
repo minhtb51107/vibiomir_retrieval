@@ -1,0 +1,31 @@
+{
+  "status": "AWAITING_COLAB_RESULT",
+  "a100_equivalence_passed": false,
+  "reason": "No A100 scores have been returned; local tooling validation is not numerical hardware equivalence.",
+  "pair_count": 200,
+  "unique_key_count": 200,
+  "reference_scores_finite": true,
+  "zip_crc_passed": true,
+  "text_hash_validation_passed": true,
+  "deterministic_regeneration_byte_identical": true,
+  "package_path": "artifacts/colab_reranker_poc/reranker_poc_200.zip",
+  "package_size_bytes": 131944,
+  "package_sha256": "6e72e975889f0763ad93b58746fea7c174fa01f674afad70542bbc5be9fe9891",
+  "payload_sha256": "d59852679941a9512ce27ffc230ef6074b46ba79a57c6f132848ff48a1fea30b",
+  "source_score_cache_sha256": "112d2ff46944cca4336b26ab7b439c83bd3f30d399e1eddcff2111d8bc00d937",
+  "distribution": {
+    "language": {"en": 84, "vi": 71, "zh": 45},
+    "length": {"short_lt_400": 91, "medium_400_1199": 65, "long_ge_1200": 44},
+    "close_score_rows": 80,
+    "stratified_rows": 120
+  },
+  "acceptance_requires": {
+    "exact_keys_and_text_hashes": true,
+    "finite_scores": true,
+    "maximum_absolute_difference_lte": 0.005859375,
+    "query_local_ordering_changes": 0,
+    "exact_production_contract": true
+  },
+  "production_caches_modified": 0,
+  "model_inference_run_locally": 0
+}

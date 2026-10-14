@@ -86,3 +86,9 @@ so its date and commit are explicitly unknown.
 - Pinned `Helsinki-NLP/opus-mt-vi-en` to official revision `c8d2853e77f5fae31124d993e0b35176b1c8914e` (Apache-2.0); no cached local copy existed.
 - Disk passed, but free physical RAM fell to 772.2 MiB versus a measured, evidence-based minimum of 1.25 GiB (1.5 GiB recommended), so the model was neither downloaded nor loaded.
 - The 60-query frozen diagnostic remains untouched; translation accuracy, PubMed Top-5 behavior, and the 1,200-query rollout decision remain UNKNOWN. No TF-IDF patch or new retrieval phase started.
+
+### 2026-10-14 — Bounded Colab reranker portability harness
+
+- Exported a deterministic 200-pair proof-of-concept package from already cached Phase 12 scores, covering EN/VI/ZH, available passage-length strata, and query-local close scores.
+- Added a pinned FP16 batch-2 Colab runner and a strict local dry-run verifier that cannot overwrite production scores.
+- Local structure, CRC, hashes, and tests pass; A100 numerical equivalence and performance remain `AWAITING_COLAB_RESULT` until the manual Colab run is returned.
