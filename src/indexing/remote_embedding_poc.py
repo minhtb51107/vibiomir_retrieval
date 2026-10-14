@@ -31,8 +31,12 @@ CONTRACT: dict[str, Any] = {
     "normalization": "sentence_transformers_L2",
     "output_dtype": "float32",
     "text_normalization": "NFC_then_split_join",
-    "input_order": "package_row_order",
+    "input_order": "historical_batch_groups_of_4",
 }
+HISTORICAL_SENTENCE_TRANSFORMERS_VERSION = "5.7.0"
+HISTORICAL_TRANSFORMERS_VERSION = "4.48.3"
+HISTORICAL_WINDOW_ROWS = 128
+HISTORICAL_FLATTEN_INPUTS = False
 
 
 def _sha256_bytes(value: bytes) -> str:
@@ -80,6 +84,66 @@ def _chunk_ids(path: Path | None) -> set[str]:
     return values
 
 
+def reconstruct_historical_batches(
+    source_rows: list[dict[str, Any]], reused_ids: set[str], *, window_rows: int = HISTORICAL_WINDOW_ROWS,
+) -> tuple[list[list[dict[str, Any]]], int]:
+    """Rebuild the exact padded batches submitted by SentenceTransformer.encode.
+
+    Phase 10E called ``encode(pending, batch_size=4)`` once per 128-row
+    Parquet window. SentenceTransformers 5.7.0 sorts each call's strings by
+    descending character length before slicing batches, then restores output
+    order. Its optional flatten/interleave path was unavailable with the
+    historical Transformers 4.48.3 runtime and was not requested by Phase 10E.
+    """
+    batches: list[list[dict[str, Any]]] = []
+    eligible_rows = 0
+    for window_start in range(0, len(source_rows), window_rows):
+        pending = [row for row in source_rows[window_start:window_start + window_rows] if row["chunk_id"] not in reused_ids]
+        eligible_rows += len(pending)
+        # This deliberately matches SentenceTransformer.encode exactly. Do not
+        # replace with Python's stable sort: numpy's default argsort tie handling
+        # is part of the historical runtime behavior.
+        sorted_indices = np.argsort(np.asarray([-len(str(row["normalized_text"])) for row in pending]))
+        sorted_pending = [pending[int(index)] for index in sorted_indices]
+        for sorted_start in range(0, len(sorted_pending), int(CONTRACT["batch_size"])):
+            group = sorted_pending[sorted_start:sorted_start + int(CONTRACT["batch_size"])]
+            if len(group) != int(CONTRACT["batch_size"]):
+                continue
+            batch_number = sorted_start // int(CONTRACT["batch_size"])
+            batch_id = f"window-{window_start:06d}-batch-{batch_number:03d}"
+            for offset, row in enumerate(group):
+                original_pending_position = pending.index(row)
+                row["historical_window_start"] = window_start
+                row["historical_pending_position"] = original_pending_position
+                row["historical_sorted_position"] = sorted_start + offset
+                row["historical_batch_number"] = batch_number
+                row["historical_batch_id"] = batch_id
+                row["historical_batch_offset"] = offset
+            batches.append(group)
+    return batches, eligible_rows
+
+
+def validate_historical_batch_groups(rows: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
+    batch_size = int(CONTRACT["batch_size"])
+    if len(rows) % batch_size:
+        raise ValueError("package rows do not contain complete historical batches")
+    groups = []
+    seen_ids: set[str] = set()
+    for start in range(0, len(rows), batch_size):
+        group = rows[start:start + batch_size]
+        raw_batch_ids = [row.get("historical_batch_id") for row in group]
+        batch_ids = {str(value) for value in raw_batch_ids}
+        offsets = [int(row.get("historical_batch_offset", -1)) for row in group]
+        if len(batch_ids) != 1 or any(value is None for value in raw_batch_ids) or offsets != list(range(batch_size)):
+            raise ValueError(f"historical batch membership/order mismatch at package row {start}")
+        batch_id = next(iter(batch_ids))
+        if batch_id in seen_ids:
+            raise ValueError(f"historical batch repeated in package: {batch_id}")
+        seen_ids.add(batch_id)
+        groups.append(group)
+    return groups
+
+
 def select_reference_rows(
     chunks_path: Path, *, count: int, seed: str, previous_chunks_path: Path | None = None,
 ) -> list[dict[str, Any]]:
@@ -109,28 +173,20 @@ def select_reference_rows(
             source_rows.append(item)
             row_index += 1
     # Historical streaming inference loaded 128 Parquet rows, removed exact
-    # reused keys, then encoded the remaining pending list with batch=4. Rebuild
-    # those exact batches so Colab sees the same padding/batch context.
+    # reused keys, then SentenceTransformer sorted each pending list by length
+    # before slicing batch=4. Rebuild those actual model-input groups.
     reused_ids = _chunk_ids(previous_chunks_path)
     strata: dict[tuple[tuple[str, ...], tuple[str, ...], tuple[str, ...]], list[list[dict[str, Any]]]] = defaultdict(list)
-    eligible_rows = 0
-    for window_start in range(0, len(source_rows), 128):
-        pending = [row for row in source_rows[window_start:window_start + 128] if row["chunk_id"] not in reused_ids]
-        eligible_rows += len(pending)
-        for pending_start in range(0, len(pending) - 3, 4):
-            group = pending[pending_start:pending_start + 4]
-            key = (
-                tuple(sorted({row["canonical_domain"] for row in group})),
-                tuple(sorted({row["language_signal"] for row in group})),
-                tuple(sorted({row["length_bucket"] for row in group})),
-            )
-            for offset, row in enumerate(group):
-                row["reference_window_start"] = window_start
-                row["reference_pending_batch_start"] = pending_start
-                row["reference_batch_offset"] = offset
-            strata[key].append(group)
+    historical_batches, eligible_rows = reconstruct_historical_batches(source_rows, reused_ids)
+    for group in historical_batches:
+        key = (
+            tuple(sorted({row["canonical_domain"] for row in group})),
+            tuple(sorted({row["language_signal"] for row in group})),
+            tuple(sorted({row["length_bucket"] for row in group})),
+        )
+        strata[key].append(group)
     for key, groups in strata.items():
-        groups.sort(key=lambda group: (_stable(seed, *key, group[0]["chunk_id"]), group[0]["reference_row_index"]))
+        groups.sort(key=lambda group: (_stable(seed, *key, group[0]["historical_batch_id"]), group[0]["reference_row_index"]))
     chosen_groups: list[list[dict[str, Any]]] = []
     positions = {key: 0 for key in strata}
     ordered_keys = sorted(strata, key=lambda key: (_stable(seed, "stratum", *key), key))
@@ -147,12 +203,13 @@ def select_reference_rows(
                     break
         if not advanced:
             raise ValueError(f"only {len(chosen_groups) * 4} batch-context-preserving reference rows are available")
-    chosen_groups.sort(key=lambda group: (_stable(seed, "output", group[0]["chunk_id"]), group[0]["reference_row_index"]))
+    chosen_groups.sort(key=lambda group: (_stable(seed, "output", group[0]["historical_batch_id"]), group[0]["reference_row_index"]))
     chosen = [row for group in chosen_groups for row in group]
     for sample_index, row in enumerate(chosen):
         row["sample_index"] = sample_index
     if len({row["chunk_id"] for row in chosen}) != count:
         raise ValueError("selected reference chunk IDs are not unique")
+    validate_historical_batch_groups(chosen)
     if previous_chunks_path is not None and eligible_rows != len(source_rows) - len(reused_ids & {row["chunk_id"] for row in source_rows}):
         raise RuntimeError("newly embedded reference-row accounting mismatch")
     return chosen
@@ -191,11 +248,20 @@ def export_package(
         distribution[f"language:{row['language_signal']}"] += 1
         distribution[f"length:{row['length_bucket']}"] += 1
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "purpose": "bounded_colab_bge_m3_embedding_equivalence_poc",
         "row_count": len(rows),
         "selection_seed": seed,
         "contract": CONTRACT,
+        "historical_batch_reconstruction": {
+            "sentence_transformers_version": HISTORICAL_SENTENCE_TRANSFORMERS_VERSION,
+            "transformers_version": HISTORICAL_TRANSFORMERS_VERSION,
+            "window_rows": HISTORICAL_WINDOW_ROWS,
+            "batch_size": int(CONTRACT["batch_size"]),
+            "sort_key": "descending_normalized_string_character_length_via_numpy_argsort",
+            "flatten_interleave_enabled": HISTORICAL_FLATTEN_INPUTS,
+            "selected_complete_batch_groups": len(rows) // int(CONTRACT["batch_size"]),
+        },
         "chunks_payload": "chunks.jsonl",
         "chunks_payload_sha256": _sha256_bytes(payload),
         "reference_vectors": "reference_vectors.f32",
@@ -253,6 +319,17 @@ def load_package(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]], np.n
         vector_bytes = archive.read("reference_vectors.f32")
     if manifest.get("contract") != CONTRACT:
         raise ValueError("package embedding contract mismatch")
+    reconstruction = manifest.get("historical_batch_reconstruction") or {}
+    if reconstruction != {
+        "sentence_transformers_version": HISTORICAL_SENTENCE_TRANSFORMERS_VERSION,
+        "transformers_version": HISTORICAL_TRANSFORMERS_VERSION,
+        "window_rows": HISTORICAL_WINDOW_ROWS,
+        "batch_size": int(CONTRACT["batch_size"]),
+        "sort_key": "descending_normalized_string_character_length_via_numpy_argsort",
+        "flatten_interleave_enabled": HISTORICAL_FLATTEN_INPUTS,
+        "selected_complete_batch_groups": int(manifest.get("row_count", 0)) // int(CONTRACT["batch_size"]),
+    }:
+        raise ValueError("historical batch reconstruction contract mismatch")
     if _sha256_bytes(payload) != manifest.get("chunks_payload_sha256"):
         raise ValueError("chunk payload hash mismatch")
     if _sha256_bytes(vector_bytes) != manifest.get("reference_vectors_sha256"):
@@ -266,6 +343,7 @@ def load_package(path: Path) -> tuple[dict[str, Any], list[dict[str, Any]], np.n
             raise ValueError("package sample order mismatch")
         if _sha256_bytes(normalize_text(str(row["normalized_text"])).encode("utf-8")) != row["text_sha256"]:
             raise ValueError(f"text hash mismatch: {row['chunk_id']}")
+    validate_historical_batch_groups(rows)
     vectors = np.frombuffer(vector_bytes, dtype=np.float32)
     if vectors.size != count * DIMENSION:
         raise ValueError("reference vector dimensions are invalid")
@@ -289,6 +367,27 @@ def verify_results(package_path: Path, results_path: Path) -> dict[str, Any]:
     expected_identities = [{"sample_index": row["sample_index"], "chunk_id": row["chunk_id"], "text_sha256": row["text_sha256"]} for row in rows]
     if identities != expected_identities:
         raise ValueError("result row identity/order/hash mismatch")
+    expected_group_calls = [
+        {
+            "historical_batch_id": group[0]["historical_batch_id"],
+            "member_chunk_ids": [row["chunk_id"] for row in group],
+        }
+        for group in validate_historical_batch_groups(rows)
+    ]
+    runtime = result.get("runtime") or {}
+    actual_group_calls = [
+        {
+            "historical_batch_id": group.get("historical_batch_id"),
+            "member_chunk_ids": group.get("member_chunk_ids"),
+        }
+        for group in runtime.get("historical_group_calls", [])
+    ]
+    if (
+        runtime.get("combined_encode_call_used") is not False
+        or int(runtime.get("historical_group_count", -1)) != len(expected_group_calls)
+        or actual_group_calls != expected_group_calls
+    ):
+        raise ValueError("result did not preserve isolated historical batch membership")
     if _sha256_bytes(candidate_bytes) != result.get("candidate_vectors_sha256"):
         raise ValueError("candidate vector hash mismatch")
     candidate = np.frombuffer(candidate_bytes, dtype=np.float32)

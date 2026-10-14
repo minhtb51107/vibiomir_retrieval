@@ -3,10 +3,11 @@
 Colab commands:
   !pip -q install sentence-transformers==5.7.0 transformers==4.48.3 psutil
   !python colab_embedding_poc.py --package phase14_bge_m3_embedding_poc_200.zip \
-      --output colab_embedding_results.zip --benchmark-larger-batches
+      --output colab_embedding_results.zip
 
-Only the batch=4 vectors are exported for equivalence. Larger batches are
-performance telemetry and must never be imported as production vectors.
+Every historical group of four is encoded in a separate ``model.encode`` call.
+Groups are never combined, because that would change SentenceTransformers'
+length-sorted batch membership and invalidate equivalence.
 """
 from __future__ import annotations
 
@@ -15,7 +16,6 @@ import hashlib
 import json
 import os
 import platform
-import resource
 import time
 import unicodedata
 import zipfile
@@ -29,7 +29,7 @@ CONTRACT = {
     "dimension": 1024, "batch_size": 4, "max_length": 512,
     "precision": "float16_cuda", "normalization": "sentence_transformers_L2",
     "output_dtype": "float32", "text_normalization": "NFC_then_split_join",
-    "input_order": "package_row_order",
+    "input_order": "historical_batch_groups_of_4",
 }
 
 
@@ -57,6 +57,15 @@ def load_package(path: Path):
         payload = archive.read("chunks.jsonl")
     if manifest.get("contract") != CONTRACT:
         raise RuntimeError("input package model contract mismatch")
+    reconstruction = manifest.get("historical_batch_reconstruction") or {}
+    if (
+        reconstruction.get("sentence_transformers_version") != "5.7.0"
+        or reconstruction.get("transformers_version") != "4.48.3"
+        or reconstruction.get("window_rows") != 128
+        or reconstruction.get("batch_size") != 4
+        or reconstruction.get("flatten_interleave_enabled") is not False
+    ):
+        raise RuntimeError("historical batch reconstruction contract mismatch")
     if sha256_bytes(payload) != manifest.get("chunks_payload_sha256"):
         raise RuntimeError("input chunk payload hash mismatch")
     rows = [json.loads(line) for line in payload.decode("utf-8").splitlines() if line]
@@ -66,9 +75,27 @@ def load_package(path: Path):
         text = normalize_text(str(row["normalized_text"]))
         if int(row["sample_index"]) != index or sha256_bytes(text.encode("utf-8")) != row["text_sha256"]:
             raise RuntimeError(f"input row identity/hash mismatch at {index}")
-        if int(row["reference_batch_offset"]) != index % 4:
-            raise RuntimeError("input rows do not preserve the historical batch=4 context")
+    group_rows(rows)
     return manifest, rows
+
+
+def group_rows(rows):
+    if len(rows) % 4:
+        raise RuntimeError("input does not contain complete historical groups")
+    groups = []
+    seen = set()
+    for start in range(0, len(rows), 4):
+        group = rows[start:start + 4]
+        batch_ids = {row.get("historical_batch_id") for row in group}
+        offsets = [int(row.get("historical_batch_offset", -1)) for row in group]
+        if len(batch_ids) != 1 or None in batch_ids or offsets != [0, 1, 2, 3]:
+            raise RuntimeError(f"historical group membership/order mismatch at row {start}")
+        batch_id = next(iter(batch_ids))
+        if batch_id in seen:
+            raise RuntimeError(f"historical group repeated: {batch_id}")
+        seen.add(batch_id)
+        groups.append(group)
+    return groups
 
 
 def encode(model, texts, batch_size: int):
@@ -83,11 +110,31 @@ def encode(model, texts, batch_size: int):
     return np.asarray(vectors, dtype=np.float32), time.perf_counter() - started
 
 
+def encode_historical_groups(model, rows, *, encode_fn=encode):
+    import numpy as np
+    group_vectors = []
+    group_telemetry = []
+    started = time.perf_counter()
+    for group in group_rows(rows):
+        texts = [normalize_text(str(row["normalized_text"])) for row in group]
+        vectors_here, seconds = encode_fn(model, texts, 4)
+        vectors_here = np.asarray(vectors_here, dtype=np.float32)
+        if vectors_here.shape != (4, 1024):
+            raise RuntimeError(f"invalid historical-group vector shape: {vectors_here.shape}")
+        group_vectors.append(vectors_here)
+        group_telemetry.append({
+            "historical_batch_id": group[0]["historical_batch_id"],
+            "rows": 4,
+            "seconds": seconds,
+            "member_chunk_ids": [row["chunk_id"] for row in group],
+        })
+    return np.concatenate(group_vectors, axis=0), time.perf_counter() - started, group_telemetry
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--package", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("colab_embedding_results.zip"))
-    parser.add_argument("--benchmark-larger-batches", action="store_true")
     args = parser.parse_args()
     import numpy
     import psutil
@@ -98,7 +145,7 @@ def main() -> int:
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is required; select a Colab L4 or A100 runtime")
     manifest, rows = load_package(args.package)
-    texts = [normalize_text(str(row["normalized_text"])) for row in rows]
+    groups = group_rows(rows)
     process = psutil.Process()
     rss_before = process.memory_info().rss
     load_started = time.perf_counter()
@@ -112,26 +159,15 @@ def main() -> int:
     model.encode(["warmup"], batch_size=1, show_progress_bar=False, convert_to_numpy=True, normalize_embeddings=True)
     torch.cuda.synchronize()
     torch.cuda.reset_peak_memory_stats()
-    vectors, elapsed = encode(model, texts, 4)
+    vectors, elapsed, group_telemetry = encode_historical_groups(model, rows)
     if vectors.shape != (len(rows), 1024) or not numpy.isfinite(vectors).all():
         raise RuntimeError(f"invalid candidate vectors: {vectors.shape}")
     peak_vram = torch.cuda.max_memory_allocated()
-    telemetry = []
-    if args.benchmark_larger_batches:
-        for batch_size in (8, 16, 32):
-            torch.cuda.empty_cache()
-            torch.cuda.reset_peak_memory_stats()
-            try:
-                _, seconds = encode(model, texts, batch_size)
-                telemetry.append({
-                    "batch_size": batch_size, "rows": len(rows), "seconds": seconds,
-                    "rows_per_second": len(rows) / seconds,
-                    "peak_vram_bytes": torch.cuda.max_memory_allocated(),
-                    "vectors_used_for_equivalence": False,
-                })
-            except torch.cuda.OutOfMemoryError as error:
-                telemetry.append({"batch_size": batch_size, "status": "OOM", "error": str(error), "vectors_used_for_equivalence": False})
-                torch.cuda.empty_cache()
+    try:
+        import resource
+        peak_rss_bytes = int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024)
+    except ImportError:
+        peak_rss_bytes = int(process.memory_info().peak_wset)
     vector_bytes = vectors.tobytes(order="C")
     result = {
         "schema_version": 1,
@@ -146,8 +182,10 @@ def main() -> int:
             "model_load_seconds": load_seconds, "batch4_embedding_seconds": elapsed,
             "rows_per_second": len(rows) / elapsed, "rss_before_bytes": rss_before,
             "rss_after_bytes": process.memory_info().rss, "peak_vram_bytes": peak_vram,
-            "peak_rss_bytes": int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024),
-            "larger_batch_telemetry": telemetry,
+            "peak_rss_bytes": peak_rss_bytes,
+            "historical_group_calls": group_telemetry,
+            "historical_group_count": len(groups),
+            "combined_encode_call_used": False,
         },
         "hardware": {
             "gpu": torch.cuda.get_device_name(0), "cuda_runtime": torch.version.cuda,

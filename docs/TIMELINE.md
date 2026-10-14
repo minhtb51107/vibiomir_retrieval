@@ -98,3 +98,4 @@ so its date and commit are explicitly unknown.
 - Completed the bounded Medlatec acquisition boundary as 2,996 usable documents and 58,839 unique chunks; extraction and source-span reconstruction gates passed.
 - Exact-duplicate analysis identified 32,762 chunk slots (55.68% of all chunks) as site boilerplate or related-article navigation risk; no dataset rows were altered.
 - Exported a deterministic 200-row, batch-context-preserving BGE-M3 reference package. Full embedding remains stopped at `AWAITING_COLAB_EMBEDDING_EQUIVALENCE`; reranker A100 score import remains prohibited after its failed equivalence test.
+- Corrected the Phase 14 embedding PoC to reproduce SentenceTransformers' historical per-window length sort before batch slicing. The new runner encodes 50 recovered batch-4 groups independently; no equivalence claim is made until a real Colab result is verified.

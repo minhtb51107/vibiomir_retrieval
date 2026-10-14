@@ -14,9 +14,11 @@ Trong 58.839 chunk, 32.893 vị trí (55,90%) thuộc 353 nhóm văn bản trùn
 
 ## PoC BGE-M3
 
-Gói PoC lấy 200 chunk từ Phase 10E G1A, nơi Parquet 131.166 hàng khớp chính xác vector `float32` 131.166 × 1.024. Bộ chọn loại 26.116 hàng vector tái sử dụng từ depth1000 và chỉ lấy trong 105.050 hàng thực sự được encode bởi streaming Phase 10E. Mẫu có 105 Medlatec và 95 Vinmec; 46/83/71 hàng ngắn-vừa-dài.
+Gói PoC lấy 200 chunk từ Phase 10E G1A, nơi Parquet 131.166 hàng khớp chính xác vector `float32` 131.166 × 1.024. Bộ chọn loại 26.116 hàng vector tái sử dụng từ depth1000 và chỉ lấy trong 105.050 hàng thực sự được encode bởi streaming Phase 10E. Mẫu mới có 95 Medlatec và 105 Vinmec; 58/84/58 hàng ngắn-vừa-dài.
 
-Mẫu giữ nguyên 50 batch bốn hàng liên tiếp, căn theo chỉ số Parquet gốc. Pipeline lịch sử dùng batch 4 trong cửa sổ 128 hàng, nên cách này giữ đúng padding/batch context thay vì ghép các hàng rời rạc.
+PoC cũ đã ghép bốn hàng theo thứ tự `pending`, nhưng đó chưa phải batch thực tế. Môi trường Phase 10E còn giữ `sentence-transformers==5.7.0` và `transformers==4.48.3`; metadata của package trong `.venv` có thời điểm 2026-10-03, trước artifact embedding Phase 10E ngày 2026-10-09. `SentenceTransformer.encode()` áp dụng `np.argsort(-len(normalized_text))` riêng cho danh sách pending của từng cửa sổ 128 rồi mới cắt batch 4; sau inference nó mới hoàn nguyên thứ tự vector. Nhánh flatten/interleave không khả dụng với Transformers 4.48.3 và Phase 10E không yêu cầu Flash Attention.
+
+Gói sửa đổi khôi phục đúng 50 batch hoàn chỉnh từ 39 cửa sổ lịch sử, sau khi loại reused rows. Mỗi hàng lưu window, vị trí pending, vị trí sau sort, batch ID và offset. Runner Colab gọi `model.encode()` độc lập đúng 50 lần, mỗi lần chỉ bốn thành viên của một batch lịch sử; tuyệt đối không encode chung 200 văn bản.
 
 Contract cố định:
 
@@ -42,8 +44,7 @@ Chọn GPU L4 hoặc A100 rồi chạy:
 !pip -q install sentence-transformers==5.7.0 transformers==4.48.3 psutil
 !python colab_embedding_poc.py \
   --package phase14_bge_m3_embedding_poc_200.zip \
-  --output colab_embedding_results.zip \
-  --benchmark-larger-batches
+  --output colab_embedding_results.zip
 ```
 
 Tải `colab_embedding_results.zip` về `artifacts/phase14_embedding_poc/`, sau đó xác minh read-only trên Windows:
@@ -53,4 +54,4 @@ Tải `colab_embedding_results.zip` về `artifacts/phase14_embedding_poc/`, sau
   --results artifacts\phase14_embedding_poc\colab_embedding_results.zip
 ```
 
-Benchmark batch lớn chỉ là telemetry. Verifier chỉ so vector batch 4, kiểm tra CRC, package/hash/row identity, dimension, finite, norm, sai lệch từng chiều và cosine. Không có lệnh import production trong PoC này.
+Runner ghi lại batch ID và bốn `chunk_id` của từng lần gọi. Verifier chỉ so vector batch 4, kiểm tra CRC, package/hash/row identity, dimension, finite, norm, sai lệch từng chiều và cosine. Không có lệnh import production trong PoC này; ngưỡng equivalence lịch sử không thay đổi.

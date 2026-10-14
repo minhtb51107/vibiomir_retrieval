@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "purpose": "bounded_colab_bge_m3_embedding_equivalence_poc",
   "row_count": 200,
   "selection_seed": "vibiomir-colab-embedding-poc-v1",
@@ -14,12 +14,21 @@
     "normalization": "sentence_transformers_L2",
     "output_dtype": "float32",
     "text_normalization": "NFC_then_split_join",
-    "input_order": "package_row_order"
+    "input_order": "historical_batch_groups_of_4"
+  },
+  "historical_batch_reconstruction": {
+    "sentence_transformers_version": "5.7.0",
+    "transformers_version": "4.48.3",
+    "window_rows": 128,
+    "batch_size": 4,
+    "sort_key": "descending_normalized_string_character_length_via_numpy_argsort",
+    "flatten_interleave_enabled": false,
+    "selected_complete_batch_groups": 50
   },
   "chunks_payload": "chunks.jsonl",
-  "chunks_payload_sha256": "fa05e16e3bc629185da0365bb9153130105dc37bd7897a9fa6406274c86657fb",
+  "chunks_payload_sha256": "5b01104c467d74e2f42c8e6e759ad759e47f5b8c73cb30e4321a70d745974649",
   "reference_vectors": "reference_vectors.f32",
-  "reference_vectors_sha256": "bee9b79e432a2fb47d10d1476cb4085c76846efed0733db562e13a29e72674c7",
+  "reference_vectors_sha256": "690badbe2b6f1dc661e6fe71718126978306b5a91aacab543b0b0a11ef48e916",
   "source_chunks_path": "data/source_census/phase10e_g1a_10010/chunks.parquet",
   "source_chunks_sha256": "fcbc12c602c3cbc662f126646a420f04a2b163ad814c139d763a8313636e1f8d",
   "source_embeddings_path": "data/source_census/phase10e_g1a_10010/round1/chunk_embeddings.f32",
@@ -35,17 +44,17 @@
   "maximum_absolute_difference_allowed": 0.000732421875,
   "minimum_cosine_required": 0.9995,
   "reference_norm_minimum": 0.9997578263282776,
-  "reference_norm_maximum": 1.0004613399505615,
+  "reference_norm_maximum": 1.0004714727401733,
   "distribution": {
-    "domain:medlatec.vn": 105,
-    "domain:vinmec.com": 95,
+    "domain:medlatec.vn": 95,
+    "domain:vinmec.com": 105,
     "language:vi": 200,
-    "length:long_257_508": 71,
-    "length:medium_33_256": 83,
-    "length:short_le_32": 46
+    "length:long_257_508": 58,
+    "length:medium_33_256": 84,
+    "length:short_le_32": 58
   },
   "production_import_allowed": false,
   "package_path": "artifacts\\phase14_embedding_poc\\phase14_bge_m3_embedding_poc_200.zip",
-  "package_size_bytes": 564590,
-  "package_sha256": "3c6ac214498e5e1f7235816f85c805c463dbf08970a5cb22c008dd2150b10b78"
+  "package_size_bytes": 542421,
+  "package_sha256": "1e2541cc21be4338b252b3a006cadfa9230d8b7316aaf4698bc4e5c7f0e4ea30"
 }
