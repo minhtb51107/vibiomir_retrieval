@@ -1052,3 +1052,24 @@ is answer-content coverage for the requested disease–relation pairs. English
 protected fusion retained 24/24 baseline positives and 2/2 corrected-bridge
 direct positives. Phase29 remained hash-identical and Phase27 was untouched.
 Evidence: `artifacts/multilingual_retrieval_m31/M31_REPORT.md`.
+
+## 2026-10-23 — M4 proves one current-official VI→ZH answer retrieval
+
+M4 froze a 50-URL targeted `cnkang.com` tranche from the current official
+snapshot and acquired/extracted 50/50 pages (29.4 URL/min) without GPU work.
+Its query-text-only medical concept transfer, causal synonym expansion,
+navigation-tail-aware extraction and separate candidate/admission traces found
+one direct Chinese answer on the frozen development set: query 128 retrieved
+official doc 1595280 at final rank 5. The verbatim passage explains sneezing
+and rhinorrhea that are strongest in the early morning or on waking and gives
+a meaningful rhinitis differential. This is `AI_JUDGED_M4` silver evidence,
+not `HUMAN_VERIFIED` or an official recall result.
+
+Among newly acquired Top-20 rows, silver review recorded 1 direct, 2 partial
+and 7 wrong/mismatched. All 13 earlier M3 partial/direct query-document pairs
+remain in the candidate trace; 11 enter final Top-20 and two are transparently
+rejected at answer admission. The protected English control remains 24/24
+baseline positives plus 2/2 corrected-bridge direct positives. Twenty-one
+tests, current-official membership, canonical URLs, source-verbatim evidence
+and deterministic replay passed. Phase29 remained hash-identical and Phase27
+was not modified. Evidence: `artifacts/multilingual_retrieval_m4/M4_REPORT.md`.

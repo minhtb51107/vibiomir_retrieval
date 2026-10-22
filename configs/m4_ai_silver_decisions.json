@@ -1,0 +1,23 @@
+{
+  "version": "AI_JUDGED_M4-v1",
+  "scope": "All acquired M4 documents selected into the fixed development Top-20; not human verified",
+  "decisions": [
+    {"query_id": 128, "doc_id": 1595280, "judgment": 2, "reason": "Directly explains recurrent sneezing/rhinorrhea that is strongest in the early morning or on waking and gives a clinically meaningful differential cause."},
+    {"query_id": 128, "doc_id": 1595304, "judgment": 1, "reason": "Explains vasomotor rhinitis triggers and morning symptoms, but does not fully explain awakening near dawn with repeated sneezing."},
+    {"query_id": 128, "doc_id": 1595299, "judgment": 0, "reason": "Pregnancy-specific allergic-rhinitis treatment is a population and intent mismatch."},
+    {"query_id": 290, "doc_id": 1595299, "judgment": 0, "reason": "Pregnancy allergic rhinitis does not address a nasopharyngeal cyst or nocturnal obstruction."},
+    {"query_id": 290, "doc_id": 1595425, "judgment": 0, "reason": "General recurrent rhinitis does not answer whether a nasopharyngeal cyst causes the obstruction."},
+    {"query_id": 290, "doc_id": 1595304, "judgment": 0, "reason": "Vasomotor rhinitis is not evidence about a nasopharyngeal cyst."},
+    {"query_id": 290, "doc_id": 1595092, "judgment": 0, "reason": "Navigation-heavy rhinitis content does not answer the cyst relation or treatment."},
+    {"query_id": 290, "doc_id": 1595280, "judgment": 0, "reason": "GERD-related rhinitis is a different condition and does not answer the cyst question."},
+    {"query_id": 290, "doc_id": 1595477, "judgment": 0, "reason": "General rhinitis surgery and folk-remedy content does not answer whether a nasopharyngeal cyst causes nocturnal obstruction."},
+    {"query_id": 513, "doc_id": 1595092, "judgment": 0, "reason": "Vitamin C appears in an unrelated dry-rhinitis treatment; hypothyroidism interaction is absent."},
+    {"query_id": 715, "doc_id": 1662742, "judgment": 1, "reason": "Explains H. pylori transmission, consequences and need for formal eradication treatment, but omits a symptom set and eradication regimen."},
+    {"query_id": 715, "doc_id": 3398438, "judgment": 0, "reason": "The body is navigation text and does not provide H. pylori symptoms or treatment."},
+    {"query_id": 715, "doc_id": 1662702, "judgment": 0, "reason": "Mentions H. pylori testing in dyspepsia but does not answer infection signs and definitive treatment."},
+    {"query_id": 715, "doc_id": 1662780, "judgment": 0, "reason": "Pediatric dyspepsia diet is not evidence about H. pylori infection."},
+    {"query_id": 715, "doc_id": 1662834, "judgment": 0, "reason": "Post-infection syndrome is unrelated to H. pylori signs and eradication."},
+    {"query_id": 715, "doc_id": 1662776, "judgment": 0, "reason": "Psychological care for functional dyspepsia is a different intent and condition."}
+    ,{"query_id": 1080, "doc_id": 1595299, "judgment": 0, "reason": "Pregnancy allergic-rhinitis treatment does not address right chest pain at 38 weeks or signs of labor."}
+  ]
+}

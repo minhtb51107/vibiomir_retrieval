@@ -144,3 +144,14 @@ found 0 direct answers (5 partial, 17 wrong) and six of 12 queries abstained.
 This is a documented failure, not a claimed retrieval gain: the next VI→ZH
 step must establish current-official answer-bearing source coverage for exact
 disease–relation gaps. EN protected fusion preserved all known positives.
+
+### 2026-10-23 — M4 establishes first direct VI→ZH development result
+
+A bounded 50-page current-official `cnkang.com` acquisition plus automatic
+query-text medical concept transfer retrieves a direct Chinese answer for
+query 128 at final rank 5. The result is AI-silver, not human-verified: one of
+12 fixed development query units now has direct evidence, below the stretch
+target of three. All old partials remain observable in the candidate trace,
+English positives do not regress, and Phase29/Phase27 remain untouched.
+Direction: retain the architecture, but do not expand acquisition without a
+specific current-official disease–relation coverage gap.

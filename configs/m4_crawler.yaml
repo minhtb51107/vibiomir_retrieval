@@ -1,0 +1,39 @@
+input_path: data/raw/links_corpus_vi_en_zh.parquet
+output_db: data/multilingual_m4/targeted/crawl.sqlite
+http:
+  user_agent: "ViBioMIRResearchCrawler/0.2 (M4 bounded official Chinese evidence; contact repository owner)"
+  connect_timeout_seconds: 10.0
+  read_timeout_seconds: 20.0
+  write_timeout_seconds: 10.0
+  pool_timeout_seconds: 10.0
+  max_connections: 2
+  max_keepalive_connections: 1
+  follow_redirects: true
+  max_redirects: 10
+retry:
+  max_attempts: 3
+  backoff_base_seconds: 0.5
+  backoff_max_seconds: 8.0
+  jitter_seconds: 0.25
+concurrency:
+  global_limit: 1
+  per_domain_limit: 1
+  default_domain_delay_seconds: 2.0
+  domain_overrides:
+    cnkang.com: {concurrency: 1, delay_seconds: 2.0}
+    familydoctor.com.cn: {concurrency: 1, delay_seconds: 2.0}
+robots:
+  enabled: true
+  allow_on_fetch_error: false
+safety:
+  access_restricted_domains: {}
+storage:
+  store_raw_body: false
+  max_body_bytes: 1048576
+  max_download_bytes: 2097152
+  inspection_prefix_bytes: 65536
+  tiny_html_threshold_bytes: 512
+  allowed_content_types: [text/html, application/xhtml+xml, text/plain]
+pilot:
+  default_limit: 20
+  maximum_limit_without_full: 100

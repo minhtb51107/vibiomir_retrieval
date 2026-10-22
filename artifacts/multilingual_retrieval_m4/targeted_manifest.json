@@ -1,0 +1,407 @@
+{
+  "version": "m4-targeted-current-official-v1",
+  "records": [
+    {
+      "doc_id": 1595092,
+      "original_url": "http://www.cnkang.com/dise/565/1113280.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595280,
+      "original_url": "http://www.cnkang.com/dise/565/366382.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595299,
+      "original_url": "http://www.cnkang.com/dise/565/366518.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595304,
+      "original_url": "http://www.cnkang.com/dise/565/366643.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595350,
+      "original_url": "http://www.cnkang.com/dise/565/866144.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595412,
+      "original_url": "http://www.cnkang.com/dise/565/867115.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595425,
+      "original_url": "http://www.cnkang.com/dise/565/867256.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1595477,
+      "original_url": "http://www.cnkang.com/dise/565/867883.html",
+      "query_ids": [
+        128
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662648,
+      "original_url": "http://www.cnkang.com/dise/9/1109169.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662702,
+      "original_url": "http://www.cnkang.com/dise/9/390937.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662722,
+      "original_url": "http://www.cnkang.com/dise/9/390969.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662742,
+      "original_url": "http://www.cnkang.com/dise/9/391001.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662769,
+      "original_url": "http://www.cnkang.com/dise/9/391088.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662776,
+      "original_url": "http://www.cnkang.com/dise/9/391111.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662780,
+      "original_url": "http://www.cnkang.com/dise/9/391122.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662834,
+      "original_url": "http://www.cnkang.com/dise/9/391238.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1662901,
+      "original_url": "http://www.cnkang.com/dise/9/6026.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872374,
+      "original_url": "http://www.cnkang.com/nkwk/ggthsbj/858129.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872415,
+      "original_url": "http://www.cnkang.com/nkwk/ggthsbj/858181.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872417,
+      "original_url": "http://www.cnkang.com/nkwk/ggthsbj/858184.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872434,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/110792.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872501,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855356.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872524,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855389.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872558,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855435.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872561,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855440.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872651,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855561.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872723,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855661.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872731,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855670.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872748,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855689.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872753,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855699.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872794,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855749.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872795,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855750.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872800,
+      "original_url": "http://www.cnkang.com/nkwk/ggthscs/855758.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872835,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/856855.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872877,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/856912.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872956,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/857022.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1872986,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/857064.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873064,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/857171.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873074,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/857189.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873120,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszl/857261.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873210,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856322.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873248,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856373.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873253,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856378.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873262,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856391.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873271,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856405.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873284,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856426.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873285,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856427.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 1873367,
+      "original_url": "http://www.cnkang.com/nkwk/ggthszz/856536.html",
+      "query_ids": [
+        634
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 3398322,
+      "original_url": "https://www.cnkang.com/dise/9/390942.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    },
+    {
+      "doc_id": 3398438,
+      "original_url": "https://www.cnkang.com/dise/9/391237.html",
+      "query_ids": [
+        715
+      ],
+      "selection": "official disease-relation URL neighborhood"
+    }
+  ],
+  "sha256": "b41aa70a06d9f176bcf1883ddfe73c19bf17a598b7b2a860aa36ba0ac8e56f89",
+  "selection_contract": "current-official only; three frozen disease-relation path neighborhoods; existing extracted IDs excluded"
+}
