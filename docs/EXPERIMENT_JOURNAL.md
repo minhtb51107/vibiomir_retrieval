@@ -1036,3 +1036,19 @@ is rejected as a production fusion policy. Evidence:
 `artifacts/multilingual_retrieval_m2/M2_VERTICAL_SLICE.md` and
 `m2_vertical_slice_report.json`. Phase29 SHA remained unchanged and Phase27
 was not modified.
+
+## 2026-10-23 — Multilingual M3.1 evidence-quality repair
+
+On the 12 frozen VI→ZH development queries, the 240 M3 silver judgments were
+decomposed into 147 directory/navigation pages, 40 topic-only chunks, 39
+wrong-topic chunks, 13 partial answers and one extraction-granularity failure.
+M3.1 added structural page typing, bounded source-verbatim chunks, traceable
+quality decisions and entity-first Chinese admission. It returned 22 candidates
+for six queries and abstained on six rather than padding Top-20 with context-only
+hits. `AI_JUDGED_M3_1` review found 5 partial and 17 wrong results, but zero
+direct answers; the sole mechanical direct-gate row was a population and
+bilirubin-type mismatch. No ZH relevance gain is claimed. The residual blocker
+is answer-content coverage for the requested disease–relation pairs. English
+protected fusion retained 24/24 baseline positives and 2/2 corrected-bridge
+direct positives. Phase29 remained hash-identical and Phase27 was untouched.
+Evidence: `artifacts/multilingual_retrieval_m31/M31_REPORT.md`.

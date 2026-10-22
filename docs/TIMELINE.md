@@ -134,3 +134,13 @@ wrong/placeholder candidates but Chinese answer relevance remains unproven.
 The next multilingual step must improve calibrated fusion for EN and canonical
 answer-content coverage for ZH; the current naïve RRF and ZH lexical branch are
 not production-ready.
+
+### 2026-10-23 — M3.1 isolates Chinese answer-content coverage
+
+The development-only M3.1 repair rejects catalogs/navigation structurally,
+uses bounded verbatim evidence, and requires a primary medical entity before a
+Chinese candidate can be admitted. Noise fell sharply, but silver review still
+found 0 direct answers (5 partial, 17 wrong) and six of 12 queries abstained.
+This is a documented failure, not a claimed retrieval gain: the next VI→ZH
+step must establish current-official answer-bearing source coverage for exact
+disease–relation gaps. EN protected fusion preserved all known positives.

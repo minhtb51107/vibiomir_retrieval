@@ -1,0 +1,140 @@
+{
+  "status": "M3_1_DEVELOPMENT_VERTICAL_SLICE",
+  "held_out_opened": false,
+  "phase29": {
+    "sha256": "e8e68f52fe0557e810b91b1c6ce92b336a7915a4853cabe10d583034d9935d04",
+    "unchanged": true
+  },
+  "failure_funnel_m3": {
+    "total": 240,
+    "categories": {
+      "DIRECTORY_OR_NAVIGATION": 147,
+      "PARTIAL_ANSWER": 13,
+      "TOPIC_ONLY_NOT_ANSWER_BEARING": 40,
+      "WRONG_TOPIC": 39,
+      "EXTRACTION_GRANULARITY": 1
+    },
+    "by_query": {
+      "128": {
+        "DIRECTORY_OR_NAVIGATION": 14,
+        "PARTIAL_ANSWER": 5,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 1
+      },
+      "257": {
+        "DIRECTORY_OR_NAVIGATION": 6,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 2,
+        "WRONG_TOPIC": 12
+      },
+      "290": {
+        "DIRECTORY_OR_NAVIGATION": 16,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 3,
+        "WRONG_TOPIC": 1
+      },
+      "409": {
+        "DIRECTORY_OR_NAVIGATION": 17,
+        "PARTIAL_ANSWER": 1,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 2
+      },
+      "446": {
+        "DIRECTORY_OR_NAVIGATION": 10,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 9,
+        "EXTRACTION_GRANULARITY": 1
+      },
+      "491": {
+        "DIRECTORY_OR_NAVIGATION": 16,
+        "WRONG_TOPIC": 4
+      },
+      "513": {
+        "DIRECTORY_OR_NAVIGATION": 10,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 9,
+        "WRONG_TOPIC": 1
+      },
+      "571": {
+        "PARTIAL_ANSWER": 1,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 1,
+        "DIRECTORY_OR_NAVIGATION": 18
+      },
+      "634": {
+        "DIRECTORY_OR_NAVIGATION": 11,
+        "WRONG_TOPIC": 9
+      },
+      "715": {
+        "DIRECTORY_OR_NAVIGATION": 11,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 3,
+        "PARTIAL_ANSWER": 3,
+        "WRONG_TOPIC": 3
+      },
+      "805": {
+        "DIRECTORY_OR_NAVIGATION": 8,
+        "PARTIAL_ANSWER": 2,
+        "TOPIC_ONLY_NOT_ANSWER_BEARING": 10
+      },
+      "1080": {
+        "PARTIAL_ANSWER": 1,
+        "DIRECTORY_OR_NAVIGATION": 10,
+        "WRONG_TOPIC": 9
+      }
+    }
+  },
+  "quality_corpus": {
+    "documents": 318,
+    "page_types": {
+      "DIRECTORY_OR_NAVIGATION": 94,
+      "MEDICAL_ARTICLE": 224
+    },
+    "accepted_chunks": 800,
+    "accepted_documents": 205,
+    "rejected_records": 753,
+    "maximum_chunk_characters": 1200
+  },
+  "comparison": {
+    "m3_rows": 240,
+    "m31_rows": 22,
+    "same_query_doc_pairs": 16,
+    "new_query_doc_pairs": 6,
+    "removed_query_doc_pairs": 224,
+    "m3_known_partial_or_direct_total": 13,
+    "m3_known_partial_or_direct_retained": 4,
+    "top_k_cap": 20,
+    "queries_with_admitted_candidates": 6,
+    "queries_abstained": 6,
+    "abstained_query_ids": [
+      257,
+      491,
+      634,
+      715,
+      805,
+      1080
+    ],
+    "direct_gate_rows": 1
+  },
+  "m31_silver": {
+    "rows": 22,
+    "label_counts": {
+      "1": 5,
+      "0": 17
+    },
+    "direct_query_units": 0,
+    "verification_status": "AI_JUDGED_M3_1",
+    "official_metric": false
+  },
+  "english": {
+    "known_baseline_positive_retained": 24,
+    "known_baseline_positive_total": 24,
+    "corrected_bridge_direct_retained": 2,
+    "corrected_bridge_direct_total": 2,
+    "final_top_k_checked": true
+  },
+  "validation": {
+    "current_official_membership": true,
+    "canonical_chunk_verbatim": true,
+    "quality_decision_traced": true,
+    "development_only": true,
+    "held_out_opened": false
+  },
+  "artifacts": {
+    "zh_rankings": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m31\\zh_m31_top20.parquet",
+    "quality_rejections": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m31\\quality_rejections.parquet",
+    "en_rankings": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m31\\en_m31_protected_top20.parquet"
+  }
+}

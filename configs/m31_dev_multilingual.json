@@ -1,0 +1,27 @@
+{
+  "version": "m3.1-development-query-only-v1",
+  "scope": "development_only",
+  "held_out_opened": false,
+  "phase29_sha256": "e8e68f52fe0557e810b91b1c6ce92b336a7915a4853cabe10d583034d9935d04",
+  "maximum_chunk_characters": 1200,
+  "minimum_han_characters": 40,
+  "english_policy": {
+    "control_arm": "hybrid",
+    "protected_control_prefix": 12,
+    "maximum_bridge_additions": 8
+  },
+  "zh_queries": [
+    {"query_id": 128, "query_zh": "清晨或凌晨醒来后连续打喷嚏，是否与过敏性鼻炎有关，原因是什么", "concept_groups": [["喷嚏", "打喷嚏"], ["清晨", "凌晨", "早晨"]], "intent": "cause", "context": ["过敏性鼻炎", "醒来"]},
+    {"query_id": 257, "query_zh": "肠痉挛时能否吃牛肉，饮食是否会加重痉挛", "concept_groups": [["肠痉挛", "肠绞痛"], ["牛肉"]], "intent": "safety", "context": ["饮食", "加重"]},
+    {"query_id": 290, "query_zh": "夜间鼻塞是否由鼻咽囊肿引起，如何诊断和治疗", "concept_groups": [["鼻塞"], ["鼻咽囊肿", "鼻咽部囊肿"]], "intent": "cause_treatment", "context": ["夜间", "诊断"]},
+    {"query_id": 409, "query_zh": "女性腋毛和胸部毛发异常浓密是否为多毛症，若腋窝毛囊炎应如何治疗", "concept_groups": [["女性多毛", "多毛症", "腋毛"], ["毛囊炎"]], "intent": "cause_treatment", "context": ["女性", "腋窝", "治疗"]},
+    {"query_id": 446, "query_zh": "血液检查直接胆红素升高代表什么，常见原因是什么", "concept_groups": [["直接胆红素", "结合胆红素"], ["升高", "增高"]], "intent": "cause", "context": ["血液检查", "意义"]},
+    {"query_id": 491, "query_zh": "左半身疼痛并且胸片显示肺部圆形阴影，两者可能有什么原因，是否只是神经痛", "concept_groups": [["肺部圆形阴影", "肺部阴影", "肺结节"], ["半身疼痛", "神经痛"]], "intent": "cause_differential", "context": ["胸片", "鉴别"]},
+    {"query_id": 513, "query_zh": "治疗甲状腺功能减退期间补充维生素C是否影响甲状腺药物", "concept_groups": [["甲状腺功能减退", "甲减"], ["维生素C", "维生素 C"]], "intent": "interaction", "context": ["药物", "影响", "补充"]},
+    {"query_id": 571, "query_zh": "疟疾后脾肿大并疼痛应该如何处理和治疗", "concept_groups": [["疟疾"], ["脾肿大", "脾脏肿大"]], "intent": "treatment", "context": ["疼痛", "处理"]},
+    {"query_id": 634, "query_zh": "没有饮酒但γ-谷氨酰转移酶GGT升高的非酒精原因", "concept_groups": [["谷氨酰转移酶", "GGT", "γ-GT"], ["不饮酒", "没有饮酒", "非酒精"]], "intent": "cause", "context": ["升高", "肝胆"]},
+    {"query_id": 715, "query_zh": "幽门螺杆菌感染有哪些症状，如何采用根除方案彻底治疗", "concept_groups": [["幽门螺杆菌", "Hp感染"], ["根除", "根治"]], "intent": "symptom_treatment", "context": ["症状", "方案"]},
+    {"query_id": 805, "query_zh": "男性不育在什么年龄风险增加，有哪些危险因素", "concept_groups": [["男性不育", "男性不孕"], ["年龄", "危险因素", "风险因素"]], "intent": "risk", "context": ["增加", "原因"]},
+    {"query_id": 1080, "query_zh": "怀孕38周睡觉时右胸附近刺痛是否属于临产征兆", "concept_groups": [["怀孕38周", "妊娠38周", "孕38周"], ["胸痛", "胸部刺痛"], ["临产", "分娩征兆"]], "intent": "differential", "context": ["睡觉", "右侧"]}
+  ]
+}

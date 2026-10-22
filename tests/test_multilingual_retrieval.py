@@ -9,6 +9,10 @@ import yaml
 from src.multilingual_retrieval.evaluation import _dedupe_documents, _split, evaluate, has_han
 from src.multilingual_retrieval.review_server import HumanLabelStore
 from src.multilingual_retrieval.m2 import _zh_bigrams, chinese_evidence_quality, load_silver
+from src.multilingual_retrieval.m3 import _clean_evidence, _concept_counts, _bm25, targeted_document_chunks
+from src.multilingual_retrieval.m31 import (
+    classify_page, classify_chunk, _bounded_ranges, _group_matches, retrieve_m31,
+)
 
 
 def test_language_detection_and_split_are_deterministic():
@@ -120,3 +124,93 @@ def test_chinese_bigram_index_terms_preserve_medical_entities():
     assert "幽门" in tokens
     assert "螺杆" in tokens
     assert "感染" in tokens
+
+
+def test_m3_chinese_cleaning_removes_navigation_but_keeps_verbatim_evidence():
+    value = "专家答疑\n\n幽门螺杆菌感染可引起慢性胃炎，根除治疗通常需要联合用药。\n\n上一篇"
+    cleaned = _clean_evidence(value)
+    assert "幽门螺杆菌感染" in cleaned
+    assert "专家答疑" not in cleaned
+    assert "上一篇" not in cleaned
+
+
+def test_m3_concept_aware_lexical_prefers_answer_bearing_evidence():
+    rows = [
+        {"chunk_id": "a", "evidence_text": "男性不育的危险因素包括生殖道感染，炎症可影响精液质量。"},
+        {"chunk_id": "b", "evidence_text": "男性进入青春期后性欲增强，年龄增长后逐渐减退。"},
+    ]
+    scores = _bm25(rows, "男性不育 年龄 危险因素 原因")
+    query = {"core": ["男性不育"], "support": ["危险因素", "原因"]}
+    assert scores["a"] > 0
+    assert _concept_counts(rows[0], query) > _concept_counts(rows[1], query)
+
+
+def test_m3_targeted_chunks_are_verbatim_and_deterministic(tmp_path: Path):
+    documents = tmp_path / "documents"; documents.mkdir()
+    text = (
+        "男性不育\n\n生殖道感染会造成输精管道阻塞，并影响精液质量、精子成活率和活动力，"
+        "因此属于男性不育的重要危险因素，应当接受规范检查和针对病因的治疗。"
+    )
+    pq.write_table(pa.Table.from_pylist([{
+        "doc_id": 7, "original_url": "https://example.test/7", "normalized_text": text,
+        "sections": [{"section_type": "content", "text": text, "start_offset": 0, "end_offset": len(text), "heading_path": []}],
+        "extraction_status": "SUCCESS",
+    }]), documents / "part-000.parquet")
+    first = targeted_document_chunks(documents)
+    second = targeted_document_chunks(documents)
+    assert first == second
+    assert first[0]["evidence_text"] in text
+    assert first[0]["chunk_id"].startswith("7-")
+
+
+def test_m31_page_classifier_rejects_directories_not_long_articles():
+    page_type, reasons = classify_page(
+        "治疗呼吸系统疾病的药品列表", "https://www.a-hospital.com/w/x",
+        "本药品列表被可按中成药和西药分类查看：\n药物一\n药物二",
+    )
+    assert page_type == "DIRECTORY_OR_NAVIGATION"
+    assert reasons
+    article = "慢性胃炎" + "\n\n由于幽门螺杆菌感染可导致慢性胃炎。" * 300
+    page_type, reasons = classify_page("慢性胃炎的原因与治疗", "https://example.test/article", article)
+    assert page_type == "MEDICAL_ARTICLE"
+    assert not reasons
+
+
+def test_m31_bounded_chunks_are_exact_substrings_and_quality_traced():
+    text = ("幽门螺杆菌感染可导致慢性胃炎，常见表现包括上腹不适。\n\n" * 80).strip()
+    ranges = list(_bounded_ranges(text, 240))
+    assert ranges
+    assert all(text[start:end] in text and end - start <= 240 for start, end in ranges)
+    passed, reasons = classify_chunk("本药品列表被可按中成药和西药分类查看：\n\n药物一\n药物二" * 10)
+    assert passed is False
+    assert "DIRECTORY_FRAGMENT" in reasons
+
+
+def test_m31_query_groups_preserve_relation_specificity():
+    query = {"concept_groups": [["谷氨酰转移酶", "GGT"], ["不饮酒", "非酒精"]]}
+    flags, terms = _group_matches("患者不饮酒，但谷氨酰转移酶升高，应检查肝胆疾病。", query)
+    assert flags == [True, True]
+    assert terms[0] == ["谷氨酰转移酶"]
+
+
+def test_m31_retrieval_never_admits_context_only_hits(tmp_path: Path):
+    corpus = tmp_path / "corpus.parquet"
+    output = tmp_path / "ranked.parquet"
+    pq.write_table(pa.Table.from_pylist([
+        {
+            "doc_id": 1, "chunk_id": "1-a", "evidence_text": "凌晨出现糖尿病症状，原因需要进一步检查。",
+            "canonical_url": "https://example.test/1", "source": "test",
+        },
+        {
+            "doc_id": 2, "chunk_id": "2-a", "evidence_text": "清晨连续打喷嚏的原因可能是过敏性鼻炎。",
+            "canonical_url": "https://example.test/2", "source": "test",
+        },
+    ]), corpus)
+    config = {"zh_queries": [{
+        "query_id": 128, "query_zh": "清晨打喷嚏的原因",
+        "concept_groups": [["喷嚏", "打喷嚏"], ["清晨", "凌晨"]],
+        "intent": "cause", "context": ["过敏性鼻炎"],
+    }]}
+    rows = retrieve_m31(config, corpus, output)
+    assert [row["doc_id"] for row in rows] == [2]
+    assert rows[0]["direct_gate_pass"] is True

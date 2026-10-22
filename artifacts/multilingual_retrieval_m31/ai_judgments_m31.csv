@@ -1,0 +1,23 @@
+query_id,doc_id,chunk_id,judgment,verification_status,evidence_span,review_notes
+128,3004366,3004366-753005e2b8ad23c7d767,1,AI_JUDGED_M3_1,,Explains sneezing in common cold but not the early-morning relation.
+128,3103691,3103691-cdea4c0d33b950bebcd2,0,AI_JUDGED_M3_1,,Sneezing is only a pain trigger in sciatica.
+128,3037144,3037144-b35def3b422646b3a364,0,AI_JUDGED_M3_1,,Symptomatic common-cold advice does not explain the morning pattern.
+128,3019879,3019879-da4666cf297e26f2598b,1,AI_JUDGED_M3_1,,Lists sneezing as an upper-airway symptom but misses timing and cause.
+128,3019895,3019895-da4666cf297e26f2598b,1,AI_JUDGED_M3_1,,Near-duplicate upper-airway symptom evidence without timing or cause.
+128,3118968,3118968-3f25ab2a7dcbc7f7d3f6,0,AI_JUDGED_M3_1,,Sneezing is only a pain trigger in sciatica.
+128,3055870,3055870-fbf88c86c1e9c7b3dd93,0,AI_JUDGED_M3_1,,Sneezing is incidental in a general pain chapter.
+290,3037144,3037144-b35def3b422646b3a364,0,AI_JUDGED_M3_1,,Common-cold nasal congestion does not address a nasopharyngeal cyst.
+290,3004366,3004366-753005e2b8ad23c7d767,0,AI_JUDGED_M3_1,,Common-cold evidence misses the suspected cyst and night context.
+290,3019879,3019879-da4666cf297e26f2598b,0,AI_JUDGED_M3_1,,Generic upper-airway symptom list is not cyst diagnosis or treatment.
+290,3019895,3019895-da4666cf297e26f2598b,0,AI_JUDGED_M3_1,,Near-duplicate generic symptom list is not answer-bearing.
+409,3016157,3016157-0a7911f2a4f9d3e4b1ee,1,AI_JUDGED_M3_1,,Explains drug-induced hypertrichosis but not axillary folliculitis treatment.
+409,3049132,3049132-56c4a6f65c8f8e171ec2,0,AI_JUDGED_M3_1,,Axillary-hair loss is incidental and opposite to the question.
+409,3044617,3044617-a00390297a2a5a3432ad,0,AI_JUDGED_M3_1,,Pediatric hypoparathyroidism is the wrong disease and population.
+409,3006951,3006951-eb8537017ac53018e1ea,0,AI_JUDGED_M3_1,,Congenital generalized hypertrichosis does not answer the combined question.
+446,3062674,3062674-fe2f60121546adb12fb0,0,AI_JUDGED_M3_1,,Neonatal hemolysis discusses mainly unconjugated bilirubin and is population-specific.
+513,3037030,3037030-58e995d7a481e7b23404,0,AI_JUDGED_M3_1,,Female infertility only mentions hypothyroidism and not vitamin C interaction.
+513,3037031,3037031-58e995d7a481e7b23404,0,AI_JUDGED_M3_1,,Duplicate female-infertility evidence misses vitamin C interaction.
+513,1435408,1435408-a346067e97c02dc1c848,0,AI_JUDGED_M3_1,,Hyperthyroidism dosing is the wrong condition and misses vitamin C.
+571,3003971,3003971-5822390b2757ea71b91d,1,AI_JUDGED_M3_1,,Explains malaria pathology but this bounded chunk lacks spleen-pain management.
+571,3049090,3049090-b6309e8f624007c206a4,0,AI_JUDGED_M3_1,,Malaria is only one item in a generic fever differential.
+571,3056474,3056474-41e0515c9a51317ecbe0,0,AI_JUDGED_M3_1,,Describes falciparum malaria generally without splenomegaly-pain management.
