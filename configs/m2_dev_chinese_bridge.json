@@ -1,0 +1,18 @@
+{
+  "version": "m2-dev-zh-query-only-v1",
+  "construction_boundary": "Development Vietnamese query text and medical terminology only; no candidate text, ranks, or labels were used.",
+  "rows": [
+    {"query_id": 128, "query_zh": "凌晨醒来 打喷嚏 原因 睡眠 过敏性鼻炎"},
+    {"query_id": 257, "query_zh": "肠痉挛 可以吃牛肉吗 饮食"},
+    {"query_id": 290, "query_zh": "夜间鼻塞 鼻咽囊肿 原因 治疗"},
+    {"query_id": 409, "query_zh": "女性 腋毛 浓密 硬 乳房 毛囊炎 治疗"},
+    {"query_id": 446, "query_zh": "直接胆红素 升高 意义 原因"},
+    {"query_id": 491, "query_zh": "左半身疼痛 肺部圆形阴影 神经痛 原因"},
+    {"query_id": 513, "query_zh": "甲状腺功能减退 补充维生素C 影响"},
+    {"query_id": 571, "query_zh": "疟疾后 脾肿大 疼痛 怎么治疗"},
+    {"query_id": 634, "query_zh": "不喝酒 γ谷氨酰转移酶 GGT 升高 原因"},
+    {"query_id": 715, "query_zh": "幽门螺杆菌感染 症状 根治 治疗"},
+    {"query_id": 805, "query_zh": "男性不育 年龄 危险因素 原因"},
+    {"query_id": 1080, "query_zh": "怀孕38周 右胸附近刺痛 临产征兆"}
+  ]
+}

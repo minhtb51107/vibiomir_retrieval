@@ -1,0 +1,81 @@
+{
+  "status": "M2_DEVELOPMENT_VERTICAL_SLICE_COMPLETE",
+  "scope": "development_only",
+  "held_out_opened": false,
+  "frozen_phase29": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\submissions\\00_READY_TO_UPLOAD\\p29_bachmai2679_cap16.zip",
+    "sha256": "e8e68f52fe0557e810b91b1c6ce92b336a7915a4853cabe10d583034d9935d04",
+    "unchanged": true
+  },
+  "silver_contract": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m1\\ai_judgments_import.csv",
+    "sha256": "a6e289b90634d019eac2a318f2c3ebf7dd8abdf07365bfe60b9cc6ee1fb7d1bf",
+    "rows": 167,
+    "verification_status": "AI_JUDGED",
+    "human_labels_modified": false,
+    "limitations": "AI silver is review aid, not HUMAN_VERIFIED or official relevance ground truth."
+  },
+  "m2_ai_silver": {
+    "path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m2\\ai_judgments_m2.csv",
+    "rows": 10,
+    "label_counts": {
+      "0": 3,
+      "1": 5,
+      "2": 2
+    },
+    "verification_status": "AI_JUDGED_M2",
+    "official_metric": false
+  },
+  "english_translation_repair": {
+    "bridge_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\configs\\phase18_pubmed_english_bridge_60.json",
+    "bridge_sha256": "34cb82fbc8e6be74801d6c063a93af39fe67b8036cef50349b58a549a372b702",
+    "development_queries": 13,
+    "bridge_queries": 13,
+    "missing_bridge_queries": [],
+    "baseline_query_doc_pairs_top20": 260,
+    "m2_query_doc_pairs_top20": 96,
+    "overlap_pairs": 8,
+    "new_pairs": 88,
+    "known_direct_label2_total": 8,
+    "known_direct_label2_baseline_retrieved": 2,
+    "known_direct_label2_m2_retrieved": 1,
+    "known_direct_label2_union_retrieved": 1,
+    "known_positive_label1_or2_total": 24,
+    "known_positive_baseline_retrieved": 9,
+    "known_positive_m2_retrieved": 1,
+    "known_positive_union_retrieved": 7,
+    "note": "Known-label comparison is pooled/incomplete and is not recall over all relevant PubMed documents."
+  },
+  "chinese_extraction_repair": {
+    "development_queries": 12,
+    "cached_rows_examined": 1200,
+    "top20_rows_after_filter": 121,
+    "promoted_rows_from_below_old_top20": 71,
+    "labeled_rows": 32,
+    "labeled_rows_rejected": 21,
+    "rejected_by_silver_label": {
+      "0": 21
+    },
+    "rejection_reasons": {
+      "TOO_FEW_HAN_CHARACTERS": 17,
+      "FAQ_LINK_LIST": 4,
+      "PLACEHOLDER_ONLY": 4
+    },
+    "note": "This measures extraction/index eligibility. Promoted rows remain unjudged until separately reviewed.",
+    "char_bigram_index": {
+      "inserted": 1974,
+      "rejected": 3669
+    },
+    "query_bridge_path": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\configs\\m2_dev_chinese_bridge.json",
+    "query_bridge_sha256": "ffdb01c4909e729eb22c4be5eadf5c3978ef5bb5a3bfa23d1f863d3cc9b5dfdc",
+    "lexical_queries": 12,
+    "lexical_query_doc_pairs_top20": 240
+  },
+  "artifacts": {
+    "english_top20": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m2\\en_medical_bridge_fts5_top20.parquet",
+    "chinese_top20": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m2\\zh_quality_filtered_top20.parquet",
+    "chinese_lexical_top20": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m2\\zh_medical_bridge_fts_top20.parquet",
+    "english_union_top20": "D:\\LCOM108_NMLT\\code\\100_bai_code\\vibiomir_retrieval\\artifacts\\multilingual_retrieval_m2\\en_baseline_plus_medical_bridge_top20.parquet"
+  },
+  "elapsed_seconds": 5.385
+}

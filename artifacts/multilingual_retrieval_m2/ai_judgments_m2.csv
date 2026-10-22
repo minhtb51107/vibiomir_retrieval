@@ -1,0 +1,11 @@
+query_id,target_language,doc_id,judgment,verification_status,reviewer,evidence_span,review_notes
+236,en,6135108,0,AI_JUDGED_M2,ChatGPT,"Following total hip arthroplasty, 150 (39.9%) of the 376 men developed urinary retention.",Correct outcome but wrong operation; does not answer urinary retention after disc surgery.
+374,en,6547914,0,AI_JUDGED_M2,ChatGPT,"We evaluated the effect of continuous low-dose oral daily and loading dose",Treats deficiency rather than explaining its causes.
+495,en,6056797,1,AI_JUDGED_M2,ChatGPT,"VD use was associated with improved DFS",Supports possible benefit during breast-cancer chemotherapy but is retrospective and does not establish a dose recommendation.
+506,en,5612262,1,AI_JUDGED_M2,ChatGPT,"Cerebral infarction is the most significant cause of oropharyngeal dysphagia.",Correct disease and complication with treatment/rehabilitation context; recovery prognosis is not directly quantified.
+716,en,7237808,1,AI_JUDGED_M2,ChatGPT,"children diagnosed with food allergy to assess COVID-19 testing, vaccination",Relevant vaccine/food-allergy context but pediatric population and does not directly resolve this adult contraindication question.
+752,en,5832210,2,AI_JUDGED_M2,ChatGPT,"an adverse effect of antihypertensive medication",Directly supports the requested antihypertensive–erectile dysfunction relationship and explains the vascular mechanism.
+855,en,7465098,0,AI_JUDGED_M2,ChatGPT,"timing of testicular sperm retrieval",Wrong intervention and population; does not address pregnancy after T12 spinal injury.
+928,en,5945367,2,AI_JUDGED_M2,ChatGPT,"Hyperferritinemia, however, can also be caused by a wide variety of disparate conditions",Directly discusses causes of elevated ferritin and lists major etiologic categories.
+128,zh,4049365,1,AI_JUDGED_M2,ChatGPT,"过敏性鼻炎",Supports allergic rhinitis as an explanation for sneezing but not the combined early-morning awakening complaint.
+571,zh,4106962,1,AI_JUDGED_M2,ChatGPT,"抗疟药 治疗 疟疾",Mentions malaria treatment and hepatosplenomegaly workup but does not directly manage painful splenomegaly after malaria.

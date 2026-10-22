@@ -1,0 +1,24 @@
+version: 1
+output_dir: artifacts/multilingual_retrieval_m1
+paths:
+  queries: data/raw/query.parquet
+  official_corpus: data/raw/links_corpus_vi_en_zh.parquet
+  phase7_sanity: artifacts/phase7_reranking/multilingual_sanity.json
+  phase7_rankings: data/retrieval/phase7_reranking/reranked_chunks_depth100.parquet
+  phase4_chunks: data/chunks/phase4_bge_m3/tokens_512_overlap_64.parquet
+  phase17_pubmed_evidence: artifacts/phase17_pubmed_zero_cost_gate/pilot_60_evidence.json
+  phase19_hybrid: data/pubmed_phase19_bilingual/translated_hybrid_top100.parquet
+  phase19_translations: data/pubmed_phase19_bilingual/translations.parquet
+  pubmed_documents: data/pubmed_phase12/processed/documents.parquet
+  phase29_packaging: artifacts/phase29_bachmai_remaining_2679/packaging.sqlite
+  phase29_zip: submissions/00_READY_TO_UPLOAD/p29_bachmai2679_cap16.zip
+contracts:
+  query_language: vi
+  target_languages: [vi, en, zh]
+  review_candidates_per_query: 3
+  evaluation_depth: 20
+  model_revisions:
+    dense: BAAI/bge-m3@5617a9f61b028005a4858fdac845db406aefb181
+    translation_en: Helsinki-NLP/opus-mt-vi-en@c8d2853e77f5fae31124d993e0b35176b1c8914e
+  phase29_zip_sha256: e8e68f52fe0557e810b91b1c6ce92b336a7915a4853cabe10d583034d9935d04
+  relevance_labels_require: HUMAN_VERIFIED

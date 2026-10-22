@@ -1016,3 +1016,23 @@ the 21 silver pairs are title-derived (only four VI), and there is no verified
 external benchmark mapped to NEW-official IDs. Decision: GO only for a bounded
 automatic evidence gate; NO-GO for reranking, 1,200-query scale-up, packaging,
 or any F2 claim.
+
+## 2026-10-22 — Multilingual M2 development vertical slice
+
+Ran a CPU/cache-only development experiment using 167 imported ChatGPT labels
+strictly as `AI_JUDGED` silver evidence; `human_labels.csv` and held-out review
+data were not used. A Chinese extraction gate removed 21/32 reviewed ZH rows,
+all silver label 0, while preserving every known positive. A quality-filtered
+character-bigram Chinese FTS branch still produced mostly same-topic rather
+than answer-bearing evidence, so no direct ZH relevance gain is claimed.
+
+For English, the frozen query-only medical bridge corrected errors such as
+`nhồi máu não` being translated as `heart attack`. It found 88 lexical pairs
+not in the M1 lexical Top-20. Query 752 is the clearest new result: PubMed doc
+5832210 directly links antihypertensive medication to erectile dysfunction,
+where all five old reviewed candidates were silver label 0. A naïve RRF union
+retained only 7/24 old pooled positives versus 9/24 for baseline lexical, so it
+is rejected as a production fusion policy. Evidence:
+`artifacts/multilingual_retrieval_m2/M2_VERTICAL_SLICE.md` and
+`m2_vertical_slice_report.json`. Phase29 SHA remained unchanged and Phase27
+was not modified.

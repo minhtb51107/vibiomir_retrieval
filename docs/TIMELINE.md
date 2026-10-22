@@ -124,3 +124,13 @@ so its date and commit are explicitly unknown.
 - Candidate novelty is not relevance. With no trustworthy held-out labels,
   the project is GO only for a bounded automatic evidence gate and remains
   NO-GO for reranking, full scale-up, ZIP generation or leaderboard use.
+
+### 2026-10-22 — Multilingual M2 development result
+
+The project now has an executable EN/ZH development vertical slice using only
+existing caches. English medical query repair yielded one clear new direct
+PubMed result (query 752), while Chinese extraction filtering removed 21 known
+wrong/placeholder candidates but Chinese answer relevance remains unproven.
+The next multilingual step must improve calibrated fusion for EN and canonical
+answer-content coverage for ZH; the current naïve RRF and ZH lexical branch are
+not production-ready.
