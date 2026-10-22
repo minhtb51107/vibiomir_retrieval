@@ -165,3 +165,11 @@ All 13 known partial pairs remain traceable, but final retention regresses
 from 11 to six; the policy is not promoted. EN controls and Phase29 remain
 unchanged. The next semantic test is bounded and deferred until Phase27 ends;
 no acquisition or GPU inference was started.
+
+### 2026-10-23 — M4.2 semantic pilot frozen before inference
+
+The 20-text trial and development comparison inputs are frozen; 19 compatible
+historical scores were recovered into an independent checkpoint. Phase27 was
+still active, so semantic execution is deferred. The six-row assistant review
+file is missing locally; its row-level labels were not reconstructed from
+aggregate counts. No new relevance result is claimed.

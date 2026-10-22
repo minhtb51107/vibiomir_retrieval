@@ -1102,3 +1102,22 @@ query-text functionality and independent source review; NO-GO for current
 policy promotion or direct-answer/generalization claims. Evidence:
 `artifacts/multilingual_retrieval_m41/M41_REPORT.md` and
 `M4_EVIDENCE_AUDIT.md`.
+
+## 2026-10-23 — M4.2 bounded semantic pilot preparation, inference deferred
+
+Phase27 remained active at PACKAGE_PASS2, so M4.2 performed CPU-only preparation
+and exited without loading BGE-M3/reranker. Froze the 12 development query
+representations, 2,188-chunk order and 20-text resource-trial manifest. Added
+tested Dense ranking / RRF / equal-budget comparison and blinded-queue utilities.
+Reverified and separately checkpointed 19 exact cached scores, with conflict
+checks and no duplicate inserts on resume. Pinned local tokenizer artifacts
+were hashed; historical tokenizer byte hashes and new empirical equivalence
+are not available and are not claimed.
+
+The specified six-row assistant review CSV was absent from the workspace;
+zero labels were imported and the reported 3/3/0 totals were not fabricated
+into row-level judgments. A strict separate importer is ready. Fifty tests
+passed. Semantic trial, new embeddings, reranking and relevance comparison
+remain NOT_RUN. M4/M4.1, EN and Phase29 are frozen. Decision: defer inference
+until Phase27 exits and import the review when its actual file is available.
+Evidence: `artifacts/multilingual_retrieval_m42/M42_STATUS.md`.
