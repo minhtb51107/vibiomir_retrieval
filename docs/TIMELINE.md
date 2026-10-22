@@ -155,3 +155,13 @@ target of three. All old partials remain observable in the candidate trace,
 English positives do not regress, and Phase29/Phase27 remain untouched.
 Direction: retain the architecture, but do not expand acquisition without a
 specific current-official disease–relation coverage gap.
+
+### 2026-10-23 — M4.1 makes raw-text retrieval testable and narrows the claim
+
+VI→ZH now has an ID-independent retrieval API with explicit terminology gaps,
+scoped polarity and complete candidate diagnostics. Source review downgrades
+M4's morning-rhinitis direct-answer claim to a useful partial differential.
+All 13 known partial pairs remain traceable, but final retention regresses
+from 11 to six; the policy is not promoted. EN controls and Phase29 remain
+unchanged. The next semantic test is bounded and deferred until Phase27 ends;
+no acquisition or GPU inference was started.

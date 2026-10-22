@@ -1,0 +1,28 @@
+{
+  "version": "m41-boundary-aware-concept-transfer-v1",
+  "entities": {
+    "nhồi máu não": ["脑梗死", "脑梗塞"],
+    "tăng huyết áp": ["高血压"], "đau đầu": ["头痛"],
+    "hen suyễn": ["哮喘"], "hen phế quản": ["支气管哮喘"],
+    "bệnh thận mạn": ["慢性肾病"], "ibuprofen": ["布洛芬"],
+    "ho": ["咳嗽"], "sốt": ["发热"],
+    "rượu": ["酒", "饮酒"], "bia": ["啤酒", "饮酒"]
+  },
+  "context": {
+    "buổi sáng": ["早晨", "晨起", "清晨"], "khi thức dậy": ["睡醒", "晨起"],
+    "gần sáng": ["清晨", "凌晨", "晨起", "睡醒"],
+    "trẻ em": ["儿童", "小儿"], "thai phụ": ["孕妇"],
+    "bên trái": ["左侧"], "bên phải": ["右侧"],
+    "không uống rượu": ["不饮酒", "不喝酒", "无饮酒史"],
+    "không uống rượu, bia": ["不饮酒", "不喝酒", "无饮酒史"],
+    "không sốt": ["无发热", "不发热"], "chưa điều trị": ["未经治疗", "未治疗"]
+  },
+  "relations": {
+    "gây": ["引起", "导致"],
+    "có phải": ["是否", "鉴别", "可能"],
+    "có thể": ["可以", "能否"], "nên": ["建议", "应该"],
+    "tư vấn": ["意义", "解释"], "do đâu": ["原因", "导致", "引起", "由于"],
+    "tại sao": ["原因", "为什么", "因为", "由于", "引起", "导致"]
+  },
+  "notes": "Finite terminology transfer, not a general neural translator. Unknown residual spans must be reported. No benchmark IDs or judgments are inference inputs."
+}

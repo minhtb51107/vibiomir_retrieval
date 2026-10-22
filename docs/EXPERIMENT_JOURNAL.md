@@ -1073,3 +1073,32 @@ baseline positives plus 2/2 corrected-bridge direct positives. Twenty-one
 tests, current-official membership, canonical URLs, source-verbatim evidence
 and deterministic replay passed. Phase29 remained hash-identical and Phase27
 was not modified. Evidence: `artifacts/multilingual_retrieval_m4/M4_REPORT.md`.
+
+## 2026-10-23 — M4.1 query-text retrieval and evidence reassessment
+
+Implemented a reusable VI→ZH `retrieve_by_text()` path on the frozen 368-doc,
+2,188-chunk corpus. Longest boundary-aware terminology matching, explicit
+unmapped spans, scoped negation and candidate/admission diagnostics replace
+the benchmark-ID-dependent runner. Four new raw-text functional questions ran
+without relevance labels. The twelve frozen development units and replay /
+qualifier ablation ran in 8.40 seconds; full CPU forensics took 27.78 seconds,
+with 358.86 MiB peak working set in the final run. Thirty-six tests passed.
+
+The unblinded source reassessment narrows M4's claim: query 128/doc 1595280 is
+a useful morning-rhinitis differential, not a complete explanation of the
+patient's awakening. Its original AI-silver 2 remains frozen; a separate
+provisional audit assigns 1. No independent direct-answer gain is established.
+All 13 known M3 partial document pairs remain in candidate diagnostics, 12 at
+Top-100, but only six in final Top-20 versus M4's eleven. This is not promoted
+as a relevance improvement. Cache forensics recovered 19 exact-input score
+references across eight queries that ID-only matching had missed. M4's 31
+`/nkwk/ggths` pages concern femoral-head necrosis, not GGT. Source absence
+remains UNKNOWN where only lexical failure is observed.
+
+Phase27 was active, so semantic inference is deferred with a bounded trial
+plan; no model was loaded. EN final positives were recounted at 24/24 plus
+2/2, and Phase29 / frozen M4 hashes remained unchanged. Decision: GO for
+query-text functionality and independent source review; NO-GO for current
+policy promotion or direct-answer/generalization claims. Evidence:
+`artifacts/multilingual_retrieval_m41/M41_REPORT.md` and
+`M4_EVIDENCE_AUDIT.md`.
