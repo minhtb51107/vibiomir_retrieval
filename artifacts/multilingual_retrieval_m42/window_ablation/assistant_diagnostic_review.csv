@@ -1,0 +1,11 @@
+case_id,query_id,doc_id,scope,preference,a_assessment,b_assessment,reason,verification_status
+2df70f945af4f7e938b6,634,3049091,PRESELECTED_STRATUM_MINIMUM,TIE,WRONG,WRONG,Hematemesis passages do not answer elevated GGT without alcohol,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+814b1685a1aa5b7c29b5,1080,3095744,PRESELECTED_STRATUM_MINIMUM,TIE,NAVIGATION,NAVIGATION,Both symptom indexes rather than late-pregnancy chest pain evidence; BODY proxy can be false,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+b3199b053a7031e9cfce,409,3078954,PRESELECTED_STRATUM_MINIMUM,TIE,WRONG,WRONG,Pharmacy menu versus unrelated drug catalogue; structural NAV_TO_BODY is not clinical improvement,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+82b01216a1cd64a31293,715,3111729,PRESELECTED_STRATUM_MINIMUM,TIE,WRONG,WRONG,Ear anatomy and symptom lists do not answer HP infection,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+2fcd99792c65c94c5dfb,571,3056474,PRESELECTED_STRATUM_MINIMUM,B,RELATED_MALARIA_ANEMIA,PARTIAL_SPLEEN_MECHANISM,B explains malaria-associated splenic enlargement but not management of pain,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+09077a4ecd0f5beb9c99,715,3019879,PRESELECTED_STRATUM_MINIMUM,TIE,WRONG,NAVIGATION,Upper respiratory differential and menu both fail HP symptoms and eradication question,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+2edbb87c2b9d8d022458,491,3095755,PRESELECTED_STRATUM_MINIMUM,TIE,NAVIGATION,NAVIGATION,Alphabetical and body-map indexes do not explain persistent unilateral pain or X-ray findings,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+05f7e004a445d2f86374,1080,3037063,PRESELECTED_STRATUM_MINIMUM,TIE,NAVIGATION,NAVIGATION,Gynaecological lists do not establish relation between right chest pain and labour,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+bc79536f02f7263e60b5,491,3055870,ADDITIONAL_CONTRAST_FROM_FROZEN_QUEUE,A,PARTIAL_DIFFERENTIAL_CONTEXT,GENERIC_SUMMARY,B loses detailed pain localization and neural-mechanism discussion; neither resolves individual symptoms or X-ray,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN
+8a44fae4a975588fefbf,290,3078883,ADDITIONAL_CONTRAST_FROM_FROZEN_QUEUE,A,TOPICAL_TREATMENT_CATALOGUE,NAVIGATION,B loses nasal-obstruction treatment context; A itself does not establish a nasopharyngeal cyst cause or appropriate treatment,AI_DIAGNOSTIC_UNBLINDED_NOT_HUMAN

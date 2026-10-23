@@ -1,0 +1,15 @@
+{
+  "selection_rule": "Minimum case_id per depth-navigation stratum from the frozen 24-pair queue; fixed before reading paired contents",
+  "case_ids": [
+    "2df70f945af4f7e938b6",
+    "814b1685a1aa5b7c29b5",
+    "b3199b053a7031e9cfce",
+    "82b01216a1cd64a31293",
+    "2fcd99792c65c94c5dfb",
+    "09077a4ecd0f5beb9c99",
+    "2edbb87c2b9d8d022458",
+    "05f7e004a445d2f86374"
+  ],
+  "status": "AI_DIAGNOSTIC_SUBSAMPLE_NOT_INDEPENDENT_BLIND_VERIFICATION",
+  "human_verified": false
+}

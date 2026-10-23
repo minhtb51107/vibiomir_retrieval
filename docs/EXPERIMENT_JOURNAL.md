@@ -1209,3 +1209,24 @@ source acquisition; NO-GO for promoting current RRF or claiming score gain.
 Phase27 BEST0.0923 SHA verified unchanged; no inference rerun, crawl or submission.
 Twenty-five scoped tests pass. Evidence:
 artifacts/multilingual_retrieval_m42/colab_analysis/M42_COLAB_ANALYSIS.md.
+
+### 2026-10-24 — M4.2 fixed-document evidence-window ablation
+
+Executed cached CPU-only A/B over all12 development queries: A saved RRF versus
+B same-owner maximum true cosine to frozen Chinese-query vectors. All1200
+document positions/scores unchanged;166/240 Top20 and553/1200 Top100 windows
+change. Old AI-partial document retention stays11@20/12@100; literal window
+retention0->2, normalized1->3. Navigation proxies rise54->79@20 and294->366@100,
+not clinical error labels. Eight preselected unblinded AI diagnostics show one
+partial splenic-mechanism gain and seven ties; two additional fixed-queue
+contrasts expose loss of pain-differential/nasal-treatment context. No independent
+direct-answer improvement or HUMAN_VERIFIED result is claimed.
+
+Frozen24-pair blind queue spans all12 queries/eight depth-navigation strata and
+remains pending independent review. Inputs/official ownership/553 SQLite windows
+PASS; byte-identical output replay and exact source-text CSV roundtrip PASS.
+Final runtime1.638s, process peak RSS344.43MiB, sampled private782.49MiB,
+minimum available306.56MiB.31 scoped tests PASS. NO-GO automatic promotion;
+next step independent paired source review, not acquisition or more inference.
+Phase27 BEST0.0923 ZIP SHA unchanged; no held-out/model/reranker/crawl/submission.
+Report: artifacts/multilingual_retrieval_m42/window_ablation/M42_WINDOW_ABLATION.md.

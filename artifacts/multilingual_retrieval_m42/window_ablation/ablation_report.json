@@ -1,0 +1,345 @@
+{
+  "status": "COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "policy": "m42-fixed-doc-best-true-cosine-zh-v1",
+  "selection": "Same-owner maximum true cosine in float64; lexicographic chunk_id then corpus index tie-break",
+  "queries": 12,
+  "frozen_chunks": 2188,
+  "official_owners": 361,
+  "document_id_order_score_invariant": true,
+  "metrics": {
+    "20": {
+      "rows": 240,
+      "changed": 166,
+      "changed_queries": 12,
+      "navigation_a": 54,
+      "navigation_b": 79,
+      "changed_transitions": {
+        "BODY_TO_BODY": 80,
+        "BODY_TO_NAV": 52,
+        "NAV_TO_BODY": 27,
+        "NAV_TO_NAV": 7
+      },
+      "A": {
+        "partial_document_pairs": 11,
+        "exact_old_windows": 0,
+        "normalized_old_windows": 1
+      },
+      "B": {
+        "partial_document_pairs": 11,
+        "exact_old_windows": 2,
+        "normalized_old_windows": 3
+      }
+    },
+    "100": {
+      "rows": 1200,
+      "changed": 553,
+      "changed_queries": 12,
+      "navigation_a": 294,
+      "navigation_b": 366,
+      "changed_transitions": {
+        "BODY_TO_BODY": 318,
+        "BODY_TO_NAV": 143,
+        "NAV_TO_BODY": 71,
+        "NAV_TO_NAV": 21
+      },
+      "A": {
+        "partial_document_pairs": 12,
+        "exact_old_windows": 0,
+        "normalized_old_windows": 1
+      },
+      "B": {
+        "partial_document_pairs": 12,
+        "exact_old_windows": 2,
+        "normalized_old_windows": 3
+      }
+    }
+  },
+  "partial_window_positions": [
+    {
+      "query_id": 128,
+      "doc_id": 3004366,
+      "arms": {
+        "A": {
+          "rank": 8,
+          "chunk_id": "3004366-b9112ac7eb18bc94423f",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 8,
+          "chunk_id": "3004366-354ed6c67391ad25b217",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3019879,
+      "arms": {
+        "A": {
+          "rank": 5,
+          "chunk_id": "3019879-da4666cf297e26f2598b",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 5,
+          "chunk_id": "3019879-92788d9791e30f94eaa3",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3019895,
+      "arms": {
+        "A": {
+          "rank": 6,
+          "chunk_id": "3019895-da4666cf297e26f2598b",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 6,
+          "chunk_id": "3019895-92788d9791e30f94eaa3",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3027148,
+      "arms": {
+        "A": {
+          "rank": 2,
+          "chunk_id": "3027148-7a9576ee304dc2b91d56",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 2,
+          "chunk_id": "3027148-fb5cb3e94f8223385650",
+          "exact_old_excerpt": true,
+          "normalized_old_excerpt": true
+        }
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3058523,
+      "arms": {
+        "A": {
+          "rank": 3,
+          "chunk_id": "3058523-7a9576ee304dc2b91d56",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 3,
+          "chunk_id": "3058523-fb5cb3e94f8223385650",
+          "exact_old_excerpt": true,
+          "normalized_old_excerpt": true
+        }
+      }
+    },
+    {
+      "query_id": 409,
+      "doc_id": 3078850,
+      "arms": {
+        "A": {
+          "rank": 7,
+          "chunk_id": "3078850-b9f692daf574607294c2",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 7,
+          "chunk_id": "3078850-ccabd31cb9ca3f53e5fa",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 571,
+      "doc_id": 3003971,
+      "arms": {
+        "A": {
+          "rank": 2,
+          "chunk_id": "3003971-206c251b09d9bd77d91b",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 2,
+          "chunk_id": "3003971-206c251b09d9bd77d91b",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078785,
+      "arms": {
+        "A": {
+          "rank": null,
+          "chunk_id": null,
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": null,
+          "chunk_id": null,
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078801,
+      "arms": {
+        "A": {
+          "rank": 10,
+          "chunk_id": "3078801-014c75c76ed827698a65",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 10,
+          "chunk_id": "3078801-bbe5bf79abfc1607ed72",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078924,
+      "arms": {
+        "A": {
+          "rank": 21,
+          "chunk_id": "3078924-235a90d629e38f21d6d9",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 21,
+          "chunk_id": "3078924-e8eb0189d8b19dcd2c4b",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 805,
+      "doc_id": 3094304,
+      "arms": {
+        "A": {
+          "rank": 1,
+          "chunk_id": "3094304-360cbcd7564344a5969f",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 1,
+          "chunk_id": "3094304-360cbcd7564344a5969f",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    },
+    {
+      "query_id": 805,
+      "doc_id": 3820076,
+      "arms": {
+        "A": {
+          "rank": 6,
+          "chunk_id": "3820076-59c5f711b9990973d500",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": true
+        },
+        "B": {
+          "rank": 6,
+          "chunk_id": "3820076-59c5f711b9990973d500",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": true
+        }
+      }
+    },
+    {
+      "query_id": 1080,
+      "doc_id": 3055183,
+      "arms": {
+        "A": {
+          "rank": 2,
+          "chunk_id": "3055183-8293a7c484d1cb6ffb51",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        },
+        "B": {
+          "rank": 2,
+          "chunk_id": "3055183-4771e153f15da9d72a3c",
+          "exact_old_excerpt": false,
+          "normalized_old_excerpt": false
+        }
+      }
+    }
+  ],
+  "integrity": {
+    "zip_sha256": "54c6426c00d5766b61c6d961a1f7d526bf148cc58746fe60ac76e1b407ab7a9e",
+    "crc": "PASS",
+    "members_matched": 10,
+    "extra_extracted_files": [],
+    "checkpoint": {
+      "quick_check": "ok",
+      "integrity_check": "ok",
+      "windows": 553,
+      "rows_verified": 2212,
+      "signature": "4c3e01cd7147295569f7ce01700919da37e9e332a2d8e4a1b652487821310d8b"
+    },
+    "official_documents": 361
+  },
+  "review": {
+    "pairs": 24,
+    "queries": 12,
+    "strata": {
+      "TOP20:BODY_TO_BODY": 8,
+      "TOP20:NAV_TO_NAV": 2,
+      "TOP20:BODY_TO_NAV": 2,
+      "RANK21_100:BODY_TO_BODY": 3,
+      "RANK21_100:BODY_TO_NAV": 3,
+      "RANK21_100:NAV_TO_BODY": 2,
+      "RANK21_100:NAV_TO_NAV": 2,
+      "TOP20:NAV_TO_BODY": 2
+    },
+    "selection_sha256": "46309e7672d4e5c8c80181fb458aa4ac47195a610d7ca40b91102f46f29b295e",
+    "clinical_judgments_used": false
+  },
+  "output_hashes": {
+    "paired_comparison.csv": "cfddcbc9ec4baf357c1cb7670e8d3ca7b99236122f61f30cf3535921d0f2d94c",
+    "blind_review_queue.csv": "cd01f322743eb39bcf589cd8bd9bc94fe099b9536a2e4396e0f3fbb69b9977c2",
+    "review_mapping.json": "519c15c4067ef8e19f728eb86ac43cae35a9e77a28d0684c7a301e0d4ccb9263"
+  },
+  "timing": {
+    "integrity_seconds": 1.0093421000055969,
+    "total_seconds": 1.638013999996474
+  },
+  "memory": {
+    "rss_start_mib": 88.4140625,
+    "rss_end_mib": 317.90625,
+    "process_peak_working_set_mib": 344.4296875,
+    "peak_private_sampled_mib": 782.48828125,
+    "minimum_available_ram_sampled_mib": 306.5625
+  },
+  "human_verified": 0,
+  "held_out_used": false,
+  "gpu_inference": false,
+  "reranker_score_reuse": false,
+  "phase27_sha256": "b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e",
+  "decision": "NO_GO_AUTOMATIC_PROMOTION_PENDING_SOURCE_REVIEW"
+}

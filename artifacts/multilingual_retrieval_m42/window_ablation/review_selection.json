@@ -1,0 +1,41 @@
+{
+  "case_ids": [
+    "05f7e004a445d2f86374",
+    "09077a4ecd0f5beb9c99",
+    "2df70f945af4f7e938b6",
+    "2edbb87c2b9d8d022458",
+    "2fcd99792c65c94c5dfb",
+    "4e2ef2eadbe626e9709a",
+    "6ab232c6c4433bad0699",
+    "814b1685a1aa5b7c29b5",
+    "82b01216a1cd64a31293",
+    "8a44fae4a975588fefbf",
+    "9c1ab6f23c142828c9bc",
+    "9f35fa84924b765c3fc5",
+    "a693fe69dd01b0d59dd7",
+    "b3199b053a7031e9cfce",
+    "bc79536f02f7263e60b5",
+    "c05cc4786e25774a1740",
+    "c34c360237624eda4fbf",
+    "c3c0aae25bbf537411b1",
+    "d7241fb583ad30e85182",
+    "da6ab8744b7736e2f8d6",
+    "e0525dc71a88192fdd31",
+    "e863fcc9b9fdd7e5c0aa",
+    "edda09afd195021f2d9c",
+    "f9df17a06dcb4592f003"
+  ],
+  "clinical_judgments_used_for_selection": false,
+  "implementation_sha256": "e7a8316832f787efa18279a7ecca5e0c8a8273440b42afbf9bd1013ef7c34a70",
+  "inputs": {
+    "frozen_manifest_sha256": "257d8556ab1fe35b366929a517db9b6aa2d21e51b8e2e922b0f8a5b7f7a3d101",
+    "rankings_sha256": "e31313c158b2334de181ed14078c2ee28827e45241dce59cbc2b2f8199de4dcc",
+    "vector_sha256": "78853cae91f498f3f0b7f6951f594d18f110c0c972e4e1ca0d2fe190c9de3c6c"
+  },
+  "mapping_sha256": "519c15c4067ef8e19f728eb86ac43cae35a9e77a28d0684c7a301e0d4ccb9263",
+  "maximum": 24,
+  "promotion": "No automatic promotion; new independent source review required, not cosine or silver retention alone",
+  "queue_sha256": "cd01f322743eb39bcf589cd8bd9bc94fe099b9536a2e4396e0f3fbb69b9977c2",
+  "seed": "m42-fixed-doc-window-review-v1",
+  "selection": "One hash-selected Top20 case per query; cover depth x navigation transition strata; fill24 balancing query/stratum counts"
+}

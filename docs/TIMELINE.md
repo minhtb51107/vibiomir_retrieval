@@ -198,3 +198,12 @@ loses one and can replace body windows with navigation. No independently
 confirmed direct Chinese answer or leaderboard gain. Next proposed experiment
 changes only representative windows in the fixed cached document ranking;
 no new source expansion or production inference was launched.
+
+### 2026-10-24 — Fixed-document window repair is not ready for promotion
+
+M4.2 cached-window ablation executed on12 development queries:166 Top20 windows
+change without changing document ranking; partial old excerpts recover0->2 but
+navigation proxies worsen54->79. Useful partial recovery and contextual losses
+coexist. NO-GO automatic best-cosine promotion; freeze24 paired review cases and
+seek independent evidence assessment before relation-aware window ranking.
+No source expansion, model inference, held-out access or BEST mutation.
