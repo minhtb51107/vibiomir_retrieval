@@ -1,0 +1,23 @@
+{
+  "recorded_date": "2026-10-23",
+  "command": ".venv/Scripts/python.exe tools/multilingual_m42.py inference-preflight",
+  "status": "BLOCKED_RESOURCES",
+  "failures": ["available_ram_mib"],
+  "model_loaded": false,
+  "phase27_pids": [],
+  "competitor_pids": [],
+  "available_ram_mib": 648.4140625,
+  "required_cold_ram_mib": 969.7125,
+  "required_warm_ram_mib": 357.11249999999995,
+  "commit_headroom_mib": 13655.703125,
+  "required_commit_mib": 3856.655,
+  "gpu_free_mib": 3977.0,
+  "gpu_used_mib": 0.0,
+  "required_vram_mib": 1363.95,
+  "disk_free_gib": 36.664669036865234,
+  "profile_sha256": "34180cf84cfa7e26282b03b78c8c2e1d549a33f72a170993dc11bf2321b6719f",
+  "trial20": "NOT_RUN_RESOURCE_GATE",
+  "dense": "NOT_RUN_RESOURCE_GATE",
+  "reranker": "NOT_RUN_RESOURCE_GATE",
+  "thresholds_relaxed": false
+}

@@ -2,12 +2,14 @@
 from __future__ import annotations
 
 import ctypes
+import importlib.metadata
 import json
 import os
 import shutil
 import subprocess
 import threading
 import time
+import platform
 from pathlib import Path
 
 import psutil
@@ -18,6 +20,15 @@ from src.multilingual_retrieval.m3 import _atomic_json
 
 PROFILE = 'artifacts/source_census/phase10e_g1a_10010/embedding_memory_profile/profile.json'
 EQUIVALENCE = 'artifacts/source_census/phase10e_g1a_10010/embedding_equivalence.json'
+
+
+def runtime_identity():
+    """A PASS from one GPU/runtime cannot silently authorize another machine."""
+    gpu = subprocess.run(['nvidia-smi','--query-gpu=uuid,name,driver_version','--format=csv,noheader'],
+                         capture_output=True,text=True,check=True,timeout=10).stdout.strip()
+    return {'python':platform.python_version(), 'platform':platform.system(), 'gpu':gpu,
+            'packages':{name:importlib.metadata.version(name) for name in
+                        ('torch','sentence-transformers','transformers','numpy','tokenizers','safetensors')}}
 
 
 def commit_headroom():
@@ -143,6 +154,7 @@ def trial(root):
                 np.max(np.abs(np.linalg.norm(vectors,axis=1)-1)) <= .001 and
                 maximum<=historical['absolute_tolerance'] and float(cos.min())>=historical['minimum_cosine_required'])
         report={'status':'PASS' if passed else 'FAILED_EQUIVALENCE','passed':bool(passed),
+                'runtime_identity':runtime_identity(),
                 'trial20_sha256':manifest['trial20_sha256'],'runtime_import_seconds':runtime_seconds,
                 'model_load_seconds':load_seconds,'inference_seconds':inference_seconds,
                 'equivalence_seconds':equivalence_seconds,

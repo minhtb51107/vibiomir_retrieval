@@ -181,3 +181,11 @@ pre-submission HOLD recommendation. Frozen ZIPs unchanged. Bounded development
 overlap/boilerplate ablations do not justify a new submission. M4.2 trial runner
 is executable but measured cold-start RAM gate fails before model loading;
 no semantic gain or equivalence PASS is claimed.
+
+### 2026-10-23 — M4.2 portable execution after unchanged local RAM failure
+
+One strict local resource check fails only physical RAM. No inference retry or
+source expansion. Prepared and verified a private, weights-free RTX3060 payload
+with same-host trial binding and durable Dense execution; target execution
+requires an actual remote PC session. No new relevance gain is claimed and
+Phase27/Phase29 frozen submissions remain unchanged.

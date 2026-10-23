@@ -1160,3 +1160,25 @@ The cold gate includes runtime-import cost absent from the357.11MiB warm gate.
 No claimed semantic/equivalence result; Dense and reranker remain NOT_RUN.
 Twenty-four scoped tests pass. Evidence:
 artifacts/phase271_cached_refinement/PHASE271_REPORT.md.
+
+## 2026-10-23 — M4.2 resume blocked locally; RTX3060 execution payload verified
+
+Ran one existing strict inference preflight: RAM648.41MiB <969.71MiB, while
+VRAM3977MiB, commit13655.70MiB and disk36.66GiB pass. No Phase27/model worker
+was active. No unchanged retry, model load, Dense/reranker inference or crawl.
+The dirty earlier resource report was preserved; new telemetry is separate.
+
+Implemented target-runtime-bound Dense execution for the frozen2188 chunks and
+24 query representations, checksummed missing-only windows, separate lexical
+candidate/final arms, unchanged M4.1 replay validation and blinded review export.
+Portable Windows payload contains only fixed-development data/code and exact
+model/tokenizer/runtime hashes, not weights, secrets or held-out files. The19
+historical scores remain reference-only until target-host numerical replay.
+Tests and extracted archive checks cover frozen input identity, nineteen exact
+reference text/owner hashes, resume/corruption, final-rank preservation and
+path/tamper rejection. Twenty-two scoped tests pass.
+
+Decision: GO to execute the same bounded Dense/RRF test on RTX3060; scientific
+usefulness remains INCONCLUSIVE and no submission is justified. No remote
+session is available, so target inference is NOT_RUN, not a claimed handoff.
+Evidence: artifacts/multilingual_retrieval_m42/M42_RESUME_REPORT.md.
