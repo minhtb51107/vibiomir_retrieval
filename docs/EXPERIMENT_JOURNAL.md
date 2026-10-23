@@ -1230,3 +1230,21 @@ minimum available306.56MiB.31 scoped tests PASS. NO-GO automatic promotion;
 next step independent paired source review, not acquisition or more inference.
 Phase27 BEST0.0923 ZIP SHA unchanged; no held-out/model/reranker/crawl/submission.
 Report: artifacts/multilingual_retrieval_m42/window_ablation/M42_WINDOW_ABLATION.md.
+
+### 2026-10-24 — Audit of report-exposed M4.2 paired review
+
+Validated supplied24-case assistant review against frozen queue, separate side
+mapping,48 exact canonical windows and22 current-official owners. No missing,
+duplicate, changed text/URL/query or provenance mismatch; input/BEST hashes
+unchanged. Status remains AI_JUDGED_M42_ASSISTANT_REPORT_EXPOSED_NOT_HUMAN_VERIFIED,
+not independent blind or human verification. Mapping-decoded B wins1, loses6,
+ties17; Top20 subset1/4/9. Both policies have2 partials,22 zeros,no direct label2.
+Transitions:21 zero-to-zero,1 zero-to-partial,1 partial-to-zero,1 partial-to-partial.
+Relative preference is not binary answer relevance; four B losses remain0/0.
+
+NO-GO best-cosine promotion. Proposed only: frozen-document relation-aware window
+selection versus its relation-disabled control, with separate source review,
+unknown-understanding fallback and no review labels in selection. Not executed.
+20 scoped tests PASS including actual local review integrity. No model/crawl,
+held-out, submission or frozen artifact changes. Phase27 remains BEST0.0923.
+Evidence: artifacts/multilingual_retrieval_m42/window_ablation/M42_PAIRED_REVIEW_ANALYSIS.md.
