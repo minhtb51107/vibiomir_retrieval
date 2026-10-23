@@ -1121,3 +1121,18 @@ passed. Semantic trial, new embeddings, reranking and relevance comparison
 remain NOT_RUN. M4/M4.1, EN and Phase29 are frozen. Decision: defer inference
 until Phase27 exits and import the review when its actual file is available.
 Evidence: `artifacts/multilingual_retrieval_m42/M42_STATUS.md`.
+
+## 2026-10-23 — Phase27 frozen final relevance review
+
+Cached-only comparison verified the Phase27 final ZIP SHA b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e
+against immutable Phase29. Docs changed on 983 queries, chunks on 1,087;
+2,030 document slots and 6,561 chunk slots are new-tranche additions.
+Hash-stratified review of eight changed development queries found mixed
+complementary evidence and concrete wrong-topic/promotional/redundancy risks,
+including loss of a glucose250–300mg/dL passage to repeated hypoglycemia Q&A.
+All 12 baseline-present development silver-positive document pairs remain;
+this does not verify passage retention or official relevance. Recommendation
+HOLD for one scarce submission, not a claim of lower organizer score.
+Four diagnostic tests pass. No held-out labels, new inference, pipeline
+execution or submission. Both ZIP hashes unchanged.
+Evidence: `artifacts/phase27_final_relevance_check/RELEVANCE_REVIEW.md`.
