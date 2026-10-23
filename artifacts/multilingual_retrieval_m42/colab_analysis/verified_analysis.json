@@ -1,0 +1,1640 @@
+{
+  "validation": {
+    "zip_sha256": "54c6426c00d5766b61c6d961a1f7d526bf148cc58746fe60ac76e1b407ab7a9e",
+    "crc": "PASS",
+    "members_matched": 10,
+    "extra_extracted_files": [],
+    "checkpoint": {
+      "quick_check": "ok",
+      "integrity_check": "ok",
+      "windows": 553,
+      "rows_verified": 2212,
+      "signature": "4c3e01cd7147295569f7ce01700919da37e9e332a2d8e4a1b652487821310d8b"
+    },
+    "checkpoint_signature_matches_progress": true,
+    "local_signature_formula_matches": true,
+    "vectors": {
+      "shape": [
+        2212,
+        1024
+      ],
+      "finite": true,
+      "min_norm": 0.9997559189796448,
+      "max_norm": 1.000480055809021
+    },
+    "ranking_arithmetic_replay": {
+      "VI_DENSE": {
+        "top100_identity_position_diffs": 0,
+        "max_score_difference_cpu_replay": 0.0
+      },
+      "ZH_DENSE": {
+        "top100_identity_position_diffs": 0,
+        "max_score_difference_cpu_replay": 0.0
+      },
+      "RRF": {
+        "top100_identity_position_diffs": 0
+      }
+    },
+    "frozen_final_baselines": {
+      "M4_FINAL": {
+        "queries_differing": 0
+      },
+      "M41_FINAL": {
+        "queries_differing": 0
+      }
+    },
+    "failure_taxonomy": {
+      "units_verified": 12,
+      "inherited_m41_unchanged": true,
+      "partial_positions_match": true
+    },
+    "official_docs": 361,
+    "review_exact_provenance_passed": 12,
+    "trial_vectors": {
+      "shape": [
+        20,
+        1024
+      ],
+      "finite": true,
+      "max_norm_error": 0.0004450082778930664
+    },
+    "trial_to_dense_same_run_consistency": {
+      "maximum_absolute_difference": 0.000457763671875,
+      "minimum_cosine": 0.9999921917915344
+    },
+    "source_target_equivalence": "NOT_VERIFIED_DIFFERENT_RUNTIME_NO_SCORE_REUSE"
+  },
+  "runtime_reported": {
+    "python": "3.13.16",
+    "platform": "linux",
+    "torch_cuda": "13.0",
+    "gpu_name": "NVIDIA A100-SXM4-80GB",
+    "packages": {
+      "torch": "2.11.0+cu130",
+      "sentence-transformers": "5.7.0",
+      "transformers": "4.48.3",
+      "numpy": "2.1.3",
+      "pyarrow": "25.0.1",
+      "psutil": "7.2.2",
+      "PyYAML": "6.0.3",
+      "huggingface-hub": "0.36.2",
+      "tokenizers": "0.21.4",
+      "safetensors": "0.8.0"
+    }
+  },
+  "trial_reported": {
+    "status": "PASS",
+    "passed": true,
+    "scope": "COLAB_ONLY_INTERNAL_FP16_BATCH_CONSISTENCY_NOT_SOURCE_TARGET_EQUIVALENCE",
+    "source_score_reuse": "PROHIBITED",
+    "trial20_sha256": "2f99d5de39c0cd11c9dbbb3b1296d58430417d70ed3bd53c50bc49a0a30af625",
+    "runtime_identity": {
+      "python": "3.13.16",
+      "platform": "linux",
+      "torch_cuda": "13.0",
+      "gpu_name": "NVIDIA A100-SXM4-80GB",
+      "packages": {
+        "torch": "2.11.0+cu130",
+        "sentence-transformers": "5.7.0",
+        "transformers": "4.48.3",
+        "numpy": "2.1.3",
+        "pyarrow": "25.0.1",
+        "psutil": "7.2.2",
+        "PyYAML": "6.0.3",
+        "huggingface-hub": "0.36.2",
+        "tokenizers": "0.21.4",
+        "safetensors": "0.8.0"
+      }
+    },
+    "model_revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "model_files_checked": 11,
+    "model_load_seconds": 2.1691145629999937,
+    "inference_seconds": 1.3887547250001262,
+    "equivalence_seconds": 0.13492784699997173,
+    "shape": [
+      20,
+      1024
+    ],
+    "max_absolute_difference": 0.0,
+    "max_norm_error": 0.0004450082778930664,
+    "minimum_cosine": 0.9999998807907104,
+    "absolute_tolerance": 0.000732421875,
+    "minimum_cosine_required": 0.9995,
+    "peak_gpu_allocated_mib": 1138.1884765625,
+    "available_ram_after_mib": 166047.8359375,
+    "utc": "2026-10-23T17:10:30.389579+00:00"
+  },
+  "dense_elapsed_seconds": 23.129507762000003,
+  "recomputed_retention": {
+    "M4_LEXICAL": {
+      "20": {
+        "known_partial_pairs_found": 13,
+        "queries_with_known_partial": 6,
+        "observed_rows": 240
+      },
+      "100": {
+        "known_partial_pairs_found": 13,
+        "queries_with_known_partial": 6,
+        "observed_rows": 1200
+      }
+    },
+    "M4_FINAL": {
+      "20": {
+        "known_partial_pairs_found": 11,
+        "queries_with_known_partial": 5,
+        "observed_rows": 121
+      },
+      "100": {
+        "known_partial_pairs_found": 11,
+        "queries_with_known_partial": 5,
+        "observed_rows": 121
+      }
+    },
+    "M41_FINAL": {
+      "20": {
+        "known_partial_pairs_found": 6,
+        "queries_with_known_partial": 2,
+        "observed_rows": 17
+      },
+      "100": {
+        "known_partial_pairs_found": 6,
+        "queries_with_known_partial": 2,
+        "observed_rows": 17
+      }
+    },
+    "M41_LEXICAL": {
+      "20": {
+        "known_partial_pairs_found": 12,
+        "queries_with_known_partial": 6,
+        "observed_rows": 240
+      },
+      "100": {
+        "known_partial_pairs_found": 12,
+        "queries_with_known_partial": 6,
+        "observed_rows": 1200
+      }
+    },
+    "VI_DENSE": {
+      "20": {
+        "known_partial_pairs_found": 3,
+        "queries_with_known_partial": 2,
+        "observed_rows": 240
+      },
+      "100": {
+        "known_partial_pairs_found": 12,
+        "queries_with_known_partial": 6,
+        "observed_rows": 1200
+      }
+    },
+    "ZH_DENSE": {
+      "20": {
+        "known_partial_pairs_found": 11,
+        "queries_with_known_partial": 6,
+        "observed_rows": 240
+      },
+      "100": {
+        "known_partial_pairs_found": 13,
+        "queries_with_known_partial": 6,
+        "observed_rows": 1200
+      }
+    },
+    "RRF": {
+      "20": {
+        "known_partial_pairs_found": 11,
+        "queries_with_known_partial": 6,
+        "observed_rows": 240
+      },
+      "100": {
+        "known_partial_pairs_found": 12,
+        "queries_with_known_partial": 6,
+        "observed_rows": 1200
+      }
+    }
+  },
+  "page_types_top20": {
+    "M4_LEXICAL": {
+      "MEDICAL_ARTICLE": 139,
+      "DIRECTORY_OR_NAVIGATION": 101
+    },
+    "M4_FINAL": {
+      "MEDICAL_ARTICLE": 66,
+      "DIRECTORY_OR_NAVIGATION": 55
+    },
+    "M41_FINAL": {
+      "MEDICAL_ARTICLE": 17
+    },
+    "M41_LEXICAL": {
+      "MEDICAL_ARTICLE": 192,
+      "DIRECTORY_OR_NAVIGATION": 48
+    },
+    "VI_DENSE": {
+      "MEDICAL_ARTICLE": 150,
+      "DIRECTORY_OR_NAVIGATION": 90
+    },
+    "ZH_DENSE": {
+      "MEDICAL_ARTICLE": 164,
+      "DIRECTORY_OR_NAVIGATION": 76
+    },
+    "RRF": {
+      "MEDICAL_ARTICLE": 174,
+      "DIRECTORY_OR_NAVIGATION": 66
+    }
+  },
+  "known_partial_positions_and_windows": [
+    {
+      "query_id": 128,
+      "doc_id": 3004366,
+      "old_chunk_id": "3004366-c44647c8426e2383a804bfb1",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 4,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 4,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": 10,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 10,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 37,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 13,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 8,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": true,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3019879,
+      "old_chunk_id": "3019879-562b332d54bfd80325a4",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M4_FINAL": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_FINAL": {
+          "rank": 7,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_LEXICAL": {
+          "rank": 7,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "VI_DENSE": {
+          "rank": 40,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "ZH_DENSE": {
+          "rank": 5,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "RRF": {
+          "rank": 5,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        }
+      },
+      "old_window_availability": {
+        "exact_single": true,
+        "normalized_single": true,
+        "exact_reconstructed": true,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3019895,
+      "old_chunk_id": "3019895-562b332d54bfd80325a4",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 7,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M4_FINAL": {
+          "rank": 7,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_FINAL": {
+          "rank": 8,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_LEXICAL": {
+          "rank": 8,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "VI_DENSE": {
+          "rank": 39,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "ZH_DENSE": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "RRF": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        }
+      },
+      "old_window_availability": {
+        "exact_single": true,
+        "normalized_single": true,
+        "exact_reconstructed": true,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3027148,
+      "old_chunk_id": "3027148-fb5cb3e94f8223385650",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M4_FINAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_FINAL": {
+          "rank": 3,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_LEXICAL": {
+          "rank": 3,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "VI_DENSE": {
+          "rank": 29,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "ZH_DENSE": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "RRF": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        }
+      },
+      "old_window_availability": {
+        "exact_single": true,
+        "normalized_single": true,
+        "exact_reconstructed": true,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 128,
+      "doc_id": 3058523,
+      "old_chunk_id": "3058523-fb5cb3e94f8223385650",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M4_FINAL": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_FINAL": {
+          "rank": 4,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_LEXICAL": {
+          "rank": 4,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "VI_DENSE": {
+          "rank": 30,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "ZH_DENSE": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": true,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "RRF": {
+          "rank": 3,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        }
+      },
+      "old_window_availability": {
+        "exact_single": true,
+        "normalized_single": true,
+        "exact_reconstructed": true,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 409,
+      "doc_id": 3078850,
+      "old_chunk_id": "3078850-e478f97a5c5e45cd8276",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 20,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 16,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 7,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    },
+    {
+      "query_id": 571,
+      "doc_id": 3003971,
+      "old_chunk_id": "3003971-91bf26f574eac4294fa7",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 45,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078785,
+      "old_chunk_id": "3078785-03b363d383a72779858f",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 11,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 11,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 83,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078801,
+      "old_chunk_id": "3078801-c0dd61e5974668ebfb71",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 3,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 3,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 9,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 66,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 10,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 10,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3078924,
+      "old_chunk_id": "3078924-fb05a467c3d92a24d421",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 8,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 60,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 94,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 21,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    },
+    {
+      "query_id": 805,
+      "doc_id": 3094304,
+      "old_chunk_id": "3094304-fb3841b876e892949e81",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 4,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M4_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "M41_LEXICAL": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "VI_DENSE": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "ZH_DENSE": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        },
+        "RRF": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": true
+        }
+      },
+      "old_window_availability": {
+        "exact_single": true,
+        "normalized_single": true,
+        "exact_reconstructed": true,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 805,
+      "doc_id": 3820076,
+      "old_chunk_id": "3820076-d3893407c6e7b343bb0badcb",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 9,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 15,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 6,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": true,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": true,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": true
+      }
+    },
+    {
+      "query_id": 1080,
+      "doc_id": 3055183,
+      "old_chunk_id": "3055183-e6fa9b50da5dba3ca9a9",
+      "arms": {
+        "M4_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M4_FINAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_FINAL": {
+          "rank": null,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "M41_LEXICAL": {
+          "rank": 1,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "VI_DENSE": {
+          "rank": 31,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "ZH_DENSE": {
+          "rank": 8,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        },
+        "RRF": {
+          "rank": 2,
+          "exact_old_excerpt_in_selected_chunk": false,
+          "normalized_old_excerpt_in_selected_chunk": false,
+          "exact_old_excerpt_in_any_owner_chunk": false
+        }
+      },
+      "old_window_availability": {
+        "exact_single": false,
+        "normalized_single": false,
+        "exact_reconstructed": false,
+        "normalized_reconstructed": false
+      }
+    }
+  ],
+  "review_queue_identity": [
+    {
+      "query_id": 409,
+      "doc_id": 3037030,
+      "chunk_id": "3037030-2f1d575023096230e08b",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 7,
+        "ZH_DENSE": null,
+        "RRF": null
+      }
+    },
+    {
+      "query_id": 1080,
+      "doc_id": 3095750,
+      "chunk_id": "3095750-53d52efdd0f4f8acaa0e",
+      "page_type": "DIRECTORY_OR_NAVIGATION",
+      "arms": {
+        "M4_LEXICAL": 64,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": 70,
+        "VI_DENSE": null,
+        "ZH_DENSE": null,
+        "RRF": 13
+      }
+    },
+    {
+      "query_id": 634,
+      "doc_id": 3149391,
+      "chunk_id": "3149391-d09ef39c53ec56d4241b",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": 20,
+        "VI_DENSE": null,
+        "ZH_DENSE": null,
+        "RRF": 12
+      }
+    },
+    {
+      "query_id": 409,
+      "doc_id": 3654892,
+      "chunk_id": "3654892-17795ffbaa420da471f7",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 13,
+        "ZH_DENSE": 30,
+        "RRF": null
+      }
+    },
+    {
+      "query_id": 491,
+      "doc_id": 3037051,
+      "chunk_id": "3037051-6fb67d2cae1a34aa68d1",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 18,
+        "ZH_DENSE": 79,
+        "RRF": null
+      }
+    },
+    {
+      "query_id": 634,
+      "doc_id": 3008961,
+      "chunk_id": "3008961-c1f43561125be604495c",
+      "page_type": "DIRECTORY_OR_NAVIGATION",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 38,
+        "ZH_DENSE": 16,
+        "RRF": 43
+      }
+    },
+    {
+      "query_id": 805,
+      "doc_id": 3037031,
+      "chunk_id": "3037031-8c80a638375e4591ff69",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": 3,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": 4,
+        "VI_DENSE": null,
+        "ZH_DENSE": null,
+        "RRF": 2
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3111825,
+      "chunk_id": "3111825-6d39416d5bd3af6af049",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": 62,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": 81,
+        "VI_DENSE": null,
+        "ZH_DENSE": null,
+        "RRF": 20
+      }
+    },
+    {
+      "query_id": 446,
+      "doc_id": 3095737,
+      "chunk_id": "3095737-4ca255a5ad54e6caefe4",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 18,
+        "ZH_DENSE": null,
+        "RRF": null
+      }
+    },
+    {
+      "query_id": 571,
+      "doc_id": 3008959,
+      "chunk_id": "3008959-64bfc2b56063d993f81f",
+      "page_type": "DIRECTORY_OR_NAVIGATION",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 2,
+        "ZH_DENSE": 4,
+        "RRF": 16
+      }
+    },
+    {
+      "query_id": 634,
+      "doc_id": 3865998,
+      "chunk_id": "3865998-b8f56f355d896e7d434e",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": 20,
+        "ZH_DENSE": null,
+        "RRF": 88
+      }
+    },
+    {
+      "query_id": 715,
+      "doc_id": 3027550,
+      "chunk_id": "3027550-bf3dea160832bf5acf80",
+      "page_type": "MEDICAL_ARTICLE",
+      "arms": {
+        "M4_LEXICAL": null,
+        "M4_FINAL": null,
+        "M41_FINAL": null,
+        "M41_LEXICAL": null,
+        "VI_DENSE": null,
+        "ZH_DENSE": 16,
+        "RRF": null
+      }
+    }
+  ],
+  "per_query": [
+    {
+      "query_id": 128,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 3
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 3
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 6,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 12,
+          "novel_docs_top20_vs_m41_candidates20": 20
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 13
+        },
+        "RRF": {
+          "known_partial_top20": 5,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        }
+      }
+    },
+    {
+      "query_id": 257,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 4
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 1,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 17
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 17
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 11,
+          "novel_docs_top20_vs_m41_candidates20": 12
+        }
+      }
+    },
+    {
+      "query_id": 290,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 12,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 12,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 3,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 7,
+          "novel_docs_top20_vs_m41_candidates20": 15
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 15
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        }
+      }
+    },
+    {
+      "query_id": 409,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 6
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 2,
+          "novel_docs_top20_vs_m41_candidates20": 13
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 12
+        },
+        "RRF": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 9
+        }
+      }
+    },
+    {
+      "query_id": 446,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 14
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 3,
+          "novel_docs_top20_vs_m41_candidates20": 16
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 7,
+          "novel_docs_top20_vs_m41_candidates20": 17
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 14
+        }
+      }
+    },
+    {
+      "query_id": 491,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 5
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 1,
+          "novel_docs_top20_vs_m41_candidates20": 15
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 10,
+          "novel_docs_top20_vs_m41_candidates20": 13
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 9
+        }
+      }
+    },
+    {
+      "query_id": 513,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 6,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 6,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 13,
+          "novel_docs_top20_vs_m41_candidates20": 16
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 15,
+          "novel_docs_top20_vs_m41_candidates20": 12
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 6,
+          "novel_docs_top20_vs_m41_candidates20": 9
+        }
+      }
+    },
+    {
+      "query_id": 571,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 11,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 8
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 13,
+          "novel_docs_top20_vs_m41_candidates20": 18
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 16
+        },
+        "RRF": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 12
+        }
+      }
+    },
+    {
+      "query_id": 634,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 6,
+          "novel_docs_top20_vs_m41_candidates20": 17
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 2,
+          "novel_docs_top20_vs_m41_candidates20": 11
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 13
+        },
+        "RRF": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 6
+        }
+      }
+    },
+    {
+      "query_id": 715,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 3,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 3,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 6
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 2,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 13,
+          "novel_docs_top20_vs_m41_candidates20": 16
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 3,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "RRF": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 2,
+          "novel_docs_top20_vs_m41_candidates20": 9
+        }
+      }
+    },
+    {
+      "query_id": 805,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 5,
+          "novel_docs_top20_vs_m41_candidates20": 8
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 4,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 1,
+          "novel_docs_top20_vs_m41_candidates20": 11
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 2,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "RRF": {
+          "known_partial_top20": 2,
+          "directory_tagged_top20": 3,
+          "novel_docs_top20_vs_m41_candidates20": 8
+        }
+      }
+    },
+    {
+      "query_id": 1080,
+      "arms": {
+        "M4_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M4_FINAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 8,
+          "novel_docs_top20_vs_m41_candidates20": 10
+        },
+        "M41_FINAL": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "M41_LEXICAL": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 0,
+          "novel_docs_top20_vs_m41_candidates20": 0
+        },
+        "VI_DENSE": {
+          "known_partial_top20": 0,
+          "directory_tagged_top20": 14,
+          "novel_docs_top20_vs_m41_candidates20": 19
+        },
+        "ZH_DENSE": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 3,
+          "novel_docs_top20_vs_m41_candidates20": 15
+        },
+        "RRF": {
+          "known_partial_top20": 1,
+          "directory_tagged_top20": 9,
+          "novel_docs_top20_vs_m41_candidates20": 12
+        }
+      }
+    }
+  ],
+  "rrf_representative_diagnostics": {
+    "same_document_in_zh_top100": 239,
+    "different_representative_chunk": 165
+  },
+  "held_out_used": false,
+  "new_inference": false,
+  "provisional_assistant_review": {
+    "sha256": "b08147cbc11908e4d863c3ab71f81161b236f9f971f7b72cbf3f3c4bdecd2002",
+    "counts": {
+      "PARTIAL": 1,
+      "WRONG": 11
+    },
+    "human_verified": 0,
+    "blind": false,
+    "official_metric": false
+  }
+}

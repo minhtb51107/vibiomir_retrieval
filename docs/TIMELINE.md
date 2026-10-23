@@ -189,3 +189,12 @@ source expansion. Prepared and verified a private, weights-free RTX3060 payload
 with same-host trial binding and durable Dense execution; target execution
 requires an actual remote PC session. No new relevance gain is claimed and
 Phase27/Phase29 frozen submissions remain unchanged.
+
+### 2026-10-24 — Colab M4.2 Dense executed; evidence-window bottleneck exposed
+
+Verified returned trial PASS (internal Colab only) and complete2212-row Dense
+checkpoint. Chinese-query Dense retains13 known partial pairs at100 but RRF
+loses one and can replace body windows with navigation. No independently
+confirmed direct Chinese answer or leaderboard gain. Next proposed experiment
+changes only representative windows in the fixed cached document ranking;
+no new source expansion or production inference was launched.

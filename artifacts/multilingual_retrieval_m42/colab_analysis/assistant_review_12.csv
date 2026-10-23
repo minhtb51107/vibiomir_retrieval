@@ -1,0 +1,13 @@
+query_id,doc_id,chunk_id,provisional_assessment,content_type,verification_status,reason
+409,3037030,3037030-2f1d575023096230e08b,PARTIAL,MEDICAL_BODY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Female endocrine examination discusses hair distribution and hirsutism; useful differential context but not a direct explanation or treatment of the described axillary hair/possible folliculitis."
+1080,3095750,3095750-53d52efdd0f4f8acaa0e,WRONG,DIRECTORY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Alphabetical symptom list; mentions contractions among many items but does not answer pregnancy38-week right-sided chest pain versus labour."
+634,3149391,3149391-d09ef39c53ec56d4241b,WRONG,WRONG_ENTITY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Intracranial pressure and space-occupying lesions do not explain non-drinking elevated GGT."
+409,3654892,3654892-17795ffbaa420da471f7,WRONG,NAVIGATION,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Expert-QA link list on pubic hair greying and menstrual skin changes; no answer text for the actual question."
+491,3037051,3037051-6fb67d2cae1a34aa68d1,WRONG,UNSUPPORTED_CONTEXT,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Menopausal syndrome pattern descriptions do not establish relevance to the reported unilateral pain and chest-imaging findings."
+634,3008961,3008961-c1f43561125be604495c,WRONG,DIRECTORY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Large miscellaneous symptom list contains no explanation of the requested GGT/abstinence relation."
+805,3037031,3037031-8c80a638375e4591ff69,WRONG,NAVIGATION,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Female-infertility see-also list links male infertility but supplies no male age or risk-factor evidence."
+715,3111825,3111825-6d39416d5bd3af6af049,WRONG,WRONG_ENTITY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Chronic pharyngitis causes and treatment are not H.pylori signs or eradication."
+446,3095737,3095737-4ca255a5ad54e6caefe4,WRONG,DIRECTORY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Symptom-navigation menu does not interpret elevated direct bilirubin."
+571,3008959,3008959-64bfc2b56063d993f81f,WRONG,DRUG_CATALOG,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"GI medicine list does not address enlarged painful spleen after malaria."
+634,3865998,3865998-b8f56f355d896e7d434e,WRONG,WRONG_TOPIC,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Sexual-performance exercise and massage article does not answer elevated GGT without alcohol exposure."
+715,3027550,3027550-bf3dea160832bf5acf80,WRONG,WRONG_ENTITY,AI_JUDGED_M42_ASSISTANT_UNBLINDED,"Cystic-fibrosis respiratory treatment is not H.pylori eradication."

@@ -1182,3 +1182,30 @@ Decision: GO to execute the same bounded Dense/RRF test on RTX3060; scientific
 usefulness remains INCONCLUSIVE and no submission is justified. No remote
 session is available, so target inference is NOT_RUN, not a claimed handoff.
 Evidence: artifacts/multilingual_retrieval_m42/M42_RESUME_REPORT.md.
+
+## 2026-10-24 — M4.2 Colab results verified and reviewed
+
+Returned Colab ZIP CRC and10 extracted members match. Trial20 explicitly PASS
+for Colab internal FP16 consistency only; A100/Linux/torch2.11+cu130 differs from
+source laptop, so source-target equivalence remains NOT_VERIFIED and historical
+reranker scores were not reused. Dense completed2212 rows across553 checksummed
+SQLite windows, integrity/finite/normalization PASS. CPU arithmetic replay of
+both Dense Top100 and RRF reproduces saved IDs/order/scores without new inference.
+Actual candidate universe is361 official document owners/2188 chunks, versus
+the historical368-document report; the seven-ID discrepancy remains unresolved.
+
+Known13 AI-partial pairs, counts at Top20/Top100: VI-Dense3/12, ZH-Dense11/13,
+RRF11/12, versus M4 lexical13/13 and M4.1 lexical12/12. These are pair
+retention counts, not gold Recall. RRF changes165/239 common ZH document windows;
+it can retain a document while choosing navigation rather than medical body.
+Literal old-window Top20 retention is2 for ZH-Dense versus0 for RRF; rechunking
+and whitespace differences are explicitly separated. Original13 pairs contain
+11 distinct old evidence strings and only6 query units.
+
+Reviewed all12 new queue excerpts as unblinded AI aids:1 partial/11 wrong/0
+direct; no human verification or corpus-wide error-rate claim. Reranker NOT_RUN.
+Recommend one cached, fixed-document window-selection ablation before more
+source acquisition; NO-GO for promoting current RRF or claiming score gain.
+Phase27 BEST0.0923 SHA verified unchanged; no inference rerun, crawl or submission.
+Twenty-five scoped tests pass. Evidence:
+artifacts/multilingual_retrieval_m42/colab_analysis/M42_COLAB_ANALYSIS.md.
