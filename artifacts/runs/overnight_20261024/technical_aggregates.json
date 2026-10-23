@@ -1,0 +1,183 @@
+{
+  "status": "COMPLETE",
+  "stages": {
+    "m43": {
+      "status": "COMPLETE",
+      "runtime_seconds": 3.3861672000057297,
+      "telemetry": {
+        "available_mib": 654.41015625,
+        "rss_mib": 116.38671875,
+        "peak_rss_mib": 163.18359375,
+        "private_mib": 99.76953125,
+        "free_disk_gib": 36.76372146606445,
+        "commit_headroom_mib": 13234.98828125,
+        "baseline": {
+          "available_mib": 671.82421875,
+          "rss_mib": 23.7265625,
+          "peak_rss_mib": 23.7265625,
+          "private_mib": 14.0546875,
+          "free_disk_gib": 36.765159606933594,
+          "commit_headroom_mib": 13322.09765625
+        },
+        "runtime_seconds": 2.99711880000541,
+        "periodic_extrema": {
+          "min_available_mib": 550.8359375,
+          "max_rss_mib": 128.98828125,
+          "max_peak_rss_mib": 163.18359375,
+          "max_private_mib": 100.9296875,
+          "min_free_disk_gib": 36.76372146606445,
+          "min_commit_headroom_mib": 13224.640625
+        }
+      }
+    },
+    "production": {
+      "status": "COMPLETE",
+      "runtime_seconds": 52.10379150000517,
+      "telemetry": {
+        "available_mib": 675.9609375,
+        "rss_mib": 110.51953125,
+        "peak_rss_mib": 150.8359375,
+        "private_mib": 135.4296875,
+        "free_disk_gib": 36.762882232666016,
+        "commit_headroom_mib": 13236.08203125,
+        "baseline": {
+          "available_mib": 745.1796875,
+          "rss_mib": 23.74609375,
+          "peak_rss_mib": 23.74609375,
+          "private_mib": 14.08984375,
+          "free_disk_gib": 36.763675689697266,
+          "commit_headroom_mib": 13320.19140625
+        },
+        "runtime_seconds": 51.84880190000695,
+        "periodic_extrema": {
+          "min_available_mib": 551.57421875,
+          "max_rss_mib": 150.8359375,
+          "max_peak_rss_mib": 150.8359375,
+          "max_private_mib": 175.71484375,
+          "min_free_disk_gib": 36.75929641723633,
+          "min_commit_headroom_mib": 13120.0078125
+        }
+      }
+    },
+    "sources": {
+      "status": "COMPLETE",
+      "runtime_seconds": 4.170314999995753,
+      "telemetry": {
+        "available_mib": 621.16015625,
+        "rss_mib": 174.796875,
+        "peak_rss_mib": 215.9453125,
+        "private_mib": 185.25390625,
+        "free_disk_gib": 36.7628173828125,
+        "commit_headroom_mib": 13186.3984375,
+        "baseline": {
+          "available_mib": 758.1875,
+          "rss_mib": 23.7578125,
+          "peak_rss_mib": 23.7578125,
+          "private_mib": 14.0859375,
+          "free_disk_gib": 36.76285934448242,
+          "commit_headroom_mib": 13346.4765625
+        },
+        "runtime_seconds": 3.8219370000006165,
+        "periodic_extrema": {
+          "min_available_mib": 567.50390625,
+          "max_rss_mib": 215.8203125,
+          "max_peak_rss_mib": 215.9453125,
+          "max_private_mib": 238.296875,
+          "min_free_disk_gib": 36.7628173828125,
+          "min_commit_headroom_mib": 13125.53515625
+        }
+      }
+    }
+  },
+  "m43": {
+    "20": {
+      "A": {
+        "changed_vs_A": 0,
+        "navigation": 54
+      },
+      "B": {
+        "changed_vs_A": 166,
+        "navigation": 79
+      },
+      "C0": {
+        "changed_vs_A": 165,
+        "navigation": 29
+      },
+      "C1": {
+        "changed_vs_A": 17,
+        "navigation": 54
+      },
+      "C1_vs_C0_changed": 157
+    },
+    "100": {
+      "A": {
+        "changed_vs_A": 0,
+        "navigation": 294
+      },
+      "B": {
+        "changed_vs_A": 553,
+        "navigation": 366
+      },
+      "C0": {
+        "changed_vs_A": 627,
+        "navigation": 161
+      },
+      "C1": {
+        "changed_vs_A": 26,
+        "navigation": 294
+      },
+      "C1_vs_C0_changed": 618
+    }
+  },
+  "production_totals": {
+    "doc_unique": 24000,
+    "chunk_owner_unique": 29982,
+    "exact_duplicate_slots": 0,
+    "same_text_cross_owner_slots": 313,
+    "token_jaccard_085_pairs": 19962,
+    "promotional_marker_slots": 3334,
+    "chunk_owners_outside_docs": 6823,
+    "chunk_slots_outside_docs": 7557,
+    "deep_doc_candidates": 299133,
+    "deep_docs_not_selected": 275133,
+    "deep_chunk_rows": 487348,
+    "deep_chunk_owners": 299133
+  },
+  "official_best": 0.0923,
+  "best_sha256": "b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e",
+  "recommendation": "Cache-only Phase27 document/chunk-owner alignment ablation, keeping Docs20/Chunks40 and source CAP16 fixed.",
+  "official_score_gain_claimed": false,
+  "source_language_slots_metadata_not_gold": {
+    "documents": {"vi": 23911, "zh": 32, "unknown": 57, "en": 0},
+    "chunks": {"vi": 47839, "zh": 60, "unknown": 101, "en": 0}
+  },
+  "query_source_presence_docs_chunks": {
+    "medlatec.vn": [1190, 1190],
+    "tiemchunglongchau.com.vn": [1184, 1178],
+    "suckhoedoisong.vn": [1156, 1192],
+    "hellobacsi.com": [875, 922],
+    "suckhoecongdongonline.vn": [465, 581],
+    "bachmai.gov.vn": [378, 471]
+  },
+  "verification": {
+    "scoped_tests_passed": 25,
+    "sqlite_integrity_check": "ok",
+    "committed_queries": 1200,
+    "completed_stage_resume_passed_without_reexecution": true,
+    "new_review_windows_canonical_matches": 48,
+    "new_review_query_document_overlap_with_exposed_queue": 0,
+    "acquisition_urls_attempted": 0,
+    "source_screen_is_not_global_ledger_reconciliation": true,
+    "relative_preference_or_direct_answer_gain_claimed": false,
+    "selector_sha256": "3e7c121f6c65d54aff98f6092826d8b1c23709268feb0f915528a75d312f01cc",
+    "runner_sha256": "8c79aeab012ab7baf987e65727ac0ade43f7b7986ab3e922751f58986b9a38ff"
+  },
+  "posthoc_frozen_silver_window_retention": {
+    "used_in_selector": false,
+    "new_labels_assigned": false,
+    "document_pairs_at20_each_policy": 11,
+    "document_pairs_at100_each_policy": 12,
+    "literal_excerpt_at20_and100": {"A": 0, "B": 2, "C0": 2, "C1": 4},
+    "normalized_excerpt_at20_and100": {"A": 1, "B": 3, "C0": 3, "C1": 5}
+  }
+}
