@@ -1,0 +1,20 @@
+{
+  "status": "BLOCKED_RESOURCES",
+  "failures": [
+    "available_ram_mib"
+  ],
+  "model_loaded": false,
+  "phase27_pids": [],
+  "competitor_pids": [],
+  "available_ram_mib": 678.484375,
+  "commit_headroom_mib": 10390.2578125,
+  "gpu_free_mib": 3977.0,
+  "gpu_used_mib": 0.0,
+  "disk_free_gib": 34.469200134277344,
+  "required_cold_ram_mib": 969.7125,
+  "required_warm_ram_mib": 357.11249999999995,
+  "required_commit_mib": 3856.655,
+  "required_vram_mib": 1363.95,
+  "profile_sha256": "34180cf84cfa7e26282b03b78c8c2e1d549a33f72a170993dc11bf2321b6719f",
+  "basis": "Historical process-start to first-batch deltas; original 1.25 physical/VRAM and 1.10 commit multipliers"
+}

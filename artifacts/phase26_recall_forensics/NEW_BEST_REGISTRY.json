@@ -1,0 +1,40 @@
+{
+  "as_of": "2026-10-21",
+  "status": "HISTORICAL_BEST_SUPERSEDED",
+  "current_best_pointer": "configs/current_best.json",
+  "superseded_by": "Phase27 FINAL 0.0923 USER_REPORTED_ORGANIZER_RESULT; see current pointer",
+  "phase": "Phase 25",
+  "run_id": "phase25_tiemchung_remaining_8270",
+  "organizer": {
+    "final_score": 0.0869,
+    "docs_f2macro": 0.0852,
+    "chunks_f2macro": 0.0886,
+    "docs_precision": 0.2168,
+    "docs_recall": 0.0803,
+    "chunks_precision": 0.2018,
+    "chunks_recall": 0.0845
+  },
+  "submission_zip": {
+    "path": "submissions/00_READY_TO_UPLOAD/p25_tiem8270_cap16.zip",
+    "size_bytes": 49796523,
+    "sha256": "7d1c17bf07b6da7d989d0fa77efaccb3f302dd1ff53e9f0a654d2cd8cadc8b89",
+    "hash_verified_locally": true
+  },
+  "submission_json": {
+    "path": "submissions/00_READY_TO_UPLOAD/p25_tiem8270_cap16.json",
+    "size_bytes": 247472371,
+    "sha256": "02429e0d780343f00a9e2f953a927d73db10293eafa7d78adecc045dc911db94",
+    "hash_source": "artifacts/phase25_tiemchung_remaining_8270/PHASE25_FINAL_AUDIT.json"
+  },
+  "frozen_evidence": {
+    "final_audit": "artifacts/phase25_tiemchung_remaining_8270/PHASE25_FINAL_AUDIT.json",
+    "run_state": "artifacts/runs/phase25_tiemchung_remaining_8270/state.json",
+    "run_manifest": "artifacts/runs/phase25_tiemchung_remaining_8270/manifest.json",
+    "source_manifest": "artifacts/phase25_tiemchung_remaining_8270/tiemchung_remaining_8270_manifest.json",
+    "source_manifest_audit": "artifacts/phase25_tiemchung_remaining_8270/manifest_audit.json",
+    "candidate_summary": "artifacts/phase25_tiemchung_remaining_8270/source_candidate_summary.json",
+    "exact_score_cache": "data/source_census/phase25_tiemchung_remaining_8270/submission_experiment/round1/source_scores.sqlite",
+    "runtime_config": "data/source_census/phase25_tiemchung_remaining_8270/submission_experiment/runtime.yaml"
+  },
+  "immutability": "This registry is a pointer only. No Phase25 frozen artifact was overwritten."
+}

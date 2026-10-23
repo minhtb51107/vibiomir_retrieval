@@ -1,0 +1,19 @@
+{
+  "phase": "Phase27",
+  "run_id": "phase27_suckhoedoisong_remaining_20749",
+  "final_score": 0.0923,
+  "score_status": "USER_REPORTED_ORGANIZER_RESULT",
+  "reported_at": "2026-10-23",
+  "direct_api_verified": false,
+  "component_metrics": null,
+  "zip_path": "submissions/00_READY_TO_UPLOAD/p27_sdso20749_cap16.zip",
+  "zip_sha256": "b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e",
+  "previous_best": {
+    "phase": "Phase29",
+    "final_score": 0.0874,
+    "zip_path": "submissions/00_READY_TO_UPLOAD/p29_bachmai2679_cap16.zip",
+    "zip_sha256": "e8e68f52fe0557e810b91b1c6ce92b336a7915a4853cabe10d583034d9935d04"
+  },
+  "absolute_gain": 0.0049,
+  "immutability": "Pointer only; frozen ZIPs, JSONs, manifests and caches unchanged"
+}

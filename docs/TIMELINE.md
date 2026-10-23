@@ -173,3 +173,11 @@ historical scores were recovered into an independent checkpoint. Phase27 was
 still active, so semantic execution is deferred. The six-row assistant review
 file is missing locally; its row-level labels were not reconstructed from
 aggregate counts. No new relevance result is claimed.
+
+### 2026-10-23 — Phase27 becomes BEST; no blind dedup promotion
+
+User-reported organizer FINAL0.0923 supersedes Phase29 0.0874 and the earlier
+pre-submission HOLD recommendation. Frozen ZIPs unchanged. Bounded development
+overlap/boilerplate ablations do not justify a new submission. M4.2 trial runner
+is executable but measured cold-start RAM gate fails before model loading;
+no semantic gain or equivalence PASS is claimed.

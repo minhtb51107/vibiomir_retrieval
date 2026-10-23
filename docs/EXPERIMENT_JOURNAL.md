@@ -1136,3 +1136,27 @@ HOLD for one scarce submission, not a claim of lower organizer score.
 Four diagnostic tests pass. No held-out labels, new inference, pipeline
 execution or submission. Both ZIP hashes unchanged.
 Evidence: `artifacts/phase27_final_relevance_check/RELEVANCE_REVIEW.md`.
+
+## 2026-10-23 — Phase27 organizer gain and bounded Phase27.1 refinement
+
+User reports organizer FINAL0.0923 for Phase27 (USER_REPORTED_ORGANIZER_RESULT,
+not directly API verified), versus Phase29 0.0874: +0.0049 (+5.61%). New pointer
+is configs/current_best.json; both frozen ZIP hashes verified unchanged.
+The earlier eight-query HOLD is superseded as a submission decision, while
+its provisional failure examples remain diagnostics.
+
+Two cache-only ablations on39 frozen development queries completed in10.33s.
+Same-owner overlap/backfill changes194 chunk slots, retains12/12 known
+baseline-present silver-positive documents and13/13 supported exact excerpts,
+but still needs316 deferred padding slots and loses4 original Top5 objects
+from final40. Conservative dominant-boilerplate rejection changes nothing.
+NO-GO for a new submission: no independent evidence of relevance gain.
+No ZIP, inference, crawl or held-out-label use.
+
+M4.2 executable trial20 was invoked but correctly blocked before model load:
+678.48MiB RAM available vs969.71MiB measured cold-start requirement, preserving
+existing safety multipliers; VRAM3977MiB, commit10390.26MiB and disk34.47GiB pass.
+The cold gate includes runtime-import cost absent from the357.11MiB warm gate.
+No claimed semantic/equivalence result; Dense and reranker remain NOT_RUN.
+Twenty-four scoped tests pass. Evidence:
+artifacts/phase271_cached_refinement/PHASE271_REPORT.md.

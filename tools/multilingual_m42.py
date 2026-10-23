@@ -14,8 +14,8 @@ for stream in (sys.stdout,sys.stderr):
 from src.multilingual_retrieval.m42 import import_review, prepare, require_idle
 
 if __name__=="__main__":
-    parser=argparse.ArgumentParser(description="M4.2 bounded semantic pilot preparation; no model loading")
-    parser.add_argument("command",choices=["prepare","import-review","inference-preflight"])
+    parser=argparse.ArgumentParser(description="M4.2 frozen preparation and resource-protected semantic trial")
+    parser.add_argument("command",choices=["prepare","import-review","inference-preflight","trial20"])
     args=parser.parse_args()
     if args.command=="prepare":
         result=prepare(ROOT)
@@ -24,5 +24,6 @@ if __name__=="__main__":
         out.mkdir(parents=True,exist_ok=True)
         result=import_review(ROOT,out)
     else:
-        result=require_idle(ROOT)
+        from src.multilingual_retrieval.m42_execution import preflight, trial
+        result=trial(ROOT) if args.command=="trial20" else preflight(ROOT)
     print(json.dumps(result,ensure_ascii=False,indent=2))
