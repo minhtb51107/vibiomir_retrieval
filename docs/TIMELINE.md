@@ -207,3 +207,12 @@ navigation proxies worsen54->79. Useful partial recovery and contextual losses
 coexist. NO-GO automatic best-cosine promotion; freeze24 paired review cases and
 seek independent evidence assessment before relation-aware window ranking.
 No source expansion, model inference, held-out access or BEST mutation.
+
+### 2026-10-24 — Owner-alignment replication stopped without promotion
+
+Rebased the historical corroboration policy on frozen Phase27:40 proposed
+document changes/38 queries, Chunks40 fixed; same policy, not a new retrieval
+method. Source review exposes useful complementary single-window baselines
+that owner-count rules can displace. NO-GO automatic promotion; no submission.
+Next distinct proposed investigation is exact scored-window versus expanded
+emitted-window fidelity, keeping document selection fixed. Not executed.

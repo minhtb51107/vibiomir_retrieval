@@ -1248,3 +1248,34 @@ unknown-understanding fallback and no review labels in selection. Not executed.
 20 scoped tests PASS including actual local review integrity. No model/crawl,
 held-out, submission or frozen artifact changes. Phase27 remains BEST0.0923.
 Evidence: artifacts/multilingual_retrieval_m42/window_ablation/M42_PAIRED_REVIEW_ANALYSIS.md.
+
+### 2026-10-24 — Phase27 document-owner corroboration replication
+
+Executed frozen Phase27 vs document-consensus-v1 on1200 queries, with Chunks40
+fixed. Historical Phase25 artifacts verify52 proposals/51 queries,21 approved
+substitutions/21 queries,42 canonical review quotes; separate organizer result
+UNKNOWN. Reused the same pure policy in an isolated module, not old approvals,
+paths or expired deadline.80 synthetic equivalence fixtures PASS.
+
+Phase27 proposes40 document substitutions on38 queries, all candidates already
+at deep document ranks21-30.1162 queries unchanged by this proxy.0 protected
+head slots displaced;40 victims each have one selected chunk.40 distinct
+inserted/removed IDs;6 inserted sources.13 triplets repeat old proposals,8 repeat
+old approvals, but no approval transferred.12 present M1 AI-positive doc pairs
+retained; all48000 selected evidence strings unchanged and canonical verified.
+Current-official ownership20697 IDs and SQLite integrity PASS.
+
+Frozen16-case queue/55 windows precedes judgment. Three predetermined unblinded
+AI aids: one potentially useful complementary candidate; one risks losing an
+explicit liver-testing subquestion; one misses the asked causal relation. None
+approved; no HUMAN_VERIFIED, held-out labels or claimed relevance rate. NO-GO
+promotion; stop equivalent owner-count policy replication. Next distinct
+bottleneck proposed only: scored-window versus emitted semantic-expansion text.
+
+Initial attempt stopped safely at373.34MiB available during redundant historical
+processing, before new selection. Removed unnecessary historical replay by
+using durable archives/source checks; did not lower guards. One recovery
+completed39.52s, reported peak RSS125.71MiB.10 tests PASS including full1200-query
+checkpoint replay and frozen-review source checks. No inference/crawl/ZIP/
+submission. Phase27 BEST0.0923 and SHA unchanged. Raw evidence stays local.
+Evidence: artifacts/phase27_owner_alignment_ablation/OWNER_ALIGNMENT_REPORT.md.
