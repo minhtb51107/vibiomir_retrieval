@@ -1,5 +1,10 @@
 # TASKS.md
 
+> **PROJECT CLOSED — 2026-10-27.** Remaining tasks below are historical records,
+> not authorization to resume acquisition, inference, experiments or submissions.
+> Only backup/integrity/documentation maintenance is in scope. See
+> [FINAL_STATUS.md](FINAL_STATUS.md) and [ARCHIVE_PLAN.md](ARCHIVE_PLAN.md).
+
 ## Phase 1 — Dataset Understanding
 
 | Task | Status | Date |

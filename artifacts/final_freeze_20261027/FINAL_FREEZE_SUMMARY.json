@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-27",
+  "status": "FROZEN_ARCHIVE_PLAN_COMPLETE",
+  "best": {
+    "phase": "Phase27",
+    "final_score": 0.0923,
+    "provenance": "USER_REPORTED_ORGANIZER_RESULT",
+    "sha256": "b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e"
+  },
+  "inventory": {
+    "files": 58455,
+    "logical_bytes": 181976775093,
+    "categories": {
+      "A": {
+        "files": 7108,
+        "bytes": 3468369625
+      },
+      "B": {
+        "files": 12013,
+        "bytes": 167487815625
+      },
+      "C": {
+        "files": 37458,
+        "bytes": 5355100385
+      },
+      "D": {
+        "files": 1876,
+        "bytes": 5665489458
+      }
+    },
+    "git_states": {
+      "TRACKED": 840,
+      "UNTRACKED": 5779,
+      "IGNORED": 45251,
+      "GIT_INTERNAL": 6585
+    },
+    "errors": 0,
+    "untraversed_reparse_links": 8,
+    "runtime_seconds": 50.662476700003026,
+    "peak_working_set_mib": 27.0703125
+  },
+  "cleanup": {
+    "proposed_targets": 30,
+    "logical_bytes": 5355100385,
+    "approved": false,
+    "deleted": 0,
+    "moved": 0
+  },
+  "backup": {
+    "independent_destination_confirmed": false,
+    "full_backup_verified": false,
+    "local_snapshot_only": true,
+    "recommended_free_gib": 225
+  },
+  "verification": {
+    "scoped_tests_passed": 7,
+    "critical_hashes_passed": true,
+    "source_tar_roundtrip_passed": true,
+    "git_bundle_verified": true
+  },
+  "limitations": [
+    "Inventory precedes finalization and excludes own audit directories",
+    "No complete historical secret/license audit",
+    "No official multilingual relevance claims",
+    "Full Git and untracked private sources require independent backup"
+  ]
+}

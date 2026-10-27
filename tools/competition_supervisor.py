@@ -168,6 +168,12 @@ def main() -> int:
     parser.add_argument("--minimum-free-gib", type=float, default=20.0)
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
+    from src.runtime.project_freeze import assert_project_active
+    try:
+        assert_project_active(ROOT)
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 78
     if args.command and args.command[0] == "--": args.command = args.command[1:]
     if not args.command: raise ValueError("worker command is required after --")
     root = ROOT

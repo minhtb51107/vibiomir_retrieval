@@ -1,416 +1,128 @@
 # ViBioMIR Retrieval
 
-ViBioMIR Retrieval is a multilingual biomedical information-retrieval project
-built for a competition with Vietnamese medical queries and an organizer-owned
-corpus identifier space. The system retrieves both official document IDs and
-verbatim, source-derived text chunks from Vietnamese-, Chinese-, and
-English-associated sources. Organizer evaluation reports document and chunk
-precision, recall, and recall-weighted F2 metrics.
+**Archived / frozen on 2026-10-27.** No further acquisition, inference,
+experiments or leaderboard submissions are authorized. See
+[final status](docs/FINAL_STATUS.md) and the [archive plan](docs/ARCHIVE_PLAN.md).
 
-> [!IMPORTANT]
-> ## Current status — Phase 15B pilot complete; relevance gate required
->
-> Organizer-confirmed scaling now shows both depth effects and substantial
-> source-density differences:
->
-> | Checkpoint | Searchable documents | Organizer FINAL |
-> |---|---:|---:|
-> | Shallow G5A | about 300 | `0.0009` |
-> | Corrected G5A depth1000 | 2,997 | `0.0037` |
-> | Corrected G1A depth1000 | 2,005 | `0.0062` |
-> | Corrected G6B depth1000 | 2,910 | `0.0045` |
-> | Phase 10E G5A 11.2K | 11,200 | `0.0085` |
-> | Phase 10E G1A 10K | 10,010 | `0.0234` |
-> | Phase 10E G6B 15K | 15,000 official IDs / 14,908 usable | `0.0140` |
-> | Phase 10E G1A 10K + G6B 15K | 25,010 official IDs / 24,909 usable | `0.0332` |
-> | Phase 10E full nine-source union | 36,210 official IDs / 36,109 usable | `0.0383` |
-> | Full minus Medlatec | 31,210 official IDs / 31,117 usable | `0.0288` |
-> | Full minus Suckhoedoisong | 31,210 official IDs / 31,110 usable | `0.0351` |
-> | Full plus shallow Round-3 resurrection | 36,994 official IDs / 36,890 usable | `0.0383` |
-> | Full union, Medlatec 7.5K | 38,710 official IDs | `0.0398` |
-> | **Full union, Medlatec 10K** | **41,210 official IDs / 41,105 usable** | **`0.0426`** |
-> | Historical OUTPUT20/40 diagnostic | same historical corpus | `0.0470` |
-> | Historical M16 diagnostic | same historical corpus | `0.0450` |
-> | Phase 11C BROAD_EXISTING_NEW | 35,690 usable documents | `0.0492` |
-> | **Phase 14 bounded Medlatec coverage** | **2,996 additional usable documents** | **`0.0533`** |
->
-> G1A scaled to **10,010 official documents / 131,166 chunks** and reached
-> organizer FINAL `0.0234`, up from corrected depth1000 FINAL `0.0062`.
-> This is strong organizer-confirmed depth scaling, not evidence that future
-> scaling will remain linear or that G1A contains most gold documents.
->
-> G6B independently scaled from corrected depth1000 FINAL `0.0045` to `0.0140`
-> at 15,000 official IDs. Their zero-acquisition union reached organizer FINAL
-> `0.0332`, confirming complementary signal beyond G1A alone. The nine-source
-> union adding organizer-valid G5A 11.2K reached organizer FINAL `0.0383`.
-> Organizer attribution now shows a `0.0095` marginal FINAL contribution from
-> Medlatec and `0.0032` from Suckhoedoisong. The shallow Round-3 resurrection
-> set produced no measurable FINAL gain at its current depth; this does not
-> establish that those sources cannot become useful after deeper acquisition.
-> Phase 10F completed the fixed-policy Medlatec depth experiment. Organizer
-> FINAL rose from `0.0383` at 5K to `0.0398` at 7.5K and `0.0426` at 10K.
-> Phase 11A showed that both output and candidate truncation matter. The
-> organizer then replaced the official corpus with a 1,194,469-row
-> Vietnamese/Chinese/English corpus. Phase 11C BROAD_EXISTING_NEW reached FINAL
-> `0.0492`. The organizer-confirmed Phase 12
-> full-PubMed arm then fell to FINAL `0.0451` despite adding 239,896 usable
-> English documents. All document and chunk precision/recall/F2 metrics
-> declined. Phase 13 therefore pauses new acquisition and inference while it
-> diagnoses candidate-volume, cross-lingual retrieval, and source-fusion
-> behavior using frozen artifacts and a 60-query human review set. Phase 13A's
-> controlled Top-3-mean document candidate reached organizer FINAL `0.0472`,
-> partially recovering Phase 12 but remaining below Phase 11C. Architecture
-> Upgrade Milestone 1 therefore stops ranking tweaks: it audits 275,586 local
-> usable documents and establishes an offline evaluator. Its current 21-pair
-> silver set is valid only for source-lookup regression and is insufficient for
-> architecture selection or official Recall@K. Phase 14 then added exactly one
-> bounded Medlatec coverage arm and reached the new organizer-best FINAL
-> `0.0533` with Docs F2 `0.0536` and Chunks F2 `0.0529`. Phase 15A reproduced
-> that package exactly and completed two CPU-only ranking variants, but neither
-> can be selected without trustworthy relevance evidence. Its terminal status
-> is `NO_WINNER_PENDING_RELEVANCE_EVIDENCE`; no ZIP was created. Phase 15B
-> completed one bounded Vietnamese unified document-BM25 candidate
-> pilot over existing local content. No new worker has been launched.
+A biomedical evidence-retrieval research project built for ViBioMIR:
+Vietnamese questions, official competition document IDs, and source-verbatim
+evidence windows. The production pipeline was predominantly Vietnamese.
+English and Chinese retrieval were research branches, not a demonstrated
+general-purpose multilingual medical search system.
 
-## Current ready submissions
+## Recorded result and its provenance
 
-Submission selection is evidence-based; **never select a ZIP by filename
-guessing**. The authoritative operational sources are:
+Final best: **Phase27 FINAL_SCORE = 0.0923**, a
+**USER_REPORTED_ORGANIZER_RESULT**, not a directly verified API response.
+No final competition rank is claimed. The 0.1000 target was not reached.
 
-- [Submission instructions and current upload list](submissions/README.md)
-- [Submission registry](submissions/MANIFEST.csv)
-- [`submissions/00_READY_TO_UPLOAD/`](submissions/00_READY_TO_UPLOAD/)
+Frozen package: `submissions/00_READY_TO_UPLOAD/p27_sdso20749_cap16.zip`
 
-Phase 14 has already been submitted and is the frozen organizer-best control.
-Consult the registry before every upload; Phase 15A may create review artifacts
-but is not authorized for upload without independent relevance evidence.
+SHA-256:
+`b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e`
 
-Organizer-valid G5A 11.2K, G1A 10K, G6B 15K, and corrected depth1000 packages
-are archived as `SUBMITTED_VALID`. Consult the registry for the exact current
-upload candidate; ZIP existence alone is not readiness evidence.
+Its local bytes were checked during finalization. File integrity is distinct
+from the provenance of the score. The folder name is historical: **nothing is
+currently authorized for upload**. Older ready/pending instructions are archival.
 
-> [!CAUTION]
-> **NEVER upload anything from
-> [`submissions/90_INVALID_DO_NOT_SUBMIT/`](submissions/90_INVALID_DO_NOT_SUBMIT/).**
-> This folder includes the original corrupted depth-1000 packages retained as
-> historical evidence.
+| Recorded control | FINAL | Interpretation |
+|---|---:|---|
+| Phase17 Hello Bacsi | 0.0760 | Historical baseline |
+| Phase21 Suckhoedoisong tranche | 0.0815 | Source expansion improved the recorded result |
+| Phase23 M16 to M32 | 0.0815 | No displayed FINAL improvement |
+| Phase25 Long Chau tranche | 0.0869 | Further source-expansion improvement |
+| Phase29 Bach Mai | 0.0874 | Previous best |
+| Phase27 remaining Suckhoedoisong | **0.0923** | Final best reported by the user |
 
-## Problem and evaluation
+See [score history](docs/leaderboard_history.csv) for recorded metrics and
+provenance caveats. Historical corpus/evaluator versions must not be assumed
+comparable. Source gains do not imply linear scaling.
 
-- The official query set contains **1,200 unique Vietnamese biomedical
-  queries**.
-- The current official corpus contains **1,194,469 document IDs**: organizer-
-  declared totals are 714,469 Vietnamese, 240,000 Chinese, and 240,000 English
-  rows. A returned document ID must belong to this current identifier space.
-- Source pages are multilingual. Observed and domain-associated material spans
-  Vietnamese, Chinese, and English.
-- A submission is a ZIP containing one root-level UTF-8 JSON file with exactly
-  1,200 query objects. Each object contains an integer query `id`, integer
-  `relevant_docs`, and `relevant_chunks` with `doc_id` and `chunk_text`.
-- Chunk text must be contiguous, source-derived text. It is never generated,
-  translated, summarized, or approximately reconstructed for submission.
-- The organizer reports document and chunk precision, recall, and macro F2.
-  F2 weights recall more heavily than precision.
-
-See [Submission Generation](docs/SUBMISSION_GENERATION.md) for the detailed
-schema and validation contract.
-
-## System overview
-
-```mermaid
-flowchart TD
-    A[Official corpus IDs] --> B[Source discovery and source census]
-    B --> C[Resumable, robots-aware acquisition]
-    C --> D[Extract and clean]
-    D --> E[Tokenizer-correct source chunks]
-    E --> F[Dense and BM25 candidates]
-    F --> G[RRF / source candidate competition]
-    G --> H[Multilingual cross-encoder reranker]
-    H --> I[Document and chunk rankings]
-    I --> J[Deterministic submission packaging]
-    J --> K[Structural and scientific validation]
-    K --> L[READY_FOR_LEADERBOARD]
-```
-
-The established retrieval stack uses BGE-M3 dense embeddings, BM25 sparse
-retrieval, deterministic Reciprocal Rank Fusion, and
-`BAAI/bge-reranker-v2-m3`. Phase 10E changes **corpus depth** while keeping the
-query set, control corpus, retrieval policy, model revisions, ranking policy,
-top-k policy, provenance rules, and deterministic tie-breaking fixed.
-
-## Experiment phases
-
-This table is a map, not the full research record. Follow the links below for
-the evidence and detailed results.
-
-| Phase | Purpose | Status / durable conclusion |
-|---|---|---|
-| 0 | Project harness | Existed before visible Git history; exact date and commit are unknown. |
-| 1 | Dataset understanding | Complete. Established 1,200 queries, 4.39M URLs, 97 domains, and strong domain concentration. |
-| 2A–2C | Crawler, source probing, production readiness | Complete. Built resumable, robots-aware acquisition and bounded throughput evidence; no unrestricted crawl was started. |
-| 3 | Extraction, cleaning, chunking | Complete. Produced provenance-preserving documents and deterministic chunks. |
-| 4 | Dense baseline | Complete. BGE-M3 and exact FAISS `IndexFlatIP` over the pilot corpus. |
-| 6 | Sparse and hybrid baseline | Complete. Added multilingual BM25 and deterministic RRF. Phase 5 remained deferred because no trustworthy local labels existed. |
-| 7 | Reranking and candidate selection | Complete. Added the pinned multilingual reranker and crash-safe SQLite score checkpoints. |
-| 8 / 8C | Full-corpus capacity and URL-only reduction | Complete. Exhaustive local production exceeded laptop resources; URL-only query-conditioned reduction was not viable. |
-| 9 | Valid submission generation | Complete. Produced deterministic, provenance-checked organizer packages. |
-| 10A | Leaderboard calibration | Complete. More result depth alone did not repair recall; expanded source context helped chunk precision. |
-| 10B | Search discovery, acquisition benchmark, source probe | Complete. Public/site search was insufficient; bounded source acquisition exposed strong domain differences. |
-| 10C | S4 targeting and source scaling | Complete. Metadata targeting failed, while broad S4 scaling from 1K to 5K improved organizer FINAL from `0.0004` to `0.0014`. |
-| 10D | Adaptive source census and depth testing | Complete for current checkpoints. Group tests isolated priority trios; corrected G5A depth1000 showed positive scaling. |
-| 10E | Focused corpus scaling | Active. G5A 11.2K reached organizer FINAL `0.0085`, G1A 10K reached `0.0234`, and G6B 15K reached `0.0140`. The next test combines G1A and G6B without new acquisition. |
-
-Detailed history:
-
-- [Experiment Journal](docs/EXPERIMENT_JOURNAL.md)
-- [Direction-changing Timeline](docs/TIMELINE.md)
-- [Organizer Leaderboard History](docs/leaderboard_history.csv)
-
-## Important scientific findings
-
-- **URL metadata is not a safe content proxy.** Query-conditioned URL/path
-  reduction substantially damaged retention against existing content-retrieval
-  candidates and was rejected.
-- **Returning more results did not solve the coverage problem.** Phase 10A
-  depth variants did not improve displayed recall.
-- **Source choice matters.** Sources with similar acquisition sizes produced
-  very different organizer signals. Local ranking movement alone did not
-  predict that signal.
-- **Scaling behavior is source-dependent.** S2/FamilyDoctor showed low marginal
-  value at 5K under the fixed pipeline, while S4 improved and corrected G5A
-  improved from `0.0009` to `0.0037`.
-- **G5A has one confirmed positive depth interval, not a guaranteed curve.**
-  G5A continued from corrected `0.0037` to `0.0085`, but the project still
-  measures each checkpoint rather than assuming linear gains.
-- **Per-document yield differs sharply.** Corrected G1A reached `0.0062` with
-  2,005 usable documents, making it the highest-yield tested priority trio per
-  document so far; this is not a claim of global superiority.
-- **G1A has now shown strong positive depth scaling.** Its organizer FINAL rose
-  from corrected depth1000 `0.0062` to `0.0234` at 10,010 official documents,
-  while every reported precision/recall metric also increased. Later depth
-  checkpoints still require independent organizer confirmation.
-- **G6B also scales positively.** Its organizer FINAL rose from corrected
-  depth1000 `0.0045` to `0.0140` at 15,000 official IDs. Whether its signal is
-  complementary to G1A remains an unanswered organizer-level question.
-- **Document count is not content volume.** At Phase 10E, the three G5A sources
-  have materially different chunks per document: 1,200/18,726, 5,000/14,894,
-  and 5,000/59,148 documents/chunks respectively.
-
-## Important failures and lessons
-
-### Ambiguous SQLite cache seeding
-
-An ambiguously correlated SQL subquery copied one old score into all 86,400
-depth-1000 destination rows. Row counts and SQLite integrity still looked
-correct. The three resulting organizer runs are scientifically invalid and are
-quarantined. Cache reuse now requires an explicitly aliased exact
-`(query_id, chunk_id)` match, value auditing, score-distribution sanity, and a
-control replay.
-
-### Package host-memory exhaustion
-
-Materializing text-heavy candidate tables exhausted the laptop's host memory.
-Ranking and packaging now use bounded streaming/finalization paths rather than
-loading every candidate text row at once.
-
-### Missing Phase 10E calibration dependency
-
-Phase 10E initially omitted the inherited `inputs.c1_candidate_pool` contract
-and failed only after expensive acquisition and chunking. Recovery reused the
-persisted Phase 10D calibration (`m=8`). The lesson is to validate inherited
-configuration dependencies before expensive stages begin.
-
-### FP16 batch-shape equivalence
-
-The reranker startup gate initially treated a maximum score difference of
-`0.005859375` as model drift. Investigation found an identical model/input
-contract, zero same-process and fresh-process variation, exact reproduction in
-the original batch-of-two context, and unchanged ordering. The difference came
-from FP16 dynamic-padding batch shape. The gate now requires an exact semantic
-contract and stable ordering, with only an empirically measured numerical
-envelope.
-
-See the [Experiment Journal](docs/EXPERIMENT_JOURNAL.md) for incident details
-and evidence paths.
-
-## Scientific safety rules
-
-- A submission is not eligible for upload unless its scientific state is
-  `READY_FOR_LEADERBOARD` and the registry marks its package
-  `READY_TO_SUBMIT`.
-- ZIP existence and structural validity alone do not establish a valid
-  experiment.
-- Preserve the declared experimental variable and verify that every other
-  contract field remains fixed.
-- Reuse reranker scores only by exact `(query_id, chunk_id)` keys.
-- Invalid organizer runs remain historical evidence but must never support
-  scientific conclusions.
-- After `NEEDS_AGENT`, inspect the incident bundle and durable checkpoints
-  before resuming. Never blindly restart completed stages.
-- During depth experiments, do not silently change retrieval, model, candidate,
-  ranking, chunk, or top-k policies.
-- The established reranker setting on this machine is CUDA FP16,
-  `batch_size=2`, and `max_length=512`. Batch size 4 previously caused OOM and
-  is not retried.
-- Long-running acquisition and scoring retain a **20 GiB minimum free-disk
-  floor**.
-- Never bypass robots rules, CAPTCHAs, access controls, or anti-bot systems.
-
-## Repository structure
+## Implemented architecture
 
 ```text
-configs/       versioned experiment and pipeline configuration
-src/           reusable acquisition, processing, retrieval, reranking, and validation code
-tools/         supervised long-run workers, recovery tools, audits, and registry maintenance
-scripts/       command-line entry scripts, including the PowerShell supervisor wrapper
-tests/         offline and mocked regression tests
-docs/          reports, scientific history, schema documentation, and decisions
-data/          ignored raw and generated data, caches, embeddings, indexes, and checkpoints
-artifacts/     compact reports plus ignored live-run and incident state
-submissions/   lifecycle-organized ZIP packages and authoritative registry
+Official ID/URL snapshot
+  -> robots-aware acquisition + durable SQLite/body archives
+  -> extraction/cleaning + canonical document/chunk ownership
+  -> BGE-M3 Dense + BM25/FTS5 candidates
+  -> RRF and controlled source competition
+  -> BGE multilingual cross-encoder, exact-key score checkpoints
+  -> document/chunk ranking + source-window packaging
+  -> membership/verbatim/determinism/CRC/SHA validation
+  -> historical Docs20 / Chunks40 competition output
 ```
 
-Submission lifecycle folders are:
+The local competition snapshot contains 1,194,469 IDs across 93 domains and
+1,200 Vietnamese queries. It is a **frozen local snapshot**, not a statement
+about today's public Hugging Face population. Pin its checksum and membership.
 
-| Folder | Meaning |
-|---|---|
-| `00_READY_TO_UPLOAD/` | Audited current upload candidates |
-| `10_SUBMITTED_VALID/` | Organizer-submitted valid history |
-| `20_VALID_CONTROLS/` | Local replay/control packages; never upload by default |
-| `30_SUPERSEDED_VALID/` | Valid but superseded historical variants |
-| `90_INVALID_DO_NOT_SUBMIT/` | Invalid or explicit smoke packages |
-| `99_REVIEW_REQUIRED/` | Insufficient evidence for a safe classification |
+The established models were `BAAI/bge-m3` and
+`BAAI/bge-reranker-v2-m3`, with run-specific revisions, tokenization, precision,
+batching and equivalence gates. Laptop execution used bounded memory,
+streaming files and missing-only checkpoint recovery on a 4-GiB GPU.
+Cached scores are not portable merely because model names match.
 
-## Setup
+## What was and was not demonstrated
 
-The package metadata in [`pyproject.toml`](pyproject.toml) requires Python
-3.11 or newer and defines all direct dependencies plus the `dev` test extra.
-There is no separate lock file, so reproduce a historical run from its config,
-recorded model revisions, and environment evidence rather than assuming that
-future dependency resolution is byte-identical.
+- **VI→VI:** source expansion and competition-compatible production outputs
+  have recorded organizer evidence. This is not clinical validation.
+- **VI→EN:** approximately 239,896 PubMed documents were processed in an
+  auxiliary branch. Translation, lexical/Dense/hybrid retrieval and exact
+  reranking were executed. English expansion/fusion did not establish a
+  leaderboard gain; terminology drift and admission failures remained.
+- **VI→ZH:** a small frozen corpus of 2,188 chunks / 361 official owners and
+  12 development queries was evaluated with cached Colab vectors. Document
+  retrieval and evidence-window selection could disagree. No independently
+  confirmed general direct-answer capability was established.
+- AI/silver review is **not HUMAN_VERIFIED**, organizer qrels or official Recall.
+  No comprehensive trustworthy multilingual relevance benchmark was completed.
+- More candidates, multiple windows, high scores, novelty and valid ZIPs did
+  not by themselves demonstrate improved medical relevance.
+- The final owner-alignment replication proposed 40 substitutions on 38 queries,
+  kept chunks fixed and ended **NO-GO for promotion**.
 
-For a new Windows virtual environment:
+Evidence: [Colab analysis](artifacts/multilingual_retrieval_m42/colab_analysis/M42_COLAB_ANALYSIS.md),
+[window ablation](artifacts/multilingual_retrieval_m42/window_ablation/M42_WINDOW_ABLATION.md),
+[owner-alignment report](artifacts/phase27_owner_alignment_ablation/OWNER_ALIGNMENT_REPORT.md).
+
+## Reproduction and preservation
+
+A Git clone alone cannot reproduce the best package. It also requires the
+matching private official snapshot, canonical source content, checkpoints,
+indexes/vectors, model contracts and exact-score caches. Some late-stage code
+and local changes were never published; the private working-source snapshot
+and worktree patch are part of the recovery plan.
+
+`pyproject.toml` has dependency ranges, not a full historical lockfile. The
+recorded environment and numerical-equivalence evidence must be retained.
+No new downloads or inference are needed for archival integrity checks:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m unittest tests.test_final_freeze_archive -q
+Get-FileHash submissions\00_READY_TO_UPLOAD\p27_sdso20749_cap16.zip -Algorithm SHA256
 ```
 
-Run the offline suite with the command used in this repository:
+`PROJECT_FREEZE.json` blocks new supervised workers. It is not an OS sandbox;
+direct scripts remain technically executable but are outside the frozen scope.
+Only backup, verification and documentation maintenance may proceed.
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest -q
-```
+Raw corpus/evidence, credentials, weights and large generated artifacts must
+not be newly published. Legacy tracked reports remain unchanged; no exhaustive
+historical privacy/license audit is claimed.
 
-The current development environment is Python 3.12.10 with PyTorch
-2.5.1+cu121 and Transformers 4.48.3. Do not upgrade this working model/runtime
-stack in the middle of an experiment.
+## Engineering lessons and documentation
 
-## Running and monitoring experiments
+The useful engineering outcomes are resumable acquisition, provenance-preserving
+processing, bounded-memory retrieval/packaging, exact-key cache validation and
+controlled negative results. The principal research limitation was insufficient
+independent relevance supervision, especially across languages.
 
-Long-running work is delegated to the local supervisor rather than kept alive
-by an interactive agent. [`scripts/run_competition.ps1`](scripts/run_competition.ps1)
-wraps [`tools/competition_supervisor.py`](tools/competition_supervisor.py) with
-a run ID, a worker command, and the 20 GiB disk guard. Worker choice and config
-are experiment-specific; do not substitute a stale command from another run.
+- [Final status and CV-ready claims](docs/FINAL_STATUS.md)
+- [Backup layout, cleanup candidates and recovery](docs/ARCHIVE_PLAN.md)
+- [Experiment journal](docs/EXPERIMENT_JOURNAL.md)
+- [Timeline](docs/TIMELINE.md)
+- [Submission schema and historical operations](docs/SUBMISSION_GENERATION.md)
+- [Historical submission registry](submissions/README.md)
 
-Each run writes beneath `artifacts/runs/<run_id>/`:
-
-- `state.json` — current stage, status, counts, and checkpoints
-- `events.jsonl` — append-only execution events
-- `metrics.json` — operational telemetry
-- `manifest.json` — launch command and initial run contract
-- `final_report.json` — terminal state
-- `logs/worker.log` — worker output
-
-Monitor a run without attaching destructively:
-
-```powershell
-Get-Content "artifacts/runs/<run_id>/state.json" -Raw
-Get-Content "artifacts/runs/<run_id>/events.jsonl" -Wait
-```
-
-The supervisor uses these terminal states:
-
-- `FAILED_SAFE` — a known safety guard, such as the disk floor, stopped work.
-- `NEEDS_AGENT` — an unknown failure or integrity ambiguity requires diagnosis;
-  inspect `artifacts/incidents/<timestamp>_<run_id>/` first.
-- `WAITING_FOR_LEADERBOARD` — packages are complete and await organizer input,
-  but the worker did not apply the newer scientific-ready state.
-- `READY_FOR_LEADERBOARD` — structural and mandatory scientific gates passed.
-
-While active, the Windows supervisor prevents system sleep without permanently
-changing the machine's power plan. Runs use locks to avoid duplicate ownership
-and preserve stage-specific checkpoints for safe recovery.
-
-## Submission lifecycle
-
-```text
-generated / staging
-        ↓
-structurally + scientifically validated
-        ↓
-READY_TO_SUBMIT in MANIFEST.csv
-        ↓
-manual organizer upload
-        ↓
-SUBMITTED_VALID or historical quarantine/archive
-```
-
-[`submissions/MANIFEST.csv`](submissions/MANIFEST.csv) is authoritative for a
-package's **current path**, lifecycle status, size, SHA-256, report, audit, and
-known organizer metrics. Historical reports retain generation-time paths and
-must not be used to locate the current upload file.
-
-Registry integrity can be checked without regenerating submissions:
-
-```powershell
-.\.venv\Scripts\python.exe tools\submission_registry.py check
-```
-
-## Reproducibility
-
-Reproducibility is enforced through:
-
-- official and deterministic document/chunk identifiers;
-- versioned YAML experiment contracts and pinned model revisions;
-- exact source-text and chunk-to-document provenance;
-- exact-key SQLite reranker caches with integrity and distribution audits;
-- old/new/union corpus and candidate accounting;
-- control replay for new execution paths;
-- deterministic JSON/ZIP serialization and recorded SHA-256 hashes;
-- offline regression tests; and
-- a durable journal, timeline, leaderboard history, incident bundles, and run
-  state.
-
-Snapshot on 2026-10-12: the complete offline suite passed **211 tests** after
-the Phase 11B package-contract recovery. This is a point-in-time result, not a
-promise about future worktree changes.
-
-## Documentation map
-
-| Document | Purpose |
-|---|---|
-| [Experiment Journal](docs/EXPERIMENT_JOURNAL.md) | Detailed questions, changes, failures, lessons, decisions, costs, and evidence |
-| [Timeline](docs/TIMELINE.md) | Compact chronological list of direction-changing milestones |
-| [Leaderboard history](docs/leaderboard_history.csv) | Organizer-confirmed metrics, including explicitly invalid historical runs |
-| [Phase 11A bottleneck audit](docs/PHASE11A_BOTTLENECK_AUDIT.md) | Historical output/candidate diagnostics and the pre-migration breadth design |
-| [Phase 11B new-corpus migration](docs/PHASE11B_NEW_CORPUS_MIGRATION.md) | Official corpus diff, local retention, recovery incidents, and the clean Recall@K design |
-| [Submission operations](submissions/README.md) | Human upload instructions and current ready packages |
-| [Submission manifest](submissions/MANIFEST.csv) | Machine-readable current paths, statuses, hashes, reports, and audits |
-| [Task ledger](docs/TASKS.md) | Phase-by-phase implementation status |
-| [Dataset report](docs/DATASET_REPORT.md) | Official query/corpus structure and measured distributions |
-| [Full-corpus scaling](docs/FULL_CORPUS_SCALING.md) | Capacity model, storage limits, and production gates |
-
-## Hardware notes
-
-The current development laptop has an **NVIDIA GeForce RTX 3050 Laptop GPU
-with 4 GiB VRAM**. The proven reranker configuration is:
-
-- `BAAI/bge-reranker-v2-m3`
-- CUDA FP16
-- batch size 2
-- maximum sequence length 512
-
-These are constraints of the current reproducible environment, not general
-minimum system requirements for the project.
+**No project files have been deleted as part of this freeze. External backup
+verification and exact cleanup approval are still required.**

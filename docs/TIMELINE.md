@@ -216,3 +216,18 @@ method. Source review exposes useful complementary single-window baselines
 that owner-count rules can displace. NO-GO automatic promotion; no submission.
 Next distinct proposed investigation is exact scored-window versus expanded
 emitted-window fidelity, keeping document selection fixed. Not executed.
+
+### 2026-10-27 — Project closed; preservation only
+
+User ended research and leaderboard work. Frozen final best is Phase27 0.0923
+(user-reported organizer result); SHA-256 verified locally. No general-purpose
+VI/EN/ZH direct-answer success or final competition rank is claimed. No further
+experimental work is authorized. No project model worker was running; the
+verified legacy scheduled launcher was exported/disabled and supervisor launches
+are blocked by PROJECT_FREEZE.json. Unrelated processes remain untouched.
+
+Completed exact bounded inventory, honest final documentation, local source/Git
+recovery snapshots and a conditional archive plan. Independent backup destination
+and full backup verification are pending; no scientific data or checkpoints were
+deleted, moved or rewritten. Stop before cleanup and wait for destination and
+subsequent exact-target approval. See docs/FINAL_STATUS.md and docs/ARCHIVE_PLAN.md.

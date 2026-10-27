@@ -1,5 +1,13 @@
 # Competition Submission Registry
 
+> **Archived / frozen on 2026-10-27. No files are currently authorized for upload.**
+> Historical ready/status tables below are retained as records, not instructions
+> to submit. Final BEST is Phase27, user-reported organizer FINAL **0.0923**,
+> `00_READY_TO_UPLOAD/p27_sdso20749_cap16.zip`, SHA-256
+> `b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e`.
+> This date's local bytes were verified; no direct organizer API verification or
+> leaderboard-rank claim is made. See [final status](../docs/FINAL_STATUS.md).
+
 ## CURRENT FILES TO UPLOAD
 
 Only ZIPs with `READY_TO_SUBMIT` status in [`MANIFEST.csv`](MANIFEST.csv) are

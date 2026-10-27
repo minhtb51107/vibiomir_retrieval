@@ -1,0 +1,19 @@
+{
+  "frozen": true,
+  "date": "2026-10-27",
+  "timezone": "Asia/Saigon",
+  "decision": "PROJECT_ENDED_FINAL_FREEZE_SAFE_ARCHIVE",
+  "forbidden_without_new_explicit_user_approval": ["crawl", "model inference", "leaderboard optimization", "experiments", "worker resume", "organizer submission"],
+  "permitted_maintenance": ["read-only inventory", "backup planning", "checksum verification", "local archival snapshots", "documentation"],
+  "frozen_best": {
+    "experiment": "Phase27",
+    "final_score": 0.0923,
+    "result_provenance": "USER_REPORTED_ORGANIZER_RESULT_NOT_DIRECT_API_VERIFIED",
+    "zip": "submissions/00_READY_TO_UPLOAD/p27_sdso20749_cap16.zip",
+    "sha256": "b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e"
+  },
+  "backup_destination_confirmed": false,
+  "external_backup_verified": false,
+  "local_cleanup_authorized": false,
+  "enforcement": "Repository supervisor refuses new workers. Direct scripts are not an OS sandbox; project policy still forbids research execution."
+}

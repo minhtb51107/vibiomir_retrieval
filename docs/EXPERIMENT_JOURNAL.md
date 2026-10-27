@@ -1279,3 +1279,39 @@ completed39.52s, reported peak RSS125.71MiB.10 tests PASS including full1200-que
 checkpoint replay and frozen-review source checks. No inference/crawl/ZIP/
 submission. Phase27 BEST0.0923 and SHA unchanged. Raw evidence stays local.
 Evidence: artifacts/phase27_owner_alignment_ablation/OWNER_ALIGNMENT_REPORT.md.
+
+### 2026-10-27 — Final freeze and safe archive planning
+
+User ended the project: no new experiments, acquisition, inference, downloads or
+submissions. Final best remains Phase27 FINAL 0.0923, recorded as
+USER_REPORTED_ORGANIZER_RESULT, not a directly verified API response. Recomputed
+the immutable BEST ZIP SHA-256:
+b58a1c2983e51586237ba55dc98b85b267e7436385f6f8e14998f81709639d8e.
+Official local corpus/query hashes also PASS. No final rank or comprehensive
+independently verified multilingual relevance result is claimed.
+
+Completed a bounded file inventory: 58,455 entries, 181,976,775,093 logical bytes,
+zero scan errors, SQLite integrity ok, 8 untraversed reparse links; 50.66 seconds,
+reported peak working set 27.07 MiB. Untracked and ignored scientific data remain
+valuable and private. No research/model worker was active. Exported and disabled
+the verified project-owned legacy Phase12 scheduled launcher; did not terminate
+unrelated processes. Added a fail-closed project marker and supervisor launch
+guard. Existing experiments/reports and dirty unrelated code are preserved.
+
+Replaced stale README scope/claims with actual architecture, user-reported score
+provenance, EN/ZH limitations and reproduction requirements. Historical local
+score rows retain their values and prior provenance caveats; no new submission.
+Seven scoped maintenance tests PASS, including checksum corruption/missing-file
+rejection, protected-link cleanup exclusion and project/task scope checks.
+Local Git bundle verification and private source-tar member hash roundtrip PASS.
+They are on the original SSD, not an independent backup of the data.
+
+STOP BEFORE DELETION: external destination, full source SHA manifest, complete
+backup verification/restore tests and exact cleanup approval remain pending.
+The corrected proposed C-only targets total 5,355,100,385 logical bytes; no
+deletion/move was performed. Original unapproved proposal retained separately;
+two unknown test links protect their parent directory. C: and D: share one SSD;
+recommend an independent destination with at least 225 GiB free. Preserve full
+.git/reflogs/unreachable objects, not just reachable Git bundles. No gc/prune.
+Evidence: docs/FINAL_STATUS.md, docs/ARCHIVE_PLAN.md and private
+artifacts/final_freeze_20261027/. No change to scientific conclusions.
